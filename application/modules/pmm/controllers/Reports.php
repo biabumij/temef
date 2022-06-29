@@ -3808,7 +3808,7 @@ class Reports extends CI_Controller {
 				$styleColorB = $evaluasi_total_alat < 0 ? 'color:red' : 'color:black';
 				$styleColorC = $evaluasi_total_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorD = $evaluasi_total_biaya_admin < 0 ? 'color:red' : 'color:black';
-				$styleColorD = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center">1.</th>			

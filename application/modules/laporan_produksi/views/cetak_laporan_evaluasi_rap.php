@@ -300,48 +300,48 @@
 				$styleColorB = $evaluasi_total_alat < 0 ? 'color:red' : 'color:black';
 				$styleColorC = $evaluasi_total_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorD = $evaluasi_total_biaya_admin < 0 ? 'color:red' : 'color:black';
-				$styleColorD = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" >1.</th>			
 				<th align="left" >TOTAL BAHAN</th>
 				<th align="right" ><?php echo number_format($total_bahan,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($bahan,0,',','.');?></th>
-				<th align="right" ><?php echo number_format($evaluasi_total_bahan,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_total_bahan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" >2.</th>			
 				<th align="left" >TOTAL ALAT</th>
 				<th align="right" ><?php echo number_format($total_alat,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($alat,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_total_alat,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_total_alat,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" >3.</th>			
 				<th align="left" >TOTAL OVERHEAD</th>
 				<th align="right" ><?php echo number_format($total_overhead,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($overhead,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_total_overhead,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_total_overhead,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" >4.</th>			
 				<th align="left" >TOTAL BIAYA ADMIN</th>
 				<th align="right" ><?php echo number_format($total_biaya_admin,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($biaya_admin,0,',','.');?></th>
-				<th align="right"  style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
+				<th align="right"  style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" >5.</th>			
 				<th align="left" >TOTAL DISKONTO</th>
 				<th align="right" ><?php echo number_format($total_diskonto,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($diskonto,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_total_diskonto,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_total_diskonto,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
 				<th align="right"  colspan="2">TOTAL</th>
 				<th align="right" ><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br />
