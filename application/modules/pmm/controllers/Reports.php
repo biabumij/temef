@@ -3836,7 +3836,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">TOTAL BIAYA ADMIN</th>
 				<th class="text-right"><?php echo number_format($total_biaya_admin,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($biaya_admin,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorc ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
