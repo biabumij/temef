@@ -401,11 +401,11 @@
 						<tr>
 							<td align="center">
 								<u>Deddy Sarwobiso</u><br />
-								<b>Direktur</b>
+								<b>Dir. Produksi, HSE & Sistem</b>
 							</td>
 							<td align="center">
 								<u>Endah Purnama S.</u><br />
-								<b>Produksi & HSE</b>
+								<b>Staff. Produksi & HSE</b>
 							</td>
 							<td align="center">
 								<u>Gervasius K. Hekin</u><br />
