@@ -3809,6 +3809,7 @@ class Reports extends CI_Controller {
 				$styleColorC = $evaluasi_total_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorD = $evaluasi_total_biaya_admin < 0 ? 'color:red' : 'color:black';
 				$styleColorE = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center">1.</th>			
@@ -3849,7 +3850,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" colspan="2">TOTAL</th>
 				<th class="text-right"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<?php

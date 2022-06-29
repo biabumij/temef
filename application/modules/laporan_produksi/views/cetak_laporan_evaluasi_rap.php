@@ -301,6 +301,7 @@
 				$styleColorC = $evaluasi_total_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorD = $evaluasi_total_biaya_admin < 0 ? 'color:red' : 'color:black';
 				$styleColorE = $evaluasi_total_diskonto < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $total_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" >1.</th>			
@@ -341,7 +342,7 @@
 				<th align="right"  colspan="2">TOTAL</th>
 				<th align="right" ><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right" ><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br />
