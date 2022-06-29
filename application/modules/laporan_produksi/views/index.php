@@ -85,6 +85,11 @@
 														<p><h5>Laporan Evaluasi Pemakaian Bahan Baku</h5></p>
 														<p>Menampilkan laporan evaluasi pemakaian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_evaluasi" aria-controls="laporan_evaluasi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                    </div>
+													<div class="col-sm-5">
+														<p><h5>Laporan Evaluasi RAP</h5></p>
+														<p>Menampilkan laporan evaluasi RAP bahan baku yang dicatat dalam suatu periode.</p>
+                                                        <a href="#laporan_evaluasi_rap" aria-controls="laporan_evaluasi_rap" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>                                 													
                                                 </div>
                                             </div>
@@ -309,6 +314,44 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-ajax-evaluasi">													
+													
+                    
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
+
+									<!-- Laporan Evaluasi RAP -->
+                                    
+									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi_rap">
+                                        <div class="col-sm-15">
+										<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Laporan Evaluasi RAP</h3>
+													<a href="laporan_produksi">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/laporan_evaluasi_rap_print');?>" target="_blank">
+															<div class="col-sm-3">
+																<input type="text" id="filter_date_evaluasi_rap" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="box-ajax-evaluasi-rap">													
 													
                     
 													</div>
@@ -609,6 +652,52 @@
 			}
 
 			//TableEvaluasi();
+
+            </script>
+
+			<!-- Script Evaluasi RAP -->
+
+			<script type="text/javascript">
+			$('#filter_date_evaluasi_rap').daterangepicker({
+            autoUpdateInput : false,
+			showDropdowns: true,
+            locale: {
+              format: 'DD-MM-YYYY'
+            },
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+			});
+
+			$('#filter_date_evaluasi_rap').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				  TableEvaluasiRAP();
+			});
+
+
+			function TableEvaluasiRAP()
+			{
+				$('#wait').fadeIn('fast');   
+				$.ajax({
+					type    : "POST",
+					url     : "<?php echo site_url('pmm/reports/table_evaluasi_rap'); ?>/"+Math.random(),
+					dataType : 'html',
+					data: {
+						filter_date : $('#filter_date_evaluasi_rap').val(),
+					},
+					success : function(result){
+						$('#box-ajax-evaluasi-rap').html(result);
+						$('#wait').fadeOut('fast');
+					}
+				});
+			}
+
+			//TableEvaluasiRAP();
 
             </script>
 

@@ -53,36 +53,21 @@
 
                                 <div class="tab-content">			
 								
-                                    <div role="tabpanel" class="tab-pane active" id="rap">
-										<?php
-										$products = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH','betonreadymix'=>1))->result_array();
-										?>
-										<div class="col-sm-3">
-											<select id="filter_product" class="form-control select2" name="filter_product">
-												<option value="">Pilih Mutu Beton</option>
-												<?php
-													if(!empty($products)){
-														foreach ($products as $row) {
-															?>
-															<option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-															<?php
-														}
-													}
-													?>
-											</select>
-										</div>									
-										<br />
-										<br />										
+                                    <div role="tabpanel" class="tab-pane active" id="rap">									
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="table_rap" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
-														<th class="text-center" width="20%">Mutu Beton</th>
-														<th class="text-center" width="15%">Slump</th>
-														<th class="text-center" width="20%">Nomor Komposisi</th>
-														<th class="text-center" width="20%">Nomor RAP</th>
-														<th class="text-center" width="20%">Action</th>
+                                                        <th class="text-center" width="5%">NO.</th>
+														<th class="text-center">TANGGAL RAP</th>
+														<th class="text-center">NO. RAP</th>
+														<th class="text-center">TOTAL BAHAN</th>
+														<th class="text-center">TOTAL ALAT</th>
+                                                        <th class="text-center">TOTAL OVERHEAD</th>
+                                                        <th class="text-center">TOTAL BIAYA ADMIN</th>
+                                                        <th class="text-center">TOTAL DISKONTO</th>
+                                                        <th class="text-center">LAMPIRAN</th>
+														<th class="text-center">TINDAKAN</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -138,24 +123,40 @@
                     "data": "no"
                 },
 				{
-                    "data": "mutu_beton"
-                },
-				{
-                    "data": "slump"
-                },
-				{
-                    "data": "nomor_komposisi"
+                    "data": "tanggal_rap"
                 },
 				{
                     "data": "nomor_rap"
+                },
+				{
+                    "data": "total_bahan"
+                },
+				{
+                    "data": "total_alat"
+                },
+                {
+                    "data": "total_overhead"
+                },
+                {
+                    "data": "total_biaya_admin"
+                },
+                {
+                    "data": "total_diskonto"
+                },
+                {
+                    "data": "lampiran"
                 },
 				{
 					"data": "actions"
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 5],
+                    "targets": [0, 1, 9],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [3, 4, 5, 6, 7],
+                    "className": 'text-right',
                 }
             ],
         });
