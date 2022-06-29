@@ -3815,41 +3815,41 @@ class Reports extends CI_Controller {
 				<th class="text-left">TOTAL BAHAN</th>
 				<th class="text-right"><?php echo number_format($total_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($bahan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($evaluasi_total_bahan,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_total_bahan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">2.</th>			
 				<th class="text-left">TOTAL ALAT</th>
 				<th class="text-right"><?php echo number_format($total_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($alat,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_total_alat,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_total_alat,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">3.</th>			
 				<th class="text-left">TOTAL OVERHEAD</th>
 				<th class="text-right"><?php echo number_format($total_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($overhead,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_total_overhead,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_total_overhead,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">4.</th>			
 				<th class="text-left">TOTAL BIAYA ADMIN</th>
 				<th class="text-right"><?php echo number_format($total_biaya_admin,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($biaya_admin,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_total_biaya_admin,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
 				<th class="text-left">TOTAL DISKONTO</th>
 				<th class="text-right"><?php echo number_format($total_diskonto,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($diskonto,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_total_diskonto,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_total_diskonto,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
 				<th class="text-right" colspan="2">TOTAL</th>
 				<th class="text-right"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<?php
