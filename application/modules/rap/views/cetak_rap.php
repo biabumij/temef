@@ -12,7 +12,7 @@
 		'March',
 		'April',
 		'May',
-		'Juei',
+		'June',
 		'July',
 		'August',
 		'September',
