@@ -310,7 +310,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u>Gervasius K.Hekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center" >
