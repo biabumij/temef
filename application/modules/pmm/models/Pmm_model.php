@@ -1618,7 +1618,7 @@ class Pmm_model extends CI_Model {
 		$this->db->order_by('ppp.tanggal_invoice','asc');
         $query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
-		file_put_contents("D:\\GetReceiptMat5.txt", $this->db->last_query());
+		//file_put_contents("D:\\GetReceiptMat5.txt", $this->db->last_query());
 		
         $output = $query->result_array();
         return $output;
