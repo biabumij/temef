@@ -68,7 +68,7 @@
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 9px;
 			color: black;
 		}
 	  </style>
@@ -89,13 +89,11 @@
 		<br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="5%">NO.</th>
-                <th width="15%">TANGGAL</th>
-                <th width="20%">URAIAN</th>
-				<th width="10%">SATUAN</th>
-                <th width="15%">VOLUME</th>
-                <th width="15%">HARGA SATUAN</th>
-                <th width="20%">NILAI</th>
+                <th width="5%" align="center">NO.</th>
+                <th width="20%" align="center">TANGGAL</th>
+                <th width="35%" align="center">URAIAN</th>
+				<th width="20%" align="center">SATUAN</th>
+                <th width="20%" align="center">VOLUME</th>
             </tr>
             <?php
             
@@ -105,14 +103,12 @@
             	foreach ($data as $key => $row) {	
             		$measure = $this->crud_global->GetField('pmm_measures',array('id'=>$row['display_measure']),'measure_name');
             		?>
-            		<tr class="table-baris1">
+            		<tr class="table-baris2">
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="center"><?= convertDateDBtoIndo($row["date"]); ?></td>
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
 						<td align="center"><?php echo $measure;?></td>
             			<td align="right"><?php echo  number_format($row['display_volume'],2,',','.');?></td>
-            			<td align="right"><?php echo number_format($row['price'],0,',','.');?></td>
-            			<td align="right"><?php echo number_format($row['total'],0,',','.');?></td>
             		</tr>
             		<?php
 
@@ -128,19 +124,10 @@
             	<?php
             }
             ?>	
-            <tr class="table-total">
-            	<th width="80%" align="right" colspan="6">TOTAL</th>
-				<th width="20%" align="right"><?php echo number_format($total,0,',','.');?></th>
-            </tr>
-           
-          
 		</table>
 		<br />
 		<br />
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -156,7 +143,7 @@
 								Dibuat Oleh
 							</td>
 						</tr>
-						<tr class="">
+						<tr>
 							<td align="center" height="40px">
 								
 							</td>
