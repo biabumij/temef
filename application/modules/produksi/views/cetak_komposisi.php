@@ -118,36 +118,36 @@
 				<td align="left"><?= $row["produk_a"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_a']),'nama_produk'); ?></td>
 				<td align="center"><?= $row["measure_a"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_a']),'measure_name'); ?></td>
 				<td align="center"><?= $row["presentase_a"]; ?></td>
-				<td align="center"><?php echo number_format($row["price_a"],0,',','.');?></td>
-				<td align="center"><?php echo number_format($row["total_a"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["price_a"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["total_a"],0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">2.</td>
 				<td align="left"><?= $row["produk_b"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_b']),'nama_produk'); ?></td>
 				<td align="center"><?= $row["measure_b"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_b']),'measure_name'); ?></td>
 				<td align="center"><?= $row["presentase_b"]; ?></td>
-				<td align="center"><?php echo number_format($row["price_b"],0,',','.');?></td>
-				<td align="center"><?php echo number_format($row["total_b"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["price_b"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["total_b"],0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">3.</td>
 				<td align="left"><?= $row["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_c']),'nama_produk'); ?></td>
 				<td align="center"><?= $row["measure_c"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_c']),'measure_name'); ?></td>
 				<td align="center"><?= $row["presentase_c"]; ?></td>
-				<td align="center"><?php echo number_format($row["price_c"],0,',','.');?></td>
-				<td align="center"><?php echo number_format($row["total_c"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["price_c"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["total_c"],0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">4.</td>
 				<td align="left"><?= $row["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_d']),'nama_produk'); ?></td>
 				<td align="center"><?= $row["measure_d"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_d']),'measure_name'); ?></td>
 				<td align="center"><?= $row["presentase_d"]; ?></td>
-				<td align="center"><?php echo number_format($row["price_d"],0,',','.');?></td>
-				<td align="center"><?php echo number_format($row["total_d"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["price_d"],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row["total_d"],0,',','.');?></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="5"><b>TOTAL</b></td>
-				<td align="center"><b><?php echo number_format($total,0,',','.');?></b></td>
+				<td align="right" colspan="5"><b>TOTAL</b></td>
+				<td align="right"><b><?php echo number_format($total,0,',','.');?></b></td>
 			</tr>		
 		</table>
 		
