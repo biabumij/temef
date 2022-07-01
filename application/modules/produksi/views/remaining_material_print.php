@@ -108,8 +108,8 @@
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="center"><?= convertDateDBtoIndo($row["date"]); ?></td>
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
-						<td align="center"><?php echo $measure;?></td>
             			<td align="right"><?php echo  number_format($row['display_volume'],2,',','.');?></td>
+						<td align="center"><?php echo $measure;?></td>
 						<td align="center"><?php echo $row['notes'];?></td>
             		</tr>
             		<?php
