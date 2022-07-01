@@ -90,10 +90,11 @@
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
                 <th width="5%" align="center">NO.</th>
-                <th width="20%" align="center">TANGGAL</th>
+                <th width="15%" align="center">TANGGAL</th>
                 <th width="35%" align="center">URAIAN</th>
-				<th width="20%" align="center">SATUAN</th>
-                <th width="20%" align="center">VOLUME</th>
+				<th width="15%" align="center">VOLUME</th>
+                <th width="15%" align="center">SATUAN</th>
+				<th width="20%" align="center">CATATAN</th>
             </tr>
             <?php
             
@@ -109,6 +110,7 @@
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
 						<td align="center"><?php echo $measure;?></td>
             			<td align="right"><?php echo  number_format($row['display_volume'],2,',','.');?></td>
+						<td align="center"><?php echo $row['notes'];?></td>
             		</tr>
             		<?php
 
