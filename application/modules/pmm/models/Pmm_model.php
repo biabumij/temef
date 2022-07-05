@@ -1595,7 +1595,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, SUM(ppp.total) as tagihan, (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as hutang');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, SUM(ppp.total) as tagihan, (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as hutang');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -1829,27 +1829,23 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('po.id as po_id, po.supplier_id, p.nama, po.date_po, po.no_po, po.status, SUM(pod.volume) AS vol_pemesanan,  SUM(pod.volume * pod.price) AS pemesanan, (select sum(volume) from pmm_receipt_material prm where prm.purchase_order_id = po.id) as vol_pengiriman, (select sum(price) from pmm_receipt_material prm where prm.purchase_order_id = po.id) as pengiriman,
+        $this->db->select('po.id as po_id, po.supplier_id, p.nama, po.date_po, po.no_po, po.status, SUM(pod.volume) AS vol_pemesanan,  SUM(pod.volume * pod.price) AS pemesanan, (select sum(volume) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.date_receipt >= "'.$start_date.'"  and prm.date_receipt <= "'.$end_date.'") as vol_pengiriman, (select sum(price) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.date_receipt >= "'.$start_date.'"  and prm.date_receipt <= "'.$end_date.'") as pengiriman,
 		(
             select SUM(volume) 
             from pmm_penagihan_pembelian_detail ppd 
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
 		) as vol_tagihan,
-		(
-            select SUM(price * volume + tax) 
-            from pmm_penagihan_pembelian_detail ppd 
-            inner join pmm_penagihan_pembelian ppp 
-            on ppd.penagihan_pembelian_id = ppp.id 
-            where ppp.purchase_order_id = po_id
-		) as tagihan,
+        (select sum(total) from pmm_penagihan_pembelian ppp where ppp.purchase_order_id = po.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as tagihan,
         (
             select SUM(volume) 
             from pmm_penagihan_pembelian_detail ppd 
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_pembayaran,
         (
             select sum(pppp.total)
@@ -1857,6 +1853,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
         (select sum(volume) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.material_id) -
         (
@@ -1865,14 +1862,16 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_hutang_penerimaan,
-        (select sum(price) from pmm_receipt_material prm where prm.purchase_order_id = po.id) - 
+        (select sum(price) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.date_receipt >= "'.$start_date.'"  and prm.date_receipt <= "'.$end_date.'") - 
         (
             select sum(pppp.total)
             from pmm_pembayaran_penagihan_pembelian pppp 
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as hutang_penerimaan,
 		(
             select SUM(volume) 
@@ -1880,6 +1879,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
 		) -
         (
             select SUM(volume) 
@@ -1887,20 +1887,16 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_sisa_tagihan,
-		(
-            select SUM(price * volume) 
-            from pmm_penagihan_pembelian_detail ppd 
-            inner join pmm_penagihan_pembelian ppp 
-            on ppd.penagihan_pembelian_id = ppp.id 
-            where ppp.purchase_order_id = po_id
-		) - 
+		(select sum(total) from pmm_penagihan_pembelian ppp where ppp.purchase_order_id = po.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") - 
         (
             select sum(pppp.total)
             from pmm_pembayaran_penagihan_pembelian pppp 
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as sisa_tagihan,');
         
 		if(!empty($start_date) && !empty($end_date)){
@@ -2003,7 +1999,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppp.total) as tagihan, (select SUM(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppp.total) as tagihan, (select SUM(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as piutang');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -2099,27 +2095,23 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('po.id as po_id, po.client_id, p.nama, po.contract_date, po.contract_number, po.status, sum(pod.qty) as vol_pemesanan, sum(pod.qty * pod.price) as pemesanan, (select sum(volume) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id) as vol_pengiriman, (select sum(price) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id) as pengiriman,
+        $this->db->select('po.id as po_id, po.client_id, p.nama, po.contract_date, po.contract_number, po.status, sum(pod.qty) as vol_pemesanan, sum(pod.qty * pod.price) as pemesanan, (select sum(volume) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id and pp.date_production >= "'.$start_date.'"  and pp.date_production <= "'.$end_date.'") as vol_pengiriman, (select sum(price) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id and pp.date_production >= "'.$start_date.'"  and pp.date_production <= "'.$end_date.'") as pengiriman,
 		(
             select SUM(qty) 
             from pmm_penagihan_penjualan_detail ppd 
             inner join pmm_penagihan_penjualan ppp 
             on ppd.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
 		) as vol_tagihan,
-		(
-            select SUM(price * qty + tax) 
-            from pmm_penagihan_penjualan_detail ppd 
-            inner join pmm_penagihan_penjualan ppp 
-            on ppd.penagihan_id = ppp.id 
-            where ppp.sales_po_id = po_id
-		) as tagihan,
+        (select sum(total) from pmm_penagihan_penjualan ppp where ppp.sales_po_id = po.id  and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as tagihan,
 		(
             select SUM(qty) 
             from pmm_penagihan_penjualan_detail ppd 
             inner join pmm_penagihan_penjualan ppp 
             on ppd.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_pembayaran,
 		(
             select sum(pppp.pembayaran)
@@ -2127,21 +2119,24 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
 		) as pembayaran,
-        (select sum(volume) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id) - 
+        (select sum(volume) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id and pp.date_production >= "'.$start_date.'"  and pp.date_production <= "'.$end_date.'") - 
         (
             select SUM(qty) 
             from pmm_penagihan_penjualan_detail ppd 
             inner join pmm_penagihan_penjualan ppp 
             on ppd.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_piutang_pengiriman,
-        (select sum(price) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id) - (
+        (select sum(price) from pmm_productions pp where pp.salesPo_id = po.id and pp.product_id and pp.date_production >= "'.$start_date.'"  and pp.date_production <= "'.$end_date.'") - (
             select sum(pppp.pembayaran)
             from pmm_pembayaran pppp 
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as piutang_pengiriman,
         (
             select SUM(qty) 
@@ -2149,6 +2144,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on ppd.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) - 
         (
             select SUM(qty) 
@@ -2156,20 +2152,16 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on ppd.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
         ) as vol_sisa_tagihan,
-		(
-            select SUM(price * qty + tax) 
-            from pmm_penagihan_penjualan_detail ppd 
-            inner join pmm_penagihan_penjualan ppp 
-            on ppd.penagihan_id = ppp.id 
-            where ppp.sales_po_id = po_id
-		)  - 
+		(select sum(total) from pmm_penagihan_penjualan ppp where ppp.sales_po_id = po.id  and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'")  - 
         (
             select sum(pppp.pembayaran)
             from pmm_pembayaran pppp 
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = po_id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         )as sisa_tagihan');
 		
 		if(!empty($start_date) && !empty($end_date)){
