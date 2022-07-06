@@ -808,7 +808,7 @@
                                         var a_no = a + 1;
                                         $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.qty + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
-                                    $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah_all + '</b></td></tr>');
+                                    $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + row.jumlah_all + '</b></td></tr>');
                                 });
                                 $('#table-date12 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right"><b>' + result.total + '</b></td></tr>');
                             } else {
