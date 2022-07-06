@@ -164,7 +164,6 @@ class Laporan extends Secure_Controller {
             $this->db->where('psod.sales_po_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_sales_po_detail psod', 'pso.id = psod.sales_po_id', 'left');
 		$this->db->join('penerima ps', 'pso.client_id = ps.id');
 		$this->db->where("pso.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pso.client_id');
@@ -277,7 +276,6 @@ class Laporan extends Secure_Controller {
             $this->db->where('ppd.penagihan_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id');
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');

@@ -787,7 +787,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number');
+		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -802,7 +802,6 @@ class Productions extends Secure_Controller {
             $this->db->where('psod.sales_po_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_sales_po_detail psod', 'pso.id = psod.sales_po_id', 'left');
 		$this->db->join('penerima ps', 'pso.client_id = ps.id');
 		$this->db->where("pso.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pso.client_id');
@@ -841,7 +840,7 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] = $no;
-					$sups['jumlah'] = number_format($jumlah_all,0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
 					$data[] = $sups;
@@ -871,7 +870,7 @@ class Productions extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, (ppp.total) as jumlah');
+		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -885,13 +884,12 @@ class Productions extends Secure_Controller {
         if(!empty($purchase_order_no)){
             $this->db->where('ppd.penagihan_id',$purchase_order_no);
         }
-		
-		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id','left');
+
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date12.txt", $this->db->last_query());
+		file_put_contents("D:\\table_date12.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
