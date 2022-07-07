@@ -149,7 +149,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as jumlah');
+			$this->db->select('pso.id, ps.nama, SUM(pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -201,7 +201,7 @@ class Laporan extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] = $no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
@@ -309,7 +309,7 @@ class Laporan extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] =$no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
@@ -1043,6 +1043,7 @@ class Laporan extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$jumlah_all = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -1053,7 +1054,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('ps.nama, ppo.supplier_id, ppo.date_po, ppo.no_po, pod.measure, pod.price, SUM(pod.volume) as volume, pod.tax as ppn, SUM(pod.volume * pod.price) as jumlah, SUM(pod.volume * pod.price + pod.tax) as total_price');
+		$this->db->select('ps.nama, ppo.supplier_id, SUM(ppo.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppo.date_po >=',$start_date);
             $this->db->where('ppo.date_po <=',$end_date);
@@ -1101,12 +1102,12 @@ class Laporan extends Secure_Controller {
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$jumlah_all += $row['total_price'];
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
-					$sups['no'] =$no;
-					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
+					$total += $sups['jumlah'];
+					$sups['no'] = $no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					$arr_data[] = $sups;
 					$no++;
@@ -1261,6 +1262,7 @@ class Laporan extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$jumlah_all = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -1271,7 +1273,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('ppp.supplier_id, ps.nama, SUM(ppd.total) as jumlah, SUM(ppd.tax) as ppn, SUM(ppd.total + ppd.tax) as total_price');
+		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -1286,7 +1288,6 @@ class Laporan extends Secure_Controller {
             $this->db->where('ppd.penagihan_pembelian_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id');
 		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
@@ -1317,14 +1318,13 @@ class Laporan extends Secure_Controller {
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$jumlah_all += $row['total_price'];
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
+					$total += $sups['jumlah'];
 					$sups['no'] =$no;
-					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
-					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
-					$sups['ppn'] = number_format($sups['ppn'],0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');	
 					
 					$arr_data[] = $sups;
 					$no++;

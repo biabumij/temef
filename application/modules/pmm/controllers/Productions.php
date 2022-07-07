@@ -787,7 +787,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as jumlah');
+		$this->db->select('pso.id, ps.nama, SUM(pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -838,7 +838,7 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] = $no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
@@ -889,7 +889,7 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		file_put_contents("D:\\table_date12.txt", $this->db->last_query());
+		//file_put_contents("D:\\table_date12.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -917,7 +917,7 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] =$no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					

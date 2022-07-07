@@ -370,16 +370,17 @@
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">NOMOR</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PO</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">DPP</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">PPN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">JUMLAH</th>
                                                             </tr>
                                                             <tr>
-                                                                <th class="text-center">TGL. PESAN</th>
+                                                                <th class="text-center">TGL. PO</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -487,7 +488,7 @@
                                                                 <th align="center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
                                                             </tr>
                                                             <tr>
-                                                                <th class="text-center">TGL INVOICE</th>
+                                                                <th class="text-center">TGL. INVOICE</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -1057,16 +1058,16 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date2 tbody').append('<tr onclick="NextShowPesananPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="8">' + val.nama + '</td></tr>');
+                                    $('#table-date2 tbody').append('<tr onclick="NextShowPesananPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="9">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date2 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.date_po + '</td><td class="text-left">' + row.no_po + '</td><td class="text-center">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                        $('#table-date2 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.date_po + '</td><td class="text-left">' + row.no_po + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
-									 $('#table-date2 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right" colspan="9">' + val.jumlah + '</td></tr>');
+									 $('#table-date2 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="9"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah + '</b></td></tr>');
                                 });
-                                $('#table-date2 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#table-date2 tbody').append('<tr><td class="text-right" colspan="9"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
-                                $('#table-date2 tbody').append('<tr><td class="text-center" colspan="9"><b>NO DATA</b></td></tr>');
+                                $('#table-date2 tbody').append('<tr><td class="text-center" colspan="10"><b>NO DATA</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -1201,7 +1202,7 @@
                                         var a_no = a + 1;
                                         $('#table-date4 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.volume + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
-									$('#table-date4 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="6"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah + '</b></td><td class="text-right"><b>' + val.ppn + '</b></td><td class="text-right""><b>' + val.total_price + '</b></td></tr>');
+									$('#table-date4 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah + '</b></td></tr>');
                                 });
                                 $('#table-date4 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
