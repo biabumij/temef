@@ -430,8 +430,8 @@
 		$total_harga_stock_semen_akhir = round($price_stock_opname_semen,0);
 		$total_nilai_stock_semen_akhir = $total_volume_stock_semen_akhir * $total_harga_stock_semen_akhir;
 
-		$total_nilai_pemakaian_semen = $total_nilai_jasa_angkut_opc_akhir - $total_nilai_stock_semen_akhir;
-		$total_harga_pemakaian_semen = $total_nilai_pemakaian_semen / $total_volume_pemakaian_semen;
+		$total_harga_pemakaian_semen = $total_harga_stock_semen_akhir;
+		$total_nilai_pemakaian_semen = $total_volume_pemakaian_semen * $total_harga_pemakaian_semen;
 
 		//PEMBELIAN PASIR
 		$pembelian_pasir = $this->db->select('
