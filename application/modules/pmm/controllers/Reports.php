@@ -446,14 +446,9 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
-
-			$hpp_bahan_baku = $this->db->select('pp.date_akumulasi, pp.semen')
-			->from('hpp_bahan_baku pp')
-			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
-			$price_stock_opname_semen =  $hpp_bahan_baku['semen'];
+			$price_stock_opname_semen =  $stock_opname_semen['price'];
 
 			$total_volume_pemakaian_semen = $total_volume_pembelian_semen_opc_akhir - $stock_opname_semen['volume'];
 
