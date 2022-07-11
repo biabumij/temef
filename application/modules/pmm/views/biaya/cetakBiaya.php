@@ -55,8 +55,10 @@
 
     </head>
     <body>
- 
-        <table width="98%" border="0" cellpadding="30">
+        <br />
+        <br />
+        <br />
+        <table width="98%" border="0" cellpadding="0">
             <tr >
                 <td align="center">
                     <div style=";font-weight: bold;font-size: 14px;border-bottom: 1px solid #000;border-top: 1px solid #000;text-transform: uppercase;">BUKTI PENGELUARAN <?= $biaya['bayar_dari'];?></div>
