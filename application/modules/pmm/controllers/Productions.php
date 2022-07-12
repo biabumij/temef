@@ -2780,14 +2780,16 @@ class Productions extends Secure_Controller {
 		
 		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
 		$date2 =  date('Y-m-d', strtotime($last_production['date']));
-		$date1_konversi =  date('d F Y', strtotime('+2 days -1 month', strtotime($last_production['date'])));
-		$date2_konversi =  date('d F Y', strtotime($last_production['date']));
+		$date1_filter = date('d F Y', strtotime($date1));
+		$date2_filter = date('d F Y', strtotime($date2));
 		
 
 		if(count($arr_filter_date) == 2){
 			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
 			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+			$date1_filter = date('d F Y',strtotime($arr_filter_date[0]));
+			$date2_filter = date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		
 		?>
@@ -2795,47 +2797,9 @@ class Productions extends Secure_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-active{
-					background-color: #F0F0F0;
-					font-size: 12px;
-					font-weight: bold;
-					color: black;
-				}
-					
-				table tr.table-active2{
-					background-color: #E8E8E8;
-					font-size: 12px;
-					font-weight: bold;
-				}
-					
-				table tr.table-active3{
-					font-size: 12px;
-					background-color: #F0F0F0;
-				}
-					
-				table tr.table-active4{
-					background-color: #ffb732;
-					font-weight: bold;
-					font-size: 12px;
-					color: black;
-				}
-				table tr.table-active5{
-					background-color: #E8E8E8;
-					font-weight: bold;
-					font-size: 12px;
-					color: black;
-				}
-				table tr.table-activeago1{
-					background-color: #ffd966;
-					font-weight: bold;
-					font-size: 12px;
-					color: black;
-				}
-				table tr.table-activeopening{
-					background-color: #2986cc;
-					font-weight: bold;
-					font-size: 12px;
-					color: black;
-				}
+				background-color: #ffb732;
+				color: black;
+			}
 			</style>
 
 			<!-- TOTAL PEMAKAIAN KOMPOSISI -->
@@ -3355,55 +3319,53 @@ class Productions extends Secure_Controller {
 
 	        ?>
 
-			<tr class="table-active4">
+			<tr class="table-active">
 				<th class="text-center" colspan="5" style="text-transform:uppercase">
-					<?php
-					$search = array(
-					'January',
-					'February',
-					'March',
-					'April',
-					'May',
-					'June',
-					'July',
-					'August',
-					'September',
-					'October',
-					'November',
-					'December'
-					);
-					
-					$replace = array(
-					'Januari',
-					'Februari',
-					'Maret',
-					'April',
-					'Mei',
-					'Juni',
-					'Juli',
-					'Agustus',
-					'September',
-					'Oktober',
-					'November',
-					'Desember'
-					);
-					
-					$subject = "$date1_konversi - $date2_konversi";
+				Evaluasi Pemakaian Bahan Baku
+				(<?php
+				$search = array(
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December'
+				);
+				
+				$replace = array(
+				'Januari',
+				'Februari',
+				'Maret',
+				'April',
+				'Mei',
+				'Juni',
+				'Juli',
+				'Agustus',
+				'September',
+				'Oktober',
+				'November',
+				'Desember'
+				);
+				
+				$subject = "$date1_filter - $date2_filter";
 
-					echo str_replace($search, $replace, $subject);
+				echo str_replace($search, $replace, $subject);
 
-					?>
+				?>)
 				</th>
 			</tr>
-			<tr class="table-active4">
-				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="20%" class="text-center" colspan="2">EVALUASI</th>
-	        </tr>
-			<tr class="table-active4">
-				<th width="8%" class="text-center">VOLUME</th>
-				<th width="13%" class="text-center">NILAI</th>
+			<tr>
+				<th width="5%" class="text-center" style='background-color:rgb(0,206,209); color:black'>NO.</th>
+				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>URAIAN</th>
+				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>SATUAN</th>
+				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>VOLUME</th>
+				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'background-color:red' : 'background-color:none';
@@ -3417,35 +3379,35 @@ class Productions extends Secure_Controller {
 				$styleColorDD = $evaluasi_nilai_d < 0 ? 'background-color:red' : 'background-color:none';
 				$styleColorEE = $total_nilai_evaluasi < 0 ? 'background-color:red' : 'background-color:none';
 			?>
-			<tr class="table-active3">
+			<tr>
 				<th class="text-center"style="vertical-align:middle">1</th>			
 				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
 				<th class="text-center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr>
 				<th class="text-center"style="vertical-align:middle">2</th>			
 				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
 				<th class="text-center" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr>
 				<th class="text-center"style="vertical-align:middle">3</th>			
 				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
 				<th class="text-center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr>
 				<th class="text-center"style="vertical-align:middle">4</th>			
 				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
 				<th class="text-center" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">		
+			<tr>		
 				<th class="text-right" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
