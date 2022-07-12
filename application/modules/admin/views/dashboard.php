@@ -76,16 +76,10 @@
                                     <a href="laporan_produksi">Kembali</a>
                                 </div>
                                 <div style="margin: 20px">
-                                    <div class="row">
-                                        <form action="<?php echo site_url('laporan/laporan_evaluasi_print');?>" target="_blank">
-                                            <div class="col-sm-3">
-                                                <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-                                            </div>
-                                        </form>
-                                        
+                                    <div class="row"> 
+                                        <div class="col-sm-3">
+                                            <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+                                        </div>   
                                     </div>
                                     <br />
                                     <div id="wait" style=" text-align: center; align-content: center; display: none;">	
