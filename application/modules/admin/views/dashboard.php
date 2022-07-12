@@ -77,7 +77,7 @@
                                 </div>
                                 <div style="margin: 20px">
                                     <div class="row"> 
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
                                         </div>   
                                     </div>
