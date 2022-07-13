@@ -449,6 +449,7 @@ class Produksi extends Secure_Controller {
                 $row['no'] = $key+1;
                 $row['date_akumulasi'] = date('d F Y',strtotime($row['date_akumulasi']));
                 $row['total_nilai_keluar'] = number_format($row['total_nilai_keluar'],0,',','.');
+				$row['total_nilai_keluar_2'] = number_format($row['total_nilai_keluar_2'],0,',','.');
 				$row['status'] = $row['status'];
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 
