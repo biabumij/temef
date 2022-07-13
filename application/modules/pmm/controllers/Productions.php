@@ -3305,17 +3305,17 @@ class Productions extends Secure_Controller {
 			$total_volume_realisasi = $total_volume_pemakaian_semen + $total_volume_pemakaian_pasir + $total_volume_pemakaian_batu1020 + $total_volume_pemakaian_batu2030;
 			$total_nilai_realisasi = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
 
-			$evaluasi_volume_a = $volume_a - $total_volume_pemakaian_semen;
-			$evaluasi_volume_b = $volume_b - $total_volume_pemakaian_pasir;
-			$evaluasi_volume_c = $volume_c - $total_volume_pemakaian_batu1020;
-			$evaluasi_volume_d = $volume_d - $total_volume_pemakaian_batu2030;
+			$evaluasi_volume_a = round($volume_a - $total_volume_pemakaian_semen,2);
+			$evaluasi_volume_b = round($volume_b - $total_volume_pemakaian_pasir,2);
+			$evaluasi_volume_c = round($volume_c - $total_volume_pemakaian_batu1020,2);
+			$evaluasi_volume_d = round($volume_d - $total_volume_pemakaian_batu2030,2);
 
-			$evaluasi_nilai_a = $nilai_a - $total_nilai_pemakaian_semen;
-			$evaluasi_nilai_b = $nilai_b - $total_nilai_pemakaian_pasir;
-			$evaluasi_nilai_c = $nilai_c - $total_nilai_pemakaian_batu1020;
-			$evaluasi_nilai_d = $nilai_d - $total_nilai_pemakaian_batu2030;
+			$evaluasi_nilai_a = round($nilai_a - $total_nilai_pemakaian_semen,0);
+			$evaluasi_nilai_b = round($nilai_b - $total_nilai_pemakaian_pasir,0);
+			$evaluasi_nilai_c = round($nilai_c - $total_nilai_pemakaian_batu1020,0);
+			$evaluasi_nilai_d = round($nilai_d - $total_nilai_pemakaian_batu2030,0);
 
-			$total_nilai_evaluasi = $evaluasi_nilai_a + $evaluasi_nilai_b + $evaluasi_nilai_c + $evaluasi_nilai_d;
+			$total_nilai_evaluasi = round($evaluasi_nilai_a + $evaluasi_nilai_b + $evaluasi_nilai_c + $evaluasi_nilai_d,0);
 
 	        ?>
 
