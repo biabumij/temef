@@ -903,7 +903,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
@@ -1176,7 +1176,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
