@@ -460,8 +460,8 @@ class Reports extends CI_Controller {
 			$total_harga_stock_semen_akhir = round($price_stock_opname_semen,0);
 			$total_nilai_stock_semen_akhir = $total_volume_stock_semen_akhir * $total_harga_stock_semen_akhir;
 
-			$total_harga_pemakaian_semen = $total_harga_stock_semen_akhir;
-			$total_nilai_pemakaian_semen = $total_volume_pemakaian_semen * $total_harga_pemakaian_semen;
+			$total_nilai_pemakaian_semen = ($nilai_opening_balance_semen + $total_nilai_pembelian_semen  + $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_cons + $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_opc + $total_nilai_jasa_angkut_opc) - $total_nilai_stock_semen_akhir;
+			$total_harga_pemakaian_semen = $total_nilai_pemakaian_semen / $total_volume_pemakaian_semen;
 
 			//PEMBELIAN PASIR
 			$pembelian_pasir = $this->db->select('
