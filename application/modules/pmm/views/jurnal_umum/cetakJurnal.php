@@ -109,139 +109,51 @@
         </table>
         <br />
         <br />
-        <?php
-        $staff_keuangan_proyek = $this->pmm_model->GetNameGroup(14);
-        $kepala_divisi = $this->pmm_model->GetNameGroup(15);
-		$ka_plant = $this->pmm_model->GetNameGroup(15);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(10);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        $keuangan_proyek = $this->pmm_model->GetNameGroup(10);
-        $arr_no_trans = explode('/', $biaya['nomor_transaksi']);
-        ?>  
-
-        <table width="98%" border="0" cellpadding="0">
-            <tr>
-                <td width="100%">
-                    <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center">
-                                Dibuat Oleh
-                            </td>
-                            <td align="center">
-                                Diperiksa Oleh,
-                            </td>
-                            <?php
-                            if(!empty($arr_no_trans)){
-								if (strpos($arr_no_trans[2], 'SC') === false) {
-                            ?>
-                            <td align="center"colspan="2">
-                                Disetujui
-                            </td>
-                              <?php
-                                }
-                            }
-                            ?>
-                            <td align="center" >
-                                Diketahui
-                            </td>
-                            <td align="center" >
-                                Diterima 
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td align="center" height="75px">
-                                
-                            </td>
-                            
-                                    <td align="center">
-                                
-                                    </td>
-                            <?php
-                            if(!empty($arr_no_trans)){
-                                if (strpos($arr_no_trans[2], 'SC') === false) {
-                                    ?>
-                            <td align="center">           
-                            </td>       
-                            <td align="center">   
-                            </td>
-                            <?php
-                            }
-                            }
-                            ?>
-                            <td align="center">  
-                            </td>
-                            <td align="center">
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                           <td align="center">
-                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$biaya['created_by']),'admin_name'); ?>
-                            </td>
-                            <?php
-                            if(!empty($arr_no_trans)){
-                                if (strpos($arr_no_trans[2], 'SC') === false) {
-                                    ?>
-                                    <td align="center">
-                                        <?=  $keuangan_proyek['admin_name'];?>
-                                    </td>
-                                    <td align="center">
-                                        <?=  $ka_plant['admin_name'];?>
-                                    </td>
-                                    <?php
-                                }
-                            }
-                            ?>
-                            <td align="center">
-								<?=  $manager_keuangan['admin_name'];?>
-                            </td>
-                            
-                            <td align="center" >
-								<?=  $kepala_divisi['admin_name'];?>
-                            </td>
-                            <td align="center" >  
-                            </td>
-                        </tr>
-                         <tr class="table-active3">
-                            <td align="center">
-                                 <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$biaya['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-								//file_put_contents("D:\\cetakJurnal.txt", $this->db->last_query());
-
-
-                                ?>
-                                <?= $created_group['admin_group_name']?>
-                            </td>
-                            <?php
-                            if(!empty($arr_no_trans)){
-                                if (strpos($arr_no_trans[2], 'SC') === false) {
-                                    ?>
-                                    
-                                    <td align="center">
-                                        <?=  $keuangan_proyek['admin_group_name'];?>
-                                    </td>
-                                    <td align="center">
-                                        <?=  $ka_plant['admin_group_name'];?>
-                                    </td>
-                                    <?php
-                                }
-                            }
-                            ?>
-                            <td align="center">
-                                <?=  $manager_keuangan['admin_group_name'];?>
-                            </td>
-                            <td align="center" >
-                                <?=  $kepala_divisi['admin_group_name'];?>
-                            </td>
-                            <td align="center" >
-                               Penerima 
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+        <table width="98%" border="0" cellpadding="15">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center" >
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="40px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<b><u>Gervasius K Hekin</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center" >
+								<b><u>Debi Khania</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center" >
+								<b><u>Debi Khania</u><br />
+								Kasir</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
     </body>
 </html>
