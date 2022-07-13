@@ -1428,7 +1428,7 @@ class Productions extends Secure_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
+				background-color: #cccccc;
 				font-weight: bold;
 				font-size: 12px;
 				color: black;
@@ -1518,7 +1518,7 @@ class Productions extends Secure_Controller {
 			<th class="text-right"><?php echo number_format($price_d,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($nilai_d,0,',','.');?></th>
 		</tr>
-		<tr class="table-active3">		
+		<tr class="table-active5">		
 			<th class="text-right" colspan="5">TOTAL PEMAKAIAN BAHAN BAKU</th>
 			<th class="text-right"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
 		</tr>
@@ -1570,7 +1570,7 @@ class Productions extends Secure_Controller {
 					color: black;
 				}
 				table tr.table-active5{
-					background-color: #E8E8E8;
+					background-color: #cccccc;
 					font-weight: bold;
 					font-size: 12px;
 					color: black;
@@ -2095,7 +2095,7 @@ class Productions extends Secure_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">		
+			<tr class="table-active5">		
 				<th class="text-right" colspan="5">TOTAL PEMAKAIAN BAHAN BAKU</th>
 				<th class="text-right"><?php echo number_format($total_nilai,0,',','.');?></th>
 	        </tr>
@@ -2147,7 +2147,7 @@ class Productions extends Secure_Controller {
 					color: black;
 				}
 				table tr.table-active5{
-					background-color: #E8E8E8;
+					background-color: #cccccc;
 					font-weight: bold;
 					font-size: 12px;
 					color: black;
@@ -2755,7 +2755,7 @@ class Productions extends Secure_Controller {
 				<th class="text-center" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">		
+			<tr class="table-active5">		
 				<th class="text-right" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
