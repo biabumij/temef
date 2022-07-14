@@ -153,7 +153,7 @@
                                         </tr>
 										<tr>
 											<th width="70%" class="text-center" colspan="5"><b>TOTAL</b></th>
-											<th width="15%" class="text-center"><?php echo number_format($total,0,',','.');?> %</th>
+											<th width="15%" class="text-center"><?php echo number_format($total,0,',','.');?></th>
 										</tr>
                                 </tbody>
                                 <tfoot>
