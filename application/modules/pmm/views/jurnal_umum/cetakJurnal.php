@@ -109,51 +109,74 @@
         </table>
         <br />
         <br />
-        <table width="98%" border="0" cellpadding="15">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" >
-								Diperiksa Oleh
-							</td>
-							<td align="center" >
-								Dibuat Oleh
-							</td>
-						</tr>
-						<tr>
-							<td align="center" height="40px">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-						</tr>
-						<tr>
-							<td align="center" >
-								<b><u>Gervasius K Hekin</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Pj. Keuangan & SDM</b>
-							</td>
-							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Kasir</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
+        <table width="98%" border="0" cellpadding="50">
+            <tr>
+                <td width="100%">
+                    <table width="100%" border="1" cellpadding="2">
+                        <tr>
+                            <td align="center">
+                                Dibuat Oleh
+                            </td>
+                            <td align="center">
+                                Diperiksa Oleh
+                            </td>
+                            <td align="center" >
+                                Disetujui Oleh
+                            </td>
+                            <td align="center" >
+                                Diterima Oleh
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td align="center" height="75px">
+                                
+                            </td>
+                            <td align="center">
+                                
+                            </td>
+                            <td align="center">
+                                
+                            </td>
+                            <td align="center">
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <?php
+                            $kasir = $this->pmm_model->GetNameGroup(19);
+                            $pj_keuangan = $this->pmm_model->GetNameGroup(14);
+                            $ka_plant = $this->pmm_model->GetNameGroup(8);
+                            ?>  
+                            <td align="center">
+                                <?=  $kasir['admin_name'];?>
+                            </td>
+                                <td align="center">
+                                <?=  $pj_keuangan['admin_name'];?>
+                            </td>
+                            <td align="center">
+                                Gervasius K Hekin
+                            </td>
+                            <td align="center">
+                                <?= $biaya["penerima"] ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <?= $kasir['admin_group_name']?>
+                            </td>
+                            <td align="center">
+                                <?=  $pj_keuangan['admin_group_name'];?>
+                            </td>
+                            <td align="center">
+                                KA. Proyek
+                            </td>
+                            <td align="center">
+                                Penerima
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
