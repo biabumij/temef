@@ -45,6 +45,7 @@
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
+                        <li><a href="<?= base_url("admin/produksi/") ?>">Produksi</a></li>
                         <li><a>Detail Komposisi Agregat</a></li>
                     </ul>
                 </div>
@@ -121,7 +122,7 @@
 									?>
                                         <tr>
                                             <td class="text-center">1.</td>
-											<td class="text-center"><?= $agregat["produk_a"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_a']),'nama_produk'); ?></td>
+											<td class="text-left"><?= $agregat["produk_a"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_a']),'nama_produk'); ?></td>
 											<td class="text-center"><?= $agregat["measure_a"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$agregat['measure_a']),'measure_name'); ?></td>
 											<td class="text-center"><?= $agregat["presentase_a"]; ?></td>
                                             <td class="text-right"><?php echo number_format($agregat["price_a"],0,',','.');?></td>
@@ -129,7 +130,7 @@
                                         </tr>
 										<tr>
                                             <td class="text-center">2.</td>
-											<td class="text-center"><?= $agregat["produk_b"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_b']),'nama_produk'); ?></td>
+											<td class="text-left"><?= $agregat["produk_b"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_b']),'nama_produk'); ?></td>
 											<td class="text-center"><?= $agregat["measure_b"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$agregat['measure_b']),'measure_name'); ?></td>
 											<td class="text-center"><?= $agregat["presentase_b"]; ?></td>
                                             <td class="text-right"><?php echo number_format($agregat["price_b"],0,',','.');?></td>
@@ -137,7 +138,7 @@
                                         </tr>
 										<tr>
                                             <td class="text-center">3.</td>
-											<td class="text-center"><?= $agregat["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_c']),'nama_produk'); ?></td>
+											<td class="text-left"><?= $agregat["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_c']),'nama_produk'); ?></td>
 											<td class="text-center"><?= $agregat["measure_c"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$agregat['measure_c']),'measure_name'); ?></td>
 											<td class="text-center"><?= $agregat["presentase_c"]; ?></td>
                                             <td class="text-right"><?php echo number_format($agregat["price_c"],0,',','.');?></td>
@@ -145,15 +146,15 @@
                                         </tr>
 										<tr>
                                             <td class="text-center">4.</td>
-											<td class="text-center"><?= $agregat["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_d']),'nama_produk'); ?></td>
+											<td class="text-left"><?= $agregat["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$agregat['produk_d']),'nama_produk'); ?></td>
 											<td class="text-center"><?= $agregat["measure_d"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$agregat['measure_d']),'measure_name'); ?></td>
 											<td class="text-center"><?= $agregat["presentase_d"]; ?></td>
                                             <td class="text-right"><?php echo number_format($agregat["price_d"],0,',','.');?></td>
                                             <td class="text-right"><?php echo number_format($agregat["total_d"],0,',','.');?></td>
                                         </tr>
 										<tr>
-											<th width="70%" class="text-right" colspan="5"><b>TOTAL</b></th>
-											<th width="15%" class="text-right"><?php echo number_format($total,0,',','.');?></th>
+											<td class="text-right" colspan="5"><b>TOTAL</b></td>
+											<td class="text-right"><?php echo number_format($total,0,',','.');?></td>
 										</tr>
                                 </tbody>
                                 <tfoot>
@@ -176,6 +177,7 @@
                                 <?php if($agregat["status"] === "PUBLISH") : ?>
                                 <a href="<?= base_url("admin/produksi/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <?php endif; ?>
+                                <a class="btn btn-warning" href="<?= base_url('produksi/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-check"></i> Edit</a>
 								<a class="btn btn-danger" onclick="DeleteData('<?= site_url('produksi/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
 								<a href="<?= base_url("produksi/cetak_komposisi/".$agregat["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
                             </div>

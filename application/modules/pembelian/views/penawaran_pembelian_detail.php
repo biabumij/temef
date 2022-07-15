@@ -22,9 +22,9 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/pembelian');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Pembelian</a></li>
-                            <li><a>Penawaran Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Penawaran Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Detail Penawaran Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Penawaran Pembelian <?php echo $this->pmm_model->GetStatus2($row['status']);?></h3>
+                                    <h3 class="">Detail Penawaran Pembelian <?php echo $this->pmm_model->GetStatus2($row['status']);?></h3>
                                 </div>
                             </div>
                             <div class="panel-content">

@@ -24,8 +24,8 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/productions');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Penagihan Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
                             <li><a>Penagihan Pembelian</a></li>
                         </ul>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Penagihan Pembelian</h3>
+                                    <h3 class="">Tagihan Pembelian</h3>
                                 </div>
                             </div>
                             <form id="form-po" action="<?= base_url("pembelian/submit_penagihan_pembelian") ?>" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -287,7 +287,7 @@
                     </div>
                 </div>
             </div>
-            <!--<a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>-->
+            
         </div>
     </div>
     

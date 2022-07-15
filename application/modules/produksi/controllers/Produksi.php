@@ -262,6 +262,63 @@ class Produksi extends Secure_Controller {
 			redirect('admin');
 		}
 	}
+
+	public function sunting_komposisi($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['tes'] = '';
+			$data['agregat'] = $this->db->get_where("pmm_agregat", ["id" => $id])->row_array();
+			$data['lampiran'] = $this->db->get_where("pmm_lampiran_agregat", ["agregat_id" => $id])->result_array();
+			$this->load->view('produksi/sunting_komposisi', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_sunting_agregat()
+	{
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); #
+
+			$id = $this->input->post('id');
+
+			$arr_update = array(
+				'presentase_a' => str_replace(',', '.', $this->input->post('presentase_a')),
+				'presentase_b' => str_replace(',', '.', $this->input->post('presentase_b')),
+				'presentase_c' => str_replace(',', '.', $this->input->post('presentase_c')),
+				'presentase_d' => str_replace(',', '.', $this->input->post('presentase_d')),
+				'price_a' => $this->input->post('price_a'),
+				'price_b' => $this->input->post('price_b'),
+				'price_c' => $this->input->post('price_c'),
+				'price_d' => $this->input->post('price_d'),
+				'total_a'=> $this->input->post('total_a'),
+				'total_b' => $this->input->post('total_b'),
+				'total_c' => $this->input->post('total_c'),
+				'total_d' => $this->input->post('total_d'),
+				'updated_by' => $this->session->userdata('admin_id'),
+				'updated_on' => date('Y-m-d H:i:s')
+			);
+
+			$this->db->where('id', $id);
+			if ($this->db->update('pmm_agregat', $arr_update)) {
+				
+			}
+
+			if ($this->db->trans_status() === FALSE) {
+				# Something went wrong.
+				$this->db->trans_rollback();
+				$this->session->set_flashdata('notif_error', 'Gagal Memperbaharui Data Data Komposisi !!');
+				redirect('produksi/komposisi_agregat/' . $this->input->post('id_penagihan'));
+			} else {
+				# Everything is Perfect. 
+				# Committing data to the database.
+				$this->db->trans_commit();
+				$this->session->set_flashdata('notif_success', 'Berhasil Memperbaharui Data Data Komposisi !!');
+				redirect('admin/produksi/' . $this->input->post('id_penagihan'));
+			}
+	}
 	
 	public function cetak_komposisi($id){
 

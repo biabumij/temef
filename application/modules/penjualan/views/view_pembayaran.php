@@ -24,10 +24,9 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/penjualan'); ?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Penerimaan Penjualan</a>
-                            </li>
-                            <li><a>Pembayaran</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Penjualan</a></li>
+                            <li><a href="<?= base_url('penjualan/detailPenagihan/' . $pembayaran["id"]) ?>"> Tagihan Penjualan</a></li>
+                            <li><a>Penerimaan Penjualan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -146,7 +145,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+           
         </div>
     </div>
 
