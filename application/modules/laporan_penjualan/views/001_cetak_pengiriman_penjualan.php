@@ -180,7 +180,6 @@
 		</table>
 		<br />
 		<br />
-		<br />
 		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
@@ -215,25 +214,25 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="left" >
-								<b>Nama : Gervasius K.Hekin<br />
-								Jabatan : Ka. Plant</b>
+							<td align="center" >
+								<b><u>Gervasius K. Hekin</u><br />
+								Ka. Plant</b>
 							</td>
-							<td align="left" >
-								<b>Nama:<br />
-								Jabatan : Ass. Ka. Plant</b>
+							<td align="center" >
+								<b><br />
+								Ass. Ka. Plant</b>
 							</td>
-							<td align="left">
-								<b>Nama:<br />
-								Jabatan : M. Keu & SDM</b>
+							<td align="center">
+								<b><br />
+								M. Keu & SDM</b>
 							</td>
-							<td align="left">
-								<b>Nama:<br />
-								Jabatan : M. Teknik</b>
+							<td align="center">
+								<b><br />
+								M. Teknik</b>
 							</td>
-							<td align="left">
-								<b>Nama:<br />
-								Jabatan : Pj. Logistik</b>
+							<td align="center">
+								<b><br />
+								Pj. Logistik</b>
 							</td>
 						</tr>
 					</table>
@@ -241,6 +240,5 @@
 				<td width="5%"></td>
 			</tr>
 		</table>
-	
 	</body>
 </html>
