@@ -157,7 +157,7 @@
                                 Gervasius K Hekin
                             </td>
                             <td align="center">
-                                <?= $jurnal["penerima"] ?>
+                                
                             </td>
                         </tr>
                         <tr>
