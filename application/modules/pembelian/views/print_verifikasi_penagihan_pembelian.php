@@ -245,13 +245,13 @@
                                 <?= $row['verifikator'];?>
                             </td>
                             <td align="center">
-                                <?=  $kepala_logistik['admin_name'];?>
+								Agustinus P
                             </td>
                             <td align="center">
-                                 <?=  $kepala_divisi['admin_name'];?> 
+								Gervasius K Hekin
                             </td>
                             <td align="center">
-                                <?=  $m_keu['admin_name'];?>
+								Erika Sinaga
                             </td>
                         </tr>
                         <tr class="table-active3">

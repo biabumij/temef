@@ -225,13 +225,13 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="55px">
-								<!-- <img src="/uploads/ttd.jpeg" width="100px"> -->
+								
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center">
-								<!-- <img src="/uploads/ttd.jpeg" width="100px"> -->
+								
 							</td>
 						</tr>
 						<tr>
@@ -243,8 +243,8 @@
 								
 							</td>
 							<td align="center" >
-								<u><b><?= $ka_plant['admin_name'];?></b></u><br />
-								<b><?= $ka_plant['admin_group_name'];?></b>
+								<u><b>Gervasius K. Limahekin</b></u><br />
+								<b>Ka. Plant</b>
 							</td>
 						</tr>
 					</table>

@@ -118,10 +118,6 @@
            	?>
 
 		</table>
-
-		<?php
-		//$direksi = $this->pmm_model->GetNameGroup(6);
-		?>
 		<br />
 		<br />
 		<p><b>B. Persyaratan Harga</b></p>
@@ -141,16 +137,9 @@
 				</th>
             </tr>
             <tr>
-				<th>
-					<!-- <b><?=  $direksi['admin_name'];?></b> -->
-					<b>Gervasius K. Limahekin</b>
-					
-				</th>
-            </tr>
-            <tr>
             	<td>
-					<!-- <?=  $direksi['admin_group_name'];?> -->
-					Ka. Plant
+					<b><u>Gervasius K. Limahekin</u><br />
+					Ka. Plant</b>
 				</td>
             </tr>
 		</table>
