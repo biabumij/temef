@@ -1371,7 +1371,7 @@ class Pembelian extends Secure_Controller
 			$data['bayar'] = $this->db->get_where('pmm_pembayaran_penagihan_pembelian', ["id" => $id])->row_array();
 			$data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
 			$data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('id' => $id))->row_array();
-			file_put_contents("D:\\total_bayar.txt", $this->db->last_query());
+			//file_put_contents("D:\\total_bayar.txt", $this->db->last_query());
 
 			// Setor Bank
 			$this->db->select('c.*');
