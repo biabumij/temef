@@ -143,7 +143,7 @@
             <tr>
 				<th>
 					<!-- <b><?=  $direksi['admin_name'];?></b> -->
-					<b>Gervasius K Hekin</b>
+					<b>Gervasius K. Limahekin</b>
 					
 				</th>
             </tr>

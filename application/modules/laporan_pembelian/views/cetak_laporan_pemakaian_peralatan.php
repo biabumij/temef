@@ -233,7 +233,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K. Hekin</u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center" >
@@ -249,7 +249,7 @@
 								M. Teknik</b>
 							</td>
 							<td align="center">
-								<b><br />
+								<b><u>Agustinus Pakaenoni</u><br />
 								Pj. Logistik</b>
 							</td>
 						</tr>

@@ -184,13 +184,13 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" colspan="2">
-								<b>Disetujui Oleh</b>
+								Disetujui Oleh
 							</td>
 							<td align="center" colspan="2">
-								<b>Diperiksa Oleh</b>
+								Diperiksa Oleh
 							</td>
-							<td align="left" >
-								<b>Dibuat Oleh</b>
+							<td align="center" >
+								Dibuat Oleh
 							</td>	
 						</tr>
 						<tr class="">
@@ -211,25 +211,25 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="left" >
-								<b>Nama : Gervasius K.H</b><br />
-								<b>Jabatan : Ka. Plant</b>
+							<td align="center" >
+								<b><u>Gervasius K. Limahekin</u><br />
+								Ka. Plant</b>
 							</td>
-							<td align="left" >
-								<b>Nama : </b><br />
-								<b>Jabatan : Ass. Ka. Plant</b>
+							<td align="center" >
+								<b><br />
+								Ass. Ka. Plant</b>
 							</td>
-							<td align="left">
-								<b>Nama : </b><br />
-								<b>Jabatan : M. Keu & SDM</b>
+							<td align="center">
+								<b><br />
+								M. Keu & SDM</b>
 							</td>
-							<td align="left">
-								<b>Nama : </b><br />
-								<b>Jabatan : M. Teknik</b>
+							<td align="center">
+								<b><br />
+								M. Teknik</b>
 							</td>
-							<td align="left">
-								<b>Nama : </b><br />
-								<b>Jabatan : Pj. Logistik</b>
+							<td align="center">
+								<b><u>Agustinus Pakaenoni</u><br />
+								Pj. Logistik</b>
 							</td>
 						</tr>
 					</table>

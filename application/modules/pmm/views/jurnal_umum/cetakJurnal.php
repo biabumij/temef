@@ -154,7 +154,7 @@
                                 <?=  $pj_keuangan['admin_name'];?>
                             </td>
                             <td align="center">
-                                Gervasius K Hekin
+                                Gervasius K. Limahekin
                             </td>
                             <td align="center">
                                 

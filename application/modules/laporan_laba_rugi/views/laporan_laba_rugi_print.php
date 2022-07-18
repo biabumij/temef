@@ -408,7 +408,7 @@
 								Staff. Produksi & HSE</b>
 							</td>
 							<td align="center">
-								<b><u>Gervasius K. Hekin</u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 						</tr>

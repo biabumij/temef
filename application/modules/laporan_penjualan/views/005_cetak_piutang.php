@@ -180,7 +180,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K Hekin</u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center" >

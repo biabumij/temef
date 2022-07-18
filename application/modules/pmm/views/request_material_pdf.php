@@ -130,7 +130,7 @@
 						</tr>
 						<tr>
 							<td align="left" >
-								<b>Nama : Gervasius K.H</b><br />
+								<b>Nama : Gervasius K. Limahekin</b><br />
 								<b>Jabatan : Ka. Plant</b>
 							</td>
 							<td align="left">

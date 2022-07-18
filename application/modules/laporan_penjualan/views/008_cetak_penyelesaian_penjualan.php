@@ -314,7 +314,7 @@
 						</tr>
 						<tr class="table-active">
 							<td align="left" >
-								<b><u>Gervasius K.Hekin</u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="left" >
