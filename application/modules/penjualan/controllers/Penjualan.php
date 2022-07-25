@@ -417,6 +417,29 @@ class Penjualan extends Secure_Controller
 
 		echo json_encode(['data' => $data]);
 	}
+
+	public function alert_sales_po_total(){
+	
+		$id = $this->input->post('id');
+
+		$this->db->select('p.nama_produk, SUM(pp.volume) as volume');
+		$this->db->join('produk p', 'pp.product_id = p.id', 'left');
+		$this->db->where("pp.salesPo_id = " . intval($id));
+		$this->db->where('pp.status','PUBLISH');
+		$this->db->group_by('pp.product_id');
+		$result = $this->db->get('pmm_productions pp');
+		if($result->num_rows() > 0){
+            foreach ($result->result_array() as $key => $row) {
+			$row['volume'] = number_format($row['volume'],2,',','.');
+			$data[] = $row;
+
+				}
+			}
+		
+		file_put_contents("D:\\alert_sales_po_total.txt", $this->db->last_query());
+
+		echo json_encode(['data' => $data]);
+	}
 	
 
 	public function sales_po()
