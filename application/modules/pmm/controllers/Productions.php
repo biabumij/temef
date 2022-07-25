@@ -400,7 +400,7 @@ class Productions extends Secure_Controller {
 			where psp.contract_number = '015/PO/BIABUMI-BRM/02/2021';
 			*/
 
-			$this->db->select('p.id, p.nama_produk, pspd.measure');
+			$this->db->select('p.id, p.nama_produk, pspd.measure, pspd.tax_id');
 			$this->db->from('produk p ');
 			$this->db->join('pmm_sales_po_detail pspd','p.id = pspd.product_id','left');
 			$this->db->join('pmm_sales_po psp ','pspd.sales_po_id = psp.id','left');
@@ -414,11 +414,13 @@ class Productions extends Secure_Controller {
 			if (!empty($query)){
 				foreach ($query as $row){
 					$data[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
+					$tax_id[] = ['id' => $row['tax_id'], 'text' => $row['tax_id']];
 					//$data_measure[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
 				}
 			}
 
 			$response['products'] = $data;
+			$response['tax_id'] = $tax_id;
 			//$response['measure'] = $data_measure;
 
 		} catch (Throwable $e){
