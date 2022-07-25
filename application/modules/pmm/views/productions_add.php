@@ -92,31 +92,6 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Pelanggan * </label>
-                                                <select id="client_id" name="client_id" class="form-control form-select2" required="">
-                                                    <option value=""></option>
-                                                    <?php foreach ($clients as $client) : ?>
-                                                        <option value="<?= $client['id'] ?>"><?= $client['nama'] ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Sales Order * </label>
-                                                <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
-                                                <option value=""></option>
-                                                    <?php foreach ($contract_number as $po) : ?>
-                                                        <option value="<?= $po['id'] ?>"><?= $po['contract_number'] ?></option>
-                                                    <?php endforeach; ?>
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Produk * </label>
                                                 <select id="product_id" name="product_id" class="form-control form-select2" required="">
                                                     
