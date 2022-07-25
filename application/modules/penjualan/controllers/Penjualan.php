@@ -418,7 +418,7 @@ class Penjualan extends Secure_Controller
 				$row['product_id'] = $row['product_id'];
 				$row['volume'] = number_format($row['volume'],2,',','.');
 				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
-				file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
+				//file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
 				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
 				$data[] = $row;
 			}
