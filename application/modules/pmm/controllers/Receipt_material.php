@@ -1786,7 +1786,7 @@ class Receipt_material extends CI_Controller {
 				foreach ($materials as $mat) {
 					$receipt_material = $this->db->select('SUM(volume) as volume')->get_where('pmm_receipt_material',array('purchase_order_id'=>$value['id'],'material_id'=>$mat['material_id']))->row_array();
 					if($receipt_material['volume'] >= $mat['volume']){
-						$check_mat += 1;
+						$check_mat += 9999999999;
 					}
 				}
 			}
