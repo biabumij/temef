@@ -628,9 +628,8 @@ class Productions extends Secure_Controller {
 		if(!empty($clients)){
 			foreach ($clients as $key => $row) {
 
-				$this->db->select('SUM(pp.volume) as total, SUM(pp.price) / SUM(pp.volume) as price, SUM(pp.volume) * SUM(pp.price) / SUM(pp.volume) as cost, pc.nama_produk as product, pm.measure_name');
+				$this->db->select('SUM(pp.volume) as total, SUM(pp.price) / SUM(pp.volume) as price, SUM(pp.volume) * SUM(pp.price) / SUM(pp.volume) as cost, pc.nama_produk as product, pp.measure');
 		        $this->db->join('produk pc','pp.product_id = pc.id','left');
-				$this->db->join('pmm_measures pm','pp.measure = pm.id','left');
 				$this->db->join('pmm_sales_po po','pp.salesPo_id = po.id');
 				//$this->db->join('pmm_sales_po_detail pod','po.id = pod.sales_po_id');
 		        if(!empty($start_date) && !empty($end_date)){
