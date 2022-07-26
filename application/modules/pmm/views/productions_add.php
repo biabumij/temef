@@ -98,7 +98,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2" id="test">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Tax ID* </label>
                                                 <select id="tax_id" name="tax_id" class="form-control form-select2" required="">
