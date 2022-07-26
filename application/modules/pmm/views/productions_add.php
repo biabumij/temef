@@ -36,7 +36,6 @@
                 </div>
                 <?php
                 $measure = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
-                $taxs = $this->db->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
                 ?>
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
