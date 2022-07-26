@@ -127,8 +127,8 @@
 															<input type="hidden" min="0" name="qty_<?= $key+1; ?>" id="qty-<?= $key; ?>" value="<?= $row['volume'];?>" class="form-control input-sm text-center" required="" readonly />
 														</td>
                                                         <td class="text-center">
-															<?= $row['measure_name']; ?>
-															<input type="hidden" name="measure_<?= $key+1; ?>" id="measure-<?= $key; ?>" class="form-control input-sm text-center" value="<?= $row['measure_name'];?>" readonly=""  />
+															<?= $row['measure']; ?>
+															<input type="hidden" name="measure_<?= $key+1; ?>" id="measure-<?= $key; ?>" class="form-control input-sm text-center" value="<?= $row['measure'];?>" readonly=""  />
 														</td>
                                                         <td class="text-right">
                                                             <?= number_format($row['hargaProduk'],0,',','.'); ?>

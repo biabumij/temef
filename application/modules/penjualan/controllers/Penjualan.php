@@ -851,11 +851,10 @@ class Penjualan extends Secure_Controller
 			pp.tax_id,
 			pt.tax_name,
 			pp.product_id,
-			pm.measure_name');
+			pp.measure');
 			$this->db->where_in('pp.id', $id_new);
 			$this->db->join('produk p', 'p.id = pp.product_id', 'left');
 			$this->db->join('pmm_taxs pt', 'pp.tax_id = pt.id', 'left');
-			$this->db->join('pmm_measures pm', 'pp.measure = pm.id', 'left');
 			$this->db->group_by('pp.product_id');
 			$data['cekHarga'] = $this->db->get('pmm_productions pp')->result_array();
 			
