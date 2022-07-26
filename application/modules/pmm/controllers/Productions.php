@@ -232,9 +232,6 @@ class Productions extends Secure_Controller {
 				
 			}
 	
-			
-				
-	
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
