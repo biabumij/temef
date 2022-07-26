@@ -100,7 +100,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2" id="test">
                                             <div class="form-group">
                                                 <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
                                             </div>
