@@ -128,7 +128,7 @@
 	            			<td align="center"></td>
 	            			<td width="1%"></td>
 	            			<td align="left" width="29%"><?php echo $mat['nama_produk'];?></td>
-	            			<td align="center"><?php echo $mat['measure_name'];?></td>
+	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['real'];?></td>
 							<td align="right">
 	            				<table cellpadding="0" width="100%" border="0">
