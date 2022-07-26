@@ -73,7 +73,7 @@ class Productions extends Secure_Controller {
 				$row['client_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
 				$row['date_production'] =  date('d F Y',strtotime($row['date_production']));
 				$row['volume'] = number_format($row['volume'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
+				$row['measure'] = $row['measure'];
 				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['komposisi_id'] = $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');

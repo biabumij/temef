@@ -118,7 +118,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= $key + 1 ?>.</td>
-                                                    <td><?= $product; ?></td>
+                                                    <td style="text-align: left !important;"><?= $product; ?></td>
                                                     <td><?= $row['qty']; ?></td>
                                                     <td><?= $row['measure']; ?></td>
                                                     <td style="text-align: right !important;"><?= number_format($row['price'],0,',','.'); ?></td>
@@ -313,10 +313,9 @@
                                                 <tbody>
                                                     <?php
                                                     $surat_jalan = explode(',', $penagihan['surat_jalan']);
-                                                    $this->db->select('pp.*,p.nama_produk as product, c.nama as client_name, ms.measure_name as measure');
+                                                    $this->db->select('pp.*,p.nama_produk as product, c.nama as client_name, pp.measure as measure');
                                                     $this->db->join('produk p', 'pp.product_id = p.id', 'left');
                                                     $this->db->join('penerima c', 'pp.client_id = c.id', 'left');
-                                                    $this->db->join('pmm_measures ms', 'pp.measure = ms.id', 'left');
                                                     $this->db->where_in('pp.id', $surat_jalan);
                                                     $table_surat_jalan = $this->db->get('pmm_productions pp')->result_array();
                                                     if (!empty($table_surat_jalan)) {
