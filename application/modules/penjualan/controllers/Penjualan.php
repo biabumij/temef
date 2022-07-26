@@ -412,25 +412,26 @@ class Penjualan extends Secure_Controller
 		$this->db->group_by('pod.product_id');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_sales_po_detail pod');
-		$data[0]['id'] = '0';
-		$data[0]['text'] = 'Pilih Produk';
+		$data[0] = array('id'=>'0','text'=>'Pilih Produk');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$arr['id'] = $row['product_id'];
-				$row['text'] = $row['nama_produk'];
-				$row['product_id'] = $row['product_id'];
-				$row['tax_id'] = $row['tax_id'];
-				$row['measure'] = $row['measure'];
-				$row['volume'] = number_format($row['volume'],2,',','.');
+				$arr['text'] = $row['nama_produk'];
+				$arr_alert['nama_produk'] = $row['nama_produk'];
+				$arr['tax_id'] = $row['tax_id'];
+				$arr['measure'] = $row['measure'];
+				$arr_alert['volume'] = number_format($row['volume'],2,',','.');
 				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
-				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
-				$data[] = $row;
+				$arr_alert['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
+				$data[] = $arr;
+				$data2[] = $arr_alert;
+				
 			}
 	
 		}
 			
 	
-		echo json_encode(['data' => $data]);
+		echo json_encode(array('data' => $data, 'data2' => $data2));
 	}
 
 	public function alert_sales_po(){

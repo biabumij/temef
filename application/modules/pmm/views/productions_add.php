@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
+                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
                                 <table class="table">
                                         <tr>
                                             <th>Pelanggan *</th>
@@ -531,12 +531,12 @@
                     $('#product_id').html('');
                     $('#alert-receipt-material-total').html('');
                     for (let i in result.data) {
-                        $('#product_id').append('<option value="'+ result.data[i].product_id +'"  data-tax_id="'+ result.data[i].tax_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
+                        $('#product_id').append('<option value="'+ result.data[i].id +'"  data-tax_id="'+ result.data[i].tax_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
                         $('#alert-receipt-material-total').append('<div class="col-sm-3">' +
                             '<div class="alert alert-danger text-center">' +
-                            '<h5><strong>' + result.data[i].nama_produk + '</strong></h5>' +
-                            '<div class="text-right"><b>Total Order : ' + result.data[i].volume +
-                            '<br />Total Pengiriman : ' + result.data[i].pengiriman +
+                            '<h5><strong>' + result.data2[i].nama_produk + '</strong></h5>' +
+                            '<div class="text-right"><b>Total Order : ' + result.data2[i].volume +
+                            '<br />Total Pengiriman : ' + result.data2[i].pengiriman +
                             '</div></div></b>' +
                             '</div>');
                     }
