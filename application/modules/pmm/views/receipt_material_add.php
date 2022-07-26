@@ -241,7 +241,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" style="padding: 0 20px 0 20px;" method="POST" action="<?php echo site_url('pmm/receipt_material/edit_process');?>"  enctype="multipart/form-data" >
+                    <form class="form-horizontal" style="padding: 0 20px 0 20px;" method="POST" action="<?php echo site_url('pmm/receipt_material/edit_process');?>"  enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
                         <input type="hidden" name="id_edit" id="id_edit">
                         <input type="hidden" name="edit_po_val" id="edit_po_val">
                         <input type="hidden" name="edit_material_val" id="edit_material_val">
@@ -557,7 +557,7 @@
                     if(result.data){
                         $('#purchase_order').empty();
                         $('#purchase_order').select2({data:result.data});
-                        $('#purchase_order').val(result.last_po).trigger('change');
+                        //$('#purchase_order').val(result.last_po).trigger('change');
                         $('#purchase_order').val(<?= $data['id'];?>).trigger('change');
                     }else if(result.err){
                         bootbox.alert(result.err);
@@ -588,11 +588,11 @@
 
                             if(key > 0){
                                 $('#alert-receipt-material').append('<div class="col-sm-3">'
-                                    +'<div class="alert alert-danger">'
+                                    +'<div class="alert alert-danger text-center">'
                                         +'<h5><strong>'+val.text+'</strong></h5>'
-                                        +'<b>PO : '+val.total_po+'  <br /></b>'
+                                        +'<div class="text-right"><b>PO : '+val.total_po+'  <br /></b>'
                                         +'<b>Penerimaan : '+val.receipt_material
-                                    +'</div></b>'
+                                    +'</div></div></b>'
                                 +'</div>');
                                 if(no_alert % 4 == 0){
                                     $('#alert-receipt-material').append('</div><div class="row">');

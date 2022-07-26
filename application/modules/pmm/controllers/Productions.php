@@ -27,7 +27,6 @@ class Productions extends Secure_Controller {
 			$data['komposisi'] = $this->db->select('id, jobs_type')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
 			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status'=>'OPEN'))->row_array();
 			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status'=>'OPEN'))->result_array();
-			$data['tax_id'] = $this->db->get_where('pmm_sales_po_detail',array('sales_po_id'=>$po_id))->result_array();
 			$data['data'] = $get_data;
 			$this->load->view('pmm/productions_add',$data);
 			
@@ -371,7 +370,7 @@ class Productions extends Secure_Controller {
 
 			$id = $this->input->post('id');
 
-			$this->db->select('p.id, p.nama_produk, pspd.tax_id');
+			$this->db->select('p.id, p.nama_produk, pspd.measure, pspd.tax_id');
 			$this->db->from('produk p ');
 			$this->db->join('pmm_sales_po_detail pspd','p.id = pspd.product_id','left');
 			$this->db->join('pmm_sales_po psp ','pspd.sales_po_id = psp.id','left');
@@ -384,11 +383,13 @@ class Productions extends Secure_Controller {
 			if (!empty($query)){
 				foreach ($query as $row){
 					$data[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
-					$tax_id[] = ['id' => $row['tax_id'], 'text' => $row['tax_id']];
+					$tax_id[] = ['id' => $row['id'], 'text' => $row['tax_id']];
+					$measure[] = ['id' => $row['id'], 'text' => $row['measure']];
 				}
 			}
 
 			$response['products'] = $data;
+			$response['measure'] = $measure;
 			$response['tax_id'] = $tax_id;
 
 		} catch (Throwable $e){

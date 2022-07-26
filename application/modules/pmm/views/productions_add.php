@@ -36,6 +36,7 @@
                 </div>
                 <?php
                 $measure = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
+                $taxs = $this->db->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
                 ?>
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
@@ -46,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onSubmit="window.location.reload()">
+                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
                                 <table class="table">
                                         <tr>
                                             <th>Pelanggan *</th>
@@ -94,16 +95,14 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Produk * </label>
                                                 <select id="product_id" name="product_id" class="form-control form-select2" required="">
-                                                    
+                                                <option value="">Pilih Produk</option>
+                                                
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-2" id="test">
+                                        <div class="col-sm-2">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Tax ID* </label>
-                                                <select id="tax_id" name="tax_id" class="form-control form-select2" required="">
-                                                    
-                                                </select>
+                                                <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +147,7 @@
                                                     if (!empty($measure)) {
                                                         foreach ($measure as $meas) {
                                                     ?>
-                                                            <option value="<?php echo $meas['id']; ?>"><?php echo $meas['measure_name']; ?></option>
+                                                            <option value="<?php echo $meas['measure_name']; ?>"><?php echo $meas['measure_name']; ?></option>
                                                     <?php
                                                         }
                                                     }
@@ -529,14 +528,16 @@
             },
             success: function(result) {
                 if (result.data) {
+                    $('#product_id').html('');
                     $('#alert-receipt-material-total').html('');
                     for (let i in result.data) {
+                        $('#product_id').append('<option value="'+ result.data[i].product_id +'"  data-tax_id="'+ result.data[i].tax_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
                         $('#alert-receipt-material-total').append('<div class="col-sm-3">' +
-                            '<div class="alert alert-danger">' +
+                            '<div class="alert alert-danger text-center">' +
                             '<h5><strong>' + result.data[i].nama_produk + '</strong></h5>' +
-                            '<b>Total Order : ' + result.data[i].volume +
+                            '<div class="text-right"><b>Total Order : ' + result.data[i].volume +
                             '<br />Total Pengiriman : ' + result.data[i].pengiriman +
-                            '</div></b>' +
+                            '</div></div></b>' +
                             '</div>');
                     }
 
@@ -594,29 +595,11 @@
             });
         });
 
-        $('#po_penjualan').change(function() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/productions/get_materials'); ?>",
-                dataType: 'json',
-                data: {
-                    id: $(this).val()
-                },
-                success: function(result) {
-                    if (result.output) {
-                        $('#product_id').empty();
-                        $('#product_id').select2({
-                            data: result.products
-                        });
-                        $('#tax_id').empty();
-                        $('#tax_id').select2({
-                            data: result.tax_id
-                        });
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
+        $('#product_id').change(function(){
+            var measure = $(this).find(':selected').data('measure');
+            $('#measure').val(measure);
+            var tax_id = $(this).find(':selected').data('tax_id');
+            $('#tax_id').val(tax_id);
         });
 
 
@@ -667,11 +650,11 @@
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
         });
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             setTimeout(function(){
                 $('#measure').prop('selectedIndex', 4).trigger('change');
             }, 1000);
-        });
+        });*/
 		
 		$("#convert_value, #volume, #select_operation").change(function(){
             
@@ -698,6 +681,7 @@
         }
 
         document.getElementById("test").style.display = "none";
+        
 		
     </script>
 </body>
