@@ -145,7 +145,7 @@
             <tr>
                <th colspan="6" style="text-align:right">Sub Total</th>
                <th align="right"><?= number_format($subtotal,0,',','.'); ?></th>
-           </tr>
+           	</tr>
             <?php
             if($tax_ppn > 0){
                 ?>
