@@ -63,35 +63,35 @@
                                                     <td>1.</td>
                                                     <td>Semen</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="semen" id="semen" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="number" step=".01" min="0" name="semen" id="semen" class="form-control input-sm text-center numberformat" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td>2.</td>
                                                     <td>Pasir</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="pasir" id="pasir" class="form-control input-sm text-center numberformat"/>
+                                                        <input type="number" step=".01" min="0" name="pasir" id="pasir" class="form-control input-sm text-center numberformat" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>3.</td>
                                                     <td>Batu 10-20</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="batu1020" id="batu1020" class="form-control input-sm text-center numberformat"/>
+                                                        <input type="number" step=".01" min="0" name="batu1020" id="batu1020" class="form-control input-sm text-center numberformat" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
                                                     <td>Batu 20-30</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="batu2030" id="batu1020" class="form-control input-sm text-center numberformat"/>
+                                                        <input type="number" step=".01" min="0" name="batu2030" id="batu1020" class="form-control input-sm text-center numberformat" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
                                                     <td>Solar</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="solar" id="solar" class="form-control input-sm text-center numberformat"/>
+                                                        <input type="number" step=".01" min="0" name="solar" id="solar" class="form-control input-sm text-center numberformat" required=""/>
                                                     </td>
                                                 </tr>
                                             </tbody>
