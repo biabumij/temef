@@ -210,13 +210,12 @@
                                 <?php if($sales_po["status"] === "OPEN") : ?>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
                                 <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
-                                <br /> 
                                 <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
                                         <br />
                                         <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>        
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Sales Order</button>        
                                         </form>
                                         				
                                     <?php
