@@ -175,7 +175,7 @@
                                         </div>
                                         <div class="col-sm-3">
                                                 <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
-                                                <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button>
+                                                <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
                                         </div>
                                     </div>
                                 </form>
@@ -285,7 +285,7 @@
                 // Remove the formatting to get integer data for summation
                 var intVal = function ( i ) {
                     return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')/100 :
+                        i.replace(/[\$,]/g, '')*1000 :
                         typeof i === 'number' ?
                             i : 0;
                 };
@@ -379,11 +379,9 @@
 
                     if(result.data){
                         $('#request_material_detail_id').val(result.data.id);
-                        // $('#product_id').val(result.data.product_id);
-                        // SelectMaterial(result.data.product_id,result.data.material_id);
-                        // $('#product_id').trigger('change');
                         $('#material_id').val(result.data.material_id);
-                        // $('#koef').val(result.data.koef);
+                        $('#price').val(result.data.price);
+                        $('#measure_id').val(result.data.measure_id);
                         $('#volume').val(result.data.volume);
                     }else if(result.err){
                         bootbox.alert(result.err);
@@ -396,9 +394,8 @@
         $('#btn-unedit').click(function(){
             $('#request_material_detail_id').val('');
             $('#material_id').val('');
-            // $('#material_id').html('<option value="">.. Select Material ..</option>');
-            // $('#koef').val('');
-            // $('#product_id').val('');
+            $('#price').val('');
+            $('#measure_id').val('');
             $('#volume').val('');
             $(this).hide();
         });

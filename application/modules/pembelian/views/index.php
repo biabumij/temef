@@ -236,7 +236,7 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Simpan</button>
+														<button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>
@@ -772,7 +772,7 @@
                             <input type="file" id="file" name="file" class="form-control" required="" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-save"></i> Simpan</button>
+                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
@@ -819,7 +819,7 @@
                         ?>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-save"></i> Simpan</button>
+                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-send"></i> Simpan</button>
                         </div>
                     </form>
                 </div>

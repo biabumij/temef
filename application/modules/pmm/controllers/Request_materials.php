@@ -223,8 +223,8 @@ class Request_materials extends CI_Controller {
 		$material_id = $this->input->post('material_id');
 		$penawaran_id = $this->input->post('penawaran_id');
 		$tax_id = $this->input->post('tax_id');
-		$tax = $this->input->post('tax');
-		$volume = $this->input->post('volume');
+		$tax = str_replace(',', '.', $this->input->post('tax'));
+		$volume = str_replace(',', '.', $this->input->post('volume'));
 		$supplier_id = $this->input->post('supplier_id');
 		$measure = $this->input->post('measure_id');
 		$price = $this->input->post('price');

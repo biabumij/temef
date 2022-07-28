@@ -205,42 +205,39 @@
 
                             <br />
                             <div class="text-right">
+
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
                                     <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
-                                    </br>
+                                    <br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 ||  $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>        
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Pesanan Pembelian</button>        
                                         </form>	
                                         <?php
                                     }
                                 }
                                 ?>
-
                                 <input type="hidden" id="purchase_order_id" value="<?php echo $id;?>">
-
                                 <?php
                                 if($data['status'] == 'DRAFT'){
                                     ?>
                                     <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/3');?>')" class="btn btn-warning check-btn" id="btn-po"><i class="fa fa-send"></i> Buat PO</a>
                                     <?php
                                 }else if($data['status'] == 'WAITING'){
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 ||  $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
-                                        <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-save"></i> Setujui</a>
+                                        <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-check"></i> Setujui</a>
                                         <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/2');?>')" class="btn btn-danger check-btn"><i class="fa fa-close"></i> Tolak</a>
                                         <?php
                                     }
                                 }
                                 ?>
-                            </div>
-                            <br />
-                            <div class="text-right">
+                            
                                 <?php if($data["status"] === "CLOSED") : ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
@@ -252,9 +249,7 @@
                                     }
                                     ?>
                                 <?php endif; ?>
-                            </div>
 
-                            <div class="text-right">
                                 <?php if($data["status"] === "REJECTED") : ?>                             
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
@@ -266,10 +261,12 @@
                                     }
                                     ?>
                                 <?php endif; ?>
-                            </div>
 
-                            <div class="text-right">
-                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <form>
+                                    <br />
+                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                </form>
+                            
                             </div>
                         </div>
                     </div>
@@ -441,6 +438,31 @@
         }
 
         $('.form-check').submit(function(e){
+            e.preventDefault();
+            var currentForm = this;
+            bootbox.confirm({
+                message: "Apakah anda yakin untuk proses data ini ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        currentForm.submit();
+                    }
+                    
+                }
+            });
+            
+        });
+
+        $('.form-approval').submit(function(e){
             e.preventDefault();
             var currentForm = this;
             bootbox.confirm({
