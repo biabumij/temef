@@ -624,7 +624,7 @@ class Productions extends Secure_Controller {
 		$this->db->where('pp.status','PUBLISH');
 		$this->db->group_by('pp.client_id');
 		$clients = $this->db->get('pmm_productions pp')->result_array();	
-		//file_put_contents("D:\\table_date2.txt", $this->db->last_query());
+		
 		if(!empty($clients)){
 			foreach ($clients as $key => $row) {
 
@@ -647,7 +647,7 @@ class Productions extends Secure_Controller {
 		        $this->db->where('pc.status','PUBLISH');
 		        $this->db->group_by('pp.product_id');
 		        $arr_products = $this->db->get_where('pmm_productions pp')->result_array();
-				//file_put_contents("D:\\table_date2a.txt", $this->db->last_query());
+				
 
 				$arr['no'] = $no;
 				$arr['products'] = $arr_products;
@@ -671,7 +671,6 @@ class Productions extends Secure_Controller {
 		$id = $this->input->post('id');
 
 		$data = $this->db->get_where('pmm_productions prm',array('prm.id'=>$id))->row_array();
-		//file_put_contents("D:\\edit_data_detail.txt", $this->db->last_query());
 		$data['date_production'] = date('d-m-Y',strtotime($data['date_production']));
 		echo json_encode(array('data'=>$data));		
 	}
@@ -781,9 +780,7 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pso.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_sales_po pso');
-		
-		//file_put_contents("D:\\table_date10.txt", $this->db->last_query());
-		
+				
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -863,8 +860,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date12.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -943,8 +938,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date13.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1020,8 +1013,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date14.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1094,8 +1085,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_pembayaran pmp');
-		
-		//file_put_contents("D:\\table_date15.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1187,8 +1176,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('po.client_id');
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_sales_po po');
-		
-		//file_put_contents("D:\\table_date16.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1314,8 +1301,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
 		
-		//file_put_contents("D:\\table_date_lap_penjualan.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1429,8 +1414,6 @@ class Productions extends Secure_Controller {
 		->where("pp.date_production between '$date1' and '$date2'")
 		->where('pp.status','PUBLISH')
 		->get()->row_array();
-
-		//file_put_contents("D:\\komposisi.txt", $this->db->last_query());
 
 		$volume_a = $komposisi['volume_a'];
 		$volume_b = $komposisi['volume_b'];
@@ -1584,8 +1567,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 4")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 			$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -1597,8 +1578,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 	
@@ -1606,8 +1585,6 @@ class Productions extends Secure_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 	
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 			$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
@@ -1627,8 +1604,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 			$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -1641,8 +1616,6 @@ class Productions extends Secure_Controller {
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
-	
 			$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 	
 			$volume_opening_balance_pasir = round($total_volume_stock_pasir_ago,2);
@@ -1663,8 +1636,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 6")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 			$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -1676,8 +1647,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 	
@@ -1699,8 +1668,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 			$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -1712,8 +1679,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 			
@@ -1742,8 +1707,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_semen = $pembelian_semen['volume'];
 			$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 			$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -1765,8 +1728,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 18")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 			$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -1785,8 +1746,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 19")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 			$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
@@ -1809,8 +1768,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 21")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 			$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
@@ -1829,8 +1786,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 20")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 			$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
@@ -1853,8 +1808,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 22")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -1869,8 +1822,6 @@ class Productions extends Secure_Controller {
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
-	
-			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
 			
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
@@ -1902,8 +1853,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 			$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -1946,8 +1895,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 			$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -1986,8 +1933,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 			$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];
@@ -2151,8 +2096,6 @@ class Productions extends Secure_Controller {
 			->where('pp.status','PUBLISH')
 			->get()->row_array();
 
-			//file_put_contents("D:\\komposisi.txt", $this->db->last_query());
-
 			$volume_a = $komposisi['volume_a'];
 			$volume_b = $komposisi['volume_b'];
 			$volume_c = $komposisi['volume_c'];
@@ -2199,8 +2142,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 4")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 			$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -2212,8 +2153,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 	
@@ -2221,8 +2160,6 @@ class Productions extends Secure_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 	
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 			$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
@@ -2242,8 +2179,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 			$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -2255,8 +2190,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 	
@@ -2278,8 +2211,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 6")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 			$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -2291,8 +2222,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 	
@@ -2314,8 +2243,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 			$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -2327,8 +2254,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 			
@@ -2357,8 +2282,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_semen = $pembelian_semen['volume'];
 			$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 			$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -2380,8 +2303,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 18")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 			$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -2400,8 +2321,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 19")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 			$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
@@ -2424,8 +2343,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 21")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 			$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
@@ -2444,8 +2361,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 20")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 			$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
@@ -2468,8 +2383,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 22")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -2484,8 +2397,6 @@ class Productions extends Secure_Controller {
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
-	
-			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
 			
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
@@ -2517,8 +2428,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 			$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -2561,8 +2470,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 			$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -2601,8 +2508,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 			$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];
@@ -2750,7 +2655,6 @@ class Productions extends Secure_Controller {
 		$arr_filter_date = explode(' - ', $arr_date);
 
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-		//file_put_contents("D:\\last_production.txt", $this->db->last_query());
 		
 		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
 		$date2 =  date('Y-m-d', strtotime($last_production['date']));
@@ -2786,8 +2690,6 @@ class Productions extends Secure_Controller {
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where('pp.status','PUBLISH')
 			->get()->row_array();
-
-			//file_put_contents("D:\\komposisi.txt", $this->db->last_query());
 
 			$volume_a = $komposisi['volume_a'];
 			$volume_b = $komposisi['volume_b'];
@@ -2835,8 +2737,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 4")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 			$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -2848,8 +2748,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 	
@@ -2857,8 +2755,6 @@ class Productions extends Secure_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 	
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 			$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
@@ -2878,8 +2774,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 			$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -2892,8 +2786,6 @@ class Productions extends Secure_Controller {
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
-	
 			$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 	
 			$volume_opening_balance_pasir = round($total_volume_stock_pasir_ago,2);
@@ -2914,8 +2806,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 6")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 			$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -2927,8 +2817,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 	
 			$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 	
@@ -2950,8 +2838,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 			$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -2964,8 +2850,6 @@ class Productions extends Secure_Controller {
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
-	
 			$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 			
 			$volume_opening_balance_batu2030 = round($total_volume_stock_batu2030_ago,2);
@@ -2993,8 +2877,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_semen = $pembelian_semen['volume'];
 			$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 			$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -3016,8 +2898,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 18")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 			$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -3037,8 +2917,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
-	
 			$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 			$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
 			$total_harga_pembelian_semen_cons = ($total_volume_pembelian_semen_cons!=0)?$total_nilai_pembelian_semen_cons / $total_volume_pembelian_semen_cons * 1:0;
@@ -3060,8 +2938,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 21")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 			$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
@@ -3080,8 +2956,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 20")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
 	
 			$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 			$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
@@ -3104,8 +2978,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 22")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 	
 			$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -3121,8 +2993,6 @@ class Productions extends Secure_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
 	
-			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
-			
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date1' and '$date2')")
@@ -3153,8 +3023,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 			$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -3197,8 +3065,6 @@ class Productions extends Secure_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 			$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -3237,8 +3103,6 @@ class Productions extends Secure_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 			$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];

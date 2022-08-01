@@ -159,8 +159,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 4")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 			$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -172,8 +170,6 @@ class Reports extends CI_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 
@@ -182,8 +178,6 @@ class Reports extends CI_Controller {
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
 			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
-
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 			$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
 			$nilai_opening_balance_semen = $volume_opening_balance_semen * $harga_opening_balance_semen;
@@ -202,8 +196,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 			$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -215,8 +207,6 @@ class Reports extends CI_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 
@@ -238,8 +228,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 6")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 			$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -251,8 +239,6 @@ class Reports extends CI_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 
@@ -274,8 +260,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 			$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -287,8 +271,6 @@ class Reports extends CI_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 			
@@ -317,8 +299,6 @@ class Reports extends CI_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_semen = $pembelian_semen['volume'];
 			$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 			$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -340,8 +320,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 18")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 			$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -360,8 +338,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 19")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
 
 			$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 			$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
@@ -384,8 +360,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 21")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 			$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
@@ -404,9 +378,7 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 20")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
-
+		
 			$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 			$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
 			$total_harga_pembelian_semen_opc = ($total_volume_pembelian_semen_opc!=0)?$total_nilai_pembelian_semen_opc / $total_volume_pembelian_semen_opc * 1:0;
@@ -428,8 +400,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 22")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -444,8 +414,6 @@ class Reports extends CI_Controller {
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
-
-			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
 			
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
@@ -477,8 +445,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 			$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -521,8 +487,6 @@ class Reports extends CI_Controller {
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 			$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -561,8 +525,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 			$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];
@@ -1025,8 +987,6 @@ class Reports extends CI_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 			//PEMBELIAN SOLAR AGO
 			$pembelian_solar_ago = $this->db->select('
@@ -1042,8 +1002,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 8")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_solar_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_solar_ago = $pembelian_solar_ago['volume'];
 			$total_volume_pembelian_solar_akhir_ago  = $total_volume_pembelian_solar_ago;
@@ -1055,8 +1013,6 @@ class Reports extends CI_Controller {
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_solar_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_solar_ago = $stock_opname_solar_ago['volume'];
 			
@@ -1084,8 +1040,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id = 8")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_solar.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_solar = $pembelian_solar['volume'];
 			$total_nilai_pembelian_solar =  $pembelian_solar['nilai'];
@@ -1277,8 +1231,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 4")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 
 		$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 		$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -1290,8 +1242,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
-		
-		//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 
 		$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 
@@ -1299,8 +1249,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 		$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
@@ -1320,8 +1268,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 5")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 
 		$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 		$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -1333,8 +1279,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
-		
-		//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
 
 		$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 
@@ -1356,8 +1300,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 6")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 
 		$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 		$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -1369,8 +1311,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
-		
-		//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 
 		$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 
@@ -1392,8 +1332,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 7")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 
 		$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 		$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -1405,8 +1343,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
-		
-		//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 
 		$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 		
@@ -1435,8 +1371,6 @@ class Reports extends CI_Controller {
 		->group_by('prm.material_id')
 		->get()->row_array();
 		
-		//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-		
 		$total_volume_pembelian_semen = $pembelian_semen['volume'];
 		$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 		$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -1458,8 +1392,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 18")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 
 		$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 		$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -1478,8 +1410,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 19")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
 
 		$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 		$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
@@ -1502,9 +1432,7 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 21")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
-
+	
 		$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 		$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
 
@@ -1522,8 +1450,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 20")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
 
 		$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 		$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
@@ -1546,8 +1472,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 22")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 
 		$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 		$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -1562,8 +1486,6 @@ class Reports extends CI_Controller {
 		->where("cat.material_id = 4")
 		->where("cat.status = 'PUBLISH'")
 		->get()->row_array();
-
-		//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
 		
 		$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 		->from('hpp_bahan_baku pp')
@@ -1595,8 +1517,6 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 5")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 		
 		$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 		$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -1639,8 +1559,6 @@ class Reports extends CI_Controller {
 		->group_by('prm.material_id')
 		->get()->row_array();
 		
-		//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-		
 		$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 		$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 		$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -1679,9 +1597,7 @@ class Reports extends CI_Controller {
 		->where("prm.material_id = 7")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
-		
+
 		$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 		$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];
 		$total_harga_pembelian_batu2030 = ($total_volume_pembelian_batu2030!=0)?$total_nilai_pembelian_batu2030 / $total_volume_pembelian_batu2030 * 1:0;
@@ -1824,8 +1740,6 @@ class Reports extends CI_Controller {
 			->group_by("pp.client_id")
 			->get()->result_array();
 			
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
-			
 			$total_penjualan = 0;
 			$total_volume = 0;
 			$measure = 0;
@@ -1851,8 +1765,6 @@ class Reports extends CI_Controller {
 			}
 
 			$total_nilai = $total_akumulasi;
-			
-			//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
 			//END BAHAN
 
 			//ALAT
@@ -1863,8 +1775,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id in (12,13,14,15,16)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\nilai_alat.txt", $this->db->last_query());
 
 			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
 			->from('akumulasi pp')
@@ -1878,8 +1788,6 @@ class Reports extends CI_Controller {
 			}
 
 			$total_nilai_bbm = $total_akumulasi_bbm;
-			
-			//file_put_contents("D:\\akumulasi_bbm.txt", $this->db->last_query());
 
 			$total_insentif_tm = 0;
 
@@ -1890,8 +1798,6 @@ class Reports extends CI_Controller {
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
 
 			$total_insentif_tm = $insentif_tm['total'];
 
@@ -1909,8 +1815,6 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			//file_put_contents("D:\\overhead.txt", $this->db->last_query());
-
 			$overhead_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
@@ -1918,8 +1822,6 @@ class Reports extends CI_Controller {
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\overhead_jurnal.txt", $this->db->last_query());
 
 			$overhead = $overhead['total'] + $overhead_jurnal['total'];
 			//END OVERHEAD
@@ -1933,8 +1835,6 @@ class Reports extends CI_Controller {
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\diskonto.txt", $this->db->last_query());
 
 			$diskonto = $diskonto['total'];
 			//END DISKONTO
@@ -3233,8 +3133,6 @@ class Reports extends CI_Controller {
     	}
     	$this->db->order_by('nama_produk','asc');
     	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','bahanbaku'=>1))->result_array();
-		
-		//file_put_contents("D:\\data_material_usage.txt", $this->db->last_query());
 
     	if(!empty($tags)){
     		?>
@@ -3493,8 +3391,6 @@ class Reports extends CI_Controller {
 			->order_by('po.supplier_id','asc')
 			->get()->result_array();
 
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
-
 			$total_nilai = 0;
 
 			foreach ($pembelian as $x){
@@ -3514,8 +3410,6 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
-
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
 
 			$total_insentif_tm = 0;
 
@@ -3636,8 +3530,6 @@ class Reports extends CI_Controller {
 			->where('rap.status','PUBLISH')
 			->get()->row_array();
 
-			//file_put_contents("D:\\rap.txt", $this->db->last_query());
-
 			$total_bahan = $rap['total_bahan'];
 			$total_alat = $rap['total_alat'];
 			$total_overhead = $rap['total_overhead'];
@@ -3661,8 +3553,6 @@ class Reports extends CI_Controller {
 			->where("ppo.status in ('OPEN','CLOSED')")
 			->group_by("pp.client_id")
 			->get()->result_array();
-
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 
 			$total_penjualan = 0;
 			$total_volume = 0;
@@ -3689,8 +3579,6 @@ class Reports extends CI_Controller {
 			}
 
 			$total_nilai = $total_akumulasi;
-
-			//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
 			//END BAHAN
 
 			//ALAT
@@ -3701,8 +3589,6 @@ class Reports extends CI_Controller {
 			->where("prm.material_id in (12,13,14,15,16)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\nilai_alat.txt", $this->db->last_query());
 
 			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
 			->from('akumulasi pp')
@@ -3716,8 +3602,6 @@ class Reports extends CI_Controller {
 			}
 
 			$total_nilai_bbm = $total_akumulasi_bbm;
-			
-			//file_put_contents("D:\\akumulasi_bbm.txt", $this->db->last_query());
 
 			$total_insentif_tm = 0;
 
@@ -3729,8 +3613,6 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
-
 			$total_insentif_tm = $insentif_tm['total'];
 
 			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
@@ -3741,13 +3623,10 @@ class Reports extends CI_Controller {
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			//->where("pdb.akun in (113,121,129,143,145,146,149,153,157,168,199,200,201,206,216)")
 			->where('c.coa_category',15)
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\overhead.txt", $this->db->last_query());
 
 			$overhead_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -3756,8 +3635,6 @@ class Reports extends CI_Controller {
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\overhead_jurnal.txt", $this->db->last_query());
 
 			$overhead = $overhead['total'] + $overhead_jurnal['total'];
 			//END OVERHEAD
@@ -3771,8 +3648,6 @@ class Reports extends CI_Controller {
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\diskonto.txt", $this->db->last_query());
 
 			$diskonto = $diskonto['total'];
 

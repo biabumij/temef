@@ -140,7 +140,7 @@ class Receipt_material extends CI_Controller {
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$this->db->order_by('prm.date_receipt','DESC');
 		$query = $this->db->get('pmm_receipt_material prm');
-		//file_put_contents("D:\\table_detail.txt", $this->db->last_query());
+	
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['checkbox'] ='';
@@ -482,8 +482,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_purchase_order ppo');
 		
-		//file_put_contents("D:\\table_date.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -566,8 +564,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_purchase_order ppo');
-		
-		//file_put_contents("D:\\table_date_sewa_alat.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -652,8 +648,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$query = $this->db->get('pmm_purchase_order ppo');
 		
-		//file_put_contents("D:\\table_date2.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -736,8 +730,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
 		
-		//file_put_contents("D:\\table_date3.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -813,8 +805,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-		//file_put_contents("D:\\table_date4.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -893,8 +883,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
-		//file_put_contents("D:\\table_date5.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -971,8 +959,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
-		//file_put_contents("D:\\table_date6.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1046,8 +1032,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->where('pmp.status','DISETUJUI');
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
-		
-		//file_put_contents("D:\\table_date7.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1123,9 +1107,7 @@ class Receipt_material extends CI_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.no_prod');
 		$query = $this->db->get('pmm_produksi_harian pph');
-		
-		//file_put_contents("D:\\table_date8.txt", $this->db->last_query());
-		
+	
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1201,8 +1183,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
 		$query = $this->db->get('pmm_produksi_harian pph');
-		
-		//file_put_contents("D:\\table_date8a.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1314,8 +1294,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$query = $this->db->get('pmm_produksi_harian pph');
 		
-		//file_put_contents("D:\\table_date8b.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1425,8 +1403,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
 		$query = $this->db->get('pmm_produksi_campuran pph');
-		
-		//file_put_contents("D:\\table_date_campuran.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1546,8 +1522,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('po.supplier_id');
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_purchase_order po');
-		
-		//file_put_contents("D:\\table_date9.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1671,8 +1645,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('p.nama_produk');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
-		
-		//file_put_contents("D:\\table_date18.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1914,7 +1886,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->join('produk pm','prm.material_id = pm.id','left');
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$data = $this->db->get_where('pmm_receipt_material prm',array('prm.id'=>$id))->row_array();
-		//file_put_contents("D:\\edit_data_detail.txt", $this->db->last_query());
 		$data['date_receipt'] = date('d-m-Y',strtotime($data['date_receipt']));
 		$po = $this->db->select('id,no_po')->order_by('date_po','desc')->get_where('pmm_purchase_order',array('supplier_id'=>$data['rekanan']))->result_array();
 		
