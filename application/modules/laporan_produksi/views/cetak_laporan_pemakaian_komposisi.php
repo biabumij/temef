@@ -116,8 +116,6 @@
 		->where('pp.status','PUBLISH')
 		->get()->row_array();
 
-		//file_put_contents("D:\\komposisi.txt", $this->db->last_query());
-
 		$volume_a = $komposisi['volume_a'];
 		$volume_b = $komposisi['volume_b'];
 		$volume_c = $komposisi['volume_c'];

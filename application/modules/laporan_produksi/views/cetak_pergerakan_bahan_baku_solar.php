@@ -119,8 +119,6 @@
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		//PEMBELIAN SOLAR AGO
 		$pembelian_solar_ago = $this->db->select('
@@ -136,8 +134,6 @@
 		->where("prm.material_id = 8")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_solar_ago.txt", $this->db->last_query());
 
 		$total_volume_pembelian_solar_ago = $pembelian_solar_ago['volume'];
 		$total_volume_pembelian_solar_akhir_ago  = $total_volume_pembelian_solar_ago;
@@ -149,8 +145,6 @@
 		->where("cat.status = 'PUBLISH'")
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
-		
-		//file_put_contents("D:\\stock_opname_solar_ago.txt", $this->db->last_query());
 
 		$total_volume_stock_solar_ago = $stock_opname_solar_ago['volume'];
 		
@@ -178,8 +172,6 @@
 		->where("prm.material_id = 8")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\pembelian_solar.txt", $this->db->last_query());
 		
 		$total_volume_pembelian_solar = $pembelian_solar['volume'];
 		$total_nilai_pembelian_solar =  $pembelian_solar['nilai'];

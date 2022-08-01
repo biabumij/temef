@@ -118,8 +118,6 @@
 			->where('rap.status','PUBLISH')
 			->get()->row_array();
 
-			//file_put_contents("D:\\rap.txt", $this->db->last_query());
-
 			$total_bahan = $rap['total_bahan'];
 			$total_alat = $rap['total_alat'];
 			$total_overhead = $rap['total_overhead'];
@@ -143,8 +141,6 @@
 			->where("ppo.status in ('OPEN','CLOSED')")
 			->group_by("pp.client_id")
 			->get()->result_array();
-
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 
 			$total_penjualan = 0;
 			$total_volume = 0;
@@ -171,8 +167,6 @@
 			}
 
 			$total_nilai = $total_akumulasi;
-
-			//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
 			//END BAHAN
 
 			//ALAT
@@ -183,8 +177,6 @@
 			->where("prm.material_id in (12,13,14,15,16)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\nilai_alat.txt", $this->db->last_query());
 
 			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
 			->from('akumulasi pp')
@@ -198,8 +190,6 @@
 			}
 
 			$total_nilai_bbm = $total_akumulasi_bbm;
-			
-			//file_put_contents("D:\\akumulasi_bbm.txt", $this->db->last_query());
 
 			$total_insentif_tm = 0;
 
@@ -211,8 +201,6 @@
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
-
 			$total_insentif_tm = $insentif_tm['total'];
 
 			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
@@ -223,13 +211,10 @@
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			//->where("pdb.akun in (113,121,129,143,145,146,149,153,157,168,199,200,201,206,216)")
 			->where('c.coa_category',15)
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\overhead.txt", $this->db->last_query());
 
 			$overhead_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -238,8 +223,6 @@
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\overhead_jurnal.txt", $this->db->last_query());
 
 			$overhead = $overhead['total'] + $overhead_jurnal['total'];
 			//END OVERHEAD
@@ -253,8 +236,6 @@
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\diskonto.txt", $this->db->last_query());
 
 			$diskonto = $diskonto['total'];
 

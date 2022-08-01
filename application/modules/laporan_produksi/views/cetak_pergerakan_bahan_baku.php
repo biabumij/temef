@@ -130,8 +130,6 @@
 			->where("prm.material_id = 4")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_semen_ago = $pembelian_semen_ago['volume'];
 			$total_volume_pembelian_semen_akhir_ago  = $total_volume_pembelian_semen_ago;
@@ -143,8 +141,6 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_semen_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 
@@ -152,8 +148,6 @@
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 			$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
@@ -173,8 +167,6 @@
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 			$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -186,8 +178,6 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_pasir_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_pasir_ago = $stock_opname_pasir_ago['volume'];
 
@@ -209,8 +199,6 @@
 			->where("prm.material_id = 6")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu1020_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_batu1020_ago = $pembelian_batu1020_ago['volume'];
 			$total_volume_pembelian_batu1020_akhir_ago  = $total_volume_pembelian_batu1020_ago;
@@ -222,8 +210,6 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu1020_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_batu1020_ago = $stock_opname_batu1020_ago['volume'];
 
@@ -245,8 +231,6 @@
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030_ago.txt", $this->db->last_query());
 
 			$total_volume_pembelian_batu2030_ago = $pembelian_batu2030_ago['volume'];
 			$total_volume_pembelian_batu2030_akhir_ago  = $total_volume_pembelian_batu2030_ago;
@@ -258,8 +242,6 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 
 			$total_volume_stock_batu2030_ago = $stock_opname_batu2030_ago['volume'];
 			
@@ -288,8 +270,6 @@
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_semen.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_semen = $pembelian_semen['volume'];
 			$total_nilai_pembelian_semen =  $pembelian_semen['nilai'];
 			$total_harga_pembelian_semen = ($total_volume_pembelian_semen!=0)?$total_nilai_pembelian_semen / $total_volume_pembelian_semen * 1:0;
@@ -311,8 +291,6 @@
 			->where("prm.material_id = 18")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 			$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
@@ -331,8 +309,6 @@
 			->where("prm.material_id = 19")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_cons.txt", $this->db->last_query());
 
 			$total_volume_pembelian_semen_cons = $pembelian_semen_cons['volume'];
 			$total_nilai_pembelian_semen_cons =  $pembelian_semen_cons['nilai'];
@@ -355,8 +331,6 @@
 			->where("prm.material_id = 21")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_cons.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut_cons = $jasa_angkut_semen_cons['nilai'];
 			$total_nilai_jasa_angkut_cons_akhir = $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_cons_akhir;
@@ -375,8 +349,6 @@
 			->where("prm.material_id = 20")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_semen_opc.txt", $this->db->last_query());
 
 			$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 			$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
@@ -399,8 +371,6 @@
 			->where("prm.material_id = 22")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\jasa_angkut_semen_opc.txt", $this->db->last_query());
 
 			$total_nilai_jasa_angkut_opc = $jasa_angkut_semen_opc['nilai'];
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
@@ -415,8 +385,6 @@
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
-
-			//file_put_contents("D:\\stock_opname_semen.txt", $this->db->last_query());
 			
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
@@ -448,8 +416,6 @@
 			->where("prm.material_id = 5")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_pasir.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_pasir = $pembelian_pasir['volume'];
 			$total_nilai_pembelian_pasir =  $pembelian_pasir['nilai'];
@@ -492,8 +458,6 @@
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pembelian_batu1020.txt", $this->db->last_query());
-			
 			$total_volume_pembelian_batu1020 = $pembelian_batu1020['volume'];
 			$total_nilai_pembelian_batu1020 =  $pembelian_batu1020['nilai'];
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
@@ -532,8 +496,6 @@
 			->where("prm.material_id = 7")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pembelian_batu2030.txt", $this->db->last_query());
 			
 			$total_volume_pembelian_batu2030 = $pembelian_batu2030['volume'];
 			$total_nilai_pembelian_batu2030 =  $pembelian_batu2030['nilai'];
