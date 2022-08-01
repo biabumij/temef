@@ -2656,7 +2656,7 @@ class Productions extends Secure_Controller {
 
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
 		
-		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
+		$date1 = date('Y-m-d', strtotime('-1 month', strtotime($last_production['date'])));
 		$date2 =  date('Y-m-d', strtotime($last_production['date']));
 		$date1_filter = date('d F Y', strtotime($date1));
 		$date2_filter = date('d F Y', strtotime($date2));
