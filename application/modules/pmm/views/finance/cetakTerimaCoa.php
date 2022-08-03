@@ -106,14 +106,14 @@
                             <td align="center">
                                 Dibuat Oleh
                             </td>
-                            <td align="center" colspan="2">
-                                Diperiksa Oleh,
+                            <td align="center">
+                                Diperiksa Oleh
                             </td>
                             <td align="center" >
-                                Disetujui
+                                Disetujui Oleh
                             </td>
                             <td align="center" >
-                                Diketahui
+                                Diketahui Oleh
                             </td>
                         </tr>
                         <tr class="">
@@ -129,56 +129,39 @@
                             <td align="center">
                                 
                             </td>
-                            <td align="center">
-                                
-                            </td>
                         </tr>
                         <tr class="table-active3">
                             <?php
-                            $keuangan_proyek = $this->pmm_model->GetNameGroup(10);
-                            $ka_plant = $this->pmm_model->GetNameGroup(8);
-                            $manager_keuangan = $this->pmm_model->GetNameGroup(5);
+                            $kasir = $this->pmm_model->GetNameGroup(19);
+                            $ka_plant = $this->pmm_model->GetNameGroup(15);
+                            $pj_keuangan = $this->pmm_model->GetNameGroup(14);
                             $direksi = $this->pmm_model->GetNameGroup(6);
                             ?>  
                             <td align="center">
-                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$detail['created_by']),'admin_name'); ?>
+                                <b><?=  $kasir['admin_name'];?></b>
                             </td>
                             <td align="center">
-                                <?=  $keuangan_proyek['admin_name'];?>
+                                <b><?=  $pj_keuangan['admin_name'];?></b>
                             </td>
                             <td align="center">
-                                <?=  $ka_plant['admin_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $manager_keuangan['admin_name'];?>
+                                <b><?=  $ka_plant['admin_name'];?></b>
                             </td>
                             <td align="center" >
-                                <?=  $direksi['admin_name'];?>
+                                
                             </td>
                         </tr>
                          <tr class="table-active3">
                             <td align="center">
-                                <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$detail['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-
-
-                                ?>
-                                <?= $created_group['admin_group_name']?>
+                                <b><?= $kasir['admin_group_name']?></b>
                             </td>
                             <td align="center">
-                                <?=  $keuangan_proyek['admin_group_name'];?>
+                                <b><?=  $pj_keuangan['admin_group_name'];?></b>
                             </td>
                             <td align="center">
-                                <?=  $ka_plant['admin_group_name'];?>
-                            </td>
-                            <td align="center">
-                                <?=  $manager_keuangan['admin_group_name'];?>
+                                <b><?=  $ka_plant['admin_group_name'];?></b>
                             </td>
                             <td align="center" >
-                                <?=  $direksi['admin_group_name'];?>
+                                <b>Penerima</b>
                             </td>
                         </tr>
                     </table>
