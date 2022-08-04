@@ -467,7 +467,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Diterima Kantor</label>
+                            <label class="col-sm-4 control-label">Tanggal Diterima Proyek</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="" name="tanggal_diterima_proyek" class="form-control input-sm dtpicker-single">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Tanggal Diterima Pusat</label>
                             <div class="col-sm-8">
                                 <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single">
                             </div>
@@ -674,7 +680,12 @@
                                 <td id="tanggal_invoice_d"></td>
                             </tr>
                             <tr>
-                                <th>Tanggal Diterima Office</th>
+                                <th>Tanggal Diterima Proyek</th>
+                                <th>:</th>
+                                <td id="tanggal_diterima_proyek_d"></td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Diterima Pusat</th>
                                 <th>:</th>
                                 <td id="tanggal_diterima_office_d"></td>
                             </tr>

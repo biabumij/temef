@@ -780,7 +780,7 @@ class Pembelian extends Secure_Controller
             'pph' => $this->input->post('pph'),
             'tanggal_invoice' => $tanggal_invoice,
             'tanggal_diterima_office' => $tanggal_diterima_office,
-            //'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),
             'invoice_keterangan' => $this->input->post('invoice_keterangan'),

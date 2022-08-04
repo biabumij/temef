@@ -86,12 +86,18 @@
 						</tr>
 						<tr>
 							<td>10.</td>
-							<td >Tanggal Diterima Office</td>
+							<td >Tanggal Diterima Proyek</td>
+							<td>:</td>
+							<td ><?= $row['tanggal_diterima_proyek'];?></td>
+						</tr>
+						<tr>
+							<td>11.</td>
+							<td >Tanggal Diterima Pusat</td>
 							<td>:</td>
 							<td ><?= $row['tanggal_diterima_office'];?></td>
 						</tr>
 						<tr>
-							<td>11.</td>
+							<td>12.</td>
 							<td >Metode Pembayaran</td>
 							<td>:</td>
 							<td ><?= $row['metode_pembayaran'];?></td>
