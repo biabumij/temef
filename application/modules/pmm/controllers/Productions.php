@@ -917,7 +917,7 @@ class Productions extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
+		$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total) as total_tagihan, SUM((select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_penerimaan, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
 
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -937,6 +937,7 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
+		file_put_contents("D:\\table_date13.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -963,6 +964,8 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $sups['total_piutang'];
 					$sups['no'] =$no;
+					$sups['total_tagihan'] = number_format($sups['total_tagihan'],0,',','.');
+					$sups['total_penerimaan'] = number_format($sups['total_penerimaan'],0,',','.');
 					$sups['total_piutang'] = number_format($sups['total_piutang'],0,',','.');
 					
 
