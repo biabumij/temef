@@ -475,7 +475,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Tanggal Diterima Pusat</label>
                             <div class="col-sm-8">
-                                <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single">
+                                <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single" readonly="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -687,7 +687,7 @@
                             <tr>
                                 <th>Tanggal Diterima Pusat</th>
                                 <th>:</th>
-                                <td id="tanggal_diterima_office_d"></td>
+                                <td ></td>
                             </tr>
                             <tr>
                                 <th>Metode Pembayaran</th>

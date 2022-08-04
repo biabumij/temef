@@ -101,7 +101,7 @@ class Pmm_finance extends CI_Model {
         $this->db->select('pvp.*, (pvp.nilai_tagihan + pvp.ppn - pvp.pph) as total_tagihan, ps.nama as supplier_name');
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
-        $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.penagihan_pembelian_id'=>$id))->row_array();	
+        $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.penagihan_pembelian_id'=>$id))->row_array();
 
         if(!empty($query)){
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
@@ -126,14 +126,14 @@ class Pmm_finance extends CI_Model {
         $this->db->select('pvp.*, (pvp.nilai_tagihan + pvp.ppn - pvp.pph) as total_tagihan, ps.nama as supplier_name');
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
-        // $this->db->join('pmm_purchase_order po','po.id = pp.purchase_order_id','left');
         $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.id'=>$id))->row_array();
+        
 
         if(!empty($query)){
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
-            $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
+            $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
             $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
             $query['ppn'] = $this->filter->Rupiah($query['ppn']);

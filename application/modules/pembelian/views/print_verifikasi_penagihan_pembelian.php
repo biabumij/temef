@@ -94,7 +94,7 @@
 							<td>11.</td>
 							<td >Tanggal Diterima Pusat</td>
 							<td>:</td>
-							<td ><?= $row['tanggal_diterima_office'];?></td>
+							<td ></td>
 						</tr>
 						<tr>
 							<td>12.</td>

@@ -754,19 +754,18 @@ class Pembelian extends Secure_Controller
             $tanggal_invoice = '-';
         }
 
-        $tanggal_diterima_office = $this->input->post('tanggal_diterima_office');
-        if ($tanggal_diterima_office) {
-            $tanggal_diterima_office = date('Y-m-d', strtotime($tanggal_diterima_office));
-        } else {
-            $tanggal_diterima_office = NULL;
-        }
-
-
         $tanggal_diterima_proyek = $this->input->post('tanggal_diterima_proyek');
         if ($tanggal_diterima_proyek) {
             $tanggal_diterima_proyek = date('Y-m-d', strtotime($tanggal_diterima_proyek));
         } else {
             $tanggal_diterima_proyek = NULL;
+        }
+
+        $tanggal_diterima_office = $this->input->post('tanggal_diterima_office');
+        if ($tanggal_diterima_office) {
+            $tanggal_diterima_office = date('Y-m-d', strtotime($tanggal_diterima_office));
+        } else {
+            $tanggal_diterima_office = NULL;
         }
 
         $data = array(
@@ -779,8 +778,8 @@ class Pembelian extends Secure_Controller
             'ppn' => $this->input->post('ppn'),
             'pph' => $this->input->post('pph'),
             'tanggal_invoice' => $tanggal_invoice,
-            'tanggal_diterima_office' => $tanggal_diterima_office,
             'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            //'tanggal_diterima_office' => $tanggal_diterima_office,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),
             'invoice_keterangan' => $this->input->post('invoice_keterangan'),
