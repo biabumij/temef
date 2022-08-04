@@ -937,7 +937,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		file_put_contents("D:\\table_date13.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
