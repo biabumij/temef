@@ -437,15 +437,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nilai Tagihan (Net)</label>
+                            <label class="col-sm-4 control-label">Nilai Tagihan ini (DPP)</label>
                             <div class="col-sm-8">
                                 <input type="text" id="nilai_tagihan" name="nilai_tagihan" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">PPN / PPh 23</label>
+                            <label class="col-sm-4 control-label">PPN</label>
                             <div class="col-sm-8">
                                 <input type="text" id="ppn_tagihan" name="ppn" class="form-control input-sm numberformat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">PPh 23</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="pph_tagihan" name="pph" class="form-control input-sm numberformat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Total Tagihan</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="total_tagihan" name="total_tagihan" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
@@ -455,15 +467,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Diterima Proyek</label>
-                            <div class="col-sm-8">
-                                <input type="text" id="date_receipt_tagihan" name="tanggal_diterima_proyek" class="form-control input-sm dtpicker-single">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-4 control-label">Tanggal Diterima Kantor</label>
                             <div class="col-sm-8">
-                                <input type="text" id="" name="" class="form-control input-sm" autocomplete="off" readonly="" >
+                                <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single">
                             </div>
                         </div>
                         <div class="form-group">
@@ -643,14 +649,24 @@
                                 <td id="nilai_kontrak_d"></td>
                             </tr>
                             <tr>
-                                <th>Nilai Tagihan (Net)</th>
+                                <th>Nilai Tagihan ini (DPP)</th>
                                 <th>:</th>
                                 <td id="nilai_tagihan_d"></td>
                             </tr>
                             <tr>
-                                <th>PPN / PPh 23</th>
+                                <th>PPN</th>
                                 <th>:</th>
                                 <td id="ppn_d" class="numberformat"></td>
+                            </tr>
+                            <tr>
+                                <th>PPh 23</th>
+                                <th>:</th>
+                                <td id="pph_d" class="numberformat"></td>
+                            </tr>
+                            <tr>
+                                <th>Total Tagihan</th>
+                                <th>:</th>
+                                <td id="total_tagihan_d" class="numberformat"></td>
                             </tr>
                             <tr>
                                 <th>Tanggal Invoice</th>
@@ -658,14 +674,9 @@
                                 <td id="tanggal_invoice_d"></td>
                             </tr>
                             <tr>
-                                <th>Tanggal Diterima Proyek</th>
-                                <th>:</th>
-                                <td id="tanggal_diterima_proyek_d"></td>
-                            </tr>
-                            <tr>
                                 <th>Tanggal Diterima Office</th>
                                 <th>:</th>
-                                <td id=""></td>
+                                <td id="tanggal_diterima_office_d"></td>
                             </tr>
                             <tr>
                                 <th>Metode Pembayaran</th>
@@ -1438,6 +1449,8 @@
                         $('#nilai_kontrak_d').text(result.data.nilai_kontrak);
                         $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
                         $('#ppn_d').text(result.data.ppn);
+                        $('#pph_d').text(result.data.pph);
+                        $('#total_tagihan_d').text(result.data.total_tagihan);
                         $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
                         $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
                         $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
@@ -1541,10 +1554,11 @@
                         $('#tanggal_po').val(result.data.tanggal_po);
 						$('#nama_barang_jasa').val(result.data.nama_produk);
                         $('#nilai_kontrak').val(result.data.total_po);
-                        $('#nilai_tagihan').val(result.data.total);
+                        $('#nilai_tagihan').val(result.data.nilai_tagihan);
                         $('#tanggal_invoice').val(result.data.tanggal_invoice);
-                        // $('#date_receipt_tagihan').val(result.data.date_receipt);
                         $('#ppn_tagihan').val(result.data.ppn);
+                        $('#pph_tagihan').val(result.data.pph);
+                        $('#total_tagihan').val(result.data.total_tagihan);
                         $('#tanggal_po').val(result.data.date_po);
                     } else if (result.err) {
                         bootbox.alert(result.err);

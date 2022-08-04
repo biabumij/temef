@@ -98,12 +98,10 @@ class Pmm_finance extends CI_Model {
     function getVerifDokumen($id)
     {
         $data = array();
-        $this->db->select('pvp.*, ps.nama as supplier_name');
+        $this->db->select('pvp.*, (pvp.nilai_tagihan + pvp.ppn - pvp.pph) as total_tagihan, ps.nama as supplier_name');
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
-        $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.penagihan_pembelian_id'=>$id))->row_array();
-		//file_put_contents("D:\\getVerifDokumen.txt", $this->db->last_query());
-		
+        $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.penagihan_pembelian_id'=>$id))->row_array();	
 
         if(!empty($query)){
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
@@ -113,6 +111,8 @@ class Pmm_finance extends CI_Model {
             $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
             $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
             $query['ppn'] = $this->filter->Rupiah($query['ppn']);
+            $query['pph'] = $this->filter->Rupiah($query['pph']);
+            $query['total_tagihan'] = $this->filter->Rupiah($query['total_tagihan']);
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }
@@ -123,7 +123,7 @@ class Pmm_finance extends CI_Model {
     function getVerifDokumenById($id)
     {
         $data = array();
-        $this->db->select('pvp.*, ps.nama as supplier_name');
+        $this->db->select('pvp.*, (pvp.nilai_tagihan + pvp.ppn - pvp.pph) as total_tagihan, ps.nama as supplier_name');
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
         // $this->db->join('pmm_purchase_order po','po.id = pp.purchase_order_id','left');
@@ -137,6 +137,8 @@ class Pmm_finance extends CI_Model {
             $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
             $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
             $query['ppn'] = $this->filter->Rupiah($query['ppn']);
+            $query['pph'] = $this->filter->Rupiah($query['pph']);
+            $query['total_tagihan'] = $this->filter->Rupiah($query['total_tagihan']);
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }

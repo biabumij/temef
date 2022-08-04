@@ -690,18 +690,29 @@ class Pembelian extends Secure_Controller
         $data = array();
         $id = $this->input->post('id');
 
-        $this->db->select('pp.*, ps.nama as supplier_name, po.total as total_po, po.date_po');
+        $this->db->select('pp.*, pp.total_tagihan as nilai_tagihan, ps.nama as supplier_name, po.total as total_po, po.date_po');
         $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
         $this->db->join('pmm_purchase_order po', 'po.id = pp.purchase_order_id', 'left');
         $query = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
 
-        $this->db->select('ppd.tax, p.nama_produk');
+        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
+        $this->db->where("ppd.tax_id in (3,6)");
         $detail = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
 
         $query['ppn'] = $detail['tax'];
 		$query['nama_produk'] = $detail['nama_produk'];
-		//file_put_contents("D:\\get_penagihan_pembelian.txt", $this->db->last_query());	
+
+        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
+		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
+        $this->db->where("ppd.tax_id in (5)");
+        $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+		
+        $query['pph'] = $detail_2['tax'];
+        $query['nilai_tagihan'] = $query['nilai_tagihan'] - $detail['tax'] + $detail_2['tax'];
+        $query['total_tagihan'] = $query['nilai_tagihan'] + $detail['tax'] - $detail_2['tax'];
+
+        
 		
 
         if (!empty($query)) {
@@ -766,9 +777,10 @@ class Pembelian extends Secure_Controller
             'nilai_kontrak' => $this->input->post('nilai_kontrak'),
             'nilai_tagihan' => $this->input->post('nilai_tagihan'),
             'ppn' => $this->input->post('ppn'),
+            'pph' => $this->input->post('pph'),
             'tanggal_invoice' => $tanggal_invoice,
-            //'tanggal_diterima_office' => $tanggal_diterima_office,
-            'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            'tanggal_diterima_office' => $tanggal_diterima_office,
+            //'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),
             'invoice_keterangan' => $this->input->post('invoice_keterangan'),
@@ -1001,6 +1013,7 @@ class Pembelian extends Secure_Controller
             }
 
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
+            $this->db->delete('pmm_verifikasi_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_penagihan_pembelian', array('id' => $id));
