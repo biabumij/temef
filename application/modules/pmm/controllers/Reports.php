@@ -1772,7 +1772,7 @@ class Reports extends CI_Controller {
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16)")
+			->where("prm.material_id in (12,13,14,15,16,23,24)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -3385,7 +3385,7 @@ class Reports extends CI_Controller {
 			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (8,12,13,14,15,16)")
+			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('prm.material_id')
 			->order_by('po.supplier_id','asc')
