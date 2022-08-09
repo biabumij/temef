@@ -3249,8 +3249,7 @@ class Productions extends Secure_Controller {
 				<th class="text-right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
 			<tr>		
-				<th class="text-right" colspan="3">TOTAL</th>
-				<th class="text-center"></th>
+				<th class="text-right" colspan="4">TOTAL</th>
 				<th class="text-right" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
 	        </tr>
 	    </table>
