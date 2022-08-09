@@ -108,11 +108,11 @@ class Pmm_finance extends CI_Model {
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
-            $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
-            $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
-            $query['ppn'] = $this->filter->Rupiah($query['ppn']);
-            $query['pph'] = $this->filter->Rupiah($query['pph']);
-            $query['total_tagihan'] = $this->filter->Rupiah($query['total_tagihan']);
+            $query['nilai_kontrak'] = number_format($query['nilai_kontrak'],0,',','.');
+            $query['nilai_tagihan'] =  number_format($query['nilai_tagihan'],0,',','.');
+            $query['ppn'] =  number_format($query['ppn'],0,',','.');
+            $query['pph'] =  number_format($query['pph'],0,',','.');
+            $query['total_tagihan'] =  number_format($query['total_tagihan'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }
@@ -134,11 +134,11 @@ class Pmm_finance extends CI_Model {
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
-            $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
-            $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
-            $query['ppn'] = $this->filter->Rupiah($query['ppn']);
-            $query['pph'] = $this->filter->Rupiah($query['pph']);
-            $query['total_tagihan'] = $this->filter->Rupiah($query['total_tagihan']);
+            $query['nilai_kontrak'] = number_format($query['nilai_kontrak'],0,',','.');
+            $query['nilai_tagihan'] = number_format($query['nilai_tagihan'],0,',','.');
+            $query['ppn'] = number_format($query['ppn'],0,',','.');
+            $query['pph'] = number_format($query['pph'],0,',','.');
+            $query['total_tagihan'] = number_format($query['total_tagihan'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }
