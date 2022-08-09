@@ -51,7 +51,7 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Komposisi Agregat</a></li>
+									<li role="presentation" class="active"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Komposisi</a></li>
                                     <li role="presentation"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab">Stock Opname</a></li>
                                     <li role="presentation"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab">HPP Pergerakan Bahan Baku</a>
                                     <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>

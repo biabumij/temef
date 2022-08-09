@@ -46,7 +46,7 @@
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
                         <li><a href="<?= base_url("admin/produksi/") ?>">Produksi</a></li>
-                        <li><a>Detail Komposisi Agregat</a></li>
+                        <li><a>Detail Komposisi</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     <div class="panel">
                         <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">Detail Komposisi Agregat</h3>
+                                    <h3 class="">Detail Komposisi</h3>
                                 </div>
                         </div>
                         <div class="panel-content">

@@ -2,7 +2,7 @@
 <html>
 	<head>
 	  <?= include 'lib.php'; ?>
-	  <title>KOMPOSISI CAMPURAN BAHAN BAKU</title>
+	  <title>KOMPOSISI</title>
 	  
 	  <style type="text/css">
 	  	body{
@@ -58,7 +58,7 @@
 		<table width="100%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">KOMPOSISI CAMPURAN BAHAN BAKU</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">KOMPOSISI</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;">BETON READY MIX</div>
 				</td>
 			</tr>
