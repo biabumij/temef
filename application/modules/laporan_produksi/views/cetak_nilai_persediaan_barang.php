@@ -107,8 +107,6 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-		<!--- OPENING BALANCE --->
-			
 		<?php
 			
 		$date1_ago = date('2020-01-01');
@@ -147,7 +145,7 @@
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-
+		
 		$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
 		$harga_opening_balance_semen = $harga_hpp_bahan_baku['semen'];
 		$nilai_opening_balance_semen = $volume_opening_balance_semen * $harga_opening_balance_semen;
@@ -166,7 +164,6 @@
 		->where("prm.material_id = 5")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
 
 		$total_volume_pembelian_pasir_ago = $pembelian_pasir_ago['volume'];
 		$total_volume_pembelian_pasir_akhir_ago  = $total_volume_pembelian_pasir_ago;
@@ -292,7 +289,6 @@
 		->group_by('prm.material_id')
 		->get()->row_array();
 
-
 		$total_nilai_jasa_angkut = $jasa_angkut_semen['nilai'];
 		$total_nilai_jasa_angkut_akhir = $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_akhir;
 
@@ -350,7 +346,7 @@
 		->where("prm.material_id = 20")
 		->group_by('prm.material_id')
 		->get()->row_array();
-
+	
 		$total_volume_pembelian_semen_opc = $pembelian_semen_opc['volume'];
 		$total_nilai_pembelian_semen_opc =  $pembelian_semen_opc['nilai'];
 		$total_harga_pembelian_semen_opc = ($total_volume_pembelian_semen_opc!=0)?$total_nilai_pembelian_semen_opc / $total_volume_pembelian_semen_opc * 1:0;
@@ -380,18 +376,19 @@
 
 		$total_nilai_pembelian_semen_all = $total_nilai_pembelian_semen + $total_nilai_pembelian_semen_cons + $total_nilai_pembelian_semen_opc +  $total_nilai_jasa_angkut + $total_nilai_jasa_angkut_cons + $total_nilai_jasa_angkut_opc;
 
-		$stock_opname_semen = $this->db->select('sum(cat.display_volume) as volume, `cat`.`price` as price')
+		$stock_opname_semen = $this->db->select('(cat.display_volume) as volume, `cat`.`price` as price')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("cat.date between '$date1' and '$date2'")
 		->where("cat.material_id = 4")
 		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
 		$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date1' and '$date2')")
 		->get()->row_array();
-			
+		
 		$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
 		$price_stock_opname_semen =  $hpp_bahan_baku['semen'];
 
@@ -426,11 +423,12 @@
 		$total_harga_pembelian_pasir_akhir = ($nilai_opening_balance_pasir + $total_nilai_pembelian_pasir) / $total_volume_pembelian_pasir_akhir;
 		$total_nilai_pembelian_pasir_akhir =  $total_volume_pembelian_pasir_akhir * $total_harga_pembelian_pasir_akhir;
 		
-		$stock_opname_pasir = $this->db->select('sum(cat.display_volume) as volume')
+		$stock_opname_pasir = $this->db->select('(cat.display_volume) as volume')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("cat.date between '$date1' and '$date2'")
 		->where("cat.material_id = 5")
 		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
 		$total_volume_stock_pasir_akhir = $stock_opname_pasir['volume'];
@@ -472,6 +470,7 @@
 		->where("cat.date between '$date1' and '$date2'")
 		->where("cat.material_id = 6")
 		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
 		$total_volume_stock_batu1020_akhir = $stock_opname_batu1020['volume'];
@@ -506,11 +505,12 @@
 		$total_harga_pembelian_batu2030_akhir = ($nilai_opening_balance_batu2030 + $total_nilai_pembelian_batu2030) / $total_volume_pembelian_batu2030_akhir;
 		$total_nilai_pembelian_batu2030_akhir =  $total_volume_pembelian_batu2030_akhir * $total_harga_pembelian_batu2030_akhir;			
 		
-		$stock_opname_batu2030 = $this->db->select('sum(cat.display_volume) as volume')
+		$stock_opname_batu2030 = $this->db->select('(cat.display_volume) as volume')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("cat.date between '$date1' and '$date2'")
 		->where("cat.material_id = 7")
 		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
 		$total_volume_stock_batu2030_akhir = $stock_opname_batu2030['volume'];
@@ -526,14 +526,14 @@
 		$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
 
 		//TOTAL
-		$total_volume_pembelian = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc + $total_volume_pembelian_pasir + $total_volume_pembelian_batu1020 + $total_volume_pembelian_batu2030;
-		$total_volume_pemakaian = $total_volume_pemakaian_semen + $total_volume_pemakaian_pasir + $total_volume_pemakaian_batu1020 + $total_volume_pemakaian_batu2030;
-		$total_volume_akhir = $total_volume_stock_semen_akhir + $total_volume_stock_pasir_akhir + $total_volume_stock_batu1020_akhir + $total_volume_stock_batu1020_akhir + $total_volume_stock_batu2030_akhir;
-
 		$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
 		$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
 		$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
 
+		$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
+		$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
+		$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
+		
 		?>
 			
 		<tr class="table-judul">

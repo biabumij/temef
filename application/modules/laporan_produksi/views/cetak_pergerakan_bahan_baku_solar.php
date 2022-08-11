@@ -108,9 +108,9 @@
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
 		<!--- OPENING BALANCE --->
-		
+			
 		<?php
-		
+			
 		$date1_ago = date('2020-01-01');
 		$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 		$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
@@ -181,11 +181,12 @@
 		$total_harga_pembelian_solar_akhir = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_solar_akhir;
 		$total_nilai_pembelian_solar_akhir =  $total_volume_pembelian_solar_akhir * $total_harga_pembelian_solar_akhir;			
 		
-		$stock_opname_solar = $this->db->select('sum(cat.display_volume) as volume')
+		$stock_opname_solar = $this->db->select('(cat.display_volume) as volume')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("cat.date between '$date1' and '$date2'")
 		->where("cat.material_id = 8")
 		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
 		$total_volume_stock_solar_akhir = $stock_opname_solar['volume'];
@@ -199,10 +200,6 @@
 		$total_nilai_stock_solar_akhir = $total_volume_stock_solar_akhir * $total_harga_stock_solar_akhir;
 
 		//TOTAL
-		$total_volume_pembelian = $total_volume_pemakaian_solar;
-		$total_volume_pemakaian = $total_volume_pemakaian_solar;
-		$total_volume_akhir = $total_volume_stock_solar_akhir;
-
 		$total_nilai_pembelian = $total_nilai_pembelian_solar;
 		$total_nilai_pemakaian = $total_nilai_pemakaian_solar;
 		$total_nilai_akhir = $total_nilai_stock_solar_akhir;
