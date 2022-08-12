@@ -1915,7 +1915,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Bahan</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_bahan?filter_date=".$filter_date) ?>">Bahan</a></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -1930,7 +1930,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Alat</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_alat?filter_date=".$filter_date) ?>">Alat</a></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -1945,7 +1945,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Overhead</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_overhead?filter_date=".$filter_date) ?>">Overhead</a></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -1960,7 +1960,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Diskonto</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_diskonto?filter_date=".$filter_date) ?>">Diskonto</a></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
