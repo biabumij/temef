@@ -62,7 +62,7 @@ class Pdf extends TCPDF {
             $this->nsi_header, $border = 0, $ln = 1, $fill = 0,
             $reseth = true, $align = 'top', $autopadding = true);
         $posisi_y = $this->getY();
-        $this->SetTopMargin(30);
+        $this->SetTopMargin(35);
 
     }
 
