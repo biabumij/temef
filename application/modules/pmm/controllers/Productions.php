@@ -1410,12 +1410,13 @@ class Productions extends Secure_Controller {
 
 		<?php
 
-		$komposisi = $this->db->select('pp.date_production, pp.no_production, pp.convert_measure, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, SUM(pp.display_volume * pk.presentase_a) as volume_a, SUM(pp.display_volume * pk.presentase_b) as volume_b, SUM(pp.display_volume * pk.presentase_c) as volume_c, SUM(pp.display_volume * pk.presentase_d) as volume_d, pk.price_a, pk.price_b, pk.price_c, pk.price_d')
+		$komposisi = $this->db->select('pp.date_production, pp.no_production, pp.convert_measure, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, SUM(pp.display_volume * pk.presentase_a) as volume_a, SUM(pp.display_volume * pk.presentase_b) as volume_b, (pp.display_volume * pk.presentase_c) as volume_c, (pp.display_volume * pk.presentase_d) as volume_d, pk.price_a, pk.price_b, pk.price_c, pk.price_d, (pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a')
 		->from('pmm_productions pp')
 		->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
 		->where("pp.date_production between '$date1' and '$date2'")
 		->where('pp.status','PUBLISH')
 		->get()->row_array();
+		file_put_contents("D:\\komposisi.txt", $this->db->last_query());
 
 		$volume_a = $komposisi['volume_a'];
 		$volume_b = $komposisi['volume_b'];
@@ -1427,7 +1428,7 @@ class Productions extends Secure_Controller {
 		$price_c = $komposisi['price_c'];
 		$price_d = $komposisi['price_d'];
 
-		$nilai_a = $volume_a * $price_a;
+		$nilai_a = $komposisi['nilai_a'];
 		$nilai_b = $volume_b * $price_b;
 		$nilai_c = $volume_c * $price_c;
 		$nilai_d = $volume_d * $price_d;

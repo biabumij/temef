@@ -106,70 +106,87 @@
 		?>
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
-			
-			<?php
 		
-			//ALAT
-			$nilai_alat = $this->db->select('p.nama_produk, SUM(prm.display_price) as nilai')
+		<?php
+
+			$pembelian = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24)")
+			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->get()->row_array();
-
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
-			->from('akumulasi pp')
-			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->group_by('prm.material_id')
+			->order_by('po.supplier_id','asc')
 			->get()->result_array();
 
-			$total_akumulasi_bbm = 0;
+			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 
-			foreach ($akumulasi_bbm as $b){
-				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			$total_nilai = 0;
+
+			foreach ($pembelian as $x){
+				$total_nilai += $x['price'];
 			}
 
-			$total_nilai_bbm = $total_akumulasi_bbm;
+			$total_nilai_all = 0;
+			$total_nilai_all = $total_nilai;
 
-			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
+			$total_insentif_tm = 0;
+
+			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 220")
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
+			->group_by('pdb.id')
+			->get()->result_array();
 
-			$total_insentif_tm = $insentif_tm['total'];
+			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
 
-			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+			$total_insentif_tm = 0;
+
+			foreach ($insentif_tm as $y){
+				$total_insentif_tm += $y['total'];
+			}
+
+			$total_insentif_tm_all = 0;
+			$total_insentif_tm_all = $total_insentif_tm;
+
+			$total_nilai = $total_nilai_all + $total_insentif_tm_all;
 
 			?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center">NO.</th>
-				<th width="75%" align="left">URAIAN</th>
-				<th width="20%"align="right">NILAI</th>
+				<th width="35%" align="center"><br>REKANAN</th>
+				<th width="20%" align="center"><br>PRODUK</th>
+				<th width="7%" align="center"><br>SATUAN</th>
+				<th width="13%" align="center"><br>VOLUME</th>
+				<th width="15%" align="center">HARGA SATUAN</th>
+				<th width="10%" align="center">NILAI</th>
 	        </tr>
+			<?php foreach ($pembelian as $x): ?>
 			<tr class="table-baris1">
-				<th align="center">1.</th>
-				<th align="left"><?php echo $nilai_alat['nama_produk'];?></th>
-				<th align="right"><?php echo number_format($nilai_alat['nilai'],0,',','.');?></th>
-	        </tr>
+				<th align="left">&bull; <?= $x['nama'] ?></th>
+				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="center"><?= $x['measure'] ?></th>
+				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
-				<th align="center">2.</th>
-				<th align="left">Pemakaian BBM</th>
-				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">3.</th>
-				<th align="left">Insentif TM</th>
-				<th align="right"><?php echo number_format($total_insentif_tm,0,',','.');?></th>
-	        </tr>
+				<th align="left" colspan="5">&bull; <?= $y['memo'] ?></th>
+				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
 			<tr class="table-total">
-				<th align="right" colspan="2">TOTAL</th>
-				<th align="right"><?php echo number_format($alat,0,',','.');?></th>
-	        </tr>
+				<th align="right" colspan="5">TOTAL</th>
+				<th align="right"><?php echo number_format($total_nilai,0,',','.');?></th>
+			</tr>
 	    </table>
 		
 	</body>

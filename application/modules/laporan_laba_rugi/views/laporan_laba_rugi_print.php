@@ -123,7 +123,6 @@
 			
 			$total_penjualan = 0;
 			$total_volume = 0;
-			$measure = 0;
 
 			foreach ($penjualan as $x){
 				$total_penjualan += $x['price'];
