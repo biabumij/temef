@@ -988,8 +988,9 @@ class Laporan extends Secure_Controller {
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
 							$arr['no'] = $key + 1;
-							$arr['measure'] = $row['measure'];
+							$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
 							$arr['date_receipt'] = date('d-m-Y',strtotime($row['date_receipt']));
+							$arr['measure'] = $row['measure'];
 							$arr['nama_produk'] = $row['nama_produk'];
 							$arr['volume'] = number_format($row['volume'],2,',','.');
 							$arr['price'] = number_format($row['price'],0,',','.');

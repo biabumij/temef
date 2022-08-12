@@ -92,14 +92,19 @@
 		</table>	
 			<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th align="center" width="5%">NO.</th>
-                <th align="center" width="25%" colspan="2">URAIAN / TANGGAL</th>
-				<th align="center" width="15%">PRODUK</th>
-                <th align="center" width="10%">SATUAN</th>
-                <th align="center" width="15%">VOLUME</th>
-				<th align="center" width="15%">HARGA SATUAN</th>
-                <th align="center" width="15%">NILAI</th>
+                <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
+                <th align="center" width="28%" colspan="2">URAIAN</th>
+				<th align="center" width="10%" rowspan="2">&nbsp; <br />TANGGAL</th>
+				<th align="center" width="12%" rowspan="2">&nbsp; <br />PRODUK</th>
+                <th align="center" width="8%" rowspan="2">&nbsp; <br />SATUAN</th>
+                <th align="center" width="10%" rowspan="2">&nbsp; <br />VOLUME</th>
+				<th align="center" width="12%">HARGA</th>
+                <th align="center" width="15%" rowspan="2">&nbsp; <br />NILAI</th>
             </tr>
+			<tr class="table-judul">
+				<th align="center" colspan="2">NO. PESANAN PEMBELIAN</th>
+				<th align="center">SATUAN</th>
+			</tr>
             <?php
 			$total_vol = 0;
             if(!empty($data)){
@@ -107,7 +112,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="3"><?php echo $row['name'];?></td>
+            			<td align="left" colspan="4"><?php echo $row['name'];?></td>
             			<td align="center"><?php echo $row['measure'];?></td>
             			<td align="right"><?php echo $row['volume'];?></td>
 						<td align="right"></td>
@@ -128,8 +133,9 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-							<td align="center" colspan="2"><?php echo $mat['date_receipt'];?></td>
-	            			<td align="left"><?php echo $mat['nama_produk'];?></td>
+							<td colspan="2"><?php echo $mat['purchase_order_id'];?></td>
+							<td align="center"><?php echo $mat['date_receipt'];?></td>
+	            			<td><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['volume'];?></td>
 							<td align="right">
@@ -163,7 +169,7 @@
             }
             ?>	
             <tr class="table-total">
-				<th align="right" colspan="5">TOTAL</th>
+				<th align="right" colspan="6">TOTAL</th>
 				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">
