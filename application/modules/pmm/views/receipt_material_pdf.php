@@ -108,7 +108,7 @@
                    <td><?php echo $periode_mats;?></td>
                    <td><?php echo number_format($dt['volume'],2,',','.');?></td>
                    
-                   <td align="right"><?php echo number_format($dt['total'],2,',','.');?></td>
+                   <td align="right"><?php echo number_format($dt['total'],0,',','.');?></td>
                </tr>
                <?php
                $no++;
