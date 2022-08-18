@@ -1818,9 +1818,12 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
+			file_put_contents("D:\\overhead_15.txt", $this->db->last_query());
 
 			$overhead_jurnal_15 = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -1828,6 +1831,7 @@ class Reports extends CI_Controller {
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',15)
 			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1837,6 +1841,8 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1846,6 +1852,8 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1855,6 +1863,7 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',17)
+
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1864,6 +1873,8 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();

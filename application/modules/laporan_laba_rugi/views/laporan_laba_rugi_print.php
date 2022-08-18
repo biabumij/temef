@@ -111,127 +111,176 @@
 		
 		<?php
 
-			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
-			->from('pmm_productions pp')
-			->join('penerima p', 'pp.client_id = p.id','left')
-			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-			->where("pp.date_production between '$date1' and '$date2'")
-			->where("pp.status = 'PUBLISH'")
-			->where("ppo.status in ('OPEN','CLOSED')")
-			->group_by("pp.client_id")
-			->get()->result_array();
-			
-			$total_penjualan = 0;
-			$total_volume = 0;
+		$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
+		->from('pmm_productions pp')
+		->join('penerima p', 'pp.client_id = p.id','left')
+		->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+		->where("pp.date_production between '$date1' and '$date2'")
+		->where("pp.status = 'PUBLISH'")
+		->where("ppo.status in ('OPEN','CLOSED')")
+		->group_by("pp.client_id")
+		->get()->result_array();
 
-			foreach ($penjualan as $x){
-				$total_penjualan += $x['price'];
-				$total_volume += $x['volume'];
-			}
+		$total_penjualan = 0;
+		$total_volume = 0;
 
-			$total_penjualan_all = 0;
-			$total_penjualan_all = $total_penjualan;
+		foreach ($penjualan as $x){
+			$total_penjualan += $x['price'];
+			$total_volume += $x['volume'];
+		}
 
-			//BAHAN		
-			$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
-			->from('akumulasi pp')
-			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->result_array();
+		$total_penjualan_all = 0;
+		$total_penjualan_all = $total_penjualan;
 
-			$total_akumulasi = 0;
+		//BAHAN		
+		$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+		->from('akumulasi pp')
+		->where("(pp.date_akumulasi between '$date1' and '$date2')")
+		->get()->result_array();
 
-			foreach ($akumulasi as $a){
-				$total_akumulasi += $a['total_nilai_keluar'];
-			}
+		$total_akumulasi = 0;
 
-			$total_nilai = $total_akumulasi;
-			//END BAHAN
+		foreach ($akumulasi as $a){
+			$total_akumulasi += $a['total_nilai_keluar'];
+		}
 
-			//ALAT
-			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
-			->from('pmm_receipt_material prm')
-			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24)")
-			->where("po.status in ('PUBLISH','CLOSED')")
-			->get()->row_array();
+		$total_nilai = $total_akumulasi;
+		//END BAHAN
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
-			->from('akumulasi pp')
-			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->result_array();
+		//ALAT
+		$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
+		->from('pmm_receipt_material prm')
+		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+		->where("prm.date_receipt between '$date1' and '$date2'")
+		->where("prm.material_id in (12,13,14,15,16,23,24)")
+		->where("po.status in ('PUBLISH','CLOSED')")
+		->get()->row_array();
 
-			$total_akumulasi_bbm = 0;
+		$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+		->from('akumulasi pp')
+		->where("(pp.date_akumulasi between '$date1' and '$date2')")
+		->get()->result_array();
 
-			foreach ($akumulasi_bbm as $b){
-				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
-			}
+		$total_akumulasi_bbm = 0;
 
-			$total_nilai_bbm = $total_akumulasi_bbm;
+		foreach ($akumulasi_bbm as $b){
+			$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+		}
 
-			$total_insentif_tm = 0;
+		$total_nilai_bbm = $total_akumulasi_bbm;
 
-			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
+		$total_insentif_tm = 0;
 
-			$total_insentif_tm = $insentif_tm['total'];
+		$insentif_tm = $this->db->select('sum(pdb.debit) as total')
+		->from('pmm_jurnal_umum pb ')
+		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+		->where("pdb.akun = 220")
+		->where("status = 'PAID'")
+		->where("(tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
-			//END ALAT
+		$total_insentif_tm = $insentif_tm['total'];
 
-			//OVERHEAD
-			$overhead = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',15)
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
+		$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+		//END ALAT
 
-			$overhead_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun in (199)")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
+		//OVERHEAD
+		$overhead_15 = $this->db->select('sum(pdb.jumlah) as total')
+		->from('pmm_biaya pb ')
+		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',15)
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
+		file_put_contents("D:\\overhead_15.txt", $this->db->last_query());
 
-			$overhead = $overhead['total'] + $overhead_jurnal['total'];
-			//END OVERHEAD
+		$overhead_jurnal_15 = $this->db->select('sum(pdb.debit) as total')
+		->from('pmm_jurnal_umum pb ')
+		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',15)
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			//DISKONTO
-			$diskonto = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 168")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
+		$overhead_16 = $this->db->select('sum(pdb.jumlah) as total')
+		->from('pmm_biaya pb ')
+		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',16)
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			$diskonto = $diskonto['total'];
-			//END DISKONTO
+		$overhead_jurnal_16 = $this->db->select('sum(pdb.debit) as total')
+		->from('pmm_jurnal_umum pb ')
+		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',16)
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			$bahan = $total_nilai;
-			$alat = $alat;
-			$overhead = $overhead;
-			$diskonto = $diskonto;
+		$overhead_17 = $this->db->select('sum(pdb.jumlah) as total')
+		->from('pmm_biaya pb ')
+		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',17)
 
-			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto;
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
+		$overhead_jurnal_17 = $this->db->select('sum(pdb.debit) as total')
+		->from('pmm_jurnal_umum pb ')
+		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where('c.coa_category',17)
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-			$laba_sebelum_pajak = $laba_kotor;
+		$overhead =  $overhead_15['total'] + $overhead_jurnal_15['total'] + $overhead_16['total'] + $overhead_jurnal_16['total'] + $overhead_17['total'] + $overhead_jurnal_17['total'];
+		//END OVERHEAD
 
-			//$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+		//DISKONTO
+		$diskonto = $this->db->select('sum(pdb.jumlah) as total')
+		->from('pmm_biaya pb ')
+		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+		->join('pmm_coa c','pdb.akun = c.id','left')
+		->where("pdb.akun = 168")
+		->where("pb.status = 'PAID'")
+		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+		->get()->row_array();
 
-	        ?>
+		$diskonto = $diskonto['total'];
+		//END DISKONTO
+
+		$bahan = $total_nilai;
+		$alat = $alat;
+		$overhead = $overhead;
+		$diskonto = $diskonto;
+
+		$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto;
+
+		$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
+
+		$laba_sebelum_pajak = $laba_kotor;
+
+		$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+
+		?>
 
 			<hr width="98%">
 			<tr class="table-active4">
