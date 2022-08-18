@@ -53,7 +53,7 @@
 		<table width="100%" border="0" cellpadding="2">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 16px;">PENERIMAAN BAHAN</div>
+					<div style="display: block;font-weight: bold;font-size: 16px;">PENGIRIMAN PENJUALAN</div>
 				</td>
 			</tr>
 			<tr>
