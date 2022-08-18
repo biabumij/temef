@@ -111,27 +111,54 @@
 
 			<?php
 
-			$komposisi = $this->db->select('pp.date_production, pp.no_production, pp.convert_measure, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, SUM(pp.display_volume * pk.presentase_a) as volume_a, SUM(pp.display_volume * pk.presentase_b) as volume_b, SUM(pp.display_volume * pk.presentase_c) as volume_c, SUM(pp.display_volume * pk.presentase_d) as volume_d, pk.price_a, pk.price_b, pk.price_c, pk.price_d')
+			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, (pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
 			->from('pmm_productions pp')
 			->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where('pp.status','PUBLISH')
-			->get()->row_array();
+			->get()->result_array();
 
-			$volume_a = $komposisi['volume_a'];
-			$volume_b = $komposisi['volume_b'];
-			$volume_c = $komposisi['volume_c'];
-			$volume_d = $komposisi['volume_d'];
+			$total_volume_a = 0;
+			$total_volume_b = 0;
+			$total_volume_c = 0;
+			$total_volume_d = 0;
 
-			$price_a = $komposisi['price_a'];
-			$price_b = $komposisi['price_b'];
-			$price_c = $komposisi['price_c'];
-			$price_d = $komposisi['price_d'];
+			$total_nilai_a = 0;
+			$total_nilai_b = 0;
+			$total_nilai_c = 0;
+			$total_nilai_d = 0;
 
-			$nilai_a = $volume_a * $price_a;
-			$nilai_b = $volume_b * $price_b;
-			$nilai_c = $volume_c * $price_c;
-			$nilai_d = $volume_d * $price_d;
+			foreach ($komposisi as $x){
+				$total_volume_a += $x['volume_a'];
+				$total_volume_b += $x['volume_b'];
+				$total_volume_c += $x['volume_c'];
+				$total_volume_d += $x['volume_d'];
+				$total_nilai_a += $x['nilai_a'];
+				$total_nilai_b += $x['nilai_b'];
+				$total_nilai_c += $x['nilai_c'];
+				$total_nilai_d += $x['nilai_d'];
+				
+			}
+
+			$total_price_a = 0;
+			$total_price_b = 0;
+			$total_price_c = 0;
+			$total_price_d = 0;
+
+			$volume_a = $total_volume_a;
+			$volume_b = $total_volume_b;
+			$volume_c = $total_volume_c;
+			$volume_d = $total_volume_d;
+
+			$nilai_a = $total_nilai_a;
+			$nilai_b = $total_nilai_b;
+			$nilai_c = $total_nilai_c;
+			$nilai_d = $total_nilai_d;
+
+			$price_a = $total_price_a;
+			$price_b = $total_price_b;
+			$price_c = $total_price_c;
+			$price_d = $total_price_d;
 
 			$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
 			$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;

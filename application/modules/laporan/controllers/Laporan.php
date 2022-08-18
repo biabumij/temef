@@ -2430,7 +2430,7 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('laporan_laba_rugi/cetak_overhead',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Alat');
+        $pdf->SetTitle('BBJ - Overhead');
         $pdf->nsi_html($html);
         $pdf->Output('alat.pdf', 'I');
 	}

@@ -224,7 +224,7 @@
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-total">
-				<th align="right" colspan="5">TOTAL JURANL UMUM</th>
+				<th align="right" colspan="5">TOTAL JURNAL UMUM</th>
 				<th align="right"><?php echo number_format($total_overhead_jurnal_all,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
