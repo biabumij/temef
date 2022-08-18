@@ -43,7 +43,7 @@
 				<td><?= $blj['tanggal_transaksi'];?></td>
 				<td>JURNAL</td>
 				<td><?= $blj['coa'];?></td>
-				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $bl["id"]) .'" target="_blank">'. $bl["nomor_transaksi"] . "</a>";?></td>
+				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $blj["id"]) .'" target="_blank">'. $blj["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $blj['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($blj['total']);?></td>
 			</tr>
