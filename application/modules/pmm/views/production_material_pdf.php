@@ -167,14 +167,14 @@
 						<tr>
 							<td align="center">
 								<u><b><?php echo $row['pic'];?></b></u><br />
-								<b><?php echo $row['position'];?></b>
+								<b>Logistik</b>
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center" >
-								<u><b>Gervasius K. Limahekin</b></u><br />
-								<b>Ka. Plant</b>
+								<u><b>Agustinus Pakaenoni</b></u><br />
+								<b>Logistik</b>
 							</td>
 						</tr>
 					</table>

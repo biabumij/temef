@@ -258,7 +258,7 @@ class Purchase_order extends CI_Controller {
 		$row['address_supplier'] = $sp['alamat'];
 		$row['npwp_supplier'] = $sp['npwp'];
 		$row['supplier_name'] = $sp['nama'];
-		$row['pic'] = $sp['nama_kontak'];
+		$row['pic'] = $sp['nama_kontak_logistik'];
 		$row['position'] = $sp['posisi'];
 		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
 		$data['row'] = $row;
@@ -295,7 +295,7 @@ class Purchase_order extends CI_Controller {
 		$row['address_supplier'] = $sp['alamat'];
 		$row['npwp_supplier'] = $sp['npwp'];
 		$row['supplier_name'] = $sp['nama'];
-		$row['pic'] = $sp['nama_kontak'];
+		$row['pic'] = $sp['nama_kontak_logistik'];
 		$row['position'] = $sp['posisi'];
 		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
 		$data['row'] = $row;
