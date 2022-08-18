@@ -873,11 +873,23 @@ class Pmm_model extends CI_Model {
     function GetReceiptByPO($id)
     {
         $output = false;
-        $this->db->select('SUM(prm.volume) as volume, SUM(prm.volume * prm.price) as total,prm.measure, pm.nama_produk as material_name,prm.material_id');
+        $this->db->select('SUM(prm.volume) as volume, SUM(prm.volume * prm.harga_satuan) as total,prm.measure, pm.nama_produk as material_name,prm.material_id');
         $this->db->join('produk pm','prm.material_id = pm.id','left');
         $this->db->where('prm.purchase_order_id',$id);
         $this->db->group_by('prm.material_id');
         $query = $this->db->get('pmm_receipt_material prm')->result_array();
+
+        return $query;
+    }
+
+    function GetReceiptBySalesOrder($id)
+    {
+        $output = false;
+        $this->db->select('SUM(pp.volume) as volume, SUM(pp.volume * pp.harga_satuan) as total, pp.measure, pm.nama_produk as material_name, pp.product_id');
+        $this->db->join('produk pm','pp.product_id = pm.id','left');
+        $this->db->where('pp.salesPo_id',$id);
+        $this->db->group_by('pp.product_id');
+        $query = $this->db->get('pmm_productions pp')->result_array();
 
         return $query;
     }

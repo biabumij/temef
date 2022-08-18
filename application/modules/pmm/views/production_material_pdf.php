@@ -67,17 +67,17 @@
 			<tr>
 				<th width="20%">Tanggal Pesanan Pembelian</th>
 				<th width="2%">:</th>
-				<th width="50%" align="left"><?= convertDateDBtoIndo($row["date_po"]); ?></th>
+				<th width="50%" align="left"><?= convertDateDBtoIndo($row["contract_date"]); ?></th>
 			</tr>
 			<tr>
 				<th>Subjek</th>
 				<th width="10px">:</th>
-				<th align="left"><?php echo $row['subject'];?></th>
+				<th align="left"><?php echo $row['jobs_type'];?></th>
 			</tr>
 			<tr>
 				<th>Nomor Pesanan Pembelian</th>
 				<th width="10px">:</th>
-				<th align="left"><?php echo $row['no_po'];?></th>
+				<th align="left"><?php echo $row['contract_number'];?></th>
 			</tr>
 		</table>
 		<br />
@@ -97,9 +97,9 @@
            $total_vol = 0;
            foreach ($details as $dt) {
 
-	           	$start_date = $this->db->select('date_receipt')->order_by('date_receipt','asc')->limit(1)->get_where('pmm_receipt_material',array('purchase_order_id'=>$id,'material_id'=>$dt['material_id']))->row_array();
-				$end_date = $this->db->select('date_receipt')->order_by('date_receipt','desc')->limit(1)->get_where('pmm_receipt_material',array('purchase_order_id'=>$id,'material_id'=>$dt['material_id']))->row_array();
-				$periode_mats = date('d/m/Y',strtotime($start_date['date_receipt'])).' - '.date('d/m/Y',strtotime($end_date['date_receipt']));
+	           	$start_date = $this->db->select('date_production')->order_by('date_production','asc')->limit(1)->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$dt['product_id']))->row_array();
+				$end_date = $this->db->select('date_production')->order_by('date_production','desc')->limit(1)->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$dt['product_id']))->row_array();
+				$periode_mats = date('d/m/Y',strtotime($start_date['date_production'])).' - '.date('d/m/Y',strtotime($end_date['date_production']));
                ?>  
                <tr>
                    <td><?php echo $no;?></td>
@@ -133,13 +133,13 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
-								Pengirim
+								Penerima
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center" >
-								Penerima
+								Pengirim
 							</td>	
 						</tr>
 						<tr>
