@@ -120,7 +120,7 @@
 		$total_volume_b = 0;
 		$total_volume_c = 0;
 		$total_volume_d = 0;
-	
+
 		$total_nilai_a = 0;
 		$total_nilai_b = 0;
 		$total_nilai_c = 0;
@@ -138,11 +138,6 @@
 			
 		}
 
-		$total_price_a = 0;
-		$total_price_b = 0;
-		$total_price_c = 0;
-		$total_price_d = 0;
-
 		$volume_a = $total_volume_a;
 		$volume_b = $total_volume_b;
 		$volume_c = $total_volume_c;
@@ -153,10 +148,10 @@
 		$nilai_c = $total_nilai_c;
 		$nilai_d = $total_nilai_d;
 
-		$price_a = $total_price_a;
-		$price_b = $total_price_b;
-		$price_c = $total_price_c;
-		$price_d = $total_price_d;
+		$price_a = $total_nilai_a / $total_volume_a;
+		$price_b = $total_nilai_b / $total_volume_b;
+		$price_c = $total_nilai_c / $total_volume_c;
+		$price_d = $total_nilai_d / $total_volume_d;
 
 		$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
 		$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;
