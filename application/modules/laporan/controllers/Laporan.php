@@ -79,6 +79,7 @@ class Laporan extends Secure_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
+						$arr['salesPo_id'] = $row['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number');
 						$arr['real'] = number_format($row['total'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');

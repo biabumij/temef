@@ -90,10 +90,11 @@
 			<tr class="table-judul">
                 <th width="5%">NO.</th>
                 <th align="center" width="30%" colspan="2">URAIAN</th>
-				<th width="10%">SATUAN</th>
-                <th width="15%">VOLUME</th>
-				<th width="20%">HARGA SATUAN</th>
-                <th width="20%">TOTAL</th>
+				<th width="18%">MUTU BETON</th>
+				<th width="8%">SATUAN</th>
+                <th width="10%">VOLUME</th>
+				<th width="15%">HARGA SATUAN</th>
+                <th width="15%">TOTAL</th>
             </tr>
             <?php
 			$vol_jasa_angkut = 0;
@@ -106,7 +107,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="3"><?php echo $row['name'];?></td>
+            			<td align="left" colspan="4"><?php echo $row['name'];?></td>
             			<td align="right"><?php echo $row['real'];?></td>
 						<td align="right"></td>
             			<td align="right">
@@ -127,7 +128,8 @@
             			<tr class="table-baris1">
 	            			<td align="center"></td>
 	            			<td width="1%"></td>
-	            			<td align="left" width="29%"><?php echo $mat['nama_produk'];?></td>
+	            			<td align="left" width="29%"><?php echo $mat['salesPo_id'];?></td>
+							<td align="left"><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['real'];?></td>
 							<td align="right">
@@ -163,7 +165,7 @@
             }
             ?>
 			<tr class="table-total">
-            	<th align="right" colspan="4">TOTAL</th>
+            	<th align="right" colspan="5">TOTAL</th>
 				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">

@@ -2199,10 +2199,9 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('pp.salesPo_id, pp.measure, pp.measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
+        $this->db->select('pp.salesPo_id, pp.measure, pp.measure, p.nama_produk, pp.display_harga_satuan, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
-		//$this->db->join('pmm_sales_po_detail ppod','ppo.id = ppod.sales_po_id','left');
         if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -2219,8 +2218,9 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->where('pp.status','PUBLISH');
         $this->db->where("ppo.status in ('OPEN','CLOSED')");
+        $this->db->order_by('pp.salesPo_id','asc');
         $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('pp.product_id');
+        $this->db->group_by('pp.display_harga_satuan');
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
 		
@@ -2231,10 +2231,9 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('pp.measure, pp.convert_measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
+        $this->db->select('pp.salesPo_id, pp.measure, pp.convert_measure, p.nama_produk, pp.display_harga_satuan, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
-		//$this->db->join('pmm_sales_po_detail ppod','ppo.id = ppod.sales_po_id','left');
         if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -2251,8 +2250,9 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->where('pp.status','PUBLISH');
         $this->db->where("ppo.status in ('OPEN','CLOSED')");
+        $this->db->order_by('pp.salesPo_id','asc');
         $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('pp.product_id');
+        $this->db->group_by('pp.display_harga_satuan');
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
 		
