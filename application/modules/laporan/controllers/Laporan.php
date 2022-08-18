@@ -2057,8 +2057,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pp.status','PUBLISH');
 		$query = $this->db->get('pmm_productions pp');
 		
-		//file_put_contents("D:\\laporan_pemakaian_komposisi.txt", $this->db->last_query());
-		
 		if($query->num_rows() > 0){
 
 			foreach ($query->result_array() as $key => $sups) {

@@ -1823,7 +1823,6 @@ class Reports extends CI_Controller {
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-			file_put_contents("D:\\overhead_15.txt", $this->db->last_query());
 
 			$overhead_jurnal_15 = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
