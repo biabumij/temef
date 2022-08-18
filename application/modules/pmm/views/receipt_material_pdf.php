@@ -103,7 +103,7 @@
                ?>  
                <tr>
                    <td><?php echo $no;?></td>
-                   <td><?php echo $dt['material_name'];?></td>
+                   <td align="left"><?php echo $dt['material_name'];?></td>
                    <td><?php echo $dt['measure'];?></td>
                    <td><?php echo $periode_mats;?></td>
                    <td><?php echo number_format($dt['volume'],2,',','.');?></td>
@@ -123,97 +123,58 @@
                <input type="hidden" id="total" value="<?php echo $total + $ppn;?>">
            </tr>
 		</table>
-		<br />
-		<br />
-		<br />
-		<br />
-
-		<table width="98%" border="0" cellpadding="0">
+		<?php
+        $ka_plant = $this->pmm_model->GetNameGroup(15);
+        ?>
+		<table width="98%" border="0" cellpadding="50">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="1" cellpadding="2">
-						<tr class="table-active3">
-							<td align="center" colspan="2">
-								<?php echo date('d F Y');?>
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center">
+								Pengirim
 							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center" >
+								Penerima
+							</td>	
 						</tr>
-						<tr class="table-active3">
-							<td align="center" >
-								Dibuat Oleh
+						<tr>
+							<td align="center">
+								<b><?php echo $row['supplier_name'];?></b>
+							</td>
+							<td align="center">
+								
 							</td>
 							<td align="center" >
-								Diperiksa Oleh
-							</td>
+								<b>PT. Bia Bumi Jayendra</b>
+							</td>	
 						</tr>
 						<tr class="">
-							<td align="center" height="75px">
+							<td align="center" height="55px">
+								
+							</td>
+							<td align="center">
 								
 							</td>
 							<td align="center">
 								
 							</td>
 						</tr>
-						<tr class="table-active3">
-							<td align="center" >
-								Purba Abdul Kahfi
-							</td>
-							<td align="center" >
-								Dedi Ramdhani
-							</td>
-						</tr>
-						<tr class="table-active3">
-							<td align="center" >
-								<b>Adm. Logistik</b>
-							</td>
-							<td align="center" >
-								<b>Ka. Logistik</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="1" cellpadding="2">
-						<tr class="table-active3">
-							<td align="center" >
-								Menyetujui
-							</td>
-							<td align="center" >
-								Mengetahui
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="75px">
-								
+						<tr>
+							<td align="center">
+								<u><b><?php echo $row['pic'];?></b></u><br />
+								<b><?php echo $row['position'];?></b>
 							</td>
 							<td align="center">
 								
 							</td>
-						</tr>
-						<tr class="table-active3">
 							<td align="center" >
-								Dadang Rosyid. R
-							</td>
-							<td align="center" >
-								Annisa Putri
-							</td>
-						</tr>
-						<tr class="table-active3">
-							<td align="center" >
+								<u><b>Gervasius K. Limahekin</b></u><br />
 								<b>Ka. Plant</b>
-							</td>
-							<td align="center" >
-								<b>M. Produksi & Pengembangan</b>
 							</td>
 						</tr>
 					</table>
