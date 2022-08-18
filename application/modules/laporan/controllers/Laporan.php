@@ -170,9 +170,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('pso.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_sales_po pso');
-		
-		//file_put_contents("D:\\laporan_sales_order_print.txt", $this->db->last_query());
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
