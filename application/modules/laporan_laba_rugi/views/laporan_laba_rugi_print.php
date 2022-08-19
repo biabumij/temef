@@ -120,7 +120,7 @@
 		->where("ppo.status in ('OPEN','CLOSED')")
 		->group_by("pp.client_id")
 		->get()->result_array();
-
+		
 		$total_penjualan = 0;
 		$total_volume = 0;
 
@@ -234,7 +234,8 @@
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 		->join('pmm_coa c','pdb.akun = c.id','left')
 		->where('c.coa_category',17)
-
+		->where("c.id <> 220 ")
+		->where("c.id <> 168 ")
 		->where("pb.status = 'PAID'")
 		->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
