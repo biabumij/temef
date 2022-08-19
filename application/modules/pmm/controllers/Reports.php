@@ -405,8 +405,8 @@ class Reports extends CI_Controller {
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
 
 			$total_volume_pembelian_semen_all = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc;
-
 			$total_nilai_pembelian_semen_all = $total_nilai_pembelian_semen + $total_nilai_pembelian_semen_cons + $total_nilai_pembelian_semen_opc +  $total_nilai_jasa_angkut + $total_nilai_jasa_angkut_cons + $total_nilai_jasa_angkut_opc;
+			$total_harga_pembelian_semen_all = $total_nilai_pembelian_semen_all / $total_volume_pembelian_semen_all;
 
 			$stock_opname_semen = $this->db->select('(cat.display_volume) as volume, `cat`.`price` as price')
 			->from('pmm_remaining_materials_cat cat ')
@@ -419,6 +419,7 @@ class Reports extends CI_Controller {
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
@@ -497,7 +498,7 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_batu1020_akhir = ($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) / $total_volume_pembelian_batu1020_akhir;
 			$total_nilai_pembelian_batu1020_akhir =  $total_volume_pembelian_batu1020_akhir * $total_harga_pembelian_batu1020_akhir;			
 			
-			$stock_opname_batu1020 = $this->db->select('sum(cat.display_volume) as volume')
+			$stock_opname_batu1020 = $this->db->select('(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("cat.date between '$date1' and '$date2'")
 			->where("cat.material_id = 6")
@@ -818,7 +819,7 @@ class Reports extends CI_Controller {
 				<th class="text-left"><i>Semen</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_all,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_all,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
