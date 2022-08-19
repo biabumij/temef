@@ -114,7 +114,6 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where('c.coa_category',17);
         $this->db->where("c.id <> 220 ");
-		$this->db->where("c.id <> 168 ");
         $this->db->where('b.status','PAID');
         $this->db->group_by('pdb.id');
         $this->db->order_by('b.tanggal_transaksi','asc');
@@ -136,7 +135,6 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where('c.coa_category',17);
         $this->db->where("c.id <> 220 ");
-		$this->db->where("c.id <> 168 ");
         $this->db->where('b.status','PAID');
         $this->db->group_by('pdb.id');
         $this->db->order_by('c.coa','asc');
@@ -250,7 +248,6 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where('c.coa_category',17);
         $this->db->where("c.id <> 220 ");
-		$this->db->where("c.id <> 168 ");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa');
         $this->db->order_by('b.tanggal_transaksi','asc');
@@ -272,7 +269,6 @@ class M_laporan extends CI_Model {
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
         $this->db->where('c.coa_category',17);
         $this->db->where("c.id <> 220 ");
-		$this->db->where("c.id <> 168 ");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa');
         $this->db->order_by('c.coa','asc');

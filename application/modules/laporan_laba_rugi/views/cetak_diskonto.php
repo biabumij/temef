@@ -3,159 +3,160 @@
 	<head>
 	  <title>DISKONTO</title>
 	  
-	  <?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
-		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		
-		$subject = "$filter_date";
-
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
-	  
 	  <style type="text/css">
-		table tr.table-judul{
-			background-color: #e69500;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
+	  	table.minimalistBlack {
+		  border: 0px solid #000000;
+		  width: 100%;
+		  text-align: left;
 		}
-			
-		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
+		table.minimalistBlack td, table.minimalistBlack th {
+		  border: 1px solid #000000;
+		  /*padding: 10px 4px;*/
 		}
-
-		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
+		table.minimalistBlack tr th {
+		  /*font-size: 14px;*/
+		  font-weight: bold;
+		  color: #000000;
+		  text-align: center;
 		}
-			
-		table tr.table-baris2{
-			font-size: 8px;
-			background-color: #E8E8E8;
+		table tr.table-active{
+            background-color: #e69500;
+        }
+        table tr.table-active2{
+            background-color: #b5b5b5;
+        }
+        table tr.table-active3{
+            background-color: #eee;
+        }
+		hr{
+			margin-top:0;
+			margin-bottom:30px;
 		}
-			
-		table tr.table-total{
-			background-color: #cccccc;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
+		h3{
+			margin-top:0;
+		}
+		.table-lap tr td, .table-lap tr th{
+			border-bottom: 1px solid #000;
 		}
 	  </style>
 
 	</head>
 	<body>
-		<br />
-		<br />
-		<table width="98%" cellpadding="3">
+		<table width="98%" border="0" cellpadding="3">
 			<tr>
-				<td align="center"  width="100%">
+				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 12px;">DISKONTO</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
+					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
 				</td>
 			</tr>
 		</table>
 		<br />
 		<br />
 		<br />
-		<?php
-		$data = array();
-		
-		$arr_date = $this->input->get('filter_date');
-		$arr_filter_date = explode(' - ', $arr_date);
-		$date1 = '';
-		$date2 = '';
-
-		if(count($arr_filter_date) == 2){
-			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
-			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		
-		?>
-		
-		<table width="98%" border="0" cellpadding="3" border="0">
-			
+		<table class="table-lap" width="98%" border="0" cellpadding="3">
+			<tr class="table-active" style="">
+				<td width="80%" colspan="5">
+					<div style="display: block;font-weight: bold;font-size: 8px;">PERIODE</div>
+				</td>
+				<td align="right" width="20%">
+					<div style="display: block;font-weight: bold;font-size: 8px;"><?php echo $filter_date;?></div>
+				</td>
+			</tr>
+			<tr class="table-active3">
+				<th align="center" width="10%"><b>Tanggal</b></th>
+				<th align="center" width="10%"><b>Transaksi</b></th>
+				<th align="center" width="50%"><b>Kategori</b></th>
+				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
+			</tr>
+			<tr class="table-active2">
+				<th width="100%" align="left" colspan="6"><b>Biaya Lain - Lain</b></th>
+			</tr>
 			<?php
-		
-			//DISKONTO
-			$diskonto = $this->db->select('pb.tanggal_transaksi, pb.nomor_transaksi, c.coa, sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 168")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->order_by('pb.tanggal_transaksi','asc')
-			->order_by('pb.created_on','asc')
-			->get()->result_array();
-			//END DISKONTO
-
-			$total_diskonto = 0;
-
-			foreach ($diskonto as $row2){
-				$total_diskonto += $row2['total'];
+			$total_biaya_lainnya = 0;
+			if(!empty($biaya_lainnya)){
+				foreach ($biaya_lainnya as $key => $row) {
+					$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
+					?>
+					<tr>
+						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
+						<td width="10%">BIAYA</td>
+						<td width="50%"><?= $row['coa'];?></td>
+						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+					</tr>
+					<?php
+					$total_biaya_lainnya += $row['total'];					
+				}
 			}
-
-			$total_diskonto_all = $total_diskonto;
-
+			$total_biaya_lainnya_jurnal = 0;
+			$grand_total_biaya_lainnya = $total_biaya_lainnya;
+			if(!empty($biaya_lainnya_jurnal)){
+				foreach ($biaya_lainnya_jurnal as $key => $row2) {
+					$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
+					?>
+					<tr>
+						<td><?= $row2['tanggal_transaksi'];?></td>
+						<td>JURNAL</td>
+						<td><?= $row2['coa'];?></td>
+						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+					</tr>
+					<?php
+					$total_biaya_lainnya_jurnal += $row2['total'];					
+				}
+			}
+			$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
 			?>
-			
-			<tr class="table-judul">
-				<th width="5%" align="center">NO.</th>
-				<th width="15%" align="center">TRANSAKSI</th>
-				<th width="15%" align="center">TGL. TRANSAKSI</th>
-				<th width="20%" align="center">NO. TRANSAKSI</th>
-				<th width="25%" align="center">URAIAN</th>
-				<th width="20%" align="center">NILAI</th>
-	        </tr>
-			<?php foreach ($diskonto as $key => $row): ?>
-			<tr class="table-baris1">
-				<th align="center"><?php echo $key + 1;?></th>
-				<th align="center">BIAYA</th>
-				<th align="center"><?= $row['tanggal_transaksi'] ?></th>
-				<th><?= $row['nomor_transaksi'] ?></th>
-				<th><?= $row['coa'] ?></th>
-				<th align="right"><?= number_format($row['total'],0,',','.') ?></th>
-	        </tr>
-			<?php endforeach; ?>
-			<tr class="table-total">
-				<th align="right" colspan="5">TOTAL BIAYA</th>
-				<th align="right"><?php echo number_format($total_diskonto_all,0,',','.');?></th>
-	        </tr>			
-	    </table>
-		
+			<tr class="active">
+				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
+				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="15">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center" >
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="40px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<b><u>Gervasius K. Limahekin</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center" >
+								<b><u>Debi Khania</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center" >
+								<b><u>Debi Khania</u><br />
+								Kasir</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 	</body>
 </html>

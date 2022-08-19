@@ -1838,8 +1838,8 @@ class Productions extends Secure_Controller {
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
 
 			$total_volume_pembelian_semen_all = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc;
-
 			$total_nilai_pembelian_semen_all = $total_nilai_pembelian_semen + $total_nilai_pembelian_semen_cons + $total_nilai_pembelian_semen_opc +  $total_nilai_jasa_angkut + $total_nilai_jasa_angkut_cons + $total_nilai_jasa_angkut_opc;
+			$total_harga_pembelian_semen_all = $total_nilai_pembelian_semen_all / $total_volume_pembelian_semen_all;
 
 			$stock_opname_semen = $this->db->select('(cat.display_volume) as volume, `cat`.`price` as price')
 			->from('pmm_remaining_materials_cat cat ')
@@ -1852,6 +1852,7 @@ class Productions extends Secure_Controller {
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
@@ -1930,7 +1931,7 @@ class Productions extends Secure_Controller {
 			$total_harga_pembelian_batu1020_akhir = ($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) / $total_volume_pembelian_batu1020_akhir;
 			$total_nilai_pembelian_batu1020_akhir =  $total_volume_pembelian_batu1020_akhir * $total_harga_pembelian_batu1020_akhir;			
 			
-			$stock_opname_batu1020 = $this->db->select('sum(cat.display_volume) as volume')
+			$stock_opname_batu1020 = $this->db->select('(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("cat.date between '$date1' and '$date2'")
 			->where("cat.material_id = 6")
@@ -2435,8 +2436,8 @@ class Productions extends Secure_Controller {
 			$total_nilai_jasa_angkut_opc_akhir = $total_nilai_jasa_angkut_opc + $total_nilai_pembelian_semen_opc_akhir;
 
 			$total_volume_pembelian_semen_all = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc;
-
 			$total_nilai_pembelian_semen_all = $total_nilai_pembelian_semen + $total_nilai_pembelian_semen_cons + $total_nilai_pembelian_semen_opc +  $total_nilai_jasa_angkut + $total_nilai_jasa_angkut_cons + $total_nilai_jasa_angkut_opc;
+			$total_harga_pembelian_semen_all = $total_nilai_pembelian_semen_all / $total_volume_pembelian_semen_all;
 
 			$stock_opname_semen = $this->db->select('(cat.display_volume) as volume, `cat`.`price` as price')
 			->from('pmm_remaining_materials_cat cat ')
@@ -2449,6 +2450,7 @@ class Productions extends Secure_Controller {
 			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
@@ -2527,7 +2529,7 @@ class Productions extends Secure_Controller {
 			$total_harga_pembelian_batu1020_akhir = ($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) / $total_volume_pembelian_batu1020_akhir;
 			$total_nilai_pembelian_batu1020_akhir =  $total_volume_pembelian_batu1020_akhir * $total_harga_pembelian_batu1020_akhir;			
 			
-			$stock_opname_batu1020 = $this->db->select('sum(cat.display_volume) as volume')
+			$stock_opname_batu1020 = $this->db->select('(cat.display_volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("cat.date between '$date1' and '$date2'")
 			->where("cat.material_id = 6")
@@ -2583,14 +2585,14 @@ class Productions extends Secure_Controller {
 
 			$total_harga_stock_batu2030_akhir = $total_harga_pemakaian_batu2030;
 			$total_nilai_stock_batu2030_akhir = $total_volume_stock_batu2030_akhir * $total_harga_stock_batu2030_akhir;
-	
+
 			//BAHAN BAKU
 			$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
-	
+
 			//TOTAL
-			$total_volume_pembelian = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc + $total_volume_pembelian_pasir + $total_volume_pembelian_batu1020 + $total_volume_pembelian_batu2030;
-			$total_volume_pemakaian = $total_volume_pemakaian_semen + $total_volume_pemakaian_pasir + $total_volume_pemakaian_batu1020 + $total_volume_pemakaian_batu2030;
-			$total_volume_akhir = $total_volume_stock_semen_akhir + $total_volume_stock_pasir_akhir + $total_volume_stock_batu1020_akhir + $total_volume_stock_batu1020_akhir + $total_volume_stock_batu2030_akhir;
+			$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
+			$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
+			$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
 	
 			$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
 			$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;

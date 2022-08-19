@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>Laporan Biaya</title>
+	  <title>OVERHEAD</title>
 	  
 	  <style type="text/css">
 	  	table.minimalistBlack {
@@ -45,7 +45,7 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN BIAYA</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">OVERHEAD</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
 				</td>
 			</tr>
@@ -108,94 +108,6 @@
 			<tr class="active">
 				<td width="80%" style="padding-left:20px;">Total Biaya Overhead Produksi</td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
-			</tr>
-			<tr>
-				<th width="100%" colspan="6"></th>
-			</tr>
-			<tr class="table-active2">
-				<th width="100%" align="left" colspan="6"><b>Biaya Umum & Administrasi</b></th>
-			</tr>
-			<?php
-			$total_biaya  = 0;
-			if(!empty($biaya)){
-				foreach ($biaya as $key => $row) {
-					$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
-					?>
-					<tr>
-						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
-					</tr>
-					<?php
-					$total_biaya += $row['total'];				
-				}
-			}
-			$total_biaya_jurnal = 0;
-			$grand_total_biaya = $total_biaya;
-			if(!empty($biaya_jurnal)){
-				foreach ($biaya_jurnal as $key => $row2) {
-					$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
-					?>
-					<tr>
-						<td><?= $row2['tanggal_transaksi'];?></td>
-						<td>JURNAL</td>
-						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
-					</tr>
-					<?php
-					$total_biaya_jurnal += $row2['total'];				
-				}
-			}
-			$total_b = $grand_total_biaya + $total_biaya_jurnal;
-			?>
-			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Umum & Administrasi</td>
-				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_b);?></b></td>
-			</tr>
-			<tr>
-				<th width="100%" colspan="6"></th>
-			</tr>
-			<tr class="table-active2">
-				<th width="100%" align="left" colspan="6"><b>Biaya Lain - Lain</b></th>
-			</tr>
-			<?php
-			$total_biaya_lainnya = 0;
-			if(!empty($biaya_lainnya)){
-				foreach ($biaya_lainnya as $key => $row) {
-					$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
-					?>
-					<tr>
-						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
-					</tr>
-					<?php
-					$total_biaya_lainnya += $row['total'];					
-				}
-			}
-			$total_biaya_lainnya_jurnal = 0;
-			$grand_total_biaya_lainnya = $total_biaya_lainnya;
-			if(!empty($biaya_lainnya_jurnal)){
-				foreach ($biaya_lainnya_jurnal as $key => $row2) {
-					$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
-					?>
-					<tr>
-						<td><?= $row2['tanggal_transaksi'];?></td>
-						<td>JURNAL</td>
-						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
-					</tr>
-					<?php
-					$total_biaya_lainnya_jurnal += $row2['total'];					
-				}
-			}
-			$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
-			?>
-			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
-				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 			</tr>
 		</table>
 		<br />

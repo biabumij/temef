@@ -2456,6 +2456,12 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
         $html = $this->load->view('laporan_laba_rugi/cetak_diskonto',$data,TRUE);
 
         
