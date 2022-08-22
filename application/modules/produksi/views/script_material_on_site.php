@@ -76,6 +76,10 @@
 		{
 			"targets": [2],
 			"className": 'text-left',
+        },
+        {
+			"targets": [4],
+			"className": 'text-right',
          }
 		]
     });

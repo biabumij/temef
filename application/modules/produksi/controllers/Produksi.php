@@ -384,13 +384,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP Bahan Baku !!');
-			redirect('produksi/hpp_bahan_baku');
+			redirect('/hpp_&_akumulasi/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP Bahan Baku !!');
-			redirect('admin/produksi');
+			redirect('admin//hpp_&_akumulasi');
 		}
 	}
 
@@ -476,13 +476,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('produksi/akumulasi');
+			redirect('/hpp_&_akumulasi/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('admin/produksi');
+			redirect('admin//hpp_&_akumulasi');
 		}
 	}
 
