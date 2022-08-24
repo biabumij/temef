@@ -643,53 +643,53 @@
 				<th align = "center"style="vertical-align:middle">1</th>			
 				<th align = "left">Semen</th>
 				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_a,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
-				<th align = "center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align = "center"style="vertical-align:middle">2</th>			
 				<th align = "left">Pasir</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_b,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
-				<th align = "center" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align = "center"style="vertical-align:middle">3</th>			
 				<th align = "left">Batu Split 10-20</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_c,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
-				<th align = "center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align = "center"style="vertical-align:middle">4</th>			
 				<th align = "left">Batu Split 20-30</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_d,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_d,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-				<th align = "center" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
 				<th align = "right" colspan="3">TOTAL</th>
-				<th align = "center"></th>
+				<th align = "right"></th>
 				<th align = "right"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
-				<th align = "center"></th>
+				<th align = "right"></th>
 				<th align = "right"><?php echo number_format($total_nilai_realisasi,0,',','.');?></th>
-				<th align = "center"></th>
+				<th align = "right"></th>
 				<th align = "right" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
 	        </tr>
 

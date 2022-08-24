@@ -223,49 +223,49 @@
     });
 </script>
 
-    <!-- Script Evaluasi -->
-    <script type="text/javascript">
-        $('#filter_date_evaluasi').daterangepicker({
-        autoUpdateInput : false,
-        showDropdowns: true,
-        locale: {
-            format: 'DD-MM-YYYY'
-        },
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
+<!-- Script Evaluasi -->
+<script type="text/javascript">
+    $('#filter_date_evaluasi').daterangepicker({
+    autoUpdateInput : false,
+    showDropdowns: true,
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+    });
+
+    $('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableEvaluasi();
+    });
+
+
+    function TableEvaluasi()
+    {
+        $('#wait').fadeIn('fast');   
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/productions/table_evaluasi_dashboard'); ?>/"+Math.random(),
+            dataType : 'html',
+            data: {
+                filter_date : $('#filter_date_evaluasi').val(),
+            },
+            success : function(result){
+                $('#box-ajax-evaluasi').html(result);
+                $('#wait').fadeOut('fast');
+            }
         });
+    }
 
-        $('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableEvaluasi();
-        });
-
-
-        function TableEvaluasi()
-        {
-            $('#wait').fadeIn('fast');   
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/productions/table_evaluasi_dashboard'); ?>/"+Math.random(),
-                dataType : 'html',
-                data: {
-                    filter_date : $('#filter_date_evaluasi').val(),
-                },
-                success : function(result){
-                    $('#box-ajax-evaluasi').html(result);
-                    $('#wait').fadeOut('fast');
-                }
-            });
-        }
-
-        TableEvaluasi();
-    </script>
+    TableEvaluasi();
+</script>
 
 </body>
 </html>
