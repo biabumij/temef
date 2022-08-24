@@ -322,11 +322,11 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<tr class="table-active4">
-				<th width="100%" align="left"><b>Harga Pokok Penjualan</b></th>
+				<th width="100%" align="left"><b>Beban Pokok Penjualan</b></th>
 	        </tr>
 			<tr class="table-active2">
 				<th width="10%" align="center"></th>
-				<th width="60%" align="left">Harga Pokok Penjualan</th>
+				<th width="60%" align="left">Beban Pokok Penjualan</th>
 	            <th width="30%" align="center">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
