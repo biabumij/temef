@@ -2343,9 +2343,9 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('laporan_pembelian/cetak_laporan_pemakaian_peralatan',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Pergerakan Bahan Baku');
+		$pdf->SetTitle('BBJ - Laporan Pemakaian Peralatan');
         $pdf->nsi_html($html);
-        $pdf->Output('pergerakan-bahan-baku.pdf', 'I');
+        $pdf->Output('laporan-pemakaian-peralatan.pdf', 'I');
 	
 	}
 
