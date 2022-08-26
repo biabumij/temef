@@ -41,8 +41,7 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            back
-            ground-color: #eee;
+            font-weight: bold;
         }
         hr{
             margin-top:0;
@@ -141,7 +140,7 @@
                                 
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="table-active3">
                             <?php
                             $kasir = $this->pmm_model->GetNameGroup(19);
                             $pj_keuangan = $this->pmm_model->GetNameGroup(14);
@@ -160,7 +159,7 @@
                                 
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="table-active3">
                             <td align="center">
                                 <?= $kasir['admin_group_name']?>
                             </td>
