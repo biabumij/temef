@@ -25,6 +25,7 @@ class Purchase_order extends CI_Controller {
 			$id = $this->uri->segment(4);
 			$data['id'] = $id;
 			$get_data = $this->db->get_where('pmm_purchase_order',array('id'=>$id,'status !='=>'DELETED'))->row_array();
+			$get_data2 = $this->db->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$id))->row_array();
 			if(!empty($get_data)){
 				$data['data'] = $get_data;
 				$data['details'] = $this->pmm_model->GetPODetail($id);
@@ -32,6 +33,8 @@ class Purchase_order extends CI_Controller {
 				$data['address_supplier'] = $sp['alamat'];
 				$data['npwp_supplier'] = $sp['npwp'];
 				$data['supplier_name'] = $sp['nama'];
+				$penawaran = $this->db->get_where('pmm_penawaran_pembelian',array('id'=>$get_data2['penawaran_id']))->row_array();
+				$data['nomor_penawaran'] = $penawaran['nomor_penawaran'];
 
 				$this->load->view('pmm/purchase_order_add',$data);
 			}else {
