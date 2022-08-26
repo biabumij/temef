@@ -110,8 +110,8 @@
 		<br />
 		<table width="98%" border="0" cellpadding="30">
 			<tr >
-				<td width="20%"></td>
-				<td width="75%">
+				<td width="5%"></td>
+				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
