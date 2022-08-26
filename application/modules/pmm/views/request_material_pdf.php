@@ -132,11 +132,11 @@
 						<tr>
 							<td align="center" >
 								<b><u>Gervasius K. Limahekin</u></b><br />
-								<b>Jabatan : Ka. Plant</b>
+								<b>Ka. Plant</b>
 							</td>
 							<td align="center">
 								<b><u>Agustinus Pakaenoni</u></b><br />
-								<b>Jabatan : Pj. Logistik</b>
+								<b>Pj. Logistik</b>
 							</td>
 						</tr>
 					</table>
