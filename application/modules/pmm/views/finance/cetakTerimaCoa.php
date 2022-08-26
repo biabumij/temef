@@ -143,9 +143,9 @@
                                 <?=  $pj_keuangan['admin_name'];?>
                             </td>
                             <td align="center">
-                                <<?=  $ka_plant['admin_name'];?>
+                                <?=  $ka_plant['admin_name'];?>
                             </td>
-                            <td align="center" >
+                            <td align="center">
                                 
                             </td>
                         </tr>
@@ -159,7 +159,7 @@
                             <td align="center">
                                 <?=  $ka_plant['admin_group_name'];?>
                             </td>
-                            <td align="center" >
+                            <td align="center">
                                 Penerima
                             </td>
                         </tr>
