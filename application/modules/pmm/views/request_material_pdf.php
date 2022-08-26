@@ -115,10 +115,10 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
-								<b>Disetujui Oleh</b>
+								Disetujui Oleh
 							</td>
 							<td align="center" >
-								<b>Dibuat Oleh</b>
+								Dibuat Oleh
 							</td>	
 						</tr>
 						<tr class="">
