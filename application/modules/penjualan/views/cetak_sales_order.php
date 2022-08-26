@@ -37,6 +37,9 @@
 		table tr.table-active3{
             background-color: #eee;
         }
+		table tr.table-bold{
+            font-weight: bold;
+        }
 		hr{
 			margin-top:0;
 			margin-bottom:30px;
@@ -206,8 +209,8 @@
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="98%" border="1" cellpadding="2">
-						<tr class="table-active3">
+					<table width="98%" border="0" cellpadding="2">
+						<tr class="">
 							<td align="center" >
 								PENERIMA ORDER
 							</td>
@@ -215,12 +218,12 @@
 							    PEMBERI ORDER
 							</td>
 						</tr>
-						<tr class="table-active3">
+						<tr class="table-bold">
 							<td align="center" >
-								<b><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?></b>
+								<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');?>
 							</td>
 							<td align="center" >
-								<b>PT BIA BUMI JAYENDRA</b>
+								PT BIA BUMI JAYENDRA
 							</td>
 						</tr>
 						<tr class="">
@@ -234,25 +237,19 @@
 						<?php
                 		    $logistik = $this->pmm_model->GetNameGroup(6);
                 		?>
-						<tr class="table-active3">
+						<tr class="table-bold">
 							<td align="center">
-							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?>	
-							</td>
-							<td align="center">
-								<?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?>
-							</td>
-						</tr>
-						<tr class="table-active3">
-						     <?php
+							    <u><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?></u><br />
+								<?php
                                 $this->db->select('g.admin_group_name');
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$row['created_by']);
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
                                 ?>
-							<td align="center">
-							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>	
+								<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>
 							</td>
 							<td align="center">
+								<u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?></u><br />
 								<?= $created_group['admin_group_name']?>
 							</td>
 						</tr>
