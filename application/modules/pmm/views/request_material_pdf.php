@@ -2,6 +2,7 @@
 <html>
 	<head>
 	  <title><?php echo $row['request_no'];?></title>
+	  <?= include 'lib.php'; ?>
 	  
 	  <style type="text/css">
 	  	body{
@@ -61,7 +62,7 @@
 			<tr>
 				<th>Tanggal Permintaan</th>
 				<th width="10px">:</th>
-				<th align="left"><?php echo date('d F Y',strtotime($row['request_date']));?></th>
+				<th align="left"><?= convertDateDBtoIndo($row["request_date"]); ?></th>
 			</tr>
 			<tr>
 				<th>Rekanan</th>
@@ -113,10 +114,10 @@
 				<td width="75%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="left">
+							<td align="center">
 								<b>Disetujui Oleh</b>
 							</td>
-							<td align="left" >
+							<td align="center" >
 								<b>Dibuat Oleh</b>
 							</td>	
 						</tr>
@@ -129,12 +130,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="left" >
-								<b>Nama : Gervasius K. Limahekin</b><br />
+							<td align="center" >
+								<b><u>Gervasius K. Limahekin</u></b><br />
 								<b>Jabatan : Ka. Plant</b>
 							</td>
-							<td align="left">
-								<b>Nama : </b><br />
+							<td align="center">
+								<b><u>Agustinus Pakaenoni</u></b><br />
 								<b>Jabatan : Pj. Logistik</b>
 							</td>
 						</tr>
