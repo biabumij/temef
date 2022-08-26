@@ -7,6 +7,9 @@
         body{
             font-family: "Open Sans", Arial, sans-serif;
         }
+        table tr.table-bold{
+           font-weight: bold;
+        }
       </style>
 
     </head>
@@ -81,7 +84,7 @@
                 <td width="5%"></td>
                 <td width="90%">
                     <table width="100%" border="1" cellpadding="3">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center" >
                                 Dibuat Oleh
                             </td>
@@ -103,7 +106,7 @@
                                 
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
                                 <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
                             </td>
@@ -114,7 +117,7 @@
                                 Deddy Sarwobiso
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
                             <?php
                             $this->db->select('g.admin_group_name');
