@@ -40,8 +40,7 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            back
-            ground-color: #eee;
+            font-weight: bold;
         }
         hr{
             margin-top:0;
@@ -102,7 +101,7 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
@@ -138,13 +137,13 @@
                             $direksi = $this->pmm_model->GetNameGroup(6);
                             ?>  
                             <td align="center">
-                                <b><?=  $kasir['admin_name'];?></b>
+                                <?=  $kasir['admin_name'];?>
                             </td>
                             <td align="center">
-                                <b><?=  $pj_keuangan['admin_name'];?></b>
+                                <?=  $pj_keuangan['admin_name'];?>
                             </td>
                             <td align="center">
-                                <b><?=  $ka_plant['admin_name'];?></b>
+                                <<?=  $ka_plant['admin_name'];?>
                             </td>
                             <td align="center" >
                                 
@@ -152,24 +151,22 @@
                         </tr>
                          <tr class="table-active3">
                             <td align="center">
-                                <b><?= $kasir['admin_group_name']?></b>
+                                <?= $kasir['admin_group_name']?>
                             </td>
                             <td align="center">
-                                <b><?=  $pj_keuangan['admin_group_name'];?></b>
+                                <?=  $pj_keuangan['admin_group_name'];?>
                             </td>
                             <td align="center">
-                                <b><?=  $ka_plant['admin_group_name'];?></b>
+                                <?=  $ka_plant['admin_group_name'];?>
                             </td>
                             <td align="center" >
-                                <b>Penerima</b>
+                                Penerima
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-            
-        
 
     </body>
 </html>
