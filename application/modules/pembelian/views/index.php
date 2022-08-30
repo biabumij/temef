@@ -823,7 +823,7 @@
                         </div>
 						
 						<?php
-                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 8 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                            if($this->session->userdata('admin_group_id') == 1){
                         ?>
                                 <div class="form-group">
                                     <label>Status Pesanan Pembelian</label>
