@@ -1125,7 +1125,7 @@ class Receipt_material extends CI_Controller {
 		?>
 
 		<tr class="table-active2">
-			<th colspan="3">Periode</th>
+			<th colspan="3">Per</th>
 			<th class="text-center" colspan="9">
 				<blink>
 				<?php
