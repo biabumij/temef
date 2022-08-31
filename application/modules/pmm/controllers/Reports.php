@@ -3444,7 +3444,7 @@ class Reports extends CI_Controller {
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.harga_satuan')
 			->order_by('po.supplier_id','asc')
 			->get()->result_array();
 
