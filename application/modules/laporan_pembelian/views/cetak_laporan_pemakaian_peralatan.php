@@ -172,7 +172,7 @@
 			<?php foreach ($pembelian as $x): ?>
 			<tr class="table-baris1">
 				<th align="left">&bull; <?= $x['nama'] ?></th>
-				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="left"><?= $x['subject'] ?></th>
 				<th align="center"><?= $x['measure'] ?></th>
 				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
 				<th align="right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
