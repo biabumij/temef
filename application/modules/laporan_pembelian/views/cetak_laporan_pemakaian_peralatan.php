@@ -117,10 +117,9 @@
 		<?php
 
 			$pembelian = $this->db->select('
-			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
@@ -128,8 +127,6 @@
 			->group_by('prm.harga_satuan')
 			->order_by('po.supplier_id','asc')
 			->get()->result_array();
-
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 
 			$total_nilai = 0;
 
@@ -151,8 +148,6 @@
 			->group_by('pdb.id')
 			->get()->result_array();
 
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
-
 			$total_insentif_tm = 0;
 
 			foreach ($insentif_tm as $y){
@@ -168,7 +163,7 @@
 			
 			<tr class="table-judul">
 				<th width="35%" align="center"><br>REKANAN</th>
-				<th width="20%" align="center"><br>PRODUK</th>
+				<th width="20%" align="center"><br>URAIAN</th>
 				<th width="7%" align="center"><br>SATUAN</th>
 				<th width="13%" align="center"><br>VOLUME</th>
 				<th width="15%" align="center">HARGA SATUAN</th>

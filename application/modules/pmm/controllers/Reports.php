@@ -3436,10 +3436,9 @@ class Reports extends CI_Controller {
 			<?php
 
 			$pembelian = $this->db->select('
-			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
@@ -3483,7 +3482,7 @@ class Reports extends CI_Controller {
 			
 			<tr class="table-active4">
 				<th width="35%" class="text-center">REKANAN</th>
-				<th width="20%" class="text-center">PRODUK</th>
+				<th width="20%" class="text-center">URAIAN</th>
 				<th width="7%" class="text-center">SATUAN</th>
 				<th width="13%" class="text-center">VOLUME</th>
 				<th width="15%" class="text-center">HARGA SATUAN</th>
@@ -3492,7 +3491,7 @@ class Reports extends CI_Controller {
 			<?php foreach ($pembelian as $x): ?>
 			<tr>
 				<th class="text-left">&bull; <?= $x['nama'] ?></th>
-				<th class="text-left"><?= $x['nama_produk'] ?></th>
+				<th class="text-left"><?= $x['subject'] ?></th>
 				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
