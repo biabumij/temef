@@ -3830,7 +3830,6 @@ class Reports extends CI_Controller {
 				
 			table tr.table-active3{
 				font-size: 12px;
-				width: 100%;
 			}
 				
 			table tr.table-active4{
@@ -3839,13 +3838,7 @@ class Reports extends CI_Controller {
 				font-size: 12px;
 				color: black;
 			}
-			#foo td {
-			padding: 1em;
-			border: 1px solid black;
-			}
-			#foo.hide2 tr > td:nth-child(2) {
-			display: none;
-			}
+			
 		 </style>
 	        <tr class="table-active4">
 	            <th class="text-center" colspan="2">Periode</th>
@@ -4049,42 +4042,78 @@ class Reports extends CI_Controller {
 			$total_kredit_pengobatan_all = $total_kredit_pengobatan_jurnal;
 			//pengobatan
 
+			//bensin_tol_parkir
+			$bensin_tol_parkir_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',129)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_bensin_tol_parkir_biaya = 0;
+			foreach ($bensin_tol_parkir_biaya as $x){
+				$total_debit_bensin_tol_parkir_biaya += $x['jumlah'];
+			}
+
+			$bensin_tol_parkir_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',129)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_bensin_tol_parkir_jurnal = 0;
+			$total_kredit_bensin_tol_parkir_jurnal = 0;
+
+			foreach ($bensin_tol_parkir_jurnal as $x){
+				$total_debit_bensin_tol_parkir_jurnal += $x['total_debit'];
+				$total_kredit_bensin_tol_parkir_jurnal += $x['total_kredit'];
+			}
 			
+			$total_debit_bensin_tol_parkir_all = 0;
+			$total_kredit_bensin_tol_parkir_all = 0;
+			$total_debit_bensin_tol_parkir_all = $total_debit_bensin_tol_parkir_biaya + $total_debit_bensin_tol_parkir_jurnal;
+			$total_kredit_bensin_tol_parkir_all = $total_kredit_bensin_tol_parkir_jurnal;
+			//bensin_tol_parkir
 
 	        ?>
 
 			<tr class="table-active">
-	            <th width="25%" class="text-center">Nama Akun</th>
-				<th width="25%" class="text-center">Debit</th>
-				<th width="25%" class="text-center">Kredit</th>
-				<th width="25%" class="text-center">Saldo</th>
+	            <th width="40%" class="text-center">Nama Akun</th>
+				<th width="20%" class="text-center">Debit</th>
+				<th width="20%" class="text-center">Kredit</th>
+				<th width="20%" class="text-center">Saldo</th>
 	        </tr>
-
-			<!-- kas -->
-			<tr class="table-active3">
-	            <th class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
-				<th class="text-center"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_kredit_kas_all,0,',','.');?></th>
-				<th class="text-center"></th>
-	        </tr>
-			<!-- kas -->
 		</table>
 
 		<!-- kas -->
+		<table class="collapse table table-bordered" width="100%">
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_kas_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>
 		<table class="collapse table table-bordered" id="kas" width="100%">
-			<tr class="table-active">
-				<th width="30%" class="text-center">Tanggal</th>
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
 				<th width="10%" class="text-center">Transaksi</th>
-				<th width="20%" class="text-center">Nomor</th>
-				<th width="40%" class="text-center" colspan="4">Keterangan</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($kas_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">BIAYA</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4093,10 +4122,10 @@ class Reports extends CI_Controller {
 			<?php foreach ($kas_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">JURNAL UMUM</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4106,27 +4135,27 @@ class Reports extends CI_Controller {
 
 		<!-- bank_kantor_pusat -->
 		<table class="table table-bordered" width="100%">
-		<tr class="table-active3">
-	            <th width="25%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_debit_bank_kantor_pusat_all,0,',','.');?></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_kredit_bank_kantor_pusat_all,0,',','.');?></th>
-				<th width="25%" class="text-center"></th>
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_bank_kantor_pusat_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_bank_kantor_pusat_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="bank_kantor_pusat" width="100%">
-			<tr class="table-active">
-				<th width="30%" class="text-center">Tanggal</th>
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
 				<th width="10%" class="text-center">Transaksi</th>
-				<th width="20%" class="text-center">Nomor</th>
-				<th width="40%" class="text-center" colspan="4">Keterangan</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($bank_kantor_pusat_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">BIAYA</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4135,10 +4164,10 @@ class Reports extends CI_Controller {
 			<?php foreach ($bank_kantor_pusat_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">JURNAL UMUM</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4148,27 +4177,27 @@ class Reports extends CI_Controller {
 
 		<!-- hutang_lain_lain -->
 		<table class="table table-bordered" width="100%">
-		<tr class="table-active3">
-	            <th width="25%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">(2-20200) Hutang Lain Lain</button></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_debit_hutang_lain_lain_all,0,',','.');?></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_kredit_hutang_lain_lain_all,0,',','.');?></th>
-				<th width="25%" class="text-center"></th>
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">(2-20200) Hutang Lain Lain</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_hutang_lain_lain_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_hutang_lain_lain_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="hutang_lain_lain" width="100%">
-			<tr class="table-active">
-				<th width="30%" class="text-center">Tanggal</th>
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
 				<th width="10%" class="text-center">Transaksi</th>
-				<th width="20%" class="text-center">Nomor</th>
-				<th width="40%" class="text-center" colspan="4">Keterangan</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($hutang_lain_lain_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">BIAYA</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4177,10 +4206,10 @@ class Reports extends CI_Controller {
 			<?php foreach ($hutang_lain_lain_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">JURNAL UMUM</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4190,27 +4219,27 @@ class Reports extends CI_Controller {
 
 		<!-- perjalanan_dinas_penjualan -->
 		<table class="table table-bordered" width="100%">
-		<tr class="table-active3">
-	            <th width="25%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(2-20200) Hutang Lain Lain</button></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
-				<th width="25%" class="text-center"></th>
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="perjalanan_dinas_penjualan" width="100%">
-			<tr class="table-active">
-				<th width="30%" class="text-center">Tanggal</th>
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
 				<th width="10%" class="text-center">Transaksi</th>
-				<th width="20%" class="text-center">Nomor</th>
-				<th width="40%" class="text-center" colspan="4">Keterangan</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($perjalanan_dinas_penjualan_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">BIAYA</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4219,10 +4248,10 @@ class Reports extends CI_Controller {
 			<?php foreach ($perjalanan_dinas_penjualan_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">JURNAL UMUM</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4232,27 +4261,27 @@ class Reports extends CI_Controller {
 
 		<!-- pengobatan -->
 		<table class="table table-bordered" width="100%">
-		<tr class="table-active3">
-	            <th width="25%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(2-20200) Hutang Lain Lain</button></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_debit_pengobatan_all,0,',','.');?></th>
-				<th width="25%" class="text-center"><?php echo number_format($total_kredit_pengobatan_all,0,',','.');?></th>
-				<th width="25%" class="text-center"></th>
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(5-50505) Pengobatan</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_pengobatan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_pengobatan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="pengobatan" width="100%">
-			<tr class="table-active">
-				<th width="30%" class="text-center">Tanggal</th>
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
 				<th width="10%" class="text-center">Transaksi</th>
-				<th width="20%" class="text-center">Nomor</th>
-				<th width="40%" class="text-center" colspan="4">Keterangan</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($pengobatan_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">BIAYA</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
@@ -4261,16 +4290,59 @@ class Reports extends CI_Controller {
 			<?php foreach ($pengobatan_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
-				<th width="30%" class="text-center"><?= $x['tanggal_transaksi'] ?></th>
-				<th width="10%" class="text-center">JURNAL UMUM</th>
-				<th width="20%" class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th width="40%" class="text-center" colspan="4"><?= $x['deskripsi'] ?></th>
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
 	        </tr>
 			<?php
 			}
 			?>
 	    </table>
 		<!-- pengobatan -->
+
+		<!-- bensin_tol_parkir -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active3">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bensin_tol_parkir" aria-expanded="false" aria-controls="bensin_tol_parkir">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_bensin_tol_parkir_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_bensin_tol_parkir_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="bensin_tol_parkir" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="30%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($bensin_tol_parkir_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSAKSI BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($bensin_tol_parkir_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- bensin_tol_parkir -->
+
 
 		
 
