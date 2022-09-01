@@ -126,15 +126,12 @@
 	        ?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center">NO.</th>
-				<th width="45%" align="center">URAIAN</th>
-				<th width="50%" align="center" >NILAI</th>
+				<th width="30%" align="center">JENIS</th>
+				<th width="30%" align="center">URAIAN</th>
+				<th width="40%" align="center" >NILAI</th>
 	        </tr>
 			<tr class="table-baris1">
-	            <th align="left" colspan="3"><b>BAHAN BAKU</b></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">1.</th>
+				<th align="center">BAHAN BAKU</th>
 				<th align="center">Pemakaian Bahan Baku</th>
 				<th align="center"><?php echo number_format($total_nilai,0,',','.');?></th>
 	        </tr>
