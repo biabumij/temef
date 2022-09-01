@@ -4385,7 +4385,7 @@ class Reports extends CI_Controller {
 		<!-- pakaian_dinas -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pakaian_dinas" aria-expanded="false" aria-controls="pakaian_dinas">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pakaian_dinas" aria-expanded="false" aria-controls="pakaian_dinas">(5-50510) Pakaian Dinas & K3</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_pakaian_dinas_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_pakaian_dinas_all,0,',','.');?></th>
 				<th width="20%" class="text-center"></th>
