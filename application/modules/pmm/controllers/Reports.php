@@ -4093,7 +4093,7 @@ class Reports extends CI_Controller {
 
 		<!-- kas -->
 		<table class="collapse table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_kas_all,0,',','.');?></th>
@@ -4135,7 +4135,7 @@ class Reports extends CI_Controller {
 
 		<!-- bank_kantor_pusat -->
 		<table class="table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_bank_kantor_pusat_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_bank_kantor_pusat_all,0,',','.');?></th>
@@ -4177,7 +4177,7 @@ class Reports extends CI_Controller {
 
 		<!-- hutang_lain_lain -->
 		<table class="table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">(2-20200) Hutang Lain Lain</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_hutang_lain_lain_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_hutang_lain_lain_all,0,',','.');?></th>
@@ -4219,7 +4219,7 @@ class Reports extends CI_Controller {
 
 		<!-- perjalanan_dinas_penjualan -->
 		<table class="table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
@@ -4261,7 +4261,7 @@ class Reports extends CI_Controller {
 
 		<!-- pengobatan -->
 		<table class="table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(5-50505) Pengobatan</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_pengobatan_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_pengobatan_all,0,',','.');?></th>
@@ -4303,7 +4303,7 @@ class Reports extends CI_Controller {
 
 		<!-- bensin_tol_parkir -->
 		<table class="table table-bordered" width="100%">
-			<tr class="table-active3">
+			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bensin_tol_parkir" aria-expanded="false" aria-controls="bensin_tol_parkir">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_bensin_tol_parkir_all,0,',','.');?></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_kredit_bensin_tol_parkir_all,0,',','.');?></th>
