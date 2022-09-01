@@ -1986,7 +1986,7 @@ class Productions extends Secure_Controller {
 
 			$total_volume_pembelian_semen_all = $total_volume_pembelian_semen + $total_volume_pembelian_semen_cons + $total_volume_pembelian_semen_opc;
 			$total_nilai_pembelian_semen_all = $total_nilai_pembelian_semen + $total_nilai_pembelian_semen_cons + $total_nilai_pembelian_semen_opc +  $total_nilai_jasa_angkut + $total_nilai_jasa_angkut_cons + $total_nilai_jasa_angkut_opc;
-			$total_harga_pembelian_semen_all = $total_nilai_pembelian_semen_all / $total_volume_pembelian_semen_all;
+			$total_harga_pembelian_semen_all = ($total_volume_pembelian_semen_all!=0)?$total_nilai_pembelian_semen_all / $total_volume_pembelian_semen_all * 1:0;
 
 			$stock_opname_semen = $this->db->select('(cat.display_volume) as volume, `cat`.`price` as price')
 			->from('pmm_remaining_materials_cat cat ')
