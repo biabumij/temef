@@ -4269,7 +4269,7 @@ class Reports extends CI_Controller {
 		</table>
 
 		<!-- kas -->
-		<table class="collapse table table-bordered" width="100%">
+		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
 	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
 				<th width="20%" class="text-center"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
