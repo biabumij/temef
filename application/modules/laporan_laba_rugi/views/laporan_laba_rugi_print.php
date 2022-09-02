@@ -152,7 +152,7 @@
 		->from('pmm_receipt_material prm')
 		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 		->where("prm.date_receipt between '$date1' and '$date2'")
-		->where("prm.material_id in (12,13,14,15,16,23,24)")
+		->where("prm.material_id in (12,13,14,15,16,23,24,25)")
 		->where("po.status in ('PUBLISH','CLOSED')")
 		->get()->row_array();
 
