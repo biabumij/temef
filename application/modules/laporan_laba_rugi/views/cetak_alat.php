@@ -116,10 +116,10 @@
 			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (8,12,13,14,15,16,23,24,25)")
+			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('prm.material_id')
-			->order_by('po.supplier_id','asc')
+			->order_by('pn.nama','asc')
 			->get()->result_array();
 
 			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
@@ -130,8 +130,21 @@
 				$total_nilai += $x['price'];
 			}
 
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->get()->result_array();
+
+			$total_akumulasi_bbm = 0;
+
+			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm = $total_akumulasi_bbm;
+
 			$total_nilai_all = 0;
-			$total_nilai_all = $total_nilai;
+			$total_nilai_all = $total_nilai + $total_nilai_bbm;
 
 			$total_insentif_tm = 0;
 
