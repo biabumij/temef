@@ -4278,11 +4278,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>
 		<table class="collapse table table-bordered" id="kas" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($kas_biaya as $key => $x) {
 			?>
@@ -4320,11 +4320,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="bank_kantor_pusat" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($bank_kantor_pusat_biaya as $key => $x) {
 			?>
@@ -4362,11 +4362,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="hutang_lain_lain" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($hutang_lain_lain_biaya as $key => $x) {
 			?>
@@ -4404,11 +4404,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="perjalanan_dinas_penjualan" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($perjalanan_dinas_penjualan_biaya as $key => $x) {
 			?>
@@ -4446,11 +4446,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="pengobatan" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($pengobatan_biaya as $key => $x) {
 			?>
@@ -4488,11 +4488,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="bensin_tol_parkir" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($bensin_tol_parkir_biaya as $key => $x) {
 			?>
@@ -4530,11 +4530,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="pakaian_dinas" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($pakaian_dinas_biaya as $key => $x) {
 			?>
@@ -4572,11 +4572,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="biaya_adm_bank" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($biaya_adm_bank_biaya as $key => $x) {
 			?>
@@ -4614,11 +4614,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="beban_kirim" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($beban_kirim_biaya as $key => $x) {
 			?>
@@ -4656,11 +4656,11 @@ class Reports extends CI_Controller {
 	        </tr>
 		</table>	
 		<table class="collapse table table-bordered" id="beban_lain_lain" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+			<tr class="table-active">
+				<th class="text-center">Tanggal</th>
+				<th class="text-center">Transaksi</th>
+				<th class="text-center">Nomor</th>
+				<th class="text-center">Keterangan</th>
 	        </tr>
 			<?php foreach ($beban_lain_lain_biaya as $key => $x) {
 			?>
