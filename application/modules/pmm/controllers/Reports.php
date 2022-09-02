@@ -4298,7 +4298,7 @@ class Reports extends CI_Controller {
 			//kemanan_kebersihan
 			
 			//perlengkapan_kantor
-			$kemanan_kebersihan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			$perlengkapan_kantor_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
@@ -4337,7 +4337,7 @@ class Reports extends CI_Controller {
 			//perlengkapan_kantor
 
 			//biaya_sewa_kendaraan
-			$kemanan_kebersihan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			$biaya_sewa_kendaraan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
