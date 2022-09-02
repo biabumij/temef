@@ -128,38 +128,46 @@
 		->order_by('po.supplier_id','asc')
 		->get()->result_array();
 
-			$total_nilai = 0;
+		$total_nilai = 0;
 
-			foreach ($pembelian as $x){
-				$total_nilai += $x['price'];
-			}
+		foreach ($pembelian as $x){
+			$total_nilai += $x['price'];
+		}
 
-			$total_nilai_all = 0;
-			$total_nilai_all = $total_nilai;
+		$akumulasi_bbm = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->get()->row_array();
 
-			$total_insentif_tm = 0;
+		$total_nilai_bbm = 0;
+		$total_nilai_bbm = $akumulasi_bbm['total_nilai_keluar_2'];
 
-			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
+		$total_nilai_all = 0;
+		$total_nilai_all = $total_nilai + $total_nilai_bbm;
 
-			$total_insentif_tm = 0;
+		$total_insentif_tm = 0;
 
-			foreach ($insentif_tm as $y){
-				$total_insentif_tm += $y['total'];
-			}
+		$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+		->from('pmm_jurnal_umum pb ')
+		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+		->where("pdb.akun = 220")
+		->where("status = 'PAID'")
+		->where("(tanggal_transaksi between '$date1' and '$date2')")
+		->group_by('pdb.id')
+		->get()->result_array();
 
-			$total_insentif_tm_all = 0;
-			$total_insentif_tm_all = $total_insentif_tm;
+		$total_insentif_tm = 0;
 
-			$total_nilai = $total_nilai_all + $total_insentif_tm_all;
+		foreach ($insentif_tm as $y){
+			$total_insentif_tm += $y['total'];
+		}
 
-			?>
+		$total_insentif_tm_all = 0;
+		$total_insentif_tm_all = $total_insentif_tm;
+
+		$total_nilai = $total_nilai_all + $total_insentif_tm_all;
+
+		?>
 			
 			<tr class="table-judul">
 				<th width="35%" align="center"><br>REKANAN</th>
@@ -179,6 +187,14 @@
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="left">&bull; BBM Solar</th>
+				<th align="left"></th>
+				<th align="center"></th>
+				<th align="right"></th>
+				<th align="right"></th>
+				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
+			</tr>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="5">&bull; <?= $y['memo'] ?></th>

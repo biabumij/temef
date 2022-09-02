@@ -130,18 +130,13 @@
 				$total_nilai += $x['price'];
 			}
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->result_array();
+			->get()->row_array();
 
-			$total_akumulasi_bbm = 0;
-
-			foreach ($akumulasi_bbm as $b){
-				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
-			}
-
-			$total_nilai_bbm = $total_akumulasi_bbm;
+			$total_nilai_bbm = 0;
+			$total_nilai_bbm = $akumulasi_bbm['total_nilai_keluar_2'];
 
 			$total_nilai_all = 0;
 			$total_nilai_all = $total_nilai + $total_nilai_bbm;

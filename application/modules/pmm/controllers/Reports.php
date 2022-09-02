@@ -3441,7 +3441,7 @@ class Reports extends CI_Controller {
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (8,12,13,14,15,16,23,24)")
+			->where("prm.material_id in (12,13,14,15,16,23,24)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('po.supplier_id')
 			->order_by('po.supplier_id','asc')
@@ -3453,8 +3453,21 @@ class Reports extends CI_Controller {
 				$total_nilai += $x['price'];
 			}
 
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->get()->result_array();
+
+			$total_akumulasi_bbm = 0;
+
+			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm = $total_akumulasi_bbm;
+
 			$total_nilai_all = 0;
-			$total_nilai_all = $total_nilai;
+			$total_nilai_all = $total_nilai + $total_nilai_bbm;
 
 			$total_insentif_tm = 0;
 
@@ -3498,6 +3511,14 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-left">&bull; BBM Solar</th>
+				<th class="text-left"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
+			</tr>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr>
 				<th class="text-left" colspan="5">&bull; <?= $y['memo'] ?></th>
