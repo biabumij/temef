@@ -190,7 +190,6 @@
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
-			<?php foreach ($akumulasi_bbm as $x): ?>
 			<tr class="table-baris1">
 				<th align="left">&bull; BBM Solar</th>
 				<th align="left"></th>
@@ -199,7 +198,6 @@
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
 			</tr>
-			<?php endforeach; ?>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="5">&bull; <?= $y['memo'] ?></th>
