@@ -4929,8 +4929,7 @@ class Reports extends CI_Controller {
 			}
 			?>
 	    </table>
-		<!-- biaya_sewa_kendaraan -->
-		
+		<!-- biaya_sewa_kendaraan -->	
 
 		<?php
 	}
