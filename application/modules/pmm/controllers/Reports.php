@@ -3946,6 +3946,84 @@ class Reports extends CI_Controller {
 			$total_kredit_bank_kantor_pusat_all = $total_kredit_bank_kantor_pusat_jurnal;
 			//bank_kantor_pusat
 
+			//hutang_nindya
+			$hutang_nindya_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',223)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_hutang_nindya_biaya = 0;
+			foreach ($hutang_nindya_biaya as $x){
+				$total_debit_hutang_nindya_biaya += $x['jumlah'];
+			}
+
+			$hutang_nindya_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',223)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_hutang_nindya_jurnal = 0;
+			$total_kredit_hutang_nindya_jurnal = 0;
+
+			foreach ($hutang_nindya_jurnal as $x){
+				$total_debit_hutang_nindya_jurnal += $x['total_debit'];
+				$total_kredit_hutang_nindya_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_hutang_nindya_all = 0;
+			$total_kredit_hutang_nindya_all = 0;
+			$total_debit_hutang_nindya_all = $total_debit_hutang_nindya_biaya + $total_debit_hutang_nindya_jurnal;
+			$total_kredit_hutang_nindya_all = $total_kredit_hutang_nindya_jurnal;
+			//hutang_nindya
+
+			//hutang_sinar
+			$hutang_sinar_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',224)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_hutang_sinar_biaya = 0;
+			foreach ($hutang_sinar_biaya as $x){
+				$total_debit_hutang_sinar_biaya += $x['jumlah'];
+			}
+
+			$hutang_sinar_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',224)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_hutang_sinar_jurnal = 0;
+			$total_kredit_hutang_sinar_jurnal = 0;
+
+			foreach ($hutang_sinar_jurnal as $x){
+				$total_debit_hutang_sinar_jurnal += $x['total_debit'];
+				$total_kredit_hutang_sinar_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_hutang_sinar_all = 0;
+			$total_kredit_hutang_sinar_all = 0;
+			$total_debit_hutang_sinar_all = $total_debit_hutang_sinar_biaya + $total_debit_hutang_sinar_jurnal;
+			$total_kredit_hutang_sinar_all = $total_kredit_hutang_sinar_jurnal;
+			//hutang_sinar
+
 			//hutang_lain_lain
 			$hutang_lain_lain_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
@@ -3985,44 +4063,161 @@ class Reports extends CI_Controller {
 			$total_kredit_hutang_lain_lain_all = $total_kredit_hutang_lain_lain_jurnal;
 			//hutang_lain_lain
 
-			//perjalanan_dinas_penjualan
-			$perjalanan_dinas_penjualan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			//biaya_alat_truck_mixer
+			$biaya_alat_truck_mixer_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',113)
+			->where('c.id',220)
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
-			$total_debit_perjalanan_dinas_penjualan_biaya = 0;
-			foreach ($perjalanan_dinas_penjualan_biaya as $x){
-				$total_debit_perjalanan_dinas_penjualan_biaya += $x['jumlah'];
+			$total_debit_biaya_alat_truck_mixer_biaya = 0;
+			foreach ($biaya_alat_truck_mixer_biaya as $x){
+				$total_debit_biaya_alat_truck_mixer_biaya += $x['jumlah'];
 			}
 
-			$perjalanan_dinas_penjualan_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			$biaya_alat_truck_mixer_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',113)
+			->where('c.id',220)
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
-			$total_debit_perjalanan_dinas_penjualan_jurnal = 0;
-			$total_kredit_perjalanan_dinas_penjualan_jurnal = 0;
+			$total_debit_biaya_alat_truck_mixer_jurnal = 0;
+			$total_kredit_biaya_alat_truck_mixer_jurnal = 0;
 
-			foreach ($perjalanan_dinas_penjualan_jurnal as $x){
-				$total_debit_perjalanan_dinas_penjualan_jurnal += $x['total_debit'];
-				$total_kredit_perjalanan_dinas_penjualan_jurnal += $x['total_kredit'];
+			foreach ($biaya_alat_truck_mixer_jurnal as $x){
+				$total_debit_biaya_alat_truck_mixer_jurnal += $x['total_debit'];
+				$total_kredit_biaya_alat_truck_mixer_jurnal += $x['total_kredit'];
 			}
 			
-			$total_debit_perjalanan_dinas_penjualan_all = 0;
-			$total_kredit_perjalanan_dinas_penjualan_all = 0;
-			$total_debit_perjalanan_dinas_penjualan_all = $total_debit_perjalanan_dinas_penjualan_biaya + $total_debit_perjalanan_dinas_penjualan_jurnal;
-			$total_kredit_perjalanan_dinas_penjualan_all = $total_kredit_perjalanan_dinas_penjualan_jurnal;
-			//perjalanan_dinas_penjualan
+			$total_debit_biaya_alat_truck_mixer_all = 0;
+			$total_kredit_biaya_alat_truck_mixer_all = 0;
+			$total_debit_biaya_alat_truck_mixer_all = $total_debit_biaya_alat_truck_mixer_biaya + $total_debit_biaya_alat_truck_mixer_jurnal;
+			$total_kredit_biaya_alat_truck_mixer_all = $total_kredit_biaya_alat_truck_mixer_jurnal;
+			//biaya_alat_truck_mixer
+
+			//gaji
+			$gaji_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',199)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_gaji_biaya = 0;
+			foreach ($gaji_biaya as $x){
+				$total_debit_gaji_biaya += $x['jumlah'];
+			}
+
+			$gaji_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',199)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_gaji_jurnal = 0;
+			$total_kredit_gaji_jurnal = 0;
+
+			foreach ($gaji_jurnal as $x){
+				$total_debit_gaji_jurnal += $x['total_debit'];
+				$total_kredit_gaji_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_gaji_all = 0;
+			$total_kredit_gaji_all = 0;
+			$total_debit_gaji_all = $total_debit_gaji_biaya + $total_debit_gaji_jurnal;
+			$total_kredit_gaji_all = $total_kredit_gaji_jurnal;
+			//gaji
+
+			//upah
+			$upah_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',200)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_upah_biaya = 0;
+			foreach ($upah_biaya as $x){
+				$total_debit_upah_biaya += $x['jumlah'];
+			}
+
+			$upah_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',200)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_upah_jurnal = 0;
+			$total_kredit_upah_jurnal = 0;
+
+			foreach ($upah_jurnal as $x){
+				$total_debit_upah_jurnal += $x['total_debit'];
+				$total_kredit_upah_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_upah_all = 0;
+			$total_kredit_upah_all = 0;
+			$total_debit_upah_all = $total_debit_upah_biaya + $total_debit_upah_jurnal;
+			$total_kredit_upah_all = $total_kredit_upah_jurnal;
+			//upah
+
+			//konsumsi
+			$konsumsi_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',201)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_konsumsi_biaya = 0;
+			foreach ($konsumsi_biaya as $x){
+				$total_debit_konsumsi_biaya += $x['jumlah'];
+			}
+
+			$konsumsi_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',201)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_konsumsi_jurnal = 0;
+			$total_kredit_konsumsi_jurnal = 0;
+
+			foreach ($konsumsi_jurnal as $x){
+				$total_debit_konsumsi_jurnal += $x['total_debit'];
+				$total_kredit_konsumsi_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_konsumsi_all = 0;
+			$total_kredit_konsumsi_all = 0;
+			$total_debit_konsumsi_all = $total_debit_konsumsi_biaya + $total_debit_konsumsi_jurnal;
+			$total_kredit_konsumsi_all = $total_kredit_konsumsi_jurnal;
+			//konsumsi
 
 			//pengobatan
 			$pengobatan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
@@ -4063,6 +4258,45 @@ class Reports extends CI_Controller {
 			$total_kredit_pengobatan_all = $total_kredit_pengobatan_jurnal;
 			//pengobatan
 
+			//thr_bonus
+			$thr_bonus_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',202)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_thr_bonus_biaya = 0;
+			foreach ($thr_bonus_biaya as $x){
+				$total_debit_thr_bonus_biaya += $x['jumlah'];
+			}
+
+			$thr_bonus_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',202)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_thr_bonus_jurnal = 0;
+			$total_kredit_thr_bonus_jurnal = 0;
+
+			foreach ($thr_bonus_jurnal as $x){
+				$total_debit_thr_bonus_jurnal += $x['total_debit'];
+				$total_kredit_thr_bonus_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_thr_bonus_all = 0;
+			$total_kredit_thr_bonus_all = 0;
+			$total_debit_thr_bonus_all = $total_debit_thr_bonus_biaya + $total_debit_thr_bonus_jurnal;
+			$total_kredit_thr_bonus_all = $total_kredit_thr_bonus_jurnal;
+			//thr_bonus
+
 			//bensin_tol_parkir
 			$bensin_tol_parkir_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
@@ -4101,6 +4335,45 @@ class Reports extends CI_Controller {
 			$total_debit_bensin_tol_parkir_all = $total_debit_bensin_tol_parkir_biaya + $total_debit_bensin_tol_parkir_jurnal;
 			$total_kredit_bensin_tol_parkir_all = $total_kredit_bensin_tol_parkir_jurnal;
 			//bensin_tol_parkir
+
+			//perjalanan_dinas_penjualan
+			$perjalanan_dinas_penjualan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',113)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_perjalanan_dinas_penjualan_biaya = 0;
+			foreach ($perjalanan_dinas_penjualan_biaya as $x){
+				$total_debit_perjalanan_dinas_penjualan_biaya += $x['jumlah'];
+			}
+
+			$perjalanan_dinas_penjualan_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',113)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_perjalanan_dinas_penjualan_jurnal = 0;
+			$total_kredit_perjalanan_dinas_penjualan_jurnal = 0;
+
+			foreach ($perjalanan_dinas_penjualan_jurnal as $x){
+				$total_debit_perjalanan_dinas_penjualan_jurnal += $x['total_debit'];
+				$total_kredit_perjalanan_dinas_penjualan_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_perjalanan_dinas_penjualan_all = 0;
+			$total_kredit_perjalanan_dinas_penjualan_all = 0;
+			$total_debit_perjalanan_dinas_penjualan_all = $total_debit_perjalanan_dinas_penjualan_biaya + $total_debit_perjalanan_dinas_penjualan_jurnal;
+			$total_kredit_perjalanan_dinas_penjualan_all = $total_kredit_perjalanan_dinas_penjualan_jurnal;
+			//perjalanan_dinas_penjualan
 
 			//pakaian_dinas
 			$pakaian_dinas_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
@@ -4141,45 +4414,6 @@ class Reports extends CI_Controller {
 			$total_kredit_pakaian_dinas_all = $total_kredit_pakaian_dinas_jurnal;
 			//pakaian_dinas
 
-			//biaya_adm_bank
-			$biaya_adm_bank_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',143)
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-
-			$total_debit_biaya_adm_bank_biaya = 0;
-			foreach ($biaya_adm_bank_biaya as $x){
-				$total_debit_biaya_adm_bank_biaya += $x['jumlah'];
-			}
-
-			$biaya_adm_bank_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',143)
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-
-			$total_debit_biaya_adm_bank_jurnal = 0;
-			$total_kredit_biaya_adm_bank_jurnal = 0;
-
-			foreach ($biaya_adm_bank_jurnal as $x){
-				$total_debit_biaya_adm_bank_jurnal += $x['total_debit'];
-				$total_kredit_biaya_adm_bank_jurnal += $x['total_kredit'];
-			}
-			
-			$total_debit_biaya_adm_bank_all = 0;
-			$total_kredit_biaya_adm_bank_all = 0;
-			$total_debit_biaya_adm_bank_all = $total_debit_biaya_adm_bank_biaya + $total_debit_biaya_adm_bank_jurnal;
-			$total_kredit_biaya_adm_bank_all = $total_kredit_biaya_adm_bank_jurnal;
-			//biaya_adm_bank
-
 			//beban_lain_lain
 			$beban_kirim_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
@@ -4219,44 +4453,83 @@ class Reports extends CI_Controller {
 			$total_kredit_beban_kirim_all = $total_kredit_beban_kirim_jurnal;
 			//beban_kirim
 
-			//beban_lain_lain
-			$beban_lain_lain_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			//pengujian_material_laboratorium
+			$pengujian_material_laboratorium_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',146)
+			->where('c.id',216)
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
-			$total_debit_beban_lain_lain_biaya = 0;
-			foreach ($beban_lain_lain_biaya as $x){
-				$total_debit_beban_lain_lain_biaya += $x['jumlah'];
+			$total_debit_pengujian_material_laboratorium_biaya = 0;
+			foreach ($pengujian_material_laboratorium_biaya as $x){
+				$total_debit_pengujian_material_laboratorium_biaya += $x['jumlah'];
 			}
 
-			$beban_lain_lain_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			$pengujian_material_laboratorium_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.id',146)
+			->where('c.id',216)
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
-			$total_debit_beban_lain_lain_jurnal = 0;
-			$total_kredit_beban_lain_lain_jurnal = 0;
+			$total_debit_pengujian_material_laboratorium_jurnal = 0;
+			$total_kredit_pengujian_material_laboratorium_jurnal = 0;
 
-			foreach ($beban_lain_lain_jurnal as $x){
-				$total_debit_beban_lain_lain_jurnal += $x['total_debit'];
-				$total_kredit_beban_lain_lain_jurnal += $x['total_kredit'];
+			foreach ($pengujian_material_laboratorium_jurnal as $x){
+				$total_debit_pengujian_material_laboratorium_jurnal += $x['total_debit'];
+				$total_kredit_pengujian_material_laboratorium_jurnal += $x['total_kredit'];
 			}
 			
-			$total_debit_beban_lain_lain_all = 0;
-			$total_kredit_beban_lain_lain_all = 0;
-			$total_debit_beban_lain_lain_all = $total_debit_beban_lain_lain_biaya + $total_debit_beban_lain_lain_jurnal;
-			$total_kredit_beban_lain_lain_all = $total_kredit_beban_lain_lain_jurnal;
-			//beban_lain_lain
+			$total_debit_pengujian_material_laboratorium_all = 0;
+			$total_kredit_pengujian_material_laboratorium_all = 0;
+			$total_debit_pengujian_material_laboratorium_all = $total_debit_pengujian_material_laboratorium_biaya + $total_debit_pengujian_material_laboratorium_jurnal;
+			$total_kredit_pengujian_material_laboratorium_all = $total_kredit_pengujian_material_laboratorium_jurnal;
+			//pengujian_material_laboratorium
+
+			//listrik_internet
+			$listrik_internet_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',206)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_listrik_internet_biaya = 0;
+			foreach ($listrik_internet_biaya as $x){
+				$total_debit_listrik_internet_biaya += $x['jumlah'];
+			}
+
+			$listrik_internet_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',206)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_listrik_internet_jurnal = 0;
+			$total_kredit_listrik_internet_jurnal = 0;
+
+			foreach ($listrik_internet_jurnal as $x){
+				$total_debit_listrik_internet_jurnal += $x['total_debit'];
+				$total_kredit_listrik_internet_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_listrik_internet_all = 0;
+			$total_kredit_listrik_internet_all = 0;
+			$total_debit_listrik_internet_all = $total_debit_listrik_internet_biaya + $total_debit_listrik_internet_jurnal;
+			$total_kredit_listrik_internet_all = $total_kredit_listrik_internet_jurnal;
+			//listrik_internet
 
 			//kemanan_kebersihan
 			$kemanan_kebersihan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
@@ -4336,6 +4609,84 @@ class Reports extends CI_Controller {
 			$total_kredit_perlengkapan_kantor_all = $total_kredit_perlengkapan_kantor_jurnal;
 			//perlengkapan_kantor
 
+			//beban_lain_lain
+			$beban_lain_lain_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',146)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_beban_lain_lain_biaya = 0;
+			foreach ($beban_lain_lain_biaya as $x){
+				$total_debit_beban_lain_lain_biaya += $x['jumlah'];
+			}
+
+			$beban_lain_lain_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',146)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_beban_lain_lain_jurnal = 0;
+			$total_kredit_beban_lain_lain_jurnal = 0;
+
+			foreach ($beban_lain_lain_jurnal as $x){
+				$total_debit_beban_lain_lain_jurnal += $x['total_debit'];
+				$total_kredit_beban_lain_lain_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_beban_lain_lain_all = 0;
+			$total_kredit_beban_lain_lain_all = 0;
+			$total_debit_beban_lain_lain_all = $total_debit_beban_lain_lain_biaya + $total_debit_beban_lain_lain_jurnal;
+			$total_kredit_beban_lain_lain_all = $total_kredit_beban_lain_lain_jurnal;
+			//beban_lain_lain
+
+			//biaya_adm_bank
+			$biaya_adm_bank_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',143)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_biaya_adm_bank_biaya = 0;
+			foreach ($biaya_adm_bank_biaya as $x){
+				$total_debit_biaya_adm_bank_biaya += $x['jumlah'];
+			}
+
+			$biaya_adm_bank_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',143)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_biaya_adm_bank_jurnal = 0;
+			$total_kredit_biaya_adm_bank_jurnal = 0;
+
+			foreach ($biaya_adm_bank_jurnal as $x){
+				$total_debit_biaya_adm_bank_jurnal += $x['total_debit'];
+				$total_kredit_biaya_adm_bank_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_biaya_adm_bank_all = 0;
+			$total_kredit_biaya_adm_bank_all = 0;
+			$total_debit_biaya_adm_bank_all = $total_debit_biaya_adm_bank_biaya + $total_debit_biaya_adm_bank_jurnal;
+			$total_kredit_biaya_adm_bank_all = $total_kredit_biaya_adm_bank_jurnal;
+			//biaya_adm_bank
+
 			//biaya_sewa_kendaraan
 			$biaya_sewa_kendaraan_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
@@ -4374,6 +4725,45 @@ class Reports extends CI_Controller {
 			$total_debit_biaya_sewa_kendaraan_all = $total_debit_biaya_sewa_kendaraan_biaya + $total_debit_biaya_sewa_kendaraan_jurnal;
 			$total_kredit_biaya_sewa_kendaraan_all = $total_kredit_biaya_sewa_kendaraan_jurnal;
 			//biaya_sewa_kendaraan
+
+			//beban_bunga
+			$beban_bunga_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',168)
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_beban_bunga_biaya = 0;
+			foreach ($beban_bunga_biaya as $x){
+				$total_debit_beban_bunga_biaya += $x['jumlah'];
+			}
+
+			$beban_bunga_jurnal = $this->db->select('pdb.*, pb.id as jurnal_id, pb.tanggal_transaksi, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.id',168)
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_debit_beban_bunga_jurnal = 0;
+			$total_kredit_beban_bunga_jurnal = 0;
+
+			foreach ($beban_bunga_jurnal as $x){
+				$total_debit_beban_bunga_jurnal += $x['total_debit'];
+				$total_kredit_beban_bunga_jurnal += $x['total_kredit'];
+			}
+			
+			$total_debit_beban_bunga_all = 0;
+			$total_kredit_beban_bunga_all = 0;
+			$total_debit_beban_bunga_all = $total_debit_beban_bunga_biaya + $total_debit_beban_bunga_jurnal;
+			$total_kredit_beban_bunga_all = $total_kredit_beban_bunga_jurnal;
+			//beban_bunga
 
 	        ?>
 
@@ -4469,6 +4859,90 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- bank_kantor_pusat -->
 
+		<!-- hutang_nindya -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_nindya" aria-expanded="false" aria-controls="hutang_nindya">(2-20114) Hutang PT. Nindya Karya (Persero) Div. Peralatan</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_hutang_nindya_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_hutang_nindya_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="hutang_nindya" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($hutang_nindya_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($hutang_nindya_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- hutang_nindya -->
+
+		<!-- hutang_sinar -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_sinar" aria-expanded="false" aria-controls="hutang_sinar">(2-20116) Hutang PT. Sinar Bangun Mandiri</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_hutang_sinar_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_hutang_sinar_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="hutang_sinar" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($hutang_sinar_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($hutang_sinar_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- hutang_sinar -->
+
 		<!-- hutang_lain_lain -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
@@ -4511,23 +4985,23 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- hutang_lain_lain -->
 
-		<!-- perjalanan_dinas_penjualan -->
+		<!-- biaya_alat_truck_mixer -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_alat_truck_mixer" aria-expanded="false" aria-controls="biaya_alat_truck_mixer">(5-50203) Biaya Alat Truck Mixer</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_biaya_alat_truck_mixer_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_biaya_alat_truck_mixer_all,0,',','.');?></th>
 				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
-		<table class="collapse table table-bordered" id="perjalanan_dinas_penjualan" width="100%">
+		<table class="collapse table table-bordered" id="biaya_alat_truck_mixer" width="100%">
 			<tr class="table-active" width="100%">
 				<th width="10%" class="text-center">Tanggal</th>
 				<th width="15%" class="text-center">Transaksi</th>
 				<th width="25%" class="text-center">Nomor</th>
 				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
-			<?php foreach ($perjalanan_dinas_penjualan_biaya as $key => $x) {
+			<?php foreach ($biaya_alat_truck_mixer_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4539,7 +5013,7 @@ class Reports extends CI_Controller {
 			}
 			?>
 
-			<?php foreach ($perjalanan_dinas_penjualan_jurnal as $key => $x) {
+			<?php foreach ($biaya_alat_truck_mixer_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4551,7 +5025,133 @@ class Reports extends CI_Controller {
 			}
 			?>
 	    </table>
-		<!-- perjalanan_dinas_penjualan -->
+		<!-- biaya_alat_truck_mixer -->
+
+		<!-- gaji -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#gaji" aria-expanded="false" aria-controls="gaji">(5-50501) Gaji</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_gaji_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_gaji_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="gaji" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($gaji_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($gaji_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- gaji -->
+
+		<!-- upah -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#upah" aria-expanded="false" aria-controls="upah">(5-50502) Upah</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_upah_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_upah_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="upah" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($upah_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($upah_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- upah -->
+
+		<!-- konsumsi -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#konsumsi" aria-expanded="false" aria-controls="konsumsi">(5-50503) Konsumsi</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_konsumsi_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_konsumsi_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="konsumsi" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($konsumsi_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($konsumsi_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- konsumsi -->
 
 		<!-- pengobatan -->
 		<table class="table table-bordered" width="100%">
@@ -4595,6 +5195,49 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- pengobatan -->
 
+
+		<!-- thr_bonus -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#thr_bonus" aria-expanded="false" aria-controls="thr_bonus">(5-50506) THR & Bonus</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_thr_bonus_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_thr_bonus_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="thr_bonus" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($thr_bonus_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($thr_bonus_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- thr_bonus -->
+
 		<!-- bensin_tol_parkir -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
@@ -4636,6 +5279,48 @@ class Reports extends CI_Controller {
 			?>
 	    </table>
 		<!-- bensin_tol_parkir -->
+
+		<!-- perjalanan_dinas_penjualan -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="perjalanan_dinas_penjualan" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($perjalanan_dinas_penjualan_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($perjalanan_dinas_penjualan_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- perjalanan_dinas_penjualan -->
 
 		<!-- pakaian_dinas -->
 		<table class="table table-bordered" width="100%">
@@ -4679,48 +5364,6 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- pakaian_dinas -->
 
-		<!-- biaya_adm_bank -->
-		<table class="table table-bordered" width="100%">
-			<tr class="table-active">
-	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_adm_bank" aria-expanded="false" aria-controls="biaya_adm_bank">(5-50518) Beban Adm Bank</button></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_debit_biaya_adm_bank_all,0,',','.');?></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_kredit_biaya_adm_bank_all,0,',','.');?></th>
-				<th width="20%" class="text-center"></th>
-	        </tr>
-		</table>	
-		<table class="collapse table table-bordered" id="biaya_adm_bank" width="100%">
-			<tr class="table-active" width="100%">
-				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
-	        </tr>
-			<?php foreach ($biaya_adm_bank_biaya as $key => $x) {
-			?>
-			<tr class="table-active3">
-				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
-				<th class="text-center">BIAYA</th>
-				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th class="text-left"><?= $x['deskripsi'] ?></th>
-	        </tr>
-			<?php
-			}
-			?>
-
-			<?php foreach ($biaya_adm_bank_jurnal as $key => $x) {
-			?>
-			<tr class="table-active3">
-				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
-				<th class="text-center">JURNAL UMUM</th>
-				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
-				<th class="text-left"><?= $x['deskripsi'] ?></th>
-	        </tr>
-			<?php
-			}
-			?>
-	    </table>
-		<!-- biaya_adm_bank -->
-
 		<!-- beban_kirim -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
@@ -4763,23 +5406,23 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- beban_kirim -->
 
-		<!-- beban_lain_lain -->
+		<!-- pengujian_material_laboratorium -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_lain_lain" aria-expanded="false" aria-controls="beban_lain_lain">(5-50517) Beban Lain-Lain</button></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_debit_beban_lain_lain_all,0,',','.');?></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_kredit_beban_lain_lain_all,0,',','.');?></th>
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengujian_material_laboratorium" aria-expanded="false" aria-controls="pengujian_material_laboratorium">(5-50512) Pengujian Material & Laboratorium</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_pengujian_material_laboratorium_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_pengujian_material_laboratorium_all,0,',','.');?></th>
 				<th width="20%" class="text-center"></th>
 	        </tr>
 		</table>	
-		<table class="collapse table table-bordered" id="beban_lain_lain" width="100%">
+		<table class="collapse table table-bordered" id="pengujian_material_laboratorium" width="100%">
 			<tr class="table-active" width="100%">
 				<th width="10%" class="text-center">Tanggal</th>
 				<th width="15%" class="text-center">Transaksi</th>
 				<th width="25%" class="text-center">Nomor</th>
 				<th width="50%" class="text-center">Keterangan</th>
 	        </tr>
-			<?php foreach ($beban_lain_lain_biaya as $key => $x) {
+			<?php foreach ($pengujian_material_laboratorium_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4791,7 +5434,7 @@ class Reports extends CI_Controller {
 			}
 			?>
 
-			<?php foreach ($beban_lain_lain_jurnal as $key => $x) {
+			<?php foreach ($pengujian_material_laboratorium_jurnal as $key => $x) {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4803,7 +5446,49 @@ class Reports extends CI_Controller {
 			}
 			?>
 	    </table>
-		<!-- beban_lain_lain -->
+		<!-- pengujian_material_laboratorium -->
+
+		<!-- listrik_internet -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listrik_internet" aria-expanded="false" aria-controls="listrik_internet">(5-50513) Listrik & Internet</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_listrik_internet_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_listrik_internet_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="listrik_internet" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($listrik_internet_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($listrik_internet_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- listrik_internet -->
 
 		<!-- kemanan_kebersihan -->
 		<table class="table table-bordered" width="100%">
@@ -4889,6 +5574,90 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- perlengkapan_kantor -->
 
+		<!-- beban_lain_lain -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_lain_lain" aria-expanded="false" aria-controls="beban_lain_lain">(5-50517) Beban Lain-Lain</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_beban_lain_lain_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_beban_lain_lain_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="beban_lain_lain" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($beban_lain_lain_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($beban_lain_lain_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- beban_lain_lain -->
+
+		<!-- biaya_adm_bank -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_adm_bank" aria-expanded="false" aria-controls="biaya_adm_bank">(5-50518) Beban Adm Bank</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_biaya_adm_bank_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_biaya_adm_bank_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="biaya_adm_bank" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($biaya_adm_bank_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($biaya_adm_bank_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- biaya_adm_bank -->
+
 		<!-- biaya_sewa_kendaraan -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
@@ -4929,7 +5698,49 @@ class Reports extends CI_Controller {
 			}
 			?>
 	    </table>
-		<!-- biaya_sewa_kendaraan -->	
+		<!-- biaya_sewa_kendaraan -->
+
+		<!-- beban_bunga -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_bunga" aria-expanded="false" aria-controls="beban_bunga">(8-80000) Beban Bunga</button></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_debit_beban_bunga_all,0,',','.');?></th>
+				<th width="20%" class="text-center"><?php echo number_format($total_kredit_beban_bunga_all,0,',','.');?></th>
+				<th width="20%" class="text-center"></th>
+	        </tr>
+		</table>	
+		<table class="collapse table table-bordered" id="beban_bunga" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="15%" class="text-center">Transaksi</th>
+				<th width="25%" class="text-center">Nomor</th>
+				<th width="50%" class="text-center">Keterangan</th>
+	        </tr>
+			<?php foreach ($beban_bunga_biaya as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">BIAYA</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+
+			<?php foreach ($beban_bunga_jurnal as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">JURNAL UMUM</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></a></th>
+				<th class="text-left"><?= $x['deskripsi'] ?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- beban_bunga -->
 
 		<?php
 	}
