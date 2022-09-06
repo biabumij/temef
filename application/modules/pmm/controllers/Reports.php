@@ -3441,7 +3441,7 @@ class Reports extends CI_Controller {
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24)")
+			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('po.supplier_id')
 			->order_by('po.supplier_id','asc')
