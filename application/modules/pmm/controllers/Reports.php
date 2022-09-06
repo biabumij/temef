@@ -3862,8 +3862,8 @@ class Reports extends CI_Controller {
 			
 		 </style>
 	        <tr class="table-active4">
-	            <th class="text-center" colspan="2">Periode</th>
-	            <th class="text-center" colspan="2"><?php echo $filter_date;?></th>
+	            <th class="text-center">Periode</th>
+	            <th class="text-center" colspan="3"><?php echo $filter_date;?></th>
 	        </tr>
 
 			<?php
@@ -3901,10 +3901,45 @@ class Reports extends CI_Controller {
 				$total_kredit_kas_jurnal += $x['total_kredit'];
 			}
 			
+			$terima_uang = $this->db->select('pb.*')
+			->from('pmm_terima_uang pb ')
+			->join('pmm_coa c','pb.setor_ke = c.id','left')
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pb.id')
+			->order_by('pb.tanggal_transaksi','asc')
+			->get()->result_array();
+			
+			$total_kredit_terima_uang_jurnal = 0;
+			$saldo = 0;
+
+			foreach ($terima_uang as $x){
+				$total_kredit_terima_uang_jurnal += $x['jumlah'];
+			}
+			
+
+			$transfer_uang = $this->db->select('pb.*')
+			->from('pmm_transfer pb ')
+			->join('pmm_coa c','pb.setor_ke = c.id','left')
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pb.id')
+			->order_by('pb.tanggal_transaksi','asc')
+			->get()->result_array();
+
+			$total_kredit_transfer_uang_jurnal = 0;
+
+			foreach ($transfer_uang as $x){
+				$total_kredit_transfer_uang_jurnal += $x['jumlah'];
+			}
+		
+
 			$total_debit_kas_all = 0;
 			$total_kredit_kas_all = 0;
-			$total_debit_kas_all = $total_debit_kas_biaya + $total_debit_kas_jurnal;
-			$total_kredit_kas_all = $total_kredit_kas_jurnal;
+			$saldo_all = 0;
+			$total_debit_kas_all = $total_debit_kas_biaya + $total_debit_kas_jurnal + $total_kredit_transfer_uang_jurnal;
+			$total_kredit_kas_all = $total_kredit_kas_jurnal + $total_kredit_terima_uang_jurnal;
+			$saldo_all = $total_kredit_kas_all - $total_debit_kas_all;
+
+
 			//kas
 
 			//bank_kantor_pusat
@@ -4768,29 +4803,62 @@ class Reports extends CI_Controller {
 	        ?>
 
 			<tr class="table-active">
-	            <th width="40%" class="text-center">Nama Akun</th>
-				<th width="20%" class="text-center">Debit</th>
-				<th width="20%" class="text-center">Kredit</th>
-				<th width="20%" class="text-center">Saldo</th>
+	            <th width="55%" class="text-center">Nama Akun</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
 	        </tr>
 		</table>
 
 		<!-- kas -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="40%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
-				<th width="20%" class="text-center"><?php echo number_format($total_kredit_kas_all,0,',','.');?></th>
-				<th width="20%" class="text-center"></th>
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_kas_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_kas_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_all,0,',','.');?></th>
 	        </tr>
 		</table>
 		<table class="collapse table table-bordered" id="kas" width="100%">
 			<tr class="table-active" width="100%">
 				<th width="10%" class="text-center">Tanggal</th>
-				<th width="15%" class="text-center">Transaksi</th>
-				<th width="25%" class="text-center">Nomor</th>
-				<th width="50%" class="text-center">Keterangan</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
 	        </tr>
+			<?php foreach ($terima_uang as $key => $x) {
+			if ($x['jumlah']==0) { $saldo=$saldo+$x['jumlah'] ;} else
+			{$saldo=$saldo+$x['jumlah'];}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TERIMA UANG</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/finance/detailTerima/".$x['id']) ?>"><?= $x['nomor_transaksi'] ?></th>
+				<th class="text-left"><?= $x['memo'] ?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($x['jumlah'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+			<?php foreach ($transfer_uang as $key => $x) {
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center">TRANSFER UANG</th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/finance/detailTerima/".$x['id']) ?>"><?= $x['nomor_transaksi'] ?></th>
+				<th class="text-left"><?= $x['memo'] ?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($x['jumlah'],0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			}
+			?>
 			<?php foreach ($kas_biaya as $key => $x) {
 			?>
 			<tr class="table-active3">
@@ -4798,6 +4866,9 @@ class Reports extends CI_Controller {
 				<th class="text-center">BIAYA</th>
 				<th class="text-left"><a target="_blank" href="<a target="_blank" href="<?= base_url("pmm/biaya/detail_biaya/".$x['biaya_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
 				<th class="text-left"><?= $x['deskripsi'] ?></th>
+				<th class="text-left"><?php echo number_format($x['jumlah'],0,',','.');?></th>
+				<th class="text-left"></th>
+				<th class="text-left"></th>
 	        </tr>
 			<?php
 			}
@@ -4810,6 +4881,9 @@ class Reports extends CI_Controller {
 				<th class="text-center">JURNAL UMUM</th>
 				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$x['jurnal_id']) ?>"><?= $x['nomor_transaksi'] ?></th>
 				<th class="text-left"><?= $x['deskripsi'] ?></th>
+				<th class="text-right"><?php echo number_format($x['debit'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['kredit'],0,',','.');?></th>
+				<th class="text-right"></th>
 	        </tr>
 			<?php
 			}
