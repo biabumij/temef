@@ -4894,7 +4894,7 @@ class Reports extends CI_Controller {
 			?>
 
 			<?php foreach ($kas_jurnal as $key => $x) {
-				if ($saldo_kas_jurnal==0) { $saldo_kas_jurnal = $saldo_akhir_kas_biaya - $x['debit'];} else
+				if ($saldo_kas_jurnal==0) { $saldo_kas_jurnal = $x['debit'];} else
 				{$saldo_kas_jurnal = $saldo_akhir_kas_biaya - $x['debit'];}
 			?>
 			<tr class="table-active3">
