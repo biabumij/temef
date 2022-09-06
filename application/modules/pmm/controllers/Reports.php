@@ -3869,6 +3869,43 @@ class Reports extends CI_Controller {
 			<?php
 
 			//kas
+			$terima_uang = $this->db->select('pb.*')
+			->from('pmm_terima_uang pb ')
+			->join('pmm_coa c','pb.setor_ke = c.id','left')
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->order_by('pb.tanggal_transaksi','asc')
+			->group_by('pb.id')
+			->get()->result_array();
+			
+			$total_kredit_terima_uang_jurnal = 0;
+			$saldo_terima_uang = 0;
+			$saldo_akhir_terima_uang = 0;
+
+			foreach ($terima_uang as $x){
+				$total_kredit_terima_uang_jurnal += $x['jumlah'];
+			}
+
+			$saldo_akhir_terima_uang = $total_kredit_terima_uang_jurnal;
+			
+
+			$transfer_uang = $this->db->select('pb.*')
+			->from('pmm_transfer pb ')
+			->join('pmm_coa c','pb.setor_ke = c.id','left')
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->order_by('pb.tanggal_transaksi','asc')
+			->group_by('pb.id')
+			->get()->result_array();
+
+			$total_kredit_transfer_uang_jurnal = 0;
+			$saldo_transfer_uang = 0;
+			$saldo_akhir_transfer_uang = 0;
+
+			foreach ($transfer_uang as $x){
+				$total_kredit_transfer_uang_jurnal += $x['jumlah'];
+			}
+
+			$saldo_akhir_transfer_uang = $saldo_akhir_terima_uang - $saldo_akhir_transfer_uang;
+
 			$kas_biaya = $this->db->select('pdb.*, pb.id as biaya_id, pb.tanggal_transaksi, pb.nomor_transaksi')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -3876,13 +3913,19 @@ class Reports extends CI_Controller {
 			->where('c.id',1)
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->order_by('pb.tanggal_transaksi','asc')
 			->group_by('pdb.id')
 			->get()->result_array();
 
 			$total_debit_kas_biaya = 0;
+			$saldo_kas_biaya = 0;
+			$saldo_akhir_kas_biaya = 0;
+
 			foreach ($kas_biaya as $x){
 				$total_debit_kas_biaya += $x['jumlah'];
 			}
+
+			$saldo_akhir_kas_biaya = $saldo_akhir_transfer_uang - $total_debit_kas_biaya;
 
 			$kas_jurnal = $this->db->select('pdb.*, pb.tanggal_transaksi, pb.id as jurnal_id, pb.nomor_transaksi, pb.total_debit, pb.total_kredit')
 			->from('pmm_jurnal_umum pb ')
@@ -3890,56 +3933,28 @@ class Reports extends CI_Controller {
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.id',1)
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->order_by('pb.tanggal_transaksi','asc')
 			->group_by('pdb.id')
 			->get()->result_array();
 
 			$total_debit_kas_jurnal = 0;
 			$total_kredit_kas_jurnal = 0;
+			$saldo_kas_jurnal = 0;
+			$saldo_akhir_kas_jurnal = 0;
 
 			foreach ($kas_jurnal as $x){
 				$total_debit_kas_jurnal += $x['total_debit'];
 				$total_kredit_kas_jurnal += $x['total_kredit'];
 			}
-			
-			$terima_uang = $this->db->select('pb.*')
-			->from('pmm_terima_uang pb ')
-			->join('pmm_coa c','pb.setor_ke = c.id','left')
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pb.id')
-			->order_by('pb.tanggal_transaksi','asc')
-			->get()->result_array();
-			
-			$total_kredit_terima_uang_jurnal = 0;
-			$saldo = 0;
 
-			foreach ($terima_uang as $x){
-				$total_kredit_terima_uang_jurnal += $x['jumlah'];
-			}
-			
-
-			$transfer_uang = $this->db->select('pb.*')
-			->from('pmm_transfer pb ')
-			->join('pmm_coa c','pb.setor_ke = c.id','left')
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pb.id')
-			->order_by('pb.tanggal_transaksi','asc')
-			->get()->result_array();
-
-			$total_kredit_transfer_uang_jurnal = 0;
-
-			foreach ($transfer_uang as $x){
-				$total_kredit_transfer_uang_jurnal += $x['jumlah'];
-			}
+			$saldo_akhir_kas_jurnal = $saldo_akhir_kas_biaya - $total_debit_kas_jurnal + $total_kredit_kas_jurnal;
 		
-
 			$total_debit_kas_all = 0;
 			$total_kredit_kas_all = 0;
 			$saldo_all = 0;
 			$total_debit_kas_all = $total_debit_kas_biaya + $total_debit_kas_jurnal + $total_kredit_transfer_uang_jurnal;
 			$total_kredit_kas_all = $total_kredit_kas_jurnal + $total_kredit_terima_uang_jurnal;
 			$saldo_all = $total_kredit_kas_all - $total_debit_kas_all;
-
-
 			//kas
 
 			//bank_kantor_pusat
@@ -4830,8 +4845,8 @@ class Reports extends CI_Controller {
 				<th width="15%" class="text-center">Saldo</th>
 	        </tr>
 			<?php foreach ($terima_uang as $key => $x) {
-			if ($x['jumlah']==0) { $saldo=$saldo+$x['jumlah'] ;} else
-			{$saldo=$saldo+$x['jumlah'];}
+				if ($x['jumlah']==0) { $saldo_terima_uang = $saldo_terima_uang + $x['jumlah'] ;} else
+				{$saldo_terima_uang = $saldo_terima_uang + $x['jumlah'];}
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4840,12 +4855,14 @@ class Reports extends CI_Controller {
 				<th class="text-left"><?= $x['memo'] ?></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($x['jumlah'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($saldo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_terima_uang,0,',','.');?></th>
 	        </tr>
 			<?php
 			}
 			?>
 			<?php foreach ($transfer_uang as $key => $x) {
+				if ($x['jumlah']==0) { $saldo_transfer_uang = $saldo_akhir_terima_uang + $x['jumlah'] ;} else
+				{$saldo_transfer_uang = $saldo_akhir_terima_uang + $x['jumlah'];}
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4853,13 +4870,15 @@ class Reports extends CI_Controller {
 				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/finance/detailTerima/".$x['id']) ?>"><?= $x['nomor_transaksi'] ?></th>
 				<th class="text-left"><?= $x['memo'] ?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($x['jumlah'],0,',','.');?></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($x['jumlah'],0,',','.');?><?php echo number_format($x['jumlah'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_transfer_uang,0,',','.');?></th>
 	        </tr>
 			<?php
 			}
 			?>
 			<?php foreach ($kas_biaya as $key => $x) {
+				if ($x['jumlah']==0) { $saldo_kas_biaya = $saldo_akhir_transfer_uang + $x['jumlah'] ;} else
+				{$saldo_transfer_uang = $saldo_akhir_transfer_uang + $x['jumlah'];}
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4868,13 +4887,15 @@ class Reports extends CI_Controller {
 				<th class="text-left"><?= $x['deskripsi'] ?></th>
 				<th class="text-left"><?php echo number_format($x['jumlah'],0,',','.');?></th>
 				<th class="text-left"></th>
-				<th class="text-left"></th>
+				<th class="text-left"><?php echo number_format($saldo_kas_biaya,0,',','.');?></th>
 	        </tr>
 			<?php
 			}
 			?>
 
 			<?php foreach ($kas_jurnal as $key => $x) {
+				if ($saldo_kas_jurnal==0) { $saldo_kas_jurnal = $saldo_akhir_kas_biaya - $x['debit'];} else
+				{$saldo_kas_jurnal = $saldo_akhir_kas_biaya - $x['debit'];}
 			?>
 			<tr class="table-active3">
 				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
@@ -4883,7 +4904,7 @@ class Reports extends CI_Controller {
 				<th class="text-left"><?= $x['deskripsi'] ?></th>
 				<th class="text-right"><?php echo number_format($x['debit'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($x['kredit'],0,',','.');?></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($saldo_kas_jurnal,0,',','.');?></th>
 	        </tr>
 			<?php
 			}
