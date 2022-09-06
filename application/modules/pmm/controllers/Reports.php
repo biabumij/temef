@@ -3443,8 +3443,8 @@ class Reports extends CI_Controller {
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->order_by('prm.harga_satuan','asc')
-			->group_by('pn.nama')
+			->order_by('pn.nama','asc')
+			->group_by('prm.harga_satuan')
 			->get()->result_array();
 
 			$total_nilai = 0;
