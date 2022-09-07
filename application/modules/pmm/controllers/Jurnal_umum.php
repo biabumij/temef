@@ -188,8 +188,7 @@ class Jurnal_umum extends CI_Controller {
                             'akun' => $product,
                             'deskripsi' => $deskripsi,
                             'debit' => $debit,
-                            'kredit' => $kredit,
-                            'transaction_id' => $transaction_id
+                            'kredit' => $kredit
                         );
                         
                         $this->db->insert('pmm_detail_jurnal',$arr_detail);

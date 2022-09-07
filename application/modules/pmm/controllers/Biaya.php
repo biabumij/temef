@@ -203,8 +203,7 @@ class Biaya extends CI_Controller {
     		        		'biaya_id' => $biaya_id,
     		        		'akun' => $product,
     		        		'deskripsi' => $deskripsi,
-    		        		'jumlah' => $jumlah,
-                            'transaction_id' => $transaction_id
+    		        		'jumlah' => $jumlah
                         );
                         
                         $this->db->insert('pmm_detail_biaya',$arr_detail);
