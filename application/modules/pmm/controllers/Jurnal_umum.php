@@ -128,9 +128,6 @@ class Jurnal_umum extends CI_Controller {
         if($this->db->insert('pmm_jurnal_umum',$arr_insert)){
             $jurnal_id = $this->db->insert_id();
 
-            $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$tanggal_transaksi);
-            $transaction_id = $this->db->insert_id();
-
             if (!file_exists('uploads/jurnal_umum')) {
 			    mkdir('uploads/jurnal_umum', 0777, true);
 			}
@@ -182,6 +179,9 @@ class Jurnal_umum extends CI_Controller {
                     $kredit = str_replace(',', '.', $kredit);
                     
                     if(!empty($product)){
+
+                        $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$product,$tanggal_transaksi);
+                        $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
                             'jurnal_id' => $jurnal_id,

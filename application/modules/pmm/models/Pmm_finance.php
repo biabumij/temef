@@ -39,11 +39,12 @@ class Pmm_finance extends CI_Model {
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsJurnal($jurnal_id,$tanggal_transaksi)
+    function InsertTransactionsJurnal($jurnal_id,$product,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => $jurnal_id,
+            'akun' => $product,
             'terima_id' => 0,
             'transfer_id' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
@@ -52,26 +53,28 @@ class Pmm_finance extends CI_Model {
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsTerima($terima_id,$tanggal_transaksi)
+    function InsertTransactionsTerima($terima_id,$setor_ke,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => 0,
             'terima_id' => $terima_id,
             'transfer_id' => 0,
+            'akun' => $setor_ke,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'TERIMA UANG'
         );
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsTransfer($transfer_id,$tanggal_transaksi)
+    function InsertTransactionsTransfer($transfer_id,$setor_ke,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => 0,
             'terima_id' => 0,
             'transfer_id' => $transfer_id,
+            'akun' => $setor_ke,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'TRANSFER'
         );

@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Tanggal Transaksi</label>
-                                        <input type="date" class="form-control" name="tanggal_transaksi">
+                                        <input type="text" class="form-control dtpicker" name="tanggal_transaksi">
                                     </div>
                                 </div>
                                 <div class="row">
