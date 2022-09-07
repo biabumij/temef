@@ -51,7 +51,7 @@ class Pmm_finance extends CI_Model {
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsTerimaUang($terima_id,$tanggal_transaksi)
+    function InsertTransactionsTerima($terima_id,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,

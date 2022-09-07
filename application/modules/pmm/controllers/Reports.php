@@ -3875,7 +3875,7 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
 			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
 			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
-			->join('pmm_terima_uang tu','t.terima_uang_id = tu.id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
 			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
 			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
 			->order_by('t.tanggal_transaksi','asc')

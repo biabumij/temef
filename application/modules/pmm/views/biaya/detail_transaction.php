@@ -51,11 +51,11 @@
                                                 <td class="text-center"><a target="_blank" href="<?= base_url("pmm/jurnal_umum/detailJurnal/".$row['id_2']) ?>"><b><?= $row["no_trx_2"] ?></b></a></td>
                                             </tr>
                                             <tr>
-                                                <th>TERIMA UANG</th>
+                                                <th>TERIMA</th>
                                                 <td class="text-center"><a target="_blank" href="<?= base_url("pmm/finance/detailTerima/".$row['id_3']) ?>"><b><?= $row["no_trx_3"] ?></b></a></td>
                                             </tr>
                                             <tr>
-                                                <th>TRANSFER UANG</th>
+                                                <th>TRANSFER</th>
                                                 <td class="text-center"><a target="_blank" href="<?= base_url("pmm/finan/detailTransfer/".$row['id_3']) ?>"><b><?= $row["no_trx_4"] ?></b></a></td>
                                             </tr>
                                         </table>

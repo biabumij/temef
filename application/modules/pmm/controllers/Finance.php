@@ -1111,7 +1111,7 @@ class Finance extends CI_Controller {
 		if($this->db->insert('pmm_terima_uang',$arr_insert)){
 			$terima_id = $this->db->insert_id();
 
-			$this->pmm_finance->InsertTransactionsTerimaUang($terima_id,$tanggal_transaksi);
+			$this->pmm_finance->InsertTransactionsTerima($terima_id,$tanggal_transaksi);
             $transaction_id = $this->db->insert_id();
 
 			if (!file_exists('uploads/terima_uang')) {
