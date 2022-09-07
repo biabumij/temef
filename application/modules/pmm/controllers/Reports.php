@@ -5017,7 +5017,7 @@ class Reports extends CI_Controller {
 		<!-- kas -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_all,0,',','.');?></th>
@@ -5068,7 +5068,7 @@ class Reports extends CI_Controller {
 		<!-- bank_kantor_pusat -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_bank_kantor_pusat_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_bank_kantor_pusat_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_bank_kantor_pusat_all,0,',','.');?></th>
@@ -5119,7 +5119,7 @@ class Reports extends CI_Controller {
 		<!-- hutang_nindya -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_nindya" aria-expanded="false" aria-controls="hutang_nindya">(2-20114) Hutang PT. Nindya Karya (Persero) Div. Peralatan</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#hutang_nindya" aria-expanded="false" aria-controls="hutang_nindya">(2-20114) Hutang PT. Nindya Karya (Persero) Div. Peralatan</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_nindya_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_nindya_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_nindya_all,0,',','.');?></th>
@@ -5170,7 +5170,7 @@ class Reports extends CI_Controller {
 		<!-- hutang_sinar -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_sinar" aria-expanded="false" aria-controls="hutang_sinar">(2-20116) Hutang PT. Sinar Bangun Mandiri</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#hutang_sinar" aria-expanded="false" aria-controls="hutang_sinar">(2-20116) Hutang PT. Sinar Bangun Mandiri</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_sinar_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_sinar_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_sinar_all,0,',','.');?></th>
@@ -5221,7 +5221,7 @@ class Reports extends CI_Controller {
 		<!-- hutang_lain_lain -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">2-20200) Hutang Lain Lain</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">2-20200) Hutang Lain Lain</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_lain_lain_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_lain_lain_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_lain_lain_all,0,',','.');?></th>
@@ -5272,7 +5272,7 @@ class Reports extends CI_Controller {
 		<!-- biaya_alat_truck_mixer -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_alat_truck_mixer" aria-expanded="false" aria-controls="biaya_alat_truck_mixer">(5-50203) Biaya Alat Truck Mixer</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#biaya_alat_truck_mixer" aria-expanded="false" aria-controls="biaya_alat_truck_mixer">(5-50203) Biaya Alat Truck Mixer</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_alat_truck_mixer_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_alat_truck_mixer_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_alat_truck_mixer_all,0,',','.');?></th>
@@ -5323,7 +5323,7 @@ class Reports extends CI_Controller {
 		<!-- gaji -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#gaji" aria-expanded="false" aria-controls="gaji">(5-50501) Gaji</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#gaji" aria-expanded="false" aria-controls="gaji">(5-50501) Gaji</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_gaji_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_gaji_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_gaji_all,0,',','.');?></th>
@@ -5374,7 +5374,7 @@ class Reports extends CI_Controller {
 		<!-- upah -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#upah" aria-expanded="false" aria-controls="upah">(5-50502) Upah</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#upah" aria-expanded="false" aria-controls="upah">(5-50502) Upah</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_upah_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_upah_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_upah_all,0,',','.');?></th>
@@ -5425,7 +5425,7 @@ class Reports extends CI_Controller {
 		<!-- konsumsi -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#konsumsi" aria-expanded="false" aria-controls="konsumsi">(5-50503) Konsumsi</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#konsumsi" aria-expanded="false" aria-controls="konsumsi">(5-50503) Konsumsi</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_konsumsi_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_konsumsi_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_konsumsi_all,0,',','.');?></th>
@@ -5476,7 +5476,7 @@ class Reports extends CI_Controller {
 		<!-- pengobatan -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(5-50505) Pengobatan</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(5-50505) Pengobatan</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_pengobatan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pengobatan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pengobatan_all,0,',','.');?></th>
@@ -5527,7 +5527,7 @@ class Reports extends CI_Controller {
 		<!-- thr_bonus -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#thr_bonus" aria-expanded="false" aria-controls="thr_bonus">(5-50506) THR & Bonus</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#thr_bonus" aria-expanded="false" aria-controls="thr_bonus">(5-50506) THR & Bonus</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_thr_bonus_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_thr_bonus_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_thr_bonus_all,0,',','.');?></th>
@@ -5578,7 +5578,7 @@ class Reports extends CI_Controller {
 		<!-- bensin_tol_parkir -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bensin_tol_parkir" aria-expanded="false" aria-controls="bensin_tol_parkir">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#bensin_tol_parkir" aria-expanded="false" aria-controls="bensin_tol_parkir">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_bensin_tol_parkir_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_bensin_tol_parkir_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_bensin_tol_parkir_all,0,',','.');?></th>
@@ -5629,7 +5629,7 @@ class Reports extends CI_Controller {
 		<!-- perjalanan_dinas_penjualan -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_perjalanan_dinas_penjualan_all,0,',','.');?></th>
@@ -5680,7 +5680,7 @@ class Reports extends CI_Controller {
 		<!-- pakaian_dinas -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pakaian_dinas" aria-expanded="false" aria-controls="pakaian_dinas">(5-50510) Pakaian Dinas & K3</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#pakaian_dinas" aria-expanded="false" aria-controls="pakaian_dinas">(5-50510) Pakaian Dinas & K3</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_pakaian_dinas_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pakaian_dinas_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pakaian_dinas_all,0,',','.');?></th>
@@ -5731,7 +5731,7 @@ class Reports extends CI_Controller {
 		<!-- beban_kirim -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_kirim" aria-expanded="false" aria-controls="beban_kirim">(5-50511) Beban Kirim</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#beban_kirim" aria-expanded="false" aria-controls="beban_kirim">(5-50511) Beban Kirim</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_kirim_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_kirim_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_kirim_all,0,',','.');?></th>
@@ -5782,7 +5782,7 @@ class Reports extends CI_Controller {
 		<!-- pengujian_material_laboratorium -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengujian_material_laboratorium" aria-expanded="false" aria-controls="pengujian_material_laboratorium">(5-50512) Pengujian Material & Laboratorium</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#pengujian_material_laboratorium" aria-expanded="false" aria-controls="pengujian_material_laboratorium">(5-50512) Pengujian Material & Laboratorium</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_pengujian_material_laboratorium_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pengujian_material_laboratorium_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pengujian_material_laboratorium_all,0,',','.');?></th>
@@ -5833,7 +5833,7 @@ class Reports extends CI_Controller {
 		<!-- listrik_internet -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listrik_internet" aria-expanded="false" aria-controls="listrik_internet">5-50513) Listrik & Internet</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#listrik_internet" aria-expanded="false" aria-controls="listrik_internet">5-50513) Listrik & Internet</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_listrik_internet_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_listrik_internet_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_listrik_internet_all,0,',','.');?></th>
@@ -5884,7 +5884,7 @@ class Reports extends CI_Controller {
 		<!-- keamanan_kebersihan -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#keamanan_kebersihan" aria-expanded="false" aria-controls="keamanan_kebersihan">(5-50515) Keamanan dan Kebersihan</button></button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#keamanan_kebersihan" aria-expanded="false" aria-controls="keamanan_kebersihan">(5-50515) Keamanan dan Kebersihan</button></button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_keamanan_kebersihan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_keamanan_kebersihan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_keamanan_kebersihan_all,0,',','.');?></th>
@@ -5935,7 +5935,7 @@ class Reports extends CI_Controller {
 		<!-- perlengkapan_kantor -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perlengkapan_kantor" aria-expanded="false" aria-controls="perlengkapan_kantor">(5-50516) Perlengkapan Kantor</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#perlengkapan_kantor" aria-expanded="false" aria-controls="perlengkapan_kantor">(5-50516) Perlengkapan Kantor</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_perlengkapan_kantor_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_perlengkapan_kantor_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_perlengkapan_kantor_all,0,',','.');?></th>
@@ -5986,7 +5986,7 @@ class Reports extends CI_Controller {
 		<!-- beban_lain_lain -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_lain_lain" aria-expanded="false" aria-controls="beban_lain_lain">(5-50517) Beban Lain-Lain</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#beban_lain_lain" aria-expanded="false" aria-controls="beban_lain_lain">(5-50517) Beban Lain-Lain</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_lain_lain_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_lain_lain_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_lain_lain_all,0,',','.');?></th>
@@ -6037,7 +6037,7 @@ class Reports extends CI_Controller {
 		<!-- biaya_adm_bank -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_adm_bank" aria-expanded="false" aria-controls="biaya_adm_bank">(5-50518) Beban Adm Bank</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#biaya_adm_bank" aria-expanded="false" aria-controls="biaya_adm_bank">(5-50518) Beban Adm Bank</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_adm_bank_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_adm_bank_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_adm_bank_all,0,',','.');?></th>
@@ -6088,7 +6088,7 @@ class Reports extends CI_Controller {
 		<!-- biaya_sewa_kendaraan -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_sewa_kendaraan" aria-expanded="false" aria-controls="biaya_sewa_kendaraan">(5-50520) Biaya Sewa - Kendaraan</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#biaya_sewa_kendaraan" aria-expanded="false" aria-controls="biaya_sewa_kendaraan">(5-50520) Biaya Sewa - Kendaraan</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_sewa_kendaraan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_sewa_kendaraan_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_sewa_kendaraan_all,0,',','.');?></th>
@@ -6139,7 +6139,7 @@ class Reports extends CI_Controller {
 		<!-- beban_bunga -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
-	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_bunga" aria-expanded="false" aria-controls="beban_bunga">(8-80000) Beban Bunga</button></th>
+	            <th width="55%" class="text-left"><button class="btn btn-info" type="button" data-toggle="collapse" data-target="#beban_bunga" aria-expanded="false" aria-controls="beban_bunga">(8-80000) Beban Bunga</button></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_bunga_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_bunga_all,0,',','.');?></th>
 				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_bunga_all,0,',','.');?></th>
