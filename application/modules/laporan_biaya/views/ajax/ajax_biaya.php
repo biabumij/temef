@@ -18,7 +18,6 @@
 	$total_biaya_langsung = 0;
 	if(!empty($biaya_langsung)){
 		foreach ($biaya_langsung as $key => $bl) {
-			$total_parent = $this->m_laporan->getTotal($bl['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $bl['tanggal_transaksi'];?></td>
@@ -37,7 +36,6 @@
 	$grand_total_biaya_langsung = $total_biaya_langsung;
 	if(!empty($biaya_langsung_jurnal)){
 		foreach ($biaya_langsung_jurnal as $key => $blj) {
-			$total_parent = $this->m_laporan->getTotal($blj['coa_id'],$filter_date);
 			?>	
 			<tr>
 				<td><?= $blj['tanggal_transaksi'];?></td>
@@ -67,7 +65,6 @@
 	$total_biaya = 0;
 	if(!empty($biaya)){
 		foreach ($biaya as $key => $row) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row['tanggal_transaksi'];?></td>
@@ -85,7 +82,6 @@
 	$grand_total_biaya = $total_biaya;
 	if(!empty($biaya_jurnal)){
 		foreach ($biaya_jurnal as $key => $row2) {
-			$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row2['tanggal_transaksi'];?></td>
@@ -115,7 +111,6 @@
 	$total_biaya_lainnya = 0;
 	if(!empty($biaya_lainnya)){
 		foreach ($biaya_lainnya as $key => $row) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row['tanggal_transaksi'];?></td>
@@ -123,17 +118,16 @@
 				<td><?= $row['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
-				<td class="text-right"><?= $this->filter->Rupiah($row['total'] + $total_parent);?></td>
+				<td class="text-right"><?= $this->filter->Rupiah($row['total']);?></td>
 			</tr>
 			<?php
-			$total_biaya_lainnya += $row['total'] + $total_parent;
+			$total_biaya_lainnya += $row['total'];
 		}
 	}
 	$total_biaya_lainnya_jurnal = 0;
 	$grand_total_biaya_lainnya = $total_biaya_lainnya;
 	if(!empty($biaya_lainnya_jurnal)){
 		foreach ($biaya_lainnya as $key => $row2) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row2['tanggal_transaksi'];?></td>
@@ -141,10 +135,10 @@
 				<td><?= $row2['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
-				<td class="text-right"><?= $this->filter->Rupiah($row2['total'] + $total_parent);?></td>
+				<td class="text-right"><?= $this->filter->Rupiah($row2['total']);?></td>
 			</tr>
 			<?php
-			$total_biaya_lainnya_jurnal += $row2['total'] + $total_parent;
+			$total_biaya_lainnya_jurnal += $row2['total'];
 		}
 	}
 	$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
