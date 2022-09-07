@@ -4209,7 +4209,154 @@ class Reports extends CI_Controller {
 			$jumlah_deskripsi = 0;
 			$jumlah_debit = 0;
 			$jumlah_kredit = 0;
+
+			$total_kredit_all = 0;
+			$total_debit_all = 0;
+			$saldo_akhir_all = 0;
+
+			foreach ($transactions as $x){
+				$total_debit_all += $x['debit'];
+				$total_kredit_all += $x['kredit'];
+			}
+
+			$saldo_akhir_all = $total_debit_all - $total_kredit_all;
 			//kas
+
+			//bank_kantor_pusat
+			$bank_kantor_pusat = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',217)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_bank_kantor_pusat = 0;
+			$jumlah_no_transaksi_bank_kantor_pusat = 0;
+			$jumlah_deskripsi_bank_kantor_pusat = 0;
+			$jumlah_debit_bank_kantor_pusat = 0;
+			$jumlah_kredit_bank_kantor_pusat = 0;
+
+			$total_kredit_bank_kantor_pusat_all = 0;
+			$total_debit_bank_kantor_pusat_all = 0;
+			$saldo_akhir_bank_kantor_pusat_all = 0;
+
+			foreach ($bank_kantor_pusat as $x){
+				$total_debit_bank_kantor_pusat_all += $x['debit'];
+				$total_kredit_bank_kantor_pusat_all += $x['kredit'];
+			}
+
+			$saldo_akhir_bank_kantor_pusat_all = $total_debit_bank_kantor_pusat_all - $total_kredit_bank_kantor_pusat_all;
+			//bank_kantor_pusat
+
+			//hutang_nindya
+			$hutang_nindya = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',223)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_hutang_nindya = 0;
+			$jumlah_no_transaksi_hutang_nindya = 0;
+			$jumlah_deskripsi_hutang_nindya = 0;
+			$jumlah_debit_hutang_nindya = 0;
+			$jumlah_kredit_hutang_nindya = 0;
+
+			$total_kredit_hutang_nindya_all = 0;
+			$total_debit_hutang_nindya_all = 0;
+			$saldo_akhir_hutang_nindya_all = 0;
+
+			foreach ($hutang_nindya as $x){
+				$total_debit_hutang_nindya_all += $x['debit'];
+				$total_kredit_hutang_nindya_all += $x['kredit'];
+			}
+
+			$saldo_akhir_hutang_nindya_all = $total_debit_hutang_nindya_all - $total_kredit_hutang_nindya_all;
+			//hutang_nindya
+
+			//hutang_sinar
+			$hutang_sinar = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',224)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_hutang_sinar = 0;
+			$jumlah_no_transaksi_hutang_sinar = 0;
+			$jumlah_deskripsi_hutang_sinar = 0;
+			$jumlah_debit_hutang_sinar = 0;
+			$jumlah_kredit_hutang_sinar = 0;
+
+			$total_kredit_hutang_sinar_all = 0;
+			$total_debit_hutang_sinar_all = 0;
+			$saldo_akhir_hutang_sinar_all = 0;
+
+			foreach ($hutang_sinar as $x){
+				$total_debit_hutang_sinar_all += $x['debit'];
+				$total_kredit_hutang_sinar_all += $x['kredit'];
+			}
+
+			$saldo_akhir_hutang_sinar_all = $total_debit_hutang_sinar_all - $total_kredit_hutang_sinar_all;
+			//hutang_sinar
+
+			//hutang_lain_lain
+			$hutang_lain_lain = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',67)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_hutang_lain_lain = 0;
+			$jumlah_no_transaksi_hutang_lain_lain = 0;
+			$jumlah_deskripsi_hutang_lain_lain = 0;
+			$jumlah_debit_hutang_lain_lain = 0;
+			$jumlah_kredit_hutang_lain_lain = 0;
+
+			$total_kredit_hutang_lain_lain_all = 0;
+			$total_debit_hutang_lain_lain_all = 0;
+			$saldo_akhir_hutang_lain_lain_all = 0;
+
+			foreach ($hutang_lain_lain as $x){
+				$total_debit_hutang_lain_lain_all += $x['debit'];
+				$total_kredit_hutang_lain_lain_all += $x['kredit'];
+			}
+
+			$saldo_akhir_hutang_lain_lain_all = $total_debit_hutang_lain_lain_all - $total_kredit_hutang_lain_lain_all;
+			//hutang_lain_lain
 
 			//biaya_alat_truck_mixer
 			$biaya_alat_truck_mixer = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
@@ -4232,8 +4379,631 @@ class Reports extends CI_Controller {
 			$jumlah_deskripsi_biaya_alat_truck_mixer = 0;
 			$jumlah_debit_biaya_alat_truck_mixer = 0;
 			$jumlah_kredit_biaya_alat_truck_mixer = 0;
+
+			$total_kredit_biaya_alat_truck_mixer_all = 0;
+			$total_debit_biaya_alat_truck_mixer_all = 0;
+			$saldo_akhir_biaya_alat_truck_mixer_all = 0;
+
+			foreach ($biaya_alat_truck_mixer as $x){
+				$total_debit_biaya_alat_truck_mixer_all += $x['debit'];
+				$total_kredit_biaya_alat_truck_mixer_all += $x['kredit'];
+			}
+
+			$saldo_akhir_biaya_alat_truck_mixer_all = $total_debit_biaya_alat_truck_mixer_all - $total_kredit_biaya_alat_truck_mixer_all;
 			//biaya_alat_truck_mixer
 
+			//gaji
+			$gaji = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',199)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_gaji = 0;
+			$jumlah_no_transaksi_gaji = 0;
+			$jumlah_deskripsi_gaji = 0;
+			$jumlah_debit_gaji = 0;
+			$jumlah_kredit_gaji = 0;
+
+			$total_kredit_gaji_all = 0;
+			$total_debit_gaji_all = 0;
+			$saldo_akhir_gaji_all = 0;
+
+			foreach ($gaji as $x){
+				$total_debit_gaji_all += $x['debit'];
+				$total_kredit_gaji_all += $x['kredit'];
+			}
+
+			$saldo_akhir_gaji_all = $total_debit_gaji_all - $total_kredit_gaji_all;
+			//gaji
+
+			//upah
+			$upah = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',200)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_upah = 0;
+			$jumlah_no_transaksi_upah = 0;
+			$jumlah_deskripsi_upah = 0;
+			$jumlah_debit_upah = 0;
+			$jumlah_kredit_upah = 0;
+
+			$total_kredit_upah_all = 0;
+			$total_debit_upah_all = 0;
+			$saldo_akhir_upah_all = 0;
+
+			foreach ($upah as $x){
+				$total_debit_upah_all += $x['debit'];
+				$total_kredit_upah_all += $x['kredit'];
+			}
+
+			$saldo_akhir_upah_all = $total_debit_upah_all - $total_kredit_upah_all;
+			//upah
+
+			//konsumsi
+			$konsumsi = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',201)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_konsumsi = 0;
+			$jumlah_no_transaksi_konsumsi = 0;
+			$jumlah_deskripsi_konsumsi = 0;
+			$jumlah_debit_konsumsi = 0;
+			$jumlah_kredit_konsumsi = 0;
+
+			$total_kredit_konsumsi_all = 0;
+			$total_debit_konsumsi_all = 0;
+			$saldo_akhir_konsumsi_all = 0;
+
+			foreach ($konsumsi as $x){
+				$total_debit_konsumsi_all += $x['debit'];
+				$total_kredit_konsumsi_all += $x['kredit'];
+			}
+
+			$saldo_akhir_konsumsi_all = $total_debit_konsumsi_all - $total_kredit_konsumsi_all;
+			//konsumsi
+
+			//pengobatan
+			$pengobatan = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',121)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_pengobatan = 0;
+			$jumlah_no_transaksi_pengobatan = 0;
+			$jumlah_deskripsi_pengobatan = 0;
+			$jumlah_debit_pengobatan = 0;
+			$jumlah_kredit_pengobatan = 0;
+
+			$total_kredit_pengobatan_all = 0;
+			$total_debit_pengobatan_all = 0;
+			$saldo_akhir_pengobatan_all = 0;
+
+			foreach ($pengobatan as $x){
+				$total_debit_pengobatan_all += $x['debit'];
+				$total_kredit_pengobatan_all += $x['kredit'];
+			}
+
+			$saldo_akhir_pengobatan_all = $total_debit_pengobatan_all - $total_kredit_pengobatan_all;
+			//pengobatan
+
+			//thr_bonus
+			$thr_bonus = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',202)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_thr_bonus = 0;
+			$jumlah_no_transaksi_thr_bonus = 0;
+			$jumlah_deskripsi_thr_bonus = 0;
+			$jumlah_debit_thr_bonus = 0;
+			$jumlah_kredit_thr_bonus = 0;
+
+			$total_kredit_thr_bonus_all = 0;
+			$total_debit_thr_bonus_all = 0;
+			$saldo_akhir_thr_bonus_all = 0;
+
+			foreach ($thr_bonus as $x){
+				$total_debit_thr_bonus_all += $x['debit'];
+				$total_kredit_thr_bonus_all += $x['kredit'];
+			}
+
+			$saldo_akhir_thr_bonus_all = $total_debit_thr_bonus_all - $total_kredit_thr_bonus_all;
+			//thr_bonus
+
+			//bensin_tol_parkir
+			$bensin_tol_parkir = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',129)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_bensin_tol_parkir = 0;
+			$jumlah_no_transaksi_bensin_tol_parkir = 0;
+			$jumlah_deskripsi_bensin_tol_parkir = 0;
+			$jumlah_debit_bensin_tol_parkir = 0;
+			$jumlah_kredit_bensin_tol_parkir = 0;
+
+			$total_kredit_bensin_tol_parkir_all = 0;
+			$total_debit_bensin_tol_parkir_all = 0;
+			$saldo_akhir_bensin_tol_parkir_all = 0;
+
+			foreach ($bensin_tol_parkir as $x){
+				$total_debit_bensin_tol_parkir_all += $x['debit'];
+				$total_kredit_bensin_tol_parkir_all += $x['kredit'];
+			}
+
+			$saldo_akhir_bensin_tol_parkir_all = $total_debit_bensin_tol_parkir_all - $total_kredit_bensin_tol_parkir_all;
+			//bensin_tol_parkir
+
+			//perjalanan_dinas_penjualan
+			$perjalanan_dinas_penjualan = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',113)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_perjalanan_dinas_penjualan = 0;
+			$jumlah_no_transaksi_perjalanan_dinas_penjualan = 0;
+			$jumlah_deskripsi_perjalanan_dinas_penjualan = 0;
+			$jumlah_debit_perjalanan_dinas_penjualan = 0;
+			$jumlah_kredit_perjalanan_dinas_penjualan = 0;
+
+			$total_kredit_perjalanan_dinas_penjualan_all = 0;
+			$total_debit_perjalanan_dinas_penjualan_all = 0;
+			$saldo_akhir_perjalanan_dinas_penjualan_all = 0;
+
+			foreach ($perjalanan_dinas_penjualan as $x){
+				$total_debit_perjalanan_dinas_penjualan_all += $x['debit'];
+				$total_kredit_perjalanan_dinas_penjualan_all += $x['kredit'];
+			}
+
+			$saldo_akhir_perjalanan_dinas_penjualan_all = $total_debit_perjalanan_dinas_penjualan_all - $total_kredit_perjalanan_dinas_penjualan_all;
+			//perjalanan_dinas_penjualan
+
+			//pakaian_dinas
+			$pakaian_dinas = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',138)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_pakaian_dinas = 0;
+			$jumlah_no_transaksi_pakaian_dinas = 0;
+			$jumlah_deskripsi_pakaian_dinas = 0;
+			$jumlah_debit_pakaian_dinas = 0;
+			$jumlah_kredit_pakaian_dinas = 0;
+
+			$total_kredit_pakaian_dinas_all = 0;
+			$total_debit_pakaian_dinas_all = 0;
+			$saldo_akhir_pakaian_dinas_all = 0;
+
+			foreach ($pakaian_dinas as $x){
+				$total_debit_pakaian_dinas_all += $x['debit'];
+				$total_kredit_pakaian_dinas_all += $x['kredit'];
+			}
+
+			$saldo_akhir_pakaian_dinas_all = $total_debit_pakaian_dinas_all - $total_kredit_pakaian_dinas_all;
+			//pakaian_dinas
+
+			//beban_kirim
+			$beban_kirim = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',145)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_beban_kirim = 0;
+			$jumlah_no_transaksi_beban_kirim = 0;
+			$jumlah_deskripsi_beban_kirim = 0;
+			$jumlah_debit_beban_kirim = 0;
+			$jumlah_kredit_beban_kirim = 0;
+
+			$total_kredit_beban_kirim_all = 0;
+			$total_debit_beban_kirim_all = 0;
+			$saldo_akhir_beban_kirim_all = 0;
+
+			foreach ($beban_kirim as $x){
+				$total_debit_beban_kirim_all += $x['debit'];
+				$total_kredit_beban_kirim_all += $x['kredit'];
+			}
+
+			$saldo_akhir_beban_kirim_all = $total_debit_beban_kirim_all - $total_kredit_beban_kirim_all;
+			//beban_kirim
+
+			//pengujian_material_laboratorium
+			$pengujian_material_laboratorium = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',216)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_pengujian_material_laboratorium = 0;
+			$jumlah_no_transaksi_pengujian_material_laboratorium = 0;
+			$jumlah_deskripsi_pengujian_material_laboratorium = 0;
+			$jumlah_debit_pengujian_material_laboratorium = 0;
+			$jumlah_kredit_pengujian_material_laboratorium = 0;
+
+			$total_kredit_pengujian_material_laboratorium_all = 0;
+			$total_debit_pengujian_material_laboratorium_all = 0;
+			$saldo_akhir_pengujian_material_laboratorium_all = 0;
+
+			foreach ($pengujian_material_laboratorium as $x){
+				$total_debit_pengujian_material_laboratorium_all += $x['debit'];
+				$total_kredit_pengujian_material_laboratorium_all += $x['kredit'];
+			}
+
+			$saldo_akhir_pengujian_material_laboratorium_all = $total_debit_pengujian_material_laboratorium_all - $total_kredit_pengujian_material_laboratorium_all;
+			//pengujian_material_laboratorium
+
+			//listrik_internet
+			$listrik_internet = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',206)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_listrik_internet = 0;
+			$jumlah_no_transaksi_listrik_internet = 0;
+			$jumlah_deskripsi_listrik_internet = 0;
+			$jumlah_debit_listrik_internet = 0;
+			$jumlah_kredit_listrik_internet = 0;
+
+			$total_kredit_listrik_internet_all = 0;
+			$total_debit_listrik_internet_all = 0;
+			$saldo_akhir_listrik_internet_all = 0;
+
+			foreach ($listrik_internet as $x){
+				$total_debit_listrik_internet_all += $x['debit'];
+				$total_kredit_listrik_internet_all += $x['kredit'];
+			}
+
+			$saldo_akhir_listrik_internet_all = $total_debit_listrik_internet_all - $total_kredit_listrik_internet_all;
+			//listrik_internet
+
+			//keamanan_kebersihan
+			$keamanan_kebersihan = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',151)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_keamanan_kebersihan = 0;
+			$jumlah_no_transaksi_keamanan_kebersihan = 0;
+			$jumlah_deskripsi_keamanan_kebersihan = 0;
+			$jumlah_debit_keamanan_kebersihan = 0;
+			$jumlah_kredit_keamanan_kebersihan = 0;
+
+			$total_kredit_keamanan_kebersihan_all = 0;
+			$total_debit_keamanan_kebersihan_all = 0;
+			$saldo_akhir_keamanan_kebersihan_all = 0;
+
+			foreach ($keamanan_kebersihan as $x){
+				$total_debit_keamanan_kebersihan_all += $x['debit'];
+				$total_kredit_keamanan_kebersihan_all += $x['kredit'];
+			}
+
+			$saldo_akhir_keamanan_kebersihan_all = $total_debit_keamanan_kebersihan_all - $total_kredit_keamanan_kebersihan_all;
+			//keamanan_kebersihan
+
+			//perlengkapan_kantor
+			$perlengkapan_kantor = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',153)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_perlengkapan_kantor = 0;
+			$jumlah_no_transaksi_perlengkapan_kantor = 0;
+			$jumlah_deskripsi_perlengkapan_kantor = 0;
+			$jumlah_debit_perlengkapan_kantor = 0;
+			$jumlah_kredit_perlengkapan_kantor = 0;
+
+			$total_kredit_perlengkapan_kantor_all = 0;
+			$total_debit_perlengkapan_kantor_all = 0;
+			$saldo_akhir_perlengkapan_kantor_all = 0;
+
+			foreach ($perlengkapan_kantor as $x){
+				$total_debit_perlengkapan_kantor_all += $x['debit'];
+				$total_kredit_perlengkapan_kantor_all += $x['kredit'];
+			}
+
+			$saldo_akhir_perlengkapan_kantor_all = $total_debit_perlengkapan_kantor_all - $total_kredit_perlengkapan_kantor_all;
+			//perlengkapan_kantor
+
+			//beban_lain_lain
+			$beban_lain_lain = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',146)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_beban_lain_lain = 0;
+			$jumlah_no_transaksi_beban_lain_lain = 0;
+			$jumlah_deskripsi_beban_lain_lain = 0;
+			$jumlah_debit_beban_lain_lain = 0;
+			$jumlah_kredit_beban_lain_lain = 0;
+
+			$total_kredit_beban_lain_lain_all = 0;
+			$total_debit_beban_lain_lain_all = 0;
+			$saldo_akhir_beban_lain_lain_all = 0;
+
+			foreach ($beban_lain_lain as $x){
+				$total_debit_beban_lain_lain_all += $x['debit'];
+				$total_kredit_beban_lain_lain_all += $x['kredit'];
+			}
+
+			$saldo_akhir_beban_lain_lain_all = $total_debit_beban_lain_lain_all - $total_kredit_beban_lain_lain_all;
+			//beban_lain_lain
+
+			//biaya_adm_bank
+			$biaya_adm_bank = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',143)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_biaya_adm_bank = 0;
+			$jumlah_no_transaksi_biaya_adm_bank = 0;
+			$jumlah_deskripsi_biaya_adm_bank = 0;
+			$jumlah_debit_biaya_adm_bank = 0;
+			$jumlah_kredit_biaya_adm_bank = 0;
+
+			$total_kredit_biaya_adm_bank_all = 0;
+			$total_debit_biaya_adm_bank_all = 0;
+			$saldo_akhir_biaya_adm_bank_all = 0;
+
+			foreach ($biaya_adm_bank as $x){
+				$total_debit_biaya_adm_bank_all += $x['debit'];
+				$total_kredit_biaya_adm_bank_all += $x['kredit'];
+			}
+
+			$saldo_akhir_biaya_adm_bank_all = $total_debit_biaya_adm_bank_all - $total_kredit_biaya_adm_bank_all;
+			//biaya_adm_bank
+
+			//biaya_sewa_kendaraan
+			$biaya_sewa_kendaraan = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',157)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_biaya_sewa_kendaraan = 0;
+			$jumlah_no_transaksi_biaya_sewa_kendaraan = 0;
+			$jumlah_deskripsi_biaya_sewa_kendaraan = 0;
+			$jumlah_debit_biaya_sewa_kendaraan = 0;
+			$jumlah_kredit_biaya_sewa_kendaraan = 0;
+
+			$total_kredit_biaya_sewa_kendaraan_all = 0;
+			$total_debit_biaya_sewa_kendaraan_all = 0;
+			$saldo_akhir_biaya_sewa_kendaraan_all = 0;
+
+			foreach ($biaya_sewa_kendaraan as $x){
+				$total_debit_biaya_sewa_kendaraan_all += $x['debit'];
+				$total_kredit_biaya_sewa_kendaraan_all += $x['kredit'];
+			}
+
+			$saldo_akhir_biaya_sewa_kendaraan_all = $total_debit_biaya_sewa_kendaraan_all - $total_kredit_biaya_sewa_kendaraan_all;
+			//biaya_sewa_kendaraan
+
+			//beban_bunga
+			$beban_bunga = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',168)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_beban_bunga = 0;
+			$jumlah_no_transaksi_beban_bunga = 0;
+			$jumlah_deskripsi_beban_bunga = 0;
+			$jumlah_debit_beban_bunga = 0;
+			$jumlah_kredit_beban_bunga = 0;
+
+			$total_kredit_beban_bunga_all = 0;
+			$total_debit_beban_bunga_all = 0;
+			$saldo_akhir_beban_bunga_all = 0;
+
+			foreach ($beban_bunga as $x){
+				$total_debit_beban_bunga_all += $x['debit'];
+				$total_kredit_beban_bunga_all += $x['kredit'];
+			}
+
+			$saldo_akhir_beban_bunga_all = $total_debit_beban_bunga_all - $total_kredit_beban_bunga_all;
+			//beban_bunga
+
+			//bank_kantor_pusat
+			$bank_kantor_pusat = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',217)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_bank_kantor_pusat = 0;
+			$jumlah_no_transaksi_bank_kantor_pusat = 0;
+			$jumlah_deskripsi_bank_kantor_pusat = 0;
+			$jumlah_debit_bank_kantor_pusat = 0;
+			$jumlah_kredit_bank_kantor_pusat = 0;
+
+			$total_kredit_bank_kantor_pusat_all = 0;
+			$total_debit_bank_kantor_pusat_all = 0;
+			$saldo_akhir_bank_kantor_pusat_all = 0;
+
+			foreach ($bank_kantor_pusat as $x){
+				$total_debit_bank_kantor_pusat_all += $x['debit'];
+				$total_kredit_bank_kantor_pusat_all += $x['kredit'];
+			}
+
+			$saldo_akhir_bank_kantor_pusat_all = $total_debit_bank_kantor_pusat_all - $total_kredit_bank_kantor_pusat_all;
+			//bank_kantor_pusat
+			
 	        ?>
 
 			<tr class="table-active">
@@ -4248,9 +5018,9 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
 	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#kas" aria-expanded="false" aria-controls="kas">(1-10001) Kas</button></th>
-				<th width="15%" class="text-right"></th>
-				<th width="15%" class="text-right"></th>
-				<th width="15%" class="text-right"></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_all,0,',','.');?></th>
 	        </tr>
 		</table>
 		<table class="collapse table table-bordered" id="kas" width="100%">
@@ -4295,13 +5065,217 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- kas -->
 
+		<!-- bank_kantor_pusat -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bank_kantor_pusat" aria-expanded="false" aria-controls="bank_kantor_pusat">(1-10002) Bank Kantor Pusat</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_bank_kantor_pusat_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_bank_kantor_pusat_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_bank_kantor_pusat_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="bank_kantor_pusat" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($bank_kantor_pusat as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_bank_kantor_pusat = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_bank_kantor_pusat = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_bank_kantor_pusat = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_bank_kantor_pusat = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_bank_kantor_pusat = $x['debit'];} else
+				{$jumlah_debit_bank_kantor_pusat = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_bank_kantor_pusat = $x['kredit'];} else
+				{$jumlah_kredit_bank_kantor_pusat = $x['kredit'];}
+				
+				if ($jumlah_debit_bank_kantor_pusat==0) { $saldo_bank_kantor_pusat = $saldo_bank_kantor_pusat + $jumlah_debit_bank_kantor_pusat - $jumlah_kredit_bank_kantor_pusat;} else
+				{$saldo_bank_kantor_pusat = $saldo_bank_kantor_pusat + $jumlah_debit_bank_kantor_pusat;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_bank_kantor_pusat ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_bank_kantor_pusat ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_bank_kantor_pusat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_bank_kantor_pusat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_bank_kantor_pusat,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- bank_kantor_pusat -->
+
+		<!-- hutang_nindya -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_nindya" aria-expanded="false" aria-controls="hutang_nindya">(2-20114) Hutang PT. Nindya Karya (Persero) Div. Peralatan</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_nindya_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_nindya_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_nindya_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="hutang_nindya" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($hutang_nindya as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_hutang_nindya = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_hutang_nindya = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_hutang_nindya = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_hutang_nindya = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_hutang_nindya = $x['debit'];} else
+				{$jumlah_debit_hutang_nindya = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_hutang_nindya = $x['kredit'];} else
+				{$jumlah_kredit_hutang_nindya = $x['kredit'];}
+				
+				if ($jumlah_debit_hutang_nindya==0) { $saldo_hutang_nindya = $saldo_hutang_nindya + $jumlah_debit_hutang_nindya - $jumlah_kredit_hutang_nindya;} else
+				{$saldo_hutang_nindya = $saldo_hutang_nindya + $jumlah_debit_hutang_nindya;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_hutang_nindya ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_hutang_nindya ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_hutang_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_hutang_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_hutang_nindya,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- hutang_nindya -->
+
+		<!-- hutang_sinar -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_sinar" aria-expanded="false" aria-controls="hutang_sinar">(2-20116) Hutang PT. Sinar Bangun Mandiri</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_sinar_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_sinar_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_sinar_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="hutang_sinar" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($hutang_sinar as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_hutang_sinar = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_hutang_sinar = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_hutang_sinar = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_hutang_sinar = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_hutang_sinar = $x['debit'];} else
+				{$jumlah_debit_hutang_sinar = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_hutang_sinar = $x['kredit'];} else
+				{$jumlah_kredit_hutang_sinar = $x['kredit'];}
+				
+				if ($jumlah_debit_hutang_sinar==0) { $saldo_hutang_sinar = $saldo_hutang_sinar + $jumlah_debit_hutang_sinar - $jumlah_kredit_hutang_sinar;} else
+				{$saldo_hutang_sinar = $saldo_hutang_sinar + $jumlah_debit_hutang_sinar;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_hutang_sinar ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_hutang_sinar ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_hutang_sinar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_hutang_sinar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_hutang_sinar,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- hutang_sinar -->
+
+		<!-- hutang_lain_lain -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hutang_lain_lain" aria-expanded="false" aria-controls="hutang_lain_lain">2-20200) Hutang Lain Lain</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_hutang_lain_lain_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_hutang_lain_lain_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_hutang_lain_lain_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="hutang_lain_lain" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($hutang_lain_lain as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_hutang_lain_lain = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_hutang_lain_lain = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_hutang_lain_lain = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_hutang_lain_lain = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_hutang_lain_lain = $x['debit'];} else
+				{$jumlah_debit_hutang_lain_lain = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_hutang_lain_lain = $x['kredit'];} else
+				{$jumlah_kredit_hutang_lain_lain = $x['kredit'];}
+				
+				if ($jumlah_debit_hutang_lain_lain==0) { $saldo_hutang_lain_lain = $saldo_hutang_lain_lain + $jumlah_debit_hutang_lain_lain - $jumlah_kredit_hutang_lain_lain;} else
+				{$saldo_hutang_lain_lain = $saldo_hutang_lain_lain + $jumlah_debit_hutang_lain_lain;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_hutang_lain_lain ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_hutang_lain_lain ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_hutang_lain_lain,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_hutang_lain_lain,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_hutang_lain_lain,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- hutang_lain_lain -->
+
 		<!-- biaya_alat_truck_mixer -->
 		<table class="table table-bordered" width="100%">
 			<tr class="table-active">
 	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_alat_truck_mixer" aria-expanded="false" aria-controls="biaya_alat_truck_mixer">(5-50203) Biaya Alat Truck Mixer</button></th>
-				<th width="15%" class="text-right"></th>
-				<th width="15%" class="text-right"></th>
-				<th width="15%" class="text-right"></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_alat_truck_mixer_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_alat_truck_mixer_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_alat_truck_mixer_all,0,',','.');?></th>
 	        </tr>
 		</table>
 		<table class="collapse table table-bordered" id="biaya_alat_truck_mixer" width="100%">
@@ -4344,10 +5318,874 @@ class Reports extends CI_Controller {
 			}
 			?>
 	    </table>
-		<!-- kas -->
+		<!-- biaya_alat_truck_mixer -->
 
+		<!-- gaji -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#gaji" aria-expanded="false" aria-controls="gaji">(5-50501) Gaji</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_gaji_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_gaji_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_gaji_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="gaji" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($gaji as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_gaji = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_gaji = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
 
+				if ($x['dex_1']==0) { $jumlah_deskripsi_gaji = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_gaji = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
 
+				if ($x['debit']==0) { $jumlah_debit_gaji = $x['debit'];} else
+				{$jumlah_debit_gaji = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_gaji = $x['kredit'];} else
+				{$jumlah_kredit_gaji = $x['kredit'];}
+				
+				if ($jumlah_debit_gaji==0) { $saldo_gaji = $saldo_gaji + $jumlah_debit_gaji - $jumlah_kredit_gaji;} else
+				{$saldo_gaji = $saldo_gaji + $jumlah_debit_gaji;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_gaji ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_gaji ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_gaji,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_gaji,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_gaji,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- gaji -->
+
+		<!-- upah -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#upah" aria-expanded="false" aria-controls="upah">(5-50502) Upah</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_upah_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_upah_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_upah_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="upah" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($upah as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_upah = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_upah = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_upah = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_upah = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_upah = $x['debit'];} else
+				{$jumlah_debit_upah = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_upah = $x['kredit'];} else
+				{$jumlah_kredit_upah = $x['kredit'];}
+				
+				if ($jumlah_debit_upah==0) { $saldo_upah = $saldo_upah + $jumlah_debit_upah - $jumlah_kredit_upah;} else
+				{$saldo_upah = $saldo_upah + $jumlah_debit_upah;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_upah ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_upah ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_upah,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_upah,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_upah,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- upah -->
+
+		<!-- konsumsi -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#konsumsi" aria-expanded="false" aria-controls="konsumsi">(5-50503) Konsumsi</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_konsumsi_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_konsumsi_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_konsumsi_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="konsumsi" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($konsumsi as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_konsumsi = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_konsumsi = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_konsumsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_konsumsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_konsumsi = $x['debit'];} else
+				{$jumlah_debit_konsumsi = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_konsumsi = $x['kredit'];} else
+				{$jumlah_kredit_konsumsi = $x['kredit'];}
+				
+				if ($jumlah_debit_konsumsi==0) { $saldo_konsumsi = $saldo_konsumsi + $jumlah_debit_konsumsi - $jumlah_kredit_konsumsi;} else
+				{$saldo_konsumsi = $saldo_konsumsi + $jumlah_debit_konsumsi;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_konsumsi ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_konsumsi ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_konsumsi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_konsumsi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_konsumsi,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- konsumsi -->
+
+		<!-- pengobatan -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengobatan" aria-expanded="false" aria-controls="pengobatan">(5-50505) Pengobatan</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_pengobatan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pengobatan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pengobatan_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="pengobatan" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($pengobatan as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_pengobatan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_pengobatan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_pengobatan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_pengobatan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_pengobatan = $x['debit'];} else
+				{$jumlah_debit_pengobatan = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_pengobatan = $x['kredit'];} else
+				{$jumlah_kredit_pengobatan = $x['kredit'];}
+				
+				if ($jumlah_debit_pengobatan==0) { $saldo_pengobatan = $saldo_pengobatan + $jumlah_debit_pengobatan - $jumlah_kredit_pengobatan;} else
+				{$saldo_pengobatan = $saldo_pengobatan + $jumlah_debit_pengobatan;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_pengobatan ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_pengobatan ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_pengobatan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_pengobatan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_pengobatan,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- pengobatan -->
+
+		<!-- thr_bonus -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#thr_bonus" aria-expanded="false" aria-controls="thr_bonus">(5-50506) THR & Bonus</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_thr_bonus_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_thr_bonus_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_thr_bonus_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="thr_bonus" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($thr_bonus as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_thr_bonus = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_thr_bonus = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_thr_bonus = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_thr_bonus = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_thr_bonus = $x['debit'];} else
+				{$jumlah_debit_thr_bonus = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_thr_bonus = $x['kredit'];} else
+				{$jumlah_kredit_thr_bonus = $x['kredit'];}
+				
+				if ($jumlah_debit_thr_bonus==0) { $saldo_thr_bonus = $saldo_thr_bonus + $jumlah_debit_thr_bonus - $jumlah_kredit_thr_bonus;} else
+				{$saldo_thr_bonus = $saldo_thr_bonus + $jumlah_debit_thr_bonus;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_thr_bonus ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_thr_bonus ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_thr_bonus,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_thr_bonus,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_thr_bonus,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- thr_bonus -->
+
+		<!-- bensin_tol_parkir -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bensin_tol_parkir" aria-expanded="false" aria-controls="bensin_tol_parkir">(5-50508) Bensin Tol dan Parkir - Umum</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_bensin_tol_parkir_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_bensin_tol_parkir_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_bensin_tol_parkir_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="bensin_tol_parkir" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($bensin_tol_parkir as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_bensin_tol_parkir = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_bensin_tol_parkir = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_bensin_tol_parkir = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_bensin_tol_parkir = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_bensin_tol_parkir = $x['debit'];} else
+				{$jumlah_debit_bensin_tol_parkir = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_bensin_tol_parkir = $x['kredit'];} else
+				{$jumlah_kredit_bensin_tol_parkir = $x['kredit'];}
+				
+				if ($jumlah_debit_bensin_tol_parkir==0) { $saldo_bensin_tol_parkir = $saldo_bensin_tol_parkir + $jumlah_debit_bensin_tol_parkir - $jumlah_kredit_bensin_tol_parkir;} else
+				{$saldo_bensin_tol_parkir = $saldo_bensin_tol_parkir + $jumlah_debit_bensin_tol_parkir;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_bensin_tol_parkir ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_bensin_tol_parkir ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_bensin_tol_parkir,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_bensin_tol_parkir,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_bensin_tol_parkir,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- bensin_tol_parkir -->
+
+		<!-- perjalanan_dinas_penjualan -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perjalanan_dinas_penjualan" aria-expanded="false" aria-controls="perjalanan_dinas_penjualan">(5-50509) Perjalanan Dinas - Penjualan</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_perjalanan_dinas_penjualan_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="perjalanan_dinas_penjualan" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($perjalanan_dinas_penjualan as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_perjalanan_dinas_penjualan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_perjalanan_dinas_penjualan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_perjalanan_dinas_penjualan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_perjalanan_dinas_penjualan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_perjalanan_dinas_penjualan = $x['debit'];} else
+				{$jumlah_debit_perjalanan_dinas_penjualan = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_perjalanan_dinas_penjualan = $x['kredit'];} else
+				{$jumlah_kredit_perjalanan_dinas_penjualan = $x['kredit'];}
+				
+				if ($jumlah_debit_perjalanan_dinas_penjualan==0) { $saldo_perjalanan_dinas_penjualan = $saldo_perjalanan_dinas_penjualan + $jumlah_debit_perjalanan_dinas_penjualan - $jumlah_kredit_perjalanan_dinas_penjualan;} else
+				{$saldo_perjalanan_dinas_penjualan = $saldo_perjalanan_dinas_penjualan + $jumlah_debit_perjalanan_dinas_penjualan;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_perjalanan_dinas_penjualan ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_perjalanan_dinas_penjualan ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_perjalanan_dinas_penjualan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_perjalanan_dinas_penjualan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_perjalanan_dinas_penjualan,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- perjalanan_dinas_penjualan -->
+
+		<!-- pakaian_dinas -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pakaian_dinas" aria-expanded="false" aria-controls="pakaian_dinas">(5-50510) Pakaian Dinas & K3</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_pakaian_dinas_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pakaian_dinas_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pakaian_dinas_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="pakaian_dinas" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($pakaian_dinas as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_pakaian_dinas = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_pakaian_dinas = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_pakaian_dinas = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_pakaian_dinas = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_pakaian_dinas = $x['debit'];} else
+				{$jumlah_debit_pakaian_dinas = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_pakaian_dinas = $x['kredit'];} else
+				{$jumlah_kredit_pakaian_dinas = $x['kredit'];}
+				
+				if ($jumlah_debit_pakaian_dinas==0) { $saldo_pakaian_dinas = $saldo_pakaian_dinas + $jumlah_debit_pakaian_dinas - $jumlah_kredit_pakaian_dinas;} else
+				{$saldo_pakaian_dinas = $saldo_pakaian_dinas + $jumlah_debit_pakaian_dinas;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_pakaian_dinas ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_pakaian_dinas ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_pakaian_dinas,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_pakaian_dinas,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_pakaian_dinas,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- pakaian_dinas -->
+
+		<!-- beban_kirim -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_kirim" aria-expanded="false" aria-controls="beban_kirim">(5-50511) Beban Kirim</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_kirim_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_kirim_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_kirim_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="beban_kirim" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($beban_kirim as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_beban_kirim = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_beban_kirim = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_beban_kirim = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_beban_kirim = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_beban_kirim = $x['debit'];} else
+				{$jumlah_debit_beban_kirim = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_beban_kirim = $x['kredit'];} else
+				{$jumlah_kredit_beban_kirim = $x['kredit'];}
+				
+				if ($jumlah_debit_beban_kirim==0) { $saldo_beban_kirim = $saldo_beban_kirim + $jumlah_debit_beban_kirim - $jumlah_kredit_beban_kirim;} else
+				{$saldo_beban_kirim = $saldo_beban_kirim + $jumlah_debit_beban_kirim;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_beban_kirim ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_beban_kirim ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_beban_kirim,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_beban_kirim,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_beban_kirim,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- beban_kirim -->
+
+		<!-- pengujian_material_laboratorium -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pengujian_material_laboratorium" aria-expanded="false" aria-controls="pengujian_material_laboratorium">(5-50512) Pengujian Material & Laboratorium</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_pengujian_material_laboratorium_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_pengujian_material_laboratorium_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_pengujian_material_laboratorium_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="pengujian_material_laboratorium" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($pengujian_material_laboratorium as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_pengujian_material_laboratorium = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_pengujian_material_laboratorium = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_pengujian_material_laboratorium = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_pengujian_material_laboratorium = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_pengujian_material_laboratorium = $x['debit'];} else
+				{$jumlah_debit_pengujian_material_laboratorium = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_pengujian_material_laboratorium = $x['kredit'];} else
+				{$jumlah_kredit_pengujian_material_laboratorium = $x['kredit'];}
+				
+				if ($jumlah_debit_pengujian_material_laboratorium==0) { $saldo_pengujian_material_laboratorium = $saldo_pengujian_material_laboratorium + $jumlah_debit_pengujian_material_laboratorium - $jumlah_kredit_pengujian_material_laboratorium;} else
+				{$saldo_pengujian_material_laboratorium = $saldo_pengujian_material_laboratorium + $jumlah_debit_pengujian_material_laboratorium;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_pengujian_material_laboratorium ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_pengujian_material_laboratorium ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_pengujian_material_laboratorium,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_pengujian_material_laboratorium,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_pengujian_material_laboratorium,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- pengujian_material_laboratorium -->
+
+		<!-- listrik_internet -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#listrik_internet" aria-expanded="false" aria-controls="listrik_internet">5-50513) Listrik & Internet</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_listrik_internet_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_listrik_internet_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_listrik_internet_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="listrik_internet" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($listrik_internet as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_listrik_internet = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_listrik_internet = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_listrik_internet = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_listrik_internet = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_listrik_internet = $x['debit'];} else
+				{$jumlah_debit_listrik_internet = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_listrik_internet = $x['kredit'];} else
+				{$jumlah_kredit_listrik_internet = $x['kredit'];}
+				
+				if ($jumlah_debit_listrik_internet==0) { $saldo_listrik_internet = $saldo_listrik_internet + $jumlah_debit_listrik_internet - $jumlah_kredit_listrik_internet;} else
+				{$saldo_listrik_internet = $saldo_listrik_internet + $jumlah_debit_listrik_internet;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_listrik_internet ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_listrik_internet ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_listrik_internet,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_listrik_internet,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_listrik_internet,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- listrik_internet -->
+
+		<!-- keamanan_kebersihan -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#keamanan_kebersihan" aria-expanded="false" aria-controls="keamanan_kebersihan">(5-50515) Keamanan dan Kebersihan</button></button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_keamanan_kebersihan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_keamanan_kebersihan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_keamanan_kebersihan_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="keamanan_kebersihan" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($keamanan_kebersihan as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_keamanan_kebersihan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_keamanan_kebersihan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_keamanan_kebersihan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_keamanan_kebersihan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_keamanan_kebersihan = $x['debit'];} else
+				{$jumlah_debit_keamanan_kebersihan = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_keamanan_kebersihan = $x['kredit'];} else
+				{$jumlah_kredit_keamanan_kebersihan = $x['kredit'];}
+				
+				if ($jumlah_debit_keamanan_kebersihan==0) { $saldo_keamanan_kebersihan = $saldo_keamanan_kebersihan + $jumlah_debit_keamanan_kebersihan - $jumlah_kredit_keamanan_kebersihan;} else
+				{$saldo_keamanan_kebersihan = $saldo_keamanan_kebersihan + $jumlah_debit_keamanan_kebersihan;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_keamanan_kebersihan ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_keamanan_kebersihan ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_keamanan_kebersihan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_keamanan_kebersihan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_keamanan_kebersihan,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- keamanan_kebersihan -->
+
+		<!-- perlengkapan_kantor -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#perlengkapan_kantor" aria-expanded="false" aria-controls="perlengkapan_kantor">(5-50516) Perlengkapan Kantor</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_perlengkapan_kantor_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_perlengkapan_kantor_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_perlengkapan_kantor_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="perlengkapan_kantor" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($perlengkapan_kantor as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_perlengkapan_kantor = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_perlengkapan_kantor = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_perlengkapan_kantor = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_perlengkapan_kantor = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_perlengkapan_kantor = $x['debit'];} else
+				{$jumlah_debit_perlengkapan_kantor = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_perlengkapan_kantor = $x['kredit'];} else
+				{$jumlah_kredit_perlengkapan_kantor = $x['kredit'];}
+				
+				if ($jumlah_debit_perlengkapan_kantor==0) { $saldo_perlengkapan_kantor = $saldo_perlengkapan_kantor + $jumlah_debit_perlengkapan_kantor - $jumlah_kredit_perlengkapan_kantor;} else
+				{$saldo_perlengkapan_kantor = $saldo_perlengkapan_kantor + $jumlah_debit_perlengkapan_kantor;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_perlengkapan_kantor ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_perlengkapan_kantor ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_perlengkapan_kantor,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_perlengkapan_kantor,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_perlengkapan_kantor,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- perlengkapan_kantor -->
+
+		<!-- beban_lain_lain -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_lain_lain" aria-expanded="false" aria-controls="beban_lain_lain">(5-50517) Beban Lain-Lain</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_lain_lain_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_lain_lain_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_lain_lain_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="beban_lain_lain" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($beban_lain_lain as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_beban_lain_lain = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_beban_lain_lain = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_beban_lain_lain = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_beban_lain_lain = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_beban_lain_lain = $x['debit'];} else
+				{$jumlah_debit_beban_lain_lain = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_beban_lain_lain = $x['kredit'];} else
+				{$jumlah_kredit_beban_lain_lain = $x['kredit'];}
+				
+				if ($jumlah_debit_beban_lain_lain==0) { $saldo_beban_lain_lain = $saldo_beban_lain_lain + $jumlah_debit_beban_lain_lain - $jumlah_kredit_beban_lain_lain;} else
+				{$saldo_beban_lain_lain = $saldo_beban_lain_lain + $jumlah_debit_beban_lain_lain;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_beban_lain_lain ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_beban_lain_lain ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_beban_lain_lain,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_beban_lain_lain,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_beban_lain_lain,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- beban_lain_lain -->
+
+		<!-- biaya_adm_bank -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_adm_bank" aria-expanded="false" aria-controls="biaya_adm_bank">(5-50518) Beban Adm Bank</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_adm_bank_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_adm_bank_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_adm_bank_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="biaya_adm_bank" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($biaya_adm_bank as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_biaya_adm_bank = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_biaya_adm_bank = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_biaya_adm_bank = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_biaya_adm_bank = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_biaya_adm_bank = $x['debit'];} else
+				{$jumlah_debit_biaya_adm_bank = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_biaya_adm_bank = $x['kredit'];} else
+				{$jumlah_kredit_biaya_adm_bank = $x['kredit'];}
+				
+				if ($jumlah_debit_biaya_adm_bank==0) { $saldo_biaya_adm_bank = $saldo_biaya_adm_bank + $jumlah_debit_biaya_adm_bank - $jumlah_kredit_biaya_adm_bank;} else
+				{$saldo_biaya_adm_bank = $saldo_biaya_adm_bank + $jumlah_debit_biaya_adm_bank;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_biaya_adm_bank ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_biaya_adm_bank ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_biaya_adm_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_biaya_adm_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_biaya_adm_bank,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- biaya_adm_bank -->
+
+		<!-- biaya_sewa_kendaraan -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_sewa_kendaraan" aria-expanded="false" aria-controls="biaya_sewa_kendaraan">(5-50520) Biaya Sewa - Kendaraan</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_biaya_sewa_kendaraan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_biaya_sewa_kendaraan_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_biaya_sewa_kendaraan_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="biaya_sewa_kendaraan" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($biaya_sewa_kendaraan as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_biaya_sewa_kendaraan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_biaya_sewa_kendaraan = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_biaya_sewa_kendaraan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_biaya_sewa_kendaraan = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_biaya_sewa_kendaraan = $x['debit'];} else
+				{$jumlah_debit_biaya_sewa_kendaraan = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_biaya_sewa_kendaraan = $x['kredit'];} else
+				{$jumlah_kredit_biaya_sewa_kendaraan = $x['kredit'];}
+				
+				if ($jumlah_debit_biaya_sewa_kendaraan==0) { $saldo_biaya_sewa_kendaraan = $saldo_biaya_sewa_kendaraan + $jumlah_debit_biaya_sewa_kendaraan - $jumlah_kredit_biaya_sewa_kendaraan;} else
+				{$saldo_biaya_sewa_kendaraan = $saldo_biaya_sewa_kendaraan + $jumlah_debit_biaya_sewa_kendaraan;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_biaya_sewa_kendaraan ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_biaya_sewa_kendaraan ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_biaya_sewa_kendaraan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_biaya_sewa_kendaraan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_biaya_sewa_kendaraan,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- biaya_sewa_kendaraan -->
+
+		<!-- beban_bunga -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#beban_bunga" aria-expanded="false" aria-controls="beban_bunga">(8-80000) Beban Bunga</button></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_debit_beban_bunga_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($total_kredit_beban_bunga_all,0,',','.');?></th>
+				<th width="15%" class="text-right"><?php echo number_format($saldo_akhir_beban_bunga_all,0,',','.');?></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="beban_bunga" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($beban_bunga as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_beban_bunga = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_beban_bunga = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
+
+				if ($x['dex_1']==0) { $jumlah_deskripsi_beban_bunga = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_beban_bunga = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit']==0) { $jumlah_debit_beban_bunga = $x['debit'];} else
+				{$jumlah_debit_beban_bunga = $x['debit'];}
+
+				if ($x['kredit']==0) { $jumlah_kredit_beban_bunga = $x['kredit'];} else
+				{$jumlah_kredit_beban_bunga = $x['kredit'];}
+				
+				if ($jumlah_debit_beban_bunga==0) { $saldo_beban_bunga = $saldo_beban_bunga + $jumlah_debit_beban_bunga - $jumlah_kredit_beban_bunga;} else
+				{$saldo_beban_bunga = $saldo_beban_bunga + $jumlah_debit_beban_bunga;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_beban_bunga ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_beban_bunga ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_beban_bunga,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_beban_bunga,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_beban_bunga,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- beban_bunga -->
 
 		<?php
 	}
