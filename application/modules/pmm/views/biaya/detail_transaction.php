@@ -56,7 +56,7 @@
                                             </tr>
                                             <tr>
                                                 <th>TRANSFER</th>
-                                                <td class="text-center"><a target="_blank" href="<?= base_url("pmm/finan/detailTransfer/".$row['id_3']) ?>"><b><?= $row["no_trx_4"] ?></b></a></td>
+                                                <td class="text-center"><a target="_blank" href="<?= base_url("pmm/finance/detailTransfer/".$row['id_4']) ?>"><b><?= $row["no_trx_4"] ?></b></a></td>
                                             </tr>
                                         </table>
 

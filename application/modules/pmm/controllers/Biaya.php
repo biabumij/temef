@@ -307,7 +307,7 @@ class Biaya extends CI_Controller {
                     $this->db->delete('transactions',array('id'=>$dt['transaction_id']));
                 }
             }
-            $this->db->delete('transactions',array('id'=>$biaya['transaction_id']));
+            $this->db->delete('transactions',array('biaya_id'=>$biaya['id']));
             $this->db->delete('pmm_detail_biaya',array('biaya_id'=>$id));
             $this->db->delete('pmm_lampiran_biaya',array('biaya_id'=>$id));
             $this->db->delete('pmm_biaya',array('id'=>$id));
@@ -872,7 +872,7 @@ class Biaya extends CI_Controller {
             $this->db->select('t.*, b.*, j.*, tu.*, tf.*, b.id as id_1, j.id as id_2, tu.id as id_3, tf.id as id_4, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4');
             $this->db->join('pmm_biaya b','t.biaya_id = b.id','left');
             $this->db->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left');
-            $this->db->join('pmm_terima_uang tu','t.terima_uang_id = tu.id','left');
+            $this->db->join('pmm_terima_uang tu','t.terima_id = tu.id','left');
             $this->db->join('pmm_transfer tf','t.transfer_id = tf.id','left');
             $this->db->where('t.id',$id);
             $query = $this->db->get('transactions t');

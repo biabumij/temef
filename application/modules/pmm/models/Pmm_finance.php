@@ -30,7 +30,7 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => $biaya_id,
             'jurnal_id' => 0,
-            'terima_uang_id' => 0,
+            'terima_id' => 0,
             'transfer_id' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'BIAYA'
@@ -43,7 +43,7 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => $jurnal_id,
-            'terima_uang_id' => 0,
+            'terima_id' => 0,
             'transfer_id' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'JURNAL UMUM'
@@ -56,7 +56,7 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => 0,
-            'terima_uang_id' => $terima_id,
+            'terima_id' => $terima_id,
             'transfer_id' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'TERIMA UANG'
@@ -69,7 +69,7 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => 0,
-            'terima_uang_id' => 0,
+            'terima_id' => 0,
             'transfer_id' => $transfer_id,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'TRANSFER'
