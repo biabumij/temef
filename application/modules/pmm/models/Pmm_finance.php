@@ -25,14 +25,54 @@ class Pmm_finance extends CI_Model {
     }
 
 
-    function InsertTransactions($akun,$description,$debit,$kredit)
+    function InsertTransactions($biaya_id,$tanggal_transaksi)
     {
         $data = array(
-            'coa_id' => $akun,
-            'description' => $description,
-            'debit' => $debit,
-            'credit' => $kredit,
-            'created_by' => $this->session->userdata('admin_id')
+            'biaya_id' => $biaya_id,
+            'jurnal_id' => 0,
+            'terima_uang_id' => 0,
+            'transfer_id' => 0,
+            'tanggal_transaksi' => $tanggal_transaksi,
+            'transaksi' => 'BIAYA'
+        );
+        $this->db->insert('transactions',$data);
+    }
+
+    function InsertTransactionsJurnal($jurnal_id,$tanggal_transaksi)
+    {
+        $data = array(
+            'biaya_id' => 0,
+            'jurnal_id' => $jurnal_id,
+            'terima_uang_id' => 0,
+            'transfer_id' => 0,
+            'tanggal_transaksi' => $tanggal_transaksi,
+            'transaksi' => 'JURNAL UMUM'
+        );
+        $this->db->insert('transactions',$data);
+    }
+
+    function InsertTransactionsTerimaUang($terima_id,$tanggal_transaksi)
+    {
+        $data = array(
+            'biaya_id' => 0,
+            'jurnal_id' => 0,
+            'terima_uang_id' => $terima_id,
+            'transfer_id' => 0,
+            'tanggal_transaksi' => $tanggal_transaksi,
+            'transaksi' => 'TERIMA UANG'
+        );
+        $this->db->insert('transactions',$data);
+    }
+
+    function InsertTransactionsTransfer($transfer_id,$tanggal_transaksi)
+    {
+        $data = array(
+            'biaya_id' => 0,
+            'jurnal_id' => 0,
+            'terima_uang_id' => 0,
+            'transfer_id' => $transfer_id,
+            'tanggal_transaksi' => $tanggal_transaksi,
+            'transaksi' => 'TRANSFER'
         );
         $this->db->insert('transactions',$data);
     }
@@ -186,19 +226,19 @@ class Pmm_finance extends CI_Model {
     }
 
 
-    function GetSaldoKasBank($id)
-    {
-        $output = 0;
+    //function GetSaldoKasBank($id)
+    //{
+    //    $output = 0;
 
-        $this->db->select('(SUM(debit) - SUM(credit)) as total');
-        $this->db->where('coa_id',$id);
-        $query = $this->db->get('transactions')->row_array();
+    //    $this->db->select('(SUM(debit) - SUM(credit)) as total');
+    //    $this->db->where('coa_id',$id);
+    //    $query = $this->db->get('transactions')->row_array();
 
         // print_r($query);
-        if(!empty($query['total'])){
-            $output = $query['total'];
-        }
-        return $output;
-    }
+    //    if(!empty($query['total'])){
+    //        $output = $query['total'];
+    //    }
+    //    return $output;
+    //}
 
 }

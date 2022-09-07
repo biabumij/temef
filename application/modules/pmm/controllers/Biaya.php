@@ -129,10 +129,7 @@ class Biaya extends CI_Controller {
         $bayar_dari = $this->input->post('bayar_dari');
         $jumlah_biaya = $this->input->post('jumlah_biaya');
         $nomor_transaksi = $this->input->post('nomor_transaksi');
-
-        $description_trans = 'Biaya Nomor '.$nomor_transaksi;
-        $this->pmm_finance->InsertTransactions($bayar_dari,$description_trans,0,$jumlah_biaya);
-        $transaction_id = $this->db->insert_id();
+        $tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
         $arr_insert = array(
         	'bayar_dari' => $bayar_dari,
@@ -143,13 +140,15 @@ class Biaya extends CI_Controller {
             'total' => $jumlah_biaya,
             'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
-            'transaction_id' => $transaction_id,
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
         );
         
         if($this->db->insert('pmm_biaya',$arr_insert)){
             $biaya_id = $this->db->insert_id();
+
+            $this->pmm_finance->InsertTransactions($biaya_id,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
             if (!file_exists('uploads/biaya')) {
 			    mkdir('uploads/biaya', 0777, true);
@@ -199,10 +198,6 @@ class Biaya extends CI_Controller {
             		$jumlah = str_replace(',', '.', $jumlah);
                     
                     if(!empty($product)){
-
-                        // Insert COA
-                        $this->pmm_finance->InsertTransactions($product,$deskripsi,$jumlah,0);
-                        $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
     		        		'biaya_id' => $biaya_id,
@@ -869,6 +864,27 @@ class Biaya extends CI_Controller {
 		}
 		echo json_encode($output);
 	}
+
+    public function detail_transaction($id)
+    {
+        $check = $this->m_admin->check_login();
+        if($check == true){     
+
+            $this->db->select('t.*, b.*, j.*, tu.*, tf.*, b.id as id_1, j.id as id_2, tu.id as id_3, tf.id as id_4, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4');
+            $this->db->join('pmm_biaya b','t.biaya_id = b.id','left');
+            $this->db->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left');
+            $this->db->join('pmm_terima_uang tu','t.terima_uang_id = tu.id','left');
+            $this->db->join('pmm_transfer tf','t.transfer_id = tf.id','left');
+            $this->db->where('t.id',$id);
+            $query = $this->db->get('transactions t');
+            $data['row'] = $query->row_array();
+          
+            $this->load->view('pmm/biaya/detail_transaction',$data);
+            
+        }else {
+            redirect('admin');
+        }
+    }
 
 }
 

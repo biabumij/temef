@@ -166,8 +166,8 @@ class Finance extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				// $row['coa'] = '' 
-				$saldo = $this->pmm_finance->GetSaldoKasBank($row['id']);
-				$row['saldo'] = $this->filter->Rupiah($saldo);
+				//$saldo = $this->pmm_finance->GetSaldoKasBank($row['id']);
+				//$row['saldo'] = $this->filter->Rupiah($saldo);
 				$row['saldo_bank'] = 0;
 				$row['hasil_pekerjaan'] = 0;
 				$row['action'] = '-';
@@ -1094,13 +1094,7 @@ class Finance extends CI_Controller {
 		$terima_dari = $this->input->post('terima_dari');
 		$setor_ke = $this->input->post('setor_ke');
 		$nomor_transaksi = $this->input->post('nomor_transaksi');
-		$transaction_id = '';
-
-        $this->pmm_finance->InsertTransactions($terima_dari,$nomor_transaksi,0,$jumlah);
-        $transaction_id .= $this->db->insert_id();
-
-        $this->pmm_finance->InsertTransactions($setor_ke,$nomor_transaksi,$jumlah,0);
-        $transaction_id .= ','.$this->db->insert_id();
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
 		$arr_insert = array(
         	'terima_dari' => $terima_dari,
@@ -1110,13 +1104,15 @@ class Finance extends CI_Controller {
 			'tanggal_transaksi' => date('Y-m-d',strtotime($this->input->post('tanggal_transaksi'))),
 			'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
-        	'transaction_id' => $transaction_id,
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
 		);
 		
 		if($this->db->insert('pmm_terima_uang',$arr_insert)){
 			$terima_id = $this->db->insert_id();
+
+			$this->pmm_finance->InsertTransactionsTerimaUang($terima_id,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
 			if (!file_exists('uploads/terima_uang')) {
 			    mkdir('uploads/terima_uang', 0777, true);
@@ -1221,13 +1217,8 @@ class Finance extends CI_Controller {
 		$transfer_dari = $this->input->post('transfer_dari');
 		$setor_ke = $this->input->post('setor_ke');
 		$nomor_transaksi = $this->input->post('nomor_transaksi');
-		$transaction_id = '';
-
-		$this->pmm_finance->InsertTransactions($transfer_dari,$nomor_transaksi,0,$jumlah);
-        $transaction_id .= $this->db->insert_id();
-
-        $this->pmm_finance->InsertTransactions($setor_ke,$nomor_transaksi,$jumlah,0);
-        $transaction_id .= ','.$this->db->insert_id();
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
+	
 
 		$arr_insert = array(
         	'transfer_dari' => $transfer_dari,
@@ -1237,13 +1228,15 @@ class Finance extends CI_Controller {
 			'tanggal_transaksi' => date('Y-m-d',strtotime($this->input->post('tanggal_transaksi'))),
 			'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
-        	'transaction_id' => $transaction_id,
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
 		);
 		
 		if($this->db->insert('pmm_transfer',$arr_insert)){
 			$transfer_id = $this->db->insert_id();
+
+			$this->pmm_finance->InsertTransactionsTransfer($transfer_id,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
 
 			if (!file_exists('uploads/transfer')) {
@@ -1328,6 +1321,8 @@ class Finance extends CI_Controller {
 		$data = array();
 
 		$this->db->select('pmm_terima_uang.*');
+		$this->db->order_by('tanggal_transaksi','desc');
+		$this->db->order_by('id','desc');
 		$query = $this->db->get("pmm_terima_uang");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {

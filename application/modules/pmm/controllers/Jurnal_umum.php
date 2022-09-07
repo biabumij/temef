@@ -110,6 +110,7 @@ class Jurnal_umum extends CI_Controller {
         $this->db->trans_start(); # Starting Transaction
         $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
         $total = $this->input->post('jumlah_debit') + $this->input->post('jumlah_kredit');
+        $tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
         $arr_insert = array(
             'nomor_transaksi' => $this->input->post('nomor_transaksi'),
@@ -126,6 +127,9 @@ class Jurnal_umum extends CI_Controller {
 
         if($this->db->insert('pmm_jurnal_umum',$arr_insert)){
             $jurnal_id = $this->db->insert_id();
+
+            $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
             if (!file_exists('uploads/jurnal_umum')) {
 			    mkdir('uploads/jurnal_umum', 0777, true);
@@ -178,9 +182,6 @@ class Jurnal_umum extends CI_Controller {
                     $kredit = str_replace(',', '.', $kredit);
                     
                     if(!empty($product)){
-
-                        $this->pmm_finance->InsertTransactions($product,$deskripsi,$debit,$kredit);
-                        $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
                             'jurnal_id' => $jurnal_id,
