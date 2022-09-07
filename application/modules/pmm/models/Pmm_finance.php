@@ -25,35 +25,39 @@ class Pmm_finance extends CI_Model {
     }
 
 
-    function InsertTransactions($biaya_id,$product,$tanggal_transaksi)
+    function InsertTransactions($biaya_id,$product,$jumlah,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => $biaya_id,
-            'akun' => $product,
             'jurnal_id' => 0,
             'terima_id' => 0,
             'transfer_id' => 0,
+            'akun' => $product,
+            'debit' => $jumlah,
+            'kredit' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'BIAYA'
         );
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsJurnal($jurnal_id,$product,$tanggal_transaksi)
+    function InsertTransactionsJurnal($jurnal_id,$product,$kredit,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => $jurnal_id,
-            'akun' => $product,
             'terima_id' => 0,
             'transfer_id' => 0,
+            'akun' => $product,
+            'debit' => 0,
+            'kredit' => $kredit,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'JURNAL UMUM'
         );
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsTerima($terima_id,$setor_ke,$tanggal_transaksi)
+    function InsertTransactionsTerima($terima_id,$jumlah,$setor_ke,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => 0,
@@ -61,6 +65,8 @@ class Pmm_finance extends CI_Model {
             'terima_id' => $terima_id,
             'transfer_id' => 0,
             'akun' => $setor_ke,
+            'debit' => $jumlah,
+            'kredit' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
             'transaksi' => 'TERIMA UANG'
         );
@@ -75,7 +81,8 @@ class Pmm_finance extends CI_Model {
             'terima_id' => 0,
             'transfer_id' => $transfer_id,
             'akun' => $setor_ke,
-            'tanggal_transaksi' => $tanggal_transaksi,
+            'debit' => 0,
+            'kredit' => $jumlah,
             'transaksi' => 'TRANSFER'
         );
         $this->db->insert('transactions',$data);

@@ -180,7 +180,7 @@ class Jurnal_umum extends CI_Controller {
                     
                     if(!empty($product)){
 
-                        $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$product,$tanggal_transaksi);
+                        $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$product,$debit,$kredit,$tanggal_transaksi);
                         $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(

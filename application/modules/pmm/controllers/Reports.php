@@ -4189,7 +4189,7 @@ class Reports extends CI_Controller {
 			<?php
 
 			//kas
-			$transactions = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, pdj.deskripsi as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, pdj.debit as debit_2, tu.jumlah as debit_3, pdj.kredit as kredit_1, tf.jumlah as kredit_2')
+			$transactions = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, tu.jumlah as debit_3, pdj.debit as kredit_1, tf.jumlah as kredit_2')
 			->from('transactions t ')
 			->join('pmm_biaya b','t.biaya_id = b.id','left')
 			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
@@ -4211,8 +4211,30 @@ class Reports extends CI_Controller {
 			$jumlah_deskripsi = 0;
 			$jumlah_debit = 0;
 			$jumlah_kredit = 0;
+			//kas
 
-			file_put_contents("D:\\transactions.txt", $this->db->last_query());
+			//biaya_alat_truck_mixer
+			$biaya_alat_truck_mixer = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, pdj.debit as debit_2, tu.jumlah as debit_3, pdj.kredit as kredit_1, tf.jumlah as kredit_2')
+			->from('transactions t ')
+			->join('pmm_biaya b','t.biaya_id = b.id','left')
+			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+			->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left')
+			->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left')
+			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
+			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
+			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('t.akun',220)
+			->order_by('t.tanggal_transaksi','asc')
+			->order_by('t.id','asc')
+			->group_by('t.id')
+			->get()->result_array();
+
+			$saldo_biaya_alat_truck_mixer = 0;
+			$jumlah_no_transaksi_biaya_alat_truck_mixer = 0;
+			$jumlah_deskripsi_biaya_alat_truck_mixer = 0;
+			$jumlah_debit_biaya_alat_truck_mixer = 0;
+			$jumlah_kredit_biaya_alat_truck_mixer = 0;
+			//kas
 
 	        ?>
 
@@ -4251,8 +4273,8 @@ class Reports extends CI_Controller {
 				if ($x['dex_1']==0) { $jumlah_deskripsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
 				{$jumlah_deskripsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
 
-				if ($x['debit_1']==0) { $jumlah_debit = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];} else
-				{$jumlah_debit = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];}
+				if ($x['debit_1']==0) { $jumlah_debit = $x['debit_1'] + $x['debit_3'];} else
+				{$jumlah_debit = $x['debit_1'] + $x['debit_3'];}
 
 				if ($x['kredit_1']==0) { $jumlah_kredit = $x['kredit_1'] + $x['kredit_2'];} else
 				{$jumlah_kredit = $x['kredit_1'] + $x['kredit_2'];}
@@ -4275,7 +4297,56 @@ class Reports extends CI_Controller {
 	    </table>
 		<!-- kas -->
 
+		<!-- biaya_alat_truck_mixer -->
+		<table class="table table-bordered" width="100%">
+			<tr class="table-active">
+	            <th width="55%" class="text-left"><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#biaya_alat_truck_mixer" aria-expanded="false" aria-controls="biaya_alat_truck_mixer">(5-50203) Biaya Alat Truck Mixer</button></th>
+				<th width="15%" class="text-right"></th>
+				<th width="15%" class="text-right"></th>
+				<th width="15%" class="text-right"></th>
+	        </tr>
+		</table>
+		<table class="collapse table table-bordered" id="biaya_alat_truck_mixer" width="100%">
+			<tr class="table-active" width="100%">
+				<th width="10%" class="text-center">Tanggal</th>
+				<th width="10%" class="text-center">Transaksi</th>
+				<th width="20%" class="text-center">Nomor</th>
+				<th width="15%" class="text-center">Keterangan</th>
+				<th width="15%" class="text-center">Debit</th>
+				<th width="15%" class="text-center">Kredit</th>
+				<th width="15%" class="text-center">Saldo</th>
+	        </tr>
+			<?php foreach ($biaya_alat_truck_mixer as $key => $x) {
+				
+				if ($x['no_trx_1']==0) { $jumlah_no_transaksi_biaya_alat_truck_mixer = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];} else
+				{$jumlah_no_transaksi_biaya_alat_truck_mixer = $x['no_trx_1'] .= $x['no_trx_2'] .= $x['no_trx_3'] .= $x['no_trx_4'];}
 
+				if ($x['dex_1']==0) { $jumlah_deskripsi_biaya_alat_truck_mixer = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
+				{$jumlah_deskripsi_biaya_alat_truck_mixer = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
+
+				if ($x['debit_1']==0) { $jumlah_debit_biaya_alat_truck_mixer = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];} else
+				{$jumlah_debit_biaya_alat_truck_mixer = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];}
+
+				if ($x['kredit_1']==0) { $jumlah_kredit_biaya_alat_truck_mixer = $x['kredit_1'] + $x['kredit_2'];} else
+				{$jumlah_kredit_biaya_alat_truck_mixer = $x['kredit_1'] + $x['kredit_2'];}
+				
+				if ($jumlah_debit_biaya_alat_truck_mixer==0) { $saldo_biaya_alat_truck_mixer = $saldo_biaya_alat_truck_mixer + $jumlah_debit_biaya_alat_truck_mixer - $jumlah_kredit_biaya_alat_truck_mixer;} else
+				{$saldo_biaya_alat_truck_mixer = $saldo_biaya_alat_truck_mixer + $jumlah_debit_biaya_alat_truck_mixer;}
+			?>
+			<tr class="table-active3">
+				<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_transaksi'])); ?></th>
+				<th class="text-center"><?= $x['transaksi'] ?></th>
+				<th class="text-left"><a target="_blank" href="<?= base_url("pmm/biaya/detail_transaction/".$x['transaction_id']) ?>"><?= $jumlah_no_transaksi_biaya_alat_truck_mixer ?></th>
+				<th class="text-left"><?= $jumlah_deskripsi_biaya_alat_truck_mixer ?></th>
+				<th class="text-right"><?php echo number_format($jumlah_debit_biaya_alat_truck_mixer,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_kredit_biaya_alat_truck_mixer,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($saldo_biaya_alat_truck_mixer,0,',','.');?></th>
+	        </tr>
+			<?php
+			}
+			?>
+	    </table>
+		<!-- kas -->
 
 
 
