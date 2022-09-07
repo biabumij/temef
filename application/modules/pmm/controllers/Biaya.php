@@ -147,9 +147,6 @@ class Biaya extends CI_Controller {
         if($this->db->insert('pmm_biaya',$arr_insert)){
             $biaya_id = $this->db->insert_id();
 
-            $this->pmm_finance->InsertTransactions($biaya_id,$tanggal_transaksi);
-            $transaction_id = $this->db->insert_id();
-
             if (!file_exists('uploads/biaya')) {
 			    mkdir('uploads/biaya', 0777, true);
 			}
@@ -198,6 +195,9 @@ class Biaya extends CI_Controller {
             		$jumlah = str_replace(',', '.', $jumlah);
                     
                     if(!empty($product)){
+
+                        $this->pmm_finance->InsertTransactions($biaya_id,$product,$tanggal_transaksi);
+                        $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
     		        		'biaya_id' => $biaya_id,

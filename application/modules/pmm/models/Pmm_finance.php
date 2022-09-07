@@ -25,10 +25,11 @@ class Pmm_finance extends CI_Model {
     }
 
 
-    function InsertTransactions($biaya_id,$tanggal_transaksi)
+    function InsertTransactions($biaya_id,$product,$tanggal_transaksi)
     {
         $data = array(
             'biaya_id' => $biaya_id,
+            'akun' => $product,
             'jurnal_id' => 0,
             'terima_id' => 0,
             'transfer_id' => 0,
