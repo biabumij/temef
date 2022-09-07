@@ -3869,7 +3869,7 @@ class Reports extends CI_Controller {
 			<?php
 
 			//kas
-			$transactions = $this->db->select('t.*, pdb.*, pdj.*, t.id as transaction_id, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, pdj.deskripsi as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, pdj.debit as debit_2, tu.jumlah as debit_3, pdj.kredit as kredit_1, tf.jumlah as kredit_2, ')
+			$transactions = $this->db->select('t.*, pdb.*, pdj.*, t.id as transaction_id, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, pdj.deskripsi as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, pdj.debit as debit_2, tu.jumlah as debit_3, pdj.kredit as kredit_1, tf.jumlah as kredit_2')
 			->from('transactions t ')
 			->join('pmm_biaya b','t.biaya_id = b.id','left')
 			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
@@ -3878,6 +3878,10 @@ class Reports extends CI_Controller {
 			->join('pmm_terima_uang tu','t.terima_id = tu.id','left')
 			->join('pmm_transfer tf','t.transfer_id = tf.id','left')
 			->where("(t.tanggal_transaksi between '$date1' and '$date2')")
+			->where('pdb.akun',1)
+			->where('pdj.akun',1)
+			->where('tu.setor_ke',1)
+			->where('tf.setor_ke',1)
 			->order_by('t.tanggal_transaksi','asc')
 			->group_by('t.id')
 			->get()->result_array();
