@@ -4189,7 +4189,7 @@ class Reports extends CI_Controller {
 			<?php
 
 			//kas
-			$transactions = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, tu.jumlah as debit_3, pdj.debit as kredit_1, tf.jumlah as kredit_2')
+			$transactions = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
 			->from('transactions t ')
 			->join('pmm_biaya b','t.biaya_id = b.id','left')
 			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
@@ -4204,8 +4204,6 @@ class Reports extends CI_Controller {
 			->group_by('t.id')
 			->get()->result_array();
 
-			file_put_contents("D:\\transactions.txt", $this->db->last_query());
-
 			$saldo = 0;
 			$jumlah_no_transaksi = 0;
 			$jumlah_deskripsi = 0;
@@ -4214,7 +4212,7 @@ class Reports extends CI_Controller {
 			//kas
 
 			//biaya_alat_truck_mixer
-			$biaya_alat_truck_mixer = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, pdb.jumlah as debit_1, pdj.debit as debit_2, tu.jumlah as debit_3, pdj.kredit as kredit_1, tf.jumlah as kredit_2')
+			$biaya_alat_truck_mixer = $this->db->select('t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit')
 			->from('transactions t ')
 			->join('pmm_biaya b','t.biaya_id = b.id','left')
 			->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
@@ -4234,7 +4232,7 @@ class Reports extends CI_Controller {
 			$jumlah_deskripsi_biaya_alat_truck_mixer = 0;
 			$jumlah_debit_biaya_alat_truck_mixer = 0;
 			$jumlah_kredit_biaya_alat_truck_mixer = 0;
-			//kas
+			//biaya_alat_truck_mixer
 
 	        ?>
 
@@ -4273,11 +4271,11 @@ class Reports extends CI_Controller {
 				if ($x['dex_1']==0) { $jumlah_deskripsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
 				{$jumlah_deskripsi = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
 
-				if ($x['debit_1']==0) { $jumlah_debit = $x['debit_1'] + $x['debit_3'];} else
-				{$jumlah_debit = $x['debit_1'] + $x['debit_3'];}
+				if ($x['debit']==0) { $jumlah_debit = $x['debit'];} else
+				{$jumlah_debit = $x['debit'];}
 
-				if ($x['kredit_1']==0) { $jumlah_kredit = $x['kredit_1'] + $x['kredit_2'];} else
-				{$jumlah_kredit = $x['kredit_1'] + $x['kredit_2'];}
+				if ($x['kredit']==0) { $jumlah_kredit = $x['kredit'];} else
+				{$jumlah_kredit = $x['kredit'];}
 				
 				if ($jumlah_debit==0) { $saldo = $saldo + $jumlah_debit - $jumlah_kredit;} else
 				{$saldo = $saldo + $jumlah_debit;}
@@ -4324,11 +4322,11 @@ class Reports extends CI_Controller {
 				if ($x['dex_1']==0) { $jumlah_deskripsi_biaya_alat_truck_mixer = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];} else
 				{$jumlah_deskripsi_biaya_alat_truck_mixer = $x['dex_1'] .= $x['dex_2'] .= $x['dex_3'] .= $x['dex_4'];}
 
-				if ($x['debit_1']==0) { $jumlah_debit_biaya_alat_truck_mixer = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];} else
-				{$jumlah_debit_biaya_alat_truck_mixer = $x['debit_1'] + $x['debit_2'] + $x['debit_3'];}
+				if ($x['debit']==0) { $jumlah_debit_biaya_alat_truck_mixer = $x['debit'];} else
+				{$jumlah_debit_biaya_alat_truck_mixer = $x['debit'];}
 
-				if ($x['kredit_1']==0) { $jumlah_kredit_biaya_alat_truck_mixer = $x['kredit_1'] + $x['kredit_2'];} else
-				{$jumlah_kredit_biaya_alat_truck_mixer = $x['kredit_1'] + $x['kredit_2'];}
+				if ($x['kredit']==0) { $jumlah_kredit_biaya_alat_truck_mixer = $x['kredit'];} else
+				{$jumlah_kredit_biaya_alat_truck_mixer = $x['kredit'];}
 				
 				if ($jumlah_debit_biaya_alat_truck_mixer==0) { $saldo_biaya_alat_truck_mixer = $saldo_biaya_alat_truck_mixer + $jumlah_debit_biaya_alat_truck_mixer - $jumlah_kredit_biaya_alat_truck_mixer;} else
 				{$saldo_biaya_alat_truck_mixer = $saldo_biaya_alat_truck_mixer + $jumlah_debit_biaya_alat_truck_mixer;}
