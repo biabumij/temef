@@ -184,7 +184,6 @@ class Purchase_order extends CI_Controller {
 				'subject' => $this->input->post('subject'),
 				'date_pkp' => date('Y-m-d',strtotime($this->input->post('date_pkp'))),
 				'supplier_id' => $this->input->post('supplier_id'),
-				'total' => $this->input->post('total'),
 				'approved_by' => $this->session->userdata('admin_id'),
 				'approved_on' => date('Y-m-d H:i:s'),
 				'status' => 'PUBLISH'
