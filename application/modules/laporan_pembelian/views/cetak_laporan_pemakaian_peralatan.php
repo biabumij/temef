@@ -122,7 +122,7 @@
 		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 		->join('penerima pn', 'po.supplier_id = pn.id','left')
 		->where("prm.date_receipt between '$date1' and '$date2'")
-		->where("prm.material_id in (8,12,13,14,15,16,23,24,25)")
+		->where("prm.material_id in (12,13,14,15,16,23,24,25)")
 		->where("po.status in ('PUBLISH','CLOSED')")
 		->order_by('pn.nama','asc')
 		->group_by('prm.harga_satuan')
