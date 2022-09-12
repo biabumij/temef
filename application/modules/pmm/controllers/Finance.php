@@ -23,9 +23,8 @@ class Finance extends CI_Controller {
 		$filter_category = $this->input->post('filter_category');
 
 
-		$this->db->select('c.*, cc.coa_category as coa_category, (SUM(debit) - SUM(credit)) as saldo');
+		$this->db->select('c.*, cc.coa_category as coa_category');
 		$this->db->join('pmm_coa_category cc','c.coa_category = cc.id','left');
-		$this->db->join('transactions t','t.coa_id = c.id','left');
 		$this->db->where('c.status','PUBLISH');
 		if(!empty($filter_category)){
 			$this->db->where('c.coa_category',$filter_category);
@@ -37,7 +36,7 @@ class Finance extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				// $row['coa'] = '' 
-				$row['saldo'] = $this->filter->Rupiah($row['saldo']);
+				$row['saldo'] = 0;
 				$row['action'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
 				$data[] = $row;
 			}
