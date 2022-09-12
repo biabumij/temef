@@ -90,6 +90,11 @@
 
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
+                                            <div class="col-sm-3">
+                                                    <input type="text" id="filter_date_2" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                            </div>
+                                            <br />
+                                            <br />
                                             <table class="table table-striped table-hover" id="guest-table" style="width:100%;">
                                                 <thead>
                                                     <tr>
@@ -109,8 +114,6 @@
                                             </table>
                                         </div>
                                     </div>
-
-                                    <!-- End Penawaran Pembelian -->
 									
 									<!-- Permintaan Bahan & Alat -->
 									
@@ -173,11 +176,8 @@
                                     </div>
                                 </div>
 								
-								<!-- End Permintaan Bahan & Alat -->
-								
 								<!-- Form Permintaan Bahan & Alat -->
 
-								
 								<div class="modal fade bd-example-modal-lg" id="modalRequest" role="dialog">
 									<div class="modal-dialog" role="document" >
 										<div class="modal-content">
@@ -246,13 +246,16 @@
 										</div>
 									</div>
 								</div>
-								
-								<!-- End Form Permintaan Bahan & Alat -->
 
                                 <!-- Pesanan Pembelian -->
 
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                     <div class="table-responsive">
+                                        <div class="col-sm-3">
+                                                <input type="text" id="filter_date_3" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                        </div>
+                                        <br />
+                                        <br />
                                         <table class="table table-striped table-hover" id="table-po" style="width:100%;">
                                             <thead>
                                                 <tr>
@@ -263,6 +266,7 @@
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Vol PO</th>
                                                     <th class="text-center">Terima</th>
+                                                    <th class="text-center">Presentase Penerimaan Terhadap Vol. PO</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
                                                     <th class="text-center">Status PO</th>
@@ -275,8 +279,6 @@
                                         </table>
                                     </div>
                                 </div>
-
-                                <!-- End Pesanan Pembelian -->
 
                                 <!-- Pengiriman Pembelian -->
 
@@ -349,8 +351,6 @@
                                     </div>
                                 </div>
 
-                                <!-- End Pengiriman Pembelian -->
-
                                 <!-- Tagihan Pembelian -->
 
                                 <div role="tabpanel" class="tab-pane" id="settings">
@@ -380,8 +380,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-                                <!-- End Tagihan Pembelian -->
 
                                 </div>
 
@@ -954,9 +952,12 @@
             responsive: true,
         });
 
-	    </script>
+        $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            table.ajax.reload();
+        });
 
-		<!-- Script End Penawaran -->
+	    </script>
 		
 		<!-- Script Permintaan Bahan & Alat -->
 
@@ -1117,8 +1118,6 @@
         }
 
         </script>
-
-		<!-- End Script Permintaan Bahan & Alat -->
 		
 		<!-- Script Pesanan Pembelian -->
 
@@ -1156,6 +1155,9 @@
                     "data": "receipt"
                 },
                 {
+                    "data": "presentase"
+                },
+                {
                     "data": "total"
                 },
                 {
@@ -1168,22 +1170,25 @@
                     "data": "actions"
                 },
             ],
-                "columnDefs": [
+            "columnDefs": [
                     {
-                        "targets": [0, 4, 9, 10],
+                        "targets": [0, 4, 7, 10, 11],
                         "className": 'text-center',
                     },
                     {
-                        "targets": [5, 6, 7, 8],
+                        "targets": [5, 6, 8, 9],
                         "className": 'text-right',
                     }
                  ],
                 responsive: true,
         });
 
+        $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            table_po.ajax.reload();
+        });
+
         </script>
-		
-		<!-- End Script Pesanan Pembelian -->
 		
 		<!-- Script Pengiriman Pembelian -->
 
@@ -1287,10 +1292,14 @@
                 $(api.column(11).footer()).html($.number(total, 0, ',', '.'));
             }
         });
+
+        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            table_receipt.ajax.reload();
+        });
 		
         </script>
 
-		<!-- End Script Pengiriman Pembelian -->
 		
 		<!-- Script Tagihan Pembelian -->
 
@@ -1369,30 +1378,11 @@
             });
 
         });
-
-        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_receipt.ajax.reload();
-        });
-
-        $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table.ajax.reload();
-        });
-        $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_po.ajax.reload();
-        });
+        
         $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
             table_tagihan.ajax.reload();
         });
-
-        </script>
-		
-		<!-- End Script Tagihan Pembelian -->
-
-        <script type="text/javascript">
 
         function GetPO() {
             $.ajax({
@@ -1546,8 +1536,6 @@
                 }
             });
         }
-
-
 
         function getData(id) {
             $.ajax({
