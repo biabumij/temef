@@ -2381,7 +2381,7 @@ class Pmm_model extends CI_Model {
                 }
 
                 $upload_document = false;
-                if($row['status'] == 'PUBLISH' == 'CLOSED'){
+                if($row['status'] == 'PUBLISH'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
