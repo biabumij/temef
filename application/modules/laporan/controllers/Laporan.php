@@ -64,8 +64,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pp.status','PUBLISH');
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
-
-		//file_put_contents("D:\\cetak_pengiriman_penjualan.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -277,9 +275,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		
-		//file_put_contents("D:\\daftar_tagihan_penjualan_print.txt", $this->db->last_query());		
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -383,9 +378,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		
-		//file_put_contents("D:\\laporan_piutang_print.txt", $this->db->last_query());
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -521,8 +513,6 @@ class Laporan extends Secure_Controller {
 		$this->db->order_by('pmp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_pembayaran pmp');
 		
-		//file_put_contents("D:\\penerimaan_print.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -641,8 +631,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('po.client_id');
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_sales_po po');
-		
-		//file_put_contents("D:\\penyelesaian_penjualan_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -793,9 +781,6 @@ class Laporan extends Secure_Controller {
 			$this->db->order_by('ps.nama','asc');
 			$query = $this->db->get('pmm_purchase_order ppo');
 
-			//file_put_contents("D:\\cetak_penerimaan_pembelian.txt", $this->db->last_query());
-
-
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -899,9 +884,6 @@ class Laporan extends Secure_Controller {
 			$this->db->order_by('ps.nama','asc');
 			$query = $this->db->get('pmm_purchase_order ppo');
 
-			//file_put_contents("D:\\cetak_penerimaan_pembelian_per_hari.txt", $this->db->last_query());
-
-
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -1004,10 +986,7 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_purchase_order ppo');
-		
-		//file_put_contents("D:\\pesanan_pembelian_print.txt", $this->db->last_query());
-
-
+	
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -1116,8 +1095,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('p.nama_produk');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
-		
-		//file_put_contents("D:\\pembelian_produk_report_print.txt", $this->db->last_query());
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1222,9 +1199,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-		//file_put_contents("D:\\daftar_tagihan_report_print.txt", $this->db->last_query());		
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1465,8 +1439,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pmp.status','DISETUJUI');
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		
-		//file_put_contents("D:\\table_date7.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1583,8 +1555,6 @@ class Laporan extends Secure_Controller {
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_purchase_order po');
 		
-		//file_put_contents("D:\\penyelesaian_pembelian_report_print.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1695,7 +1665,6 @@ class Laporan extends Secure_Controller {
 
         $data['filter_date'] = $filter_date;
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung($filter_date);
-		//file_put_contents("D:\\biaya_langsung.txt", $this->db->last_query());
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal($filter_date);
         $data['biaya'] = $this->m_laporan->showBiaya($filter_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal($filter_date);

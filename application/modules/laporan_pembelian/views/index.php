@@ -48,8 +48,6 @@
 									<h3 class="section-subtitle"><?php echo $row[0]->menu_name; ?></h3>
 								</div>
                                 <div class="tab-content">
-								
-								<!-- Laporan Pembelian -->
                                     <div role="tabpanel" class="tab-pane active" id="pembelian">
                                         <br />
                                         <div class="row">
@@ -109,7 +107,6 @@
                                             </div>
                                         </div>
                                     </div>
-									<!-- End Pembelian -->
 
                                     <!-- Laporan Penerimaan Pembelian -->
 
@@ -160,11 +157,6 @@
                                                                     ?>
                                                                 </select>
                                                             </div>
-                                                            <!--<div class="col-sm-3">
-                                                                <select id="filter_po_id_b" name="purchase_order_no" class="form-control select2">
-                                                                    <option value="">Pilih PO</option>
-                                                                </select>
-                                                            </div>-->
                                                             <div class="col-sm-9 text-right">
                                                                 <br />
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
@@ -202,9 +194,7 @@
                                         </div>
 									</div>
 
-									<!-- End Penerimaan Pembelian -->
-
-                                    <!-- End Penerimaan Pembelian Per Hari -->
+                                    <!-- Penerimaan Pembelian Per Hari -->
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_penerimaan_pembelian_hari">
                                         <div class="col-sm-15">
@@ -253,11 +243,6 @@
                                                                     ?>
                                                                 </select>
                                                             </div>
-                                                            <!--<div class="col-sm-3">
-                                                                <select id="filter_po_id_b_hari" name="purchase_order_no" class="form-control select2">
-                                                                    <option value="">Pilih PO</option>
-                                                                </select>
-                                                            </div>-->
                                                             <div class="col-sm-9 text-right">
                                                                 <br />
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
@@ -296,8 +281,6 @@
                                         </div>
 									</div>
 
-									<!-- End Penerimaan Pembelian Per Hari -->
-
                                     <!-- Laporan Pemakaian Peralatan Produksi -->
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_pemakaian_peralatan">
@@ -335,8 +318,6 @@
 										
 										</div>
                                     </div>
-
-									<!-- End Laporan Pemakaian Peralatan Produksi -->
 									
 									<!-- Laporan Pesanan Pembelian -->
 
@@ -391,9 +372,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	          
-									
-									<!-- End Laporan Pesanan Pembelian  -->
+									</div>
 									
 									<!-- Laporan Pembelian Per Produk -->
 
@@ -444,8 +423,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Laporan Pembelian Per Produk -->
+									</div>
 									
 									<!-- Laporan Daftar Tagihan -->
 
@@ -499,8 +477,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Laporan Daftar Tagihan -->
+									</div>
 									
 									<!-- Laporan Hutang -->
 
@@ -552,8 +529,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Laporan Hutang -->
+									</div>
 									
 									<!-- Laporan Umur Hutang -->
 
@@ -592,8 +568,6 @@
 										
 										</div>
                                     </div>
-                                                                     
-									<!-- End Umur Hutang -->
 									
 									<!-- Laporan Daftar Pembayaran -->
 									
@@ -644,9 +618,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	 
-                                                                     
-									<!-- End Daftar Pembayaran -->
+									</div>
 									
 									<!-- Laporan Penyelesaian Pembelian -->
 									
@@ -715,9 +687,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	 
-                                                                     
-									<!-- End Penyelesaian Pembelian -->
+									</div>
 									
                                 </div>
                             </div>
@@ -785,7 +755,7 @@
                                     $('#table-date tbody').append('<tr onclick="NextShowPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.purchase_order_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                        $('#table-date tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.purchase_order_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
 
                                 });
@@ -843,8 +813,6 @@
                 TableDate();
             });
         </script>
-
-        <!-- End Script Pembelian -->
 
         <!-- Script Pembelian Per Hari -->
 		
@@ -953,8 +921,6 @@
             });
         </script>
 
-        <!-- End Script Pembelian Per Hari -->
-
         <!-- Script Laporan Pemakaian Peralatan Produksi -->
 
 		<script type="text/javascript">
@@ -1000,8 +966,6 @@
 			//TableLaporanPemakaianPeralatan();
 
         </script>
-
-        <!-- End Laporan Pemakaian Peralatan Produksi -->
 	
 		<!-- Script Pesanan Pembelian -->
 		
@@ -1071,8 +1035,6 @@
 
         </script>
 		
-		<!-- End Pesanan Pembelian -->
-		
 		<!-- Script Pembelian Per Produk -->
 		
 		<script type="text/javascript">
@@ -1139,8 +1101,6 @@
             }
 
         </script>
-		
-		<!-- End Pembelian Per Produk -->
 		
 		<!-- Script Daftar Tagihan -->
 		
@@ -1210,8 +1170,6 @@
 
         </script>
 		
-		<!-- End Daftar Tagihan -->
-		
 		<!-- Script Hutang -->
 		
 		<script type="text/javascript">
@@ -1257,7 +1215,7 @@
                                     $('#table-date5 tbody').append('<tr onclick="NextShowDaftarTagihan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_diterima_proyek + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
+                                        $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_diterima_proyek + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
                                     });
 									$('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + val.total_tagihan + '</b></td><td class="text-right""><b>' + val.total_pembayaran + '</b></td><td class="text-right""><b>' + val.total_hutang + '</b></td></tr>');
                                 });
@@ -1279,8 +1237,6 @@
             }
 
         </script>
-		
-		<!-- End Hutang -->
 		
 		<!-- Script Umur Hutang -->
 
@@ -1328,8 +1284,6 @@
 			
             </script>
 		
-		<!-- End Umur Hutang -->
-		
 		<!-- Script Daftar Pembayaran -->
 		
 		<script type="text/javascript">
@@ -1375,7 +1329,7 @@
                                     $('#table-date7 tbody').append('<tr onclick="NextShowDaftarPembayaran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.supplier_name + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date7 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-center">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.pembayaran + '</td></tr>');
+                                        $('#table-date7 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.pembayaran + '</td></tr>');
                                     });
 									$('#table-date7 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="5"><b>JUMLAH</b></td><td class="text-right"">' + val.total_bayar + '</td></tr>');
                                 });
@@ -1398,8 +1352,6 @@
 			
 
         </script>
-		
-		<!-- End Daftar Pembayaran -->
 		
 		<!-- Script Penyelesaian Pembelian -->
 		
@@ -1516,8 +1468,6 @@
             });
 
         </script>
-		
-		<!-- End Penyelesaian Pembelian -->
         
 </body>
 
