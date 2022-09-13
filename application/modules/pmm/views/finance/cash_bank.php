@@ -209,8 +209,12 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0],
+                    "targets": [0, 3],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2],
+                    "className": 'text-right',
                 }
             ],
             responsive: true,
@@ -232,8 +236,12 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0],
+                    "targets": [0, 3],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2],
+                    "className": 'text-right',
                 }
             ],
             responsive: true,

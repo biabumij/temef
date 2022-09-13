@@ -214,7 +214,7 @@ class Jurnal_umum extends CI_Controller {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-             $this->session->set_flashdata('notif_success','Berhasil membuat Jurnal !!');
+             $this->session->set_flashdata('notif_success','Berhasil Menambahkan Jurnal !!');
             redirect('admin/jurnal_umum');
         }
 

@@ -1301,6 +1301,8 @@ class Finance extends CI_Controller {
 		$data = array();
 
 		$this->db->select('pmm_transfer.*');
+		$this->db->order_by('tanggal_transaksi','desc');
+		$this->db->order_by('id','desc');
 		$query = $this->db->get("pmm_transfer");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
