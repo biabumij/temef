@@ -270,6 +270,7 @@
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
                                                     <th class="text-center">Status PO</th>
+                                                    <th class="text-center">Lampiran</th>
                                                     <th class="text-center">Tindakan</th>
                                                 </tr>
                                             </thead>
@@ -1167,12 +1168,15 @@
                     "data": "status"
                 },
                 {
-                    "data": "actions"
+                    "data": "document_po"
                 },
+                {
+                    "data": "actions"
+                }
             ],
             "columnDefs": [
                     {
-                        "targets": [0, 4, 6, 10, 11],
+                        "targets": [0, 4, 6, 10, 12],
                         "className": 'text-center',
                     },
                     {
