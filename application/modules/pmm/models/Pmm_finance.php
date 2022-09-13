@@ -68,7 +68,7 @@ class Pmm_finance extends CI_Model {
             'debit' => $jumlah,
             'kredit' => 0,
             'tanggal_transaksi' => $tanggal_transaksi,
-            'transaksi' => 'TERIMA UANG'
+            'transaksi' => 'TERIMA'
         );
         $this->db->insert('transactions',$data);
     }
