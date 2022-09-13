@@ -95,9 +95,7 @@
                                             </div>
                                         </div>
                                     </div>
-									<!-- End Penjualan -->
-								
-									
+
 									<!-- Laporan Pengiriman Penjualan -->
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_pengiriman_penjualan">
@@ -112,11 +110,6 @@
                                                     $product = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
                                                     $client = $this->db->order_by('nama', 'asc')->get_where('penerima', array('status' => 'PUBLISH', 'pelanggan' => 1))->result_array();
                                                     ?>
-                                                    <!--<div class="row">
-                                                        <div class="col-sm-3">
-                                                            <a href="<?php echo site_url('pmm/productions/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Pengiriman Penjualan</a>
-                                                        </div>
-                                                    </div>-->
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_pengiriman_penjualan'); ?>" target="_blank">
                                                             <div class="col-sm-3">
@@ -182,8 +175,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- End Laporan Pengiriman Penjualan -->
 									
 									<!-- Laporan Sales Order -->
 
@@ -238,8 +229,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Sales Order -->
+									</div>
 									
 									<!-- Laporan Daftar Tagihan Penjualan -->
 
@@ -294,8 +284,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Laporan Daftar Tagihan Penjualan-->
+									</div>
 									
 									<!-- Laporan Piutang -->
 
@@ -347,8 +336,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	                                    
-									<!-- End Laporan Piutang -->
+									</div>
 									
 									<!-- Laporan Umur Piutang -->
 
@@ -357,7 +345,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Laporan Umur Piutang</h3>
-													<a href="laporan_pembelian">Kembali</a>
+													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
@@ -387,8 +375,6 @@
 										
 										</div>
                                     </div>
-                                                                     
-									<!-- End Umur Piutang -->
 									
 									<!-- Laporan Penerimaan -->
 									
@@ -424,6 +410,7 @@
 																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
 																<th align="center">PELANGGAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
+                                                                <th align="center" rowspan="2" style="vertical-align:middle;">TGL. TAGIHAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
                                                             </tr>
@@ -438,9 +425,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	 
-                                                                     
-									<!-- End Penerimaan -->
+									</div>
 									
 									<!-- Laporan Penyelesaian Penjualan -->
 									
@@ -508,9 +493,7 @@
                                                 </div>
                                             </div>
                                         </div>
-									</div>	 
-                                                                     
-									<!-- End Penyelesaian Penjualan -->
+									</div>
 									
                                 </div>
                             </div>
@@ -605,8 +588,6 @@
                 $('.mats-' + id).slideToggle();
             }
         </script>
-
-        <!-- End Script Penjualan -->
 		
 		<!-- Script Sales Order -->
 		
@@ -676,8 +657,6 @@
 
         </script>
 		
-		<!-- End Sales Order -->
-		
 		<!-- Script Penjualan Per Produk -->
 		
 		<script type="text/javascript">
@@ -744,8 +723,6 @@
             }
 
         </script>
-		
-		<!-- End Penjualan Per Produk-->
 		
 		<!-- Script Daftar Tagihan  Penjualan -->
 		
@@ -815,8 +792,6 @@
 
         </script>
 		
-		<!-- End Daftar Tagihan Penjualan -->
-		
 		<!-- Script Piutang -->
 		
 		<script type="text/javascript">
@@ -862,7 +837,7 @@
                                     $('#table-date13 tbody').append('<tr onclick="NextShowLaporanPiutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="7">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.piutang + '</td></tr>');
+                                        $('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.piutang + '</td></tr>');
                                     });
 									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + val.total_tagihan + '</b></td><td class="text-right""><b>' + val.total_penerimaan + '</b></td><td class="text-right""><b>' + val.total_piutang + '</b></td></tr>');
                                 });
@@ -884,8 +859,6 @@
             }
 
         </script>
-		
-		<!-- End Piutang -->
 		
 		<!-- Script Umur Piutang -->
 
@@ -933,8 +906,6 @@
 			
             </script>
 		
-		<!-- End Umur Piutang -->
-		
 		<!-- Script Penerimaan -->
 		
 		<script type="text/javascript">
@@ -977,15 +948,15 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date15 tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td></td><td></td><td></td></tr>');
+                                    $('#table-date15 tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date15 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-center">' + row.nomor_transaksi + '</td></td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
+                                        $('#table-date15 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
                                     });
                                 });
-                                $('#table-date15 tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#table-date15 tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
-                                $('#table-date15 tbody').append('<tr><td class="text-center" colspan="5"><b>NO DATA</b></td></tr>');
+                                $('#table-date15 tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -1001,8 +972,6 @@
             }
 
         </script>
-		
-		<!-- End Penerimaan -->
 		
 		<!-- Script Penyelesaian Penjualan -->
 		
@@ -1121,8 +1090,6 @@
 			
 
         </script>
-		
-		<!-- End Penyelesaian Penjualan -->
 
 </body>
 

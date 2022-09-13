@@ -2012,7 +2012,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('pmp.client_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as penerimaan');
+        $this->db->select('ppp.id as penagihan_id, pmp.id, pmp.client_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as penerimaan');
 		
 		$this->db->join('pmm_penagihan_penjualan ppp', 'pmp.penagihan_id = ppp.id');
         
@@ -2381,7 +2381,7 @@ class Pmm_model extends CI_Model {
                 }
 
                 $upload_document = false;
-                if($row['status'] == 'PUBLISH'){
+                if($row['status'] == 'PUBLISH' == 'CLOSED'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
