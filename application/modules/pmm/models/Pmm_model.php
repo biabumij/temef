@@ -2349,7 +2349,24 @@ class Pmm_model extends CI_Model {
             foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $no_po = "'".$row['no_po']."'";
-                $row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
+                if ($row['status'] == 'WAITING') { ?>
+					<?php
+					if($this->session->userdata('admin_group_id') == 1|| $this->session->userdata('admin_group_id') == 15){
+					?>
+					<?php
+						$row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
+						?>
+					<?php
+					}
+				}
+
+                if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
+					
+					$row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
+				}else {
+					$row['no_po'] = $row['no_po'];
+				}
+            
                 $row['document_po'] = '<a href="'.base_url().'uploads/purchase_order/'.$row['document_po'].'" target="_blank">'.$row['document_po'].'</a>';
                 $row['date_po'] = date('d/m/Y',strtotime($row['date_po']));
                 $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');

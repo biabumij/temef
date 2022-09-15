@@ -75,7 +75,24 @@ class Request_materials extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				$request_no = "'".$row['request_no']."'";
-				$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
+
+				if ($row['status'] == 'DRAFT' || $row['status'] == 'WAITING') { ?>
+					<?php
+					if($this->session->userdata('admin_group_id') == 1){
+					?>
+					<?php
+						$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
+						?>
+					<?php
+					}
+				}
+
+				if($row['status'] == 'APPROVED'){
+					
+					$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
+				}else {
+					$row['request_no'] = $row['request_no'];
+				}
 
 				$row['request_date'] = date('d/m/Y',strtotime($row['request_date']));
 
