@@ -123,11 +123,10 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="55px">
-								
 								<img src="uploads/ttd_gery.png" width="100px">
 							</td>
 							<td align="center">
-							
+							<img src="uploads/ttd_agustinus.png" width="100px">
 							</td>
 						</tr>
 						<tr>

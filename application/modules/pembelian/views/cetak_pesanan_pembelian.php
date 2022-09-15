@@ -236,7 +236,7 @@
 								
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_gery.png" width="100px">
 							</td>
 						</tr>
 						<tr>
