@@ -215,7 +215,7 @@
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
                                     <br />
                                     <?php
@@ -245,7 +245,7 @@
                                 ?>
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
