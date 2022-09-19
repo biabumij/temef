@@ -58,16 +58,16 @@
                                             <table class="table table-striped table-hover" id="table_rap" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">NO.</th>
-														<th class="text-center">TANGGAL RAP</th>
-														<th class="text-center">NO. RAP</th>
-														<th class="text-center">TOTAL BAHAN</th>
-														<th class="text-center">TOTAL ALAT</th>
-                                                        <th class="text-center">TOTAL OVERHEAD</th>
-                                                        <th class="text-center">TOTAL BIAYA ADMIN</th>
-                                                        <th class="text-center">TOTAL DISKONTO</th>
-                                                        <th class="text-center">LAMPIRAN</th>
-														<th class="text-center">TINDAKAN</th>
+                                                        <th class="text-center" width="5%">No.</th>
+														<th class="text-center">Tanggal RAP</th>
+														<th class="text-center">No. RAP</th>
+														<th class="text-center">Total Bahan</th>
+														<th class="text-center">Total Alat</th>
+                                                        <th class="text-center">Total Overhead</th>
+                                                        <th class="text-center">Total Biaya Admin</th>
+                                                        <th class="text-center">Total Diskonto</th>
+                                                        <th class="text-center">Lapmpiran</th>
+														<th class="text-center">Tindakan</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
