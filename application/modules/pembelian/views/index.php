@@ -1556,13 +1556,12 @@
                         $('#no_po').val(result.data.no_po);
                         $('#tanggal_po').val(result.data.tanggal_po);
 						$('#nama_barang_jasa').val(result.data.nama_produk);
-                        $('#nilai_kontrak').val(result.data.total_po);
+                        $('#nilai_kontrak').val(result.data.nilai_kontrak);
                         $('#nilai_tagihan').val(result.data.nilai_tagihan);
                         $('#tanggal_invoice').val(result.data.tanggal_invoice);
                         $('#ppn_tagihan').val(result.data.ppn);
                         $('#pph_tagihan').val(result.data.pph);
-                        $('#total_tagihan').val(result.data.total_tagihan);
-                        $('#tanggal_po').val(result.data.date_po);
+                        $('#total_tagihan').val(result.data.total);
                     } else if (result.err) {
                         bootbox.alert(result.err);
                     }

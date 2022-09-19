@@ -463,8 +463,6 @@ class Pembelian extends Secure_Controller
         $uang_muka = str_replace('.', '', $uang_muka);
         $uang_muka = str_replace(',', '.', $uang_muka);
         $total_tagihan = $total;
-        $total_tagihan = str_replace('.', '', $total_tagihan);
-        $total_tagihan = str_replace(',', '.', $total_tagihan);
         $total_product = $this->input->post('total_product');
 
         $surat_jalan = $this->input->post('surat_jalan');
@@ -684,7 +682,7 @@ class Pembelian extends Secure_Controller
         $data = array();
         $id = $this->input->post('id');
 
-        $this->db->select('pp.*, pp.total_tagihan as nilai_tagihan, ps.nama as supplier_name, po.total as total_po, po.date_po');
+        $this->db->select('pp.*, ps.nama as supplier_name, po.total as nilai_kontrak');
         $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
         $this->db->join('pmm_purchase_order po', 'po.id = pp.purchase_order_id', 'left');
         $query = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
@@ -703,8 +701,8 @@ class Pembelian extends Secure_Controller
         $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
 		
         $query['pph'] = $detail_2['tax'];
-        $query['nilai_tagihan'] = $query['nilai_tagihan'] - $detail['tax'] + $detail_2['tax'];
-        $query['total_tagihan'] = $query['nilai_tagihan'] + $detail['tax'] - $detail_2['tax'];
+        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['tax'];
+        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['tax'];
 
         
 		
@@ -714,7 +712,7 @@ class Pembelian extends Secure_Controller
             $query['date_receipt'] = $this->crud_global->GetField('pmm_receipt_material', array('id' => $receipt_material_id), 'date_receipt');
             $query['date_receipt'] = date('d-m-Y', strtotime($query['date_receipt']));
             $query['tanggal_invoice'] = date('d-m-Y', strtotime($query['tanggal_invoice']));
-            $query['date_po'] = date('d-m-Y', strtotime($query['date_po']));
+            $query['tanggal_po'] = date('d-m-Y', strtotime($query['tanggal_po']));
             $data = $query;
         }
         echo json_encode(array('data' => $data));
