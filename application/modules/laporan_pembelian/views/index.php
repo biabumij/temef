@@ -90,7 +90,7 @@
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
-														<p>Menampilkan umur hutang pada setiap Rekanan dalam suatu periode.</p>
+														<p>Menampilkan umur hutang pada setiap rekanan  yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_umur_hutang" aria-controls="laporan_umur_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
