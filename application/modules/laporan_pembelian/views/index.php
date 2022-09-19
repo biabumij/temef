@@ -64,6 +64,11 @@
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
+														<p><h5>Penerimaan Pembelian (Alat)</h5></p>
+														<p>Menampilkan transaksi pembelian alat yang dicatat dalam suatu periode.</p>
+                                                        <a href="#laporan_penerimaan_pembelian_alat" aria-controls="laporan_penerimaan_pembelian_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+													</div>
+                                                    <div class="col-sm-5">
 														<p><h5>Laporan Pemakaian Peralatan Produksi</h5></p>
 														<p>Menampilkan laporan pemakaian peralatan produksi yang dicatat terkirim untuk transaksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_pemakaian_peralatan" aria-controls="laporan_pemakaian_peralatan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
@@ -123,11 +128,6 @@
                                                     $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                                     $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
                                                     ?>
-                                                    <!--<div class="row">
-                                                        <div class="col-sm-3">
-                                                            <a href="<?php echo site_url('pmm/receipt_material/manage'); ?>" class="btn btn-primary">Tambah Penerimaan Pembelian</a>
-                                                        </div>
-                                                    </div>-->
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian'); ?>" target="_blank">
                                                             <div class="col-sm-3">
@@ -263,6 +263,87 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TANGGAL</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">NO. PESANAN PEMBELIAN</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+
+                                    <!-- Laporan Penerimaan Pembelian (Alat) -->
+
+                                    <div role="tabpanel" class="tab-pane" id="laporan_penerimaan_pembelian_alat">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian (Alat)</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <?php
+                                                    $arr_po = $this->db->order_by('id', ' no_po', 'supplier_id', 'asc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
+                                                    $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
+                                                    $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+                                                    ?>
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian_alat'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_material_alat" name="filter_material" class="form-control select2">
+                                                                    <option value="">Pilih Produk</option>
+                                                                    <?php
+                                                                    foreach ($materials as $key => $mats) {
+                                                                    ?>
+                                                                        <option value="<?php echo $mats['id']; ?>"><?php echo $mats['nama_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_supplier_id_alat" name="supplier_id" class="form-control select2">
+                                                                    <option value="">Pilih Rekanan</option>
+                                                                    <?php
+                                                                    foreach ($suppliers as $key => $supplier) {
+                                                                    ?>
+                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-9 text-right">
+                                                                <br />
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date-alat" style="display:none;">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
@@ -918,6 +999,113 @@
 
             $('#filter_material_b_hari').change(function() {
                 TableDateHari();
+            });
+        </script>
+
+        <!-- Script Pembelian (Alat) -->
+		
+        <script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_alat').daterangepicker({
+                autoUpdateInput: false,
+				showDropdowns: true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_alat').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableDateAlat();
+            });
+
+            function TableDateAlat() {
+                $('#table-date-alat').show();
+                $('#loader-table').fadeIn('fast');
+                $('#table-date-alat tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/table_date_alat'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        purchase_order_no: $('#filter_po_id_alat').val(),
+                        supplier_id: $('#filter_supplier_id_alat').val(),
+                        filter_date: $('#filter_date_alat').val(),
+                        filter_material: $('#filter_material_alat').val(),
+                    },
+                     success: function(result) {
+                        if (result.data) {
+                            $('#table-date-alat tbody').html('');
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    $('#table-date-alat tbody').append('<tr onclick="NextShowPembelianAlat(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
+                                    $.each(val.mats, function(a, row) {
+                                        var a_no = a + 1;
+                                        $('#table-date-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.purchase_order_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                    });
+
+                                });
+                                $('#table-date-alat tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
+                            } else {
+                                $('#table-date-alat tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowPembelianAlat(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
+
+            // TableDateAlat();
+
+            function GetPOAlat() {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        supplier_id: $('#filter_supplier_id_alat').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#filter_po_id_alat').empty();
+                            $('#filter_po_id_alat').select2({
+                                data: result.data
+                            });
+                            $('#filter_po_id_alat').trigger('change');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            $('#filter_supplier_id_alat').change(function() {
+                TableDateAlat();
+                GetPOAlat();
+            });
+
+            $('#filter_po_id_alat').change(function() {
+                TableDateAlat();
+            });
+
+            $('#filter_material_alat').change(function() {
+                TableDateAlat();
             });
         </script>
 
