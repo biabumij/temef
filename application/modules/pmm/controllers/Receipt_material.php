@@ -578,7 +578,7 @@ class Receipt_material extends CI_Controller {
 						$arr['measure'] = $row['measure'];
 						$arr['date_receipt'] = date('d-m-Y',strtotime($row['date_receipt']));
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
+						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
 						$arr['volume'] = number_format($row['volume'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
