@@ -4230,7 +4230,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = ppo.id
-            and status = "DISETUJUI"
+            and pppp.status = "DISETUJUI"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
         SUM(prm.display_price) -
@@ -4240,7 +4240,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = ppo.id
-            and status = "DISETUJUI"
+            and pppp.status = "DISETUJUI"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as hutang
         ');
@@ -4281,7 +4281,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = ppo.id
-            and status = "DISETUJUI"
+            and pppp.status = "DISETUJUI"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
         SUM(prm.display_price) -
@@ -4291,7 +4291,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = ppo.id
-            and status = "DISETUJUI"
+            and pppp.status = "DISETUJUI"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as hutang
         ');
