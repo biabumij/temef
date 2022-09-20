@@ -54,12 +54,12 @@
                                             <div width="100%">
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian Bahan Baku</h5></p>
+														<p><h5>Penerimaan Pembelian</h5></p>
 														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian Bahan Baku - Per Hari</h5></p>
+														<p><h5>Penerimaan Pembelian - Per Hari</h5></p>
 														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
@@ -94,7 +94,7 @@
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Hutang Terhadap Penerimaan Bahan Baku</h5></p>
+														<p><h5>Hutang Terhadap Penerimaan</h5></p>
 														<p>Menampilkan jumlah nilai hutang bahan baku pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
@@ -129,7 +129,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Bahan Baku</h3>
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -210,7 +210,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Bahan Baku - Per Hari</h3>
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian - Per Hari</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -623,7 +623,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">  
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan Bahan Baku</h3>
+                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
