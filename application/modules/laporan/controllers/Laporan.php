@@ -2320,9 +2320,9 @@ class Laporan extends Secure_Controller {
 	        $html = $this->load->view('laporan_pembelian/001_cetak_penerimaan_pembelian_alat',$data,TRUE);
 
 	        
-	        $pdf->SetTitle('BBJ - Laporan Pembelian');
+	        $pdf->SetTitle('BBJ - Laporan Pembelian Alat');
 	        $pdf->nsi_html($html);
-	        $pdf->Output('laporan-pembelian.pdf', 'I');
+	        $pdf->Output('laporan-pembelian-alat.pdf', 'I');
 	        
 		}else {
 			echo 'Please Filter Date First';
@@ -2539,9 +2539,9 @@ class Laporan extends Secure_Controller {
 			$html = $this->load->view('laporan_pembelian/cetak_hutang_penerimaan_alat',$data,TRUE);
 
 	        
-	        $pdf->SetTitle('BBJ - Laporan Hutang');
+	        $pdf->SetTitle('BBJ - Laporan Hutang Alat');
 	        $pdf->nsi_html($html);
-	        $pdf->Output('laporan-hutang.pdf', 'I');
+	        $pdf->Output('laporan-hutang-alat.pdf', 'I');
 	        
 		}else {
 			echo 'Please Filter Date First';
