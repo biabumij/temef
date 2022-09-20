@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>LAPORAN HUTANG</title>
+	  <title>LAPORAN HUTANG ALAT</title>
 	  
 	  <?php
 		$search = array(
