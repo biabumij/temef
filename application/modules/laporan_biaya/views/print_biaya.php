@@ -191,6 +191,48 @@
 				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 			</tr>
+			<tr>
+			<th width="100%" colspan="6"></th>
+			</tr>
+			<tr class="table-active2">
+			<th width="100%" align="left" colspan="6"><b>Biaya Persiapan</b></th>
+			</tr>
+			<?php
+			$total_biaya_persiapan = 0;
+			if(!empty($biaya_persiapan)){
+				foreach ($biaya_persiapan as $key => $row) {
+					?>
+					<tr>
+						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
+						<td width="10%">BIAYA</td>
+						<td width="50%"><?= $row['coa'];?></td>
+						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+					</tr>
+					<?php
+					$total_biaya_persiapan += $row['total'];					
+				}
+			}
+			$total_biaya_persiapan_jurnal = 0;
+			$grand_total_biaya_persiapan = $total_biaya_persiapan;
+			if(!empty($biaya_persiapan_jurnal)){
+				foreach ($biaya_persiapan_jurnal as $key => $row2) {
+					?>
+					<tr>
+						<td><?= $row2['tanggal_transaksi'];?></td>
+						<td>JURNAL</td>
+						<td><?= $row2['coa'];?></td>
+						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+					</tr>
+					<?php
+					$total_biaya_persiapan_jurnal += $row2['total'];					
+				}
+			}
+			$total_d = $grand_total_biaya_persiapan + $total_biaya_persiapan_jurnal;
+			?>
+			<tr class="active">
+				<td width="80%" style="padding-left:20px;">Total Biaya Persiapan</td>
+				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_d);?></b></td>
+			</tr>
 		</table>
 		<br />
 		<br />

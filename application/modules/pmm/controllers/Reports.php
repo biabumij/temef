@@ -2072,12 +2072,57 @@ class Reports extends CI_Controller {
 			$diskonto_2 = $diskonto_2['total'];
 			//END_DISKONTO_2
 
+			//PERSIAPAN
+			$persiapan_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$persiapan = $persiapan_biaya['total'] + $persiapan_jurnal['total'];
+			//END_PERSIAPAN
+
+			//PERSIAPAN_2
+			$persiapan_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_2 = $persiapan_biaya_2['total'] + $persiapan_jurnal_2['total'];
+			//END_PERSIAPAN_2
+
 			$bahan = $total_nilai;
 			$alat = $alat;
 			$overhead = $overhead;
 			$diskonto = $diskonto;
+			$persiapan = $persiapan;
 
-			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto;
+			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto + $persiapan;
 
 			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
 
@@ -2089,8 +2134,9 @@ class Reports extends CI_Controller {
 			$alat_2 = $alat_2;
 			$overhead_2 = $overhead_2;
 			$diskonto_2 = $diskonto_2;
+			$persiapan_2 = $persiapan_2;
 
-			$total_biaya_operasional_2 = $bahan_2 + $alat_2 + $overhead_2 + $diskonto_2;
+			$total_biaya_operasional_2 = $bahan_2 + $alat_2 + $overhead_2 + $diskonto_2 + $persiapan_2;
 
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_biaya_operasional_2;
 
@@ -2283,6 +2329,34 @@ class Reports extends CI_Controller {
 								</th>
 								<th class="text-right" width="90%">
 									<span><a target="_blank" href="<?= base_url("laporan/cetak_diskonto?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($diskonto_2,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"></th>
+				<th class="text-left" colspan="3">Persiapan</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_persiapan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($persiapan,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_diskonto?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($persiapan_2,0,',','.');?></a></span>
 								</th>
 							</tr>
 					</table>

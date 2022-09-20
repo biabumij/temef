@@ -149,6 +149,46 @@ class M_laporan extends CI_Model {
         return $query->result_array();
     }
 
+    function showPersiapanBiaya($date)
+    {
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 228");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('pdb.id');
+        $this->db->order_by('b.tanggal_transaksi','asc');
+        $query = $this->db->get('pmm_biaya b');
+        return $query->result_array();
+    }
+    
+    function showPersiapanJurnal($date)
+    {
+
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 228");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('pdb.id');
+        $this->db->order_by('c.coa','asc');
+        $this->db->order_by('b.tanggal_transaksi','asc');
+        $query = $this->db->get('pmm_jurnal_umum b');
+        return $query->result_array();
+    }
+
     function biaya_langsung_print($date)
     {
 
@@ -280,6 +320,46 @@ class M_laporan extends CI_Model {
         $this->db->where('c.coa_category',17);
         $this->db->where("c.id <> 220 ");
         $this->db->where("c.id <> 228 ");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('c.coa');
+        $this->db->order_by('c.coa','asc');
+        $this->db->order_by('b.tanggal_transaksi','asc');
+        $query = $this->db->get('pmm_jurnal_umum b');
+        return $query->result_array();
+    }
+
+    function showPersiapanBiaya_print($date)
+    {
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 228");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('c.coa');
+        $this->db->order_by('b.tanggal_transaksi','asc');
+        $query = $this->db->get('pmm_biaya b');
+        return $query->result_array();
+    }
+
+    function showPersiapanJurnal_print($date)
+    {
+
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 228");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa');
         $this->db->order_by('c.coa','asc');

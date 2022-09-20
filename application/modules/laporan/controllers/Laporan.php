@@ -1670,6 +1670,8 @@ class Laporan extends Secure_Controller {
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal($filter_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya($filter_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal($filter_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya($filter_date);
+		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($filter_date);
 
         $this->load->view('laporan_biaya/ajax/ajax_biaya',$data);
     }
@@ -1700,6 +1702,8 @@ class Laporan extends Secure_Controller {
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya($arr_date);
+		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
         $html = $this->load->view('laporan_biaya/print_biaya',$data,TRUE);
 
@@ -2181,6 +2185,41 @@ class Laporan extends Secure_Controller {
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
         $html = $this->load->view('laporan_laba_rugi/cetak_diskonto',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Diskonto');
+        $pdf->nsi_html($html);
+        $pdf->Output('diskonto.pdf', 'I');
+	}
+
+	public function cetak_persiapan()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya($arr_date);
+		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
+        $html = $this->load->view('laporan_laba_rugi/cetak_persiapan',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Diskonto');

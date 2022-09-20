@@ -1672,11 +1672,14 @@ class Pmm extends CI_Controller {
 		$all_revenuecostdiskonto = $this->pmm_model->getRevenueCostAllDiskonto($arr_date);
         $chart_revenuecostdiskonto[] = number_format($all_revenuecostdiskonto['total'],0,',','.');
 
+		$all_revenuecostpersiapan = $this->pmm_model->getRevenueCostAllPersiapan($arr_date);
+        $chart_revenuecostpersiapan[] = number_format($all_revenuecostpersiapan['total'],0,',','.');
+
 		
 		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
-        $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostalat['total'] + $all_revenuecostbbm['total'] + $all_revenuecostinsentiftm['total'] + $all_revenuecostoverheadbiaya['total'] + $all_revenuecostoverheadjurnal['total'] + $all_revenuecostdiskonto['total'],0,',','.');
+        $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostalat['total'] + $all_revenuecostbbm['total'] + $all_revenuecostinsentiftm['total'] + $all_revenuecostoverheadbiaya['total'] + $all_revenuecostoverheadjurnal['total'] + $all_revenuecostdiskonto['total'] + $all_revenuecostpersiapan['total'],0,',','.');
 
-        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostalat['total'] + $all_revenuecostbbm['total'] + $all_revenuecostinsentiftm['total'] + $all_revenuecostoverheadbiaya['total'] + $all_revenuecostoverheadjurnal['total'] + $all_revenuecostdiskonto['total']);
+        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostalat['total'] + $all_revenuecostbbm['total'] + $all_revenuecostinsentiftm['total'] + $all_revenuecostoverheadbiaya['total'] + $all_revenuecostoverheadjurnal['total'] + $all_revenuecostdiskonto['total'] +  + $all_revenuecostpersiapan['total']);
         $chart_laba[] = number_format($all_laba,0,',','.');
 
 		if($all_revenue['total'] > 0){
