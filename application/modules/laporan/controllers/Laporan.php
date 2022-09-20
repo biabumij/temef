@@ -2317,7 +2317,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
-	        $html = $this->load->view('laporan_pembelian/001_cetak_penerimaan_pembelian',$data,TRUE);
+	        $html = $this->load->view('laporan_pembelian/001_cetak_penerimaan_pembelian_alat',$data,TRUE);
 
 	        
 	        $pdf->SetTitle('BBJ - Laporan Pembelian');
