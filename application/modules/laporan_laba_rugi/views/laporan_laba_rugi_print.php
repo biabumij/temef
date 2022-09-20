@@ -432,12 +432,57 @@
 			$diskonto_2 = $diskonto_2['total'];
 			//END_DISKONTO_2
 
+			//PERSIAPAN
+			$persiapan_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$persiapan = $persiapan_biaya['total'] + $persiapan_jurnal['total'];
+			//END_PERSIAPAN
+
+			//PERSIAPAN_2
+			$persiapan_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$persiapan_2 = $persiapan_biaya_2['total'] + $persiapan_jurnal_2['total'];
+			//END_PERSIAPAN_2
+
 			$bahan = $total_nilai;
 			$alat = $alat;
 			$overhead = $overhead;
 			$diskonto = $diskonto;
+			$persiapan = $persiapan;
 
-			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto;
+			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto + $persiapan;
 
 			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
 
@@ -449,8 +494,9 @@
 			$alat_2 = $alat_2;
 			$overhead_2 = $overhead_2;
 			$diskonto_2 = $diskonto_2;
+			$persiapan_2 = $persiapan_2;
 
-			$total_biaya_operasional_2 = $bahan_2 + $alat_2 + $overhead_2 + $diskonto_2;
+			$total_biaya_operasional_2 = $bahan_2 + $alat_2 + $overhead_2 + $diskonto_2 + $persiapan_2;
 
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_biaya_operasional_2;
 
