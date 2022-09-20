@@ -2427,6 +2427,90 @@ class Receipt_material extends CI_Controller {
 		'total_nilai'=>number_format($total_nilai,0,',','.')
 	));	
 	}
+
+	function table_hutang_penerimaan()
+	{
+		$data = array();
+		$supplier_id = $this->input->post('supplier_id');
+		$purchase_order_no = $this->input->post('purchase_order_no');
+		$filter_material = $this->input->post('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$grand_total_tagihan = 0;
+		$grand_total_pembayaran = 0;
+		$grand_total_hutang = 0;
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+
+		$this->db->select('ppo.supplier_id, ps.nama as name');
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('prm.material_id',$filter_material);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('prm.purchase_order_id',$purchase_order_no);
+        }
+		
+		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
+		$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+		$this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
+		$this->db->where("prm.material_id in (4,5,6,7,8,18,19,20,21,22)");
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+		$this->db->where('ppp.status','BELUM LUNAS');
+		$this->db->group_by('ppo.supplier_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_purchase_order ppo');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetReceiptMatHutangPenerimaan($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['date_po'] = date('d-m-Y',strtotime($row['date_po']));
+						$arr['no_po'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
+						$arr['memo'] = $row['memo'];
+						$arr['total_price'] = number_format($row['total_price'],0,',','.');
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+						$arr['hutang'] = number_format($row['hutang'],0,',','.');
+						
+						$arr['name'] = $sups['name'];
+						$grand_total_tagihan += $row['total_price'];
+						$grand_total_pembayaran += $row['pembayaran'];
+						$grand_total_hutang += $row['hutang'];
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$total = 0;
+					$sups['no'] =$no;
+
+					$data[] = $sups;
+					$no++;
+				}
+				
+				
+			}
+		}
+
+		echo json_encode(array('data'=>$data,'grand_total_tagihan'=>number_format($grand_total_tagihan,0,',','.'),
+		'grand_total_pembayaran'=>number_format($grand_total_pembayaran,0,',','.'),
+		'grand_total_hutang'=>number_format($grand_total_hutang,0,',','.')
+	));	
+	}
 	
 
 }

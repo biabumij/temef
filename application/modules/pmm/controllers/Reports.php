@@ -1902,6 +1902,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',15)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1913,6 +1914,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',15)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1924,6 +1926,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',16)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1935,6 +1938,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',16)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1946,6 +1950,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',17)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1957,6 +1962,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',17)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -1972,6 +1978,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',15)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
@@ -1983,6 +1990,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',15)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
@@ -1994,6 +2002,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',16)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
@@ -2005,6 +2014,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',16)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
@@ -2016,6 +2026,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',17)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
@@ -2027,6 +2038,7 @@ class Reports extends CI_Controller {
 			->where('c.coa_category',17)
 			->where("c.id <> 220 ")
 			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();

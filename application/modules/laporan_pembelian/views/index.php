@@ -89,9 +89,14 @@
                                                         <a href="#laporan_daftar_tagihan" aria-controls="laporan_daftar_tagihan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
-														<p><h5>Hutang</h5></p>
+														<p><h5>Hutang Terhadap Tagihan</h5></p>
 														<p>Menampilkan jumlah nilai hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                    </div>
+                                                    <div class="col-sm-5">
+														<p><h5>Hutang Terhadap Penerimaan</h5></p>
+														<p>Menampilkan jumlah nilai hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
+                                                        <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
@@ -566,7 +571,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">  
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Hutang</h3>
+                                                    <h3 class="panel-title">Laporan Hutang Terhadap Tagihan</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -601,6 +606,58 @@
                                                             </tr>
                                                             <tr>
 																<th align="center">TGL. DITERIMA PROYEK</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+
+                                    <!-- Laporan Hutang Penerimaan -->
+
+                                    <div role="tabpanel" class="tab-pane" id="laporan_hutang_penerimaan">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">  
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_hutang_penerimaan'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_hutang_penerimaan" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-hutang-penerimaan" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">REKANAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PESANAN PEMBELIAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">KETERANGAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">TGL. PESANAN PEMBELIAN</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -1400,7 +1457,7 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date5 tbody').append('<tr onclick="NextShowDaftarTagihan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
+                                    $('#table-date5 tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
                                         $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_diterima_proyek + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
@@ -1419,10 +1476,91 @@
                 });
             }
 
-            function NextShowDaftarTagihan(id) {
+            function NextShowHutang(id) {
                 console.log('.mats-' + id);
                 $('.mats-' + id).slideToggle();
             }
+
+        </script>
+
+        <!-- Script Hutang Penerimaan -->
+		
+		<script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_hutang_penerimaan').daterangepicker({
+                autoUpdateInput: false,
+				showDropdowns : true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_hutang_penerimaan').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableHutangPenerimaan();
+            });
+
+            function TableHutangPenerimaan() {
+                $('#table-hutang-penerimaan').show();
+                $('#loader-table').fadeIn('fast');
+                $('#table-hutang-penerimaan tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/table_hutang_penerimaan'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        filter_date: $('#filter_date_hutang_penerimaan').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#table-hutang-penerimaan tbody').html('');
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    window.jumlah_tagihan = 0;
+                                    window.jumlah_pembayaran = 0;
+                                    window.jumlah_hutang = 0;
+                                    $('#table-hutang-penerimaan tbody').append('<tr onclick="NextShowHutangPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.name + '</td></tr>');
+                                    $.each(val.mats, function(a, row) {
+                                        var a_no = a + 1;
+                                        $('#table-hutang-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.date_po + '</td><td class="text-left">' + row.no_po + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.total_price + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td><</tr>');
+                                        window.jumlah_tagihan += parseFloat(row.total_price.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_hutang += parseFloat(row.hutang.replace(/\./g,'').replace(',', '.')); 
+                                    });
+                                    $('#table-hutang-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan.format(window.jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan.format(window.jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan.format(window.jumlah_hutang) + '</b></td></tr>');
+                                });
+                                $('#table-hutang-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.grand_total_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_pembayaran + '</b></td><td class="text-right" ><b>' + result.grand_total_hutang + '</b></td></tr>');
+                            } else {
+                                $('#table-hutang-penerimaan tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowHutangPenerimaan(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
+
+            window.formatter_hutang_penerimaan = new Intl.NumberFormat('id-ID', {
+                style: 'decimal',
+                currency: 'IDR',
+                symbol: 'none',
+				minimumFractionDigits : '0'
+            });
 
         </script>
 		
