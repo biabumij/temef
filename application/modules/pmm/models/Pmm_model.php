@@ -4219,7 +4219,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMatHutangPenerimaan($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetReceiptMatHutangPenerimaan($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_katagori=false)
     {
         $output = array();
 
@@ -4242,9 +4242,11 @@ class Pmm_model extends CI_Model {
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as hutang
         ');
-        $this->db->join('produk p','prm.material_id = p.id','left');
+        
         $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
         $this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
+        $this->db->join('produk p','prm.material_id = p.id','left');
+
         if(!empty($start_date) && !empty($end_date)){
             $this->db->where('prm.date_receipt >=',$start_date);
             $this->db->where('prm.date_receipt <=',$end_date);
@@ -4255,12 +4257,58 @@ class Pmm_model extends CI_Model {
         if(!empty($purchase_order_no)){
             $this->db->where('ppo.id',$purchase_order_no);
         }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
-        }
-		$this->db->where("prm.material_id in (4,5,6,7,8,18,19,20,21,22)");
+       
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
-        $this->db->where('ppp.status','BELUM LUNAS');
+        $this->db->where("prm.material_id in (4,5,6,7,8,18,19,20,21,22)");
+        $this->db->order_by('p.nama_produk','asc');
+        $this->db->group_by('prm.purchase_order_id');
+        $query = $this->db->get('pmm_receipt_material prm');
+        $output = $query->result_array();
+		
+        return $output;
+    }
+
+    function GetReceiptMatHutangPenerimaanAlat($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_katagori=false)
+    {
+        $output = array();
+
+        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, prm.purchase_order_id, ppo.memo, SUM(prm.display_price) as total_price,
+        (
+            select(COALESCE(sum(pppp.total),0))
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as pembayaran,
+        SUM(prm.display_price) -
+        (
+            select(COALESCE(sum(pppp.total),0))
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as hutang
+        ');
+        
+        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+        $this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
+        $this->db->join('produk p','prm.material_id = p.id','left');
+
+        if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('ppo.id',$purchase_order_no);
+        }
+       
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+        $this->db->where("prm.material_id in (12,13,14,15,16,23,24,25)");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.purchase_order_id');
         $query = $this->db->get('pmm_receipt_material prm');

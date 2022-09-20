@@ -54,17 +54,17 @@
                                             <div width="100%">
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian (Bahan Baku)</h5></p>
+														<p><h5>Penerimaan Pembelian Bahan Baku</h5></p>
 														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian (Bahan Baku) Per Hari</h5></p>
+														<p><h5>Penerimaan Pembelian Bahan Baku - Per Hari</h5></p>
 														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian (Alat)</h5></p>
+														<p><h5>Penerimaan Pembelian Alat</h5></p>
 														<p>Menampilkan transaksi pembelian alat yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian_alat" aria-controls="laporan_penerimaan_pembelian_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
@@ -94,9 +94,14 @@
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Hutang Terhadap Penerimaan</h5></p>
-														<p>Menampilkan jumlah nilai hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
+														<p><h5>Hutang Terhadap Penerimaan Bahan Baku</h5></p>
+														<p>Menampilkan jumlah nilai hutang bahan baku pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                    </div>
+                                                    <div class="col-sm-5">
+														<p><h5>Hutang Terhadap Penerimaan Alat</h5></p>
+														<p>Menampilkan jumlah nilai hutang alat pada setiap rekanan yang dicatat dalam suatu periode.</p>
+                                                        <a href="#laporan_hutang_penerimaan_alat" aria-controls="laporan_hutang_penerimaan_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
@@ -124,7 +129,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian</h3>
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Bahan Baku</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -205,7 +210,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Per Hari</h3>
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Bahan Baku - Per Hari</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -214,11 +219,6 @@
                                                     $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                                     $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
                                                     ?>
-                                                    <!--<div class="row">
-                                                        <div class="col-sm-3">
-                                                            <a href="<?php echo site_url('pmm/receipt_material/manage'); ?>" class="btn btn-primary">Tambah Penerimaan Pembelian</a>
-                                                        </div>
-                                                    </div>-->
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian_per_hari'); ?>" target="_blank">
                                                             <div class="col-sm-3">
@@ -286,13 +286,13 @@
                                         </div>
 									</div>
 
-                                    <!-- Laporan Penerimaan Pembelian (Alat) -->
+                                    <!-- Laporan Penerimaan Pembelian Alat -->
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_penerimaan_pembelian_alat">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian (Alat)</h3>
+                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Alat</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -623,7 +623,7 @@
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">  
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan</h3>
+                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan Bahan Baku</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -668,6 +668,58 @@
                                             </div>
                                         </div>
 									</div>
+
+                                    <!-- Laporan Hutang Penerimaan Alat -->
+
+                                    <div role="tabpanel" class="tab-pane" id="laporan_hutang_penerimaan_alat">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">  
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan Alat</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_hutang_penerimaan_alat'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_hutang_penerimaan_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-hutang-penerimaan-alat" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">REKANAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PESANAN PEMBELIAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">KETERANGAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">TGL. PESANAN PEMBELIAN</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
 									
 									<!-- Laporan Umur Hutang -->
 
@@ -681,9 +733,6 @@
 												<div style="margin: 20px">
 													<div class="row">
 														<form action="<?php echo site_url('laporan/cetak_umur_hutang');?>" target="_blank">
-															<!--<div class="col-sm-3">
-																<input type="text" id="filter_date_h" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>-->
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
 															</div>
@@ -1556,6 +1605,87 @@
             }
 
             window.formatter_hutang_penerimaan = new Intl.NumberFormat('id-ID', {
+                style: 'decimal',
+                currency: 'IDR',
+                symbol: 'none',
+				minimumFractionDigits : '0'
+            });
+
+        </script>
+
+        <!-- Script Hutang Penerimaan Alat -->
+		
+		<script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_hutang_penerimaan_alat').daterangepicker({
+                autoUpdateInput: false,
+				showDropdowns : true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_hutang_penerimaan_alat').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableHutangPenerimaanAlat();
+            });
+
+            function TableHutangPenerimaanAlat() {
+                $('#table-hutang-penerimaan-alat').show();
+                $('#loader-table').fadeIn('fast');
+                $('#table-hutang-penerimaan tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/table_hutang_penerimaan_alat'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        filter_date: $('#filter_date_hutang_penerimaan_alat').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#table-hutang-penerimaan-alat tbody').html('');
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    window.jumlah_tagihan = 0;
+                                    window.jumlah_pembayaran = 0;
+                                    window.jumlah_hutang = 0;
+                                    $('#table-hutang-penerimaan-alat tbody').append('<tr onclick="NextShowHutangPenerimaanAlat(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.name + '</td></tr>');
+                                    $.each(val.mats, function(a, row) {
+                                        var a_no = a + 1;
+                                        $('#table-hutang-penerimaan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.date_po + '</td><td class="text-left">' + row.no_po + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.total_price + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td><</tr>');
+                                        window.jumlah_tagihan += parseFloat(row.total_price.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_hutang += parseFloat(row.hutang.replace(/\./g,'').replace(',', '.')); 
+                                    });
+                                    $('#table-hutang-penerimaan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan_alat.format(window.jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan_alat.format(window.jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter_hutang_penerimaan_alat.format(window.jumlah_hutang) + '</b></td></tr>');
+                                });
+                                $('#table-hutang-penerimaan-alat tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.grand_total_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_pembayaran + '</b></td><td class="text-right" ><b>' + result.grand_total_hutang + '</b></td></tr>');
+                            } else {
+                                $('#table-hutang-penerimaan-alat tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowHutangPenerimaanAlat(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
+
+            window.formatter_hutang_penerimaan_alat = new Intl.NumberFormat('id-ID', {
                 style: 'decimal',
                 currency: 'IDR',
                 symbol: 'none',
