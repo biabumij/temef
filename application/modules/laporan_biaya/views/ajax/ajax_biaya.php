@@ -1,18 +1,19 @@
 <table class="table">
 	<tr bgcolor="#D3D3D3" style="color:black">
 		<th width="10%">PERIODE</th>
-		<th width="90%" colspan="5" class="text-right"><?= $filter_date;?></th>
+		<th width="90%" colspan="7" class="text-right"><?= $filter_date;?></th>
 	</tr>
 	<tr>
 		<th class="text-center" width="10%" style="padding-left:20px;">Tanggal</th>
 		<th class="text-center" width="5%">Transaksi</th>
-		<th class="text-center" width="20%">Kategori</th>
+		<th class="text-center" width="8%">COA</th>
+		<th class="text-center" width="17%">Kategori</th>
 		<th class="text-center" width="15%">Nomor Transaksi</th>
-		<th class="text-center" width="35%">Keterangan</th>
+		<th class="text-center" width="30%">Keterangan</th>
 		<th class="text-center" width="15%" class="text-right">Jumlah</th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="6">Biaya Overhead Produksi</th>
+		<th class="text-left" colspan="7">Biaya Overhead Produksi</th>
 	</tr>
 	<?php
 	$total_biaya_langsung = 0;
@@ -20,8 +21,9 @@
 		foreach ($biaya_langsung as $key => $bl) {
 			?>
 			<tr>
-				<td><?= $bl['tanggal_transaksi'];?></td>
+				<td><?= $bl['tanggal_transaksi'] = date('d-m-Y',strtotime($bl['tanggal_transaksi']));?></td>
 				<td>BIAYA</td>
+				<td class="text-center"><?= $bl['coa_number'];?></td>
 				<td><?= $bl['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $bl["id"]) .'" target="_blank">'. $bl["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $bl['deskripsi'];?></td>
@@ -38,8 +40,9 @@
 		foreach ($biaya_langsung_jurnal as $key => $blj) {
 			?>	
 			<tr>
-				<td><?= $blj['tanggal_transaksi'];?></td>
+				<td><?= $blj['tanggal_transaksi'] = date('d-m-Y',strtotime($blj['tanggal_transaksi']));?></td>
 				<td>JURNAL</td>
+				<td class="text-center"><?= $blj['coa_number'];?></td>
 				<td><?= $blj['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $blj["id"]) .'" target="_blank">'. $blj["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $blj['deskripsi'];?></td>
@@ -52,14 +55,14 @@
 	$total_a = $grand_total_biaya_langsung + $total_biaya_langsung_jurnal;
 	?>
 	<tr class="active">
-		<td width="80%" style="padding-left:20px;" colspan="5">Total Biaya Overhead Produksi</td>
+		<td width="80%" style="padding-left:20px;" colspan="6">Total Biaya Overhead Produksi</td>
 		<td width="20%" class="text-right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
 	</tr>
 	<tr>
 		<th colspan="7"></th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="6">Biaya Umum & Administrasi</th>
+		<th class="text-left" colspan="7">Biaya Umum & Administrasi</th>
 	</tr>
 	<?php
 	$total_biaya = 0;
@@ -67,8 +70,9 @@
 		foreach ($biaya as $key => $row) {
 			?>
 			<tr>
-				<td><?= $row['tanggal_transaksi'];?></td>
+				<td><?= $row['tanggal_transaksi'] = date('d-m-Y',strtotime($row['tanggal_transaksi']));?></td>
 				<td>BIAYA</td>
+				<td class="text-center"><?= $row['coa_number'];?></td>
 				<td><?= $row['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
@@ -84,8 +88,9 @@
 		foreach ($biaya_jurnal as $key => $row2) {
 			?>
 			<tr>
-				<td><?= $row2['tanggal_transaksi'];?></td>
+				<td><?= $row2['tanggal_transaksi'] = date('d-m-Y',strtotime($row2['tanggal_transaksi']));?></td>
 				<td>JURNAL</td>
+				<td><?= $row2['coa_number'];?></td>
 				<td><?= $row2['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
@@ -98,14 +103,14 @@
 	$total_b = $grand_total_biaya + $total_biaya_jurnal;
 	?>
 	<tr class="active">
-		<td width="80%" style="padding-left:20px;" colspan="5">Total Biaya Umum & Administrasi</td>
+		<td width="80%" style="padding-left:20px;" colspan="6">Total Biaya Umum & Administrasi</td>
 		<td width="20%" class="text-right"><b><?= $this->filter->Rupiah($total_b);?></b></td>
 	</tr>
 	<tr>
-		<th colspan="6"></th>
+		<th colspan="7"></th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="6">Biaya Lain - Lain</th>
+		<th class="text-left" colspan="7">Biaya Lain - Lain</th>
 	</tr>
 	<?php
 	$total_biaya_lainnya = 0;
@@ -113,8 +118,9 @@
 		foreach ($biaya_lainnya as $key => $row) {
 			?>
 			<tr>
-				<td><?= $row['tanggal_transaksi'];?></td>
+				<td><?= $row['tanggal_transaksi'] = date('d-m-Y',strtotime($row['tanggal_transaksi']));?></td>
 				<td>BIAYA</td>
+				<td class="text-center"><?= $row['coa_number'];?></td>
 				<td><?= $row['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
@@ -130,8 +136,9 @@
 		foreach ($biaya_lainnya as $key => $row2) {
 			?>
 			<tr>
-				<td><?= $row2['tanggal_transaksi'];?></td>
+				<td><?= $row2['tanggal_transaksi'] = date('d-m-Y',strtotime($row2['tanggal_transaksi']));?></td>
 				<td>JURNAL</td>
+				<td><?= $row2['coa_number'];?></td>
 				<td><?= $row2['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
@@ -144,14 +151,14 @@
 	$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
 	?>
 	<tr class="active">
-		<td width="80%" style="padding-left:20px;" colspan="5">Total Biaya Lain - Lain</td>
+		<td width="80%" style="padding-left:20px;" colspan="6">Total Biaya Lain - Lain</td>
 		<td width="20%" class="text-right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 	</tr>
 	<tr>
-		<th colspan="6"></th>
+		<th colspan="7"></th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="6">Biaya Persiapan</th>
+		<th class="text-left" colspan="7">Biaya Persiapan</th>
 	</tr>
 	<?php
 	$total_biaya_persiapan = 0;
@@ -159,8 +166,9 @@
 		foreach ($biaya_persiapan as $key => $row) {
 			?>
 			<tr>
-				<td><?= $row['tanggal_transaksi'];?></td>
+				<td><?= $row['tanggal_transaksi'] = date('d-m-Y',strtotime($row['tanggal_transaksi']));?></td>
 				<td>BIAYA</td>
+				<td class="text-center"><?= $row['coa_number'];?></td>
 				<td><?= $row['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
@@ -176,8 +184,9 @@
 		foreach ($biaya_persiapan_jurnal as $key => $row2) {
 			?>
 			<tr>
-				<td><?= $row2['tanggal_transaksi'];?></td>
+				<td><?= $row2['tanggal_transaksi'] = date('d-m-Y',strtotime($row2['tanggal_transaksi']));?></td>
 				<td>JURNAL</td>
+				<td class="text-center"><?= $row['coa_number'];?></td>
 				<td><?= $row2['coa'];?></td>
 				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
@@ -190,7 +199,7 @@
 	$total_d = $grand_total_biaya_persiapan + $total_persiapan_jurnal;
 	?>
 	<tr class="active">
-		<td width="80%" style="padding-left:20px;" colspan="5">Total Biaya Persiapan</td>
+		<td width="80%" style="padding-left:20px;" colspan="6">Total Biaya Persiapan</td>
 		<td width="20%" class="text-right"><b><?= $this->filter->Rupiah($total_d);?></b></td>
 	</tr>
 </table>

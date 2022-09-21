@@ -28,6 +28,9 @@
         table tr.table-active3{
             background-color: #eee;
         }
+		table tr.table-active4{
+            font-weight: bold;
+        }
 		hr{
 			margin-top:0;
 			margin-bottom:30px;
@@ -63,39 +66,67 @@
 				</td>
 			</tr>
 			<tr class="table-active3">
-				<th align="center" width="10%"><b>Tanggal</b></th>
 				<th align="center" width="10%"><b>Transaksi</b></th>
+				<th align="center" width="10%"><b>COA</b></th>
 				<th align="center" width="50%"><b>Kategori</b></th>
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="6"><b>Biaya Overhead Produksi</b></th>
+				<th width="100%" align="left" colspan="5"><b>Biaya Overhead Produksi</b></th>
 			</tr>
 			<?php
+			if(!empty($biaya_langsung_parent)){
+				foreach ($biaya_langsung_parent as $key => $bl) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $bl['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$bl['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $bl['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$bl['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php
+				}
+			}
 			$total_biaya_langsung  = 0;
 			if(!empty($biaya_langsung)){
 				foreach ($biaya_langsung as $key => $bl) {
 					?>
-					<tr>
-						<td width="10%"><?= $bl['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $bl['coa'];?></td>
+					<tr>	
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $bl['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $bl['coa'];?></td>
 						<td width="30%" align="right"><?= $this->filter->Rupiah($bl['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_langsung += $bl['total'];	
 				}
 			}
+
+			if(!empty($biaya_langsung_jurnal_parent)){
+				foreach ($biaya_langsung_jurnal_parent as $key => $blj) {
+					?>	
+					<tr class="table-active4">
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $blj['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$blj['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $blj['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$blj['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php				
+				}
+			}
+
 			$total_biaya_langsung_jurnal  = 0;
 			$grand_total_biaya_langsung = $total_biaya_langsung;
 				if(!empty($biaya_langsung_jurnal)){
 					foreach ($biaya_langsung_jurnal as $key => $blj) {
 						?>	
 						<tr>
-							<td><?= $blj['tanggal_transaksi'];?></td>
-							<td>JURNAL</td>
-							<td><?= $blj['coa'];?></td>
-							<td align="right"><?= $this->filter->Rupiah($blj['total']);?></td>
+							<td width="10%" align="center">JURNAL</td>
+							<td width="10%" align="center"><?= $blj['coa_number'];?></td>
+							<td width="2%"></td>
+							<td width="48%"><?= $blj['coa'];?></td>
+							<td width="30%" align="right"><?= $this->filter->Rupiah($blj['total']);?></td>
 						</tr>
 						<?php
 						$total_biaya_langsung_jurnal += $blj['total'];					
@@ -104,40 +135,69 @@
 			$total_a = $grand_total_biaya_langsung + $total_biaya_langsung_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Overhead Produksi</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Overhead Produksi</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
 			</tr>
 			<tr>
-				<th width="100%" colspan="6"></th>
+				<th width="100%" colspan="5"></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="6"><b>Biaya Umum & Administrasi</b></th>
+				<th width="100%" align="left" colspan="5"><b>Biaya Umum & Administrasi</b></th>
 			</tr>
 			<?php
+			if(!empty($biaya_parent)){
+				foreach ($biaya_parent as $key => $row) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php			
+				}
+			}
+
 			$total_biaya  = 0;
 			if(!empty($biaya)){
 				foreach ($biaya as $key => $row) {
 					?>
 					<tr>
-						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya += $row['total'];				
 				}
 			}
+
+			if(!empty($biaya_jurnal_parent)){
+				foreach ($biaya_jurnal_parent as $key => $row2) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row2['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php			
+				}
+			}
+
 			$total_biaya_jurnal = 0;
 			$grand_total_biaya = $total_biaya;
 			if(!empty($biaya_jurnal)){
 				foreach ($biaya_jurnal as $key => $row2) {
 					?>
 					<tr>
-						<td><?= $row2['tanggal_transaksi'];?></td>
-						<td>JURNAL</td>
-						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row2['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_jurnal += $row2['total'];				
@@ -146,40 +206,69 @@
 			$total_b = $grand_total_biaya + $total_biaya_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Umum & Administrasi</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Umum & Administrasi</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_b);?></b></td>
 			</tr>
 			<tr>
-				<th width="100%" colspan="6"></th>
+				<th width="100%" colspan="5"></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="6"><b>Biaya Lain - Lain</b></th>
+				<th width="100%" align="left" colspan="5"><b>Biaya Lain - Lain</b></th>
 			</tr>
 			<?php
+			if(!empty($biaya_lainnya_parent)){
+				foreach ($biaya_lainnya_parent as $key => $row) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php				
+				}
+			}
+
 			$total_biaya_lainnya = 0;
 			if(!empty($biaya_lainnya)){
 				foreach ($biaya_lainnya as $key => $row) {
 					?>
 					<tr>
-						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya += $row['total'];					
 				}
 			}
+
+			if(!empty($biaya_lainnya_jurnal_parent)){
+				foreach ($biaya_lainnya_jurnal_parent as $key => $row2) {
+					?>
+					<tr class="table-active4">	
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row2['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php				
+				}
+			}
+
 			$total_biaya_lainnya_jurnal = 0;
 			$grand_total_biaya_lainnya = $total_biaya_lainnya;
 			if(!empty($biaya_lainnya_jurnal)){
 				foreach ($biaya_lainnya_jurnal as $key => $row2) {
 					?>
 					<tr>
-						<td><?= $row2['tanggal_transaksi'];?></td>
-						<td>JURNAL</td>
-						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row2['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya_jurnal += $row2['total'];					
@@ -188,40 +277,69 @@
 			$total_c = $grand_total_biaya_lainnya + $total_biaya_lainnya_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Lain - Lain</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 			</tr>
 			<tr>
-			<th width="100%" colspan="6"></th>
+			<th width="100%" colspan="5"></th>
 			</tr>
 			<tr class="table-active2">
-			<th width="100%" align="left" colspan="6"><b>Biaya Persiapan</b></th>
+			<th width="100%" align="left" colspan="5"><b>Biaya Persiapan</b></th>
 			</tr>
 			<?php
+			if(!empty($biaya_persiapan_parent)){
+				foreach ($biaya_persiapan_parent as $key => $row) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php					
+				}
+			}
+
 			$total_biaya_persiapan = 0;
 			if(!empty($biaya_persiapan)){
 				foreach ($biaya_persiapan as $key => $row) {
 					?>
 					<tr>
-						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
-						<td width="10%">BIAYA</td>
-						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+						<td width="10%" align="center">BIAYA</td>
+						<td width="10%" align="center"><?= $row['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_persiapan += $row['total'];					
 				}
 			}
+
+			if(!empty($biaya_persiapan_jurnal_parent)){
+				foreach ($biaya_persiapan_jurnal_parent as $key => $row2) {
+					?>
+					<tr class="table-active4">
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa_number');?></td>
+						<td width="50%"><?= $row2['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$row2['coa_parent']),'coa');?></td>
+						<td width="30%" align="right"></td>
+					</tr>
+					<?php					
+				}
+			}
+
 			$total_biaya_persiapan_jurnal = 0;
 			$grand_total_biaya_persiapan = $total_biaya_persiapan;
 			if(!empty($biaya_persiapan_jurnal)){
 				foreach ($biaya_persiapan_jurnal as $key => $row2) {
 					?>
 					<tr>
-						<td><?= $row2['tanggal_transaksi'];?></td>
-						<td>JURNAL</td>
-						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+						<td width="10%" align="center">JURNAL</td>
+						<td width="10%" align="center"><?= $row2['coa_number'];?></td>
+						<td width="2%"></td>
+						<td width="48%"><?= $row2['coa'];?></td>
+						<td width="30%" align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
 					</tr>
 					<?php
 					$total_biaya_persiapan_jurnal += $row2['total'];					
@@ -230,13 +348,13 @@
 			$total_d = $grand_total_biaya_persiapan + $total_biaya_persiapan_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Persiapan</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Persiapan</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_d);?></b></td>
 			</tr>
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="15">
+		<table width="98%" border="0" cellpadding="20">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
