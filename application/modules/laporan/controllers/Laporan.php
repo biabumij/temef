@@ -2152,12 +2152,22 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+		$data['biaya_parent'] = $this->m_laporan->showBiaya_print_parent($arr_date);
         $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal_parent'] = $this->m_laporan->showBiayaJurnal_print_parent($arr_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+		$data['biaya_lainnya_parent'] = $this->m_laporan->showBiayaLainnya_print_parent($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal_parent'] = $this->m_laporan->showBiayaLainnyaJurnal_print_parent($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+		$data['biaya_persiapan_parent'] = $this->m_laporan->showPersiapanBiaya_print_parent($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
+		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
+		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
         $html = $this->load->view('laporan_laba_rugi/cetak_overhead',$data,TRUE);
 
@@ -2186,12 +2196,22 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+		$data['biaya_parent'] = $this->m_laporan->showBiaya_print_parent($arr_date);
         $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal_parent'] = $this->m_laporan->showBiayaJurnal_print_parent($arr_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+		$data['biaya_lainnya_parent'] = $this->m_laporan->showBiayaLainnya_print_parent($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal_parent'] = $this->m_laporan->showBiayaLainnyaJurnal_print_parent($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+		$data['biaya_persiapan_parent'] = $this->m_laporan->showPersiapanBiaya_print_parent($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
+		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
+		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
         $html = $this->load->view('laporan_laba_rugi/cetak_diskonto',$data,TRUE);
 
         
@@ -2219,13 +2239,21 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+		$data['biaya_parent'] = $this->m_laporan->showBiaya_print_parent($arr_date);
         $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal_parent'] = $this->m_laporan->showBiayaJurnal_print_parent($arr_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+		$data['biaya_lainnya_parent'] = $this->m_laporan->showBiayaLainnya_print_parent($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal_parent'] = $this->m_laporan->showBiayaLainnyaJurnal_print_parent($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
-		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya($arr_date);
+		$data['biaya_persiapan_parent'] = $this->m_laporan->showPersiapanBiaya_print_parent($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
+		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
         $html = $this->load->view('laporan_laba_rugi/cetak_persiapan',$data,TRUE);
 
