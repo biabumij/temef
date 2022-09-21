@@ -1062,8 +1062,7 @@ class Laporan extends Secure_Controller {
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
-		$purchase_order_no = $this->input->get('purchase_order_no');
-		$filter_material = $this->input->get('filter_material');
+		$filter_kategori = $this->input->get('filter_kategori');
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
@@ -1077,8 +1076,11 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('p.nama_produk, prm.measure as satuan, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as total_price');
-			
+		$this->db->select('p.nama_produk, prm.measure as satuan, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as total_price');
+		$this->db->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left');
+		$this->db->join('produk p','prm.material_id = p.id','left');
+		$this->db->join('penerima ps', 'ppo.supplier_id = ps.id','left');
+
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('prm.date_receipt >=',$start_date);
             $this->db->where('prm.date_receipt <=',$end_date);
@@ -1087,17 +1089,10 @@ class Laporan extends Secure_Controller {
 		if(!empty($supplier_id)){
             $this->db->where('ps.nama',$supplier_id);
         }
-        if(!empty($purchase_order_no)){
-            $this->db->where('prm.purchase_order_id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
         }
 		
-		$this->db->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left');
-		$this->db->join('produk p','prm.material_id = p.id','left');
-		$this->db->join('penerima ps', 'ppo.supplier_id = ps.id','left');
-		$this->db->where('p.bahanbaku','1');
 		$this->db->group_by('p.nama_produk');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
@@ -1108,7 +1103,7 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat3($sups['nama_produk'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetReceiptMat3($sups['nama_produk'],$start_date,$end_date,$filter_kategori);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {

@@ -1503,7 +1503,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
-	function GetReceiptMat3($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+	function GetReceiptMat3($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false)
     {
         $output = array();
 
@@ -1520,14 +1520,10 @@ class Pmm_model extends CI_Model {
 		if(!empty($supplier_id)){
             $this->db->where('p.nama_produk',$supplier_id);
         }
-        if(!empty($purchase_order_no)){
-            $this->db->where('prm.purchase_order_id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
+        if(!empty($filter_kategori)){
+            $this->db->where('ppo.kategori_id',$filter_kategori);
         }
 		
-		$this->db->where('p.bahanbaku','1');
         $this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
