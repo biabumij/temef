@@ -64,11 +64,6 @@
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Penerimaan Pembelian Alat</h5></p>
-														<p>Menampilkan transaksi pembelian alat yang dicatat dalam suatu periode.</p>
-                                                        <a href="#laporan_penerimaan_pembelian_alat" aria-controls="laporan_penerimaan_pembelian_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-                                                    <div class="col-sm-5">
 														<p><h5>Laporan Pemakaian Peralatan Produksi</h5></p>
 														<p>Menampilkan laporan pemakaian peralatan produksi yang dicatat terkirim untuk transaksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_pemakaian_peralatan" aria-controls="laporan_pemakaian_peralatan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
@@ -97,11 +92,6 @@
 														<p><h5>Hutang Terhadap Penerimaan</h5></p>
 														<p>Menampilkan jumlah nilai hutang bahan baku pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-                                                    </div>
-                                                    <div class="col-sm-5">
-														<p><h5>Hutang Terhadap Penerimaan Alat</h5></p>
-														<p>Menampilkan jumlah nilai hutang alat pada setiap rekanan yang dicatat dalam suatu periode.</p>
-                                                        <a href="#laporan_hutang_penerimaan_alat" aria-controls="laporan_hutang_penerimaan_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
@@ -136,13 +126,26 @@
                                                     <?php
                                                     $arr_po = $this->db->order_by('id', ' no_po', 'supplier_id', 'asc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
                                                     $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
-                                                    $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+                                                    $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
+                                                    $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                                     ?>
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian'); ?>" target="_blank">
                                                             <div class="col-sm-3">
                                                                 <input type="text" id="filter_date_b" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_b" name="filter_kategori" class="form-control select2">
+                                                                    <option value="">Pilih Kategori</option>
+                                                                    <?php
+                                                                    foreach ($kategori as $key => $kat) {
+                                                                    ?>
+                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>      
                                                             <div class="col-sm-3">
                                                                 <select id="filter_material_b" name="filter_material" class="form-control select2">
                                                                     <option value="">Pilih Produk</option>
@@ -214,16 +217,23 @@
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
-                                                    <?php
-                                                    $arr_po = $this->db->order_by('id', ' no_po', 'supplier_id', 'asc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
-                                                    $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
-                                                    $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
-                                                    ?>
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian_per_hari'); ?>" target="_blank">
                                                             <div class="col-sm-3">
                                                                 <input type="text" id="filter_date_b_hari" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_b_hari" name="filter_kategori" class="form-control select2">
+                                                                    <option value="">Pilih Kategori</option>
+                                                                    <?php
+                                                                    foreach ($kategori as $key => $kat) {
+                                                                    ?>
+                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div> 
                                                             <div class="col-sm-3">
                                                                 <select id="filter_material_b_hari" name="filter_material" class="form-control select2">
                                                                     <option value="">Pilih Produk</option>
@@ -268,87 +278,6 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TANGGAL</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="text-center">NO. PESANAN PEMBELIAN</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody></tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-
-                                    <!-- Laporan Penerimaan Pembelian Alat -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_penerimaan_pembelian_alat">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan Pembelian Alat</h3>
-													<a href="laporan_pembelian">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <?php
-                                                    $arr_po = $this->db->order_by('id', ' no_po', 'supplier_id', 'asc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
-                                                    $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
-                                                    $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
-                                                    ?>
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian_alat'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <select id="filter_material_alat" name="filter_material" class="form-control select2">
-                                                                    <option value="">Pilih Produk</option>
-                                                                    <?php
-                                                                    foreach ($materials as $key => $mats) {
-                                                                    ?>
-                                                                        <option value="<?php echo $mats['id']; ?>"><?php echo $mats['nama_produk']; ?></option>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <select id="filter_supplier_id_alat" name="supplier_id" class="form-control select2">
-                                                                    <option value="">Pilih Rekanan</option>
-                                                                    <?php
-                                                                    foreach ($suppliers as $key => $supplier) {
-                                                                    ?>
-                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-sm-9 text-right">
-                                                                <br />
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date-alat" style="display:none;">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-                                                                <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
@@ -631,7 +560,19 @@
                                                         <form action="<?php echo site_url('laporan/cetak_hutang_penerimaan'); ?>" target="_blank">
                                                             <div class="col-sm-3">
                                                                 <input type="text" id="filter_date_hutang_penerimaan" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_hutang_penerimaan" name="filter_kategori" class="form-control select2">
+                                                                    <option value="">Pilih Kategori</option>
+                                                                    <?php
+                                                                    foreach ($kategori as $key => $kat) {
+                                                                    ?>
+                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>                                                      
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
                                                             </div>
@@ -646,58 +587,6 @@
                                                             </div>
                                                         </div>
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-hutang-penerimaan" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-                                                                <th class="text-center">REKANAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PESANAN PEMBELIAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">KETERANGAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="text-center">TGL. PESANAN PEMBELIAN</th>
-                                                            </tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-
-                                    <!-- Laporan Hutang Penerimaan Alat -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_hutang_penerimaan_alat">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">  
-												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Hutang Terhadap Penerimaan Alat</h3>
-													<a href="laporan_pembelian">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_hutang_penerimaan_alat'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_hutang_penerimaan_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-hutang-penerimaan-alat" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -932,6 +821,7 @@
                         supplier_id: $('#filter_supplier_id_b').val(),
                         filter_date: $('#filter_date_b').val(),
                         filter_material: $('#filter_material_b').val(),
+                        filter_kategori: $('#filter_kategori_b').val(),
                     },
                      success: function(result) {
                         if (result.data) {
@@ -999,6 +889,11 @@
             $('#filter_material_b').change(function() {
                 TableDate();
             });
+
+            $('#filter_kategori_b').change(function() {
+                TableDate();
+            });
+
         </script>
 
         <!-- Script Pembelian Per Hari -->
@@ -1039,6 +934,7 @@
                         supplier_id: $('#filter_supplier_id_b_hari').val(),
                         filter_date: $('#filter_date_b_hari').val(),
                         filter_material: $('#filter_material_b_hari').val(),
+                        filter_kategori: $('#filter_kategori_b_hari').val(),
                     },
                      success: function(result) {
                         if (result.data) {
@@ -1106,6 +1002,11 @@
             $('#filter_material_b_hari').change(function() {
                 TableDateHari();
             });
+
+            $('#filter_kategori_b_hari').change(function() {
+                TableDateHari();
+            });
+
         </script>
 
         <!-- Script Pembelian (Alat) -->
@@ -1567,6 +1468,7 @@
                     dataType: 'json',
                     data: {
                         filter_date: $('#filter_date_hutang_penerimaan').val(),
+                        filter_kategori: $('#filter_kategori_hutang_penerimaan').val(),
                     },
                     success: function(result) {
                         if (result.data) {
@@ -1609,6 +1511,10 @@
                 currency: 'IDR',
                 symbol: 'none',
 				minimumFractionDigits : '0'
+            });
+
+            $('#filter_kategori_hutang_penerimaan').change(function() {
+                TableHutangPenerimaan();
             });
 
         </script>
