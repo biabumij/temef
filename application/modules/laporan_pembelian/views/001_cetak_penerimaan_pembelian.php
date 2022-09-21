@@ -90,7 +90,7 @@
 				</td>
 			</tr>
 		</table>	
-			<table cellpadding="2" width="98%">
+		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
                 <th align="center" width="5%">NO.</th>
                 <th align="center" width="30%" colspan="2">URAIAN</th>

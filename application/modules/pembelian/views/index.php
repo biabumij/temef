@@ -131,18 +131,6 @@
                                             <input type="text" id="filter_date_b" class="form-control filter_date_b input-sm"  autocomplete="off" placeholder="Filter By Date">
                                         </div>
                                         <div class="col-sm-3">
-                                            <select id="filter_schedule_id_b" class="form-control select2">
-                                                <option value="">Pilih Jadwal</option>
-                                                <?php
-                                                foreach ($arr_schedule as $key => $schedule) {
-                                                    ?>
-                                                    <option value="<?php echo $schedule['id'];?>"><?php echo $schedule['schedule_name'].' - '.$schedule['no_spo'];?></option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
                                             <select id="filter_supplier_id_b" class="form-control select2">
                                                 <option value="">Pilih Rekanan</option>
                                                 <?php
