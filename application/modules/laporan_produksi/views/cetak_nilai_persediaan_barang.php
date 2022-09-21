@@ -107,6 +107,8 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
+		<!--- OPENING BALANCE --->
+			
 		<?php
 			
 		$date1_ago = date('2020-01-01');
@@ -141,7 +143,7 @@
 
 		$total_volume_stock_semen_ago = $stock_opname_semen_ago['volume'];
 
-		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030')
+		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
@@ -245,6 +247,38 @@
 		$volume_opening_balance_batu2030 = round($total_volume_stock_batu2030_ago,2);
 		$harga_opening_balance_batu2030 = $harga_hpp_bahan_baku['batu2030'];
 		$nilai_opening_balance_batu2030 = $volume_opening_balance_batu2030 * $harga_opening_balance_batu2030;
+
+		//PEMBELIAN SOLAR AGO
+		$pembelian_solar_ago = $this->db->select('
+		p.nama_produk, 
+		prm.display_measure as satuan, 
+		SUM(prm.display_volume) as volume, 
+		SUM(prm.display_price) / SUM(prm.display_volume) as harga, 
+		SUM(prm.display_price) as nilai')
+		->from('pmm_receipt_material prm')
+		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+		->join('produk p', 'prm.material_id = p.id','left')
+		->where("prm.date_receipt between '$date1_ago' and '$date2_ago'")
+		->where("prm.material_id = 8")
+		->group_by('prm.material_id')
+		->get()->row_array();
+
+		$total_volume_pembelian_solar_ago = $pembelian_solar_ago['volume'];
+		$total_volume_pembelian_solar_akhir_ago  = $total_volume_pembelian_solar_ago;
+		
+		$stock_opname_solar_ago = $this->db->select('(cat.display_volume) as volume')
+		->from('pmm_remaining_materials_cat cat ')
+		->where("(cat.date < '$date1')")
+		->where("cat.material_id = 8")
+		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
+		->get()->row_array();
+
+		$total_volume_stock_solar_ago = $stock_opname_solar_ago['volume'];
+		
+		$volume_opening_balance_solar = round($total_volume_stock_solar_ago,2);
+		$harga_opening_balance_solar = $harga_hpp_bahan_baku['solar'];
+		$nilai_opening_balance_solar = $volume_opening_balance_solar * $harga_opening_balance_solar ;
 
 		?>
 
@@ -522,17 +556,48 @@
 		$total_harga_stock_batu2030_akhir = $total_harga_pemakaian_batu2030;
 		$total_nilai_stock_batu2030_akhir = $total_volume_stock_batu2030_akhir * $total_harga_stock_batu2030_akhir;
 
-		//BAHAN BAKU
-		$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
+		//PEMBELIAN SOLAR
+		$pembelian_solar = $this->db->select('
+		p.nama_produk, 
+		prm.display_measure as satuan, 
+		SUM(prm.display_volume) as volume, 
+		SUM(prm.display_price) / SUM(prm.display_volume) as harga, 
+		SUM(prm.display_price) as nilai')
+		->from('pmm_receipt_material prm')
+		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+		->join('produk p', 'prm.material_id = p.id','left')
+		->where("prm.date_receipt between '$date1' and '$date2'")
+		->where("prm.material_id = 8")
+		->group_by('prm.material_id')
+		->get()->row_array();
+		
+		$total_volume_pembelian_solar = $pembelian_solar['volume'];
+		$total_nilai_pembelian_solar =  $pembelian_solar['nilai'];
+		$total_harga_pembelian_solar = ($total_volume_pembelian_solar!=0)?$total_nilai_pembelian_solar / $total_volume_pembelian_solar * 1:0;
 
-		//TOTAL
-		$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
-		$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
-		$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
+		$total_volume_pembelian_solar_akhir  = $volume_opening_balance_solar + $total_volume_pembelian_solar;
+		$total_harga_pembelian_solar_akhir = ($total_volume_pembelian_solar_akhir!=0)?($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_solar_akhir* 1:0;
+		$total_nilai_pembelian_solar_akhir =  $total_volume_pembelian_solar_akhir * $total_harga_pembelian_solar_akhir;			
+		
+		$stock_opname_solar = $this->db->select('(cat.display_volume) as volume')
+		->from('pmm_remaining_materials_cat cat ')
+		->where("cat.date between '$date1' and '$date2'")
+		->where("cat.material_id = 8")
+		->where("cat.status = 'PUBLISH'")
+		->order_by('cat.date','desc')->limit(1)
+		->get()->row_array();
+		
+		$total_volume_stock_solar_akhir = $stock_opname_solar['volume'];
+		
+		$total_volume_pemakaian_solar = $total_volume_pembelian_solar_akhir - $stock_opname_solar['volume'];
+		$total_harga_pemakaian_solar = $total_harga_pembelian_solar_akhir;
+		$total_nilai_pemakaian_solar = $total_volume_pemakaian_solar * $total_harga_pemakaian_solar;
 
-		$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
-		$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
-		$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
+		$total_harga_stock_solar_akhir = $total_harga_pemakaian_solar;
+		$total_nilai_stock_solar_akhir = $total_volume_stock_solar_akhir * $total_harga_stock_solar_akhir;
+
+		//TOTAL NILAI PERSEDIAAN
+		$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir + $total_nilai_stock_solar_akhir;
 		
 		?>
 			
@@ -570,6 +635,13 @@
 			<th align = "center"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
 			<th align = "right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 			<th align = "right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">
+			<th align = "center"><?php echo $date2 = date('d-m-Y',strtotime($date2));?></th>
+			<th align = "left">BBM Solar</th>
+			<th align = "center"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 		</tr>
 		<tr class="table-total">
 			<th align = "right" colspan="4">TOTAL NILAI PERSEDIAAN</th>
