@@ -202,7 +202,7 @@
 													</div>
                                                     <div class="form-group">
 														<label>Kategori</label>
-														<select id="kategori" name="kategori" class="form-control select2">
+														<select id="kategori_id" name="kategori_id" class="form-control select2">
 															<option>Pilih Kategori</option>
 															<?php
 															foreach ($kategori as $key => $kat) {
