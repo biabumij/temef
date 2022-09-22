@@ -796,7 +796,7 @@
 
 		<tr class="table-active4">
 			<th width="50%" align="center" colspan="3" rowspan="2" style="vertical-align:middle">&nbsp; <br />URAIAN</th>
-			<th width="50%" align="center" colspan="3"><?php echo str_replace($search, $replace, $subject);?></th>
+			<th width="50%" align="center" colspan="3"><div style="text-transform: uppercase;"><?php echo str_replace($search, $replace, $subject);?></div></th>
 		</tr>
 		<tr class="table-active4">
 			<th width="15%" align="center">%</th>
