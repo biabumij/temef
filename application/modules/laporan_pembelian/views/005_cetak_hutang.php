@@ -96,15 +96,14 @@
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
-				<th align="center" width="12%">REKANAN</th>
-				<th align="center" width="30%" rowspan="2">&nbsp; <br />NO. TAGIHAN</th>
-				<th align="center" width="17%" rowspan="2">&nbsp; <br />KETERANGAN</th>
-				<th align="center" width="12%" rowspan="2">&nbsp; <br />TAGIHAN</th>
-				<th align="center" width="12%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
-				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
+				<th align="center" width="23%">REKANAN</th>
+				<th align="right" width="18%" rowspan="2">&nbsp; <br />PENERIMAAN</th>
+				<th align="right" width="18%" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th align="right" width="18%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th align="right" width="18%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. DITERIMA PROYEK</th>
+				<th align="center">PRODUK</th>
 			</tr>
             <?php   
             if(!empty($data)){
@@ -115,25 +114,33 @@
             			<td align="left" colspan="6"><b><?php echo $row['nama'];?></b></td>
             		</tr>
             		<?php
+					$jumlah_penerimaan = 0;
+					$jumlah_tagihan = 0;
+					$jumlah_pembayaran = 0;
+					$jumlah_hutang = 0;
             		foreach ($row['mats'] as $mat) {
             			?>
             			<tr class="table-baris1">
 							<td align="center"></td>
-	            			<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
-							<td align="left"><?php echo $mat['nomor_invoice'];?></td>
-							<td align="left"><?php echo $mat['memo'];?></td>            			
+							<td align="left"><?php echo $mat['nama_produk'];?></td>
+							<td align="right"><?php echo $mat['penerimaan'];?></td>            			
 							<td align="right"><?php echo $mat['tagihan'];?></td>
 							<td align="right"><?php echo $mat['pembayaran'];?></td>
 							<td align="right"><?php echo $mat['hutang'];?></td>
 	            		</tr>
             			<?php
+						$jumlah_penerimaan += str_replace(['.', ','], ['', '.'], $mat['penerimaan']);
+						$jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['tagihan']);
+						$jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pembayaran']);
+						$jumlah_hutang += str_replace(['.', ','], ['', '.'], $mat['hutang']);
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="4"><b>JUMLAH</b></td>
-						<td align="right"><b><?php echo $row['total_tagihan'];?></b></td>
-						<td align="right"><b><?php echo $row['total_pembayaran'];?></b></td>
-						<td align="right"><b><?php echo $row['total_hutang'];?></b></td>
+            			<td align="right" colspan="2"><b>JUMLAH</b></td>
+						<td align="right"><b><?php echo number_format($jumlah_penerimaan,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_tagihan,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_pembayaran,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_hutang,0,',','.');?></b></td>
             		</tr>
 					<?php
             		}	
@@ -147,8 +154,11 @@
             }
             ?>
             <tr class="table-total">
-            	<th align="right" width="90%"><b>TOTAL</b></th>
-            	<th align="right" width="10%"><b><?php echo number_format($total,0,',','.');?></b></th>
+            	<th align="right" width="28%"><b>TOTAL</b></th>
+            	<th align="right" width="18%"><b><?php echo number_format($total_jumlah_penerimaan,0,',','.');?></b></th>
+				<th align="right" width="18%"><b><?php echo number_format($total_jumlah_tagihan,0,',','.');?></b></th>
+				<th align="right" width="18%"><b><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></b></th>
+				<th align="right" width="18%"><b><?php echo number_format($total_jumlah_hutang,0,',','.');?></b></th>
             </tr>
 			
 		</table>

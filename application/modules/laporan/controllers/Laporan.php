@@ -1266,12 +1266,14 @@ class Laporan extends Secure_Controller {
 		$pdf->AddPage('P');
 		
 		$arr_data = array();
-		$supplier_id = $this->input->post('supplier_id');
-		$purchase_order_no = $this->input->post('purchase_order_no');
-		$filter_material = $this->input->post('filter_material');
+		$supplier_id = $this->input->get('supplier_id');
+		$filter_kategori = $this->input->get('filter_kategori');
 		$start_date = false;
 		$end_date = false;
-		$total = 0;
+		$total_jumlah_penerimaan = 0;
+		$total_jumlah_tagihan = 0;
+		$total_jumlah_pembayaran = 0;
+		$total_jumlah_hutang = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -1282,28 +1284,24 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - ppp.uang_muka) as total_tagihan, SUM((select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_pembayaran, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
-		$this->db->join('pmm_verifikasi_penagihan_pembelian vp', 'ppp.id = vp.penagihan_pembelian_id','left');
+		$this->db->select('ppo.id, ppo.supplier_id, ps.nama');
+		$this->db->join('penerima ps', 'ppo.supplier_id = ps.id','left');
 
 		if(!empty($start_date) && !empty($end_date)){
-			$this->db->where('vp.tanggal_diterima_proyek >=',$start_date);
-			$this->db->where('vp.tanggal_diterima_proyek <=',$end_date);
-		}
-		if(!empty($supplier_id)){
-			$this->db->where('ppp.supplier_id',$supplier_id);
-		}
-		if(!empty($filter_material)){
-			$this->db->where_in('ppd.material_id',$filter_material);
-		}
-		if(!empty($purchase_order_no)){
-			$this->db->where('ppm.penagihan_pembelian_id',$purchase_order_no);
-		}
-		
-		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id','left');
-		$this->db->where('ppp.status','BELUM LUNAS');
-		$this->db->group_by('ppp.supplier_id');
+            $this->db->where('ppo.date_po >=',$start_date);
+            $this->db->where('ppo.date_po <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_kategori)){
+            $this->db->where('ppo.kategori_id',$filter_kategori);
+        }
+	
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
-		$query = $this->db->get('pmm_penagihan_pembelian ppp');
+		$query = $this->db->get('pmm_purchase_order ppo');
 
 
 			$no = 1;
@@ -1312,29 +1310,29 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat5($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetReceiptMat5($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
-						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
-						$arr['tanggal_jatuh_tempo'] = date('d-m-Y',strtotime($row['tanggal_jatuh_tempo']));
-						$arr['memo'] = $row['memo'];
-						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');	
+						$arr['kategori_id'] = $this->crud_global->GetField('kategori_produk',array('id'=>$row['kategori_id']),'nama_kategori_produk');
+						$arr['nama_produk'] = $row['nama_produk'];
+						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');	
+						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');
 						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');	
-						$arr['hutang'] = number_format($row['hutang'],0,',','.');
+						$arr['hutang'] = number_format($row['hutang'],0,',','.');	
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$total_jumlah_penerimaan += $row['penerimaan'];
+						$total_jumlah_tagihan += $row['tagihan'];
+						$total_jumlah_pembayaran += $row['pembayaran'];
+						$total_jumlah_hutang += $row['hutang'];
+						
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_hutang'];
 					$sups['no'] = $no;
-					$sups['total_tagihan'] = number_format($sups['total_tagihan'],0,',','.');
-					$sups['total_pembayaran'] = number_format($sups['total_pembayaran'],0,',','.');
-					$sups['total_hutang'] = number_format($sups['total_hutang'],0,',','.');
 					
 					$arr_data[] = $sups;
 					$no++;
@@ -1346,7 +1344,10 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['data'] = $arr_data;
-			$data['total'] = $total;
+			$data['total_jumlah_penerimaan'] = $total_jumlah_penerimaan;
+			$data['total_jumlah_tagihan'] = $total_jumlah_tagihan;
+			$data['total_jumlah_pembayaran'] = $total_jumlah_pembayaran;
+			$data['total_jumlah_hutang'] = $total_jumlah_hutang;
 			$html = $this->load->view('laporan_pembelian/005_cetak_hutang',$data,TRUE);
 
 	        
@@ -2261,109 +2262,6 @@ class Laporan extends Secure_Controller {
         $pdf->SetTitle('BBJ - Diskonto');
         $pdf->nsi_html($html);
         $pdf->Output('diskonto.pdf', 'I');
-	}
-
-	public function cetak_hutang_penerimaan()
-	{
-		$this->load->library('pdf');
-	
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetPrintHeader(true);
-		$pdf->SetPrintFooter(true);
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-		
-		$arr_data = array();
-		$supplier_id = $this->input->get('supplier_id');
-		$filter_kategori = $this->input->get('filter_kategori');
-		$start_date = false;
-		$end_date = false;
-		$grand_total_tagihan = 0;
-		$grand_total_pembayaran = 0;
-		$grand_total_hutang = 0;
-		$date = $this->input->get('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
-			
-			$data['filter_date'] = $filter_date;
-
-		$this->db->select('ppo.supplier_id, ps.nama as name');
-
-		if(!empty($start_date) && !empty($end_date)){
-			$this->db->where('prm.date_receipt >=',$start_date);
-			$this->db->where('prm.date_receipt <=',$end_date);
-		}
-		if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-		if(!empty($filter_kategori)){
-            $this->db->where('ppo.kategori_id',$filter_kategori);
-        }
-		
-		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
-		$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id','left');
-		$this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
-		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
-		$this->db->group_by('ppo.supplier_id');
-		$this->db->order_by('ps.nama','asc');
-		$query = $this->db->get('pmm_purchase_order ppo');
-
-			$no = 1;
-			if($query->num_rows() > 0){
-
-				foreach ($query->result_array() as $key => $sups) {
-
-				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMatHutangPenerimaan($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
-
-				if(!empty($materials)){
-					foreach ($materials as $key => $row) {
-						$arr['no'] = $key + 1;
-						$arr['date_po'] = date('d-m-Y',strtotime($row['date_po']));
-						$arr['no_po'] = $row['no_po'];
-						$arr['memo'] = $row['memo'];
-						$arr['total_price'] = number_format($row['total_price'],0,',','.');
-						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
-						$arr['hutang'] = number_format($row['hutang'],0,',','.');
-						
-						$arr['name'] = $sups['name'];
-						$grand_total_tagihan += $row['total_price'];
-						$grand_total_pembayaran += $row['pembayaran'];
-						$grand_total_hutang += $row['hutang'];
-						$mats[] = $arr;
-					}
-					$sups['mats'] = $mats;
-					$sups['no'] =$no;
-					
-					$arr_data[] = $sups;
-					$no++;
-					}
-					
-					
-				}
-			}
-
-			
-			$data['data'] = $arr_data;
-			$data['grand_total_tagihan'] = $grand_total_tagihan;
-			$data['grand_total_pembayaran'] = $grand_total_pembayaran;
-			$data['grand_total_hutang'] = $grand_total_hutang;
-			$html = $this->load->view('laporan_pembelian/cetak_hutang_penerimaan',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('BBJ - Laporan Hutang');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('laporan-hutang.pdf', 'I');
-	        
-		}else {
-			echo 'Please Filter Date First';
-		}
-	
 	}
 
 	public function cetak_beban_pokok_produksi()

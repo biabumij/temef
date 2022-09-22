@@ -1562,33 +1562,48 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
-	function GetReceiptMat5($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+	function GetReceiptMat5($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false)
     {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, vp.tanggal_diterima_proyek, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, SUM(ppp.total - ppp.uang_muka) as tagihan, (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as pembayaran, SUM(ppp.total - ppp.uang_muka) - (select COALESCE(SUM(total),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as hutang');
-        $this->db->join('pmm_verifikasi_penagihan_pembelian vp', 'ppp.id = vp.penagihan_pembelian_id','left');
+        $this->db->select('ppo.id, ppo.subject, ppo.kategori_id, p.nama_produk, (select sum(total) from pmm_penagihan_pembelian ppp where ppp.purchase_order_id = ppo.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as tagihan,
+        (
+            select sum(pppp.total)
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as pembayaran, SUM(prm.price) as penerimaan,
+        SUM(prm.price) - 
+        (
+            select sum(pppp.total)
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as hutang');
 
+        $this->db->join('pmm_receipt_material prm', 'ppo.id = prm.purchase_order_id','left');
+        $this->db->join('produk p', 'prm.material_id = p.id','left');
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('vp.tanggal_diterima_proyek >=',$start_date);
-            $this->db->where('vp.tanggal_diterima_proyek <=',$end_date);
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
         }
-		
 		if(!empty($supplier_id)){
-            $this->db->where('ppp.supplier_id',$supplier_id);
+            $this->db->where('ppo.supplier_id',$supplier_id);
         }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppp.id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('ppd.material_id',$filter_material);
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
         }
 		
-        $this->db->where('ppp.status','BELUM LUNAS');
-		$this->db->group_by('ppp.id','asc');
-		$this->db->order_by('vp.tanggal_diterima_proyek','asc');
-        $query = $this->db->get('pmm_penagihan_pembelian ppp');
+        $this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+        $this->db->where("prm.volume <> 0 ");
+		$this->db->group_by('prm.material_id','asc');
+		$this->db->order_by('ppo.no_po','asc');
+        $query = $this->db->get('pmm_purchase_order ppo');
 		
         $output = $query->result_array();
         return $output;
@@ -4159,55 +4174,6 @@ class Pmm_model extends CI_Model {
         $query = $this->db->get('transactions t');
         $output = $query->result_array();
 	
-        return $output;
-    }
-
-    function GetReceiptMatHutangPenerimaan($supplier_id=false,$start_date=false,$end_date=false,$filter_katagori=false)
-    {
-        $output = array();
-
-        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, prm.purchase_order_id, ppo.memo, SUM(prm.display_price) as total_price,
-        (
-            select(COALESCE(sum(pppp.total),0))
-            from pmm_pembayaran_penagihan_pembelian pppp 
-            inner join pmm_penagihan_pembelian ppp 
-            on pppp.penagihan_pembelian_id = ppp.id 
-            where ppp.purchase_order_id = ppo.id
-            and pppp.status = "DISETUJUI"
-            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
-        ) as pembayaran,
-        SUM(prm.display_price) -
-        (
-            select(COALESCE(sum(pppp.total),0))
-            from pmm_pembayaran_penagihan_pembelian pppp 
-            inner join pmm_penagihan_pembelian ppp 
-            on pppp.penagihan_pembelian_id = ppp.id 
-            where ppp.purchase_order_id = ppo.id
-            and pppp.status = "DISETUJUI"
-            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
-        ) as hutang');
-        
-        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        $this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
-        $this->db->join('produk p','prm.material_id = p.id','left');
-
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('prm.date_receipt >=',$start_date);
-            $this->db->where('prm.date_receipt <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-        if(!empty($filter_katagori)){
-            $this->db->where('ppo.kategori_id',$filter_katagori);
-        }
-       
-		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('prm.purchase_order_id');
-        $query = $this->db->get('pmm_receipt_material prm');
-        $output = $query->result_array();
-		
         return $output;
     }
 
