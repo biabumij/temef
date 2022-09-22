@@ -88,13 +88,12 @@
 		<br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="5%">NO.</th>
-                <th align="center" width="30%" colspan="2">URAIAN</th>
-				<th width="18%">MUTU BETON</th>
-				<th width="8%">SATUAN</th>
-                <th width="10%">VOLUME</th>
-				<th width="15%">HARGA SATUAN</th>
-                <th width="15%">TOTAL</th>
+                <th width="5%" align="center">NO.</th>
+                <th width="40%" align="center">URAIAN / MUTU BETON</th>
+				<th width="10%" align="center">SATUAN</th>
+                <th width="15%" align="center">VOLUME</th>
+				<th width="15%" align="center">HARGA SATUAN</th>
+                <th width="15%" align="center">TOTAL</th>
             </tr>
             <?php
 			$vol_jasa_angkut = 0;
@@ -108,16 +107,7 @@
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="left" colspan="4"><?php echo $row['name'];?></td>
-            			<td align="right"><?php echo $row['real'];?></td>
-						<td align="right"></td>
-            			<td align="right">
-            				<table cellpadding="0" width="100%" border="0">
-		    					<tr>
-		    						<td width="20%" align="left">Rp.</td>
-		    						<td width="80%" align="right"><?php echo $row['total_price'];?></td>
-		    					</tr>
-		    				</table>
-            			</td>
+            			<td align="right"></td>
 						<?php
 						$total_vol += str_replace(['.', ','], ['', '.'], $row['real']);
 						?>
@@ -127,8 +117,6 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-	            			<td width="1%"></td>
-	            			<td align="left" width="29%"><?php echo $mat['salesPo_id'];?></td>
 							<td align="left"><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['real'];?></td>
@@ -159,13 +147,13 @@
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="8" align="center">NO DATA</td>
+            		<td width="100%" colspan="6" align="center">NO DATA</td>
             	</tr>
             	<?php
             }
             ?>
 			<tr class="table-total">
-            	<th align="right" colspan="5">TOTAL</th>
+            	<th align="right" colspan="3">TOTAL</th>
 				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">

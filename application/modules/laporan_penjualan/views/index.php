@@ -70,7 +70,7 @@
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Piutang</h5></p>
-														<p>Menampilkan jumlah nilai piutang pada setiap pelanggan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah nilai piutang terhadap tagihan pada setiap pelanggan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
@@ -152,8 +152,7 @@
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-penjualan" style="display:none;">
                                                             <thead>
                                                                 <th class="text-center">No</th>
-                                                                <th class="text-center">Pelanggan</th>
-                                                                <th class="text-center">Mutu Beton</th>
+                                                                <th class="text-center">Pelanggan / Mutu Beton</th>
 																<th class="text-center">Satuan</th>
                                                                 <th class="text-center">Volume</th>
 																<th class="text-center">Harga Satuan</th>
@@ -550,16 +549,16 @@
                             $('#table-penjualan tbody').html('');
                               if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-penjualan tbody').append('<tr onclick="NextShow(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="3">' + val.name + '</td><td class="text-right">' + val.real + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
+                                    $('#table-penjualan tbody').append('<tr onclick="NextShow(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-right">' + val.real + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-penjualan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.salesPo_id + '</td><td class="text-center">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.real + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                        $('#table-penjualan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.real + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
 
                                 });
-                                $('#table-penjualan tbody').append('<tr><td class="text-right" colspan="4"><b>Total</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
+                                $('#table-penjualan tbody').append('<tr><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
-                                $('#table-penjualan tbody').append('<tr><td class="text-center" colspan="7"><b>No Data</b></td></tr>');
+                                $('#table-penjualan tbody').append('<tr><td class="text-center" colspan="6"><b>No Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -789,7 +788,7 @@
 
         </script>
 		
-		<!-- Script Piutang -->
+		<!-- Script Laporan Piutang -->
 		
 		<script type="text/javascript">
             $('input.numberformat').number(true, 4, ',', '.');
