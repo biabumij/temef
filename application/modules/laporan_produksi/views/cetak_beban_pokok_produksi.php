@@ -80,6 +80,7 @@
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 12px;">BEBAN POKOK PRODUKSI</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;">DIVISI BETON PROYEK BENDUNGAN TEMEF</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">PT. BIA BUMI JAYENDRA</div>
 				</td>
 			</tr>
 		</table>
