@@ -40,6 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Komposisi</a></li>
 											<li><a href="<?= site_url('rap/form_rap'); ?>">RAP</a></li>
                                         </ul>
                                     </div>
@@ -48,12 +49,45 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#jmd" aria-controls="jmd" role="tab" data-toggle="tab">RAP</a></li>
+                                    <li role="presentation" class="active"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Bahan</a></li>
+                                    <li role="presentation"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">RAP</a></li>
                                 </ul>
 
-                                <div class="tab-content">			
+                                <div class="tab-content">
+                                    
+                                <!-- Table Bahan -->
+									
+                                <div role="tabpanel" class="tab-pane active" id="komposisi_agregat">
+										<div class="col-sm-4">
+											<input type="text" id="filter_date_agregat" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
+										</div>
+										<br />
+										<br />										
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">No</th>
+														<th width="20%">Tanggal</th>
+														<th width="20%">Mutu Beton</th>
+                                                        <th width="35%">Judul</th>
+														<th width="20%">Lampiran</th>
+														
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                   
+                                                </tfoot>
+                                            </table>
+                                        </div>
+									</div>
+										
+									<!-- Table RAP -->
 								
-                                    <div role="tabpanel" class="tab-pane active" id="rap">									
+                                    <div role="tabpanel" class="tab-pane" id="rap">									
                                         <div class="table-responsive">
                                             <table class="table table-striped table-hover" id="table_rap" style="width:100%">
                                                 <thead>
@@ -101,6 +135,69 @@
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     
+    <script type="text/javascript">
+	$('#dtpickerange').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            format: 'DD-MM-YYYY'
+        },
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        showDropdowns: true,
+		});
+		
+		var table_agregat = $('#table_agregat').DataTable({
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('komposisi/table_agregat'); ?>',
+                type: 'POST',
+                data: function(d) {
+                    d.filter_date = $('#filter_date_agregat').val();
+                }
+            },
+            responsive: true,
+            "deferRender": true,
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
+            columns: [
+				{
+                    "data": "no"
+                },
+				{
+                    "data": "date_agregat"
+                },
+				{
+                    "data": "mutu_beton"
+                },
+				{
+                    "data": "jobs_type"
+                },
+				{
+                    "data": "lampiran"
+                }
+            ],
+            "columnDefs": [{
+                    "targets": [0, 1, 2, 3],
+                    "className": 'text-center',
+                }
+            ],
+        });
+		
+		$('#filter_date_agregat').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_agregat.ajax.reload();
+		});
+	
+    </script>
+
     <script type="text/javascript">
 		
 		var table_rap = $('#table_rap').DataTable({
