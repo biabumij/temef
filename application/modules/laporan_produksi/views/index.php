@@ -65,7 +65,7 @@
                                                         <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
-														<p><h5>Evaluasi Overhead, Diskonto, Persiapan</h5></p>
+														<p><h5>Evaluasi BUA, Diskonto, Persiapan</h5></p>
                                                         <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
