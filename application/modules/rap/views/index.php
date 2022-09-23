@@ -40,8 +40,9 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Komposisi</a></li>
-											<li><a href="<?= site_url('rap/form_rap'); ?>">RAP</a></li>
+                                            <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Bahan</a></li>
+											<li><a href="<?= site_url('rap/form_rap'); ?>">Alat</a></li>
+                                            <li><a href="<?= site_url('rap/form_rap'); ?>">BUA</a></li>
                                         </ul>
                                     </div>
                                 </h3>
