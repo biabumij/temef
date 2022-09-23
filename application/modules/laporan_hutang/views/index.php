@@ -82,6 +82,7 @@
 
                                     <?php             
                                     $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
+                                    $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                     ?>
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_daftar_tagihan">
@@ -162,7 +163,19 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                            </div>                                                       
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_supplier_id_g" name="supplier_id" class="form-control select2">
+                                                                    <option value="">Pilih Rekanan</option>
+                                                                    <?php
+                                                                    foreach ($suppliers as $key => $supplier) {
+                                                                    ?>
+                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>                                                   
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
                                                             </div>
@@ -410,6 +423,7 @@
                     data: {
                         filter_date: $('#filter_date_g').val(),
                         filter_kategori: $('#filter_kategori_g').val(),
+                        filter_supplier: $('#filter_supplier_id_g').val(),
                     },
                     success: function(result) {
                         if (result.data) {
@@ -453,6 +467,10 @@
             }
 
             $('#filter_kategori_g').change(function() {
+                TableDate5();
+            });
+
+            $('#filter_supplier_id_g').change(function() {
                 TableDate5();
             });
 

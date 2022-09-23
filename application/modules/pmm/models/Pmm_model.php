@@ -1562,12 +1562,18 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
-	function GetReceiptMat5($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false)
+	function GetReceiptMat5($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false,$filter_supplier=false)
     {
         $output = array();
 		
 		
-        $this->db->select('ppo.id, ppo.subject, ppo.kategori_id, p.nama_produk, (select sum(total) from pmm_penagihan_pembelian ppp where ppp.purchase_order_id = ppo.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as tagihan,
+        $this->db->select('ppo.id, ppo.subject, ppo.kategori_id, p.nama_produk,
+        (
+            select sum(ppp.total)
+            from pmm_penagihan_pembelian ppp
+            where ppp.purchase_order_id = ppo.id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+        ) as tagihan,
         (
             select sum(pppp.total)
             from pmm_pembayaran_penagihan_pembelian pppp 
@@ -1597,6 +1603,9 @@ class Pmm_model extends CI_Model {
         }
         if(!empty($filter_kategori)){
             $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
+        if(!empty($filter_supplier)){
+            $this->db->where('ppo.supplier_id',$filter_supplier);
         }
 		
         $this->db->where("ppo.status in ('PUBLISH','CLOSED')");

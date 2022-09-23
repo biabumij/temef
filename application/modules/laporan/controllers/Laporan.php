@@ -1268,6 +1268,7 @@ class Laporan extends Secure_Controller {
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
 		$filter_kategori = $this->input->get('filter_kategori');
+		$filter_supplier = $this->input->get('filter_supplier');
 		$start_date = false;
 		$end_date = false;
 		$total_jumlah_penerimaan = 0;
@@ -1297,6 +1298,9 @@ class Laporan extends Secure_Controller {
         if(!empty($filter_kategori)){
             $this->db->where('ppo.kategori_id',$filter_kategori);
         }
+		if(!empty($filter_supplier)){
+            $this->db->where('ppo.supplier_id',$filter_supplier);
+        }
 	
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppo.supplier_id');
@@ -1310,7 +1314,7 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat5($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
+				$materials = $this->pmm_model->GetReceiptMat5($sups['supplier_id'],$start_date,$end_date,$filter_kategori,$filter_supplier);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
