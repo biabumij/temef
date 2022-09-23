@@ -77,7 +77,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Biaya (Bahan)</h3>
-													<a href="laporan_biaya">Kembali</a>
+													<a href="biaya_bahan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
@@ -115,7 +115,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Pergerakan Bahan Baku</h3>
-													<a href="laporan_produksi">Kembali</a>
+													<a href="biaya_bahan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">

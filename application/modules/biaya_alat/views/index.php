@@ -78,7 +78,7 @@
 											<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Biaya (Alat)</h3>
-													<a href="laporan_biaya">Kembali</a>
+													<a href="biaya_alat">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
