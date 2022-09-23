@@ -3973,8 +3973,7 @@ class Reports extends CI_Controller {
 			?>
 			
 			<tr class="table-active4">
-				<th width="35%" class="text-center">REKANAN</th>
-				<th width="20%" class="text-center">URAIAN</th>
+				<th width="55%" class="text-center">URAIAN</th>
 				<th width="7%" class="text-center">SATUAN</th>
 				<th width="13%" class="text-center">VOLUME</th>
 				<th width="15%" class="text-center">HARGA SATUAN</th>
@@ -3982,7 +3981,6 @@ class Reports extends CI_Controller {
 	        </tr>
 			<?php foreach ($pembelian as $x): ?>
 			<tr>
-				<th class="text-left">&bull; <?= $x['nama'] ?></th>
 				<th class="text-left"><?= $x['subject'] ?></th>
 				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
@@ -3992,7 +3990,6 @@ class Reports extends CI_Controller {
 			<?php endforeach; ?>
 			<tr>
 				<th class="text-left">&bull; BBM Solar</th>
-				<th class="text-left"></th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
@@ -4000,12 +3997,12 @@ class Reports extends CI_Controller {
 			</tr>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr>
-				<th class="text-left" colspan="5">&bull; <?= $y['memo'] ?></th>
+				<th class="text-left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th class="text-right"><?php echo number_format($y['total'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
 			<tr class="table-active2">
-				<th class="text-center" colspan="5">TOTAL</th>
+				<th class="text-center" colspan="4">TOTAL</th>
 				<th class="text-right"><?php echo number_format($total_nilai,0,',','.');?></th>
 			</tr>
 	    </table>
