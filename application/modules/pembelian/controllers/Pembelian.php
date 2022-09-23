@@ -1239,7 +1239,7 @@ class Pembelian extends Secure_Controller
             $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
             $data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian pp', ["pp.id" => $id])->row_array();
             $data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id))->row_array();
-            $data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
+
             // Setor Bank
             $data['setor_bank'] = $this->pmm_finance->BankCash();
             $this->load->view('pembelian/pembayaran_penagihan_pembelian', $data);
@@ -1265,7 +1265,6 @@ class Pembelian extends Secure_Controller
             'bayar_dari' => $this->input->post('bayar_dari'),
             'tanggal_pembayaran' => date('Y-m-d', strtotime($this->input->post('tanggal_pembayaran'))),
             'nomor_transaksi' => $this->input->post('nomor_transaksi'),
-            'tax_id' => $this->input->post('tax_id'),
             'status' => 'TIDAK DISETUJUI',
             'memo' => $this->input->post('memo'),
             'total' => $pembayaran_pro,
