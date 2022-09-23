@@ -87,7 +87,7 @@
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Evaluasi Pemakaian Bahan Baku</h3>
+                                                    <h3 class="panel-title">Evaluasi Bahan</h3>
 													<a href="laporan_produksi">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
