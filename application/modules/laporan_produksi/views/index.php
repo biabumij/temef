@@ -88,7 +88,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Evaluasi Bahan</h3>
-													<a href="laporan_produksi">Kembali</a>
+													<a href="laporan_ev._produksi">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">

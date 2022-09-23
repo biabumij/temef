@@ -65,16 +65,7 @@
                                                     <td class="text-center">1.</td>
                                                     <td>
                                                         <select id="produk_a" class="form-control form-select2" name="produk_a" required="" >
-                                                            <option value="">Pilih Produk</option>
-                                                            <?php
-                                                            if(!empty($products)){
-                                                                foreach ($products as $row) {
-                                                                    ?>
-                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                            ?>
+                                                            <option value="BATCHING PLANT">BATCHING PLANT</option>
                                                         </select>
                                                     </td>
 													<td>
@@ -85,16 +76,7 @@
                                                     <td class="text-center">2.</td>
                                                     <td>
                                                         <select id="produk_b" class="form-control form-select2" name="produk_b" required="" >
-                                                            <option value="">Pilih Produk</option>
-                                                            <?php
-                                                            if(!empty($products)){
-                                                                foreach ($products as $row) {
-                                                                    ?>
-                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                            ?>
+                                                            <option value="BATCHING PLANT">TRUCK MIXER</option>
                                                         </select>
                                                     </td>
 													<td>
@@ -105,16 +87,7 @@
                                                     <td class="text-center">3.</td>
                                                     <td>
                                                         <select id="produk_c" class="form-control form-select2" name="produk_c" required="" >
-                                                            <option value="">Pilih Produk</option>
-                                                            <?php
-                                                            if(!empty($products)){
-                                                                foreach ($products as $row) {
-                                                                    ?>
-                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                            ?>
+                                                            <option value="BATCHING PLANT">WHEEL LOADER</option>
                                                         </select>
                                                     </td>
 													<td>
@@ -125,16 +98,7 @@
                                                     <td class="text-center">4.</td>
                                                     <td>
                                                         <select id="produk_d" class="form-control form-select2" name="produk_d" required="" >
-                                                            <option value="">Pilih Produk</option>
-                                                            <?php
-                                                            if(!empty($products)){
-                                                                foreach ($products as $row) {
-                                                                    ?>
-                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-                                                                    <?php
-                                                                }
-                                                            }
-                                                            ?>
+                                                            <option value="BATCHING PLANT">BBM SOLAR</option>
                                                         </select>
                                                     </td>
 													<td>
@@ -242,6 +206,30 @@
 		 document.getElementById('total_all').value = result;
 			}
 		}
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#produk_a').prop('selectedIndex', 0).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#produk_b').prop('selectedIndex', 0).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#produk_c').prop('selectedIndex', 0).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#produk_d').prop('selectedIndex', 0).trigger('change');
+            }, 1000);
+        });
 		
 		
     </script>
