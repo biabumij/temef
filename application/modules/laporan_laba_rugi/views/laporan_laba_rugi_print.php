@@ -517,7 +517,7 @@
 						<div align="center" style="display: block;font-weight: bold;font-size: 10px;"><?php echo $filter_date;?></div>
 					</td>
 					<td align="right" width="25%">
-						<div align="center" style="display: block;font-weight: bold;font-size: 10px;">sd. <?php echo date('d/m/Y',strtotime($arr_filter_date[1]));?></div>
+						<div align="center" style="display: block;font-weight: bold;font-size: 10px;">SD. <?php echo date('d/m/Y',strtotime($arr_filter_date[1]));?></div>
 					</td>
 				</tr>
 			</table>
