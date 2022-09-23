@@ -94,7 +94,7 @@
                 <th width="35%" align="center">URAIAN</th>
 				<th width="15%" align="center">VOLUME</th>
                 <th width="15%" align="center">SATUAN</th>
-				<th width="20%" align="center">CATATAN</th>
+				<th width="15%" align="center">CATATAN</th>
             </tr>
             <?php
             
