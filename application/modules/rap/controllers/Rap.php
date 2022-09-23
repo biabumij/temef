@@ -14,12 +14,12 @@ class Rap extends Secure_Controller {
 		$this->load->library('session');
     }
 	
-	public function form_rap()
+	public function form_alat()
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
 			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
-			$this->load->view('rap/form_rap', $data);
+			$this->load->view('rap/form_alat', $data);
 		} else {
 			redirect('admin');
 		}

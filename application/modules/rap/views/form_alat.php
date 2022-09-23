@@ -63,39 +63,83 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center">1.</td>
-                                                    <td>BAHAN</td>
+                                                    <td>
+                                                        <select id="produk_a" class="form-control form-select2" name="produk_a" required="" >
+                                                            <option value="">Pilih Produk</option>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_bahan" id="total_bahan" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="number" step=".01" min="0" name="total_a" id="total_a" onkeyup="sum();" class="form-control input-sm text-center" required="" />
                                                     </td>
                                                 </tr>	
                                                 <tr>
                                                     <td class="text-center">2.</td>
-                                                    <td>ALAT</td>
+                                                    <td>
+                                                        <select id="produk_b" class="form-control form-select2" name="produk_b" required="" >
+                                                            <option value="">Pilih Produk</option>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_alat" id="total_alat" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="number" step=".01" min="0" name="total_b" id="total_b" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">3.</td>
-                                                    <td>OVERHEAD</td>
+                                                    <td>
+                                                        <select id="produk_c" class="form-control form-select2" name="produk_c" required="" >
+                                                            <option value="">Pilih Produk</option>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_overhead" id="total_overhead" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="number" step=".01" min="0" name="total_c" id="total_c" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">4.</td>
-                                                    <td>BIAYA ADMIN</td>
-													<td>
-                                                    <input type="number" step=".01" min="0" name="total_biaya_admin" id="total_biaya_admin" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <td>
+                                                        <select id="produk_d" class="form-control form-select2" name="produk_d" required="" >
+                                                            <option value="">Pilih Produk</option>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">5.</td>
-                                                    <td>DISKONTO</td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_diskonto" id="total_diskonto" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="number" step=".01" min="0" name="total_d" id="total_d" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
-                                                    
                                                 </tr>
                                                 <tr>
                                                     <td></td> 
@@ -189,12 +233,11 @@
         });
 		
 		function sum() {
-		var txtFirstNumberValue = document.getElementById('total_bahan').value;
-		var txtSecondNumberValue = document.getElementById('total_alat').value;
-		var txtThirdNumberValue = document.getElementById('total_overhead').value;
-		var txtFourthNumberValue = document.getElementById('total_biaya_admin').value;
-        var txtFifthNumberValue = document.getElementById('total_diskonto').value;
-		var result = parseInt(txtFifthNumberValue) + parseInt(txtFourthNumberValue) + parseInt(txtThirdNumberValue) + parseInt(txtSecondNumberValue) + parseInt(txtFirstNumberValue);
+		var txtFirstNumberValue = document.getElementById('total_a').value;
+		var txtSecondNumberValue = document.getElementById('total_b').value;
+		var txtThirdNumberValue = document.getElementById('total_c').value;
+		var txtFourthNumberValue = document.getElementById('total_d').value;
+		var result = parseInt(txtFourthNumberValue) + parseInt(txtThirdNumberValue) + parseInt(txtSecondNumberValue) + parseInt(txtFirstNumberValue);
 		if (!isNaN(result)) {
 		 document.getElementById('total_all').value = result;
 			}

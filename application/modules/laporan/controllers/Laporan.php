@@ -2075,7 +2075,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_pembelian/cetak_laporan_pemakaian_peralatan',$data,TRUE);
+        $html = $this->load->view('biaya_alat/cetak_laporan_pemakaian_peralatan',$data,TRUE);
 
         
 		$pdf->SetTitle('BBJ - Laporan Pemakaian Peralatan');

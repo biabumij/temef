@@ -2767,7 +2767,7 @@ class Productions extends Secure_Controller {
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
 				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="20%" class="text-center" colspan="2">KOMPOSISI</th>
+				<th width="20%" class="text-center" colspan="2">RAP</th>
 				<th width="20%" class="text-center" colspan="2">REALISASI</th>
 				<th width="20%" class="text-center" colspan="2">EVALUASI</th>
 	        </tr>

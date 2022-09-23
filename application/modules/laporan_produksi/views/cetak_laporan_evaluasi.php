@@ -615,7 +615,7 @@
 				<th width="5%" align = "center" rowspan="2">&nbsp;<br/>NO.</th>
 				<th width="16%" align = "center" rowspan="2">&nbsp;<br/>URAIAN</th>
 				<th width="10%" align = "center" rowspan="2">&nbsp;<br/>SATUAN</th>
-				<th width="23%" align = "center" colspan="2">KOMPOSISI</th>
+				<th width="23%" align = "center" colspan="2">RAP</th>
 				<th width="23%" align = "center" colspan="2">REALISASI</th>
 				<th width="23%" align = "center" colspan="2">EVALUASI</th>
 	        </tr>

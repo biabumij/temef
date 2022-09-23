@@ -41,7 +41,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Bahan</a></li>
-											<li><a href="<?= site_url('rap/form_rap'); ?>">Alat</a></li>
+											<li><a href="<?= site_url('rap/form_alat'); ?>">Alat</a></li>
                                             <li><a href="<?= site_url('rap/form_bahan'); ?>">BUA</a></li>
                                         </ul>
                                     </div>
