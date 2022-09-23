@@ -540,7 +540,7 @@
 				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
 				<th width="40%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
 				<th width="15%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th width="40%" align="center" colspan="3">MASUK</th>
+				<th width="40%" align="center" colspan="3">PEMAKAIAN</th>
 	        </tr>
 			<tr class="table-judul">
 				<th align="center" width="10%">VOLUME</th>
