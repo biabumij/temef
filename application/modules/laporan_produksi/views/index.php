@@ -56,87 +56,42 @@
                                         <div class="row">
                                             <div width="100%">
                                                 <div class="panel panel-default">                                            
-                                                    <div class="col-sm-5">
-														<p><h5>Laporan Pemakaian Komposisi Bahan Baku</h5></p>
-														<p>Menampilkan laporan pemakaian komposisi bahan baku.</p>
-                                                        <a href="#laporan_pemakaian_komposisi" aria-controls="laporan_pemakaian_komposisi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
-														<p>Menampilkan pergerakan bahan baku.</p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Solar)</h5></p>
-														<p>Menampilkan pergerakan bahan baku solar.</p>
                                                         <a href="#pergerakan_bahan_baku_solar" aria-controls="pergerakan_bahan_baku_solar" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
-														<p><h5>Nilai Persediaan Barang</h5></p>
-														<p>Menampilkan nilai persediaan barang.</p>
-                                                        <a href="#nilai_persediaan_barang" aria-controls="nilai_persediaan_barang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
-														<p><h5>Laporan Pemakaian Bahan Baku</h5></p>
-														<p>Menampilkan laporan pemakaian bahan baku.</p>
-                                                        <a href="#laporan_pemakaian_bahan_baku" aria-controls="laporan_pemakaian_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>
-													<div class="col-sm-5">
 														<p><h5>Laporan Evaluasi Pemakaian Bahan Baku</h5></p>
-														<p>Menampilkan laporan evaluasi pemakaian bahan baku.</p>
                                                         <a href="#laporan_evaluasi" aria-controls="laporan_evaluasi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
-														<p><h5>Laporan Evaluasi RAP</h5></p>
-														<p>Menampilkan laporan evaluasi RAP bahan baku.</p>
-                                                        <a href="#laporan_evaluasi_rap" aria-controls="laporan_evaluasi_rap" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>  
+														<p><h5>Evaluasi Bahan</h5></p>
+                                                        <a href="#evaluasi_bahan" aria-controls="evaluasi_bahan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                    </div>
 													<div class="col-sm-5">
-														<p><h5>Beban Pokok Produksi</h5></p>
-														<p>Menampilkan laporan beban pokok produksi bahan baku.</p>
-                                                        <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+														<p><h5>Evaluasi Alat</h5></p>
+                                                        <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                    </div>
+													<div class="col-sm-5">
+														<p><h5>Evaluasi Overhead, Diskonto, Persiapan</h5></p>
+                                                        <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                    </div>
+													<div class="col-sm-5">
+														<p><h5>Evaluasi Target Produksi</h5></p>
+                                                        <a href="#evaluasi_target_produksi" aria-controls="evaluasi_target_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                    </div>
+													<div class="col-sm-5">
+														<p><h5>Evaluasi Laba Rugi</h5></p>
+                                                        <a href="#evaluasi_laba_rugi" aria-controls="evaluasi_laba_rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>                                 													
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-									<!-- Laporan Pemakaian Komposisi -->
-                                    
-									<div role="tabpanel" class="tab-pane" id="laporan_pemakaian_komposisi">
-                                        <div class="col-sm-15">
-											<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Pemakaian Komposisi</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/laporan_pemakaian_komposisi_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_komposisi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-komposisi">													
-													
-                    
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 									
 									<!-- Pergerakan Bahan Baku -->
 									
@@ -214,82 +169,6 @@
 										</div>
                                     </div>
 
-									<!-- Nilai Persediaan Barang -->
-									
-                                    <div role="tabpanel" class="tab-pane" id="nilai_persediaan_barang">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Nilai Persediaan Barang</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/nilai_persediaan_barang_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_nilai" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-3">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-                                    <!-- Laporan Pemakaian Bahan Baku -->
-                                    
-									<div role="tabpanel" class="tab-pane" id="laporan_pemakaian_bahan_baku">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Pemakaian Bahan Baku</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/laporan_pemakaian_bahan_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_pemakaian_bahan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-pemakaian">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
 									<!-- Laporan Evaluasi -->
                                     
 									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
@@ -319,82 +198,6 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-ajax-evaluasi">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-									<!-- Laporan Evaluasi RAP -->
-                                    
-									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi_rap">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Evaluasi RAP</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/laporan_evaluasi_rap_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_evaluasi_rap" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-evaluasi-rap">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-									<!-- Beban Pokok Produksi -->
-									
-                                    <div role="tabpanel" class="tab-pane" id="beban_pokok_produksi">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Beban Pokok Produksi</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/cetak_beban_pokok_produksi');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_bpp" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="beban-pokok-produksi">													
 													
                     
 													</div>
