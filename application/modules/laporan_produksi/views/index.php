@@ -57,12 +57,8 @@
                                             <div width="100%">
                                                 <div class="panel panel-default">                                            
 													<div class="col-sm-5">
-														<p><h5>Laporan Evaluasi Pemakaian Bahan Baku</h5></p>
-                                                        <a href="#laporan_evaluasi" aria-controls="laporan_evaluasi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>
-													<div class="col-sm-5">
 														<p><h5>Evaluasi Bahan</h5></p>
-                                                        <a href="#evaluasi_bahan" aria-controls="evaluasi_bahan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#laporan_evaluasi" aria-controls="laporan_evaluasi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Evaluasi Alat</h5></p>
