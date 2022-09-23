@@ -5839,21 +5839,20 @@ class Reports extends CI_Controller {
 	        ?>
 			
 			<tr class="table-active4">
-				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">TANGGAL</th>
-				<th width="30%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="20%" class="text-center" colspan="3">PEMAKAIAN</th>
+				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
+				<th width="40%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
+				<th width="40%" class="text-center" colspan="3">PEMAKAIAN</th>
 	        </tr>
 			<tr class="table-active4">
-				<th class="text-center">VOLUME</th>
-				<th class="text-center">HARGA</th>
-				<th class="text-center">NILAI</th>
+				<th width="10% class="text-center">VOLUME</th>
+				<th width="10% class="text-center">HARGA</th>
+				<th width="20% class="text-center">NILAI</th>
 	        </tr>
 			<tr class="table-active2">
 	            <th class="text-center" colspan="12">BAHAN BAKU</th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>		
 				<th class="text-left"><i>Semen</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
@@ -5861,7 +5860,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pasir</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
@@ -5869,7 +5867,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Batu Split 10-20</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
@@ -5877,7 +5874,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Batu Split 20-30</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
@@ -5885,7 +5881,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active5">
-	            <th class="text-center" colspan="3">TOTAL</th>
+	            <th class="text-center" colspan="2">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
