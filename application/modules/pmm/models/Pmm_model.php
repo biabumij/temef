@@ -1581,7 +1581,17 @@ class Pmm_model extends CI_Model {
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = ppo.id
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
-        ) as pembayaran, SUM(prm.price) as penerimaan,
+        ) as pembayaran,
+        (
+            select sum(pppp.total)
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where pppp.tax_id in (3,6)
+            and ppp.purchase_order_id = ppo.id
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as ppn,
+        SUM(prm.price) as penerimaan,
         SUM(prm.price) - 
         (
             select sum(pppp.total)

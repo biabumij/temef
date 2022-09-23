@@ -72,6 +72,23 @@
                                         </div>
                                     </div>
                                     <br />
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                                <select class="form-control" name="tax_id">
+                                                    <option value="">Pilih Jika Pembayaran Pajak</option>
+                                                    <?php
+                                                    if(!empty($taxs)){
+                                                        foreach ($taxs as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row['id'];?>"><?php echo $row['tax_name'];?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <br />
                                     <br>
                                     <?php 
                                     $sisa_tagihan = $pembayaran['total'] - $total_bayar['total'];

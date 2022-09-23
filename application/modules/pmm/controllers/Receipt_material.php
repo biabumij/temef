@@ -906,7 +906,8 @@ class Receipt_material extends CI_Controller {
 						$arr['nama_produk'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['id'].'" target="_blank">'.$row['nama_produk'].'</a>';
 						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');	
 						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');
-						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');	
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+						$arr['ppn'] = number_format($row['ppn'],0,',','.');
 						$arr['hutang'] = number_format($row['hutang'],0,',','.');	
 						
 						
