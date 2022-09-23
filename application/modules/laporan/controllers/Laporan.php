@@ -2103,7 +2103,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_laba_rugi/cetak_bahan',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_bahan',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Bahan');
@@ -2130,7 +2130,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_laba_rugi/cetak_alat',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_alat',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Alat');
@@ -2174,7 +2174,7 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
-        $html = $this->load->view('laporan_laba_rugi/cetak_overhead',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_overhead',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Overhead');
@@ -2217,7 +2217,7 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
 		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
-        $html = $this->load->view('laporan_laba_rugi/cetak_diskonto',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_diskonto',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Diskonto');
@@ -2260,7 +2260,7 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
 		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
-        $html = $this->load->view('laporan_laba_rugi/cetak_persiapan',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_persiapan',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Diskonto');
