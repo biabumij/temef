@@ -184,8 +184,9 @@
 			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -221,8 +222,9 @@
 			$nilai_alat_2 = $this->db->select('SUM(prm.display_price) as nilai')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date3' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -515,7 +517,7 @@
 						<div align="center" style="display: block;font-weight: bold;font-size: 10px;"><?php echo $filter_date;?></div>
 					</td>
 					<td align="right" width="25%">
-						<div align="center" style="display: block;font-weight: bold;font-size: 10px;"><?php echo $filter_date_2;?></div>
+						<div align="center" style="display: block;font-weight: bold;font-size: 10px;">sd. <?php echo date('d/m/Y',strtotime($arr_filter_date[1]));?></div>
 					</td>
 				</tr>
 			</table>

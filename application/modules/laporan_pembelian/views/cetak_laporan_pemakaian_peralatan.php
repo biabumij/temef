@@ -120,12 +120,13 @@
 		pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 		->from('pmm_receipt_material prm')
 		->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+		->join('produk p', 'prm.material_id = p.id','left')
 		->join('penerima pn', 'po.supplier_id = pn.id','left')
 		->where("prm.date_receipt between '$date1' and '$date2'")
-		->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+		->where("p.kategori_produk = '5'")
 		->where("po.status in ('PUBLISH','CLOSED')")
-		->order_by('pn.nama','asc')
 		->group_by('prm.harga_satuan')
+		->order_by('pn.nama','asc')
 		->get()->result_array();
 
 		$total_nilai = 0;

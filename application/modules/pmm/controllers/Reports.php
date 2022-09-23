@@ -1809,7 +1809,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-center"></th>
 	            <th class="text-center"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
-				<th class="text-center"><?php echo $filter_date_2 = date('d/m/Y',strtotime($date3)).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-center">sd. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 	        </tr>
 
 			<?php
@@ -1894,8 +1894,9 @@ class Reports extends CI_Controller {
 			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -1931,8 +1932,9 @@ class Reports extends CI_Controller {
 			$nilai_alat_2 = $this->db->select('SUM(prm.display_price) as nilai')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date3' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -3915,12 +3917,13 @@ class Reports extends CI_Controller {
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->order_by('pn.nama','asc')
 			->group_by('prm.harga_satuan')
+			->order_by('pn.nama','asc')
 			->get()->result_array();
 
 			$total_nilai = 0;

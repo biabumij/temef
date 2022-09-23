@@ -26,6 +26,12 @@
                         <div class="panel-header">
                             <h3 class="section-subtitle">Laporan Biaya</h3>
                         </div>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Biaya (Overhead, Diskonto, Persiapan)</h3>
+                            <script>
+                            document.write('<a href="' + document.referrer + '">Kembali</a>');
+                            </script>
+                        </div>
                         <div class="panel-content">
                             <form action="<?= site_url('laporan/print_biaya');?>" target="_blank">
                                 <div class="row">
