@@ -61,7 +61,6 @@
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Buku Besar</h5></p>
-                                                        <p>Menampilkan ringkasan pengeluaran dan pemasukan biaya.</p>
                                                         <a href="#laporan_buku_besar" aria-controls="laporan_buku_besar" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>														
                                                 </div>
