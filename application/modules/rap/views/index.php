@@ -50,7 +50,8 @@
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Bahan</a></li>
-                                    <li role="presentation"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">RAP</a></li>
+                                    <li role="presentation"><a href="#alat" aria-controls="alat" role="tab" data-toggle="tab">Alat</a></li>
+                                    <li role="presentation"><a href="#bua" aria-controls="bua" role="tab" data-toggle="tab">BUA</a></li>
                                 </ul>
 
                                 <div class="tab-content">
