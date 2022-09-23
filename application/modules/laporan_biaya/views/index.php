@@ -60,17 +60,14 @@
 													<div class="panel panel-default">                                            
 														<div class="col-sm-5">
                                                             <p><h5>Biaya (Overhead, Diskonto, Persiapan)</h5></p>
-                                                            <p>Menampilkan laporan biaya.</p>
                                                             <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
 														</div>
 														<div class="col-sm-5">
                                                             <p><h5>Biaya (Bahan)</h5></p>
-                                                            <p>Menampilkan laporan biaya pemakaian bahan baku.</p>
                                                             <a href="#biaya_bahan" aria-controls="biaya_bahan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 														</div>
                                                         <div class="col-sm-5">
                                                             <p><h5>Biaya (Alat)</h5></p>
-                                                            <p>Menampilkan laporan biaya pemakaian alat.</p>
                                                             <a href="#biaya_alat" aria-controls="biaya_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 														</div>													
 													</div>

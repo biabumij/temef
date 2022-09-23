@@ -1991,7 +1991,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_baku',$data,TRUE);
+        $html = $this->load->view('biaya_bahan/cetak_pergerakan_bahan_baku',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Baku');
@@ -2019,7 +2019,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_baku_solar',$data,TRUE);
+        $html = $this->load->view('biaya_alat/cetak_pergerakan_bahan_baku_solar',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Baku');
