@@ -163,6 +163,82 @@
                                             </div>
                                         </div>
 									</div>
+
+                                    <!-- Laporan Hutang -->
+
+                                    <div role="tabpanel" class="tab-pane" id="laporan_hutang">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">  
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Hutang</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_hutang'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_g" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_g" name="filter_kategori" class="form-control select2">
+                                                                    <option value="">Pilih Kategori</option>
+                                                                    <?php
+                                                                    foreach ($kategori as $key => $kat) {
+                                                                    ?>
+                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_supplier_id_g" name="supplier_id" class="form-control select2">
+                                                                    <option value="">Pilih Rekanan</option>
+                                                                    <?php
+                                                                    foreach ($suppliers as $key => $supplier) {
+                                                                    ?>
+                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>                                                   
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date5" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
+																<th align="center">REKANAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
+                                                                <th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
+                                                            </tr>
+                                                            <tr>
+																<th align="center">KATEGORI</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
 									
                                 </div>
                             </div>
