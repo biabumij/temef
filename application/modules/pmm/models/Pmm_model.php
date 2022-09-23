@@ -164,7 +164,7 @@ class Pmm_model extends CI_Model {
         }else {
             $id = 1;
         }
-        $output = sprintf('%03d', $id).'/RAP/'.date('m').'/'.date('Y');
+        $output = sprintf('%03d', $id).'/RAP-ALAT/'.date('m').'/'.date('Y');
         return $output;
             
     }
