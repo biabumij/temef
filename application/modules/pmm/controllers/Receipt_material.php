@@ -907,7 +907,6 @@ class Receipt_material extends CI_Controller {
 						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');	
 						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');
 						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
-						$arr['ppn'] = number_format($row['ppn'],0,',','.');
 						$arr['hutang'] = number_format($row['hutang'],0,',','.');	
 						
 						

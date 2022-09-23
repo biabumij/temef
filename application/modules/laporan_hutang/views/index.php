@@ -198,7 +198,6 @@
                                                                 <th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
-                                                                <th align="center" rowspan="2" style="vertical-align:middle;">PPN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
                                                             </tr>
                                                             <tr>
@@ -436,10 +435,10 @@
                                     window.tagihan = 0;
                                     window.pembayaran = 0;
                                     window.hutang = 0;
-                                    $('#table-date5 tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="7">' + val.nama + '</td></tr>');
+                                    $('#table-date5 tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.kategori_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-right">' + row.penerimaan + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.hutang + '</td></tr>');
+                                        $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.kategori_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-right">' + row.penerimaan + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
                                         
                                         window.penerimaan += parseFloat(row.penerimaan.replace(/\./g,'').replace(',', '.'));
                                         window.tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
@@ -448,9 +447,9 @@
                                         
 
                                     });
-                                    $('#table-date5 tbody').append('<tr class="active"><td class="text-right" colspan="3"><b>Jumlah</b></td><td class="text-right"><b>' + formatter3.format(window.penerimaan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.tagihan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.pembayaran) + '</b></td><td class="text-right"><b></b></td><td class="text-right"><b>' + formatter3.format(window.hutang) + '</b></td></tr>');
+                                    $('#table-date5 tbody').append('<tr class="active"><td class="text-right" colspan="3"><b>Jumlah</b></td><td class="text-right"><b>' + formatter3.format(window.penerimaan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.tagihan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.pembayaran) + '</b></td><td class="text-right"><b>' + formatter3.format(window.hutang) + '</b></td></tr>');
                                 });
-                                $('#table-date5 tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_jumlah_penerimaan + '</b></td><td class="text-right" ><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right" ><b></b></td><td class="text-right" ><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right" ><b>' + result.total_jumlah_hutang + '</b></td></tr>');
+                                $('#table-date5 tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_jumlah_penerimaan + '</b></td><td class="text-right" ><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right" ><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right" ><b>' + result.total_jumlah_hutang + '</b></td></tr>');
                             } else {
                                 $('#table-date5 tbody').append('<tr><td class="text-center" colspan="8"><b>NO DATA</b></td></tr>');
                             }

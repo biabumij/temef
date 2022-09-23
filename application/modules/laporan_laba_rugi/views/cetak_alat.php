@@ -168,8 +168,7 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="35%" align="center"><br>REKANAN</th>
-				<th width="20%" align="center"><br>PRODUK</th>
+				<th width="55%" align="center"><br>URAIAN</th>
 				<th width="7%" align="center"><br>SATUAN</th>
 				<th width="13%" align="center"><br>VOLUME</th>
 				<th width="15%" align="center">HARGA SATUAN</th>
@@ -177,8 +176,7 @@
 	        </tr>
 			<?php foreach ($pembelian as $x): ?>
 			<tr class="table-baris1">
-				<th align="left">&bull; <?= $x['nama'] ?></th>
-				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="left">&bull; <?= $x['nama_produk'] ?></th>
 				<th align="center"><?= $x['measure'] ?></th>
 				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
 				<th align="right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
@@ -187,7 +185,6 @@
 			<?php endforeach; ?>
 			<tr class="table-baris1">
 				<th align="left">&bull; BBM Solar</th>
-				<th align="left"></th>
 				<th align="center"></th>
 				<th align="right"></th>
 				<th align="right"></th>
@@ -195,12 +192,12 @@
 			</tr>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
-				<th align="left" colspan="5">&bull; <?= $y['memo'] ?></th>
+				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
 			<tr class="table-total">
-				<th align="right" colspan="5">TOTAL</th>
+				<th align="right" colspan="4">TOTAL</th>
 				<th align="right"><?php echo number_format($total_nilai,0,',','.');?></th>
 			</tr>
 	    </table>
