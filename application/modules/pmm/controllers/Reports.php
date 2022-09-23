@@ -5853,6 +5853,7 @@ class Reports extends CI_Controller {
 	            <th class="text-center" colspan="12">BAHAN BAKU</th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center">1</th>
 				<th class="text-left"><i>Semen</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
@@ -5860,6 +5861,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center">2</th>
 				<th class="text-left"><i>Pasir</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
@@ -5867,6 +5869,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center">3</th>
 				<th class="text-left"><i>Batu Split 10-20</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
@@ -5874,6 +5877,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center">4</th>
 				<th class="text-left"><i>Batu Split 20-30</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
@@ -5881,7 +5885,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active5">
-	            <th class="text-center" colspan="2">TOTAL</th>
+	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
