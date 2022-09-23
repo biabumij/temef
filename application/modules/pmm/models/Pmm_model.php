@@ -1601,7 +1601,7 @@ class Pmm_model extends CI_Model {
 		
         $this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->where("prm.volume <> 0 ");
-		$this->db->group_by('prm.material_id','asc');
+		$this->db->group_by('ppo.id','asc');
 		$this->db->order_by('ppo.no_po','asc');
         $query = $this->db->get('pmm_purchase_order ppo');
 		
