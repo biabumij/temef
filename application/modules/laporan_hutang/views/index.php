@@ -55,22 +55,22 @@
                                                 <div class="panel panel-default">                                            
 													<div class="col-sm-5">
 														<p><h5>Daftar Tagihan</h5></p>
-														<p>Menampilkan jumlah nilai tagihan pada setiap rekanan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah nilai tagihan pada setiap rekanan.</p>
                                                         <a href="#laporan_daftar_tagihan" aria-controls="laporan_daftar_tagihan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Hutang</h5></p>
-														<p>Menampilkan jumlah nilai hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah nilai hutang pada setiap rekanan.</p>
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
-														<p>Menampilkan umur hutang pada setiap rekanan  yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan umur hutang pada setiap rekanan .</p>
                                                         <a href="#laporan_umur_hutang" aria-controls="laporan_umur_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Daftar Pembayaran</h5></p>
-														<p>Menampilkan jumlah pembayaran pada setiap setiap rekanan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah pembayaran pada setiap setiap rekanan.</p>
                                                         <a href="#laporan_daftar_pembayaran" aria-controls="laporan_daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                 </div>

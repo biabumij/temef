@@ -58,42 +58,42 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Pemakaian Komposisi Bahan Baku</h5></p>
-														<p>Menampilkan laporan pemakaian komposisi bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan pemakaian komposisi bahan baku.</p>
                                                         <a href="#laporan_pemakaian_komposisi" aria-controls="laporan_pemakaian_komposisi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
-														<p>Menampilkan pergerakan bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan pergerakan bahan baku.</p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Solar)</h5></p>
-														<p>Menampilkan pergerakan bahan baku solar yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan pergerakan bahan baku solar.</p>
                                                         <a href="#pergerakan_bahan_baku_solar" aria-controls="pergerakan_bahan_baku_solar" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Nilai Persediaan Barang</h5></p>
-														<p>Menampilkan nilai persediaan barang yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan nilai persediaan barang.</p>
                                                         <a href="#nilai_persediaan_barang" aria-controls="nilai_persediaan_barang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Pemakaian Bahan Baku</h5></p>
-														<p>Menampilkan laporan pemakaian bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan pemakaian bahan baku.</p>
                                                         <a href="#laporan_pemakaian_bahan_baku" aria-controls="laporan_pemakaian_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Evaluasi Pemakaian Bahan Baku</h5></p>
-														<p>Menampilkan laporan evaluasi pemakaian bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan evaluasi pemakaian bahan baku.</p>
                                                         <a href="#laporan_evaluasi" aria-controls="laporan_evaluasi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Evaluasi RAP</h5></p>
-														<p>Menampilkan laporan evaluasi RAP bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan evaluasi RAP bahan baku.</p>
                                                         <a href="#laporan_evaluasi_rap" aria-controls="laporan_evaluasi_rap" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>  
 													<div class="col-sm-5">
 														<p><h5>Beban Pokok Produksi</h5></p>
-														<p>Menampilkan laporan beban pokok produksi bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan beban pokok produksi bahan baku.</p>
                                                         <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>                                 													
                                                 </div>

@@ -55,32 +55,32 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Pengiriman Penjualan</h5></p>
-														<p>Menampilkan transaksi penjualan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi penjualan.</p>
                                                         <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Sales Order</h5></p>
-														<p>Menampilkan laporan sales order yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan sales order.</p>
                                                         <a href="#laporan_sales_order" aria-controls="laporan_sales_order" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Daftar Tagihan</h5></p>
-														<p>Menampilkan jumlah nilai tagihan pada setiap pelanggan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah nilai tagihan pada setiap pelanggan.</p>
                                                         <a href="#laporan_daftar_tagihan_penjualan" aria-controls="laporan_daftar_tagihan_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Piutang</h5></p>
-														<p>Menampilkan jumlah nilai piutang terhadap tagihan pada setiap pelanggan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan jumlah nilai piutang terhadap tagihan pada setiap pelanggan.</p>
                                                         <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Umur Piutang</h5></p>
-														<p>Menampilkan umur piutang pada setiap pelanggan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan umur piutang pada setiap pelanggan.</p>
                                                         <a href="#laporan_umur_piutang" aria-controls="laporan_umur_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Penerimaan</h5></p>
-														<p>Menampilkan laporan penerimaan pada setiap pelanggan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan penerimaan pada setiap pelanggan.</p>
                                                         <a href="#laporan_penerimaan" aria-controls="laporan_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">

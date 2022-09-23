@@ -55,22 +55,22 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian</h5></p>
-														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi pembelian bahan baku.</p>
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian - Per Hari</h5></p>
-														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi pembelian bahan baku.</p>
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Pembelian Per Produk</h5></p>
-														<p>Menampilkan daftar kuantitas pembelian per produk yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan daftar kuantitas pembelian per produk.</p>
                                                         <a href="#laporan_pembelian_produk" aria-controls="laporan_pembelian_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>											
 													<div class="col-sm-5">
 														<p><h5>Laporan Pesanan Pembelian</h5></p>
-														<p>Menampilkan semua produk yang dipesan dalam suatu periode, dikelompok per supplier yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan semua produk yang dipesan dalam suatu periode, dikelompok per supplier.</p>
                                                         <a href="#laporan_pesanan_pembelian" aria-controls="laporan_pesanan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
@@ -80,7 +80,7 @@
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Pemakaian Peralatan Produksi</h5></p>
-														<p>Menampilkan laporan pemakaian peralatan produksi yang dicatat terkirim untuk transaksi yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan pemakaian peralatan produksi yang dicatat terkirim untuk transaksi.</p>
                                                         <a href="#laporan_pemakaian_peralatan" aria-controls="laporan_pemakaian_peralatan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                 </div>
