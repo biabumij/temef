@@ -5850,7 +5850,7 @@ class Reports extends CI_Controller {
 				<th width="20% class="text-center">NILAI</th>
 	        </tr>
 			<tr class="table-active2">
-	            <th class="text-center" colspan="12">BAHAN BAKU</th>
+	            <th class="text-left" colspan="12">BAHAN BAKU</th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>
