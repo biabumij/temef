@@ -42,7 +42,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Bahan</a></li>
 											<li><a href="<?= site_url('rap/form_alat'); ?>">Alat</a></li>
-                                            <li><a href="<?= site_url('rap/form_bahan'); ?>">BUA</a></li>
+                                            <li><a href="<?= site_url('rap/form_bua'); ?>">BUA</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -87,22 +87,45 @@
                                         </div>
 									</div>
 										
-									<!-- Table RAP -->
+									<!-- Table Alat -->
 								
-                                    <div role="tabpanel" class="tab-pane" id="rap">									
+                                    <div role="tabpanel" class="tab-pane" id="alat">									
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_rap" style="width:100%">
+                                            <table class="table table-striped table-hover" id="table_rap_alat" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
-														<th class="text-center">Tanggal RAP</th>
-														<th class="text-center">No. RAP</th>
-														<th class="text-center">Total Bahan</th>
-														<th class="text-center">Total Alat</th>
-                                                        <th class="text-center">Total Overhead</th>
-                                                        <th class="text-center">Total Biaya Admin</th>
-                                                        <th class="text-center">Total Diskonto</th>
-                                                        <th class="text-center">Lapmpiran</th>
+														<th class="text-center">Tanggal</th>
+														<th class="text-center">Nomor</th>
+														<th class="text-center">Batching Plant</th>
+														<th class="text-center">Truck Mixer</th>
+                                                        <th class="text-center">Wheel Loader</th>
+                                                        <th class="text-center">BBM Solar</th>
+                                                        <th class="text-center">Lampiran</th>
+														<th class="text-center">Tindakan</th>
+													</tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                   
+                                                </tfoot>
+                                            </table>
+                                        </div>
+									</div>
+
+                                    <!-- Table bua -->
+								
+                                    <div role="tabpanel" class="tab-pane" id="bua">									
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_rap_bua" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" width="5%">No.</th>
+														<th class="text-center">Tanggal</th>
+														<th class="text-center">Nomor</th>
+                                                        <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
 													</tr>
                                                 </thead>
@@ -202,14 +225,14 @@
 
     <script type="text/javascript">
 		
-		var table_rap = $('#table_rap').DataTable({
+		var table_rap_alat = $('#table_rap_alat').DataTable({
             ajax: {
                 processing: true,
                 serverSide: true,
-                url: '<?php echo site_url('rap/table_rap'); ?>',
+                url: '<?php echo site_url('rap/table_rap_alat'); ?>',
                 type: 'POST',
                 data: function(d) {
-					d.filter_product = $('#filter_product').val();
+					//d.filter_product = $('#filter_product').val();
                 }
             },
             responsive: true,
@@ -222,25 +245,22 @@
                     "data": "no"
                 },
 				{
-                    "data": "tanggal_rap"
+                    "data": "tanggal_rap_alat"
                 },
 				{
-                    "data": "nomor_rap"
+                    "data": "nomor_rap_alat"
                 },
 				{
-                    "data": "total_bahan"
+                    "data": "batching_plant"
                 },
 				{
-                    "data": "total_alat"
+                    "data": "truck_mixer"
                 },
                 {
-                    "data": "total_overhead"
+                    "data": "wheel_loader"
                 },
                 {
-                    "data": "total_biaya_admin"
-                },
-                {
-                    "data": "total_diskonto"
+                    "data": "bbm_solar"
                 },
                 {
                     "data": "lampiran"
@@ -250,18 +270,14 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 9],
+                    "targets": [0, 1, 8],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [3, 4, 5, 6, 7],
+                    "targets": [3, 4, 5, 6],
                     "className": 'text-right',
                 }
             ],
-        });
-
-		$('#filter_product').change(function() {
-                table_rap.ajax.reload();
         });
 	
 		function DeleteData(id) {
@@ -270,14 +286,79 @@
             if (result) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('rap/delete_rap'); ?>",
+                    url: "<?php echo site_url('rap/delete_rap_alat'); ?>",
                     dataType: 'json',
                     data: {
                         id: id
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_rap.ajax.reload();
+                            table_rap_alat.ajax.reload();
+                            bootbox.alert('Berhasil menghapus!!');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    </script>
+
+    <script type="text/javascript">
+		
+		var table_rap_bua = $('#table_rap_bua').DataTable({
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('rap/table_rap_bua'); ?>',
+                type: 'POST',
+                data: function(d) {
+                }
+            },
+            responsive: true,
+            "deferRender": true,
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
+            columns: [
+                {
+                    "data": "no"
+                },
+                {
+                    "data": "tanggal_rap_bua"
+                },
+                {
+                    "data": "nomor_rap_bua"
+                },
+                {
+                    "data": "lampiran"
+                },
+                {
+                    "data": "actions"
+                },
+            ],
+            "columnDefs": [{
+                    "targets": [0, 1, 4],
+                    "className": 'text-center',
+                }
+            ],
+        });
+	
+		function DeleteDataBUA(id) {
+        bootbox.confirm("Are you sure to delete this data ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('rap/delete_rap_bua'); ?>",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        if (result.output) {
+                            table_rap_alat.ajax.reload();
                             bootbox.alert('Berhasil menghapus!!');
                         } else if (result.err) {
                             bootbox.alert(result.err);

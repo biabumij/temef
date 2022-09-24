@@ -152,19 +152,36 @@ class Pmm_model extends CI_Model {
             
     }
 	
-	function GetNoRap()
+	function GetNoRapAlat()
     {
 
         $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
         $output = false;
 
-        $query = $this->db->select('id')->order_by('id','desc')->get('rap');
+        $query = $this->db->select('id')->order_by('id','desc')->get('rap_alat');
         if($query->num_rows() > 0){
             $id = $query->row_array()['id'] + 1;
         }else {
             $id = 1;
         }
         $output = sprintf('%03d', $id).'/RAP-ALAT/'.date('m').'/'.date('Y');
+        return $output;
+            
+    }
+
+    function GetNoRapBUA()
+    {
+
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+        $output = false;
+
+        $query = $this->db->select('id')->order_by('id','desc')->get('rap_bua');
+        if($query->num_rows() > 0){
+            $id = $query->row_array()['id'] + 1;
+        }else {
+            $id = 1;
+        }
+        $output = sprintf('%03d', $id).'/RAP-BUA/'.date('m').'/'.date('Y');
         return $output;
             
     }

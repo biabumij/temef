@@ -45,7 +45,7 @@
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
-                        <li><a href="<?= base_url("admin/komposisi/") ?>">Komposisi</a></li>
+                        <li><a href="<?= base_url("admin/rap/") ?>">Komposisi</a></li>
                         <li><a>Detail Komposisi</a></li>
                     </ul>
                 </div>
@@ -175,7 +175,7 @@
                                 
                                 <?php endif; ?>
                                 <?php if($agregat["status"] === "PUBLISH") : ?>
-                                <a href="<?= base_url("admin/komposisi/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <a href="<?= base_url("admin/rap/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <?php endif; ?>
                                 <a class="btn btn-warning" href="<?= base_url('komposisi/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-check"></i> Edit</a>
 								<a class="btn btn-danger" onclick="DeleteData('<?= site_url('komposisi/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>

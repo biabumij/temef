@@ -34,20 +34,20 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">RAP</h3>
+                                    <h3 class="">RAP ALAT</h3>
                                     
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <form method="POST" action="<?php echo site_url('rap/submit_rap');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
+                                <form method="POST" action="<?php echo site_url('rap/submit_rap_alat');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
 										<div class="col-sm-3">
                                             <label>Tanggal</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_rap" required="" value="" />
+                                            <input type="text" class="form-control dtpicker" name="tanggal_rap_alat" required="" value="" />
                                         </div>
 										<div class="col-sm-6">
                                             <label>Nomor RAP</label>
-                                            <input type="text" class="form-control" name="nomor_rap" required="" value="<?= $this->pmm_model->GetNoRap();?>">
+                                            <input type="text" class="form-control" name="nomor_rap_alat" required="" value="<?= $this->pmm_model->GetNoRapAlat();?>">
                                         </div> 
 									</div>
                                     <br />
@@ -63,53 +63,37 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center">1.</td>
-                                                    <td>
-                                                        <select id="produk_a" class="form-control form-select2" name="produk_a" required="" >
-                                                            <option value="BATCHING PLANT">BATCHING PLANT</option>
-                                                        </select>
-                                                    </td>
+                                                    <td>BATCHING PLANT</td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_a" id="total_a" onkeyup="sum();" class="form-control input-sm text-center" required="" />
+                                                    <input type="text" name="batching_plant" id="batching_plant" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
                                                     </td>
                                                 </tr>	
                                                 <tr>
                                                     <td class="text-center">2.</td>
-                                                    <td>
-                                                        <select id="produk_b" class="form-control form-select2" name="produk_b" required="" >
-                                                            <option value="BATCHING PLANT">TRUCK MIXER</option>
-                                                        </select>
-                                                    </td>
+                                                    <td>TRUCK MIXER</td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_b" id="total_b" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="text" name="truck_mixer" id="truck_mixer" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">3.</td>
-                                                    <td>
-                                                        <select id="produk_c" class="form-control form-select2" name="produk_c" required="" >
-                                                            <option value="BATCHING PLANT">WHEEL LOADER</option>
-                                                        </select>
-                                                    </td>
+                                                    <td>WHEEL LOADER</td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_c" id="total_c" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="text" name="wheel_loader" id="wheel_loader" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">4.</td>
-                                                    <td>
-                                                        <select id="produk_d" class="form-control form-select2" name="produk_d" required="" >
-                                                            <option value="BATCHING PLANT">BBM SOLAR</option>
-                                                        </select>
-                                                    </td>
+                                                    <td>BBM SOLAR</td>
 													<td>
-                                                    <input type="number" step=".01" min="0" name="total_d" id="total_d" onkeyup="sum();" class="form-control input-sm text-center numberformat" required="" />
+                                                    <input type="text" name="bbm_solar" id="bbm_solar" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td></td> 
                                                     <td>TOTAL</td>   
                                                     <td>
-                                                        <input type="number" step=".01" min="0" id="total_all" name="total_all" class="form-control input-sm text-center numberformat" value=""readonly="">
+                                                        <input type="text" id="total_all" name="total_all" class="form-control input-sm text-right numberformat" value="" readonly="">
                                                     </td>
                                                 </tr>					
                                             </tbody>
@@ -197,39 +181,33 @@
         });
 		
 		function sum() {
-		var txtFirstNumberValue = document.getElementById('total_a').value;
-		var txtSecondNumberValue = document.getElementById('total_b').value;
-		var txtThirdNumberValue = document.getElementById('total_c').value;
-		var txtFourthNumberValue = document.getElementById('total_d').value;
+    
+		var txtFirstNumberValue = document.getElementById('batching_plant').value;
+		var txtSecondNumberValue = document.getElementById('truck_mixer').value;
+		var txtThirdNumberValue = document.getElementById('wheel_loader').value;
+		var txtFourthNumberValue = document.getElementById('bbm_solar').value;
+
+        txtFirstNumberValue = txtFirstNumberValue.replace(/[^0-9]/g, '');
+        txtSecondNumberValue = txtSecondNumberValue.replace(/[^0-9]/g, '');
+        txtThirdNumberValue = txtThirdNumberValue.replace(/[^0-9]/g, '');
+        txtFourthNumberValue = txtFourthNumberValue.replace(/[^0-9]/g, '');
+        
+
 		var result = parseInt(txtFourthNumberValue) + parseInt(txtThirdNumberValue) + parseInt(txtSecondNumberValue) + parseInt(txtFirstNumberValue);
 		if (!isNaN(result)) {
-		 document.getElementById('total_all').value = result;
+
+		 document.getElementById('total_all').value = formatter.format(result);
 			}
 		}
 
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_a').prop('selectedIndex', 0).trigger('change');
-            }, 1000);
-        });
+        window.formatter = new Intl.NumberFormat('id-ID', {
+        style: 'decimal',
+        currency: 'IDR',
+        symbol: 'none',
+        minimumFractionDigits : '0'
+    });
 
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_b').prop('selectedIndex', 0).trigger('change');
-            }, 1000);
-        });
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_c').prop('selectedIndex', 0).trigger('change');
-            }, 1000);
-        });
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_d').prop('selectedIndex', 0).trigger('change');
-            }, 1000);
-        });
+        
 		
 		
     </script>
