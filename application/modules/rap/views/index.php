@@ -358,7 +358,7 @@
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_rap_alat.ajax.reload();
+                            table_rap_bua.ajax.reload();
                             bootbox.alert('Berhasil menghapus!!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
