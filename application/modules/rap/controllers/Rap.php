@@ -399,7 +399,7 @@ class Rap extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->delete('rap_bua',array('id'=>$id));
-			$this->db->delete('rap_bu_detail',array('rap_bua_id'=>$id));
+			$this->db->delete('rap_bua_detail',array('rap_bua_id'=>$id));
 			{
 				$output['output'] = true;
 			}
