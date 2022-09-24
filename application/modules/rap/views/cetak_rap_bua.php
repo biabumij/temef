@@ -58,7 +58,9 @@
 		<table width="100%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">RAP BUA</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">RAP BUA<br/>
+					DIVISI BETON PROYEK BENDUNGAN TEMEF<br/>
+					PT. BIA BUMI JAYENDRA<br/></div>
 					<?php
 					$rap_bua = $this->db->select('rap.*')
 					->from('rap_bua rap')
