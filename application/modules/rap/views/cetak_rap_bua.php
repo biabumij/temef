@@ -120,8 +120,6 @@
 			->where('rpd.rap_bua_id',$id)
 			->get()->result_array();
 
-			file_put_contents("D:\\rap_bua_detail.txt", $this->db->last_query());
-
            	$no = 0 ;
 
             $total = 0;
