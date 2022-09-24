@@ -5,51 +5,40 @@
 	  <title>RAP BUA</title>
 	  
 	  <style type="text/css">
-	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-	  	}
-	  	table.minimalistBlack {
-		  border: 0px solid #000000;
-		  width: 100%;
-		  text-align: left;
+		table tr.table-judul{
+			background-color: #e69500;
+			font-weight: bold;
+			font-size: 8px;
+			color: black;
 		}
-		table.minimalistBlack td, table.minimalistBlack th {
-		  border: 1px solid #000000;
-		  padding: 5px 4px;
+			
+		table tr.table-baris1{
+			background-color: #F0F0F0;
+			font-size: 8px;
 		}
-		table.minimalistBlack tr td {
-		  /*font-size: 13px;*/
-		  text-align:center;
+
+		table tr.table-baris1-bold{
+			background-color: #F0F0F0;
+			font-size: 8px;
+			font-weight: bold;
 		}
-		table.minimalistBlack tr th {
-		  /*font-size: 14px;*/
-		  font-weight: bold;
-		  color: #000000;
-		  text-align: center;
-		  padding: 10px;
+			
+		table tr.table-baris2{
+			font-size: 8px;
+			background-color: #E8E8E8;
 		}
-		table.head tr th {
-		  /*font-size: 14px;*/
-		  font-weight: bold;
-		  color: #000000;
-		  text-align: left;
-		  padding: 10px;
+
+		table tr.table-baris2-bold{
+			font-size: 8px;
+			background-color: #E8E8E8;
+			font-weight: bold;
 		}
-		table tr.table-active{
-            background-color: #b5b5b5;
-        }
-        table tr.table-active2{
-            background-color: #cac8c8;
-        }
-		table tr.table-active3{
-            background-color: #eee;
-        }
-		hr{
-			margin-top:0;
-			margin-bottom:30px;
-		}
-		h3{
-			margin-top:0;
+			
+		table tr.table-total{
+			background-color: #cccccc;
+			font-weight: bold;
+			font-size: 8px;
+			color: black;
 		}
 	  </style>
 
@@ -96,21 +85,33 @@
 						
 					}
 					?>
-
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">(<?= tgl_indo(date($date)); ?>)</div>
 				</td>
 			</tr>
 		</table>
 		<br />
 		<br />
+		<table width="100%" border="0">
+			<tr>
+				<th width="20%">Tanggal</th>
+				<th width="10px">:</th>
+				<th width="50%" align="left"><?= tgl_indo(date($date)); ?></th>
+			</tr>
+			<tr>
+				<th>Nomor</th>
+				<th width="10px">:</th>
+				<th width="50%" align="left"><?php echo $rap_bua['nomor_rap_bua'];?></th>
+			</tr>
+		</table>
+		<br />
+		<br />
 		<table class="minimalistBlack" cellpadding="5" width="98%">
-			<tr class="table-active">
-				<th align="center" width="15%">NO.</th>
-				<th align="center" width="25%">AKUN</th>
-				<th align="center" width="15%">VOLUME</th>
-				<th align="center" width="15%">SATUAN</th>
+			<tr class="table-judul">
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="40%">AKUN</th>
+				<th align="center" width="10%">VOLUME</th>
+				<th align="center" width="10%">SATUAN</th>
 				<th align="center" width="15%">HARGA SATUAN</th>
-				<th align="center" width="15%">TOTAL</th>
+				<th align="center" width="20%">TOTAL</th>
             </tr>
 			<?php
 			$rap_bua_detail = $this->db->select('rpd.*, c.coa')
@@ -125,7 +126,7 @@
             $total = 0;
 			
            	foreach ($rap_bua_detail as $row) : ?>  
-               <tr>
+               <tr class="table-baris1">
                    <td align="center"><?php echo $no+1;?></td>
                    <td align="left"><?= $row["coa"] ?></td>
 				   <td align="center"><?= number_format($row['qty'],0,',','.'); ?></td>
@@ -140,8 +141,8 @@
 			endforeach; ?>
 
             
-            <tr>
-                <th colspan="5" align="right">TOTAL</th>
+            <tr class="table-total">
+                <th colspan="5" align="right">GRAND TOTAL</th>
 				<th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
            	

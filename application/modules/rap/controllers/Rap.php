@@ -189,8 +189,8 @@ class Rap extends Secure_Controller {
 			$data['coa'] =  $this->db->select('*')
 			->from('pmm_coa c')
 			->where("c.status = 'PUBLISH'")
-			->where("c.coa_category = 15 ")
-			->order_by('c.coa_number','asc')
+			->where("c.coa_category = 15")
+			->order_by('c.coa','asc')
 			->get()->result_array();
 			$data['satuan'] = $this->db->order_by('measure_name', 'asc')->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 			$this->load->view('rap/form_bua', $data);
@@ -206,7 +206,7 @@ class Rap extends Secure_Controller {
 		->from('pmm_coa c')
 		->where("c.status = 'PUBLISH'")
 		->where("c.coa_category = 15 ")
-		->order_by('c.coa_number','asc')
+		->order_by('c.coa','asc')
 		->get()->result_array();
 		$satuan = $this->db->order_by('measure_name', 'asc')->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 	?>
@@ -254,6 +254,120 @@ class Rap extends Secure_Controller {
         <script type="text/javascript">
             $('.form-select2').select2();
             $('input.numberformat').number(true, 0, ',', '.');
+
+			$(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-2').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-3').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+         });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-4').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-5').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+        
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-6').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-7').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-8').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-9').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-10').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-11').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-12').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-13').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-14').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-15').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-16').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+        $(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-17').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+		$(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-18').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+		$(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-19').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
+
+		$(document).ready(function() {
+        setTimeout(function(){
+            $('#satuan-20').prop('selectedIndex', 6).trigger('change');
+        }, 1000);
+        });
         </script>
     <?php
     }

@@ -91,9 +91,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td></td> 
-                                                    <td>TOTAL</td>   
+                                                    <td  class="text-right"><b>GRAND TOTAL</b></td>   
                                                     <td>
-                                                        <input type="text" id="total_all" name="total_all" class="form-control input-sm text-right numberformat" value="" readonly="">
+                                                        <input type="text" id="total_all" name="total_all" style="font-weight:bold;" class="form-control input-sm text-right numberformat" value="" readonly="">
                                                     </td>
                                                 </tr>					
                                             </tbody>

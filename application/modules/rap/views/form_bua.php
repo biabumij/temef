@@ -65,47 +65,55 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                            <td>1.</td>
-                                            <td>
-                                                <select id="coa-1" class="form-control form-control form-select2" name="coa_1" onchange="changeData(1)" required="">
-                                                    <option value="">Pilih Akun</option>
-                                                    <?php
-                                                    if(!empty($coa)){
-                                                        foreach ($coa as $row) {
-                                                            ?>
-                                                            <option value="<?php echo $row['id'];?>"><?php echo $row['coa'];?></option>
-                                                            <?php
+                                                <td>1.</td>
+                                                <td>
+                                                    <select id="coa-1" class="form-control form-control form-select2" name="coa_1" onchange="changeData(1)" required="">
+                                                        <option value="">Pilih Akun</option>
+                                                        <?php
+                                                        if(!empty($coa)){
+                                                            foreach ($coa as $row) {
+                                                                ?>
+                                                                <option value="<?php echo $row['id'];?>"><?php echo $row['coa'];?></option>
+                                                                <?php
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="number" min="0" name="qty_1" id="qty-1" class="form-control input-sm text-center" onchange="changeData(1)" required="" />
-                                            </td>
-                                            <td>
-                                            <select id="satuan-1" class="form-control form-select2" name="satuan_1" required="">
-                                                    <option value="">Pilih Satuan</option>
-                                                    <?php
-                                                    if(!empty($satuan)){
-                                                        foreach ($satuan as $sat) {
-                                                            ?>
-                                                            <option value="<?php echo $sat['measure_name'];?>"><?php echo $sat['measure_name'];?></option>
-                                                            <?php
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="number" min="0" name="qty_1" id="qty-1" class="form-control input-sm text-center" onchange="changeData(1)" required="" />
+                                                </td>
+                                                <td>
+                                                <select id="satuan-1" class="form-control form-select2" name="satuan_1" required="">
+                                                        <option value="">Pilih Satuan</option>
+                                                        <?php
+                                                        if(!empty($satuan)){
+                                                            foreach ($satuan as $sat) {
+                                                                ?>
+                                                                <option value="<?php echo $sat['measure_name'];?>"><?php echo $sat['measure_name'];?></option>
+                                                                <?php
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="harga_satuan_1" id="harga_satuan-1" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="jumlah_1" id="jumlah-1" class="form-control numberformat tex-left input-sm text-right" readonly="" />
-                                            </td>
-                                        </tr>
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="harga_satuan_1" id="harga_satuan-1" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="jumlah_1" id="jumlah-1" class="form-control numberformat tex-left input-sm text-right" readonly=""/>
+                                                </td>
+                                            </tr>
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="5" class="text-right">GRAND TOTAL</td>
+                                                    <td>
+                                                    <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control numberformat tex-left input-sm text-right" readonly="">
+                                                    </td>
+                                                </tr> 
+                                            </tfoot>
                                         </table>    
                                     </div>
                                     <div class="col-sm-12">
@@ -116,7 +124,6 @@
                                     
                                         <!-- TOTAL -->
                                         <input type="hidden" id="sub-total" value="0">
-										<input type="hidden" id="sub-total-val" name="sub_total" value="0">
 										<input type="hidden" id="total" value="0">
 										<input type="hidden" id="total-val" name="total" value="0">
 										<input type="hidden" name="total_product" id="total-product" value="1">
@@ -247,7 +254,13 @@
             $('#total-val').val(total_total);
             $('#total').text($.number( total_total, 2,',','.' ));
         }
-		
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#satuan-1').prop('selectedIndex', 6).trigger('change');
+            }, 1000);
+        });
+
     </script>
 
 
