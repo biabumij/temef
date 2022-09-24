@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">RAP ALAT</h3>
+                                    <h3 class="">RAP Alat</h3>
                                     
                                 </div>
                             </div>
