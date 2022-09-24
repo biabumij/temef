@@ -25,7 +25,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
                             
-                            <li><a>RAP</a></li>
+                            <li><a>RAP BUA</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">RAP ALAT</h3>
+                                    <h3 class="">RAP BUA</h3>
                                     
                                 </div>
                             </div>
