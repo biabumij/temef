@@ -62,7 +62,7 @@
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Monitoring Hutang</h5></p>
+														<p><h5>Monitoring Hutang (Comings Soon)</h5></p>
                                                         <a href="#monitoring_hutang" aria-controls="monitoring_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                 </div>

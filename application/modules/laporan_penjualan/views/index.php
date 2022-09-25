@@ -62,7 +62,7 @@
                                                         <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Monitoring Piutang</h5></p>
+														<p><h5>Monitoring Piutang (Coming Soon)</h5></p>
                                                         <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                 </div>
