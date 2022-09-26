@@ -437,7 +437,7 @@ class Rap extends Secure_Controller {
 		$this->db->order_by('rap.nomor_rap_alat','desc');			
 		$query = $this->db->get('rap_alat rap');
 		
-       if($query->num_rows() > 0){
+       	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$total = $row['batching_plant'] + $row['truck_mixer'] + $row['wheel_loader'] + $row['bbm_solar'];
                 $row['no'] = $key+1;
