@@ -97,6 +97,7 @@
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
+                                                        <th class="text-center">Masa Kontrak</th>
 														<th class="text-center">Total RAP</th>
                                                         <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
@@ -248,6 +249,9 @@
 				{
                     "data": "nomor_rap_alat"
                 },
+                {
+                    "data": "masa_kontrak"
+                },
 				{
                     "data": "total"
                 },
@@ -259,11 +263,11 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 5],
+                    "targets": [0, 1, 3, 6],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [3],
+                    "targets": [4],
                     "className": 'text-right',
                 }
             ],

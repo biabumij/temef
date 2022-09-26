@@ -328,6 +328,7 @@ class Rap extends Secure_Controller {
 	{
 		$tanggal_rap_alat = $this->input->post('tanggal_rap_alat');
 		$nomor_rap_alat = $this->input->post('nomor_rap_alat');
+		$masa_kontrak = $this->input->post('masa_kontrak');
 		$vol_batching_plant =  str_replace('.', '', $this->input->post('vol_batching_plant'));
 		$vol_truck_mixer =  str_replace('.', '', $this->input->post('vol_truck_mixer'));
 		$vol_wheel_loader =  str_replace('.', '', $this->input->post('vol_wheel_loader'));
@@ -347,6 +348,7 @@ class Rap extends Secure_Controller {
 		$arr_insert = array(
 			'tanggal_rap_alat' =>  date('Y-m-d', strtotime($tanggal_rap_alat)),
 			'nomor_rap_alat' => $nomor_rap_alat,
+			'masa_kontrak' => $masa_kontrak,
 			'vol_batching_plant' => $vol_batching_plant,
 			'vol_truck_mixer' => $vol_truck_mixer,
 			'vol_wheel_loader' => $vol_wheel_loader,
@@ -431,8 +433,7 @@ class Rap extends Secure_Controller {
         $this->db->select('rap.*, lk.lampiran, rap.status');		
 		$this->db->join('lampiran_rap_alat lk', 'rap.id = lk.rap_alat_id','left');
 		$this->db->where('rap.status','PUBLISH');
-		$this->db->order_by('rap.nomor_rap_alat','desc');
-		$this->db->order_by('rap.nomor_rap_alat','desc');			
+		$this->db->order_by('rap.tanggal_rap_alat','desc');			
 		$query = $this->db->get('rap_alat rap');
 		
        	if($query->num_rows() > 0){
@@ -799,7 +800,7 @@ class Rap extends Secure_Controller {
 		$this->db->join('lampiran_rap_bua lk', 'rap.id = lk.rap_bua_id','left');
 		$this->db->where('rap.status','PUBLISH');
 		$this->db->group_by('rap.id');
-		$this->db->order_by('rap.nomor_rap_bua','desc');			
+		$this->db->order_by('rap.tanggal_rap_bua','desc');		
 		$query = $this->db->get('rap_bua rap');
 		
        if($query->num_rows() > 0){
