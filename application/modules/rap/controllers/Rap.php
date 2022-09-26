@@ -458,8 +458,7 @@ class Rap extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->delete('rap_alat',array('id'=>$id));
-			$this->db->delete('lampiran_rap_alat',array('id'=>$id));
-			delete_files($path);
+			$this->db->delete('lampiran_rap_alat',array('rap_alat_id'=>$id));
 			{
 				$output['output'] = true;
 			}
@@ -824,6 +823,7 @@ class Rap extends Secure_Controller {
 		if(!empty($id)){
 			$this->db->delete('rap_bua',array('id'=>$id));
 			$this->db->delete('rap_bua_detail',array('rap_bua_id'=>$id));
+			$this->db->delete('lampiran_rap_bua',array('rap_bua_id'=>$id));
 			{
 				$output['output'] = true;
 			}
