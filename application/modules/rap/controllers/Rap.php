@@ -366,7 +366,7 @@ class Rap extends Secure_Controller {
 		);
 		
 		if ($this->db->insert('rap_alat', $arr_insert)) {
-			$rap_id = $this->db->insert_id();
+			$rap_alat_id = $this->db->insert_id();
 
 			if (!file_exists('uploads/rap_alat')) {
 			    mkdir('uploads/rap_alat', 0777, true);
@@ -399,7 +399,7 @@ class Rap extends Secure_Controller {
 
 
 						$data[$i] = array(
-							'rap_id' => $rap_id,
+							'rap_alat_id' => $rap_alat_id,
 							'lampiran'  => $data['totalFiles'][$i]
 						);
 
@@ -429,7 +429,7 @@ class Rap extends Secure_Controller {
         $data = array();
 
         $this->db->select('rap.*, lk.lampiran, rap.status');		
-		$this->db->join('lampiran_rap_alat lk', 'rap.id = lk.rap_id','left');
+		$this->db->join('lampiran_rap_alat lk', 'rap.id = lk.rap_alat_id','left');
 		$this->db->where('rap.status','PUBLISH');
 		$this->db->order_by('rap.nomor_rap_alat','desc');
 		$this->db->order_by('rap.nomor_rap_alat','desc');			
@@ -458,6 +458,8 @@ class Rap extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->delete('rap_alat',array('id'=>$id));
+			$this->db->delete('lampiran_rap_alat',array('id'=>$id));
+			delete_files($path);
 			{
 				$output['output'] = true;
 			}
@@ -732,7 +734,7 @@ class Rap extends Secure_Controller {
             }
 
 			if (!file_exists('uploads/rap_bua')) {
-			    mkdir('uploads/rap_bu', 0777, true);
+			    mkdir('uploads/rap_bua', 0777, true);
 			}
 
 
@@ -748,7 +750,7 @@ class Rap extends Secure_Controller {
 					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
 					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
 
-					$config['upload_path'] = 'uploads/rap_alat';
+					$config['upload_path'] = 'uploads/rap_bua';
 					$config['allowed_types'] = 'jpg|jpeg|png|pdf';
 					$config['file_name'] = $_FILES['files']['name'][$i];
 
