@@ -102,7 +102,7 @@
 				<th width="50%" align="left"><?php echo $rap_bua['nomor_rap_bua'];?></th>
 			</tr>
 			<tr>
-				<th>Mas Kontrak</th>
+				<th>Masa Kontrak</th>
 				<th width="10px">:</th>
 				<th width="50%" align="left"><?php echo $rap_bua['masa_kontrak'];?></th>
 			</tr>
