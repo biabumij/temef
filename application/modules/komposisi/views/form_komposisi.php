@@ -198,7 +198,7 @@
 																<input type="text" id="presentase_b" name="presentase_b" class="form-control numberformat text-center" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
-																<input type="text" id="price_b" name="price_b" class="form-control  text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+																<input type="text" id="price_b" name="price_b" class="form-control text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
 																<input type="text" id="total_b" name="total_b" class="form-control text-right" value="" onkeyup="sum();" required="" autocomplete="off">
@@ -238,10 +238,10 @@
 																<input type="text" id="presentase_c" name="presentase_c" class="form-control numberformat text-center" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
-																<input type="text" id="price_c" name="price_c" class="form-control  text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+																<input type="text" id="price_c" name="price_c" class="form-control text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
-																<input type="text" id="total_c" name="total_c" class="form-control  text-right" value="" onkeyup="sum();" required="" autocomplete="off">
+																<input type="text" id="total_c" name="total_c" class="form-control text-right" value="" onkeyup="sum();" required="" autocomplete="off">
 															</td>
 														</tr>
 														<tr>
@@ -278,15 +278,15 @@
 																<input type="text" id="presentase_d" name="presentase_d" class="form-control numberformat text-center" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
-																<input type="text" id="price_d" name="price_d" class="form-control  text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+																<input type="text" id="price_d" name="price_d" class="form-control text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
 															</td>
 															<td>
-																<input type="text" id="total_d" name="total_d" class="form-control  text-right" value="" onkeyup="sum();" required="" autocomplete="off">
+																<input type="text" id="total_d" name="total_d" class="form-control text-right" value="" onkeyup="sum();" required="" autocomplete="off">
 															</td>
 															<tr>
 														<td colspan="5"><b>TOTAL</b></td> 
 														<td>
-															<input type="text" id="total_all" name="total_all" class="form-control  text-right" value="" required="" readonly="">
+															<input type="text" id="total_all" name="total_all" class="form-control text-right" value="" required="" readonly="">
 														</td>
 														</tr>
 													</tbody>

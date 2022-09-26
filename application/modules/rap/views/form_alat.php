@@ -57,7 +57,9 @@
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>
                                                     <th width="30%">URAIAN</th>
-													<th width="65%">TOTAL</th>                                    
+                                                    <th width="15%">VOLUME</th>
+                                                    <th width="20%">HARGA SATUAN</th>
+													<th width="30%">TOTAL</th>                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -65,37 +67,54 @@
                                                     <td class="text-center">1.</td>
                                                     <td>BATCHING PLANT</td>
 													<td>
-                                                    <input type="text" name="batching_plant" id="batching_plant" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
+                                                    <input type="text" id="vol_batching_plant" name="vol_batching_plant" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="harsat_batching_plant" id="harsat_batching_plant" class="form-control rupiahformat text-right" onchange="changeData(1)"  required=""  autocomplete="off"/>
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="batching_plant" id="batching_plant" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required=""  autocomplete="off"/>
                                                     </td>
                                                 </tr>	
                                                 <tr>
                                                     <td class="text-center">2.</td>
                                                     <td>TRUCK MIXER</td>
 													<td>
-                                                    <input type="text" name="truck_mixer" id="truck_mixer" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
+                                                    <input type="text" id="vol_truck_mixer" name="vol_truck_mixer" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="harsat_truck_mixer" id="harsat_truck_mixer" class="form-control rupiahformat text-right" onchange="changeData(1)" required="" autocomplete="off"/>
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="truck_mixer" id="truck_mixer" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">3.</td>
                                                     <td>WHEEL LOADER</td>
 													<td>
-                                                    <input type="text" name="wheel_loader" id="wheel_loader" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
+                                                    <input type="text" id="vol_wheel_loader" name="vol_wheel_loader" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="harsat_wheel_loader" id="harsat_wheel_loader" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" name="wheel_loader" id="wheel_loader" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">4.</td>
                                                     <td>BBM SOLAR</td>
 													<td>
-                                                    <input type="text" name="bbm_solar" id="bbm_solar" onkeyup="sum();" class="form-control input-sm text-right numberformat" required="" />
+                                                    <input type="text" id="vol_bbm_solar" name="vol_bbm_solar" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td> 
-                                                    <td  class="text-right"><b>GRAND TOTAL</b></td>   
                                                     <td>
-                                                        <input type="text" id="total_all" name="total_all" style="font-weight:bold;" class="form-control input-sm text-right numberformat" value="" readonly="">
+                                                    <input type="text" name="harsat_bbm_solar" id="harsat_bbm_solar" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
-                                                </tr>					
+                                                    <td>
+                                                    <input type="text" name="bbm_solar" id="bbm_solar" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
+                                                    </td>
+                                                </tr>				
                                             </tbody>
                                         </table>    
                                     </div>
@@ -142,7 +161,8 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 0,',','.' );
+        $('input.numberformat').number(true, 2,',','.' );
+        $('input.rupiahformat').number(true, 0,',','.' );
 
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
@@ -179,37 +199,29 @@
             });
             
         });
-		
-		function sum() {
-    
-		var txtFirstNumberValue = document.getElementById('batching_plant').value;
-		var txtSecondNumberValue = document.getElementById('truck_mixer').value;
-		var txtThirdNumberValue = document.getElementById('wheel_loader').value;
-		var txtFourthNumberValue = document.getElementById('bbm_solar').value;
 
-        txtFirstNumberValue = txtFirstNumberValue.replace(/[^0-9]/g, '');
-        txtSecondNumberValue = txtSecondNumberValue.replace(/[^0-9]/g, '');
-        txtThirdNumberValue = txtThirdNumberValue.replace(/[^0-9]/g, '');
-        txtFourthNumberValue = txtFourthNumberValue.replace(/[^0-9]/g, '');
-        
+        function changeData(id)
+        {
+			var vol_batching_plant = $('#vol_batching_plant').val();
+            var vol_truck_mixer = $('#vol_truck_mixer').val();
+            var vol_wheel_loader = $('#vol_wheel_loader').val();
+            var vol_bbm_solar = $('#vol_bbm_solar').val();
 
-		var result = parseInt(txtFourthNumberValue) + parseInt(txtThirdNumberValue) + parseInt(txtSecondNumberValue) + parseInt(txtFirstNumberValue);
-		if (!isNaN(result)) {
+			var harsat_batching_plant = $('#harsat_batching_plant').val();
+            var harsat_truck_mixer = $('#harsat_truck_mixer').val();
+            var harsat_wheel_loader = $('#harsat_wheel_loader').val();
+            var harsat_bbm_solar = $('#harsat_bbm_solar').val();
+            				
+			batching_plant = ( vol_batching_plant * harsat_batching_plant );
+            $('#batching_plant').val(batching_plant);
+            truck_mixer = ( vol_truck_mixer * harsat_truck_mixer );
+            $('#truck_mixer').val(truck_mixer);
+            wheel_loader = ( vol_wheel_loader * harsat_wheel_loader );
+            $('#wheel_loader').val(wheel_loader);
+            bbm_solar = ( vol_bbm_solar * harsat_bbm_solar );
+            $('#bbm_solar').val(bbm_solar);
+        }
 
-		 document.getElementById('total_all').value = formatter.format(result);
-			}
-		}
-
-        window.formatter = new Intl.NumberFormat('id-ID', {
-        style: 'decimal',
-        currency: 'IDR',
-        symbol: 'none',
-        minimumFractionDigits : '0'
-    });
-
-        
-		
-		
     </script>
 
 

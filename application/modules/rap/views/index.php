@@ -97,10 +97,7 @@
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
-														<th class="text-center">Batching Plant</th>
-														<th class="text-center">Truck Mixer</th>
-                                                        <th class="text-center">Wheel Loader</th>
-                                                        <th class="text-center">BBM Solar</th>
+														<th class="text-center">Total RAP</th>
                                                         <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
 													</tr>
@@ -115,7 +112,7 @@
                                         </div>
 									</div>
 
-                                    <!-- Table bua -->
+                                    <!-- Table BUA -->
 								
                                     <div role="tabpanel" class="tab-pane" id="bua">									
                                         <div class="table-responsive">
@@ -125,6 +122,7 @@
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
+                                                        <th class="text-center">Total BUA</th>
                                                         <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
 													</tr>
@@ -232,7 +230,6 @@
                 url: '<?php echo site_url('rap/table_rap_alat'); ?>',
                 type: 'POST',
                 data: function(d) {
-					//d.filter_product = $('#filter_product').val();
                 }
             },
             responsive: true,
@@ -251,16 +248,7 @@
                     "data": "nomor_rap_alat"
                 },
 				{
-                    "data": "batching_plant"
-                },
-				{
-                    "data": "truck_mixer"
-                },
-                {
-                    "data": "wheel_loader"
-                },
-                {
-                    "data": "bbm_solar"
+                    "data": "total"
                 },
                 {
                     "data": "lampiran"
@@ -270,11 +258,11 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 8],
+                    "targets": [0, 1, 5],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [3, 4, 5, 6],
+                    "targets": [3],
                     "className": 'text-right',
                 }
             ],
@@ -332,6 +320,9 @@
                     "data": "nomor_rap_bua"
                 },
                 {
+                    "data": "total"
+                },
+                {
                     "data": "lampiran"
                 },
                 {
@@ -339,8 +330,12 @@
                 },
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4],
+                    "targets": [0, 1, 5],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [4],
+                    "className": 'text-right',
                 }
             ],
         });

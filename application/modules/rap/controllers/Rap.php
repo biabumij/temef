@@ -34,6 +34,14 @@ class Rap extends Secure_Controller {
 	{
 		$tanggal_rap_alat = $this->input->post('tanggal_rap_alat');
 		$nomor_rap_alat = $this->input->post('nomor_rap_alat');
+		$vol_batching_plant =  str_replace('.', '', $this->input->post('vol_batching_plant'));
+		$vol_truck_mixer =  str_replace('.', '', $this->input->post('vol_truck_mixer'));
+		$vol_wheel_loader =  str_replace('.', '', $this->input->post('vol_wheel_loader'));
+		$vol_bbm_solar =  str_replace('.', '', $this->input->post('vol_bbm_solar'));
+		$harsat_batching_plant =  str_replace('.', '', $this->input->post('harsat_batching_plant'));
+		$harsat_truck_mixer =  str_replace('.', '', $this->input->post('harsat_truck_mixer'));
+		$harsat_wheel_loader =  str_replace('.', '', $this->input->post('harsat_wheel_loader'));
+		$harsat_bbm_solar =  str_replace('.', '', $this->input->post('harsat_bbm_solar'));
 		$batching_plant =  str_replace('.', '', $this->input->post('batching_plant'));
 		$truck_mixer =  str_replace('.', '', $this->input->post('truck_mixer'));
 		$wheel_loader =  str_replace('.', '', $this->input->post('wheel_loader'));
@@ -45,6 +53,14 @@ class Rap extends Secure_Controller {
 		$arr_insert = array(
 			'tanggal_rap_alat' =>  date('Y-m-d', strtotime($tanggal_rap_alat)),
 			'nomor_rap_alat' => $nomor_rap_alat,
+			'vol_batching_plant' => $vol_batching_plant,
+			'vol_truck_mixer' => $vol_truck_mixer,
+			'vol_wheel_loader' => $vol_wheel_loader,
+			'vol_bbm_solar' => $vol_bbm_solar,
+			'harsat_batching_plant' => $harsat_batching_plant,
+			'harsat_truck_mixer' => $harsat_truck_mixer,
+			'harsat_wheel_loader' => $harsat_wheel_loader,
+			'harsat_bbm_solar' => $harsat_bbm_solar,
 			'batching_plant' => $batching_plant,
 			'truck_mixer' => $truck_mixer,
 			'wheel_loader' => $wheel_loader,
@@ -127,15 +143,12 @@ class Rap extends Secure_Controller {
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
+				$total = $row['batching_plant'] + $row['truck_mixer'] + $row['wheel_loader'] + $row['bbm_solar'];
                 $row['no'] = $key+1;
 				$row['tanggal_rap_alat'] =  date('d F Y',strtotime($row['tanggal_rap_alat']));
 				$row['nomor_rap_alat'] = "<a href=" . base_url('rap/cetak_rap_alat/' . $row["id"]) .'" target="_blank">' . $row["nomor_rap_alat"] . "</a>";
-				$row['batching_plant'] = number_format($row['batching_plant'],0,',','.');
-				$row['truck_mixer'] = number_format($row['truck_mixer'],0,',','.');
-				$row['wheel_loader'] = number_format($row['wheel_loader'],0,',','.');
-				$row['bbm_solar'] = number_format($row['bbm_solar'],0,',','.');
+				$row['total'] = number_format($total,0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rap_alat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
-				//$row['actions'] = "<a href=" . base_url('rap/hapus_rap_alat/' . $row["id"]) . ">" . "<button class='btn btn-danger'>Hapus</button>" . "</a>";
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				
                 $data[] = $row;
@@ -497,6 +510,7 @@ class Rap extends Secure_Controller {
                 $row['no'] = $key+1;
 				$row['tanggal_rap_bua'] =  date('d F Y',strtotime($row['tanggal_rap_bua']));
 				$row['nomor_rap_bua'] = "<a href=" . base_url('rap/cetak_rap_bua/' . $row["id"]) .' target="_blank">' . $row["nomor_rap_bua"] . "</a>";
+				$row['total'] = number_format($row['total'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rap_bua/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBUA('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				
