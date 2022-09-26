@@ -73,7 +73,7 @@
                                                     <input type="text" name="harsat_batching_plant" id="harsat_batching_plant" class="form-control rupiahformat text-right" onchange="changeData(1)"  required=""  autocomplete="off"/>
                                                     </td>
                                                     <td>
-                                                    <input type="text" name="batching_plant" id="batching_plant" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required=""  autocomplete="off"/>
+                                                    <input type="text" name="batching_plant" id="batching_plant" class="form-control rupiahformat text-right" readonly="" value="" required=""  autocomplete="off"/>
                                                     </td>
                                                 </tr>	
                                                 <tr>
@@ -86,7 +86,7 @@
                                                     <input type="text" name="harsat_truck_mixer" id="harsat_truck_mixer" class="form-control rupiahformat text-right" onchange="changeData(1)" required="" autocomplete="off"/>
                                                     </td>
                                                     <td>
-                                                    <input type="text" name="truck_mixer" id="truck_mixer" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
+                                                    <input type="text" name="truck_mixer" id="truck_mixer" class="form-control rupiahformat text-right" readonly="" value="" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -99,7 +99,7 @@
                                                     <input type="text" name="harsat_wheel_loader" id="harsat_wheel_loader" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
                                                     <td>
-                                                    <input type="text" name="wheel_loader" id="wheel_loader" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
+                                                    <input type="text" name="wheel_loader" id="wheel_loader" class="form-control rupiahformat text-right" readonly="" value="" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -112,10 +112,18 @@
                                                     <input type="text" name="harsat_bbm_solar" id="harsat_bbm_solar" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
                                                     <td>
-                                                    <input type="text" name="bbm_solar" id="bbm_solar" class="form-control rupiahformat text-right" readonly="" value="" onkeyup="sum();" required="" autocomplete="off"/>
+                                                    <input type="text" name="bbm_solar" id="bbm_solar" class="form-control rupiahformat text-right" readonly="" value="" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>				
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="text-right">GRAND TOTAL</td>
+                                                    <td>
+                                                    <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control rupiahformat tex-left text-right" readonly="">
+                                                    </td>
+                                                </tr> 
+                                            </tfoot>
                                         </table>    
                                     </div>
                                     <div class="row">
@@ -220,6 +228,21 @@
             $('#wheel_loader').val(wheel_loader);
             bbm_solar = ( vol_bbm_solar * harsat_bbm_solar );
             $('#bbm_solar').val(bbm_solar);
+            getTotal();
+        }
+
+        function getTotal()
+        {
+            var sub_total = $('#sub-total-val').val();
+
+            sub_total = parseInt($('#batching_plant').val()) + parseInt($('#truck_mixer').val()) + parseInt($('#wheel_loader').val()) + parseInt($('#bbm_solar').val());
+            
+            $('#sub-total-val').val(sub_total);
+            $('#sub-total').text($.number( sub_total, 0,',','.' ));
+
+            total_total = parseInt(sub_total);
+            $('#total-val').val(total_total);
+            $('#total').text($.number( total_total, 0,',','.' ));
         }
 
     </script>

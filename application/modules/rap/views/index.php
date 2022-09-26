@@ -40,7 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?= site_url('komposisi/form_komposisi'); ?>">Bahan</a></li>
+                                            <li><a href="<?= site_url('rap/form_bahan'); ?>">Bahan</a></li>
 											<li><a href="<?= site_url('rap/form_alat'); ?>">Alat</a></li>
                                             <li><a href="<?= site_url('rap/form_bua'); ?>">BUA</a></li>
                                         </ul>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Bahan</a></li>
+                                    <li role="presentation" class="active"><a href="#bahan" aria-controls="bahan" role="tab" data-toggle="tab">Bahan</a></li>
                                     <li role="presentation"><a href="#alat" aria-controls="alat" role="tab" data-toggle="tab">Alat</a></li>
                                     <li role="presentation"><a href="#bua" aria-controls="bua" role="tab" data-toggle="tab">BUA</a></li>
                                 </ul>
@@ -59,7 +59,7 @@
                                     
                                 <!-- Table Bahan -->
 									
-                                <div role="tabpanel" class="tab-pane active" id="komposisi_agregat">
+                                <div role="tabpanel" class="tab-pane active" id="bahan">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_agregat" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
 										</div>
@@ -179,7 +179,7 @@
             ajax: {
                 processing: true,
                 serverSide: true,
-                url: '<?php echo site_url('komposisi/table_agregat'); ?>',
+                url: '<?php echo site_url('rap/table_agregat'); ?>',
                 type: 'POST',
                 data: function(d) {
                     d.filter_date = $('#filter_date_agregat').val();
