@@ -65,8 +65,8 @@
                                                         <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
-														<p><h5>Evaluasi BUA, Diskonto, Persiapan (Coming Soon)</h5></p>
-                                                        <a href="#evaluasi_alat" aria-controls="evaluasi_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+														<p><h5>Evaluasi BUA, Diskonto, Persiapan</h5></p>
+                                                        <a href="#evaluasi_bua" aria-controls="evaluasi_bua" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Evaluasi Target Produksi (Coming Soon)</h5></p>
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
 
-									<!-- Laporan Evaluasi -->
+									<!-- Evaluasi Bahan -->
                                     
 									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
                                         <div class="col-sm-15">
@@ -119,6 +119,8 @@
 										</div>
                                     </div>
 
+									<!-- Evaluasi Alat -->
+
 									<div role="tabpanel" class="tab-pane" id="evaluasi_alat">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -146,6 +148,44 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="evaluasi-alat">													
+													
+                    
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
+
+									<!-- Evaluasi BUA -->
+
+									<div role="tabpanel" class="tab-pane" id="evaluasi_bua">
+                                        <div class="col-sm-15">
+										<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Evaluasi BUA</h3>
+													<a href="laporan_ev._produksi">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/cetak_laporan_evaluasi_bua');?>" target="_blank">
+															<div class="col-sm-3">
+																<input type="text" id="filter_date_evaluasi_bua" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="evaluasi-bua">													
 													
                     
 													</div>
@@ -215,9 +255,9 @@
 				});
 			}
 
-			//TableEvaluasi();
+		//TableEvaluasi();
 
-            </script>
+        </script>
 		
 		<!-- Script Evaluasi Alat -->
 
@@ -263,8 +303,57 @@
 
 			//TableEvaluasiAlat();
 
+        </script>
+
+		<!-- Script Evaluasi BUA -->
+
+		<script type="text/javascript">
+			$('#filter_date_evaluasi_bua').daterangepicker({
+            autoUpdateInput : false,
+			showDropdowns: true,
+            locale: {
+              format: 'DD-MM-YYYY'
+            },
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+			});
+
+			$('#filter_date_evaluasi_bua').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				  TableEvaluasiBUA();
+			});
+
+
+			function TableEvaluasiBUA()
+			{
+				$('#wait').fadeIn('fast');   
+				$.ajax({
+					type    : "POST",
+					url     : "<?php echo site_url('pmm/reports/table_evaluasi_bua'); ?>/"+Math.random(),
+					dataType : 'html',
+					data: {
+						filter_date : $('#filter_date_evaluasi_bua').val(),
+					},
+					success : function(result){
+						$('#evaluasi-bua').html(result);
+						$('#wait').fadeOut('fast');
+					}
+				});
+			}
+
+			//TableEvaluasiBUA();
+
             </script>
 
+
+
+		<!-- DELETED SOON -->
 		<!-- Script Pemakaian Komposisi -->
 
 		<script type="text/javascript">
