@@ -6166,7 +6166,7 @@ class Reports extends CI_Controller {
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 202")
+			->where("det.coa = 121")
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
@@ -6190,7 +6190,7 @@ class Reports extends CI_Controller {
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 113")
+			->where("det.coa = 131")
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
@@ -6440,7 +6440,7 @@ class Reports extends CI_Controller {
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 113")
+			->where("pdb.akun = 131")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -6449,7 +6449,7 @@ class Reports extends CI_Controller {
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 113")
+			->where("pdb.akun = 131")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -6662,6 +6662,26 @@ class Reports extends CI_Controller {
 				<th width="8%" class="text-center">VOLUME</th>
 				<th width="12%" class="text-center">NILAI</th>
 	        </tr>
+			<?php
+				$styleColorA = $evaluasi_gaji_upah < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $evaluasi_konsumsi < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $evaluasi_biaya_sewa_mess < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $evaluasi_listrik_internet < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_pengujian_material_laboratorium < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $evaluasi_keamanan_kebersihan < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $evaluasi_pengobatan < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $evaluasi_donasi < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $evaluasi_bensin_tol_parkir < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $evaluasi_perjalanan_dinas_umum < 0 ? 'color:red' : 'color:black';
+				$styleColorK = $evaluasi_pakaian_dinas < 0 ? 'color:red' : 'color:black';
+				$styleColorL = $evaluasi_alat_tulis_kantor < 0 ? 'color:red' : 'color:black';
+				$styleColorM = $evaluasi_perlengkapan_kantor < 0 ? 'color:red' : 'color:black';
+				$styleColorN = $evaluasi_beban_kirim < 0 ? 'color:red' : 'color:black';
+				$styleColorO = $evaluasi_beban_lain_lain < 0 ? 'color:red' : 'color:black';
+				$styleColorP = $evaluasi_biaya_sewa_kendaraan < 0 ? 'color:red' : 'color:black';
+				$styleColorQ = $evaluasi_thr_bonus < 0 ? 'color:red' : 'color:black';
+
+			?>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">1</th>			
 				<th class="text-left">Gaji / Upah</th>
@@ -6671,7 +6691,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($gaji_upah,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_gaji_upah,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_gaji_upah,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">2</th>			
@@ -6682,7 +6702,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($konsumsi,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_konsumsi,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_konsumsi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">3</th>			
@@ -6693,7 +6713,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($biaya_sewa_mess,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_biaya_sewa_mess,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_biaya_sewa_mess,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">4</th>			
@@ -6704,7 +6724,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($listrik_internet,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_listrik_internet,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_listrik_internet,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">5</th>			
@@ -6715,7 +6735,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pengujian_material_laboratorium,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_pengujian_material_laboratorium,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_pengujian_material_laboratorium,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">6</th>			
@@ -6726,7 +6746,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($keamanan_kebersihan,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_keamanan_kebersihan,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_keamanan_kebersihan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">7</th>			
@@ -6737,7 +6757,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pengobatan,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_pengobatan,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_pengobatan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">8</th>			
@@ -6748,7 +6768,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($donasi,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_donasi,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_donasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">9</th>			
@@ -6759,7 +6779,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($bensin_tol_parkir,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_bensin_tol_parkir,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorI ?>"><?php echo number_format($evaluasi_bensin_tol_parkir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">10</th>			
@@ -6770,7 +6790,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($perjalanan_dinas_umum,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_perjalanan_dinas_umum,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($evaluasi_perjalanan_dinas_umum,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">11</th>			
@@ -6781,7 +6801,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pakaian_dinas,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_pakaian_dinas,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorK ?>"><?php echo number_format($evaluasi_pakaian_dinas,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">12</th>			
@@ -6792,7 +6812,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($alat_tulis_kantor,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_alat_tulis_kantor,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorL ?>"><?php echo number_format($evaluasi_alat_tulis_kantor,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">13</th>			
@@ -6803,7 +6823,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($perlengkapan_kantor,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_perlengkapan_kantor,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorM ?>"><?php echo number_format($evaluasi_perlengkapan_kantor,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">14</th>			
@@ -6814,7 +6834,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($beban_kirim,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_beban_kirim,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorN ?>"><?php echo number_format($evaluasi_beban_kirim,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">15</th>			
@@ -6825,7 +6845,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($beban_lain_lain,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_beban_lain_lain,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorO ?>"><?php echo number_format($evaluasi_beban_lain_lain,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">16</th>			
@@ -6836,7 +6856,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($biaya_sewa_kendaraan,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_biaya_sewa_kendaraan,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorP ?>"><?php echo number_format($evaluasi_biaya_sewa_kendaraan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">15</th>			
@@ -6847,7 +6867,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($thr_bonus,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($evaluasi_thr_bonus,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorQ ?>"><?php echo number_format($evaluasi_thr_bonus,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="3">TOTAL</th>
