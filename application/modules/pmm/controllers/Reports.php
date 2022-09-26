@@ -6114,140 +6114,157 @@ class Reports extends CI_Controller {
 			<!--RAP BUA -->
 			<?php
 
-			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_gaji_upah = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa in ('199','200')")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_konsumsi = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 201")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_biaya_sewa_mess = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_biaya_sewa_mess = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 215")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_listrik_internet = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 206")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 216")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_keamanan_kebersihan = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 151")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_pengobatan = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 121")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_donasi = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_donasi = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 127")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_bensin_tol_parkir = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 129")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 113")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_pakaian_dinas = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 138")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_alat_tulis_kantor = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 149")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_perlengkapan_kantor = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 153")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_beban_kirim = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_beban_kirim = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 145")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_beban_lain_lain = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 146")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 157")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah) as total')
+			$rap_thr_bonus = $this->db->select('rap.*,(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 202")
-			->where("(rap.tanggal_rap_bua < '$date2')")
+			->where("rap.tanggal_rap_bua between '$date1' and '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
 			?>
