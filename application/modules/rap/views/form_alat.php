@@ -56,10 +56,11 @@
                                             <thead>
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>
-                                                    <th width="30%">URAIAN</th>
-                                                    <th width="15%">VOLUME</th>
+                                                    <th width="20%">URAIAN</th>
+                                                    <th width="20%">VOLUME</th>
+                                                    <th width="15%">SATUAN</th>
                                                     <th width="20%">HARGA SATUAN</th>
-													<th width="30%">TOTAL</th>                                    
+													<th width="20%">TOTAL</th>                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -69,6 +70,7 @@
 													<td>
                                                     <input type="text" id="vol_batching_plant" name="vol_batching_plant" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td class="text-center">M3</td>
                                                     <td>
                                                     <input type="text" name="harsat_batching_plant" id="harsat_batching_plant" class="form-control rupiahformat text-right" onchange="changeData(1)"  required=""  autocomplete="off"/>
                                                     </td>
@@ -82,6 +84,7 @@
 													<td>
                                                     <input type="text" id="vol_truck_mixer" name="vol_truck_mixer" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td class="text-center">M3</td>
                                                     <td>
                                                     <input type="text" name="harsat_truck_mixer" id="harsat_truck_mixer" class="form-control rupiahformat text-right" onchange="changeData(1)" required="" autocomplete="off"/>
                                                     </td>
@@ -95,6 +98,7 @@
 													<td>
                                                     <input type="text" id="vol_wheel_loader" name="vol_wheel_loader" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td class="text-center">M3</td>
                                                     <td>
                                                     <input type="text" name="harsat_wheel_loader" id="harsat_wheel_loader" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
@@ -108,6 +112,7 @@
 													<td>
                                                     <input type="text" id="vol_bbm_solar" name="vol_bbm_solar" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td class="text-center">M3</td>
                                                     <td>
                                                     <input type="text" name="harsat_bbm_solar" id="harsat_bbm_solar" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
@@ -118,7 +123,7 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td colspan="4" class="text-right">GRAND TOTAL</td>
+                                                    <td colspan="5" class="text-right">GRAND TOTAL</td>
                                                     <td>
                                                     <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control rupiahformat tex-left text-right" readonly="">
                                                     </td>

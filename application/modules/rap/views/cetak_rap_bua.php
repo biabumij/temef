@@ -110,8 +110,8 @@
 				<th align="center" width="40%">AKUN</th>
 				<th align="center" width="10%">VOLUME</th>
 				<th align="center" width="10%">SATUAN</th>
-				<th align="center" width="15%">HARGA SATUAN</th>
-				<th align="center" width="20%">TOTAL</th>
+				<th align="right" width="15%">HARGA SATUAN</th>
+				<th align="right" width="20%">TOTAL</th>
             </tr>
 			<?php
 			$rap_bua_detail = $this->db->select('rpd.*, c.coa')

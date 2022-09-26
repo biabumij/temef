@@ -77,41 +77,46 @@
 					$total = $rap_alat['batching_plant'] + $rap_alat['truck_mixer'] + $rap_alat['wheel_loader'] + $rap_alat['bbm_solar'];
 				?>
                 <th width="5%" align="center">NO.</th>
-                <th width="30%" align="center">URAIAN</th>
-				<th width="15%" align="center">VOLUME</th>
+                <th width="20%" align="center">URAIAN</th>
+				<th width="20%" align="center">VOLUME</th>
+				<th width="15%" align="center">SATUAN</th>
 				<th width="20%" align="center">HARGA SATUAN</th>
-				<th width="30%" align="center">TOTAL</th>
+				<th width="20%" align="center">TOTAL</th>
             </tr>
 			<tr class="table-baris1">
 				<td align="center">1.</td>
 				<td align="left">BATCHING PLANT</td>
-				<td align="right"><?= number_format($rap_alat['vol_batching_plant'],0,',','.'); ?></td>
+				<td align="center"><?= number_format($rap_alat['vol_batching_plant'],0,',','.'); ?></td>
+				<td align="center">M3</td>
 				<td align="right"><?= number_format($rap_alat['harsat_batching_plant'],0,',','.'); ?></td>
 				<td align="right"><?= number_format($rap_alat['batching_plant'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">2.</td>
 				<td align="left">TRUCK MIXER</td>
-				<td align="right"><?= number_format($rap_alat['vol_truck_mixer'],0,',','.'); ?></td>
+				<td align="center"><?= number_format($rap_alat['vol_truck_mixer'],0,',','.'); ?></td>
+				<td align="center">M3</td>
 				<td align="right"><?= number_format($rap_alat['harsat_truck_mixer'],0,',','.'); ?></td>
 				<td align="right"><?= number_format($rap_alat['truck_mixer'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">3.</td>
 				<td align="left">WHEEL LOADER</td>
-				<td align="right"><?= number_format($rap_alat['vol_wheel_loader'],0,',','.'); ?></td>
+				<td align="center"><?= number_format($rap_alat['vol_wheel_loader'],0,',','.'); ?></td>
+				<td align="center">M3</td>
 				<td align="right"><?= number_format($rap_alat['harsat_wheel_loader'],0,',','.'); ?></td>
 				<td align="right"><?= number_format($rap_alat['wheel_loader'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">4.</td>
 				<td align="left">BBM SOLAR</td>
-				<td align="right"><?= number_format($rap_alat['vol_bbm_solar'],0,',','.'); ?></td>
+				<td align="center"><?= number_format($rap_alat['vol_bbm_solar'],0,',','.'); ?></td>
+				<td align="center">M3</td>
 				<td align="right"><?= number_format($rap_alat['harsat_bbm_solar'],0,',','.'); ?></td>
 				<td align="right"><?= number_format($rap_alat['bbm_solar'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-total">
-				<td align="right" colspan="4">GRAND TOTAL</td>
+				<td align="right" colspan="5">GRAND TOTAL</td>
 				<td align="right"><?= number_format($total,0,',','.'); ?></td>
 			</tr>
 		</table>
