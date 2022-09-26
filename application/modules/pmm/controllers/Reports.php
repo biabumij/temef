@@ -6638,7 +6638,11 @@ class Reports extends CI_Controller {
 			$evaluasi_biaya_sewa_kendaraan = $rap_biaya_sewa_kendaraan['total'] - $biaya_sewa_kendaraan;
 			$evaluasi_thr_bonus = $rap_thr_bonus['total'] - $thr_bonus;
 
-			$total = $evaluasi_gaji_upah + $evaluasi_konsumsi + $evaluasi_biaya_sewa_mess + $evaluasi_listrik_internet + $evaluasi_pengujian_material_laboratorium + $evaluasi_keamanan_kebersihan + $evaluasi_pengobatan + $evaluasi_donasi + $evaluasi_bensin_tol_parkir + $evaluasi_perjalanan_dinas_umum + $evaluasi_pakaian_dinas + $evaluasi_alat_tulis_kantor + $evaluasi_perlengkapan_kantor + $evaluasi_beban_kirim + $evaluasi_beban_lain_lain + $evaluasi_biaya_sewa_kendaraan + $evaluasi_thr_bonus;
+			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_umum['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'];
+
+			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_umum + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus;
+
+			$total_evaluasi = $total_rap - $total_realisasi;
 
 			?>
 			
@@ -6846,8 +6850,13 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($evaluasi_thr_bonus,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center" colspan="8">TOTAL</th>
-				<th class="text-right"><?php echo number_format($total,0,',','.');?></th>
+				<th class="text-center" colspan="3">TOTAL</th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_rap,0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_realisasi,0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 			
 	    </table>
