@@ -328,6 +328,7 @@ class Rap extends Secure_Controller {
 	{
 		$tanggal_rap_alat = $this->input->post('tanggal_rap_alat');
 		$nomor_rap_alat = $this->input->post('nomor_rap_alat');
+		$masa_kontrak = $this->input->post('masa_kontrak');
 		$vol_batching_plant =  str_replace('.', '', $this->input->post('vol_batching_plant'));
 		$vol_truck_mixer =  str_replace('.', '', $this->input->post('vol_truck_mixer'));
 		$vol_wheel_loader =  str_replace('.', '', $this->input->post('vol_wheel_loader'));
@@ -347,6 +348,7 @@ class Rap extends Secure_Controller {
 		$arr_insert = array(
 			'tanggal_rap_alat' =>  date('Y-m-d', strtotime($tanggal_rap_alat)),
 			'nomor_rap_alat' => $nomor_rap_alat,
+			'masa_kontrak' => $masa_kontrak,
 			'vol_batching_plant' => $vol_batching_plant,
 			'vol_truck_mixer' => $vol_truck_mixer,
 			'vol_wheel_loader' => $vol_wheel_loader,
@@ -441,6 +443,7 @@ class Rap extends Secure_Controller {
                 $row['no'] = $key+1;
 				$row['tanggal_rap_alat'] =  date('d F Y',strtotime($row['tanggal_rap_alat']));
 				$row['nomor_rap_alat'] = "<a href=" . base_url('rap/cetak_rap_alat/' . $row["id"]) .'" target="_blank">' . $row["nomor_rap_alat"] . "</a>";
+				$row['masa_kontrak'] = $row['masa_kontrak'];
 				$row['total'] = number_format($total,0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rap_alat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';

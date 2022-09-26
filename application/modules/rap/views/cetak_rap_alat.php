@@ -65,6 +65,11 @@
 				<th width="10px">:</th>
 				<th width="50%" align="left"><?php echo $rap_alat['nomor_rap_alat'];?></th>
 			</tr>
+			<tr>
+				<th>Mas Kontrak</th>
+				<th width="10px">:</th>
+				<th width="50%" align="left"><?php echo $rap_alat['masa_kontrak'];?></th>
+			</tr>
 		</table>
 		<br />
 		<br />
