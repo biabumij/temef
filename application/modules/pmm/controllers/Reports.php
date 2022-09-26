@@ -6186,11 +6186,11 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_perjalanan_dinas_umum = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
-			->where("det.coa = 131")
+			->where("det.coa = 113")
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
@@ -6436,25 +6436,25 @@ class Reports extends CI_Controller {
 			
 			$bensin_tol_parkir = $bensin_tol_parkir_biaya['total'] + $bensin_tol_parkir_jurnal['total'];
 
-			$perjalanan_dinas_umum_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			$perjalanan_dinas_penjualan_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 131")
+			->where("pdb.akun = 113")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			$perjalanan_dinas_umum_jurnal = $this->db->select('sum(pdb.debit) as total')
+			$perjalanan_dinas_penjualan_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 131")
+			->where("pdb.akun = 113")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 			
-			$perjalanan_dinas_umum = $perjalanan_dinas_umum_biaya['total'] + $perjalanan_dinas_umum_jurnal['total'];
+			$perjalanan_dinas_penjualan = $perjalanan_dinas_penjualan_biaya['total'] + $perjalanan_dinas_penjualan_jurnal['total'];
 
 			$pakaian_dinas_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
@@ -6629,7 +6629,7 @@ class Reports extends CI_Controller {
 			$evaluasi_pengobatan = $rap_pengobatan['total'] - $pengobatan;
 			$evaluasi_donasi = $rap_donasi['total'] - $donasi;
 			$evaluasi_bensin_tol_parkir = $rap_bensin_tol_parkir['total'] - $bensin_tol_parkir;
-			$evaluasi_perjalanan_dinas_umum = $rap_perjalanan_dinas_umum['total'] - $perjalanan_dinas_umum;
+			$evaluasi_perjalanan_dinas_penjualan = $rap_perjalanan_dinas_penjualan['total'] - $perjalanan_dinas_penjualan;
 			$evaluasi_pakaian_dinas = $rap_pakaian_dinas['total'] - $pakaian_dinas;
 			$evaluasi_alat_tulis_kantor = $rap_alat_tulis_kantor['total'] -	$alat_tulis_kantor;
 			$evaluasi_perlengkapan_kantor = $rap_perlengkapan_kantor['total'] - $perlengkapan_kantor;
@@ -6638,9 +6638,9 @@ class Reports extends CI_Controller {
 			$evaluasi_biaya_sewa_kendaraan = $rap_biaya_sewa_kendaraan['total'] - $biaya_sewa_kendaraan;
 			$evaluasi_thr_bonus = $rap_thr_bonus['total'] - $thr_bonus;
 
-			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_umum['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'];
+			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_penjualan['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'];
 
-			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_umum + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus;
+			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_penjualan + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus;
 
 			$total_evaluasi = $total_rap - $total_realisasi;
 
@@ -6672,7 +6672,7 @@ class Reports extends CI_Controller {
 				$styleColorG = $evaluasi_pengobatan < 0 ? 'color:red' : 'color:black';
 				$styleColorH = $evaluasi_donasi < 0 ? 'color:red' : 'color:black';
 				$styleColorI = $evaluasi_bensin_tol_parkir < 0 ? 'color:red' : 'color:black';
-				$styleColorJ = $evaluasi_perjalanan_dinas_umum < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $evaluasi_perjalanan_dinas_penjualan < 0 ? 'color:red' : 'color:black';
 				$styleColorK = $evaluasi_pakaian_dinas < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $evaluasi_alat_tulis_kantor < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $evaluasi_perlengkapan_kantor < 0 ? 'color:red' : 'color:black';
@@ -6783,14 +6783,14 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">10</th>			
-				<th class="text-left">Perjalanan Dinas - Umum</th>
+				<th class="text-left">Perjalanan Dinas - Penjualan</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"</th>
-				<th class="text-right"><?php echo number_format($rap_perjalanan_dinas_umum['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rap_perjalanan_dinas_penjualan['total'],0,',','.');?></th>
 				<th class="text-right"</th>
-				<th class="text-right"><?php echo number_format($perjalanan_dinas_umum,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($perjalanan_dinas_penjualan,0,',','.');?></th>
 				<th class="text-right"></th>
-				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($evaluasi_perjalanan_dinas_umum,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($evaluasi_perjalanan_dinas_penjualan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">11</th>			
