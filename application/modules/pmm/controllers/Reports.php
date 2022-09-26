@@ -6114,7 +6114,7 @@ class Reports extends CI_Controller {
 			<!--RAP BUA -->
 			<?php
 
-			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6122,7 +6122,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6130,7 +6130,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_biaya_sewa_mess = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_biaya_sewa_mess = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6138,7 +6138,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6146,7 +6146,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6154,7 +6154,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6162,7 +6162,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6170,7 +6170,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_donasi = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_donasi = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6178,7 +6178,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6186,7 +6186,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6194,7 +6194,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6202,7 +6202,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6210,7 +6210,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6218,7 +6218,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_beban_kirim = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_beban_kirim = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6226,7 +6226,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6234,7 +6234,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6242,7 +6242,7 @@ class Reports extends CI_Controller {
 			->where("(rap.tanggal_rap_bua < '$date2')")
 			->get()->row_array();
 
-			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -6647,20 +6647,12 @@ class Reports extends CI_Controller {
 			?>
 			
 			<tr class="table-active4">
-				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="20%" class="text-center" colspan="2">RAP</th>
-				<th width="20%" class="text-center" colspan="2">REALISASI</th>
-				<th width="20%" class="text-center" colspan="2">EVALUASI</th>
-	        </tr>
-			<tr class="table-active4">
-				<th width="8%" class="text-center">VOLUME</th>
-				<th width="12%" class="text-center">NILAI</th>
-				<th width="8%" class="text-center">VOLUME</th>
-				<th width="12%" class="text-center">NILAI</th>
-				<th width="8%" class="text-center">VOLUME</th>
-				<th width="12%" class="text-center">NILAI</th>
+				<th width="5%" class="text-center">NO.</th>
+				<th width="35%" class="text-center">URAIAN</th>
+				<th width="15%" class="text-center">SATUAN</th>
+				<th width="15%" class="text-center">RAP</th>
+				<th width="15%" class="text-center">REALISASI</th>
+				<th width="15%" class="text-center">EVALUASI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_gaji_upah < 0 ? 'color:red' : 'color:black';
@@ -6686,196 +6678,142 @@ class Reports extends CI_Controller {
 				<th class="text-center"style="vertical-align:middle">1</th>			
 				<th class="text-left">Gaji / Upah</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_gaji_upah['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($gaji_upah,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_gaji_upah,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">2</th>			
 				<th class="text-left">Konsumsi</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_konsumsi['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($konsumsi,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_konsumsi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">3</th>			
 				<th class="text-left">Biaya Sewa - Mess</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_biaya_sewa_mess['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($biaya_sewa_mess,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_biaya_sewa_mess,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">4</th>			
 				<th class="text-left">Listrik & Internet</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_listrik_internet['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($listrik_internet,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_listrik_internet,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">5</th>			
 				<th class="text-left">Pengujian Material & Laboratorium</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_pengujian_material_laboratorium['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pengujian_material_laboratorium,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_pengujian_material_laboratorium,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">6</th>			
 				<th class="text-left">Keamanan & Kebersihan</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_keamanan_kebersihan['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($keamanan_kebersihan,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_keamanan_kebersihan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">7</th>			
 				<th class="text-left">Pengobatan</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_pengobatan['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pengobatan,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_pengobatan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">8</th>			
 				<th class="text-left">Donasi</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_donasi['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($donasi,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_donasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">9</th>			
 				<th class="text-left">Bensin, Tol dan Parkir - Umum</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_bensin_tol_parkir['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($bensin_tol_parkir,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorI ?>"><?php echo number_format($evaluasi_bensin_tol_parkir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">10</th>			
 				<th class="text-left">Perjalanan Dinas - Penjualan</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_perjalanan_dinas_penjualan['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($perjalanan_dinas_penjualan,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($evaluasi_perjalanan_dinas_penjualan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">11</th>			
 				<th class="text-left">Pakaian Dinas & K3</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_pakaian_dinas['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($pakaian_dinas,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorK ?>"><?php echo number_format($evaluasi_pakaian_dinas,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">12</th>			
 				<th class="text-left">Alat Tulis Kantor & Printing</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_alat_tulis_kantor['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($alat_tulis_kantor,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorL ?>"><?php echo number_format($evaluasi_alat_tulis_kantor,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">13</th>			
 				<th class="text-left">Perlengkapan Kantor</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_perlengkapan_kantor['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($perlengkapan_kantor,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorM ?>"><?php echo number_format($evaluasi_perlengkapan_kantor,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">14</th>			
 				<th class="text-left">Beban Kirim</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_beban_kirim['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($beban_kirim,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorN ?>"><?php echo number_format($evaluasi_beban_kirim,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">15</th>			
 				<th class="text-left">Beban Lain-Lain</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_beban_lain_lain['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($beban_lain_lain,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorO ?>"><?php echo number_format($evaluasi_beban_lain_lain,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">16</th>			
 				<th class="text-left">Biaya Sewa - Kendaraan</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_biaya_sewa_kendaraan['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($biaya_sewa_kendaraan,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorP ?>"><?php echo number_format($evaluasi_biaya_sewa_kendaraan,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle">15</th>			
+				<th class="text-center"style="vertical-align:middle">17</th>			
 				<th class="text-left">THR & Bonus</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($rap_thr_bonus['total'],0,',','.');?></th>
-				<th class="text-right"</th>
 				<th class="text-right"><?php echo number_format($thr_bonus,0,',','.');?></th>
-				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorQ ?>"><?php echo number_format($evaluasi_thr_bonus,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="3">TOTAL</th>
-				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_rap,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 			

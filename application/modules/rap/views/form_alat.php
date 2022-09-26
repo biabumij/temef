@@ -49,10 +49,6 @@
                                             <label>Nomor RAP</label>
                                             <input type="text" class="form-control" name="nomor_rap_alat" required="" value="<?= $this->pmm_model->GetNoRapAlat();?>">
                                         </div>
-                                        <div class="col-sm-3">
-                                            <label>Masa Kontrak</label>
-                                            <input type="text" class="form-control" name="masa_kontrak" required="" value="">
-                                        </div> 
 									</div>
                                     <br />
                                     <div class="table-responsive">

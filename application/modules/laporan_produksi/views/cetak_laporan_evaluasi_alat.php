@@ -384,9 +384,9 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th width="20%" align="center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="15%" align="center" rowspan="2" style="vertical-align:middle">SATUAN</th>
+				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
+				<th width="20%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
+				<th width="15%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
 				<th width="20%" align="center" colspan="2">RAP</th>
 				<th width="20%" align="center" colspan="2">REALISASI</th>
 				<th width="20%" align="center" colspan="2">EVALUASI</th>
@@ -411,7 +411,7 @@
 				$styleColorI = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
-				<th align="center"style="vertical-align:middle">1</th>			
+				<th align="center">1</th>			
 				<th align="left">Batching Plant</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
@@ -422,7 +422,7 @@
 				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,2,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center"style="vertical-align:middle">2</th>			
+				<th align="center">2</th>			
 				<th align="left">Truck Mixer</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
@@ -433,7 +433,7 @@
 				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,2,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center"style="vertical-align:middle">3</th>			
+				<th align="center">3</th>			
 				<th align="left">Wheel Loader</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
@@ -444,7 +444,7 @@
 				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,2,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center"style="vertical-align:middle">4</th>			
+				<th align="center">4</th>			
 				<th align="left">BBM Solar</th>
 				<th align="center">Litter</th>
 				<th align="right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
@@ -454,9 +454,8 @@
 				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,2,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,2,',','.');?></th>
 	        </tr>
-			<tr class="table-total">
-				<th align="center"style="vertical-align:middle">4</th>			
-				<th align="right" colspan="2">Total</th>
+			<tr class="table-total">		
+				<th align="right" colspan="3">Total</th>
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_rap_all,0,',','.');?></th>
 				<th align="right"></th>

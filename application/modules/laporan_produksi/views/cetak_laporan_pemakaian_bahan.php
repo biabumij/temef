@@ -546,7 +546,7 @@
 			<th width="20%" align="center">NILAI</th>
 		</tr>
 		<tr class="table-baris1">
-		<th align="center"style="vertical-align:middle">1</th>			
+		<th align="center">1</th>			
 			<th align="left">Semen</th>
 			<th align="center">Ton</th>
 			<th align="center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
@@ -554,7 +554,7 @@
 			<th align="right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">
-		<th align="center"style="vertical-align:middle">2</th>			
+		<th align="center">2</th>			
 			<th align="left">Pasir</th>
 			<th align="center">M3</th>
 			<th align="center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
@@ -562,7 +562,7 @@
 			<th align="right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">
-		<th align="center"style="vertical-align:middle">3</th>			
+		<th align="center">3</th>			
 			<th align="left">Batu 10-20</th>
 			<th align="center">M3</th>
 			<th align="center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
@@ -570,7 +570,7 @@
 			<th align="right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">
-		<th align="center"style="vertical-align:middle">4</th>			
+		<th align="center">4</th>			
 			<th align="left">Batu 20-30</th>
 			<th align="center">M3</th>
 			<th align="center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
