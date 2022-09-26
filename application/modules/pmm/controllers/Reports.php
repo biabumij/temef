@@ -5807,14 +5807,16 @@ class Reports extends CI_Controller {
 			}
 
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_volume_keluar_2 as total_volume_keluar_2, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->result_array();
 
+			$total_akumulasi_volume_bbm = 0;
 			$total_akumulasi_bbm = 0;
 
 			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_volume_bbm += $b['total_volume_keluar_2'];
 				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
 			}
 
@@ -5822,7 +5824,7 @@ class Reports extends CI_Controller {
 			$total_pemakaian_vol_batching_plant = $total_vol_batching_plant;
 			$total_pemakaian_vol_truck_mixer = $total_vol_truck_mixer;
 			$total_pemakaian_vol_wheel_loader = $total_vol_wheel_loader;
-			$total_pemakaian_vol_bbm_solar = $total_akumulasi_bbm;
+			$total_pemakaian_vol_bbm_solar = $total_akumulasi_volume_bbm;
 
 			$total_pemakaian_batching_plant = $total_nilai_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
@@ -5835,7 +5837,15 @@ class Reports extends CI_Controller {
 			<?php
 			$total_vol_evaluasi_batching_plant = ($total_pemakaian_vol_batching_plant!=0)?$vol_batching_plant - $total_pemakaian_vol_batching_plant * 1:0;
 			$total_nilai_evaluasi_batching_plant = ($total_pemakaian_batching_plant!=0)?$batching_plant - $total_pemakaian_batching_plant * 1:0;
-			
+
+			$total_vol_evaluasi_truck_mixer = ($total_pemakaian_vol_truck_mixer!=0)?$vol_truck_mixer - $total_pemakaian_vol_truck_mixer * 1:0;
+			$total_nilai_evaluasi_truck_mixer = ($total_pemakaian_truck_mixer!=0)?$truck_mixer - $total_pemakaian_truck_mixer * 1:0;
+
+			$total_vol_evaluasi_wheel_loader = ($total_pemakaian_vol_wheel_loader!=0)?$vol_wheel_loader - $total_pemakaian_vol_wheel_loader * 1:0;
+			$total_nilai_evaluasi_wheel_loader = ($total_pemakaian_wheel_loader!=0)?$wheel_loader - $total_pemakaian_wheel_loader * 1:0;
+
+			$total_vol_evaluasi_bbm_solar = ($total_pemakaian_vol_bbm_solar!=0)?$vol_bbm_solar - $total_pemakaian_vol_bbm_solar * 1:0;
+			$total_nilai_evaluasi_bbm_solar = ($total_pemakaian_bbm_solar!=0)?$bbm_solar - $total_pemakaian_bbm_solar * 1:0;
 			?>
 			
 			<tr class="table-active4">
@@ -5857,6 +5867,12 @@ class Reports extends CI_Controller {
 			<?php
 				$styleColorA = $total_vol_evaluasi_batching_plant < 0 ? 'color:red' : 'color:black';
 				$styleColorB = $total_nilai_evaluasi_batching_plant < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $total_vol_evaluasi_truck_mixer < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $total_nilai_evaluasi_truck_mixer < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $total_vol_evaluasi_wheel_loader < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $total_nilai_evaluasi_wheel_loader < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $total_vol_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $total_nilai_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center"style="vertical-align:middle">1</th>			
@@ -5868,6 +5884,39 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($total_vol_evaluasi_batching_plant,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,2,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center"style="vertical-align:middle">2</th>			
+				<th class="text-left">Truck Mixer</th>
+				<th class="text-center">Ton</th>
+				<th class="text-right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($truck_mixer,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_pemakaian_vol_truck_mixer,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($total_vol_evaluasi_truck_mixer,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,2,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center"style="vertical-align:middle">3</th>			
+				<th class="text-left">Wheel Loader</th>
+				<th class="text-center">Ton</th>
+				<th class="text-right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($wheel_loader,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_vol_evaluasi_wheel_loader,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,2,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center"style="vertical-align:middle">4</th>			
+				<th class="text-left">BBM Solar</th>
+				<th class="text-center">Ton</th>
+				<th class="text-right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($bbm_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_akumulasi_volume_bbm,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_pemakaian_bbm_solar,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,2,',','.');?></th>
 	        </tr>
 	    </table>
 		<?php

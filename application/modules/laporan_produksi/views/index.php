@@ -132,9 +132,9 @@
 															<div class="col-sm-3">
 																<input type="text" id="filter_date_evaluasi_alat" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
-															<div class="col-sm-3">
+															<!--<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
+															</div>-->
 														</form>
 														
 													</div>
