@@ -5880,7 +5880,7 @@ class Reports extends CI_Controller {
 
 			$rap_alat = $this->db->select('rap.*')
 			->from('rap_alat rap')
-			->where("rap.tanggal_rap_alat between '$date1' and '$date2'")
+			->where("rap.tanggal_rap_alat <= '$date2'")
 			->where('rap.status','PUBLISH')
 			->get()->result_array();
 
