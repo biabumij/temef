@@ -73,12 +73,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'biabumij',
-	'password' => 'J@k1q2w3e4r5t',
-	//'username' => 'root',
-	//'password' => '',
+	//'username' => 'biabumij',
+	//'password' => 'J@k1q2w3e4r5t',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'biabumij_temef',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
