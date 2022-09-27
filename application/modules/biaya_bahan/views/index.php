@@ -70,11 +70,10 @@
 										</div>
                                     </div>
 
-									<!-- Pemakaian Bahan Baku -->
-									
+									<!-- Biaya Bahan -->
                                     <div role="tabpanel" class="tab-pane" id="biaya_bahan">
                                         <div class="col-sm-15">
-										<div class="panel panel-default">
+											<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Biaya (Bahan)</h3>
 													<a href="biaya_bahan">Kembali</a>
@@ -83,7 +82,7 @@
 													<div class="row">
 														<form action="<?php echo site_url('laporan/cetak_biaya_bahan');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date_bahan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_biaya_bahan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -103,25 +102,23 @@
                     
 													</div>
 												</div>
-										</div>
-										
+											</div>
 										</div>
                                     </div>
 
 									<!-- Pergerakan Bahan Baku -->
-									
                                     <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_baku">
                                         <div class="col-sm-15">
-										<div class="panel panel-default">
+											<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Pergerakan Bahan Baku</h3>
 													<a href="biaya_bahan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/pergerakan_bahan_baku_print');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_pergerakan_bahan_baku');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date_bahan_baku" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_pergerakan_bahan_baku" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -136,13 +133,12 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="box-ajax-5">													
+													<div class="table-responsive" id="pergerakan-bahan-BAKU">													
 													
                     
 													</div>
 												</div>
-										</div>
-										
+											</div>
 										</div>
                                     </div>
                                     															
@@ -165,10 +161,9 @@
         <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
-		<!-- Script Pemakaian Bahan Baku -->
-
+		<!-- Script Biaya Bahan -->
 		<script type="text/javascript">
-			$('#filter_date_bahan').daterangepicker({
+			$('#filter_date_biaya_bahan').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -184,7 +179,7 @@
             }
 			});
 
-			$('#filter_date_bahan').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_biaya_bahan').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
 				  TableBiayaBahan();
 			});
@@ -198,7 +193,7 @@
 					url     : "<?php echo site_url('pmm/reports/biaya_bahan'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_bahan').val(),
+						filter_date : $('#filter_date_biaya_bahan').val(),
 					},
 					success : function(result){
 						$('#biaya-bahan').html(result);
@@ -207,14 +202,13 @@
 				});
 			}
 
-			//TablePemakaianBahanBaku();
+			//TableBiayaBahan();
 
             </script>
 
 			<!-- Script Pergerakan Bahan Baku -->
-
 			<script type="text/javascript">
-			$('#filter_date_bahan_baku').daterangepicker({
+			$('#filter_date_pergerakan_bahan_baku').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -230,13 +224,13 @@
             }
 			});
 
-			$('#filter_date_bahan_baku').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_pergerakan_bahan_baku').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TablePergerakanBahanBaku();
+				  PergerakanBahanBaku();
 			});
 
 
-			function TablePergerakanBahanBaku()
+			function PergerakanBahanBaku()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
@@ -244,18 +238,18 @@
 					url     : "<?php echo site_url('pmm/reports/pergerakan_bahan_baku'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_bahan_baku').val(),
+						filter_date : $('#filter_date_pergerakan_bahan_baku').val(),
 					},
 					success : function(result){
-						$('#box-ajax-5').html(result);
+						$('#pergerakan-bahan-BAKU').html(result);
 						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-			//TablePergerakanBahanBaku();
+			//PergerakanBahanBaku();
 
-            </script>
+        </script>
 
 </body>
 </html>

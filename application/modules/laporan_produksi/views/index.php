@@ -82,7 +82,6 @@
                                     </div>
 
 									<!-- Evaluasi Bahan -->
-                                    
 									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -92,9 +91,9 @@
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/laporan_evaluasi_print');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_evaluasi_bahan');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_evaluasi_bahan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -109,7 +108,7 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="box-ajax-evaluasi">													
+													<div class="table-responsive" id="evaluasi-bahan">													
 													
                     
 													</div>
@@ -120,7 +119,6 @@
                                     </div>
 
 									<!-- Evaluasi Alat -->
-
 									<div role="tabpanel" class="tab-pane" id="evaluasi_alat">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -158,7 +156,6 @@
                                     </div>
 
 									<!-- Evaluasi BUA -->
-
 									<div role="tabpanel" class="tab-pane" id="evaluasi_bua">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -216,7 +213,7 @@
 		<!-- Script Evaluasi Bahan -->
 
 		<script type="text/javascript">
-			$('#filter_date_evaluasi').daterangepicker({
+			$('#filter_date_evaluasi_bahan').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -232,35 +229,34 @@
             }
 			});
 
-			$('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_evaluasi_bahan').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasi();
+				  EvaluasiBahan();
 			});
 
 
-			function TableEvaluasi()
+			function EvaluasiBahan()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/productions/table_evaluasi'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/evaluasi_bahan'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_evaluasi').val(),
+						filter_date : $('#filter_date_evaluasi_bahan').val(),
 					},
 					success : function(result){
-						$('#box-ajax-evaluasi').html(result);
+						$('#evaluasi-bahan').html(result);
 						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-		//TableEvaluasi();
+		//EvaluasiBahan();
 
         </script>
 		
 		<!-- Script Evaluasi Alat -->
-
 		<script type="text/javascript">
 			$('#filter_date_evaluasi_alat').daterangepicker({
             autoUpdateInput : false,
@@ -280,16 +276,16 @@
 
 			$('#filter_date_evaluasi_alat').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasiAlat();
+				  EvaluasiAlat();
 			});
 
 
-			function TableEvaluasiAlat()
+			function EvaluasiAlat()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/table_evaluasi_alat'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/evaluasi_alat'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
 						filter_date : $('#filter_date_evaluasi_alat').val(),
@@ -301,12 +297,11 @@
 				});
 			}
 
-			//TableEvaluasiAlat();
+			//EvaluasiAlat();
 
         </script>
 
 		<!-- Script Evaluasi BUA -->
-
 		<script type="text/javascript">
 			$('#filter_date_evaluasi_bua').daterangepicker({
             autoUpdateInput : false,
@@ -326,16 +321,16 @@
 
 			$('#filter_date_evaluasi_bua').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasiBUA();
+				  EvaluasiBUA();
 			});
 
 
-			function TableEvaluasiBUA()
+			function EvaluasiBUA()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/table_evaluasi_bua'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/evaluasi_bua'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
 						filter_date : $('#filter_date_evaluasi_bua').val(),
@@ -347,240 +342,7 @@
 				});
 			}
 
-			//TableEvaluasiBUA();
-
-            </script>
-
-
-
-		<!-- DELETED SOON -->
-		<!-- Script Pemakaian Komposisi -->
-
-		<script type="text/javascript">
-			$('#filter_date_komposisi').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_komposisi').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableKomposisi();
-			});
-
-
-			function TableKomposisi()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/productions/table_komposisi'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_komposisi').val(),
-					},
-					success : function(result){
-						$('#box-ajax-komposisi').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableKomposisi();
-
-            </script>
-
-			<!-- Script Nilai Persediaan Barang -->
-
-			<script type="text/javascript">
-			$('#filter_date_nilai').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-					}
-				});
-
-				$('#filter_date_nilai').on('apply.daterangepicker', function(ev, picker) {
-					  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-					  TableNilaiPersediaanBarang();
-				});
-
-
-				function TableNilaiPersediaanBarang()
-				{
-					$('#wait').fadeIn('fast');   
-					$.ajax({
-						type    : "POST",
-						url     : "<?php echo site_url('pmm/reports/nilai_persediaan_barang'); ?>/"+Math.random(),
-						dataType : 'html',
-						data: {
-							filter_date : $('#filter_date_nilai').val(),
-						},
-						success : function(result){
-							$('#box-ajax-3').html(result);
-							$('#wait').fadeOut('fast');
-						}
-					});
-				}
-
-				//TableNilaiPersediaanBarang();
-			
-            </script>
-
-			<!-- Script Pemakaian Bahan Baku -->
-
-			<script type="text/javascript">
-			$('#filter_date_pemakaian_bahan').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_pemakaian_bahan').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TablePemakaianBahan();
-			});
-
-
-			function TablePemakaianBahan()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/productions/table_pemakaian_bahan'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_pemakaian_bahan').val(),
-					},
-					success : function(result){
-						$('#box-ajax-pemakaian').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TablePemakaianBahan();
-
-            </script>
-
-			<!-- Script Evaluasi RAP -->
-
-			<script type="text/javascript">
-			$('#filter_date_evaluasi_rap').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_evaluasi_rap').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasiRAP();
-			});
-
-
-			function TableEvaluasiRAP()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/table_evaluasi_rap'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_evaluasi_rap').val(),
-					},
-					success : function(result){
-						$('#box-ajax-evaluasi-rap').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableEvaluasiRAP();
-
-            </script>
-
-			<!-- Script Beban Pokok Produksi -->
-
-			<script type="text/javascript">
-			$('#filter_date_bpp').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-			});
-
-			$('#filter_date_bpp').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableBPP();
-			});
-
-
-			function TableBPP()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/beban_pokok_produksi'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_bpp').val(),
-					},
-					success : function(result){
-						$('#beban-pokok-produksi').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableBPP();
+			//EvaluasiBUA();
 
             </script>
 

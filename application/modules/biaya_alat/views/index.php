@@ -82,9 +82,9 @@
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/cetak_laporan_pemakaian_peralatan');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_biaya_alat');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date_alat" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_biaya_alat" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -108,7 +108,6 @@
                                     </div>
 
 									<!-- Pergerakan Bahan Baku Solar -->
-									
                                     <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_baku_solar">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -118,7 +117,7 @@
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/pergerakan_bahan_baku_solar_print');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_pergerakan_bahan_baku_solar');?>" target="_blank">
 															<div class="col-sm-3">
 																<input type="text" id="filter_date_bahan_baku_solar" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
@@ -135,7 +134,7 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="box-ajax-solar">													
+													<div class="table-responsive" id="pergerakan-bahan-baku-solar">													
 													
                     
 													</div>
@@ -165,9 +164,8 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
         
 		<!-- Script Biaya Alat -->
-
 		<script type="text/javascript">
-			$('#filter_date_alat').daterangepicker({
+			$('#filter_date_biaya_alat').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -183,21 +181,21 @@
             }
 			});
 
-			$('#filter_date_alat').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_biaya_alat').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableBiayaAlat();
+				  BiayaAlat();
 			});
 
 
-			function TableBiayaAlat()
+			function BiayaAlat()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/laporan_pemakaian_peralatan'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/biaya_alat'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_alat').val(),
+						filter_date : $('#filter_date_biaya_alat').val(),
 					},
 					success : function(result){
 						$('#biaya-alat').html(result);
@@ -206,12 +204,11 @@
 				});
 			}
 
-			//TableBiayaAlat();
+			//BiayaAlat();
 
         </script>
 
 		<!-- Script Pergerakan Bahan Baku Solar -->
-
 		<script type="text/javascript">
 			$('#filter_date_bahan_baku_solar').daterangepicker({
             autoUpdateInput : false,
@@ -231,11 +228,11 @@
 
 			$('#filter_date_bahan_baku_solar').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TablePergerakanBahanBakuSolar();
+				  PergerakanBahanBakuSolar();
 			});
 
 
-			function TablePergerakanBahanBakuSolar()
+			function PergerakanBahanBakuSolar()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
@@ -246,13 +243,13 @@
 						filter_date : $('#filter_date_bahan_baku_solar').val(),
 					},
 					success : function(result){
-						$('#box-ajax-solar').html(result);
+						$('#pergerakan-bahan-baku-solar').html(result);
 						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-			//TablePergerakanBahanBakuSolar();
+			//PergerakanBahanBakuSolar();
 
             </script>
 

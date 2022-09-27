@@ -48,8 +48,6 @@
 									<h3 class="section-subtitle"><?php echo $row[0]->menu_name; ?></h3>
 								</div>
                                 <div class="tab-content">
-									
-									<!-- Laporan Laba Rugi -->
                                     <div role="tabpanel" class="tab-pane active" id="laba_rugi">
                                         <br />
                                         <div class="row">
@@ -64,28 +62,27 @@
                                                         <a href="#laporan_buku_besar" aria-controls="laporan_buku_besar" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Neraca (Coming Soon)</h5></p>
+														<p><h5>Neraca <i>(Coming Soon)</i></h5></p>
                                                         <a href="#neraca" aria-controls="neraca" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>														
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-									<!-- End Laporan Laba Rugi -->
 									
 									<!-- Laporan Laba Rugi -->
                                     <div role="tabpanel" class="tab-pane" id="laporan-laba-rugi">
                                         <div class="col-sm-15">
-										<div class="panel panel-default">
+										    <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Laporan Laba Rugi</h3>
 													<a href="laporan_keuangan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/laporan_laba_rugi_print');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_laporan_laba_rugi');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_laba_rugi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -100,18 +97,16 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="box-ajax">													
+													<div class="table-responsive" id="laba-rugi">													
 													
                     
 													</div>
 												</div>
-										</div>
-										
+										    </div>
 										</div>
                                     </div>
 									
 									<!-- Buku Besar -->
-
                                     <div role="tabpanel" class="tab-pane" id="laporan_buku_besar">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
@@ -121,14 +116,9 @@
                                                 </div>
                                                 <div style="margin: 20px">
                                                     <div class="row">
-                                                        <form action="<?php echo site_url(''); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_buku_besar" name="filter_date" class="form-control dtpicker" value="" autocomplete="off" placeholder="Filter By Date">
-                                                            </div>
-                                                            <!--<div class="col-sm-1 text-right">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>-->
-                                                        </form>
+                                                        <div class="col-sm-3">
+                                                            <input type="text" id="filter_date_buku_besar" name="filter_date" class="form-control dtpicker" value="" autocomplete="off" placeholder="Filter By Date">
+                                                        </div>
                                                     </div>
                                                     <br />
                                                     <div id="box-print" class="table-responsive">
@@ -138,7 +128,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-buku-besar" style="display:none;">
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="buku-besar" style="display:none;">
                                                             <thead>
                                                                 <th width="5%" class="text-center">No.</th>
                                                                 <th width="20%" class="text-center">Nama Akun / Tanggal</th>
@@ -182,11 +172,9 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 		
 		<!-- Script Laba Rugi -->
-		
 		<script type="text/javascript">
 
-        
-        $('#filter_date').daterangepicker({
+        $('#filter_date_laba_rugi').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -202,30 +190,30 @@
             }
         });
 
-        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
+        $('#filter_date_laba_rugi').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-              TableDateLabaRugi();
+              LabaRugi();
         });
 
 
-        function TableDateLabaRugi()
+        function LabaRugi()
         {
             $('#wait').fadeIn('fast');   
             $.ajax({
                 type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/report_production'); ?>/"+Math.random(),
+                url     : "<?php echo site_url('pmm/reports/laba_rugi'); ?>/"+Math.random(),
                 dataType : 'html',
                 data: {
-                    filter_date : $('#filter_date').val(),
+                    filter_date : $('#filter_date_laba_rugi').val(),
                 },
                 success : function(result){
-                    $('#box-ajax').html(result);
+                    $('#laba-rugi').html(result);
                     $('#wait').fadeOut('fast');
                 }
             });
         }
 
-        //TableDateLabaRugi();
+        //LabaRugi();
 		
 		</script>
 		
@@ -249,11 +237,11 @@
             });
             $('#filter_date_buku_besar').on('apply.daterangepicker', function(ev, picker) {
                 $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableBukuBesar();
+                BukuBesar();
             });
 
-            function TableBukuBesar() {
-                $('#table-buku-besar').show();
+            function BukuBesar() {
+                $('#buku-besar').show();
                 $('#loader-table').fadeIn('fast');
                 $.ajax({
                     type: "POST",
@@ -264,19 +252,19 @@
                     },
                     success: function(result) {
                         if (result.data) {
-                            $('#table-buku-besar tbody').html('');
+                            $('#buku-besar tbody').html('');
                               if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-buku-besar tbody').append('<tr onclick="NextShow(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="4">' + val.coa + '</td><td class="text-right">' + val.jumlah_debit_all + '</td><td class="text-right">' + val.jumlah_kredit_all + '</td><td class="text-right">' + val.jumlah_saldo_all + '</td></tr>');
+                                    $('#buku-besar tbody').append('<tr onclick="NextShow(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"background-color:#FF0000""><td class="text-center">' + val.no + '</td><td class="text-left" colspan="4">' + val.coa + '</td><td class="text-right">' + val.jumlah_debit_all + '</td><td class="text-right">' + val.jumlah_kredit_all + '</td><td class="text-right">' + val.jumlah_saldo_all + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-buku-besar tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal + '</td></td><td class="text-center">' + row.transaksi + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-left">' + row.deskripsi + '</td><td class="text-right">' + row.debit + '</td><td class="text-right">' + row.kredit + '</td><td class="text-right">' + row.saldo + '</td></tr>');
+                                        $('#buku-besar tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal + '</td></td><td class="text-center">' + row.transaksi + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-left">' + row.deskripsi + '</td><td class="text-right">' + row.debit + '</td><td class="text-right">' + row.kredit + '</td><td class="text-right">' + row.saldo + '</td></tr>');
                                     });
 
                                 });
                                 
                             } else {
-                                $('#table-buku-besar tbody').append('<tr><td class="text-center" colspan="2"><b>No Data</b></td></tr>');
+                                $('#buku-besar tbody').append('<tr><td class="text-center" colspan="2"><b>No Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {

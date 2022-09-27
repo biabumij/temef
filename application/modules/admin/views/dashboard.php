@@ -252,7 +252,7 @@
         $('#wait').fadeIn('fast');   
         $.ajax({
             type    : "POST",
-            url     : "<?php echo site_url('pmm/productions/table_evaluasi_dashboard'); ?>/"+Math.random(),
+            url     : "<?php echo site_url('pmm/reports/dashboard_evaluasi_bahan'); ?>/"+Math.random(),
             dataType : 'html',
             data: {
                 filter_date : $('#filter_date_evaluasi').val(),

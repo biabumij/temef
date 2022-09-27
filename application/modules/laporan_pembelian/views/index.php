@@ -58,11 +58,11 @@
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Laporan Hutang</h5></p>
+														<p><h5>Laporan Hutang <i>(Coming Soon)</i></h5></p>
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Monitoring Hutang (Coming Soon)</h5></p>
+														<p><h5>Monitoring Hutang <i>(Coming Soon)</i></h5></p>
                                                         <a href="#monitoring_hutang" aria-controls="monitoring_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                 </div>
@@ -71,7 +71,6 @@
                                     </div>
 
                                     <!-- Laporan Penerimaan Pembelian -->
-
                                     <div role="tabpanel" class="tab-pane" id="laporan_penerimaan_pembelian">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
@@ -89,7 +88,7 @@
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian'); ?>" target="_blank">
                                                             <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_b" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                                <input type="text" id="filter_date_penerimaan_pembelian" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>
                                                             <div class="col-sm-3">
                                                                 <select id="filter_kategori_b" name="filter_kategori" class="form-control select2">
@@ -104,7 +103,7 @@
                                                                 </select>
                                                             </div>      
                                                             <div class="col-sm-3">
-                                                                <select id="filter_material_b" name="filter_material" class="form-control select2">
+                                                                <select id="filter_material_penerimaan_pembelian" name="filter_material" class="form-control select2">
                                                                     <option value="">Pilih Produk</option>
                                                                     <?php
                                                                     foreach ($materials as $key => $mats) {
@@ -116,7 +115,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                <select id="filter_supplier_id_b" name="supplier_id" class="form-control select2">
+                                                                <select id="filter_supplier_penerimaan_pembelian" name="supplier_id" class="form-control select2">
                                                                     <option value="">Pilih Rekanan</option>
                                                                     <?php
                                                                     foreach ($suppliers as $key => $supplier) {
@@ -141,7 +140,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date" style="display:none;">
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="penerimaan-pembelian" style="display:none;">
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -157,82 +156,6 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody></tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-
-                                    <!-- Laporan Hutang -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_hutang">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">  
-												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Hutang</h3>
-													<a href="laporan_pembelian">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_hutang'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_g" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <select id="filter_kategori_g" name="filter_kategori" class="form-control select2">
-                                                                    <option value="">Pilih Kategori</option>
-                                                                    <?php
-                                                                    foreach ($kategori as $key => $kat) {
-                                                                    ?>
-                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <select id="filter_supplier_id_g" name="supplier_id" class="form-control select2">
-                                                                    <option value="">Pilih Rekanan</option>
-                                                                    <?php
-                                                                    foreach ($suppliers as $key => $supplier) {
-                                                                    ?>
-                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>                                                   
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date5" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">REKANAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
-                                                                <th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
-                                                            </tr>
-                                                            <tr>
-																<th align="center">KATEGORI</th>
-                                                            </tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -259,10 +182,9 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 		
 		<!-- Script Pembelian -->
-		
         <script type="text/javascript">
             $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_b').daterangepicker({
+            $('#filter_date_penerimaan_pembelian').daterangepicker({
                 autoUpdateInput: false,
 				showDropdowns: true,
                 locale: {
@@ -278,42 +200,42 @@
                 }
             });
 
-            $('#filter_date_b').on('apply.daterangepicker', function(ev, picker) {
+            $('#filter_date_penerimaan_pembelian').on('apply.daterangepicker', function(ev, picker) {
                 $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate();
+                PenerimaanPembelian();
             });
 
-            function TableDate() {
-                $('#table-date').show();
+            function PenerimaanPembelian() {
+                $('#penerimaan-pembelian').show();
                 $('#loader-table').fadeIn('fast');
-                $('#table-date tbody').html('');
+                $('#penerimaan-pembelian tbody').html('');
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('pmm/receipt_material/table_date'); ?>/" + Math.random(),
+                    url: "<?php echo site_url('pmm/receipt_material/penerimaan_pembelian'); ?>/" + Math.random(),
                     dataType: 'json',
                     data: {
-                        purchase_order_no: $('#filter_po_id_b').val(),
-                        supplier_id: $('#filter_supplier_id_b').val(),
-                        filter_date: $('#filter_date_b').val(),
-                        filter_material: $('#filter_material_b').val(),
+                        purchase_order_no: $('#filter_po_id_penerimaan_pembelian').val(),
+                        supplier_id: $('#filter_supplier_penerimaan_pembelian').val(),
+                        filter_date: $('#filter_date_penerimaan_pembelian').val(),
+                        filter_material: $('#filter_material_penerimaan_pembelian').val(),
                         filter_kategori: $('#filter_kategori_b').val(),
                     },
                      success: function(result) {
                         if (result.data) {
-                            $('#table-date tbody').html('');
+                            $('#penerimaan-pembelian tbody').html('');
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date tbody').append('<tr onclick="NextShowPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
+                                    $('#penerimaan-pembelian tbody').append('<tr onclick="NextShowPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.purchase_order_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                        $('#penerimaan-pembelian tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.purchase_order_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
 
                                 });
-                                $('#table-date tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
+                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
-                                $('#table-date tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -328,7 +250,7 @@
                 $('.mats-' + id).slideToggle();
             }
 
-            // TableDate();
+            // PenerimaanPembelian();
 
             function GetPO() {
                 $.ajax({
@@ -336,15 +258,15 @@
                     url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
                     dataType: 'json',
                     data: {
-                        supplier_id: $('#filter_supplier_id_b').val(),
+                        supplier_id: $('#filter_supplier_penerimaan_pembelian').val(),
                     },
                     success: function(result) {
                         if (result.data) {
-                            $('#filter_po_id_b').empty();
-                            $('#filter_po_id_b').select2({
+                            $('#filter_po_id_penerimaan_pembelian').empty();
+                            $('#filter_po_id_penerimaan_pembelian').select2({
                                 data: result.data
                             });
-                            $('#filter_po_id_b').trigger('change');
+                            $('#filter_po_id_penerimaan_pembelian').trigger('change');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -352,117 +274,21 @@
                 });
             }
 
-            $('#filter_supplier_id_b').change(function() {
-                TableDate();
+            $('#filter_supplier_penerimaan_pembelian').change(function() {
+                PenerimaanPembelian();
                 GetPO();
             });
 
-            $('#filter_po_id_b').change(function() {
-                TableDate();
+            $('#filter_po_id_penerimaan_pembelian').change(function() {
+                PenerimaanPembelian();
             });
 
-            $('#filter_material_b').change(function() {
-                TableDate();
+            $('#filter_material_penerimaan_pembelian').change(function() {
+                PenerimaanPembelian();
             });
 
             $('#filter_kategori_b').change(function() {
-                TableDate();
-            });
-
-        </script>
-
-        <!-- Script Hutang -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_g').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_g').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate5();
-            });
-
-            function TableDate5() {
-                $('#table-date5').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date5 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/receipt_material/table_date5'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_g').val(),
-                        filter_kategori: $('#filter_kategori_g').val(),
-                        filter_supplier: $('#filter_supplier_id_g').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date5 tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    window.penerimaan = 0;
-                                    window.tagihan = 0;
-                                    window.pembayaran = 0;
-                                    window.hutang = 0;
-                                    $('#table-date5 tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.kategori_id + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-right">' + row.penerimaan + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
-                                        
-                                        window.penerimaan += parseFloat(row.penerimaan.replace(/\./g,'').replace(',', '.'));
-                                        window.tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
-                                        window.hutang += parseFloat(row.hutang.replace(/\./g,'').replace(',', '.'));
-                                        
-
-                                    });
-                                    $('#table-date5 tbody').append('<tr class="active"><td class="text-right" colspan="3"><b>Jumlah</b></td><td class="text-right"><b>' + formatter3.format(window.penerimaan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.tagihan) + '</b></td><td class="text-right"><b>' + formatter3.format(window.pembayaran) + '</b></td><td class="text-right"><b>' + formatter3.format(window.hutang) + '</b></td></tr>');
-                                });
-                                $('#table-date5 tbody').append('<tr style="background-color:#cccccc;"><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_jumlah_penerimaan + '</b></td><td class="text-right" ><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right" ><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right" ><b>' + result.total_jumlah_hutang + '</b></td></tr>');
-                            } else {
-                                $('#table-date5 tbody').append('<tr><td class="text-center" colspan="8"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowHutang(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-
-            $('#filter_kategori_g').change(function() {
-                TableDate5();
-            });
-
-            $('#filter_supplier_id_g').change(function() {
-                TableDate5();
-            });
-
-            window.formatter3 = new Intl.NumberFormat('id-ID', {
-                style: 'decimal',
-                currency: 'IDR',
-                symbol: 'none',
-				minimumFractionDigits : '0'
+                PenerimaanPembelian();
             });
 
         </script>
