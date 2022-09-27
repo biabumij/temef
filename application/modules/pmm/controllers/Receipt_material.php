@@ -1110,13 +1110,7 @@ class Receipt_material extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>			
-				<th class="text-left">MATERIAL / BAHAN</th>
-				<th class="text-center"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">MATERIAL / BAHAN</th>
 	        </tr>
 			<?php
 			$penerima_1 = $this->db->select('nama')
@@ -1126,13 +1120,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.1 <?= $penerima_1['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">1.1 <?= $penerima_1['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batu1020_alamindah = $this->db->select('SUM(prm.price) as total')
@@ -1347,13 +1335,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.2 <?= $penerima_2['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">1.2 <?= $penerima_2['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_cons_kupang = $this->db->select('SUM(prm.price) as total')
@@ -1437,13 +1419,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.3 <?= $penerima_3['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">1.3 <?= $penerima_3['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_langit = $this->db->select('SUM(prm.price) as total')
@@ -1527,13 +1503,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.4 <?= $penerima_4['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">1.4 <?= $penerima_4['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_pcc_sli = $this->db->select('SUM(prm.price) as total')
@@ -1660,13 +1630,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.5 <?= $penerima_5['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">1.5 <?= $penerima_5['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_teleindo = $this->db->select('SUM(prm.price) as total')
@@ -1763,13 +1727,7 @@ class Receipt_material extends CI_Controller {
 			<!-- PERALATAN -->
 			<tr class="table-active3">
 				<th class="text-center">2</th>			
-				<th class="text-left">PERALATAN</th>
-				<th class="text-center"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">PERALATAN</th>
 	        </tr>
 			<?php
 			$penerima_6 = $this->db->select('nama')
@@ -1779,13 +1737,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">2.1 <?= $penerima_6['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">2.1 <?= $penerima_6['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_nindya = $this->db->select('SUM(prm.price) as total')
@@ -1871,13 +1823,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">2.2 <?= $penerima_7['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">2.2 <?= $penerima_7['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_sbm = $this->db->select('SUM(prm.price) as total')
@@ -1961,13 +1907,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">2.3 <?= $penerima_8['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">2.3 <?= $penerima_8['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batching_plant_alamindah_alat = $this->db->select('SUM(prm.price) as total')
@@ -2095,13 +2035,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">2.4 <?= $penerima_9['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">2.4 <?= $penerima_9['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_waskita = $this->db->select('SUM(prm.price) as total')
@@ -2185,13 +2119,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">2.5 <?= $penerima_10['nama'];?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">2.5 <?= $penerima_10['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_sli_alat = $this->db->select('SUM(prm.price) as total')
@@ -2276,7 +2204,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active5">
 				<th class="text-center"></th>			
-				<th class="text-center">Jumlah Bahan</th>
+				<th class="text-center">Jumlah Alat</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_alat,0,',','.');?></th>

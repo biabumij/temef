@@ -152,13 +152,7 @@
 	        </tr>
 			<tr class="table-baris1-bold">
 				<th align="center">1</th>			
-				<th align="left">MATERIAL / BAHAN</th>
-				<th align="center"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">MATERIAL / BAHAN</th>
 	        </tr>
 			<?php
 			$penerima_1 = $this->db->select('nama')
@@ -168,13 +162,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">1.1 <?= $penerima_1['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">1.1 <?= $penerima_1['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batu1020_alamindah = $this->db->select('SUM(prm.price) as total')
@@ -333,7 +321,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 10-20</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 10-20</th>
 				<th align="right"><?php echo number_format($penerimaan_batu1020_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_batu1020_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_batu1020_alamindah['total'],0,',','.');?></th>
@@ -343,7 +331,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 20-30</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 20-30</th>
 				<th align="right"><?php echo number_format($penerimaan_batu2030_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_batu2030_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_batu2030_alamindah['total'],0,',','.');?></th>
@@ -353,7 +341,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pasir</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pasir</th>
 				<th align="right"><?php echo number_format($penerimaan_pasir_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_pasir_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_pasir_alamindah['total'],0,',','.');?></th>
@@ -363,7 +351,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jasa Angkut</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jasa Angkut</th>
 				<th align="right"><?php echo number_format($penerimaan_jasa_angkut_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_jasa_angkut_alamindah['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_jasa_angkut_alamindah['total'],0,',','.');?></th>
@@ -373,7 +361,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_alamindah,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_alamindah,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_alamindah,0,',','.');?></th>
@@ -389,13 +377,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">1.2 <?= $penerima_2['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">1.2 <?= $penerima_2['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_cons_kupang = $this->db->select('SUM(prm.price) as total')
@@ -453,7 +435,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen Cons</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen Cons</th>
 				<th align="right"><?php echo number_format($penerimaan_semen_cons_kupang['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_semen_cons_kupang['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_semen_cons_kupang['total'],0,',','.');?></th>
@@ -463,7 +445,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_kupang,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_kupang,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_kupang,0,',','.');?></th>
@@ -479,13 +461,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">1.3 <?= $penerima_3['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">1.3 <?= $penerima_3['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_langit = $this->db->select('SUM(prm.price) as total')
@@ -543,7 +519,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th align="right"><?php echo number_format($penerimaan_solar_langit['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_solar_langit['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_solar_langit['total'],0,',','.');?></th>
@@ -553,7 +529,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_langit,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_langit,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_langit,0,',','.');?></th>
@@ -569,13 +545,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">1.4 <?= $penerima_4['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">1.4 <?= $penerima_4['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_pcc_sli = $this->db->select('SUM(prm.price) as total')
@@ -666,7 +636,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (PCC)</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (PCC)</th>
 				<th align="right"><?php echo number_format($penerimaan_semen_pcc_sli['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_semen_pcc_sli['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_semen_pcc_sli['total'],0,',','.');?></th>
@@ -676,7 +646,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (OPC)</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (OPC)</th>
 				<th align="right"><?php echo number_format($penerimaan_semen_opc_sli['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_semen_opc_sli['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_semen_opc_sli['total'],0,',','.');?></th>
@@ -686,7 +656,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_sli,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_sli,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_sli,0,',','.');?></th>
@@ -702,13 +672,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">1.5 <?= $penerima_5['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">1.5 <?= $penerima_5['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_teleindo = $this->db->select('SUM(prm.price) as total')
@@ -766,7 +730,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th align="right"><?php echo number_format($penerimaan_solar_teleindo['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_solar_teleindo['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_solar_teleindo['total'],0,',','.');?></th>
@@ -776,7 +740,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_teleindo,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_teleindo,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_teleindo,0,',','.');?></th>
@@ -791,7 +755,7 @@
 			$jumlah_hutang_penerimaan_bahan = $jumlah_hutang_penerimaan_alamindah + $jumlah_hutang_penerimaan_kupang + $jumlah_hutang_penerimaan_langit + $jumlah_hutang_penerimaan_sli + $jumlah_hutang_penerimaan_teleindo;
 			$jumlah_hutang_tagihan_bahan = $jumlah_hutang_tagihan_alamindah + $jumlah_hutang_tagihan_kupang + $jumlah_hutang_tagihan_langit + $jumlah_hutang_tagihan_sli + $jumlah_hutang_tagihan_teleindo;
 			?>
-			<tr class="atable-total">
+			<tr class="table-total">
 				<th align="center"></th>			
 				<th align="center">Jumlah Bahan</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_bahan,0,',','.');?></th>
@@ -805,13 +769,7 @@
 			<!-- PERALATAN -->
 			<tr class="table-baris1-bold">
 				<th align="center">2</th>			
-				<th align="left">PERALATAN</th>
-				<th align="center"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">PERALATAN</th>
 	        </tr>
 			<?php
 			$penerima_6 = $this->db->select('nama')
@@ -821,13 +779,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">2.1 <?= $penerima_6['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">2.1 <?= $penerima_6['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_nindya = $this->db->select('SUM(prm.price) as total')
@@ -887,7 +839,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th align="right"><?php echo number_format($penerimaan_truck_mixer_nindya['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_truck_mixer_nindya['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_truck_mixer_nindya['total'],0,',','.');?></th>
@@ -897,7 +849,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_nindya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_nindya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_nindya,0,',','.');?></th>
@@ -913,13 +865,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">2.2 <?= $penerima_7['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">2.2 <?= $penerima_7['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_sbm = $this->db->select('SUM(prm.price) as total')
@@ -977,7 +923,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th align="right"><?php echo number_format($penerimaan_truck_mixer_sbm['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_truck_mixer_sbm['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_truck_mixer_sbm['total'],0,',','.');?></th>
@@ -987,7 +933,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_sbm,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_sbm,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_sbm,0,',','.');?></th>
@@ -1003,13 +949,7 @@
 			?>
 			<tr class="table-baris1-bold">
 				<th align="center"></th>			
-				<th align="left">2.3 <?= $penerima_8['nama'];?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"></th>
+				<th align="left" colspan="7">2.3 <?= $penerima_8['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batching_plant_alamindah_alat = $this->db->select('SUM(prm.price) as total')
@@ -1101,7 +1041,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batching Plant</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batching Plant</th>
 				<th align="right"><?php echo number_format($penerimaan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_batching_plant_alamindah_alat['total'],0,',','.');?></th>
@@ -1111,7 +1051,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wheel Loader</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wheel Loader</th>
 				<th align="right"><?php echo number_format($penerimaan_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
@@ -1121,7 +1061,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_alamindah_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_alamindah_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_alamindah_alat,0,',','.');?></th>
@@ -1195,7 +1135,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th align="right"><?php echo number_format($penerimaan_truck_mixer_waskita['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_truck_mixer_waskita['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_truck_mixer_waskita['total'],0,',','.');?></th>
@@ -1205,7 +1145,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_waskita,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_waskita,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_waskita,0,',','.');?></th>
@@ -1279,7 +1219,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th align="right"><?php echo number_format($penerimaan_truck_mixer_sli_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($tagihan_truck_mixer_sli_alat['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_truck_mixer_sli_alat['total'],0,',','.');?></th>
@@ -1289,7 +1229,7 @@
 	        </tr>
 			<tr class="table-baris2">
 				<th align="center"></th>			
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_sli_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_sli_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_sli_alat,0,',','.');?></th>
@@ -1304,9 +1244,9 @@
 			$jumlah_hutang_penerimaan_alat= $jumlah_hutang_penerimaan_nindya + $jumlah_hutang_penerimaan_sbm + $jumlah_hutang_penerimaan_alamindah_alat + $jumlah_hutang_penerimaan_waskita + $jumlah_hutang_penerimaan_sli_alat;
 			$jumlah_hutang_tagihan_alat= $jumlah_hutang_tagihan_nindya + $jumlah_hutang_tagihan_sbm + $jumlah_hutang_tagihan_alamindah_alat + $jumlah_hutang_tagihan_waskita + $jumlah_hutang_tagihan_sli_alat;
 			?>
-			<tr class="atable-total">
+			<tr class="table-total">
 				<th align="center"></th>			
-				<th align="center">Jumlah Bahan</th>
+				<th align="center">Jumlah Alat</th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_tagihan_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pembayaran_alat,0,',','.');?></th>
@@ -1321,7 +1261,7 @@
 			$total_hutang_penerimaan_all = $jumlah_hutang_penerimaan_bahan + $jumlah_hutang_penerimaan_alat;
 			$total_hutang_tagihan_all = $jumlah_hutang_tagihan_bahan + $jumlah_hutang_tagihan_alat;
 			?>
-			<tr class="atable-total">
+			<tr class="table-total">
 				<th align="center"></th>			
 				<th align="center">Total Hutang</th>
 				<th align="right"><?php echo number_format($total_hutang_penerimaan,0,',','.');?></th>
