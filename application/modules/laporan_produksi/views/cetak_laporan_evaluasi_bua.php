@@ -942,13 +942,15 @@
 				<th align="right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3">VOLUME</th>
+				<th align="center" colspan="2">VOLUME</th>
+				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_evaluasi,0,',','.');?></th>
 				<th align="right"></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3">EVALUASI</th>
+				<th align="center" colspan="2">EVALUASI</th>
+				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_eveluasi_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorT ?>"><?php echo number_format($total_eveluasi_all,0,',','.');?></th>
