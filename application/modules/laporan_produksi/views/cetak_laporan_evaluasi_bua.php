@@ -160,7 +160,7 @@
 			<?php
 
 
-			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_gaji_upah = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -169,7 +169,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_konsumsi = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -178,7 +178,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_biaya_sewa_mess = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_biaya_sewa_mess = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -187,7 +187,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_listrik_internet = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -196,7 +196,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pengujian_material_laboratorium = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -205,7 +205,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_keamanan_kebersihan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -214,7 +214,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pengobatan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -223,7 +223,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_donasi = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_donasi = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -232,7 +232,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_bensin_tol_parkir = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -241,7 +241,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_perjalanan_dinas_penjualan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -250,7 +250,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_pakaian_dinas = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -259,7 +259,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_alat_tulis_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -268,7 +268,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_perlengkapan_kantor = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -277,7 +277,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_beban_kirim = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_beban_kirim = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -286,7 +286,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_beban_lain_lain = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -295,7 +295,7 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_biaya_sewa_kendaraan = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
@@ -304,11 +304,20 @@
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
 
-			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah / 24) as total')
+			$rap_thr_bonus = $this->db->select('rap.*,sum(det.jumlah) as total')
 			->from('rap_bua rap')
 			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
 			->where("rap.status = 'PUBLISH'")
 			->where("det.coa = 202")
+			->where("rap.tanggal_rap_bua < '$date2'")
+			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
+			->get()->row_array();
+
+			$rap_biaya_admin_bank = $this->db->select('rap.*,sum(det.jumlah) as total')
+			->from('rap_bua rap')
+			->join('rap_bua_detail det','rap.id = det.rap_bua_id','left')
+			->where("rap.status = 'PUBLISH'")
+			->where("det.coa = 143")
 			->where("rap.tanggal_rap_bua < '$date2'")
 			->order_by('rap.tanggal_rap_bua','asc')->limit(1)
 			->get()->row_array();
@@ -679,6 +688,26 @@
 			->get()->row_array();
 			
 			$thr_bonus = $thr_bonus_biaya['total'] + $thr_bonus_jurnal['total'];
+
+			$biaya_admin_bank_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 143")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$biaya_admin_bank_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 143")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+			
+			$biaya_admin_bank = $biaya_admin_bank_biaya['total'] + $biaya_admin_bank_jurnal['total'];
 			?>
 
 			<?php
@@ -700,9 +729,13 @@
 			$evaluasi_beban_lain_lain = $rap_beban_lain_lain['total'] - 	$beban_lain_lain;
 			$evaluasi_biaya_sewa_kendaraan = $rap_biaya_sewa_kendaraan['total'] - $biaya_sewa_kendaraan;
 			$evaluasi_thr_bonus = $rap_thr_bonus['total'] - $thr_bonus;
+			$evaluasi_biaya_admin_bank = $rap_biaya_admin_bank['total'] - $biaya_admin_bank;
 
-			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_penjualan['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'];
-			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_penjualan + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus;
+
+			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_penjualan['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'] + $rap_biaya_admin_bank['total'];
+
+			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_penjualan + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus + $biaya_admin_bank;
+
 			$total_evaluasi = $total_rap - $total_realisasi;
 
 			?>
@@ -713,7 +746,7 @@
 				<th width="15%" align="center">SATUAN</th>
 				<th width="15%" align="center">RAP</th>
 				<th width="15%" align="center">REALISASI</th>
-				<th width="15%" align="center">EVALUASI</th>
+				<th width="15%" align="center">SISA ANGGARAN</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_gaji_upah < 0 ? 'color:red' : 'color:black';
@@ -733,7 +766,7 @@
 				$styleColorO = $evaluasi_beban_lain_lain < 0 ? 'color:red' : 'color:black';
 				$styleColorP = $evaluasi_biaya_sewa_kendaraan < 0 ? 'color:red' : 'color:black';
 				$styleColorQ = $evaluasi_thr_bonus < 0 ? 'color:red' : 'color:black';
-
+				$styleColorR = $evaluasi_biaya_admin_bank < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center">1</th>			
@@ -870,6 +903,14 @@
 				<th align="right"><?php echo number_format($rap_thr_bonus['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($thr_bonus,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorQ ?>"><?php echo number_format($evaluasi_thr_bonus,0,',','.');?></th>
+	        </tr>
+			<tr class="table-baris1">
+				<th align="center">18</th>			
+				<th align="left">Biaya Admin Bank</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($rap_biaya_admin_bank['total'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($biaya_admin_bank,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorR ?>"><?php echo number_format($evaluasi_biaya_admin_bank,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
 				<th align="center" colspan="3">TOTAL</th>

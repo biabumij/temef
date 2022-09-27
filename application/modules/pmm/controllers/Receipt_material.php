@@ -1097,18 +1097,18 @@ class Receipt_material extends CI_Controller {
 			</style>
 			<tr class="table-active4">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
+				<th width="25%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
 				<th width="20%" class="text-center" colspan="2">HUTANG</th>
-				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">KET.</th>
+				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">KET.</th>
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">PENERIMAAN</th>
 				<th class="text-center">TAGIHAN</th>
 	        </tr>
-			<tr class="table-active3">
+			<!--<tr class="table-active3">
 				<th class="text-center">1</th>			
 				<th class="text-left">MATERIAL / BAHAN</th>
 				<th class="text-center"></th>
@@ -1517,6 +1517,530 @@ class Receipt_material extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_langit,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerima_4 = $this->db->select('nama')
+			->from('penerima')
+			->where("id = 2")
+			->get()->row_array();
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">1.4 <?= $penerima_4['nama'];?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerimaan_semen_pcc_sli = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 2")
+			->where("prm.material_id = 4")
+			->get()->row_array();
+
+			$penerimaan_semen_opc_sli = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 2")
+			->where("prm.material_id = 20")
+			->get()->row_array();
+
+			$jumlah_penerimaan_sli = $penerimaan_semen_pcc_sli['total'] + $penerimaan_semen_opc_sli['total'];
+			?>
+
+			<?php
+			$tagihan_semen_pcc_sli = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 2")
+			->where("ppd.material_id = 4")
+			->get()->row_array();
+
+			$tagihan_semen_opc_sli = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 2")
+			->where("ppd.material_id = 20")
+			->get()->row_array();
+
+			$jumlah_tagihan_sli = $tagihan_semen_pcc_sli['total'] + $tagihan_semen_opc_sli['total'];
+			?>
+
+			<?php
+			$pembayaran_semen_pcc_sli = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 2")
+			->where("ppd.material_id = 4")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$pembayaran_semen_opc_sli = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 2")
+			->where("ppd.material_id = 20")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$jumlah_pembayaran_sli = $pembayaran_semen_pcc_sli['total'] + $pembayaran_semen_opc_sli['total'];
+			?>
+
+			<?php
+			$hutang_penerimaan_semen_pcc_sli = $penerimaan_semen_pcc_sli['total'] - $pembayaran_semen_pcc_sli['total'];
+			$hutang_penerimaan_semen_opc_sli = $penerimaan_semen_opc_sli['total'] - $pembayaran_semen_opc_sli['total'];
+
+			$jumlah_hutang_penerimaan_sli = $hutang_penerimaan_semen_pcc_sli - $hutang_penerimaan_semen_opc_sli;
+			?>
+
+			<?php
+			$hutang_tagihan_semen_pcc_sli = $tagihan_semen_pcc_sli['total'] - $pembayaran_semen_pcc_sli['total'];
+			$hutang_tagihan_semen_opc_sli = $tagihan_semen_opc_sli['total'] - $pembayaran_semen_opc_sli['total'];
+
+			$jumlah_hutang_tagihan_sli = $hutang_tagihan_semen_pcc_sli - $hutang_tagihan_semen_opc_sli;
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (PCC)</th>
+				<th class="text-right"><?php echo number_format($penerimaan_semen_pcc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_semen_pcc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_semen_pcc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_semen_pcc_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_semen_pcc_sli,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (OPC)</th>
+				<th class="text-right"><?php echo number_format($penerimaan_semen_opc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_semen_opc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_semen_opc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_semen_opc_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_semen_opc_sli,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active2">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_sli,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerima_5 = $this->db->select('nama')
+			->from('penerima')
+			->where("id = 24")
+			->get()->row_array();
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">1.5 <?= $penerima_5['nama'];?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerimaan_solar_teleindo = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 24")
+			->where("prm.material_id = 8")
+			->get()->row_array();
+
+			$jumlah_penerimaan_teleindo = $penerimaan_solar_teleindo['total'];
+			?>
+
+			<?php
+			$tagihan_solar_teleindo = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 24")
+			->where("ppd.material_id = 8")
+			->get()->row_array();
+
+			$jumlah_tagihan_teleindo = $tagihan_solar_teleindo['total'];
+			?>
+
+			<?php
+			$pembayaran_solar_teleindo = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 24")
+			->where("ppd.material_id = 8")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$jumlah_pembayaran_teleindo = $pembayaran_solar_teleindo['total'];
+			?>
+
+			<?php
+			$hutang_penerimaan_solar_teleindo = $penerimaan_solar_teleindo['total'] - $pembayaran_solar_teleindo['total'];
+
+			$jumlah_hutang_penerimaan_teleindo = $hutang_penerimaan_solar_teleindo;
+			?>
+
+			<?php
+			$hutang_tagihan_solar_teleindo = $tagihan_solar_teleindo['total'] - $pembayaran_solar_teleindo['total'];
+
+			$jumlah_hutang_tagihan_teleindo = $hutang_tagihan_solar_teleindo;
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
+				<th class="text-right"><?php echo number_format($penerimaan_solar_teleindo['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_solar_teleindo['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_solar_teleindo['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_solar_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_solar_teleindo,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active2">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_teleindo,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$jumlah_penerimaan_bahan = $jumlah_penerimaan_alamindah + $jumlah_penerimaan_kupang + $jumlah_penerimaan_langit + $jumlah_penerimaan_sli + $jumlah_penerimaan_teleindo;
+			$jumlah_tagihan_bahan = $jumlah_tagihan_alamindah + $jumlah_tagihan_kupang + $jumlah_tagihan_langit + $jumlah_tagihan_sli + $jumlah_tagihan_teleindo;
+			$jumlah_pembayaran_bahan = $jumlah_pembayaran_alamindah + $jumlah_pembayaran_kupang + $jumlah_pembayaran_langit + $jumlah_pembayaran_sli + $jumlah_pembayaran_teleindo;
+			$jumlah_hutang_penerimaan_bahan = $jumlah_hutang_penerimaan_alamindah + $jumlah_hutang_penerimaan_kupang + $jumlah_hutang_penerimaan_langit + $jumlah_hutang_penerimaan_sli + $jumlah_hutang_penerimaan_teleindo;
+			$jumlah_hutang_tagihan_bahan = $jumlah_hutang_tagihan_alamindah + $jumlah_hutang_tagihan_kupang + $jumlah_hutang_tagihan_langit + $jumlah_hutang_tagihan_sli + $jumlah_hutang_tagihan_teleindo;
+			?>
+			<tr class="table-active5">
+				<th class="text-center"></th>			
+				<th class="text-center">Jumlah Bahan</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_bahan,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>-->
+			
+			<!-- PERALATAN -->
+			<tr class="table-active3">
+				<th class="text-center">2</th>			
+				<th class="text-left">PERALATAN</th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerima_6 = $this->db->select('nama')
+			->from('penerima')
+			->where("id = 5")
+			->get()->row_array();
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">2.1 <?= $penerima_6['nama'];?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerimaan_truck_mixer_nindya = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 5")
+			->where("prm.material_id in (12,13,14,23,24,25)")
+			->get()->row_array();
+
+			$jumlah_penerimaan_nindya = $penerimaan_truck_mixer_nindya['total'];
+			?>
+
+			<?php
+			$tagihan_truck_mixer_nindya = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 5")
+			->where("ppd.material_id in (12,13,14,23,24,25)")
+			->get()->row_array();
+
+			$jumlah_tagihan_nindya = $tagihan_truck_mixer_nindya['total'];
+			?>
+
+			<?php
+			$pembayaran_truck_mixer_nindya = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 5")
+			->where("ppd.material_id in (12,13,14,23,24,25)")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$jumlah_pembayaran_nindya = $pembayaran_truck_mixer_nindya['total'];
+			?>
+
+			<?php
+
+			$hutang_penerimaan_truck_mixer_nindya = $penerimaan_truck_mixer_nindya['total'] - $pembayaran_truck_mixer_nindya['total'];
+
+			$jumlah_hutang_penerimaan_nindya = $hutang_penerimaan_truck_mixer_nindya;
+			?>
+
+			<?php
+
+			$hutang_tagihan_truck_mixer_nindya = $tagihan_truck_mixer_nindya['total'] - $pembayaran_truck_mixer_nindya['total'];
+
+			$jumlah_hutang_tagihan_nindya = $hutang_tagihan_truck_mixer_nindya;
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
+				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_nindya['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_nindya['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_nindya['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_nindya,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active2">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_nindya,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerima_7 = $this->db->select('nama')
+			->from('penerima')
+			->where("id = 6")
+			->get()->row_array();
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">2.2 <?= $penerima_7['nama'];?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerimaan_truck_mixer_sbm = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 6")
+			->where("prm.material_id in (12,13,14,23,24,25)")
+			->get()->row_array();
+
+			$jumlah_penerimaan_sbm = $penerimaan_truck_mixer_sbm['total'];
+			?>
+
+			<?php
+			$tagihan_truck_mixer_sbm = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 6")
+			->where("ppd.material_id in (12,13,14,23,24,25)")
+			->get()->row_array();
+
+			$jumlah_tagihan_sbm = $tagihan_truck_mixer_sbm['total'];
+			?>
+
+			<?php
+			$pembayaran_truck_mixer_sbm = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 6")
+			->where("ppd.material_id in (12,13,14,23,24,25)")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$jumlah_pembayaran_sbm = $pembayaran_truck_mixer_sbm['total'];
+			?>
+
+			<?php
+			$hutang_penerimaan_truck_mixer_sbm = $penerimaan_truck_mixer_sbm['total'] - $pembayaran_truck_mixer_sbm['total'];
+
+			$jumlah_hutang_penerimaan_sbm = $hutang_penerimaan_truck_mixer_sbm;
+			?>
+
+			<?php
+			$hutang_tagihan_truck_mixer_sbm = $tagihan_truck_mixer_sbm['total'] - $pembayaran_truck_mixer_sbm['total'];
+
+			$jumlah_hutang_tagihan_sbm = $hutang_tagihan_truck_mixer_sbm;
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
+				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_sbm['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_sbm['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_sbm['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_sbm,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active2">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_sbm,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerima_8 = $this->db->select('nama')
+			->from('penerima')
+			->where("id = 3")
+			->get()->row_array();
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">2.3 <?= $penerima_8['nama'];?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php
+			$penerimaan_batching_plant_alamindah_alat = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id','left')
+			->where("prm.date_receipt <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppo.supplier_id = 3")
+			->where("prm.material_id = 15")
+			->get()->row_array();
+
+			$jumlah_penerimaan_alamindah_alat = $penerimaan_batching_plant_alamindah_alat['total'];
+			?>
+
+			<?php
+			$tagihan_batching_plant_alamindah_alat = $this->db->select('SUM(ppd.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 3")
+			->where("ppd.material_id = 15")
+			->get()->row_array();
+
+			$jumlah_tagihan_alamindah_alat = $tagihan_batching_plant_alamindah_alat['total'];
+			?>
+
+			<?php
+			$pembayaran_batching_plant_alamindah_alat = $this->db->select('SUM(pppp.total) as total')
+			->from('pmm_penagihan_pembelian ppp')
+			->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id','left')
+			->join('pmm_pembayaran_penagihan_pembelian pppp', 'ppp.id = pppp.penagihan_pembelian_id','left')
+			->join('pmm_purchase_order ppo', 'ppp.purchase_order_id = ppo.id','left')
+			->where("ppp.tanggal_invoice <= '$date2'")
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("ppp.supplier_id = 3")
+			->where("ppd.material_id = 15")
+			->where("pppp.memo <> 'PPN' ")
+			->get()->row_array();
+
+			$jumlah_pembayaran_alamindah_alat = $pembayaran_batching_plant_alamindah_alat['total'];
+			?>
+
+			<?php
+			$hutang_penerimaan_batching_plant_alamindah_alat = $penerimaan_batching_plant_alamindah_alat['total'] - $pembayaran_batching_plant_alamindah_alat['total'];
+
+			$jumlah_hutang_penerimaan_alamindah_alat = $hutang_penerimaan_batching_plant_alamindah_alat;
+			?>
+
+			<?php
+			$hutang_tagihan_batching_plant_alamindah_alat = $tagihan_batching_plant_alamindah_alat['total'] - $pembayaran_batching_plant_alamindah_alat['total'];
+
+			$jumlah_hutang_tagihan_alamindah_alat = $hutang_tagihan_batching_plant_alamindah_alat;
+			?>
+			<tr class="table-active3">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batching_plant</th>
+				<th class="text-right"><?php echo number_format($penerimaan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pembayaran_batching_plant_alamindah_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_penerimaan_batching_plant_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_tagihan_batching_plant_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active2">
+				<th class="text-center"></th>			
+				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_pembayaran_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"></th>
 	        </tr>
 			<?php
