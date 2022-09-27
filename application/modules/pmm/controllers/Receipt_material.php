@@ -1097,20 +1097,21 @@ class Receipt_material extends CI_Controller {
 			</style>
 			<tr class="table-active4">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="40%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
+				<th width="30%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
-				<th width="20%" class="text-center" colspan="2">HUTANG</th>
+				<th width="20%" class="text-center" colspan="2">SISA HUTANG</th>
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">KET.</th>
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">PENERIMAAN</th>
-				<th class="text-center">TAGIHAN</th>
+				<th class="text-center">INVOICE</th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>			
-				<th class="text-left" colspan="7">MATERIAL / BAHAN</th>
+				<th class="text-left" colspan="8">MATERIAL / BAHAN</th>
 	        </tr>
 			<?php
 			$penerima_1 = $this->db->select('nama')
@@ -1120,7 +1121,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">1.1 <?= $penerima_1['nama'];?></th>
+				<th class="text-left" colspan="8">1.1 <?= $penerima_1['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batu1020_alamindah = $this->db->select('SUM(prm.price) as total')
@@ -1259,6 +1260,15 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_batu1020_alamindah = $penerimaan_batu1020_alamindah['total'] - $tagihan_batu1020_alamindah['total'];
+			$tagihan_bruto_batu2030_alamindah = $penerimaan_batu2030_alamindah['total'] - $tagihan_batu2030_alamindah['total'];
+			$tagihan_bruto_pasir_alamindah = $penerimaan_pasir_alamindah['total'] - $tagihan_pasir_alamindah['total'];
+			$tagihan_bruto_jasa_angkut_alamindah = $penerimaan_jasa_angkut_alamindah['total'] - $tagihan_jasa_angkut_alamindah['total'];
+
+			$jumlah_tagihan_bruto_alamindah = $tagihan_bruto_batu1020_alamindah + $tagihan_bruto_batu2030_alamindah +  $tagihan_bruto_pasir_alamindah + $tagihan_bruto_jasa_angkut_alamindah;
+			?>
+
+			<?php
 
 			$hutang_penerimaan_batu1020_alamindah = $penerimaan_batu1020_alamindah['total'] - $pembayaran_batu1020_alamindah['total'];
 			$hutang_penerimaan_batu2030_alamindah = $penerimaan_batu2030_alamindah['total'] - $pembayaran_batu2030_alamindah['total'];
@@ -1282,6 +1292,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 10-20</th>
 				<th class="text-right"><?php echo number_format($penerimaan_batu1020_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_batu1020_alamindah['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_batu1020_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_batu1020_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_batu1020_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_batu1020_alamindah,0,',','.');?></th>
@@ -1292,6 +1303,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batu Split 20-30</th>
 				<th class="text-right"><?php echo number_format($penerimaan_batu2030_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_batu2030_alamindah['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_batu2030_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_batu2030_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_batu2030_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_batu2030_alamindah,0,',','.');?></th>
@@ -1302,6 +1314,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pasir</th>
 				<th class="text-right"><?php echo number_format($penerimaan_pasir_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_pasir_alamindah['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_pasir_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_pasir_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_pasir_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_pasir_alamindah,0,',','.');?></th>
@@ -1312,6 +1325,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jasa Angkut</th>
 				<th class="text-right"><?php echo number_format($penerimaan_jasa_angkut_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_jasa_angkut_alamindah['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_jasa_angkut_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_jasa_angkut_alamindah['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_jasa_angkut_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_jasa_angkut_alamindah,0,',','.');?></th>
@@ -1322,6 +1336,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_alamindah,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_alamindah,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_alamindah,0,',','.');?></th>
@@ -1335,7 +1350,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">1.2 <?= $penerima_2['nama'];?></th>
+				<th class="text-left" colspan="8">1.2 <?= $penerima_2['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_cons_kupang = $this->db->select('SUM(prm.price) as total')
@@ -1381,6 +1396,12 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_semen_cons_kupang = $tagihan_semen_cons_kupang['total'] - $tagihan_semen_cons_kupang['total'];
+			
+			$jumlah_tagihan_bruto_kupang = $tagihan_bruto_semen_cons_kupang;
+			?>
+
+			<?php
 			$hutang_penerimaan_semen_cons_kupang = $penerimaan_semen_cons_kupang['total'] - $pembayaran_semen_cons_kupang['total'];
 
 			$jumlah_hutang_penerimaan_kupang = $hutang_penerimaan_semen_cons_kupang;
@@ -1396,6 +1417,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen Cons</th>
 				<th class="text-right"><?php echo number_format($penerimaan_semen_cons_kupang['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_semen_cons_kupang['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_semen_cons_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_semen_cons_kupang['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_semen_cons_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_semen_cons_kupang,0,',','.');?></th>
@@ -1406,6 +1428,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_kupang,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_kupang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_kupang,0,',','.');?></th>
@@ -1419,7 +1442,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">1.3 <?= $penerima_3['nama'];?></th>
+				<th class="text-left" colspan="8">1.3 <?= $penerima_3['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_langit = $this->db->select('SUM(prm.price) as total')
@@ -1465,6 +1488,12 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_solar_langit = $penerimaan_solar_langit['total'] - $tagihan_solar_langit['total'];
+
+			$jumlah_tagihan_bruto_langit = $tagihan_bruto_solar_langit;
+			?>
+
+			<?php
 			$hutang_penerimaan_solar_langit = $penerimaan_solar_langit['total'] - $pembayaran_solar_langit['total'];
 
 			$jumlah_hutang_penerimaan_langit = $hutang_penerimaan_solar_langit;
@@ -1480,6 +1509,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th class="text-right"><?php echo number_format($penerimaan_solar_langit['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_solar_langit['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_solar_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_solar_langit['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_solar_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_solar_langit,0,',','.');?></th>
@@ -1490,6 +1520,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_langit,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_langit,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_langit,0,',','.');?></th>
@@ -1503,7 +1534,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">1.4 <?= $penerima_4['nama'];?></th>
+				<th class="text-left" colspan="8">1.4 <?= $penerima_4['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_semen_pcc_sli = $this->db->select('SUM(prm.price) as total')
@@ -1580,6 +1611,13 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_semen_pcc_sli = $penerimaan_semen_pcc_sli['total'] - $tagihan_semen_pcc_sli['total'];
+			$tagihan_bruto_semen_opc_sli = $penerimaan_semen_opc_sli['total'] - $tagihan_semen_opc_sli['total'];
+
+			$jumlah_tagihan_bruto_sli = $tagihan_bruto_semen_pcc_sli - $tagihan_bruto_semen_opc_sli;
+			?>
+
+			<?php
 			$hutang_penerimaan_semen_pcc_sli = $penerimaan_semen_pcc_sli['total'] - $pembayaran_semen_pcc_sli['total'];
 			$hutang_penerimaan_semen_opc_sli = $penerimaan_semen_opc_sli['total'] - $pembayaran_semen_opc_sli['total'];
 
@@ -1597,6 +1635,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (PCC)</th>
 				<th class="text-right"><?php echo number_format($penerimaan_semen_pcc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_semen_pcc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_semen_pcc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_semen_pcc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_semen_pcc_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_semen_pcc_sli,0,',','.');?></th>
@@ -1607,6 +1646,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semen (OPC)</th>
 				<th class="text-right"><?php echo number_format($penerimaan_semen_opc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_semen_opc_sli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_semen_opc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_semen_opc_sli['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_semen_opc_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_semen_opc_sli,0,',','.');?></th>
@@ -1617,6 +1657,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_sli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_sli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_sli,0,',','.');?></th>
@@ -1630,7 +1671,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">1.5 <?= $penerima_5['nama'];?></th>
+				<th class="text-left" colspan="8">1.5 <?= $penerima_5['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_solar_teleindo = $this->db->select('SUM(prm.price) as total')
@@ -1676,6 +1717,12 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_solar_teleindo = $penerimaan_solar_teleindo['total'] - $tagihan_solar_teleindo['total'];
+
+			$jumlah_tagihan_bruto_teleindo = $tagihan_bruto_solar_teleindo;
+			?>
+
+			<?php
 			$hutang_penerimaan_solar_teleindo = $penerimaan_solar_teleindo['total'] - $pembayaran_solar_teleindo['total'];
 
 			$jumlah_hutang_penerimaan_teleindo = $hutang_penerimaan_solar_teleindo;
@@ -1691,6 +1738,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th class="text-right"><?php echo number_format($penerimaan_solar_teleindo['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_solar_teleindo['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_solar_teleindo['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_solar_teleindo['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_solar_teleindo,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_solar_teleindo,0,',','.');?></th>
@@ -1701,6 +1749,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_teleindo,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_teleindo,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_teleindo,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_teleindo,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_teleindo,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_teleindo,0,',','.');?></th>
@@ -1709,6 +1758,7 @@ class Receipt_material extends CI_Controller {
 			<?php
 			$jumlah_penerimaan_bahan = $jumlah_penerimaan_alamindah + $jumlah_penerimaan_kupang + $jumlah_penerimaan_langit + $jumlah_penerimaan_sli + $jumlah_penerimaan_teleindo;
 			$jumlah_tagihan_bahan = $jumlah_tagihan_alamindah + $jumlah_tagihan_kupang + $jumlah_tagihan_langit + $jumlah_tagihan_sli + $jumlah_tagihan_teleindo;
+			$jumlah_tagihan_bruto_bahan = $jumlah_tagihan_bruto_alamindah + $jumlah_tagihan_bruto_kupang + $jumlah_tagihan_bruto_langit + $jumlah_tagihan_bruto_sli + $jumlah_tagihan_bruto_teleindo;
 			$jumlah_pembayaran_bahan = $jumlah_pembayaran_alamindah + $jumlah_pembayaran_kupang + $jumlah_pembayaran_langit + $jumlah_pembayaran_sli + $jumlah_pembayaran_teleindo;
 			$jumlah_hutang_penerimaan_bahan = $jumlah_hutang_penerimaan_alamindah + $jumlah_hutang_penerimaan_kupang + $jumlah_hutang_penerimaan_langit + $jumlah_hutang_penerimaan_sli + $jumlah_hutang_penerimaan_teleindo;
 			$jumlah_hutang_tagihan_bahan = $jumlah_hutang_tagihan_alamindah + $jumlah_hutang_tagihan_kupang + $jumlah_hutang_tagihan_langit + $jumlah_hutang_tagihan_sli + $jumlah_hutang_tagihan_teleindo;
@@ -1718,6 +1768,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-center">Jumlah Bahan</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_bahan,0,',','.');?></th>
@@ -1727,7 +1778,7 @@ class Receipt_material extends CI_Controller {
 			<!-- PERALATAN -->
 			<tr class="table-active3">
 				<th class="text-center">2</th>			
-				<th class="text-left" colspan="7">PERALATAN</th>
+				<th class="text-left" colspan="8">PERALATAN</th>
 	        </tr>
 			<?php
 			$penerima_6 = $this->db->select('nama')
@@ -1737,7 +1788,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">2.1 <?= $penerima_6['nama'];?></th>
+				<th class="text-left" colspan="8">2.1 <?= $penerima_6['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_nindya = $this->db->select('SUM(prm.price) as total')
@@ -1784,6 +1835,13 @@ class Receipt_material extends CI_Controller {
 
 			<?php
 
+			$tagihan_bruto_truck_mixer_nindya = $penerimaan_truck_mixer_nindya['total'] - $tagihan_truck_mixer_nindya['total'];
+
+			$jumlah_tagihan_bruto_nindya = $tagihan_bruto_truck_mixer_nindya;
+			?>
+
+			<?php
+
 			$hutang_penerimaan_truck_mixer_nindya = $penerimaan_truck_mixer_nindya['total'] - $pembayaran_truck_mixer_nindya['total'];
 
 			$jumlah_hutang_penerimaan_nindya = $hutang_penerimaan_truck_mixer_nindya;
@@ -1800,6 +1858,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_nindya['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_nindya['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_truck_mixer_nindya['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_nindya['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_nindya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_nindya,0,',','.');?></th>
@@ -1810,6 +1869,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_nindya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_nindya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_nindya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_nindya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_nindya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_nindya,0,',','.');?></th>
@@ -1823,7 +1883,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">2.2 <?= $penerima_7['nama'];?></th>
+				<th class="text-left" colspan="8">2.2 <?= $penerima_7['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_sbm = $this->db->select('SUM(prm.price) as total')
@@ -1869,6 +1929,12 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_truck_mixer_sbm = $penerimaan_truck_mixer_sbm['total'] - $tagihan_truck_mixer_sbm['total'];
+
+			$jumlah_tagihan_bruto_sbm = $tagihan_bruto_truck_mixer_sbm;
+			?>
+
+			<?php
 			$hutang_penerimaan_truck_mixer_sbm = $penerimaan_truck_mixer_sbm['total'] - $pembayaran_truck_mixer_sbm['total'];
 
 			$jumlah_hutang_penerimaan_sbm = $hutang_penerimaan_truck_mixer_sbm;
@@ -1884,6 +1950,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_sbm['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_sbm['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_truck_mixer_sbm['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_sbm['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_sbm,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_sbm,0,',','.');?></th>
@@ -1894,6 +1961,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_sbm,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_sbm,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_sbm,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_sbm,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_sbm,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_sbm,0,',','.');?></th>
@@ -1907,7 +1975,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">2.3 <?= $penerima_8['nama'];?></th>
+				<th class="text-left" colspan="8">2.3 <?= $penerima_8['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_batching_plant_alamindah_alat = $this->db->select('SUM(prm.price) as total')
@@ -1985,6 +2053,13 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_batching_plant_alamindah_alat = $penerimaan_batching_plant_alamindah_alat['total'] - $tagihan_batching_plant_alamindah_alat['total'];
+			$tagihan_bruto_wheel_loader_alamindah_alat = $penerimaan_wheel_loader_alamindah_alat['total'] - $tagihan_wheel_loader_alamindah_alat['total'];
+
+			$jumlah_tagihan_bruto_alamindah_alat = $tagihan_bruto_batching_plant_alamindah_alat + $tagihan_bruto_wheel_loader_alamindah_alat;
+			?>
+
+			<?php
 			$hutang_penerimaan_batching_plant_alamindah_alat = $penerimaan_batching_plant_alamindah_alat['total'] - $pembayaran_batching_plant_alamindah_alat['total'];
 			$hutang_penerimaan_wheel_loader_alamindah_alat = $penerimaan_wheel_loader_alamindah_alat['total'] - $pembayaran_wheel_loader_alamindah_alat['total'];
 
@@ -2002,6 +2077,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batching Plant</th>
 				<th class="text-right"><?php echo number_format($penerimaan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_batching_plant_alamindah_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_batching_plant_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_batching_plant_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_batching_plant_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_batching_plant_alamindah_alat,0,',','.');?></th>
@@ -2012,6 +2088,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wheel Loader</th>
 				<th class="text-right"><?php echo number_format($penerimaan_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_wheel_loader_alamindah_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_wheel_loader_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_wheel_loader_alamindah_alat,0,',','.');?></th>
@@ -2022,6 +2099,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_alamindah_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_alamindah_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_alamindah_alat,0,',','.');?></th>
@@ -2035,7 +2113,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">2.4 <?= $penerima_9['nama'];?></th>
+				<th class="text-left" colspan="8">2.4 <?= $penerima_9['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_waskita = $this->db->select('SUM(prm.price) as total')
@@ -2081,21 +2159,28 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_truck_mixer_waskita = $penerimaan_truck_mixer_waskita['total'] - $tagihan_truck_mixer_waskita['total'];
+
+			$jumlah_tagihan_bruto_waskita = $tagihan_bruto_truck_mixer_waskita;
+			?>
+
+			<?php
 			$hutang_penerimaan_truck_mixer_waskita = $penerimaan_truck_mixer_waskita['total'] - $pembayaran_truck_mixer_waskita['total'];
 
-			$jumlah_hutang_penerimaan_waskita = $hutang_penerimaan_truck_mixer_waskita - $hutang_penerimaan_truck_mixer_waskita;
+			$jumlah_hutang_penerimaan_waskita = $hutang_penerimaan_truck_mixer_waskita;
 			?>
 
 			<?php
 			$hutang_tagihan_truck_mixer_waskita = $tagihan_truck_mixer_waskita['total'] - $pembayaran_truck_mixer_waskita['total'];
 
-			$jumlah_hutang_tagihan_waskita = $hutang_tagihan_truck_mixer_waskita - $hutang_tagihan_truck_mixer_waskita;
+			$jumlah_hutang_tagihan_waskita = $hutang_tagihan_truck_mixer_waskita;
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truck Mixer</th>
 				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_waskita['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_waskita['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_truck_mixer_waskita['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_waskita['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_waskita,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_waskita,0,',','.');?></th>
@@ -2106,6 +2191,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_waskita,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_waskita,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_waskita,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_waskita,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_waskita,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_waskita,0,',','.');?></th>
@@ -2119,7 +2205,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left" colspan="7">2.5 <?= $penerima_10['nama'];?></th>
+				<th class="text-left" colspan="8">2.5 <?= $penerima_10['nama'];?></th>
 	        </tr>
 			<?php
 			$penerimaan_truck_mixer_sli_alat = $this->db->select('SUM(prm.price) as total')
@@ -2165,6 +2251,12 @@ class Receipt_material extends CI_Controller {
 			?>
 
 			<?php
+			$tagihan_bruto_truck_mixer_sli_alat = $penerimaan_truck_mixer_sli_alat['total'] - $tagihan_truck_mixer_sli_alat['total'];
+
+			$jumlah_tagihan_bruto_sli_alat = $tagihan_bruto_truck_mixer_sli_alat;
+			?>
+
+			<?php
 			$hutang_penerimaan_truck_mixer_sli_alat = $penerimaan_truck_mixer_sli_alat['total'] - $pembayaran_truck_mixer_sli_alat['total'];
 
 			$jumlah_hutang_penerimaan_sli_alat = $hutang_penerimaan_truck_mixer_sli_alat;
@@ -2180,6 +2272,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solar</th>
 				<th class="text-right"><?php echo number_format($penerimaan_truck_mixer_sli_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($tagihan_truck_mixer_sli_alat['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($tagihan_bruto_truck_mixer_sli_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pembayaran_truck_mixer_sli_alat['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_penerimaan_truck_mixer_sli_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_tagihan_truck_mixer_sli_alat,0,',','.');?></th>
@@ -2190,23 +2283,26 @@ class Receipt_material extends CI_Controller {
 				<th class="text-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jumlah</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_sli_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_sli_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_sli_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_sli_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_sli_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_sli_alat,0,',','.');?></th>
 				<th class="text-right"></th>
 	        </tr>
 			<?php
-			$jumlah_penerimaan_alat= $jumlah_penerimaan_nindya + $jumlah_penerimaan_sbm + $jumlah_penerimaan_alamindah_alat + $jumlah_penerimaan_waskita + $jumlah_penerimaan_sli_alat;
-			$jumlah_tagihan_alat= $jumlah_tagihan_nindya + $jumlah_tagihan_sbm + $jumlah_tagihan_alamindah_alat + $jumlah_tagihan_waskita + $jumlah_tagihan_sli_alat;
-			$jumlah_pembayaran_alat= $jumlah_pembayaran_nindya + $jumlah_pembayaran_sbm + $jumlah_pembayaran_alamindah_alat + $jumlah_pembayaran_waskita + $jumlah_pembayaran_sli_alat;
-			$jumlah_hutang_penerimaan_alat= $jumlah_hutang_penerimaan_nindya + $jumlah_hutang_penerimaan_sbm + $jumlah_hutang_penerimaan_alamindah_alat + $jumlah_hutang_penerimaan_waskita + $jumlah_hutang_penerimaan_sli_alat;
-			$jumlah_hutang_tagihan_alat= $jumlah_hutang_tagihan_nindya + $jumlah_hutang_tagihan_sbm + $jumlah_hutang_tagihan_alamindah_alat + $jumlah_hutang_tagihan_waskita + $jumlah_hutang_tagihan_sli_alat;
+			$jumlah_penerimaan_alat = $jumlah_penerimaan_nindya + $jumlah_penerimaan_sbm + $jumlah_penerimaan_alamindah_alat + $jumlah_penerimaan_waskita + $jumlah_penerimaan_sli_alat;
+			$jumlah_tagihan_alat = $jumlah_tagihan_nindya + $jumlah_tagihan_sbm + $jumlah_tagihan_alamindah_alat + $jumlah_tagihan_waskita + $jumlah_tagihan_sli_alat;
+			$jumlah_tagihan_bruto_alat = $jumlah_tagihan_bruto_nindya + $jumlah_tagihan_bruto_sbm + $jumlah_tagihan_bruto_alamindah_alat + $jumlah_tagihan_bruto_waskita + $jumlah_tagihan_bruto_sli_alat;
+			$jumlah_pembayaran_alat = $jumlah_pembayaran_nindya + $jumlah_pembayaran_sbm + $jumlah_pembayaran_alamindah_alat + $jumlah_pembayaran_waskita + $jumlah_pembayaran_sli_alat;
+			$jumlah_hutang_penerimaan_alat = $jumlah_hutang_penerimaan_nindya + $jumlah_hutang_penerimaan_sbm + $jumlah_hutang_penerimaan_alamindah_alat + $jumlah_hutang_penerimaan_waskita + $jumlah_hutang_penerimaan_sli_alat;
+			$jumlah_hutang_tagihan_alat = $jumlah_hutang_tagihan_nindya + $jumlah_hutang_tagihan_sbm + $jumlah_hutang_tagihan_alamindah_alat + $jumlah_hutang_tagihan_waskita + $jumlah_hutang_tagihan_sli_alat;
 			?>
 			<tr class="table-active5">
 				<th class="text-center"></th>			
 				<th class="text-center">Jumlah Alat</th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_tagihan_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($jumlah_tagihan_bruto_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_pembayaran_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_penerimaan_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_hutang_tagihan_alat,0,',','.');?></th>
@@ -2215,6 +2311,7 @@ class Receipt_material extends CI_Controller {
 			<?php
 			$total_hutang_penerimaan = $jumlah_penerimaan_bahan + $jumlah_penerimaan_alat;
 			$total_hutang_tagihan = $jumlah_tagihan_bahan + $jumlah_tagihan_alat;
+			$total_hutang_tagihan_bruto = $jumlah_tagihan_bruto_bahan + $jumlah_tagihan_bruto_alat;
 			$total_hutang_pembayaran = $jumlah_pembayaran_bahan + $jumlah_pembayaran_alat;
 			$total_hutang_penerimaan_all = $jumlah_hutang_penerimaan_bahan + $jumlah_hutang_penerimaan_alat;
 			$total_hutang_tagihan_all = $jumlah_hutang_tagihan_bahan + $jumlah_hutang_tagihan_alat;
@@ -2224,6 +2321,7 @@ class Receipt_material extends CI_Controller {
 				<th class="text-center">Total Hutang</th>
 				<th class="text-right"><?php echo number_format($total_hutang_penerimaan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_hutang_tagihan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_hutang_tagihan_bruto,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_hutang_pembayaran,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_hutang_penerimaan_all,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_hutang_tagihan_all,0,',','.');?></th>
