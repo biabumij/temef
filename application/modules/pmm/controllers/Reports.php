@@ -4568,8 +4568,8 @@ class Reports extends CI_Controller {
 
 			$volume_realisasi = round($volume_realisasi['volume'],2);
 
-			$total_eveluasi_rap = $total_rap / $volume_rap;
-			$total_eveluasi_realisasi = $total_realisasi / $volume_realisasi;
+			$total_eveluasi_rap = ($volume_rap!=0)?$total_rap / $volume_rap * 1:0;
+			$total_eveluasi_realisasi = ($volume_realisasi!=0)?$total_realisasi / $volume_realisasi * 1:0;
 			$total_eveluasi_all = $total_eveluasi_rap - $total_eveluasi_realisasi;
 
 			?>
