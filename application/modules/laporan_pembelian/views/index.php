@@ -58,7 +58,7 @@
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Laporan Hutang <i>(Coming Soon)</i></h5></p>
+														<p><h5>Laporan Hutang</h5></p>
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
