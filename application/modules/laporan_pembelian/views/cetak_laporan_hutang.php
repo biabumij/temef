@@ -99,8 +99,8 @@
 		
 		$arr_date = $this->input->get('filter_date');
 		$arr_filter_date = explode(' - ', $arr_date);
-		$date1 = '';
-		$date2 = '';
+		$date1 = date('2020-01-01');
+		$date2 = date("Y-m-d");
 
 		if(count($arr_filter_date) == 2){
 			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));

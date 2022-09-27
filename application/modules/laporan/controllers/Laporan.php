@@ -354,9 +354,9 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('laporan_pembelian/cetak_laporan_hutang',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Laporan Evaluasi BUA');
+        $pdf->SetTitle('BBJ - Laporan Hutang');
         $pdf->nsi_html($html);
-        $pdf->Output('laporan_evaluasi_bua.pdf', 'I');
+        $pdf->Output('laporan_hutang.pdf', 'I');
 	
 	}
 
@@ -460,6 +460,34 @@ class Laporan extends Secure_Controller {
 		}else {
 			echo 'Please Filter Date First';
 		}
+	
+	}
+
+	public function cetak_laporan_piutang()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_penjualan/cetak_laporan_piutang',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Laporan Piutang');
+        $pdf->nsi_html($html);
+        $pdf->Output('laporan_piutang.pdf', 'I');
 	
 	}
 

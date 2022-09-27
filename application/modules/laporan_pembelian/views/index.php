@@ -371,9 +371,9 @@
 				});
 			}
 
-			//LaporanHutang();
+			LaporanHutang();
 
-            </script>
+        </script>
         
 </body>
 </html>
