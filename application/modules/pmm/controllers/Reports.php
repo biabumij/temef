@@ -4568,6 +4568,8 @@ class Reports extends CI_Controller {
 
 			$volume_realisasi = round($volume_realisasi['volume'],2);
 
+			$volume_evaluasi = $total_evaluasi / 15;
+
 			$total_eveluasi_rap = ($volume_rap!=0)?$total_rap / $volume_rap * 1:0;
 			$total_eveluasi_realisasi = ($volume_realisasi!=0)?$total_realisasi / $volume_realisasi * 1:0;
 			$total_eveluasi_all = $total_eveluasi_rap - $total_eveluasi_realisasi;
@@ -4739,7 +4741,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" colspan="2">VOLUME (M3)</th>
 				<th class="text-right"><?php echo number_format($volume_rap,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_realisasi,2,',','.');?></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($volume_evaluasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="2">EVALUASI</th>
