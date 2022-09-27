@@ -4768,7 +4768,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorT ?>"><?php echo number_format($total_eveluasi_all,0,',','.');?></th>
 	        </tr>
-			
 	    </table>
 		<?php
 	}
