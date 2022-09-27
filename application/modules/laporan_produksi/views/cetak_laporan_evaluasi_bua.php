@@ -733,10 +733,31 @@
 
 
 			$total_rap = $rap_gaji_upah['total'] + $rap_konsumsi['total'] + $rap_biaya_sewa_mess['total'] + $rap_listrik_internet['total'] + $rap_pengujian_material_laboratorium['total'] + $rap_keamanan_kebersihan['total'] + $rap_pengobatan['total'] + $rap_donasi['total'] + $rap_bensin_tol_parkir['total'] + $rap_perjalanan_dinas_penjualan['total'] + $rap_pakaian_dinas['total'] + $rap_alat_tulis_kantor['total'] + $rap_perlengkapan_kantor['total'] + $rap_beban_kirim['total'] + $rap_beban_lain_lain['total'] + $rap_biaya_sewa_kendaraan['total'] + $rap_thr_bonus['total'] + $rap_biaya_admin_bank['total'];
-
 			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_penjualan + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus + $biaya_admin_bank;
-
 			$total_evaluasi = $total_rap - $total_realisasi;
+
+			$volume_rap = $this->db->select('rbd.qty as volume')
+			->from('rap_bua rap')
+			->from('rap_bua_detail rbd', 'rap.id = rbd.rap_bua_id','left')
+			->where("rap.tanggal_rap_bua < '$date2'")
+			->get()->row_array();
+		
+			$volume_rap = round($volume_rap['volume'],2);
+
+			$volume_realisasi = $this->db->select('SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->row_array();
+
+			$volume_realisasi = round($volume_realisasi['volume'],2);
+
+			$total_eveluasi_rap = $total_rap / $volume_rap;
+			$total_eveluasi_realisasi = $total_realisasi / $volume_realisasi;
+			$total_eveluasi_all = $total_eveluasi_rap - $total_eveluasi_realisasi;
 
 			?>
 			
@@ -767,6 +788,8 @@
 				$styleColorP = $evaluasi_biaya_sewa_kendaraan < 0 ? 'color:red' : 'color:black';
 				$styleColorQ = $evaluasi_thr_bonus < 0 ? 'color:red' : 'color:black';
 				$styleColorR = $evaluasi_biaya_admin_bank < 0 ? 'color:red' : 'color:black';
+				$styleColorS = $total_evaluasi < 0 ? 'color:red' : 'color:black';
+				$styleColorT = $total_eveluasi_all < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center">1</th>			
@@ -916,7 +939,13 @@
 				<th align="center" colspan="3">TOTAL</th>
 				<th align="right"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
+	        </tr>
+			<tr class="table-total">
+				<th align="center" colspan="3">EVALUASI</th>
+				<th align="right"><?php echo number_format($total_eveluasi_rap,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorT ?>"><?php echo number_format($total_eveluasi_all,0,',','.');?></th>
 	        </tr>
 			
 	    </table>
