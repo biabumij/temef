@@ -4755,6 +4755,12 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center" colspan="3">VOLUME</th>
+				<th class="text-right"><?php echo number_format($volume_rap,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_evaluasi,2,',','.');?></th>
+				<th class="text-right"></th>
+	        </tr>
+			<tr class="table-active3">
 				<th class="text-center" colspan="3">EVALUASI</th>
 				<th class="text-right"><?php echo number_format($total_eveluasi_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>

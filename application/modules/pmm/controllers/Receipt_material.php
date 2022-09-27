@@ -1097,10 +1097,10 @@ class Receipt_material extends CI_Controller {
 			</style>
 			<tr class="table-active4">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="25%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+				<th width="40%" class="text-center" rowspan="2" style="vertical-align:middle;">URAIAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
 				<th width="20%" class="text-center" colspan="2">HUTANG</th>
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">KET.</th>
 	        </tr>
@@ -2185,7 +2185,7 @@ class Receipt_material extends CI_Controller {
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left">1.5 <?= $penerima_10['nama'];?></th>
+				<th class="text-left">2.5 <?= $penerima_10['nama'];?></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
