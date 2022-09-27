@@ -945,7 +945,7 @@
 				<th align="center" colspan="2">VOLUME</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap,0,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_evaluasi,0,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_realisasi,0,',','.');?></th>
 				<th align="right"></th>
 	        </tr>
 			<tr class="table-total">
