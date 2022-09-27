@@ -4758,7 +4758,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" colspan="2">VOLUME</th>
 				<th class="text-right">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($v,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_evaluasi,2,',','.');?></th>
 				<th class="text-right"></th>
 	        </tr>
 			<tr class="table-active3">
