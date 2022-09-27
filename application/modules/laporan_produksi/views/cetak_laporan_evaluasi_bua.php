@@ -936,7 +936,8 @@
 				<th align="right" style="<?php echo $styleColorR ?>"><?php echo number_format($evaluasi_biaya_admin_bank,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3">TOTAL</th>
+				<th align="center" colspan="2">TOTAL</th>
+				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_realisasi,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>

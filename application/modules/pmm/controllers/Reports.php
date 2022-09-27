@@ -4750,20 +4750,21 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="3">TOTAL</th>
+				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_realisasi,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_evaluasi,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="2">VOLUME</th>
-				<th class="text-right">M3</th>
+				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_realisasi,2,',','.');?></th>
 				<th class="text-right"></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center" colspan="2">EVALUASI</th>
-				<th class="text-right">M3</th>
+				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_eveluasi_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorT ?>"><?php echo number_format($total_eveluasi_all,0,',','.');?></th>
