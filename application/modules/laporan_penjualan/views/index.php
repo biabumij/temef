@@ -154,7 +154,7 @@
                                             <div class="panel panel-default">  
 												<div class="panel-heading">												
                                                     <h3 class="panel-title">Laporan Piutang</h3>
-													<a href="laporan_pembelian">Kembali</a>
+													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
                                                     <div class="row">
@@ -238,7 +238,7 @@
                 }
             });
             $('#filter_date_pengiriman_penjualan').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
                 PengirimanPenjualan();
             });
 
@@ -301,7 +301,7 @@
             $('#filter_date_piutang').daterangepicker({
                 autoUpdateInput: false,
 				showDropdowns : true,
-                //singleDatePicker: true,
+                singleDatePicker: true,
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
@@ -316,7 +316,7 @@
             });
 
             $('#filter_date_piutang').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
                 LaporanPiutang();
             });
 

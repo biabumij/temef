@@ -3,43 +3,6 @@
 	<head>
 	  <title>LAPORAN HUTANG</title>
 	  
-	<?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
-		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		
-		$subject = "$filter_date";
-
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
-	  
 	  <style type="text/css">
 		table tr.table-judul{
 			background-color: #e69500;
@@ -86,7 +49,33 @@
 					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN HUTANG</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
+					<?php
+					function tgl_indo($date2){
+						$bulan = array (
+							1 =>   'Januari',
+							'Februari',
+							'Maret',
+							'April',
+							'Mei',
+							'Juni',
+							'Juli',
+							'Agustus',
+							'September',
+							'Oktober',
+							'November',
+							'Desember'
+						);
+						$pecahkan = explode('-', $date2);
+						
+						// variabel pecahkan 0 = tanggal
+						// variabel pecahkan 1 = bulan
+						// variabel pecahkan 2 = tahun
+					
+						return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+						
+					}
+					?>
+					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PER <?= tgl_indo(date($date2)); ?></div>
 				</td>
 			</tr>
 		</table>	

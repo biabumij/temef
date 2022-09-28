@@ -364,6 +364,7 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
 
 			$this->db->select('ppo.id, ppo.supplier_id, ps.nama as name');
 			$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
@@ -581,6 +582,7 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
 
 		$this->db->select('po.id, po.client_id, ps.nama as name');
 		$this->db->join('pmm_sales_po po','pp.salesPo_id = po.id','left');
