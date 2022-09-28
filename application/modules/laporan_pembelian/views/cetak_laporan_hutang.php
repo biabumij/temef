@@ -164,12 +164,12 @@
             ?>
             <tr class="table-total">
 				<th align="right" colspan="2">TOTAL</th>
-				<th align="right"><?php echo number_format($total_penerimaan,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_tagihan,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_tagihan_bruto,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_pembayaran,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_sisa_hutang_penerimaan,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_sisa_hutang_tagihan,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_penerimaan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_tagihan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_tagihan_bruto,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pembayaran,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_sisa_hutang_penerimaan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_sisa_hutang_tagihan,0,',','.');?></th>
             </tr>   
 		</table>
 		
