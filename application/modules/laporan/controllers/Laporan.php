@@ -448,6 +448,138 @@ class Laporan extends Secure_Controller {
 	
 	}
 
+	public function cetak_monitoring_hutang()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$filter_kategori = $this->input->get('filter_kategori');
+		$start_date = false;
+		$end_date = false;
+		$total_dpp_tagihan = 0;
+		$total_ppn_tagihan = 0;
+		$total_jumlah_tagihan = 0;
+		$total_dpp_pembayaran = 0;
+		$total_ppn_pembayaran = 0;
+		$total_jumlah_pembayaran = 0;
+		$total_dpp_sisa_hutang = 0;
+		$total_ppn_sisa_hutang = 0;
+		$total_jumlah_sisa_hutang = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
+
+			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
+			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
+			$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+			
+			if(!empty($start_date) && !empty($end_date)){
+				$this->db->where('ppp.tanggal_invoice >=',$start_date);
+				$this->db->where('ppp.tanggal_invoice <=',$end_date);
+			}
+			if(!empty($supplier_id)){
+				$this->db->where('ppo.supplier_id',$supplier_id);
+			}
+			if(!empty($filter_kategori)){
+				$this->db->where('ppo.kategori_id',$filter_kategori);
+			}
+
+			$this->db->group_by('ppp.supplier_id');
+			$this->db->order_by('ps.nama','asc');
+			$query = $this->db->get('pmm_penagihan_pembelian ppp');
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+					$mats = array();
+					$materials = $this->pmm_model->GetLaporanMonitoringHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
+					if(!empty($materials)){
+						foreach ($materials as $key => $row) {
+							$arr['no'] = $key + 1;
+							$arr['nama'] = $row['nama'];
+							$arr['subject'] = $row['subject'];
+							$arr['status'] = $row['status'];
+							$arr['syarat_pembayaran'] = $row['syarat_pembayaran'];
+							$arr['nomor_invoice'] = $row['nomor_invoice'];
+							$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
+							$arr['tanggal_diterima_proyek'] =  date('d-m-Y',strtotime($row['tanggal_diterima_proyek']));
+							$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
+							$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
+							$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
+							$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
+							$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
+							$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
+							$arr['dpp_sisa_hutang'] = number_format($row['dpp_sisa_hutang'],0,',','.');
+							$arr['ppn_sisa_hutang'] = number_format($row['ppn_sisa_hutang'],0,',','.');
+							$arr['jumlah_sisa_hutang'] = number_format($row['jumlah_sisa_hutang'],0,',','.');
+
+							$total_dpp_tagihan += $row['dpp_tagihan'];
+							$total_ppn_tagihan += $row['ppn_tagihan'];
+							$total_jumlah_tagihan += $row['jumlah_tagihan'];
+							$total_dpp_pembayaran += $row['dpp_pembayaran'];
+							$total_ppn_pembayaran += $row['ppn_pembayaran'];
+							$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
+							$total_dpp_sisa_hutang += $row['dpp_sisa_hutang'];
+							$total_ppn_sisa_hutang += $row['ppn_sisa_hutang'];
+							$total_jumlah_sisa_hutang += $row['jumlah_sisa_hutang'];
+							
+							
+							$arr['name'] = $sups['name'];
+							$mats[] = $arr;
+						}
+						$sups['mats'] = $mats;
+						$sups['no'] =$no;
+
+						$arr_data[] = $sups;
+						$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
+			$data['total_ppn_tagihan'] = $total_ppn_tagihan;
+			$data['total_jumlah_tagihan'] = $total_jumlah_tagihan;
+			$data['total_dpp_pembayaran'] = $total_dpp_pembayaran;
+			$data['total_ppn_pembayaran'] = $total_ppn_pembayaran;
+			$data['total_jumlah_pembayaran'] = $total_jumlah_pembayaran;
+			$data['total_dpp_sisa_hutang'] = $total_dpp_sisa_hutang;
+			$data['total_ppn_sisa_hutang'] = $total_ppn_sisa_hutang;
+			$data['total_jumlah_sisa_hutang'] = $total_jumlah_sisa_hutang;
+	        $html = $this->load->view('laporan_pembelian/cetak_monitoring_hutang',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Laporan Monitoring Hutang');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('laporan-monitoring.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
