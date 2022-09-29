@@ -687,13 +687,17 @@ class Pembelian extends Secure_Controller
         $this->db->join('pmm_purchase_order po', 'po.id = pp.purchase_order_id', 'left');
         $query = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
 
+        $this->db->select('p.nama_produk');
+		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
+        $detail_produk = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+        $query['nama_produk'] = $detail_produk['nama_produk'];
+
         $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
         $this->db->where("ppd.tax_id in (3,6)");
         $detail = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
-
+        
         $query['ppn'] = $detail['tax'];
-		$query['nama_produk'] = $detail['nama_produk'];
 
         $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
@@ -905,7 +909,7 @@ class Pembelian extends Secure_Controller
             }
 
             // update transaction 
-            $this->db->update('pmm_penagihan_pembelian', array('transaction_id' => $coa_1), array('id' => $penagihan_pembelian_id));
+            //$this->db->update('pmm_penagihan_pembelian', array('transaction_id' => $coa_1), array('id' => $penagihan_pembelian_id));
 
             if ($arr_detail['uang_muka'] > 0) {
                 if (!empty($coa_supp) || $coa_supp > 0) {
@@ -922,7 +926,7 @@ class Pembelian extends Secure_Controller
                     $coa_2 .= ',' . $transaction_id;
 
                     // update pembayaran
-                    $this->db->update('pmm_pembayaran_penagihan_pembelian', array('status' => 'Disetujui', 'transaction_id' => $coa_2), array('id' => $pembayaran_panagihan['id']));
+                    $this->db->update('pmm_pembayaran_penagihan_pembelian', array('status' => 'Disetujui'), array('id' => $pembayaran_panagihan['id']));
                 }
             }
 
@@ -985,22 +989,6 @@ class Pembelian extends Secure_Controller
             $penagihan_pembelian = $this->db->get_where('pmm_penagihan_pembelian', array('id' => $id))->row_array();
             $deskripsi = 'Nomor Invoice ' . $penagihan_pembelian['nomor_invoice'];
             $this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_pembelian', $id, $deskripsi);
-
-            // Delete Transaction
-            $arr_trans = explode(',', $penagihan_pembelian['transaction_id']);
-            $this->db->where_in('id', $arr_trans);
-            $this->db->delete('transactions');
-
-            $details = $this->db->select('transaction_id')->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id))->result_array();
-
-            if (!empty($details)) {
-                foreach ($details as $key => $dt) {
-                    $arr_trans_2 = explode(',', $dt['transaction_id']);
-                    $this->db->where_in('id', $arr_trans_2);
-                    $this->db->delete('transactions');
-                }
-            }
-
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_verifikasi_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
