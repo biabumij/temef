@@ -1172,11 +1172,15 @@ class Receipt_material extends CI_Controller {
 				$materials = $this->pmm_model->GetLaporanMonitoringHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
+						$awal  = date_create($row['tanggal_diterima_proyek']);
+						$akhir = date_create($end_date);
+						$diff  = date_diff( $awal, $akhir );
+
 						$arr['no'] = $key + 1;
 						$arr['nama'] = $row['nama'];
 						$arr['subject'] = $row['subject'];
 						$arr['status'] = $row['status'];
-						$arr['syarat_pembayaran'] = $row['syarat_pembayaran'];
+						$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 						$arr['tanggal_diterima_proyek'] =  date('d-m-Y',strtotime($row['tanggal_diterima_proyek']));
