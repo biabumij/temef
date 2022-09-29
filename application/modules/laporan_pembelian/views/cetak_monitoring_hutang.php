@@ -7,28 +7,28 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 		}
 
 		table tr.table-baris1-bold{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 			font-weight: bold;
 		}
 			
 		table tr.table-baris2{
-			font-size: 8px;
+			font-size: 7px;
 			background-color: #E8E8E8;
 		}
 
 		table tr.table-baris2-bold{
-			font-size: 8px;
+			font-size: 7px;
 			background-color: #E8E8E8;
 			font-weight: bold;
 		}
@@ -36,7 +36,7 @@
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
@@ -156,7 +156,7 @@
 					}	
 					?>
 					<tr class="table-baris2-bold">
-						<td align="right" colspan="4">JUMLAH</td>
+						<td align="right" colspan="5">JUMLAH</td>
 						<td align="right"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></td>
 						<td align="right"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
 						<td align="right"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
@@ -180,7 +180,7 @@
             }
             ?>
             <tr class="table-total">
-				<th align="right" colspan="2">TOTAL</th>
+				<th align="right" colspan="5">TOTAL</th>
 				<th align="right"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
