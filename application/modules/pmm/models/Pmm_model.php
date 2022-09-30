@@ -186,6 +186,23 @@ class Pmm_model extends CI_Model {
             
     }
 
+    function GetNoRencanaKerja()
+    {
+
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+        $output = false;
+
+        $query = $this->db->select('id')->order_by('id','desc')->get('rap_alat');
+        if($query->num_rows() > 0){
+            $id = $query->row_array()['id'] + 1;
+        }else {
+            $id = 1;
+        }
+        $output = sprintf('%03d', $id).'/RENCANA-KERJA/'.date('m').'/'.date('Y');
+        return $output;
+            
+    }
+
     function GetNoPenawaranPembelian()
     {
         $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
@@ -3411,6 +3428,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = prm.purchase_order_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
         SUM(prm.display_price) - 
@@ -3420,6 +3438,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = prm.purchase_order_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as sisa_hutang_penerimaan,
         (
@@ -3436,6 +3455,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on pppp.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = prm.purchase_order_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as sisa_hutang_tagihan');
         $this->db->join('produk p','prm.material_id = p.id','left');

@@ -315,7 +315,7 @@
                 }
             });
             $('#filter_date_pengiriman_penjualan').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
                 PengirimanPenjualan();
             });
 

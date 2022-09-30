@@ -6602,5 +6602,233 @@ class Reports extends CI_Controller {
 		<?php
 	}
 
+	public function prognosa_produksi($arr_date)
+	{
+		$data = array();
+		
+		$arr_date = $this->input->post('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date1 = '';
+		$date2 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		
+		?>
+		
+		<table class="table table-bordered" width="100%">
+			<style type="text/css">
+				table tr.table-active{
+					background-color: #F0F0F0;
+					font-size: 12px;
+					font-weight: bold;
+					color: black;
+				}
+					
+				table tr.table-active2{
+					background-color: #E8E8E8;
+					font-size: 12px;
+					font-weight: bold;
+				}
+					
+				table tr.table-active3{
+					font-size: 12px;
+					background-color: #F0F0F0;
+				}
+					
+				table tr.table-active4{
+					background-color: #e69500;
+					font-weight: bold;
+					font-size: 12px;
+					color: black;
+				}
+				table tr.table-active5{
+					background-color: #E8E8E8;
+					text-decoration: underline;
+					font-size: 12px;
+					font-weight: bold;
+					color: red;
+				}
+				table tr.table-activeago1{
+					background-color: #ffd966;
+					font-weight: bold;
+					font-size: 12px;
+					color: black;
+				}
+				table tr.table-activeopening{
+					background-color: #2986cc;
+					font-weight: bold;
+					font-size: 12px;
+					color: black;
+				}
+			</style>
+			
+			<?php
+			$date_agustus = date('2022-08-31');
+			$penjualan_akumulasi_produk_a = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production <= '$date_agustus')")
+			->where("pp.status = 'PUBLISH'")
+			->where("pp.product_id = 2")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.product_id")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+			$volume_akumulasi_produk_a = $penjualan_akumulasi_produk_a['volume'];
+			$nilai_akumulasi_produk_a = $penjualan_akumulasi_produk_a['price'];
+
+			$penjualan_akumulasi_produk_b = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production <= '$date_agustus')")
+			->where("pp.status = 'PUBLISH'")
+			->where("pp.product_id = 1")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.product_id")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+			$volume_akumulasi_produk_b = $penjualan_akumulasi_produk_b['volume'];
+			$nilai_akumulasi_produk_b = $penjualan_akumulasi_produk_b['price'];
+
+			$penjualan_akumulasi_produk_c = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production <= '$date_agustus')")
+			->where("pp.status = 'PUBLISH'")
+			->where("pp.product_id = 3")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.product_id")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+			$volume_akumulasi_produk_c = $penjualan_akumulasi_produk_c['volume'];
+			$nilai_akumulasi_produk_c = $penjualan_akumulasi_produk_c['price'];
+
+			$penjualan_akumulasi_produk_d = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production <= '$date_agustus')")
+			->where("pp.status = 'PUBLISH'")
+			->where("pp.product_id = 11")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.product_id")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+			$volume_akumulasi_produk_d = $penjualan_akumulasi_produk_d['volume'];
+			$nilai_akumulasi_produk_d = $penjualan_akumulasi_produk_d['price'];
+
+
+			$total_akumulasi_volume = $volume_akumulasi_produk_a + $volume_akumulasi_produk_b + $volume_akumulasi_produk_c + $volume_akumulasi_produk_d;
+			$total_akumulasi_nilai = $nilai_akumulasi_produk_a + $nilai_akumulasi_produk_b + $nilai_akumulasi_produk_c + $nilai_akumulasi_produk_d;
+			?>
+
+			<?php
+			$date_september_awal = date('2022-09-01');
+			$date_september_akhir = date('2022-09-30');
+			$rencana_kerja_september = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+			$volume_september_produk_a = $rencana_kerja_september['vol_produk_a'];
+			$volume_september_produk_b = $rencana_kerja_september['vol_produk_b'];
+			$volume_september_produk_c = $rencana_kerja_september['vol_produk_c'];
+			$volume_september_produk_d = $rencana_kerja_september['vol_produk_d'];
+
+
+			$total_september_volume = $volume_september_produk_a + $volume_september_produk_b + $volume_september_produk_c + $volume_september_produk_d;
+			$total_september_nilai = $rencana_kerja_september['pendapatan_usaha'];
+			?>
+			<tr class="table-active4">
+				<th width="5%" class="text-center" rowspan="2">NO.</th>
+				<th width="15%" class="text-center" rowspan="2">URAIAN</th>
+				<th width="15%" class="text-center" rowspan="2">SATUAN</th>
+				<th width="15%" class="text-center" rowspan="2">REALISASI SMT 1-2 SD AGUSTUS 2022</th>
+				<th width="35%" class="text-center" colspan="4">2022 (SEMESTER 3)</th>
+				<th width="15%" class="text-center">TOTAL SD. SMT3</th>
+	        </tr>
+			<tr class="table-active4">
+				<th class="text-center">SD. SEPTEMBER</th>
+				<th class="text-center">SD. OKTOBER</th>
+				<th class="text-center">SD. NOVEMBER</th>
+				<th class="text-center">SD. DESEMBER</th>
+				<th class="text-center">SD. 2022</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center">1</th>
+				<th class="text-left">Beton K 125 (10±2)</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_september_produk_a,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>	
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">2</th>
+				<th class="text-left">Beton K 225 (10±2)</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_september_produk_b,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>	
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">2</th>
+				<th class="text-left">Beton K 250 (10±2)</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_september_produk_c,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>	
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">2</th>
+				<th class="text-left">Beton K 250 (18±2)</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_september_produk_d,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>	
+			</tr>
+			<tr class="table-active2">
+				<th class="text-left"></th>
+				<th class="text-left">TOTAL VOLUME</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_september_volume,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active2">
+				<th class="text-left"></th>
+				<th class="text-left">PENDAPATAN USAHA</th>
+				<th class="text-center">M3</th>
+				<th class="text-right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_september_nilai,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+	    </table>
+		<?php
+	}
+
 
 }
