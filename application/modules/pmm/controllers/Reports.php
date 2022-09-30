@@ -6808,7 +6808,7 @@ class Reports extends CI_Controller {
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">REALISASI SD. AGUSTUS 2022</th>
+				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">REALISASI SMT 1-2 SD AGUSTUS</th>
 				<th width="40%" class="text-center" colspan="4">2022 (SMT 3)</th>
 				<th width="15%" class="text-center">TOTAL SD. SMT3</th>
 	        </tr>
