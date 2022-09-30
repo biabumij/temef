@@ -6801,7 +6801,7 @@ class Reports extends CI_Controller {
 			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_september_produk_c + $volume_oktober_produk_c + $volume_november_produk_c + $volume_desember_produk_c;
 			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_september_produk_d + $volume_oktober_produk_d + $volume_november_produk_d + $volume_desember_produk_d;
 
-			$total_all_volume = $total_akumulasi_volume + $total_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
+			$total_all_volume = $total_akumulasi_volume + $total_september_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume;
 			$total_all_nilai = $total_akumulasi_nilai + $total_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
 			?>
 			<tr class="table-active4">
