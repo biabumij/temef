@@ -140,13 +140,13 @@ class Komposisi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Komposisi Agregat !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat Komposisi Agregat !!');
 			redirect('komposisi/komposisi_agregat');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Komposisi Agregat  !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Komposisi Agregat  !!');
 			redirect('admin/komposisi');
 		}
 	}

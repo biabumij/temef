@@ -733,14 +733,14 @@ class Finance extends CI_Controller {
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','Gagal membuat Penawaran Penjualan !!');
+				$this->session->set_flashdata('notif_error','Gagal Membuat Penawaran Penjualan !!');
 				redirect('pmm/finance/penawaran_penjualan');
 			} 
 			else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','Berhasil membuat Penawaran Penjualan !!');
+				$this->session->set_flashdata('notif_success','Berhasil Membuat Penawaran Penjualan !!');
 				redirect('admin/penjualan');
 			}
 
@@ -1158,14 +1158,14 @@ class Finance extends CI_Controller {
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','Gagal membuat terima uang !!');
+				$this->session->set_flashdata('notif_error','Gagal Membuat terima uang !!');
 				redirect('pmm/finance/terima_uang');
 			} 
 			else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','Berhasil membuat terima uang !!');
+				$this->session->set_flashdata('notif_success','Berhasil Membuat terima uang !!');
 				redirect('admin/kas_&_bank');
 			}
 		}
@@ -1283,14 +1283,14 @@ class Finance extends CI_Controller {
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','Gagal membuat transfer !!');
+				$this->session->set_flashdata('notif_error','Gagal Membuat Transfer !!');
 				redirect('pmm/finance/transfer_uang');
 			} 
 			else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','Berhasil membuat transfer !!');
+				$this->session->set_flashdata('notif_success','Berhasil Membuat Transfer !!');
 				redirect('admin/kas_&_bank');
 			}
 		}

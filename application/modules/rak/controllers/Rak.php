@@ -109,13 +109,13 @@ class Rak extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Rencana Kerja !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat Rencana Kerja !!');
 			redirect('admin/rencana_kerja');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Rencana Kerja !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Rencana Kerja !!');
 			redirect('admin/rencana_kerja');
 		}
 	}

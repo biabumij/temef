@@ -140,13 +140,13 @@ class Rap extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat RAP Bahan !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat RAP Bahan !!');
 			redirect('rap/rap');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat RAP Bahan  !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat RAP Bahan  !!');
 			redirect('admin/rap');
 		}
 	}
@@ -415,13 +415,13 @@ class Rap extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat RAP Alat !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat RAP Alat !!');
 			redirect('admin/rap');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat RAP Alat !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat RAP Alat !!');
 			redirect('admin/rap');
 		}
 	}

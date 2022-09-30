@@ -100,13 +100,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP Bahan Baku !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat HPP Bahan Baku !!');
 			redirect('/hpp_&_akumulasi/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP Bahan Baku !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat HPP Bahan Baku !!');
 			redirect('admin//hpp_&_akumulasi');
 		}
 	}
@@ -190,13 +190,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Baku !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat Akumulasi Pergerakan Bahan Baku !!');
 			redirect('/hpp_&_akumulasi/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Baku !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Akumulasi Pergerakan Bahan Baku !!');
 			redirect('admin//hpp_&_akumulasi');
 		}
 	}

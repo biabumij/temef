@@ -231,7 +231,7 @@ class Biaya extends CI_Controller {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-             $this->session->set_flashdata('notif_success','Berhasil membuat Biaya !!');
+             $this->session->set_flashdata('notif_success','Berhasil Membuat Biaya !!');
             redirect('admin/biaya');
         }
 
