@@ -34,10 +34,10 @@ class Rak extends Secure_Controller {
 	{
 		$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
 		$nomor_rencana_kerja = $this->input->post('nomor_rencana_kerja');
-		$vol_produk_a =  str_replace('.', '', $this->input->post('vol_produk_a'));
-		$vol_produk_b =  str_replace('.', '', $this->input->post('vol_produk_b'));
-		$vol_produk_c =  str_replace('.', '', $this->input->post('vol_produk_c'));
-		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
+		$vol_produk_a =  str_replace(',', '', $this->input->post('vol_produk_a'));
+		$vol_produk_b =  str_replace(',', '', $this->input->post('vol_produk_b'));
+		$vol_produk_c =  str_replace(',', '', $this->input->post('vol_produk_c'));
+		$vol_produk_d =  str_replace(',', '', $this->input->post('vol_produk_d'));
 		$pendapatan_usaha =  str_replace('.', '', $this->input->post('pendapatan_usaha'));
 
 		$this->db->trans_start(); # Starting Transaction
