@@ -192,7 +192,7 @@ class Pmm_model extends CI_Model {
         $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
         $output = false;
 
-        $query = $this->db->select('id')->order_by('id','desc')->get('rap_alat');
+        $query = $this->db->select('id')->order_by('id','desc')->get('rak');
         if($query->num_rows() > 0){
             $id = $query->row_array()['id'] + 1;
         }else {
