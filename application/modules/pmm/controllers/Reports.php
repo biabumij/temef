@@ -6814,7 +6814,6 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">SEPTEMBER</th>
-				<th class="text-center">SD. SEPTEMBER</th>
 				<th class="text-center">OKTOBER</th>
 				<th class="text-center">NOVEMBER</th>
 				<th class="text-center">DESEMBER</th>
