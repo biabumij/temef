@@ -1870,28 +1870,28 @@ class Reports extends CI_Controller {
 				$styleColorEE = $total_nilai_evaluasi < 0 ? 'background-color:red' : 'background-color:none';
 			?>
 			<tr>
-				<th class="text-center"style="vertical-align:middle">1</th>			
+				<th class="text-center" style="vertical-align:middle">1</th>			
 				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
 			<tr>
-				<th class="text-center"style="vertical-align:middle">2</th>			
+				<th class="text-center" style="vertical-align:middle">2</th>			
 				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
 				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
 			<tr>
-				<th class="text-center"style="vertical-align:middle">3</th>			
+				<th class="text-center" style="vertical-align:middle">3</th>			
 				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
 				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
 			<tr>
-				<th class="text-center"style="vertical-align:middle">4</th>			
+				<th class="text-center" style="vertical-align:middle">4</th>			
 				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
 				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
@@ -3428,7 +3428,7 @@ class Reports extends CI_Controller {
 				$styleColorEE = $total_nilai_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle">1</th>			
+				<th class="text-center" style="vertical-align:middle">1</th>			
 				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
 				<th class="text-right"><?php echo number_format($volume_a,2,',','.');?></th>
@@ -3439,7 +3439,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle">2</th>			
+				<th class="text-center" style="vertical-align:middle">2</th>			
 				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_b,2,',','.');?></th>
@@ -3450,7 +3450,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle">3</th>			
+				<th class="text-center" style="vertical-align:middle">3</th>			
 				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_c,2,',','.');?></th>
@@ -3461,7 +3461,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle">4</th>			
+				<th class="text-center" style="vertical-align:middle">4</th>			
 				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_d,2,',','.');?></th>
@@ -5883,7 +5883,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($nilai_opening_balance_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian (PCC)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen,2,',','.');?></th>
@@ -5897,7 +5897,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Jasa Angkut Semen (PCC)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"></th>
@@ -5911,7 +5911,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian (CONS)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_cons,2,',','.');?></th>
@@ -5925,7 +5925,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_cons_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Jasa Angkut Semen (CONS)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"></th>
@@ -5939,7 +5939,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_cons_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian (OPC)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_opc,2,',','.');?></th>
@@ -5953,7 +5953,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_opc_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Jasa Angkut Semen (OPC)</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"></th>
@@ -5967,7 +5967,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_opc_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left"><i>Produksi</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"></th>
@@ -5991,7 +5991,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
@@ -6005,7 +6005,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_pasir_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+			<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left"><i>Produksi</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"></th>
@@ -6029,7 +6029,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
@@ -6043,7 +6043,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu1020_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left"><i>Produksi</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"></th>
@@ -6067,7 +6067,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
@@ -6081,7 +6081,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu2030_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left"><i>Produksi</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"></th>
@@ -6098,12 +6098,12 @@ class Reports extends CI_Controller {
 	            <th class="text-center" colspan="12">BAHAN BAKU</th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $date2_ago;?></th>			
+				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>			
 				<th class="text-left" colspan="10"><i>Opening Balance</i></th>
 				<th class="text-right"><?php echo number_format($total_opening_balance_bahan_baku,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>		
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>		
 				<th class="text-left"><i>Semen</i></th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
@@ -6117,7 +6117,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pasir</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
@@ -6131,7 +6131,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Batu Split 10-20</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
@@ -6145,7 +6145,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Batu Split 20-30</i></th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
@@ -6559,7 +6559,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_solar,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian</i></th>
 				<th class="text-center">Liter</th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_solar,2,',','.');?></th>
@@ -6573,7 +6573,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_solar_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left"><i>Produksi</i></th>
 				<th class="text-center">Liter</th>
 				<th class="text-center"></th>
@@ -6796,15 +6796,20 @@ class Reports extends CI_Controller {
 			$total_desember_volume = $volume_desember_produk_a + $volume_desember_produk_b + $volume_desember_produk_c + $volume_desember_produk_d;
 			$total_desember_nilai = $rencana_kerja_desember['pendapatan_usaha'];
 			
-			//$total_all_produk_a = $volume_akumulasi_produk_a + $volume_september_produk_a + $volume_oktober_produk_a + $volume_november_produk_a + $volume_desember_produk_a;
-			//$total_all_produk_a = $volume_akumulasi_produk_b + $volume_september_produk_b + $volume_oktober_produk_b + $volume_november_produk_b + $volume_desember_produk_b;
+			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_september_produk_a + $volume_oktober_produk_a + $volume_november_produk_a + $volume_desember_produk_a;
+			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_september_produk_b + $volume_oktober_produk_b + $volume_november_produk_b + $volume_desember_produk_b;
+			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_september_produk_c + $volume_oktober_produk_c + $volume_november_produk_c + $volume_desember_produk_c;
+			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_september_produk_d + $volume_oktober_produk_d + $volume_november_produk_d + $volume_desember_produk_d;
+
+			$total_all_volume = $total_akumulasi_volume + $total_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
+			$total_all_nilai = $total_akumulasi_nilai + $total_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
 			?>
 			<tr class="table-active4">
-				<th width="5%" class="text-center" rowspan="2">NO.</th>
-				<th width="15%" class="text-center" rowspan="2">URAIAN</th>
-				<th width="15%" class="text-center" rowspan="2">SATUAN</th>
-				<th width="15%" class="text-center" rowspan="2">REALISASI SMT 1-2 SD AGUSTUS 2022</th>
-				<th width="35%" class="text-center" colspan="4">2022 (SEMESTER 3)</th>
+				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
+				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
+				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">REALISASI SMT 1-2 SD AGUSTUS 2022</th>
+				<th width="35%" class="text-center" colspan="4">2022 (SMT 3)</th>
 				<th width="15%" class="text-center">TOTAL SD. SMT3</th>
 	        </tr>
 			<tr class="table-active4">
@@ -6823,7 +6828,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_oktober_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
-				<th class="text-right"></th>	
+				<th class="text-right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">2</th>
@@ -6834,10 +6839,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_oktober_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
-				<th class="text-right"></th>	
+				<th class="text-right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active3">
-				<th class="text-center">2</th>
+				<th class="text-center">3</th>
 				<th class="text-left">Beton K 250 (10±2)</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
@@ -6845,10 +6850,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_oktober_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
-				<th class="text-right"></th>	
+				<th class="text-right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active3">
-				<th class="text-center">2</th>
+				<th class="text-center">4</th>
 				<th class="text-left">Beton K 250 (18±2)</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
@@ -6856,7 +6861,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_oktober_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
-				<th class="text-right"></th>	
+				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"></th>
@@ -6867,7 +6872,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_oktober_volume,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_november_volume,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_volume,2,',','.');?></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"></th>
@@ -6878,7 +6883,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_oktober_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_november_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 			</tr>
 	    </table>
 		<?php
