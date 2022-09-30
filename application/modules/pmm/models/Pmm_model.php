@@ -3609,6 +3609,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
         SUM(pp.display_price) - 
@@ -3618,6 +3619,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as sisa_piutang_penerimaan,
         (
@@ -3634,6 +3636,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_penjualan ppp 
             on pppp.penagihan_id = ppp.id 
             where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as sisa_piutang_tagihan');
         $this->db->join('produk p','pp.product_id = p.id','left');
