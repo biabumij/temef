@@ -145,7 +145,6 @@ class Rak extends Secure_Controller {
                 $row['no'] = $key+1;
 				$row['tanggal_rencana_kerja'] =  date('d F Y',strtotime($row['tanggal_rencana_kerja']));
 				$row['nomor_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' . $row["nomor_rencana_kerja"] . "</a>";
-				$row['pendapatan_usaha'] = number_format($row['pendapatan_usaha'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				

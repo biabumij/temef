@@ -63,7 +63,6 @@
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
-                                                        <th class="text-center">Rencana Pendapatan Usaha</th>
                                                         <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
 													</tr>
@@ -125,9 +124,6 @@
 				{
                     "data": "nomor_rencana_kerja"
                 },
-				{
-                    "data": "pendapatan_usaha"
-                },
                 {
                     "data": "lampiran"
                 },
@@ -136,13 +132,9 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 5],
+                    "targets": [0, 1, 3, 4],
                     "className": 'text-center',
                 },
-                {
-                    "targets": [4],
-                    "className": 'text-right',
-                }
             ],
         });
 	
