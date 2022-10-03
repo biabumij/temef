@@ -7335,7 +7335,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">Diskonto</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
-				<th class="text-right"<?php echo number_format($total_diskonto_september,0,',','.');?>></th>
+				<th class="text-right"><?php echo number_format($total_diskonto_september,0,',','.');?></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
