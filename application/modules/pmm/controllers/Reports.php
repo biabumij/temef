@@ -6825,6 +6825,14 @@ class Reports extends CI_Controller {
 
 			$total_oktober_volume = $volume_oktober_produk_a + $volume_oktober_produk_b + $volume_oktober_produk_c + $volume_oktober_produk_d;
 			$total_oktober_nilai = $rencana_kerja_oktober['pendapatan_usaha'];
+
+			$total_oktober_biaya_bahan = $rencana_kerja_oktober['biaya_bahan'];
+			$total_oktober_biaya_alat = $rencana_kerja_oktober['biaya_alat'];
+			$total_oktober_biaya_overhead = $rencana_kerja_oktober['biaya_overhead'];
+			$total_oktober_biaya_bank = $rencana_kerja_oktober['biaya_bank'];
+			$total_oktober_biaya_persiapan = $rencana_kerja_oktober['biaya_persiapan'];
+
+			$total_biaya_oktober_biaya = $total_oktober_biaya_bahan + $total_oktober_biaya_alat + $total_oktober_biaya_overhead + $total_oktober_biaya_bank + $total_oktober_biaya_persiapan;
 			?>
 			
 			<?php
@@ -6842,6 +6850,14 @@ class Reports extends CI_Controller {
 
 			$total_november_volume = $volume_november_produk_a + $volume_november_produk_b + $volume_november_produk_c + $volume_november_produk_d;
 			$total_november_nilai = $rencana_kerja_november['pendapatan_usaha'];
+
+			$total_november_biaya_bahan = $rencana_kerja_november['biaya_bahan'];
+			$total_november_biaya_alat = $rencana_kerja_november['biaya_alat'];
+			$total_november_biaya_overhead = $rencana_kerja_november['biaya_overhead'];
+			$total_november_biaya_bank = $rencana_kerja_november['biaya_bank'];
+			$total_november_biaya_persiapan = $rencana_kerja_november['biaya_persiapan'];
+
+			$total_biaya_november_biaya = $total_november_biaya_bahan + $total_november_biaya_alat + $total_november_biaya_overhead + $total_november_biaya_bank + $total_november_biaya_persiapan;
 			?>
 
 			<?php
@@ -6856,7 +6872,6 @@ class Reports extends CI_Controller {
 			$volume_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
 			$volume_desember_produk_d = $rencana_kerja_desember['vol_produk_d'];
 
-
 			$total_desember_volume = $volume_desember_produk_a + $volume_desember_produk_b + $volume_desember_produk_c + $volume_desember_produk_d;
 			$total_desember_nilai = $rencana_kerja_desember['pendapatan_usaha'];
 			
@@ -6867,6 +6882,14 @@ class Reports extends CI_Controller {
 
 			$total_all_volume = $total_akumulasi_volume + $total_realisasi_september_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume;
 			$total_all_nilai = $total_akumulasi_nilai + $total_realisasi_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
+
+			$total_desember_biaya_bahan = $rencana_kerja_desember['biaya_bahan'];
+			$total_desember_biaya_alat = $rencana_kerja_desember['biaya_alat'];
+			$total_desember_biaya_overhead = $rencana_kerja_desember['biaya_overhead'];
+			$total_desember_biaya_bank = $rencana_kerja_desember['biaya_bank'];
+			$total_desember_biaya_persiapan = $rencana_kerja_desember['biaya_persiapan'];
+
+			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank + $total_desember_biaya_persiapan;
 			?>
 
 			<?php
@@ -7208,6 +7231,21 @@ class Reports extends CI_Controller {
 
 			$total_biaya_september = $total_bahan_september + $total_alat_september + $total_overhead_september + $total_diskonto_september + $total_persiapan_september;
 			//END PERSIAPAN
+
+			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_bahan_september + $total_oktober_biaya_bahan + $total_november_biaya_bahan + $total_desember_biaya_bahan;
+			$total_all_biaya_alat = $total_alat_akumulasi + $total_alat_september + $total_oktober_biaya_alat + $total_november_biaya_alat + $total_desember_biaya_alat;
+			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_overhead_september + $total_oktober_biaya_overhead + $total_november_biaya_overhead + $total_desember_biaya_overhead;
+			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_diskonto_september + $total_oktober_biaya_bank + $total_november_biaya_bank + $total_desember_biaya_bank;
+			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_persiapan_september + $total_oktober_biaya_persiapan + $total_november_biaya_persiapan + $total_desember_biaya_persiapan;
+			
+			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank + $total_all_biaya_persiapan;
+
+			$total_laba_sd_agustus = $total_akumulasi_nilai - $total_biaya_akumulasi;
+			$total_laba_realisasi_september = $total_realisasi_september_nilai - $total_biaya_september;
+			$total_laba_oktober = $total_oktober_nilai - $total_biaya_oktober_biaya;
+			$total_laba_november = $total_november_nilai - $total_biaya_november_biaya;
+			$total_laba_desember = $total_desember_nilai - $total_biaya_desember_biaya;
+			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
 			?>
 
 			<tr class="table-active4">
@@ -7273,8 +7311,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active2">
-				<th class="text-left"></th>
-				<th class="text-left">TOTAL VOLUME</th>
+				<th class="text-right" colspan="2">TOTAL VOLUME</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_realisasi_september_volume,2,',','.');?></th>
@@ -7284,9 +7321,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
-				<th class="text-left"></th>
-				<th class="text-left">PENDAPATAN USAHA</th>
-				<th class="text-center">M3</th>
+				<th class="text-right" colspan="2">PENDAPATAN USAHA</th>
+				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_realisasi_september_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_oktober_nilai,0,',','.');?></th>
@@ -7303,10 +7339,10 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_bahan_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_oktober_biaya_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_november_biaya_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">2</th>
@@ -7314,10 +7350,10 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_alat_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_oktober_biaya_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">3</th>
@@ -7325,21 +7361,21 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_overhead_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_oktober_biaya_overhead,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_november_biaya_overhead,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_overhead,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">4</th>
-				<th class="text-left">Diskonto</th>
+				<th class="text-left">Biaya Bank</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_diskonto_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_oktober_biaya_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_november_biaya_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_bank,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">5</th>
@@ -7347,20 +7383,30 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_persiapan_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_persiapan_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_oktober_biaya_persiapan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_november_biaya_persiapan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_persiapan,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_all_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
-				<th class="text-center" colspan="2">JUMLAH</th>
+				<th class="text-right" colspan="2">JUMLAH</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_september,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_biaya_oktober_biaya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_biaya_november_biaya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_biaya_desember_biaya,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
+			</tr>
+			<tr class="table-active2">
+				<th class="text-right" colspan="2">LABA</th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_laba_sd_agustus,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_laba_realisasi_september,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_laba_oktober,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_laba_november,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_laba_desember,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_laba_all,0,',','.');?></th>
 			</tr>
 	    </table>
 		<?php

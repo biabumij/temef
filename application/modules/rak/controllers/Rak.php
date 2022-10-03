@@ -43,6 +43,11 @@ class Rak extends Secure_Controller {
 		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 		$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
 		$pendapatan_usaha =  str_replace('.', '', $this->input->post('pendapatan_usaha'));
+		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
+		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
+		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
+		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
+		$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -55,6 +60,11 @@ class Rak extends Secure_Controller {
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
 			'pendapatan_usaha' => $pendapatan_usaha,
+			'biaya_bahan' => $biaya_bahan,
+			'biaya_alat' => $biaya_alat,
+			'biaya_overhead' => $biaya_overhead,
+			'biaya_bank' => $biaya_bank,
+			'biaya_persiapan' => $biaya_persiapan,
 			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
