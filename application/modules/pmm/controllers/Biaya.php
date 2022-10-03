@@ -232,7 +232,7 @@ class Biaya extends CI_Controller {
             # Committing data to the database.
             $this->db->trans_commit();
              $this->session->set_flashdata('notif_success','Berhasil Membuat Biaya !!');
-            redirect('admin/biaya');
+            redirect('admin/biaya_bua');
         }
 
     }
@@ -317,7 +317,7 @@ class Biaya extends CI_Controller {
                 # Committing data to the database.
                 $this->db->trans_commit();
                 $this->session->set_flashdata('notif_success','Berhasil hapus jurnal !!');
-                redirect('admin/biaya');
+                redirect('admin/biaya_bua');
             }
         }
     }
