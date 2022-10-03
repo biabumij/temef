@@ -123,7 +123,7 @@
 					$jumlah_jumlah_sisa_piutang = 0;
             		foreach ($row['mats'] as $mat) {
             			?>
-					<tr class="table-baris1-bold">
+					<tr class="table-baris1">
 						<td align="center"></td>
 						<td align="left"><?php echo $mat['subject'];?></td>
 						<td align="center"><?php echo $mat['nomor_invoice'];?></td>

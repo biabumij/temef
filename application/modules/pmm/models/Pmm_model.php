@@ -3471,7 +3471,7 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppo.kategori_id',$filter_kategori);
         }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
-        $this->db->order_by('p.nama_produk','asc');
+        $this->db->order_by('ppo.date_po','asc');
         $this->db->group_by('prm.purchase_order_id');
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
@@ -3649,7 +3649,7 @@ class Pmm_model extends CI_Model {
             $this->db->where('po.client_id',$client_id);
         }
 		$this->db->where("po.status in ('OPEN','CLOSED')");
-        $this->db->order_by('p.nama_produk','asc');
+        $this->db->order_by('ppo.date_po','asc');
         $this->db->group_by('pp.salesPo_id');
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();

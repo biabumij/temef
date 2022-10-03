@@ -131,7 +131,7 @@
 					$jumlah_sisa_hutang_tagihan += str_replace(['.', ','], ['', '.'], $mat['sisa_hutang_tagihan']);
 					}	
 					?>
-					<tr class="table-baris2-bold">
+					<tr class="table-baris2">
 						<td align="right"><?php echo $key + 1;?></td>
 						<td align="left"><?php echo $row['name'];?></td>
 						<td align="right"><?php echo number_format($jumlah_penerimaan,0,',','.');?></td>
