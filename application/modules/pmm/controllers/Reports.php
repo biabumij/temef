@@ -6729,7 +6729,7 @@ class Reports extends CI_Controller {
 			$total_akumulasi_nilai = $nilai_akumulasi_produk_a + $nilai_akumulasi_produk_b + $nilai_akumulasi_produk_c + $nilai_akumulasi_produk_d;
 			?>
 
-<?php
+			<?php
 			$date_realisasi_september_awal = date('2022-09-01');
             $date_realisasi_september_akhir = date('2022-09-30');
 			$penjualan_realisasi_september_produk_a = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
@@ -6868,6 +6868,348 @@ class Reports extends CI_Controller {
 			$total_all_volume = $total_akumulasi_volume + $total_september_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume;
 			$total_all_nilai = $total_akumulasi_nilai + $total_september_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
 			?>
+
+			<?php
+			//BAHAN
+			$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi <= '$date_agustus')")
+			->get()->result_array();
+
+			$total_akumulasi = 0;
+
+			foreach ($akumulasi as $a){
+				$total_akumulasi += $a['total_nilai_keluar'];
+			}
+
+			$total_bahan_akumulasi = $total_akumulasi;
+			//END BAHAN
+
+			//BAHAN SEPTEMBER
+			$akumulasi_september = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+			->from('akumulasi pp')
+			->where("pp.date_akumulasi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->result_array();
+
+			$total_akumulasi_september = 0;
+
+			foreach ($akumulasi_september as $a){
+				$total_akumulasi_september += $a['total_nilai_keluar'];
+			}
+
+			$total_bahan_september = $total_akumulasi_september;
+			//END BAHAN SEPTEMBER
+			?>
+
+			<?php
+			//ALAT
+			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt <= '$date_agustus')")
+			->where("p.kategori_produk = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi <= '$date_agustus')")
+			->get()->result_array();
+
+			$total_akumulasi_bbm = 0;
+
+			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm = $total_akumulasi_bbm;
+
+			$total_insentif_tm = 0;
+
+			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 220")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$total_insentif_tm = $insentif_tm['total'];
+
+			$total_alat_akumulasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+			//END ALAT
+
+			//ALAT SEPTEMBER
+			$nilai_alat_september = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("prm.date_receipt between '$date_september_awal' and '$date_september_akhir'")
+			->where("p.kategori_produk = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$akumulasi_bbm_september = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("pp.date_akumulasi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->result_array();
+
+			$total_akumulasi_bbm_september = 0;
+
+			foreach ($akumulasi_bbm_september as $b){
+				$total_akumulasi_bbm_september += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm_september = $total_akumulasi_bbm_september;
+
+			$total_insentif_tm_september = 0;
+
+			$insentif_tm_september = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 220")
+			->where("status = 'PAID'")
+			->where("tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$total_insentif_tm_september = $insentif_tm_september['total'];
+
+			$total_alat_september = $nilai_alat_september['nilai'] + $total_akumulasi_bbm_september + $total_insentif_tm_september;
+			//END ALAT SEPTEMBER
+			
+			?>
+
+			<?php
+			//OVERHEAD
+			$overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$overhead_jurnal_15_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$overhead_16_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$overhead_jurnal_16_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$overhead_17_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$overhead_jurnal_17_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$total_overhead_akumulasi =  $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $overhead_16_akumulasi['total'] + $overhead_jurnal_16_akumulasi['total'] + $overhead_17_akumulasi['total'] + $overhead_jurnal_17_akumulasi['total'];
+
+			//OVERHEAD SEPTEMBER
+			$overhead_15_september = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$overhead_jurnal_15_september = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$overhead_16_september = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$overhead_jurnal_16_september = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$overhead_17_september = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$overhead_jurnal_17_september = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$total_overhead_september =  $overhead_15_september['total'] + $overhead_jurnal_15_september['total'] + $overhead_16_september['total'] + $overhead_jurnal_16_september['total'] + $overhead_17_september['total'] + $overhead_jurnal_17_september['total'];
+			?>
+
+			<?php
+			//DISKONTO
+			$diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 168")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$total_diskonto_akumulasi = $diskonto_akumulasi['total'];
+			//DISKONTO
+
+			//DISKONTO SEPTEMBER
+			$diskonto_september = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 168")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$total_diskonto_september = $diskonto_september['total'];
+			//DISKONTO SEPTEMBER
+			?>
+
+			<?php
+			//PERSIAPAN
+			$persiapan_biaya_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$persiapan_jurnal_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$date_agustus')")
+			->get()->row_array();
+
+			$total_persiapan_akumulasi = $persiapan_biaya_akumulasi['total'] + $persiapan_jurnal_akumulasi['total'];
+
+			$total_biaya_akumulasi = $total_bahan_akumulasi + $total_alat_akumulasi + $total_overhead_akumulasi + $total_diskonto_akumulasi + $total_persiapan_akumulasi;
+			//END PERSIAPAN
+
+			//PERSIAPAN SEPTEMBER
+			$persiapan_biaya_september = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$persiapan_jurnal_september = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 228")
+			->where("pb.status = 'PAID'")
+			->where("pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir'")
+			->get()->row_array();
+
+			$total_persiapan_september = $persiapan_biaya_september['total'] + $persiapan_jurnal_september['total'];
+
+			$total_biaya_september = $total_bahan_september + $total_alat_september + $total_overhead_september + $total_diskonto_september + $total_persiapan_september;
+			//END PERSIAPAN
+			?>
+
 			<tr class="table-active4">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
@@ -6966,8 +7308,67 @@ class Reports extends CI_Controller {
 				<th class="text-center">1</th>
 				<th class="text-left">Bahan</th>
 				<th class="text-center">LS</th>
+				<th class="text-right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_bahan_september,0,',','.');?></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">2</th>
+				<th class="text-left">Alat</th>
+				<th class="text-center">LS</th>
+				<th class="text-right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_alat_september,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">3</th>
+				<th class="text-left">Overhead</th>
+				<th class="text-center">LS</th>
+				<th class="text-right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_overhead_september,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">4</th>
+				<th class="text-left">Diskonto</th>
+				<th class="text-center">LS</th>
+				<th class="text-right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
+				<th class="text-right"<?php echo number_format($total_diskonto_september,0,',','.');?>></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">5</th>
+				<th class="text-left">Persiapan</th>
+				<th class="text-center">LS</th>
+				<th class="text-right"><?php echo number_format($total_persiapan_akumulasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_persiapan_september,0,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active2">
+				<th class="text-center" colspan="2">JUMLAH</th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_biaya_september,0,',','.');?></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
