@@ -3649,7 +3649,7 @@ class Pmm_model extends CI_Model {
             $this->db->where('po.client_id',$client_id);
         }
 		$this->db->where("po.status in ('OPEN','CLOSED')");
-        $this->db->order_by('po.date_po','asc');
+        $this->db->order_by('po.contract_date','asc');
         $this->db->group_by('pp.salesPo_id');
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
