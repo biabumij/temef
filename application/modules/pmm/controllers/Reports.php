@@ -6884,6 +6884,9 @@ class Reports extends CI_Controller {
 				<th class="text-center">DESEMBER</th>
 				<th class="text-center">SD. 2022</th>
 	        </tr>
+			<tr class="table-active2">
+				<th class="text-left" colspan="10">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+			</tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>
 				<th class="text-left">Beton K 125 (10±2)</th>
@@ -6955,6 +6958,21 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_november_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
+			</tr>
+			<tr class="table-active2">
+				<th class="text-left" colspan="10">BIAYA</th>
+			</tr>
+			<tr class="table-active3">
+				<th class="text-center">1</th>
+				<th class="text-left">Bahan</th>
+				<th class="text-center">LS</th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
 			</tr>
 	    </table>
 		<?php
