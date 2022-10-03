@@ -714,7 +714,7 @@
 				<th align="right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
 			</tr>
-			<tr class="table-baris1-bold">
+			<tr class="table-total">
 				<th align="right" colspan="2">TOTAL VOLUME</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
