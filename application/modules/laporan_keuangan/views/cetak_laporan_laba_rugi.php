@@ -749,8 +749,8 @@
 								Dir. Produksi, HSE & Sistem</b>
 							</td>
 							<td align="center">
-								<b><u>Endah Purnama S.</u><br />
-								Staff. Produksi & HSE</b>
+								<b>Annisa Putri<br />
+								</b>
 							</td>
 							<td align="center">
 								<b><u>Gervasius K. Limahekin</u><br />
