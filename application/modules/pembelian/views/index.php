@@ -185,12 +185,12 @@
 													</div>
 													<div class="form-group">
 														<label>Subyek</label>
-														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"  />
+														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"/>
 													</div>
 													<div class="form-group">
 														<label>Rekanan</label>
-														<select id="supplier_id" name="supplier_id" class="form-control select2">
-															<option>Pilih Rekanan</option>
+														<select id="supplier_id" name="supplier_id" class="form-control select2" required="" autocomplete="off">
+															<option></option>
 															<?php
 															foreach ($suppliers as $key => $supplier) {
 																?>
@@ -202,8 +202,8 @@
 													</div>
                                                     <div class="form-group">
 														<label>Kategori</label>
-														<select id="kategori_id" name="kategori_id" class="form-control select2">
-															<option>Pilih Kategori</option>
+														<select id="kategori_id" name="kategori_id" class="form-control select2" required="" autocomplete="off">
+															<option></option>
 															<?php
 															foreach ($kategori as $key => $kat) {
 																?>

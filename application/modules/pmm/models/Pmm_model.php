@@ -1533,8 +1533,9 @@ class Pmm_model extends CI_Model {
 					<?php
 					}
 				}
+                
 
-                if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
+                if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED' || $row['status'] == 'REJECTED'){
 					
 					$row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
 				}else {
