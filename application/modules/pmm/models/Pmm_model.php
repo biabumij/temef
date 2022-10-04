@@ -2379,9 +2379,55 @@ class Pmm_model extends CI_Model {
             $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
             $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
         }
-        $diskonto = $this->db->get_where('pmm_biaya pb')->row_array();
+        $diskonto_biaya = $this->db->get_where('pmm_biaya pb')->row_array();
 
-        return $bahan['total'] + $alat['total'] + $bbm['total'] + $intensif_tm['total'] + $overhead_biaya['total'] + $overhead_jurnal['total'] + $diskonto['total'];
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+        $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+        $this->db->where('pdb.akun',168);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $diskonto_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.jumlah) as total');
+        $this->db->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left');
+        $this->db->where('pdb.akun',228);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $persiapan_biaya = $this->db->get_where('pmm_biaya pb')->row_array();
+        
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+        $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+        $this->db->where('pdb.akun',228);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $persiapan_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+        
+
+        return $bahan['total'] + $alat['total'] + $bbm['total'] + $intensif_tm['total'] + $overhead_biaya['total'] + $overhead_jurnal['total'] + $diskonto_biaya['total'] + $diskonto_jurnal['total'] + $persiapan_biaya['total'] + $persiapan_jurnal['total'];
     }
 
     function getRevenueCostAllAlat($arr_date=false,$before=false)
@@ -2637,7 +2683,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function getRevenueCostAllDiskonto($arr_date=false,$before=false)
+    function getRevenueCostAllDiskontoBiaya($arr_date=false,$before=false)
     {
         $output = array('total'=>0);
 
@@ -2686,7 +2732,57 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function getRevenueCostAllPersiapan($arr_date=false,$before=false)
+    function getRevenueCostAllDiskontoJurnal($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+            $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('pdb.akun',168);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllPersiapanBiaya($arr_date=false,$before=false)
     {
         $output = array('total'=>0);
 
@@ -2727,6 +2823,56 @@ class Pmm_model extends CI_Model {
                 $this->db->where('pb.tanggal_transaksi <=',$last_opname);
             }
             $query = $this->db->get_where('pmm_biaya pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllPersiapanJurnal($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+            $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('pdb.akun',228);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
 
             $output = $query;
             
