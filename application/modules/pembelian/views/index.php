@@ -348,10 +348,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th class="text-center">Tanggal Invoice</th>
-                                                    <th class="text-center">Nomor</th>
+                                                    <th class="text-center">Tgl. Invoice</th>
+                                                    <th class="text-center">No. Invoice</th>
                                                     <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">Tanggal Pesanan Pembelian</th>
+                                                    <th class="text-center">Tgl. Pesanan Pembelian</th>
+                                                    <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">Total</th>
                                                     <th class="text-center">Pembayaran</th>
                                                     <th class="text-center">Sisa Tagihan</th>
@@ -1331,6 +1332,9 @@
                     "data": "tanggal_po"
                 },
                 {
+                    "data": "no_po"
+                },
+                {
                     "data": "total"
                 },
                 {
@@ -1352,7 +1356,7 @@
                 "className": 'text-center',
                 },
                 {
-                "targets": [6, 7, 8],
+                "targets": [7, 8, 9],
                 "className": 'text-right',
                 },
             ],
