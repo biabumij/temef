@@ -159,6 +159,7 @@ class Pmm_finance extends CI_Model {
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
+            $query['tanggal_lolos_verifikasi'] = date('d/m/Y',strtotime($query['tanggal_lolos_verifikasi']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
             $query['nilai_kontrak'] = number_format($query['nilai_kontrak'],0,',','.');
             $query['nilai_tagihan'] =  number_format($query['nilai_tagihan'],0,',','.');
@@ -185,6 +186,7 @@ class Pmm_finance extends CI_Model {
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
+            $query['tanggal_lolos_verifikasi'] = date('d/m/Y',strtotime($query['tanggal_lolos_verifikasi']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['nilai_kontrak'] = number_format($query['nilai_kontrak'],0,',','.');
             $query['nilai_tagihan'] = number_format($query['nilai_tagihan'],0,',','.');

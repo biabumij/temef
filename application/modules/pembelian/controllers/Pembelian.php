@@ -757,6 +757,13 @@ class Pembelian extends Secure_Controller
             $tanggal_diterima_proyek = NULL;
         }
 
+        $tanggal_lolos_verifikasi = $this->input->post('tanggal_lolos_verifikasi');
+        if ($tanggal_lolos_verifikasi) {
+            $tanggal_lolos_verifikasi = date('Y-m-d', strtotime($tanggal_lolos_verifikasi));
+        } else {
+            $tanggal_lolos_verifikasi = NULL;
+        }
+
         $tanggal_diterima_office = $this->input->post('tanggal_diterima_office');
         if ($tanggal_diterima_office) {
             $tanggal_diterima_office = date('Y-m-d', strtotime($tanggal_diterima_office));
@@ -775,6 +782,7 @@ class Pembelian extends Secure_Controller
             'pph' => $this->input->post('pph'),
             'tanggal_invoice' => $tanggal_invoice,
             'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            'tanggal_lolos_verifikasi' => $tanggal_lolos_verifikasi,
             //'tanggal_diterima_office' => $tanggal_diterima_office,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),

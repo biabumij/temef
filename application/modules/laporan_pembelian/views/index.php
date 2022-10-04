@@ -84,6 +84,7 @@
                                                     $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                                     $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
                                                     $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
+                                                    $status = $this->db->group_by('status', 'asc')->get_where('pmm_penagihan_pembelian')->result_array();
                                                     ?>
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian'); ?>" target="_blank">
@@ -171,9 +172,6 @@
                                                     <h3 class="panel-title">Laporan Hutang</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
-                                                <?php
-                                                    $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
-                                                    ?>
                                                 <div style="margin: 20px">
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_laporan_hutang'); ?>" target="_blank">
@@ -239,9 +237,6 @@
                                                     <h3 class="panel-title">Laporan Monitoring Hutang</h3>
 													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
-                                                <?php
-                                                    $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
-                                                    ?>
                                                 <div style="margin: 20px">
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_monitoring_hutang'); ?>" target="_blank">
@@ -255,6 +250,18 @@
                                                                     foreach ($kategori as $key => $kat) {
                                                                     ?>
                                                                         <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_status_monitoring_hutang" name="filter_status" class="form-control select2">
+                                                                    <option value="">Pilih Status</option>
+                                                                    <?php
+                                                                    foreach ($status as $key => $st) {
+                                                                    ?>
+                                                                        <option value="<?php echo $st['status']; ?>"><?php echo $st['status']; ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -573,6 +580,7 @@
                     data: {
                         filter_date: $('#filter_date_monitoring_hutang').val(),
                         filter_kategori: $('#filter_kategori_monitoring_hutang').val(),
+                        filter_status: $('#filter_status_monitoring_hutang').val(),
                     },
                     success: function(result) {
                         if (result.data) {
@@ -628,6 +636,10 @@
             }
 
             $('#filter_kategori_monitoring_hutang').change(function() {
+                LaporanMonitoringHutang();
+            });
+
+            $('#filter_status_monitoring_hutang').change(function() {
                 LaporanMonitoringHutang();
             });
 

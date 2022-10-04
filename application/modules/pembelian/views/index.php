@@ -455,6 +455,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-4 control-label">Tanggal Lolos Verifikasi</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="" name="tanggal_lolos_verifikasi" class="form-control input-sm dtpicker-single">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-4 control-label">Tanggal Diterima Pusat</label>
                             <div class="col-sm-8">
                                 <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single" readonly="">
@@ -665,6 +671,11 @@
                                 <th>Tanggal Diterima Proyek</th>
                                 <th>:</th>
                                 <td id="tanggal_diterima_proyek_d"></td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Lolos Verifikasi</th>
+                                <th>:</th>
+                                <td id="tanggal_lolos_verifikasi_d"></td>
                             </tr>
                             <tr>
                                 <th>Tanggal Diterima Pusat</th>
@@ -1442,6 +1453,7 @@
                         $('#total_tagihan_d').text(result.data.total_tagihan);
                         $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
                         $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
+                        $('#tanggal_lolos_verifikasi_d').text(result.data.tanggal_lolos_verifikasi);
                         $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
                         $('#metode_pembayaran_d').text(result.data.metode_pembayaran);
                         $('#invoice_keterangan_d').text(result.data.invoice_keterangan);

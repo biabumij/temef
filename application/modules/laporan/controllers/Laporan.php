@@ -463,6 +463,7 @@ class Laporan extends Secure_Controller {
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
 		$filter_kategori = $this->input->get('filter_kategori');
+		$filter_status = $this->input->get('filter_status');
 		$start_date = false;
 		$end_date = false;
 		$total_dpp_tagihan = 0;
@@ -499,6 +500,9 @@ class Laporan extends Secure_Controller {
 			if(!empty($filter_kategori)){
 				$this->db->where('ppo.kategori_id',$filter_kategori);
 			}
+			if(!empty($filter_status)){
+				$this->db->where('ppp.status',$filter_status);
+			}
 
 			$this->db->group_by('ppp.supplier_id');
 			$this->db->order_by('ps.nama','asc');
@@ -510,7 +514,7 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 					$mats = array();
-					$materials = $this->pmm_model->GetLaporanMonitoringHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
+					$materials = $this->pmm_model->GetLaporanMonitoringHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori,$filter_status);
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
 							$awal  = date_create($row['tanggal_diterima_proyek']);

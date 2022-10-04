@@ -92,12 +92,18 @@
 						</tr>
 						<tr>
 							<td>11.</td>
+							<td >Tanggal Lolos Verifikasi</td>
+							<td>:</td>
+							<td ><?= $row['tanggal_lolos_verifikasi'];?></td>
+						</tr>
+						<tr>
+							<td>12.</td>
 							<td >Tanggal Diterima Pusat</td>
 							<td>:</td>
 							<td ></td>
 						</tr>
 						<tr>
-							<td>12.</td>
+							<td>13.</td>
 							<td >Metode Pembayaran</td>
 							<td>:</td>
 							<td ><?= $row['metode_pembayaran'];?></td>
