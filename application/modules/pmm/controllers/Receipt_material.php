@@ -1176,7 +1176,7 @@ class Receipt_material extends CI_Controller {
 				$materials = $this->pmm_model->GetLaporanMonitoringHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori,$filter_status);
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
-						$awal  = date_create($row['tanggal_diterima_proyek']);
+						$awal  = date_create($row['status_umur_hutang']);
 						$akhir = date_create($end_date);
 						$diff  = date_diff( $awal, $akhir );
 

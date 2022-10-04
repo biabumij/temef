@@ -1515,7 +1515,13 @@ class Pembelian extends Secure_Controller
         $this->db->set("verifikasi_dok", "LENGKAP");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+
+        $this->db->set("status_umur_hutang", "null", false);
+		$this->db->where("penagihan_pembelian_id", $id);
+		$this->db->update("pmm_verifikasi_penagihan_pembelian");
+
+        $this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 }
