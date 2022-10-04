@@ -113,7 +113,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Pergerakan Bahan Baku (Solar)</h3>
-													<a href="laporan_produksi">Kembali</a>
+													<a href="biaya_alat">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
