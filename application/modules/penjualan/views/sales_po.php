@@ -118,7 +118,7 @@
                                                     <td>
                                                         <input type="text" name="total_1" id="total-1" class="form-control numberformat tex-left input-sm text-right" readonly=""/>
                                                     </td>	
-													<input type="hidden" name="tax_1" id="tax-1" class="form-control tex-left input-sm text-right" onchange="changeData(1)" readonly="" />   
+													<input type="hidden" name="tax_1" id="tax-1" class="form-control tex-left input-sm text-right" onchange="changeData(1)"/>   
 												</tr>
                                             </tbody>
                                         </table>    

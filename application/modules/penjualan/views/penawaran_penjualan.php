@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Pelanggan</label>
-                                            <textarea class="form-control text" rows="4" name="alamat_client" id="alamat_client" required="" readonly=""></textarea>
+                                            <textarea class="form-control text" rows="4" name="alamat_client" id="alamat_client" readonly=""></textarea>
                                         </div>
 										 <div class="col-sm-10">
                                             <label>Nomor</label>
@@ -153,7 +153,7 @@
                                                             ?>
                                                         </select>
                                                     </td>
-                                                        <input type="hidden" name="total_1" id="total-1" class="form-control numberformat" readonly=""/>
+                                                        <input type="hidden" name="total_1" id="total-1" class="form-control numberformat"/>
                                                 </tr>
                                             </tbody>
                                         </table>    

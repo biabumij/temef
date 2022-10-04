@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Rekanan</label>
-                                            <textarea class="form-control" rows="4" name="alamat_supplier" id="alamat_supplier" required="" readonly="" ></textarea>
+                                            <textarea class="form-control" rows="4" name="alamat_supplier" id="alamat_supplier" readonly="" ></textarea>
                                         </div>
                                         <br />
                                         <div class="col-sm-10">
