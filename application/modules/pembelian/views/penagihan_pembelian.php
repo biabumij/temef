@@ -71,18 +71,19 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <label>Tanggal Invoice *</label>
+                                            <label>Tanggal Invoice</label>
                                             <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" />
                                         </div>
                                         <div class="col-sm-8">
-                                            <label>Nomor Invoice *</label>
+                                            <label>Nomor Invoice</label>
                                             <input type="text" class="form-control" name="nomor_invoice" required="" />
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <label>Syarat Pembayaran (Ketik Angka Saja) *</label>
+                                            <label>Syarat Pembayaran</label>
+                                            <label>(Ketik Angka Saja, Tanpa Hari)</label>
                                             <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $po['syarat_pembayaran'];?>" required="" />
                                         </div>                                        
 										<!--<div class="col-sm-3">

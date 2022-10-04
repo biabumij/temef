@@ -52,7 +52,7 @@
                                 </ul>
 
                                 <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane" id="material_on_site">
+                                    <div role="tabpanel" class="tab-pane active" id="material_on_site">
                                         <?php include_once "material_on_site.php"; ?>
                                     </div>          
                                 </div>

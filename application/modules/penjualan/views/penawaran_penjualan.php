@@ -120,7 +120,7 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" min="0" name="qty_1" id="qty-1" class="form-control input-sm text-center" onchange="changeData(1)" required="" />
+                                                        <input type="number" min="0" name="qty_1" id="qty-1" class="form-control input-sm text-center" onchange="changeData(1)" required=""/>
                                                     </td>
                                                     <td>
                                                     <select id="measure-1" class="form-control form-select2" name="measure_1" required="">
@@ -137,10 +137,10 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" required=""/>
                                                     </td>
 													<td>
-                                                        <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" >
+                                                        <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" required="">
                                                             <option value="">Pilih Pajak</option>
                                                             <?php
                                                             if(!empty($taxs)){
@@ -153,7 +153,7 @@
                                                             ?>
                                                         </select>
                                                     </td>
-                                                        <input type="hidden" name="total_1" id="total-1" class="form-control numberformat"/>
+                                                        <input type="hidden" name="total_1" id="total-1" class="form-control numberformat" readonly=""/>
                                                 </tr>
                                             </tbody>
                                         </table>    
