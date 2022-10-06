@@ -1641,11 +1641,12 @@ class Pmm extends CI_Controller {
             }else {
             	$net = 0;
             }
+			$net = round($net,0);
             
             $chart_revenue[] = number_format($get_revenue,0,',','.');	
             $chart_revenuecost[] = number_format($get_revenuecost,0,',','.');	
             $chart_laba[] = number_format($laba,0,',','.');	
-            $chart_net[] = number_format($net,0,'.',',');
+			$chart_net[] = $net;
         }
 
 
@@ -1693,11 +1694,13 @@ class Pmm extends CI_Controller {
         }else {
         	$all_net = 0;
         }
-        $chart_net[] = number_format($all_net,2,'.',',');
+        $all_net = round($all_net,0);
+
+        $chart_net[] = $all_net;
 
         $datasets_laba[0] = array(
             'label' => 'Persentase Laba Rugi',
-            'backgroundColor' => '#ffb732',
+            'backgroundColor' => 'rgb(0,206,209)',
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
             'data_revenuecost' => $chart_revenuecost,
