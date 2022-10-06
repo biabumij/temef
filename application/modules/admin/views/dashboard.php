@@ -164,8 +164,8 @@
                         stacked: true,
                         ticks: {
                             beginAtZero: true,
-                            min: -100,
-                            max: 100
+                            //min: -1500,
+                            //max: 1500
                         },
                     }]
                 },
