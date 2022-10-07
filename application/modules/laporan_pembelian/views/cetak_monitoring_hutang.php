@@ -129,7 +129,7 @@
 						<td align="left"><?php echo $mat['subject'];?></td>
 						<td align="center"><?php echo $mat['nomor_invoice'];?></td>
             			<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
-            			<td align="left"><?php echo $mat['tanggal_diterima_proyek'];?></td>
+            			<td align="left"><?php echo $mat['tanggal_lolos_verifikasi'];?></td>
             			<td align="right"><?php echo $mat['dpp_tagihan'];?></td>
 						<td align="right"><?php echo $mat['ppn_tagihan'];?></td>
 						<td align="right"><?php echo $mat['jumlah_tagihan'];?></td>
