@@ -82,7 +82,7 @@
 									<li role="presentation"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab">Permintaan Bahan & Alat</a></li>
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Pesanan Pembelian</a></li>
                                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Penerimaan Pembelian</a></li>
-                                    <!--<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Pembelian</a></li>-->
+                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Pembelian</a></li>
                                 </ul>
 
                                 <div class="tab-content">
