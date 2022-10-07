@@ -7261,14 +7261,14 @@ class Reports extends CI_Controller {
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">REALISASI SMT 1-2 SD. SEPTEMBER 2022</th>
-				<th width="40%" class="text-center" colspan="3">2022 (SMT 3)</th>
-				<th width="15%" class="text-center">TOTAL SD. SMT3</th>
+				<th width="40%" class="text-center" colspan="3">RENCANA KERJA</th>
+				<th width="15%" class="text-center">TOTAL</th>
 	        </tr>
 			<tr class="table-active4">
-				<th class="text-center">OKTOBER (Rencana Kerja)</th>
-				<th class="text-center">NOVEMBER (Rencana Kerja)</th>
-				<th class="text-center">DESEMBER (Rencana Kerja)</th>
-				<th class="text-center">SD. 2022</th>
+				<th class="text-center">OKTOBER</th>
+				<th class="text-center">NOVEMBER</th>
+				<th class="text-center">DESEMBER</th>
+				<th class="text-center">SD. DESEMBER 2022</th>
 	        </tr>
 			<tr class="table-active2">
 				<th class="text-left" colspan="8">RENCANA PRODUKSI & PENDAPATAN USAHA</th>

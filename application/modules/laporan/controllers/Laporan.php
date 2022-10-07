@@ -1201,7 +1201,7 @@ class Laporan extends Secure_Controller {
     
     }
 
-	public function cetak_prognosa()
+	public function cetak_laporan_rencana_kerja()
 	{
 		$this->load->library('pdf');
 	
@@ -1220,12 +1220,12 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('prognosa/cetak_prognosa',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_laporan_rencana_kerja',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Prognosa');
+        $pdf->SetTitle('BBJ - Laporan Rencana Kerja');
         $pdf->nsi_html($html);
-        $pdf->Output('prognosa.pdf', 'I');
+        $pdf->Output('laporan-rencana-kerja.pdf', 'I');
 	
 	}
 
@@ -1248,7 +1248,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('prognosa/cetak_bahan_oktober',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_oktober',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Kebutuhan Bahan Oktober');
@@ -1275,7 +1275,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('prognosa/cetak_bahan_november',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_november',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Kebutuhan Bahan November)');
@@ -1302,7 +1302,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('prognosa/cetak_bahan_desember',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_desember',$data,TRUE);
 
         
 		$pdf->SetTitle('BBJ - Kebutuhan Bahan Desember)');

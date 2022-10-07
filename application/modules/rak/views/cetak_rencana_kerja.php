@@ -110,14 +110,40 @@
 				<td align="right"><?= number_format($total,2,',','.'); ?></td>
 				<td align="center">M3</td>
 			</tr>
-			<tr class="table-total">
-				<td align="right" colspan="2">PENDAPATAN USAHA</td>
-				<td align="right"><?= number_format($rak['pendapatan_usaha'],0,',','.'); ?></td>
-				<td align="center"></td>
-			</tr>
 		</table>
 		<br />
 		<br />
-		
+		<table cellpadding="5" width="98%">
+			<tr class="table-judul">
+                <th width="5%" align="center">NO.</th>
+                <th width="35%" align="center">URAIAN</th>
+				<th width="60%" align="right">NILAI</th>
+            </tr>
+			<tr class="table-baris1">
+				<td align="center">1.</td>
+				<td align="left">Biaya Bahan</td>
+				<td align="right"><?= number_format($rak['biaya_bahan'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">2.</td>
+				<td align="left">Biaya Alat</td>
+				<td align="right"><?= number_format($rak['biaya_alat'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">3.</td>
+				<td align="left">Biaya Overhead</td>
+				<td align="right"><?= number_format($rak['biaya_overhead'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">4.</td>
+				<td align="left">Biaya Bank</td>
+				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">5.</td>
+				<td align="left">Biaya Persiapan</td>
+				<td align="right"><?= number_format($rak['biaya_persiapan'],0,',','.'); ?></td>
+			</tr>
+		</table>
 	</body>
 </html>

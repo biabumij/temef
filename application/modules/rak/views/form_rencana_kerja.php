@@ -117,13 +117,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Pendapatan Usaha</td>
-													<td>
-                                                    <input type="text" id="pendapatan_usaha" name="pendapatan_usaha" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
                                                     <td>Biaya Bahan</td>
 													<td>
                                                     <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
