@@ -783,6 +783,7 @@ class Pembelian extends Secure_Controller
             'tanggal_invoice' => $tanggal_invoice,
             'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
             'tanggal_lolos_verifikasi' => $tanggal_lolos_verifikasi,
+            'status_umur_hutang' => $tanggal_lolos_verifikasi,
             //'tanggal_diterima_office' => $tanggal_diterima_office,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),

@@ -287,7 +287,7 @@
                                                                 <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO. INV</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TGL. INV</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">TGL. DITERIMA PRY.</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">TGL. LOLOS VERIF.</th>
                                                                 <th class="text-center" colspan="3">TAGIHAN</th>
                                                                 <th class="text-center" colspan="3">PEMBAYARAN</th>
                                                                 <th class="text-center" colspan="3">SISA HUTANG</th>

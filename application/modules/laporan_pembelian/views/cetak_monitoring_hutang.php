@@ -85,7 +85,7 @@
 				<th width="7%" align="center">REKANAN</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">NO. INV</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">TGL. INV</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">TGL. DITERIMA PRY.</th>
+				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">TGL. LOLOS VERIF.</th>
 				<th width="17%" align="center" colspan="3">TAGIHAN</th>
 				<th width="17%" align="center" colspan="3">PEMBAYARAN</th>
 				<th width="17%" align="center" colspan="3">SISA HUTANG</th>
