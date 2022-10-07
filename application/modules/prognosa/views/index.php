@@ -58,7 +58,7 @@
 												<div width="100%">
 													<div class="panel panel-default">                                            
                                                         <div class="col-sm-5">
-                                                            <p><h5>Prognosa Produksi</h5></p>
+                                                            <p><h5>Laporan Rencana Kerja Produksi</h5></p>
                                                             <a href="#prognosa_produksi" aria-controls="prognosa_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 														</div>											
 													</div>
@@ -73,8 +73,8 @@
                                         <div class="col-sm-15">
 											<div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Prognosa Produksi</h3>
-													<a href="prognosa">Kembali</a>
+                                                    <h3 class="panel-title">Laporan Rencana Kerja Produksi</h3>
+													<a href="laporan_rencana_kerja">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
