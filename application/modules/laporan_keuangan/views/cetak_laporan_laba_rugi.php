@@ -693,7 +693,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_sebelum_pajak,2,',','.');?></b></span>
+									<span><b><?php echo number_format($laba_sebelum_pajak,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
@@ -705,7 +705,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_sebelum_pajak_2,2,',','.');?></b></span>
+									<span><b><?php echo number_format($laba_sebelum_pajak_2,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
