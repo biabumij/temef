@@ -3630,7 +3630,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppp.*, pvp.tanggal_diterima_proyek, pvp.status_umur_hutang, ps.nama, ppo.subject,
+        $this->db->select('ppp.*, pvp.tanggal_lolos_verifikasi, pvp.status_umur_hutang, ps.nama, ppo.subject,
         (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as dpp_tagihan,
         (select COALESCE(sum(tax),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as ppn_tagihan,
         (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") +  (select COALESCE(sum(tax),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as jumlah_tagihan,
