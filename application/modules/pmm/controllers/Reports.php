@@ -7258,9 +7258,9 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">SEPTEMBER (REALISASI)</th>
-				<th class="text-center">OKTOBER (RAP)</th>
-				<th class="text-center">NOVEMBER (RAP)</th>
-				<th class="text-center">DESEMBER (RAP)</th>
+				<th class="text-center">OKTOBER (Rencana Kerja)</th>
+				<th class="text-center">NOVEMBER (Rencana Kerja)</th>
+				<th class="text-center">DESEMBER (Rencana Kerja)</th>
 				<th class="text-center">SD. 2022</th>
 	        </tr>
 			<tr class="table-active2">

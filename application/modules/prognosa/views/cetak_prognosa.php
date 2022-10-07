@@ -662,9 +662,9 @@
 	        </tr>
 			<tr class="table-judul">
 				<th align="center">SEPTEMBER (REALISASI)</th>
-				<th align="center">OKTOBER (RAP)</th>
-				<th align="center">NOVEMBER (RAP)</th>
-				<th align="center">DESEMBER (RAP)</th>
+				<th align="center">OKTOBER (Rencana Kerja)</th>
+				<th align="center">NOVEMBER (Rencana Kerja)</th>
+				<th align="center">DESEMBER (Rencana Kerja)</th>
 				<th align="center">SD. 2022</th>
 	        </tr>
 			<tr class="table-baris1-bold">
