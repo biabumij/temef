@@ -1187,7 +1187,7 @@ class Receipt_material extends CI_Controller {
 						$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
+						$arr['tanggal_diterima_proyek'] =  date('d-m-Y',strtotime($row['tanggal_diterima_proyek']));
 						$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
 						$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
 						$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
