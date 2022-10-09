@@ -226,11 +226,23 @@
 		$total_250_18 = $nilai_semen_250_18 + $nilai_pasir_250_18 + $nilai_batu1020_250_18 + $nilai_batu2030_250_18;
 
 		//TOTAL ALL
-		$total_all = $total_125 + $total_225 + $total_250 + $total_250_18;
+		$total_semen = $total_semen_125 + $total_semen_225 + $total_semen_250 + $total_semen_250_18;
+		$total_pasir = $total_pasir_125 + $total_pasir_225 + $total_pasir_250 + $total_pasir_250_18;
+		$total_batu1020 = $total_batu1020_125 + $total_batu1020_225 + $total_batu1020_250 + $total_batu1020_250_18;
+		$total_batu2030 = $total_batu2030_125 + $total_batu2030_225 + $total_batu2030_250 + $total_batu2030_250_18;
 
+		$nilai_semen = $nilai_semen_125 + $nilai_semen_225 + $nilai_semen_250 + $nilai_semen_250_18;
+		$nilai_pasir = $nilai_pasir_125 + $nilai_pasir_225 + $nilai_pasir_250 + $nilai_pasir_250_18;
+		$nilai_batu1020 = $nilai_batu1020_125 + $nilai_batu1020_225 + $nilai_batu1020_250 + $nilai_batu1020_250_18;
+		$nilai_batu2030 = $nilai_batu2030_125 + $nilai_batu2030_225 + $nilai_batu2030_250 + $nilai_batu2030_250_18;
+
+		$harga_semen = $nilai_semen / $total_semen;
+		$harga_pasir = $nilai_pasir / $total_pasir;
+		$harga_batu1020 = $nilai_batu1020 / $total_batu1020;
+		$harga_batu2030 = $nilai_batu2030 / $total_batu2030;
+
+		$total = $nilai_semen + $nilai_pasir + $nilai_batu1020 + $nilai_batu2030;
 		?>
-			
-			
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
 				<th width="40%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
@@ -243,164 +255,43 @@
 				<th align="center" width="20%">NILAI</th>
 	        </tr>
 			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>KEBUTUHAN BAHAN BAKU K-125 (10±2)</b></th>
+	            <th align="left" colspan="12"><b>KEBUTUHAN BAHAN BAKU</b></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>	
 				<th align="left">Semen</th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_semen_125,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_125['price_a'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_semen_125,0,',','.');?></th>
+				<th align="center"><?php echo number_format($total_semen,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harga_semen,0,',','.');?></th>
+				<th align="right"><?php echo number_format($nilai_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">2</th>	
 				<th align="left">Pasir</th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_pasir_125,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_125['price_b'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_pasir_125,0,',','.');?></th>
+				<th align="center"><?php echo number_format($total_pasir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harga_pasir,0,',','.');?></th>
+				<th align="right"><?php echo number_format($nilai_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3</th>	
 				<th align="left">Batu Split 10-20</th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu1020_125,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_125['price_c'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu1020_125,0,',','.');?></th>
+				<th align="center"><?php echo number_format($total_batu1020,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harga_batu1020,0,',','.');?></th>
+				<th align="right"><?php echo number_format($nilai_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4</th>	
 				<th align="left">Batu Split 20-30</th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu2030_125,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_125['price_d'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu2030_125,0,',','.');?></th>
+				<th align="center"><?php echo number_format($total_batu2030,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harga_batu2030,0,',','.');?></th>
+				<th align="right"><?php echo number_format($nilai_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
 	            <th align="right" colspan="5">TOTAL</th>
-				<th align="right"><?php echo number_format($total_125,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>KEBUTUHAN BAHAN BAKU K-225 (10±2)</b></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">1</th>	
-				<th align="left">Semen</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_semen_225,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_225['price_a'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_semen_225,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">2</th>	
-				<th align="left">Pasir</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_pasir_225,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_225['price_b'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_pasir_225,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">3</th>	
-				<th align="left">Batu Split 10-20</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu1020_225,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_225['price_c'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu1020_225,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">4</th>	
-				<th align="left">Batu Split 20-30</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu2030_225,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_225['price_d'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu2030_225,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-	            <th align="right" colspan="5">TOTAL</th>
-				<th align="right"><?php echo number_format($total_225,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>KEBUTUHAN BAHAN BAKU K-250 (10±2)</b></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">1</th>	
-				<th align="left">Semen</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_semen_250,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250['price_a'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_semen_250,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">2</th>	
-				<th align="left">Pasir</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_pasir_250,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250['price_b'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_pasir_250,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">3</th>	
-				<th align="left">Batu Split 10-20</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu1020_250,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250['price_c'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu1020_250,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">4</th>	
-				<th align="left">Batu Split 20-30</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu2030_250,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250['price_d'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu2030_250,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-	            <th align="right" colspan="5">TOTAL</th>
-				<th align="right"><?php echo number_format($total_250,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>KEBUTUHAN BAHAN BAKU K-250 (18±2)</b></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">1</th>	
-				<th align="left">Semen</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_semen_250_18,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250_18['price_a'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_semen_250_18,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">2</th>	
-				<th align="left">Pasir</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_pasir_250_18,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250_18['price_b'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_pasir_250_18,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">3</th>	
-				<th align="left">Batu Split 10-20</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu1020_250_18,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250_18['price_c'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu1020_250_18,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center">4</th>	
-				<th align="left">Batu Split 20-30</th>
-				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_batu2030_250_18,2,',','.');?></th>
-				<th align="right"><?php echo number_format($komposisi_250_18['price_d'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_batu2030_250_18,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-	            <th align="right" colspan="5">TOTAL</th>
-				<th align="right"><?php echo number_format($total_250_18,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-	            <th align="right" colspan="5">GRAND TOTAL</th>
-				<th align="right"><?php echo number_format($total_all,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total,0,',','.');?></th>
 	        </tr>
 	    </table>
 	</body>

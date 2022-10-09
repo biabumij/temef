@@ -117,20 +117,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Biaya Bahan</td>
-													<td>
-                                                    <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Biaya Alat</td>
-													<td>
-                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
                                                     <td>Biaya Overhead</td>
 													<td>
                                                     <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">

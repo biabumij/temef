@@ -42,8 +42,6 @@ class Rak extends Secure_Controller {
 		$vol_produk_c =  str_replace(',', '.', $vol_produk_c);
 		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 		$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
-		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
-		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 		$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
@@ -58,8 +56,6 @@ class Rak extends Secure_Controller {
 			'vol_produk_b' => $vol_produk_b,
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
-			'biaya_bahan' => $biaya_bahan,
-			'biaya_alat' => $biaya_alat,
 			'biaya_overhead' => $biaya_overhead,
 			'biaya_bank' => $biaya_bank,
 			'biaya_persiapan' => $biaya_persiapan,
