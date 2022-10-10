@@ -6670,10 +6670,11 @@ class Reports extends CI_Controller {
 			<?php
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
-			$rencana_kerja_2022 = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+			$rencana_kerja_2022 = $this->db->select('r.*')
 			->from('rak r')
-			->where("(r.tanggal_rencana_kerja < '$date_end')")
+			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
 			->get()->row_array();
+
 			$volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
 			$volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
 			$volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
@@ -6777,9 +6778,9 @@ class Reports extends CI_Controller {
 			//TOTAL PEMAKAIAN BAHAN RAP 2022
 			//TOTAL K-125
 			$total_semen_125_rap_2022 = $komposisi_125_produk_a * $volume_rap_2022_produk_a;
-			$total_pasir_125_rap_2022 = $komposisi_125_produk_b * $volume_rap_2022_produk_b;
-			$total_batu1020_125_rap_2022 = $komposisi_125_produk_c * $volume_rap_2022_produk_c;
-			$total_batu2030_125_rap_2022 = $komposisi_125_produk_d * $volume_rap_2022_produk_d;
+			$total_pasir_125_rap_2022 = $komposisi_125_produk_b * $volume_rap_2022_produk_a;
+			$total_batu1020_125_rap_2022 = $komposisi_125_produk_c * $volume_rap_2022_produk_a;
+			$total_batu2030_125_rap_2022 = $komposisi_125_produk_d * $volume_rap_2022_produk_a;
 
 			$nilai_semen_125_rap_2022 = $total_semen_125_rap_2022 * $komposisi_125['price_a'];
 			$nilai_pasir_125_rap_2022 = $total_pasir_125_rap_2022 * $komposisi_125['price_b'];
@@ -6789,10 +6790,10 @@ class Reports extends CI_Controller {
 			$total_125_rap_2022 = $nilai_semen_125_rap_2022 + $nilai_pasir_125_rap_2022 + $nilai_batu1020_125_rap_2022 + $nilai_batu2030_125_rap_2022;
 
 			//TOTAL K-225
-			$total_semen_225_rap_2022 = $komposisi_225_produk_a * $volume_rap_2022_produk_a;
+			$total_semen_225_rap_2022 = $komposisi_225_produk_a * $volume_rap_2022_produk_b;
 			$total_pasir_225_rap_2022 = $komposisi_225_produk_b * $volume_rap_2022_produk_b;
 			$total_batu1020_225_rap_2022 = $komposisi_225_produk_c * $volume_rap_2022_produk_b;
-			$total_batu2030_225_rap_2022 = $komposisi_225_produk_d * $volume_rap_2022_produk_c;
+			$total_batu2030_225_rap_2022 = $komposisi_225_produk_d * $volume_rap_2022_produk_b;
 
 			$nilai_semen_225_rap_2022 = $total_semen_225_rap_2022 * $komposisi_225['price_a'];
 			$nilai_pasir_225_rap_2022 = $total_pasir_225_rap_2022 * $komposisi_225['price_b'];
@@ -6802,10 +6803,10 @@ class Reports extends CI_Controller {
 			$total_225_rap_2022 = $nilai_semen_225_rap_2022 + $nilai_pasir_225_rap_2022 + $nilai_batu1020_225_rap_2022 + $nilai_batu2030_225_rap_2022;
 
 			//TOTAL K-250
-			$total_semen_250_rap_2022 = $komposisi_250_produk_a * $volume_rap_2022_produk_a;
-			$total_pasir_250_rap_2022 = $komposisi_250_produk_b * $volume_rap_2022_produk_b;
+			$total_semen_250_rap_2022 = $komposisi_250_produk_a * $volume_rap_2022_produk_c;
+			$total_pasir_250_rap_2022 = $komposisi_250_produk_b * $volume_rap_2022_produk_c;
 			$total_batu1020_250_rap_2022 = $komposisi_250_produk_c * $volume_rap_2022_produk_c;
-			$total_batu2030_250_rap_2022 = $komposisi_250_produk_d * $volume_rap_2022_produk_d;
+			$total_batu2030_250_rap_2022 = $komposisi_250_produk_d * $volume_rap_2022_produk_c;
 
 			$nilai_semen_250_rap_2022 = $total_semen_250_rap_2022 * $komposisi_250['price_a'];
 			$nilai_pasir_250_rap_2022 = $total_pasir_250_rap_2022 * $komposisi_250['price_b'];
@@ -6815,9 +6816,9 @@ class Reports extends CI_Controller {
 			$total_250_rap_2022 = $nilai_semen_250_rap_2022 + $nilai_pasir_250_rap_2022 + $nilai_batu1020_250_rap_2022 + $nilai_batu2030_250_rap_2022;
 
 			//TOTAL K-250_18
-			$total_semen_250_18_rap_2022 = $komposisi_250_18_produk_a * $volume_rap_2022_produk_a;
-			$total_pasir_250_18_rap_2022 = $komposisi_250_18_produk_b * $volume_rap_2022_produk_b;
-			$total_batu1020_250_18_rap_2022 = $komposisi_250_18_produk_c * $volume_rap_2022_produk_c;
+			$total_semen_250_18_rap_2022 = $komposisi_250_18_produk_a * $volume_rap_2022_produk_d;
+			$total_pasir_250_18_rap_2022 = $komposisi_250_18_produk_b * $volume_rap_2022_produk_d;
+			$total_batu1020_250_18_rap_2022 = $komposisi_250_18_produk_c * $volume_rap_2022_produk_d;
 			$total_batu2030_250_18_rap_2022 = $komposisi_250_18_produk_d * $volume_rap_2022_produk_d;
 
 			$nilai_semen_250_18_rap_2022 = $total_semen_250_18_rap_2022 * $komposisi_250_18['price_a'];
@@ -7524,7 +7525,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active2">
 				<th class="text-right" colspan="2">TOTAL VOLUME</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_rap_volume_2022,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap_2022?filter_date=".$filter_date = date('d F Y',strtotime('2022-01-01')).' - '.date('d F Y',strtotime('2022-12-31'))) ?>"><?php echo number_format($total_rap_volume_2022,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_oktober?filter_date=".$filter_date = date('d F Y',strtotime($date_oktober_awal)).' - '.date('d F Y',strtotime($date_oktober_akhir))) ?>"><?php echo number_format($total_oktober_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_november?filter_date=".$filter_date = date('d F Y',strtotime($date_november_awal)).' - '.date('d F Y',strtotime($date_november_akhir))) ?>"><?php echo number_format($total_november_volume,2,',','.');?></a></th>
