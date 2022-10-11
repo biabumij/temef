@@ -6722,6 +6722,59 @@ class Reports extends CI_Controller {
 			
 			$total_rap_nilai_2022 = $nilai_jual_all_2022;
 
+			//KOMPOSISI RAP 2022
+			//K125
+			$komposisi_125_rap = $this->db->select('pk.*')
+			->from('pmm_agregat pk')
+			->where("pk.mutu_beton = 2")
+			->where('pk.status','PUBLISH')
+			->order_by('pk.date_agregat','asc')->limit(1)
+			->get()->row_array();
+
+			$komposisi_125_produk_a_rap = $komposisi_125_rap['presentase_a'];
+			$komposisi_125_produk_b_rap = $komposisi_125_rap['presentase_b'];
+			$komposisi_125_produk_c_rap = $komposisi_125_rap['presentase_c'];
+			$komposisi_125_produk_d_rap = $komposisi_125_rap['presentase_d'];
+
+			//K225
+			$komposisi_225_rap = $this->db->select('pk.*')
+			->from('pmm_agregat pk')
+			->where("pk.mutu_beton = 1")
+			->where('pk.status','PUBLISH')
+			->order_by('pk.date_agregat','asc')->limit(1)
+			->get()->row_array();
+
+			$komposisi_225_produk_a_rap = $komposisi_225_rap['presentase_a'];
+			$komposisi_225_produk_b_rap = $komposisi_225_rap['presentase_b'];
+			$komposisi_225_produk_c_rap = $komposisi_225_rap['presentase_c'];
+			$komposisi_225_produk_d_rap = $komposisi_225_rap['presentase_d'];
+
+			//K250
+			$komposisi_250_rap = $this->db->select('pk.*')
+			->from('pmm_agregat pk')
+			->where("pk.mutu_beton = 3")
+			->where('pk.status','PUBLISH')
+			->order_by('pk.date_agregat','asc')->limit(1)
+			->get()->row_array();
+
+			$komposisi_250_produk_a_rap = $komposisi_250_rap['presentase_a'];
+			$komposisi_250_produk_b_rap = $komposisi_250_rap['presentase_b'];
+			$komposisi_250_produk_c_rap = $komposisi_250_rap['presentase_c'];
+			$komposisi_250_produk_d_rap = $komposisi_250_rap['presentase_d'];
+
+			//K250_18
+			$komposisi_250_18_rap = $this->db->select('pk.*')
+			->from('pmm_agregat pk')
+			->where("pk.mutu_beton = 11")
+			->where('pk.status','PUBLISH')
+			->order_by('pk.date_agregat','asc')->limit(1)
+			->get()->row_array();
+
+			$komposisi_250_18_produk_a_rap = $komposisi_250_18_rap['presentase_a'];
+			$komposisi_250_18_produk_b_rap = $komposisi_250_18_rap['presentase_b'];
+			$komposisi_250_18_produk_c_rap = $komposisi_250_18_rap['presentase_c'];
+			$komposisi_250_18_produk_d_rap = $komposisi_250_18_rap['presentase_d'];
+
 			//KOMPOSISI
 			//K125
 			$komposisi_125 = $this->db->select('pk.*')
@@ -6777,54 +6830,54 @@ class Reports extends CI_Controller {
 
 			//TOTAL PEMAKAIAN BAHAN RAP 2022
 			//TOTAL K-125
-			$total_semen_125_rap_2022 = $komposisi_125_produk_a * $volume_rap_2022_produk_a;
-			$total_pasir_125_rap_2022 = $komposisi_125_produk_b * $volume_rap_2022_produk_a;
-			$total_batu1020_125_rap_2022 = $komposisi_125_produk_c * $volume_rap_2022_produk_a;
-			$total_batu2030_125_rap_2022 = $komposisi_125_produk_d * $volume_rap_2022_produk_a;
+			$total_semen_125_rap_2022 = $komposisi_125_produk_a_rap * $volume_rap_2022_produk_a;
+			$total_pasir_125_rap_2022 = $komposisi_125_produk_b_rap * $volume_rap_2022_produk_a;
+			$total_batu1020_125_rap_2022 = $komposisi_125_produk_c_rap * $volume_rap_2022_produk_a;
+			$total_batu2030_125_rap_2022 = $komposisi_125_produk_d_rap * $volume_rap_2022_produk_a;
 
-			$nilai_semen_125_rap_2022 = $total_semen_125_rap_2022 * $komposisi_125['price_a'];
-			$nilai_pasir_125_rap_2022 = $total_pasir_125_rap_2022 * $komposisi_125['price_b'];
-			$nilai_batu1020_125_rap_2022 = $total_batu1020_125_rap_2022 * $komposisi_125['price_c'];
-			$nilai_batu2030_125_rap_2022 = $total_batu2030_125_rap_2022 * $komposisi_125['price_d'];
+			$nilai_semen_125_rap_2022 = $total_semen_125_rap_2022 * $komposisi_125_rap['price_a'];
+			$nilai_pasir_125_rap_2022 = $total_pasir_125_rap_2022 * $komposisi_125_rap['price_b'];
+			$nilai_batu1020_125_rap_2022 = $total_batu1020_125_rap_2022 * $komposisi_125_rap['price_c'];
+			$nilai_batu2030_125_rap_2022 = $total_batu2030_125_rap_2022 * $komposisi_125_rap['price_d'];
 
 			$total_125_rap_2022 = $nilai_semen_125_rap_2022 + $nilai_pasir_125_rap_2022 + $nilai_batu1020_125_rap_2022 + $nilai_batu2030_125_rap_2022;
 
 			//TOTAL K-225
-			$total_semen_225_rap_2022 = $komposisi_225_produk_a * $volume_rap_2022_produk_b;
-			$total_pasir_225_rap_2022 = $komposisi_225_produk_b * $volume_rap_2022_produk_b;
-			$total_batu1020_225_rap_2022 = $komposisi_225_produk_c * $volume_rap_2022_produk_b;
-			$total_batu2030_225_rap_2022 = $komposisi_225_produk_d * $volume_rap_2022_produk_b;
+			$total_semen_225_rap_2022 = $komposisi_225_produk_a_rap * $volume_rap_2022_produk_b;
+			$total_pasir_225_rap_2022 = $komposisi_225_produk_b_rap * $volume_rap_2022_produk_b;
+			$total_batu1020_225_rap_2022 = $komposisi_225_produk_c_rap * $volume_rap_2022_produk_b;
+			$total_batu2030_225_rap_2022 = $komposisi_225_produk_d_rap * $volume_rap_2022_produk_b;
 
-			$nilai_semen_225_rap_2022 = $total_semen_225_rap_2022 * $komposisi_225['price_a'];
-			$nilai_pasir_225_rap_2022 = $total_pasir_225_rap_2022 * $komposisi_225['price_b'];
-			$nilai_batu1020_225_rap_2022 = $total_batu1020_225_rap_2022 * $komposisi_225['price_c'];
-			$nilai_batu2030_225_rap_2022 = $total_batu2030_225_rap_2022 * $komposisi_225['price_d'];
+			$nilai_semen_225_rap_2022 = $total_semen_225_rap_2022 * $komposisi_225_rap['price_a'];
+			$nilai_pasir_225_rap_2022 = $total_pasir_225_rap_2022 * $komposisi_225_rap['price_b'];
+			$nilai_batu1020_225_rap_2022 = $total_batu1020_225_rap_2022 * $komposisi_225_rap['price_c'];
+			$nilai_batu2030_225_rap_2022 = $total_batu2030_225_rap_2022 * $komposisi_225_rap['price_d'];
 
 			$total_225_rap_2022 = $nilai_semen_225_rap_2022 + $nilai_pasir_225_rap_2022 + $nilai_batu1020_225_rap_2022 + $nilai_batu2030_225_rap_2022;
 
 			//TOTAL K-250
-			$total_semen_250_rap_2022 = $komposisi_250_produk_a * $volume_rap_2022_produk_c;
-			$total_pasir_250_rap_2022 = $komposisi_250_produk_b * $volume_rap_2022_produk_c;
-			$total_batu1020_250_rap_2022 = $komposisi_250_produk_c * $volume_rap_2022_produk_c;
-			$total_batu2030_250_rap_2022 = $komposisi_250_produk_d * $volume_rap_2022_produk_c;
+			$total_semen_250_rap_2022 = $komposisi_250_produk_a_rap * $volume_rap_2022_produk_c;
+			$total_pasir_250_rap_2022 = $komposisi_250_produk_b_rap * $volume_rap_2022_produk_c;
+			$total_batu1020_250_rap_2022 = $komposisi_250_produk_c_rap * $volume_rap_2022_produk_c;
+			$total_batu2030_250_rap_2022 = $komposisi_250_produk_d_rap * $volume_rap_2022_produk_c;
 
-			$nilai_semen_250_rap_2022 = $total_semen_250_rap_2022 * $komposisi_250['price_a'];
-			$nilai_pasir_250_rap_2022 = $total_pasir_250_rap_2022 * $komposisi_250['price_b'];
-			$nilai_batu1020_250_rap_2022 = $total_batu1020_250_rap_2022 * $komposisi_250['price_c'];
-			$nilai_batu2030_250_rap_2022 = $total_batu2030_250_rap_2022 * $komposisi_250['price_d'];
+			$nilai_semen_250_rap_2022 = $total_semen_250_rap_2022 * $komposisi_250_rap['price_a'];
+			$nilai_pasir_250_rap_2022 = $total_pasir_250_rap_2022 * $komposisi_250_rap['price_b'];
+			$nilai_batu1020_250_rap_2022 = $total_batu1020_250_rap_2022 * $komposisi_250_rap['price_c'];
+			$nilai_batu2030_250_rap_2022 = $total_batu2030_250_rap_2022 * $komposisi_250_rap['price_d'];
 
 			$total_250_rap_2022 = $nilai_semen_250_rap_2022 + $nilai_pasir_250_rap_2022 + $nilai_batu1020_250_rap_2022 + $nilai_batu2030_250_rap_2022;
 
 			//TOTAL K-250_18
-			$total_semen_250_18_rap_2022 = $komposisi_250_18_produk_a * $volume_rap_2022_produk_d;
-			$total_pasir_250_18_rap_2022 = $komposisi_250_18_produk_b * $volume_rap_2022_produk_d;
-			$total_batu1020_250_18_rap_2022 = $komposisi_250_18_produk_c * $volume_rap_2022_produk_d;
-			$total_batu2030_250_18_rap_2022 = $komposisi_250_18_produk_d * $volume_rap_2022_produk_d;
+			$total_semen_250_18_rap_2022 = $komposisi_250_18_produk_a_rap * $volume_rap_2022_produk_d;
+			$total_pasir_250_18_rap_2022 = $komposisi_250_18_produk_b_rap * $volume_rap_2022_produk_d;
+			$total_batu1020_250_18_rap_2022 = $komposisi_250_18_produk_c_rap * $volume_rap_2022_produk_d;
+			$total_batu2030_250_18_rap_2022 = $komposisi_250_18_produk_d_rap * $volume_rap_2022_produk_d;
 
-			$nilai_semen_250_18_rap_2022 = $total_semen_250_18_rap_2022 * $komposisi_250_18['price_a'];
-			$nilai_pasir_250_18_rap_2022 = $total_pasir_250_18_rap_2022 * $komposisi_250_18['price_b'];
-			$nilai_batu1020_250_18_rap_2022 = $total_batu1020_250_18_rap_2022 * $komposisi_250_18['price_c'];
-			$nilai_batu2030_250_18_rap_2022 = $total_batu2030_250_18_rap_2022 * $komposisi_250_18['price_d'];
+			$nilai_semen_250_18_rap_2022 = $total_semen_250_18_rap_2022 * $komposisi_250_18_rap['price_a'];
+			$nilai_pasir_250_18_rap_2022 = $total_pasir_250_18_rap_2022 * $komposisi_250_18_rap['price_b'];
+			$nilai_batu1020_250_18_rap_2022 = $total_batu1020_250_18_rap_2022 * $komposisi_250_18_rap['price_c'];
+			$nilai_batu2030_250_18_rap_2022 = $total_batu2030_250_18_rap_2022 * $komposisi_250_18_rap['price_d'];
 
 			$total_250_18_rap_2022 = $nilai_semen_250_18_rap_2022 + $nilai_pasir_250_18_rap_2022 + $nilai_batu1020_250_18_rap_2022 + $nilai_batu2030_250_18_rap_2022;
 
@@ -7477,7 +7530,9 @@ class Reports extends CI_Controller {
 			$sisa_all_biaya_bank = $total_rap_2022_biaya_bank - $total_all_biaya_bank;
 			$sisa_all_biaya_persiapan = $total_rap_2022_biaya_persiapan - $total_all_biaya_persiapan;
 			$sisa_biaya_all_biaya = $total_biaya_rap_2022_biaya - $total_biaya_all_biaya;
-			$sisa_laba_all = $total_laba_rap_2022 - $total_laba_all;
+			$x = $total_laba_rap_2022;
+			$y = - $total_laba_all;
+			$sisa_laba_all = $x - $y;
 			?>
 			<!-- SISA -->
 

@@ -116,7 +116,7 @@
 				<td align="center">4.</td>
 				<td align="left">BBM SOLAR</td>
 				<td align="center"><?= number_format($rap_alat['vol_bbm_solar'],0,',','.'); ?></td>
-				<td align="center">M3</td>
+				<td align="center">Liter</td>
 				<td align="right"><?= number_format($rap_alat['harsat_bbm_solar'],0,',','.'); ?></td>
 				<td align="right"><?= number_format($rap_alat['bbm_solar'],0,',','.'); ?></td>
 			</tr>

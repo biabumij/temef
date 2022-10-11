@@ -116,7 +116,7 @@
 													<td>
                                                     <input type="text" id="vol_bbm_solar" name="vol_bbm_solar" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center">M3</td>
+                                                    <td class="text-center">Liter</td>
                                                     <td>
                                                     <input type="text" name="harsat_bbm_solar" id="harsat_bbm_solar" class="form-control rupiahformat text-right" onchange="changeData(1)"  required="" autocomplete="off"/>
                                                     </td>
