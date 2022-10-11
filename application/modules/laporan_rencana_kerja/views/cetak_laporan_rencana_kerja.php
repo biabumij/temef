@@ -45,7 +45,7 @@
 					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN RENCANA KERJA PRODUKSI</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : 2022</div>
+					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : 2022 - 2023</div>
 				</td>
 			</tr>
 		</table>
