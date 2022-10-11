@@ -6602,7 +6602,7 @@ class Reports extends CI_Controller {
 		<?php
 	}
 
-	public function prognosa_produksi($arr_date)
+	public function laporan_rencana_kerja($arr_date)
 	{
 		$data = array();
 		

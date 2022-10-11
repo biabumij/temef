@@ -80,7 +80,7 @@
 													<div class="row">
 														<form action="<?php echo site_url('laporan/cetak_laporan_rencana_kerja');?>" target="_blank">
 															<!--<div class="col-sm-3">
-																<input type="text" id="filter_date_prognosa_produksi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_laporan_rencana_kerja" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>-->
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -124,7 +124,7 @@
         
 		<!-- Script Prognosa Produksi -->
 		<script type="text/javascript">
-			$('#filter_date_prognosa_produksi').daterangepicker({
+			$('#filter_date_laporan_rencana_kerja').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -140,7 +140,7 @@
             }
 			});
 
-			$('#filter_date_prognosa_produksi').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_laporan_rencana_kerja').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
 				  PrognosaProduksi();
 			});
@@ -151,10 +151,10 @@
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/prognosa_produksi'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/laporan_rencana_kerja'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_prognosa_produksi').val(),
+						filter_date : $('#filter_date_laporan_rencana_kerja').val(),
 					},
 					success : function(result){
 						$('#prognosa-produksi').html(result);
