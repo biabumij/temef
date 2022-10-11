@@ -7,30 +7,30 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 6px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 6px;
 		}
 
 		table tr.table-baris1-bold{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 6px;
 			font-weight: bold;
 		}
 			
 		table tr.table-baris2{
-			font-size: 8px;
+			font-size: 6px;
 			background-color: #E8E8E8;
 		}
 			
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 6px;
 			color: black;
 		}
 	  </style>
@@ -968,6 +968,571 @@
 			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank + $total_februari_biaya_persiapan;
 			?>
 			<!-- FEBRUARI -->
+
+			<!-- MARET -->
+			<?php
+			$date_maret_awal = date('2023-03-01');
+			$date_maret_akhir = date('2023-03-31');
+			$rencana_kerja_maret = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->get()->row_array();
+			$volume_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
+			$volume_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
+			$volume_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
+			$volume_maret_produk_d = $rencana_kerja_maret['vol_produk_d'];
+
+			$total_maret_volume = $volume_maret_produk_a + $volume_maret_produk_b + $volume_maret_produk_c + $volume_maret_produk_d;
+
+			$nilai_jual_125_maret = $volume_maret_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_maret = $volume_maret_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_maret = $volume_maret_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_maret = $volume_maret_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_maret = $nilai_jual_125_maret + $nilai_jual_225_maret + $nilai_jual_250_maret + $nilai_jual_250_18_maret;
+
+			$total_maret_nilai = $nilai_jual_all_maret;
+
+			//TOTAL PEMAKAIAN BAHAN
+			$rencana_kerja_maret = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
+			$volume_rencana_kerja_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
+			$volume_rencana_kerja_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
+			$volume_rencana_kerja_maret_produk_d = $rencana_kerja_maret['vol_produk_d'];
+
+			//TOTAL K-125
+			$total_semen_125_maret = $komposisi_125_produk_a * $volume_rencana_kerja_maret_produk_a;
+			$total_pasir_125_maret = $komposisi_125_produk_b * $volume_rencana_kerja_maret_produk_a;
+			$total_batu1020_125_maret = $komposisi_125_produk_c * $volume_rencana_kerja_maret_produk_a;
+			$total_batu2030_125_maret = $komposisi_125_produk_d * $volume_rencana_kerja_maret_produk_a;
+
+			$nilai_semen_125_maret = $total_semen_125_maret * $komposisi_125['price_a'];
+			$nilai_pasir_125_maret = $total_pasir_125_maret * $komposisi_125['price_b'];
+			$nilai_batu1020_125_maret = $total_batu1020_125_maret * $komposisi_125['price_c'];
+			$nilai_batu2030_125_maret = $total_batu2030_125_maret * $komposisi_125['price_d'];
+
+			$total_125_maret = $nilai_semen_125_maret + $nilai_pasir_125_maret + $nilai_batu1020_125_maret + $nilai_batu2030_125_maret;
+
+			//TOTAL K-225
+			$total_semen_225_maret = $komposisi_225_produk_a * $volume_rencana_kerja_maret_produk_b;
+			$total_pasir_225_maret = $komposisi_225_produk_b * $volume_rencana_kerja_maret_produk_b;
+			$total_batu1020_225_maret = $komposisi_225_produk_c * $volume_rencana_kerja_maret_produk_b;
+			$total_batu2030_225_maret = $komposisi_225_produk_d * $volume_rencana_kerja_maret_produk_b;
+
+			$nilai_semen_225_maret = $total_semen_225_maret * $komposisi_225['price_a'];
+			$nilai_pasir_225_maret = $total_pasir_225_maret * $komposisi_225['price_b'];
+			$nilai_batu1020_225_maret = $total_batu1020_225_maret * $komposisi_225['price_c'];
+			$nilai_batu2030_225_maret = $total_batu2030_225_maret * $komposisi_225['price_d'];
+
+			$total_225_maret = $nilai_semen_225_maret + $nilai_pasir_225_maret + $nilai_batu1020_225_maret + $nilai_batu2030_225_maret;
+
+			//TOTAL K-250
+			$total_semen_250_maret = $komposisi_250_produk_a * $volume_rencana_kerja_maret_produk_c;
+			$total_pasir_250_maret = $komposisi_250_produk_b * $volume_rencana_kerja_maret_produk_c;
+			$total_batu1020_250_maret = $komposisi_250_produk_c * $volume_rencana_kerja_maret_produk_c;
+			$total_batu2030_250_maret = $komposisi_250_produk_d * $volume_rencana_kerja_maret_produk_c;
+
+			$nilai_semen_250_maret = $total_semen_250_maret * $komposisi_250['price_a'];
+			$nilai_pasir_250_maret = $total_pasir_250_maret * $komposisi_250['price_b'];
+			$nilai_batu1020_250_maret = $total_batu1020_250_maret * $komposisi_250['price_c'];
+			$nilai_batu2030_250_maret = $total_batu2030_250_maret * $komposisi_250['price_d'];
+
+			$total_250_maret = $nilai_semen_250_maret + $nilai_pasir_250_maret + $nilai_batu1020_250_maret + $nilai_batu2030_250_maret;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_maret = $komposisi_250_18_produk_a * $volume_rencana_kerja_maret_produk_d;
+			$total_pasir_250_18_maret = $komposisi_250_18_produk_b * $volume_rencana_kerja_maret_produk_d;
+			$total_batu1020_250_18_maret = $komposisi_250_18_produk_c * $volume_rencana_kerja_maret_produk_d;
+			$total_batu2030_250_18_maret = $komposisi_250_18_produk_d * $volume_rencana_kerja_maret_produk_d;
+
+			$nilai_semen_250_18_maret = $total_semen_250_18_maret  * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_maret = $total_pasir_250_18_maret  * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_maret = $total_batu1020_250_18_maret  * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_maret = $total_batu2030_250_18_maret  * $komposisi_250_18['price_d'];
+
+			$total_250_18_maret = $nilai_semen_250_18_maret  + $nilai_pasir_250_18_maret  + $nilai_batu1020_250_18_maret  + $nilai_batu2030_250_18_maret;
+
+			//TOTAL ALL
+			$total_bahan_all_maret = $total_125_maret  + $total_225_maret  + $total_250_maret  + $total_250_18_maret;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_maret = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_maret_akhir')")
+			->get()->row_array();
+
+			$batching_plant_maret = $total_maret_volume * $rap_alat_maret['batching_plant'];
+			$truck_mixer_maret = $total_maret_volume * $rap_alat_maret['truck_mixer'];
+			$wheel_loader_maret = $total_maret_volume * $rap_alat_maret['wheel_loader'];
+			$bbm_solar_maret = $total_maret_volume * $rap_alat_maret['bbm_solar'];
+			$biaya_alat_all_maret = $batching_plant_maret + $truck_mixer_maret + $wheel_loader_maret + $bbm_solar_maret;
+		
+			$total_maret_biaya_bahan = $total_bahan_all_maret;
+			$total_maret_biaya_alat = $biaya_alat_all_maret;
+			$total_maret_biaya_overhead = $rencana_kerja_maret['biaya_overhead'];
+			$total_maret_biaya_bank = $rencana_kerja_maret['biaya_bank'];
+			$total_maret_biaya_persiapan = $rencana_kerja_maret['biaya_persiapan'];
+
+			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank + $total_maret_biaya_persiapan;
+			?>
+			<!-- MARET -->
+
+			<!-- APRIL -->
+			<?php
+			$date_april_awal = date('2023-04-01');
+			$date_april_akhir = date('2023-04-30');
+			$rencana_kerja_april = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->get()->row_array();
+			$volume_april_produk_a = $rencana_kerja_april['vol_produk_a'];
+			$volume_april_produk_b = $rencana_kerja_april['vol_produk_b'];
+			$volume_april_produk_c = $rencana_kerja_april['vol_produk_c'];
+			$volume_april_produk_d = $rencana_kerja_april['vol_produk_d'];
+
+			$total_april_volume = $volume_april_produk_a + $volume_april_produk_b + $volume_april_produk_c + $volume_april_produk_d;
+
+			$nilai_jual_125_april = $volume_april_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_april = $volume_april_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_april = $volume_april_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_april = $volume_april_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_april = $nilai_jual_125_april + $nilai_jual_225_april + $nilai_jual_250_april + $nilai_jual_250_18_april;
+
+			$total_april_nilai = $nilai_jual_all_april;
+
+			//TOTAL PEMAKAIAN BAHAN
+			$rencana_kerja_april = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_april_produk_a = $rencana_kerja_april['vol_produk_a'];
+			$volume_rencana_kerja_april_produk_b = $rencana_kerja_april['vol_produk_b'];
+			$volume_rencana_kerja_april_produk_c = $rencana_kerja_april['vol_produk_c'];
+			$volume_rencana_kerja_april_produk_d = $rencana_kerja_april['vol_produk_d'];
+
+			//TOTAL K-125
+			$total_semen_125_april = $komposisi_125_produk_a * $volume_rencana_kerja_april_produk_a;
+			$total_pasir_125_april = $komposisi_125_produk_b * $volume_rencana_kerja_april_produk_a;
+			$total_batu1020_125_april = $komposisi_125_produk_c * $volume_rencana_kerja_april_produk_a;
+			$total_batu2030_125_april = $komposisi_125_produk_d * $volume_rencana_kerja_april_produk_a;
+
+			$nilai_semen_125_april = $total_semen_125_april * $komposisi_125['price_a'];
+			$nilai_pasir_125_april = $total_pasir_125_april * $komposisi_125['price_b'];
+			$nilai_batu1020_125_april = $total_batu1020_125_april * $komposisi_125['price_c'];
+			$nilai_batu2030_125_april = $total_batu2030_125_april * $komposisi_125['price_d'];
+
+			$total_125_april = $nilai_semen_125_april + $nilai_pasir_125_april + $nilai_batu1020_125_april + $nilai_batu2030_125_april;
+
+			//TOTAL K-225
+			$total_semen_225_april = $komposisi_225_produk_a * $volume_rencana_kerja_april_produk_b;
+			$total_pasir_225_april = $komposisi_225_produk_b * $volume_rencana_kerja_april_produk_b;
+			$total_batu1020_225_april = $komposisi_225_produk_c * $volume_rencana_kerja_april_produk_b;
+			$total_batu2030_225_april = $komposisi_225_produk_d * $volume_rencana_kerja_april_produk_b;
+
+			$nilai_semen_225_april = $total_semen_225_april * $komposisi_225['price_a'];
+			$nilai_pasir_225_april = $total_pasir_225_april * $komposisi_225['price_b'];
+			$nilai_batu1020_225_april = $total_batu1020_225_april * $komposisi_225['price_c'];
+			$nilai_batu2030_225_april = $total_batu2030_225_april * $komposisi_225['price_d'];
+
+			$total_225_april = $nilai_semen_225_april + $nilai_pasir_225_april + $nilai_batu1020_225_april + $nilai_batu2030_225_april;
+
+			//TOTAL K-250
+			$total_semen_250_april = $komposisi_250_produk_a * $volume_rencana_kerja_april_produk_c;
+			$total_pasir_250_april = $komposisi_250_produk_b * $volume_rencana_kerja_april_produk_c;
+			$total_batu1020_250_april = $komposisi_250_produk_c * $volume_rencana_kerja_april_produk_c;
+			$total_batu2030_250_april = $komposisi_250_produk_d * $volume_rencana_kerja_april_produk_c;
+
+			$nilai_semen_250_april = $total_semen_250_april * $komposisi_250['price_a'];
+			$nilai_pasir_250_april = $total_pasir_250_april * $komposisi_250['price_b'];
+			$nilai_batu1020_250_april = $total_batu1020_250_april * $komposisi_250['price_c'];
+			$nilai_batu2030_250_april = $total_batu2030_250_april * $komposisi_250['price_d'];
+
+			$total_250_april = $nilai_semen_250_april + $nilai_pasir_250_april + $nilai_batu1020_250_april + $nilai_batu2030_250_april;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_april = $komposisi_250_18_produk_a * $volume_rencana_kerja_april_produk_d;
+			$total_pasir_250_18_april = $komposisi_250_18_produk_b * $volume_rencana_kerja_april_produk_d;
+			$total_batu1020_250_18_april = $komposisi_250_18_produk_c * $volume_rencana_kerja_april_produk_d;
+			$total_batu2030_250_18_april = $komposisi_250_18_produk_d * $volume_rencana_kerja_april_produk_d;
+
+			$nilai_semen_250_18_april = $total_semen_250_18_april  * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_april = $total_pasir_250_18_april  * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_april = $total_batu1020_250_18_april  * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_april = $total_batu2030_250_18_april  * $komposisi_250_18['price_d'];
+
+			$total_250_18_april = $nilai_semen_250_18_april  + $nilai_pasir_250_18_april  + $nilai_batu1020_250_18_april  + $nilai_batu2030_250_18_april;
+
+			//TOTAL ALL
+			$total_bahan_all_april = $total_125_april  + $total_225_april  + $total_250_april  + $total_250_18_april;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_april = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_april_akhir')")
+			->get()->row_array();
+
+			$batching_plant_april = $total_april_volume * $rap_alat_april['batching_plant'];
+			$truck_mixer_april = $total_april_volume * $rap_alat_april['truck_mixer'];
+			$wheel_loader_april = $total_april_volume * $rap_alat_april['wheel_loader'];
+			$bbm_solar_april = $total_april_volume * $rap_alat_april['bbm_solar'];
+			$biaya_alat_all_april = $batching_plant_april + $truck_mixer_april + $wheel_loader_april + $bbm_solar_april;
+		
+			$total_april_biaya_bahan = $total_bahan_all_april;
+			$total_april_biaya_alat = $biaya_alat_all_april;
+			$total_april_biaya_overhead = $rencana_kerja_april['biaya_overhead'];
+			$total_april_biaya_bank = $rencana_kerja_april['biaya_bank'];
+			$total_april_biaya_persiapan = $rencana_kerja_april['biaya_persiapan'];
+
+			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank + $total_april_biaya_persiapan;
+			?>
+			<!-- APRIL -->
+
+			<!-- MEI -->
+			<?php
+			$date_mei_awal = date('2023-05-01');
+			$date_mei_akhir = date('2023-05-31');
+			$rencana_kerja_mei = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->get()->row_array();
+			$volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
+			$volume_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
+			$volume_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
+			$volume_mei_produk_d = $rencana_kerja_mei['vol_produk_d'];
+
+			$total_mei_volume = $volume_mei_produk_a + $volume_mei_produk_b + $volume_mei_produk_c + $volume_mei_produk_d;
+
+			$nilai_jual_125_mei = $volume_mei_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_mei = $volume_mei_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_mei = $volume_mei_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_mei = $volume_mei_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_mei = $nilai_jual_125_mei + $nilai_jual_225_mei + $nilai_jual_250_mei + $nilai_jual_250_18_mei;
+
+			$total_mei_nilai = $nilai_jual_all_mei;
+
+			//TOTAL PEMAKAIAN BAHAN
+			$rencana_kerja_mei = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
+			$volume_rencana_kerja_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
+			$volume_rencana_kerja_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
+			$volume_rencana_kerja_mei_produk_d = $rencana_kerja_mei['vol_produk_d'];
+
+			//TOTAL K-125
+			$total_semen_125_mei = $komposisi_125_produk_a * $volume_rencana_kerja_mei_produk_a;
+			$total_pasir_125_mei = $komposisi_125_produk_b * $volume_rencana_kerja_mei_produk_a;
+			$total_batu1020_125_mei = $komposisi_125_produk_c * $volume_rencana_kerja_mei_produk_a;
+			$total_batu2030_125_mei = $komposisi_125_produk_d * $volume_rencana_kerja_mei_produk_a;
+
+			$nilai_semen_125_mei = $total_semen_125_mei * $komposisi_125['price_a'];
+			$nilai_pasir_125_mei = $total_pasir_125_mei * $komposisi_125['price_b'];
+			$nilai_batu1020_125_mei = $total_batu1020_125_mei * $komposisi_125['price_c'];
+			$nilai_batu2030_125_mei = $total_batu2030_125_mei * $komposisi_125['price_d'];
+
+			$total_125_mei = $nilai_semen_125_mei + $nilai_pasir_125_mei + $nilai_batu1020_125_mei + $nilai_batu2030_125_mei;
+
+			//TOTAL K-225
+			$total_semen_225_mei = $komposisi_225_produk_a * $volume_rencana_kerja_mei_produk_b;
+			$total_pasir_225_mei = $komposisi_225_produk_b * $volume_rencana_kerja_mei_produk_b;
+			$total_batu1020_225_mei = $komposisi_225_produk_c * $volume_rencana_kerja_mei_produk_b;
+			$total_batu2030_225_mei = $komposisi_225_produk_d * $volume_rencana_kerja_mei_produk_b;
+
+			$nilai_semen_225_mei = $total_semen_225_mei * $komposisi_225['price_a'];
+			$nilai_pasir_225_mei = $total_pasir_225_mei * $komposisi_225['price_b'];
+			$nilai_batu1020_225_mei = $total_batu1020_225_mei * $komposisi_225['price_c'];
+			$nilai_batu2030_225_mei = $total_batu2030_225_mei * $komposisi_225['price_d'];
+
+			$total_225_mei = $nilai_semen_225_mei + $nilai_pasir_225_mei + $nilai_batu1020_225_mei + $nilai_batu2030_225_mei;
+
+			//TOTAL K-250
+			$total_semen_250_mei = $komposisi_250_produk_a * $volume_rencana_kerja_mei_produk_c;
+			$total_pasir_250_mei = $komposisi_250_produk_b * $volume_rencana_kerja_mei_produk_c;
+			$total_batu1020_250_mei = $komposisi_250_produk_c * $volume_rencana_kerja_mei_produk_c;
+			$total_batu2030_250_mei = $komposisi_250_produk_d * $volume_rencana_kerja_mei_produk_c;
+
+			$nilai_semen_250_mei = $total_semen_250_mei * $komposisi_250['price_a'];
+			$nilai_pasir_250_mei = $total_pasir_250_mei * $komposisi_250['price_b'];
+			$nilai_batu1020_250_mei = $total_batu1020_250_mei * $komposisi_250['price_c'];
+			$nilai_batu2030_250_mei = $total_batu2030_250_mei * $komposisi_250['price_d'];
+
+			$total_250_mei = $nilai_semen_250_mei + $nilai_pasir_250_mei + $nilai_batu1020_250_mei + $nilai_batu2030_250_mei;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_mei = $komposisi_250_18_produk_a * $volume_rencana_kerja_mei_produk_d;
+			$total_pasir_250_18_mei = $komposisi_250_18_produk_b * $volume_rencana_kerja_mei_produk_d;
+			$total_batu1020_250_18_mei = $komposisi_250_18_produk_c * $volume_rencana_kerja_mei_produk_d;
+			$total_batu2030_250_18_mei = $komposisi_250_18_produk_d * $volume_rencana_kerja_mei_produk_d;
+
+			$nilai_semen_250_18_mei = $total_semen_250_18_mei  * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_mei = $total_pasir_250_18_mei  * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_mei = $total_batu1020_250_18_mei  * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_mei = $total_batu2030_250_18_mei  * $komposisi_250_18['price_d'];
+
+			$total_250_18_mei = $nilai_semen_250_18_mei  + $nilai_pasir_250_18_mei  + $nilai_batu1020_250_18_mei  + $nilai_batu2030_250_18_mei;
+
+			//TOTAL ALL
+			$total_bahan_all_mei = $total_125_mei  + $total_225_mei  + $total_250_mei  + $total_250_18_mei;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_mei = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_mei_akhir')")
+			->get()->row_array();
+
+			$batching_plant_mei = $total_mei_volume * $rap_alat_mei['batching_plant'];
+			$truck_mixer_mei = $total_mei_volume * $rap_alat_mei['truck_mixer'];
+			$wheel_loader_mei = $total_mei_volume * $rap_alat_mei['wheel_loader'];
+			$bbm_solar_mei = $total_mei_volume * $rap_alat_mei['bbm_solar'];
+			$biaya_alat_all_mei = $batching_plant_mei + $truck_mixer_mei + $wheel_loader_mei + $bbm_solar_mei;
+		
+			$total_mei_biaya_bahan = $total_bahan_all_mei;
+			$total_mei_biaya_alat = $biaya_alat_all_mei;
+			$total_mei_biaya_overhead = $rencana_kerja_mei['biaya_overhead'];
+			$total_mei_biaya_bank = $rencana_kerja_mei['biaya_bank'];
+			$total_mei_biaya_persiapan = $rencana_kerja_mei['biaya_persiapan'];
+
+			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank + $total_mei_biaya_persiapan;
+			?>
+			<!-- MEI -->
+
+			<!-- JUNI -->
+			<?php
+			$date_juni_awal = date('2023-06-01');
+			$date_juni_akhir = date('2023-06-30');
+			$rencana_kerja_juni = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->get()->row_array();
+			$volume_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
+			$volume_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
+			$volume_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
+			$volume_juni_produk_d = $rencana_kerja_juni['vol_produk_d'];
+
+			$total_juni_volume = $volume_juni_produk_a + $volume_juni_produk_b + $volume_juni_produk_c + $volume_juni_produk_d;
+
+			$nilai_jual_125_juni = $volume_juni_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_juni = $volume_juni_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_juni = $volume_juni_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_juni = $volume_juni_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_juni = $nilai_jual_125_juni + $nilai_jual_225_juni + $nilai_jual_250_juni + $nilai_jual_250_18_juni;
+
+			$total_juni_nilai = $nilai_jual_all_juni;
+
+			//TOTAL PEMAKAIAN BAHAN
+			$rencana_kerja_juni = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
+			$volume_rencana_kerja_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
+			$volume_rencana_kerja_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
+			$volume_rencana_kerja_juni_produk_d = $rencana_kerja_juni['vol_produk_d'];
+
+			//TOTAL K-125
+			$total_semen_125_juni = $komposisi_125_produk_a * $volume_rencana_kerja_juni_produk_a;
+			$total_pasir_125_juni = $komposisi_125_produk_b * $volume_rencana_kerja_juni_produk_a;
+			$total_batu1020_125_juni = $komposisi_125_produk_c * $volume_rencana_kerja_juni_produk_a;
+			$total_batu2030_125_juni = $komposisi_125_produk_d * $volume_rencana_kerja_juni_produk_a;
+
+			$nilai_semen_125_juni = $total_semen_125_juni * $komposisi_125['price_a'];
+			$nilai_pasir_125_juni = $total_pasir_125_juni * $komposisi_125['price_b'];
+			$nilai_batu1020_125_juni = $total_batu1020_125_juni * $komposisi_125['price_c'];
+			$nilai_batu2030_125_juni = $total_batu2030_125_juni * $komposisi_125['price_d'];
+
+			$total_125_juni = $nilai_semen_125_juni + $nilai_pasir_125_juni + $nilai_batu1020_125_juni + $nilai_batu2030_125_juni;
+
+			//TOTAL K-225
+			$total_semen_225_juni = $komposisi_225_produk_a * $volume_rencana_kerja_juni_produk_b;
+			$total_pasir_225_juni = $komposisi_225_produk_b * $volume_rencana_kerja_juni_produk_b;
+			$total_batu1020_225_juni = $komposisi_225_produk_c * $volume_rencana_kerja_juni_produk_b;
+			$total_batu2030_225_juni = $komposisi_225_produk_d * $volume_rencana_kerja_juni_produk_b;
+
+			$nilai_semen_225_juni = $total_semen_225_juni * $komposisi_225['price_a'];
+			$nilai_pasir_225_juni = $total_pasir_225_juni * $komposisi_225['price_b'];
+			$nilai_batu1020_225_juni = $total_batu1020_225_juni * $komposisi_225['price_c'];
+			$nilai_batu2030_225_juni = $total_batu2030_225_juni * $komposisi_225['price_d'];
+
+			$total_225_juni = $nilai_semen_225_juni + $nilai_pasir_225_juni + $nilai_batu1020_225_juni + $nilai_batu2030_225_juni;
+
+			//TOTAL K-250
+			$total_semen_250_juni = $komposisi_250_produk_a * $volume_rencana_kerja_juni_produk_c;
+			$total_pasir_250_juni = $komposisi_250_produk_b * $volume_rencana_kerja_juni_produk_c;
+			$total_batu1020_250_juni = $komposisi_250_produk_c * $volume_rencana_kerja_juni_produk_c;
+			$total_batu2030_250_juni = $komposisi_250_produk_d * $volume_rencana_kerja_juni_produk_c;
+
+			$nilai_semen_250_juni = $total_semen_250_juni * $komposisi_250['price_a'];
+			$nilai_pasir_250_juni = $total_pasir_250_juni * $komposisi_250['price_b'];
+			$nilai_batu1020_250_juni = $total_batu1020_250_juni * $komposisi_250['price_c'];
+			$nilai_batu2030_250_juni = $total_batu2030_250_juni * $komposisi_250['price_d'];
+
+			$total_250_juni = $nilai_semen_250_juni + $nilai_pasir_250_juni + $nilai_batu1020_250_juni + $nilai_batu2030_250_juni;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_juni = $komposisi_250_18_produk_a * $volume_rencana_kerja_juni_produk_d;
+			$total_pasir_250_18_juni = $komposisi_250_18_produk_b * $volume_rencana_kerja_juni_produk_d;
+			$total_batu1020_250_18_juni = $komposisi_250_18_produk_c * $volume_rencana_kerja_juni_produk_d;
+			$total_batu2030_250_18_juni = $komposisi_250_18_produk_d * $volume_rencana_kerja_juni_produk_d;
+
+			$nilai_semen_250_18_juni = $total_semen_250_18_juni  * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_juni = $total_pasir_250_18_juni  * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_juni = $total_batu1020_250_18_juni  * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_juni = $total_batu2030_250_18_juni  * $komposisi_250_18['price_d'];
+
+			$total_250_18_juni = $nilai_semen_250_18_juni  + $nilai_pasir_250_18_juni  + $nilai_batu1020_250_18_juni  + $nilai_batu2030_250_18_juni;
+
+			//TOTAL ALL
+			$total_bahan_all_juni = $total_125_juni  + $total_225_juni  + $total_250_juni  + $total_250_18_juni;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_juni = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_juni_akhir')")
+			->get()->row_array();
+
+			$batching_plant_juni = $total_juni_volume * $rap_alat_juni['batching_plant'];
+			$truck_mixer_juni = $total_juni_volume * $rap_alat_juni['truck_mixer'];
+			$wheel_loader_juni = $total_juni_volume * $rap_alat_juni['wheel_loader'];
+			$bbm_solar_juni = $total_juni_volume * $rap_alat_juni['bbm_solar'];
+			$biaya_alat_all_juni = $batching_plant_juni + $truck_mixer_juni + $wheel_loader_juni + $bbm_solar_juni;
+		
+			$total_juni_biaya_bahan = $total_bahan_all_juni;
+			$total_juni_biaya_alat = $biaya_alat_all_juni;
+			$total_juni_biaya_overhead = $rencana_kerja_juni['biaya_overhead'];
+			$total_juni_biaya_bank = $rencana_kerja_juni['biaya_bank'];
+			$total_juni_biaya_persiapan = $rencana_kerja_juni['biaya_persiapan'];
+
+			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank + $total_juni_biaya_persiapan;
+			?>
+			<!-- JUNI -->
+
+			<!-- JULI -->
+			<?php
+			$date_juli_awal = date('2023-07-01');
+			$date_juli_akhir = date('2023-07-31');
+			$rencana_kerja_juli = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->get()->row_array();
+			$volume_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
+			$volume_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
+			$volume_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
+			$volume_juli_produk_d = $rencana_kerja_juli['vol_produk_d'];
+
+			$total_juli_volume = $volume_juli_produk_a + $volume_juli_produk_b + $volume_juli_produk_c + $volume_juli_produk_d;
+
+			$nilai_jual_125_juli = $volume_juli_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_juli = $volume_juli_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_juli = $volume_juli_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_juli = $volume_juli_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_juli = $nilai_jual_125_juli + $nilai_jual_225_juli + $nilai_jual_250_juli + $nilai_jual_250_18_juli;
+
+			$total_juli_nilai = $nilai_jual_all_juli;
+
+			//TOTAL PEMAKAIAN BAHAN
+			$rencana_kerja_juli = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
+			$volume_rencana_kerja_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
+			$volume_rencana_kerja_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
+			$volume_rencana_kerja_juli_produk_d = $rencana_kerja_juli['vol_produk_d'];
+
+			//TOTAL K-125
+			$total_semen_125_juli = $komposisi_125_produk_a * $volume_rencana_kerja_juli_produk_a;
+			$total_pasir_125_juli = $komposisi_125_produk_b * $volume_rencana_kerja_juli_produk_a;
+			$total_batu1020_125_juli = $komposisi_125_produk_c * $volume_rencana_kerja_juli_produk_a;
+			$total_batu2030_125_juli = $komposisi_125_produk_d * $volume_rencana_kerja_juli_produk_a;
+
+			$nilai_semen_125_juli = $total_semen_125_juli * $komposisi_125['price_a'];
+			$nilai_pasir_125_juli = $total_pasir_125_juli * $komposisi_125['price_b'];
+			$nilai_batu1020_125_juli = $total_batu1020_125_juli * $komposisi_125['price_c'];
+			$nilai_batu2030_125_juli = $total_batu2030_125_juli * $komposisi_125['price_d'];
+
+			$total_125_juli = $nilai_semen_125_juli + $nilai_pasir_125_juli + $nilai_batu1020_125_juli + $nilai_batu2030_125_juli;
+
+			//TOTAL K-225
+			$total_semen_225_juli = $komposisi_225_produk_a * $volume_rencana_kerja_juli_produk_b;
+			$total_pasir_225_juli = $komposisi_225_produk_b * $volume_rencana_kerja_juli_produk_b;
+			$total_batu1020_225_juli = $komposisi_225_produk_c * $volume_rencana_kerja_juli_produk_b;
+			$total_batu2030_225_juli = $komposisi_225_produk_d * $volume_rencana_kerja_juli_produk_b;
+
+			$nilai_semen_225_juli = $total_semen_225_juli * $komposisi_225['price_a'];
+			$nilai_pasir_225_juli = $total_pasir_225_juli * $komposisi_225['price_b'];
+			$nilai_batu1020_225_juli = $total_batu1020_225_juli * $komposisi_225['price_c'];
+			$nilai_batu2030_225_juli = $total_batu2030_225_juli * $komposisi_225['price_d'];
+
+			$total_225_juli = $nilai_semen_225_juli + $nilai_pasir_225_juli + $nilai_batu1020_225_juli + $nilai_batu2030_225_juli;
+
+			//TOTAL K-250
+			$total_semen_250_juli = $komposisi_250_produk_a * $volume_rencana_kerja_juli_produk_c;
+			$total_pasir_250_juli = $komposisi_250_produk_b * $volume_rencana_kerja_juli_produk_c;
+			$total_batu1020_250_juli = $komposisi_250_produk_c * $volume_rencana_kerja_juli_produk_c;
+			$total_batu2030_250_juli = $komposisi_250_produk_d * $volume_rencana_kerja_juli_produk_c;
+
+			$nilai_semen_250_juli = $total_semen_250_juli * $komposisi_250['price_a'];
+			$nilai_pasir_250_juli = $total_pasir_250_juli * $komposisi_250['price_b'];
+			$nilai_batu1020_250_juli = $total_batu1020_250_juli * $komposisi_250['price_c'];
+			$nilai_batu2030_250_juli = $total_batu2030_250_juli * $komposisi_250['price_d'];
+
+			$total_250_juli = $nilai_semen_250_juli + $nilai_pasir_250_juli + $nilai_batu1020_250_juli + $nilai_batu2030_250_juli;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_juli = $komposisi_250_18_produk_a * $volume_rencana_kerja_juli_produk_d;
+			$total_pasir_250_18_juli = $komposisi_250_18_produk_b * $volume_rencana_kerja_juli_produk_d;
+			$total_batu1020_250_18_juli = $komposisi_250_18_produk_c * $volume_rencana_kerja_juli_produk_d;
+			$total_batu2030_250_18_juli = $komposisi_250_18_produk_d * $volume_rencana_kerja_juli_produk_d;
+
+			$nilai_semen_250_18_juli = $total_semen_250_18_juli  * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_juli = $total_pasir_250_18_juli  * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_juli = $total_batu1020_250_18_juli  * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_juli = $total_batu2030_250_18_juli  * $komposisi_250_18['price_d'];
+
+			$total_250_18_juli = $nilai_semen_250_18_juli  + $nilai_pasir_250_18_juli  + $nilai_batu1020_250_18_juli  + $nilai_batu2030_250_18_juli;
+
+			//TOTAL ALL
+			$total_bahan_all_juli = $total_125_juli  + $total_225_juli  + $total_250_juli  + $total_250_18_juli;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_juli = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_juli_akhir')")
+			->get()->row_array();
+
+			$batching_plant_juli = $total_juli_volume * $rap_alat_juli['batching_plant'];
+			$truck_mixer_juli = $total_juli_volume * $rap_alat_juli['truck_mixer'];
+			$wheel_loader_juli = $total_juli_volume * $rap_alat_juli['wheel_loader'];
+			$bbm_solar_juli = $total_juli_volume * $rap_alat_juli['bbm_solar'];
+			$biaya_alat_all_juli = $batching_plant_juli + $truck_mixer_juli + $wheel_loader_juli + $bbm_solar_juli;
+		
+			$total_juli_biaya_bahan = $total_bahan_all_juli;
+			$total_juli_biaya_alat = $biaya_alat_all_juli;
+			$total_juli_biaya_overhead = $rencana_kerja_juli['biaya_overhead'];
+			$total_juli_biaya_bank = $rencana_kerja_juli['biaya_bank'];
+			$total_juli_biaya_persiapan = $rencana_kerja_juli['biaya_persiapan'];
+
+			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank + $total_juli_biaya_persiapan;
+			?>
+			<!-- JULI -->
 			
 
 			<!-- AKUMULASI BIAYA SD. SAAT INI -->
@@ -1149,19 +1714,19 @@
 
 			<!-- TOTAL -->
 			<?php
-			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_oktober_produk_a + $volume_november_produk_a + $volume_desember_produk_a;
-			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_oktober_produk_b + $volume_november_produk_b + $volume_desember_produk_b;
-			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_oktober_produk_c + $volume_november_produk_c + $volume_desember_produk_c;
-			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_oktober_produk_d + $volume_november_produk_d + $volume_desember_produk_d;
+			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_oktober_produk_a + $volume_november_produk_a + $volume_desember_produk_a + $volume_januari_produk_a + $volume_februari_produk_a + $volume_maret_produk_a + $volume_april_produk_a + $volume_mei_produk_a + $volume_juni_produk_a + $volume_juli_produk_a;
+			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_oktober_produk_b + $volume_november_produk_b + $volume_desember_produk_b + $volume_januari_produk_b + $volume_februari_produk_b + $volume_maret_produk_b + $volume_april_produk_b + $volume_mei_produk_b + $volume_juni_produk_b + $volume_juli_produk_b;
+			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_oktober_produk_c + $volume_november_produk_c + $volume_desember_produk_c + $volume_januari_produk_c + $volume_februari_produk_c + $volume_maret_produk_c + $volume_april_produk_c + $volume_mei_produk_c + $volume_juni_produk_c + $volume_juli_produk_c;
+			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_oktober_produk_d + $volume_november_produk_d + $volume_desember_produk_d + $volume_januari_produk_d + $volume_februari_produk_d + $volume_maret_produk_d + $volume_april_produk_d + $volume_mei_produk_d + $volume_juni_produk_d + $volume_juli_produk_d;
 
-			$total_all_volume = $total_akumulasi_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume;
-			$total_all_nilai = $total_akumulasi_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
+			$total_all_volume = $total_akumulasi_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume + $total_januari_volume + $total_februari_volume + $total_maret_volume + $total_april_volume + $total_mei_volume + $total_juni_volume + $total_juli_volume;
+			$total_all_nilai = $total_akumulasi_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 
-			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_oktober_biaya_bahan + $total_november_biaya_bahan + $total_desember_biaya_bahan;
-			$total_all_biaya_alat = $total_alat_akumulasi + $total_oktober_biaya_alat + $total_november_biaya_alat + $total_desember_biaya_alat;
-			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_oktober_biaya_overhead + $total_november_biaya_overhead + $total_desember_biaya_overhead;
-			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_oktober_biaya_bank + $total_november_biaya_bank + $total_desember_biaya_bank;
-			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_oktober_biaya_persiapan + $total_november_biaya_persiapan + $total_desember_biaya_persiapan;
+			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_oktober_biaya_bahan + $total_november_biaya_bahan + $total_desember_biaya_bahan + $total_januari_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
+			$total_all_biaya_alat = $total_alat_akumulasi + $total_oktober_biaya_alat + $total_november_biaya_alat + $total_desember_biaya_alat + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
+			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_oktober_biaya_overhead + $total_november_biaya_overhead + $total_desember_biaya_overhead + $total_januari_biaya_overhead + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
+			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_oktober_biaya_bank + $total_november_biaya_bank + $total_desember_biaya_bank + $total_januari_biaya_bank + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
+			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_oktober_biaya_persiapan + $total_november_biaya_persiapan + $total_desember_biaya_persiapan + $total_januari_biaya_persiapan + $total_februari_biaya_persiapan + $total_maret_biaya_persiapan + $total_april_biaya_persiapan + $total_mei_biaya_persiapan + $total_juni_biaya_persiapan + $total_juli_biaya_persiapan;
 			
 			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank + $total_all_biaya_persiapan;
 
@@ -1172,6 +1737,11 @@
 			$total_laba_desember = $total_desember_nilai - $total_biaya_desember_biaya;
 			$total_laba_januari = $total_januari_nilai - $total_biaya_januari_biaya;
 			$total_laba_februari = $total_februari_nilai - $total_biaya_februari_biaya;
+			$total_laba_maret = $total_maret_nilai - $total_biaya_maret_biaya;
+			$total_laba_april = $total_april_nilai - $total_biaya_april_biaya;
+			$total_laba_mei = $total_mei_nilai - $total_biaya_mei_biaya;
+			$total_laba_juni = $total_juni_nilai - $total_biaya_juni_biaya;
+			$total_laba_juli = $total_juli_nilai - $total_biaya_juli_biaya;
 			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
 			?>
 			<!-- TOTAL -->
@@ -1198,26 +1768,31 @@
 			<!-- SISA -->
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th width="8%" align="center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle">RAP 2022</th>
+				<th width="3%" align="center" rowspan="2">&nbsp; <br />NO.</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
+				<th width="4%" align="center" rowspan="2">&nbsp; <br />SATUAN</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br />RAP 2022</th>
 				<th width="7%" align="center">REALISASI</th>
-				<th width="60%" align="center" colspan="5">RENCANA KERJA</th>
-				<th width="5%" align="center">TOTAL</th>
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle">SISA</th>
+				<th width="58%" align="center" colspan="10">&nbsp; <br />RENCANA KERJA</th>
+				<th width="7%" align="center">TOTAL</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br />SISA</th>
 	        </tr>
 			<tr class="table-judul">
 				<th align="center"> SD. SAAT INI</th>
-				<th align="center">OKTOBER</th>
-				<th align="center">NOVEMBER</th>
-				<th align="center">DESEMBER</th>
-				<th align="center">JANUARI</th>
-				<th align="center">FEBRUARI</th>
-				<th align="center">SD. DESEMBER 2022</th>
+				<th align="center">OKTOBER<br />2022</th>
+				<th align="center">NOVEMBER<br />2022</th>
+				<th align="center">DESEMBER<br />2022</th>
+				<th align="center">JANUARI<br />2023</th>
+				<th align="center">FEBRUARI<br />2023</th>
+				<th align="center">MARET<br />2023</th>
+				<th align="center">APRIL<br />2023</th>
+				<th align="center">MEI<br />2023</th>
+				<th align="center">JUNI<br />2023</th>
+				<th align="center">JULI<br />2023</th>
+				<th align="center">SD. JULI<br />2023</th>
 	        </tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="10">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+				<th align="left" colspan="17">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -1230,6 +1805,11 @@
 				<th align="right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_januari_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_maret_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_april_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_mei_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juni_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juli_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>	
 				<th align="right"><?php echo number_format($sisa_vol_produk_a,2,',','.');?></th>
 			</tr>
@@ -1244,6 +1824,11 @@
 				<th align="right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_januari_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_maret_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_april_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_mei_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juni_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juli_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>	
 				<th align="right"><?php echo number_format($sisa_vol_produk_b,2,',','.');?></th>
 			</tr>
@@ -1258,6 +1843,11 @@
 				<th align="right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_januari_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_maret_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_april_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_mei_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juni_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juli_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_vol_produk_c,2,',','.');?></th>		
 			</tr>
@@ -1272,6 +1862,11 @@
 				<th align="right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_januari_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_maret_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_april_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_mei_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juni_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_juli_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_vol_produk_d,2,',','.');?></th>
 			</tr>
@@ -1285,6 +1880,11 @@
 				<th align="right"><?php echo number_format($total_desember_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_volume,2,',','.');?></th>
 			</tr>
@@ -1298,11 +1898,16 @@
 				<th align="right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_nilai,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="10">BIAYA</th>
+				<th align="left" colspan="17">BIAYA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -1315,6 +1920,11 @@
 				<th align="right"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_biaya_bahan,0,',','.');?></th>
 			</tr>
@@ -1329,6 +1939,11 @@
 				<th align="right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_biaya_alat,0,',','.');?></th>
 			</tr>
@@ -1343,6 +1958,11 @@
 				<th align="right"><?php echo number_format($total_desember_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_biaya_overhead,0,',','.');?></th>
 			</tr>
@@ -1357,6 +1977,11 @@
 				<th align="right"><?php echo number_format($total_desember_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_biaya_bank,0,',','.');?></th>
 			</tr>
@@ -1371,6 +1996,11 @@
 				<th align="right"><?php echo number_format($total_desember_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_januari_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_persiapan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_maret_biaya_persiapan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_april_biaya_persiapan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_mei_biaya_persiapan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juni_biaya_persiapan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_juli_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_all_biaya_persiapan,0,',','.');?></th>
 			</tr>
@@ -1384,6 +2014,11 @@
 				<th align="right"><?php echo number_format($total_biaya_desember_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_januari_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_februari_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_maret_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_april_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_mei_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_juni_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_juli_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_biaya_all_biaya,0,',','.');?></th>
 			</tr>
@@ -1397,6 +2032,11 @@
 				<th align="right"><?php echo number_format($total_laba_desember,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_januari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_februari,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_maret,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_april,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_mei,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_juni,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_juli,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_all,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_laba_all,0,',','.');?></th>
 			</tr>

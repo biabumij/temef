@@ -3777,10 +3777,10 @@ class Reports extends CI_Controller {
 				$total_vol_truck_mixer += $x['vol_truck_mixer'];
 				$total_vol_wheel_loader += $x['vol_wheel_loader'];
 				$total_vol_bbm_solar += $x['vol_bbm_solar'];
-				$total_batching_plant += $x['batching_plant'];
-				$total_truck_mixer += $x['truck_mixer'];
-				$total_wheel_loader += $x['wheel_loader'];
-				$total_bbm_solar += $x['bbm_solar'];
+				$total_batching_plant += $x['harsat_batching_plant'];
+				$total_truck_mixer += $x['harsat_truck_mixer'];
+				$total_wheel_loader += $x['harsat_wheel_loader'];
+				$total_bbm_solar += $x['harsat_bbm_solar'];
 				
 			}
 
@@ -3886,7 +3886,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">4</th>			
 				<th class="text-left">BBM Solar</th>
-				<th class="text-center">Litter</th>
+				<th class="text-center">Liter</th>
 				<th class="text-right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($bbm_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
