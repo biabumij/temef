@@ -6682,6 +6682,34 @@ class Reports extends CI_Controller {
 
 			$total_rap_volume_2022 = $volume_rap_2022_produk_a + $volume_rap_2022_produk_b + $volume_rap_2022_produk_c + $volume_rap_2022_produk_d;
 			
+			$harga_jual_125_rap = $this->db->select('pod.price as harga_satuan')
+			->from('pmm_sales_po po')
+			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("pod.product_id = 2")
+			->order_by('po.contract_date','asc')->limit(1)
+			->get()->row_array();
+
+			$harga_jual_225_rap = $this->db->select('pod.price as harga_satuan')
+			->from('pmm_sales_po po')
+			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("pod.product_id = 1")
+			->order_by('po.contract_date','asc')->limit(1)
+			->get()->row_array();
+
+			$harga_jual_250_rap = $this->db->select('pod.price as harga_satuan')
+			->from('pmm_sales_po po')
+			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("pod.product_id = 3")
+			->order_by('po.contract_date','asc')->limit(1)
+			->get()->row_array();
+
+			$harga_jual_250_18_rap = $this->db->select('pod.price as harga_satuan')
+			->from('pmm_sales_po po')
+			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("pod.product_id = 11")
+			->order_by('po.contract_date','asc')->limit(1)
+			->get()->row_array();
+
 			$harga_jual_125_now = $this->db->select('pod.price as harga_satuan')
 			->from('pmm_sales_po po')
 			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
@@ -6714,10 +6742,10 @@ class Reports extends CI_Controller {
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
 
-			$nilai_jual_125_2022 = $volume_rap_2022_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_2022 = $volume_rap_2022_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_2022 = $volume_rap_2022_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_2022 = $volume_rap_2022_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_2022 = $volume_rap_2022_produk_a * $harga_jual_125_rap['harga_satuan'];
+			$nilai_jual_225_2022 = $volume_rap_2022_produk_b * $harga_jual_225_rap['harga_satuan'];
+			$nilai_jual_250_2022 = $volume_rap_2022_produk_c * $harga_jual_250_rap['harga_satuan'];
+			$nilai_jual_250_18_2022 = $volume_rap_2022_produk_d * $harga_jual_250_18_rap['harga_satuan'];
 			$nilai_jual_all_2022 = $nilai_jual_125_2022 + $nilai_jual_225_2022 + $nilai_jual_250_2022 + $nilai_jual_250_18_2022;
 			
 			$total_rap_nilai_2022 = $nilai_jual_all_2022;
