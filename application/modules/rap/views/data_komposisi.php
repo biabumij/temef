@@ -177,9 +177,13 @@
                                 <?php if($agregat["status"] === "PUBLISH") : ?>
                                 <a href="<?= base_url("admin/rap/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <?php endif; ?>
-                                <!--<a class="btn btn-warning" href="<?= base_url('rap/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-check"></i> Edit</a>
-								<a class="btn btn-danger" onclick="DeleteData('<?= site_url('rap/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>-->
+                                <a class="btn btn-warning" href="<?= base_url('rap/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-check"></i> Edit</a>
+								<!--<a class="btn btn-danger" onclick="DeleteData('<?= site_url('rap/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>-->
 								<a href="<?= base_url("rap/cetak_komposisi/".$agregat["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <br />
+                                <form class="form-approval" action="<?= base_url("rap/closed_komposisi/".$agregat["id"]) ?>">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
+                                </form>	
                             </div>
                             
                             

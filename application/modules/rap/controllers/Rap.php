@@ -162,8 +162,9 @@ class Rap extends Secure_Controller {
 		}
         $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, p.nama_produk as mutu_beton, lk.agregat_id, lk.lampiran, ag.status');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');
-		$this->db->join('produk p', 'ag.mutu_beton = p.id','left');	
-		$this->db->order_by('ag.date_agregat','desc');		
+		$this->db->join('produk p', 'ag.mutu_beton = p.id','left');
+		$this->db->where('ag.status','PUBLISH');
+		$this->db->order_by('ag.date_agregat','desc');	
 		$query = $this->db->get('pmm_agregat ag');
 		
        if($query->num_rows() > 0){
@@ -307,6 +308,15 @@ class Rap extends Secure_Controller {
         $pdf->nsi_html($html);
         $pdf->Output($row['jobs_type'].'.pdf', 'I');
 	}
+
+	public function closed_komposisi($id)
+    {
+        $this->db->set("status", "CLOSED");
+        $this->db->where("id", $id);
+        $this->db->update("pmm_agregat");
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Komposisi');
+        redirect("admin/rap");
+    }
 	
 	public function form_alat()
 	{

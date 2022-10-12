@@ -298,6 +298,7 @@
 			$total_vol_batching_plant = $total_volume;
 			$total_vol_truck_mixer = $total_volume;
 			$total_vol_wheel_loader = $total_volume;
+			$total_vol_bbm_solar = $total_volume;
 
 			$total_pemakaian_vol_batching_plant = $total_vol_batching_plant;
 			$total_pemakaian_vol_truck_mixer = $total_vol_truck_mixer;
@@ -322,10 +323,10 @@
 			->where('rap.status','PUBLISH')
 			->get()->result_array();
 
-			$total_vol_batching_plant = 0;
-			$total_vol_truck_mixer = 0;
-			$total_vol_wheel_loader = 0;
-			$total_vol_bbm_solar = 0;
+			$total_vol_rap_batching_plant = 0;
+			$total_vol_rap_truck_mixer = 0;
+			$total_vol_rap_wheel_loader = 0;
+			$total_vol_rap_bbm_solar = 0;
 
 			$total_batching_plant = 0;
 			$total_truck_mixer = 0;
@@ -333,9 +334,10 @@
 			$total_bbm_solar = 0;
 
 			foreach ($rap_alat as $x){
-				$total_vol_batching_plant += $x['vol_batching_plant'];
-				$total_vol_truck_mixer += $x['vol_truck_mixer'];
-				$total_vol_wheel_loader += $x['vol_wheel_loader'];
+				$total_vol_rap_batching_plant += $x['vol_batching_plant'];
+				$total_vol_rap_truck_mixer += $x['vol_truck_mixer'];
+				$total_vol_rap_wheel_loader += $x['vol_wheel_loader'];
+				$total_vol_rap_bbm_solar += $x['vol_bbm_solar'];
 				$total_batching_plant += $x['harsat_batching_plant'];
 				$total_truck_mixer += $x['harsat_truck_mixer'];
 				$total_wheel_loader += $x['harsat_wheel_loader'];
@@ -343,11 +345,10 @@
 				
 			}
 
-			$vol_batching_plant = $total_vol_batching_plant * $total_pemakaian_vol_batching_plant;
-			$vol_truck_mixer = $total_vol_truck_mixer * $total_pemakaian_vol_truck_mixer;
-			$vol_wheel_loader = $total_vol_wheel_loader * $total_pemakaian_vol_wheel_loader;
-			//$vol_bbm_solar = $total_vol_bbm_solar * $total_pemakaian_vol_bbm_solar;
-			$vol_bbm_solar = $total_pemakaian_vol_bbm_solar;
+			$vol_batching_plant = $total_vol_rap_batching_plant * $total_pemakaian_vol_batching_plant;
+			$vol_truck_mixer = $total_vol_rap_truck_mixer * $total_pemakaian_vol_truck_mixer;
+			$vol_wheel_loader = $total_vol_rap_wheel_loader * $total_pemakaian_vol_wheel_loader;
+			$vol_bbm_solar = $total_vol_rap_bbm_solar * $total_vol_bbm_solar;
 
 			$batching_plant = $total_batching_plant * $vol_batching_plant;
 			$truck_mixer = $total_truck_mixer * $vol_truck_mixer;
