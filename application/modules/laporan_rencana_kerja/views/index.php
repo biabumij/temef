@@ -67,7 +67,7 @@
 										</div>
                                     </div>
 
-                                    <!-- Prognosa Produksi -->
+                                    <!-- Laporan Rencana Kerja -->
 
                                     <div role="tabpanel" class="tab-pane" id="laporan_rencana_kerja">
                                         <div class="col-sm-15">
@@ -95,7 +95,7 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="prognosa-produksi">
+													<div class="table-responsive" id="laporan-rencana-kerja">
 													</div>
 												</div>
 										</div>
@@ -122,7 +122,7 @@
         <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
         
-		<!-- Script Prognosa Produksi -->
+		<!-- Script Laporan Rencana Kerja -->
 		<script type="text/javascript">
 			$('#filter_date_laporan_rencana_kerja').daterangepicker({
             autoUpdateInput : false,
@@ -142,11 +142,11 @@
 
 			$('#filter_date_laporan_rencana_kerja').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  PrognosaProduksi();
+				  LaporanRencanaKerja();
 			});
 
 
-			function PrognosaProduksi()
+			function LaporanRencanaKerja()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
@@ -157,13 +157,13 @@
 						filter_date : $('#filter_date_laporan_rencana_kerja').val(),
 					},
 					success : function(result){
-						$('#prognosa-produksi').html(result);
+						$('#laporan-rencana-kerja').html(result);
 						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-			PrognosaProduksi();
+			LaporanRencanaKerja();
 
         </script>
 
