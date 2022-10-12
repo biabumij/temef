@@ -213,7 +213,7 @@
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 2")
 			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','asc')->limit(1)
+			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
 			$komposisi_125_produk_a = $komposisi_125['presentase_a'];
@@ -226,7 +226,7 @@
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 1")
 			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','asc')->limit(1)
+			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
 			$komposisi_225_produk_a = $komposisi_225['presentase_a'];
@@ -239,7 +239,7 @@
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 3")
 			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','asc')->limit(1)
+			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
 			$komposisi_250_produk_a = $komposisi_250['presentase_a'];
@@ -252,7 +252,7 @@
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 11")
 			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','asc')->limit(1)
+			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
 			$komposisi_250_18_produk_a = $komposisi_250_18['presentase_a'];
