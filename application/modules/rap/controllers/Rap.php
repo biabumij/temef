@@ -163,7 +163,6 @@ class Rap extends Secure_Controller {
         $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, p.nama_produk as mutu_beton, lk.agregat_id, lk.lampiran, ag.status');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');
 		$this->db->join('produk p', 'ag.mutu_beton = p.id','left');
-		$this->db->where('ag.status','PUBLISH');
 		$this->db->order_by('ag.date_agregat','desc');	
 		$query = $this->db->get('pmm_agregat ag');
 		
@@ -175,6 +174,7 @@ class Rap extends Secure_Controller {
 				$row['mutu_beton'] = "<a href=" . base_url('rap/cetak_komposisi/' . $row["id"]) .'" target="_blank">'. $row["mutu_beton"] . "</a>";
 				$row['lampiran'] = '<a href="' . base_url('uploads/agregat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';           
                 $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
 				$data[] = $row;
             }
 

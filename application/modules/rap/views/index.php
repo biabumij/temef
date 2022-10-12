@@ -72,8 +72,9 @@
                                                         <th width="5%">No</th>
 														<th width="20%">Tanggal</th>
 														<th width="20%">Mutu Beton</th>
-                                                        <th width="35%">Judul</th>
+                                                        <th width="20%">Judul</th>
 														<th width="20%">Lampiran</th>
+                                                        <th width="15%">Status</th>
 														
                                                     </tr>
                                                 </thead>
@@ -207,10 +208,13 @@
                 },
 				{
                     "data": "lampiran"
+                },
+                {
+                    "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3],
+                    "targets": [0, 1, 2, 3, 5],
                     "className": 'text-center',
                 }
             ],
