@@ -115,7 +115,6 @@
 			->from('pmm_productions pp')
 			->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
-			->where('pp.status','PUBLISH')
 			->get()->result_array();
 
 			$total_volume_a = 0;
