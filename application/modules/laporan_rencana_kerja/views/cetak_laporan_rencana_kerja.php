@@ -324,10 +324,10 @@
 			->where("(rap.tanggal_rap_alat < '$date_end')")
 			->get()->row_array();
 
-			$batching_plant_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['batching_plant'];
-			$truck_mixer_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['truck_mixer'];
-			$wheel_loader_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['wheel_loader'];
-			$bbm_solar_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['bbm_solar'];
+			$batching_plant_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['harsat_batching_plant'];
+			$truck_mixer_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['harsat_truck_mixer'];
+			$wheel_loader_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['harsat_wheel_loader'];
+			$bbm_solar_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['harsat_bbm_solar'];
 			$biaya_alat_all_rap_2022 = $batching_plant_rap_2022 + $truck_mixer_rap_2022 + $wheel_loader_rap_2022 + $bbm_solar_rap_2022;
 		
 			$total_rap_2022_biaya_bahan = $total_bahan_all_rap_2022;
@@ -501,10 +501,10 @@
 			->where("(rap.tanggal_rap_alat < '$date_oktober_akhir')")
 			->get()->row_array();
 
-			$batching_plant_oktober = $total_oktober_volume * $rap_alat_oktober['batching_plant'];
-			$truck_mixer_oktober = $total_oktober_volume * $rap_alat_oktober['truck_mixer'];
-			$wheel_loader_oktober = $total_oktober_volume * $rap_alat_oktober['wheel_loader'];
-			$bbm_solar_oktober = $total_oktober_volume * $rap_alat_oktober['bbm_solar'];
+			$batching_plant_oktober = $total_oktober_volume * $rap_alat_oktober['harsat_batching_plant'];
+			$truck_mixer_oktober = $total_oktober_volume * $rap_alat_oktober['harsat_truck_mixer'];
+			$wheel_loader_oktober = $total_oktober_volume * $rap_alat_oktober['harsat_wheel_loader'];
+			$bbm_solar_oktober = $total_oktober_volume * $rap_alat_oktober['harsat_bbm_solar'];
 			$biaya_alat_all_oktober = $batching_plant_oktober + $truck_mixer_oktober + $wheel_loader_oktober + $bbm_solar_oktober;
 		
 			$total_oktober_biaya_bahan = $total_bahan_all_oktober;
@@ -614,10 +614,10 @@
 			->where("(rap.tanggal_rap_alat < '$date_november_akhir')")
 			->get()->row_array();
 
-			$batching_plant_november = $total_november_volume * $rap_alat_november['batching_plant'];
-			$truck_mixer_november = $total_november_volume * $rap_alat_november['truck_mixer'];
-			$wheel_loader_november = $total_november_volume * $rap_alat_november['wheel_loader'];
-			$bbm_solar_november = $total_november_volume * $rap_alat_november['bbm_solar'];
+			$batching_plant_november = $total_november_volume * $rap_alat_november['harsat_batching_plant'];
+			$truck_mixer_november = $total_november_volume * $rap_alat_november['harsat_truck_mixer'];
+			$wheel_loader_november = $total_november_volume * $rap_alat_november['harsat_wheel_loader'];
+			$bbm_solar_november = $total_november_volume * $rap_alat_november['harsat_bbm_solar'];
 			$biaya_alat_all_november = $batching_plant_november + $truck_mixer_november + $wheel_loader_november + $bbm_solar_november;
 		
 			$total_november_biaya_bahan = $total_bahan_all_november;
@@ -727,10 +727,10 @@
 			->where("(rap.tanggal_rap_alat < '$date_desember_akhir')")
 			->get()->row_array();
 
-			$batching_plant_desember = $total_desember_volume * $rap_alat_desember['batching_plant'];
-			$truck_mixer_desember = $total_desember_volume * $rap_alat_desember['truck_mixer'];
-			$wheel_loader_desember = $total_desember_volume * $rap_alat_desember['wheel_loader'];
-			$bbm_solar_desember = $total_desember_volume * $rap_alat_desember['bbm_solar'];
+			$batching_plant_desember = $total_desember_volume * $rap_alat_desember['harsat_batching_plant'];
+			$truck_mixer_desember = $total_desember_volume * $rap_alat_desember['harsat_truck_mixer'];
+			$wheel_loader_desember = $total_desember_volume * $rap_alat_desember['harsat_wheel_loader'];
+			$bbm_solar_desember = $total_desember_volume * $rap_alat_desember['harsat_bbm_solar'];
 			$biaya_alat_all_desember = $batching_plant_desember + $truck_mixer_desember + $wheel_loader_desember + $bbm_solar_desember;
 		
 			$total_desember_biaya_bahan = $total_bahan_all_desember;
