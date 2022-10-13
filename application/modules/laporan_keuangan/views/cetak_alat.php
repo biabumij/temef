@@ -122,8 +122,6 @@
 			->order_by('pn.nama','asc')
 			->get()->result_array();
 
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
-
 			$total_nilai = 0;
 
 			foreach ($pembelian as $x){
@@ -151,8 +149,6 @@
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
-
-			//file_put_contents("D:\\insentif_tm.txt", $this->db->last_query());
 
 			$total_insentif_tm = 0;
 
