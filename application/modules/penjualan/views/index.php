@@ -378,6 +378,9 @@
                     d.sales_po_id = $('#sales_po_id').val();
                 }
             },
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
             columns: [{
                     "data": "checkbox"
                 },
@@ -421,12 +424,10 @@
                 },
                 {
                     "targets": [1, 2, 8, 9],
-                    "orderable": false,
                     "className": 'text-center',
                 },
                 {
                     "targets": [7],
-                    "orderable": false,
                     "className": 'text-right',
                 }
             ],
