@@ -40,7 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="javascript:void(0);" onclick="OpenForm()">Stock Opname</a></li>
+                                            <li><a href="javascript:void(0);" onclick="OpenForm()" class="active">Stock Opname</a></li>
                                         </ul>
                                     </div>
                                 </h3>
