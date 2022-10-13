@@ -161,6 +161,6 @@
 				<th align="right"><?php echo number_format($total_sisa_hutang_tagihan,0,',','.');?></th>
             </tr>   
 		</table>
-		
+		<p>* Exclude PPN</p>
 	</body>
 </html>
