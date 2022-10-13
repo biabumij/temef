@@ -7524,7 +7524,6 @@ class Reports extends CI_Controller {
 			$komposisi_125 = $this->db->select('pk.*')
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 2")
-			->where('pk.status','PUBLISH')
 			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
@@ -7537,7 +7536,6 @@ class Reports extends CI_Controller {
 			$komposisi_225 = $this->db->select('pk.*')
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 1")
-			->where('pk.status','PUBLISH')
 			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
@@ -7550,7 +7548,6 @@ class Reports extends CI_Controller {
 			$komposisi_250 = $this->db->select('pk.*')
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 3")
-			->where('pk.status','PUBLISH')
 			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
@@ -7563,7 +7560,6 @@ class Reports extends CI_Controller {
 			$komposisi_250_18 = $this->db->select('pk.*')
 			->from('pmm_agregat pk')
 			->where("pk.mutu_beton = 11")
-			->where('pk.status','PUBLISH')
 			->order_by('pk.date_agregat','desc')->limit(1)
 			->get()->row_array();
 
