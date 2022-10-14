@@ -1137,6 +1137,7 @@ class Receipt_material extends CI_Controller {
 		$total_jumlah_tagihan = 0;
 		$total_dpp_pembayaran = 0;
 		$total_ppn_pembayaran = 0;
+		$total_pph_pembayaran = 0;
 		$total_jumlah_pembayaran = 0;
 		$total_dpp_sisa_hutang = 0;
 		$total_ppn_sisa_hutang = 0;
@@ -1184,7 +1185,8 @@ class Receipt_material extends CI_Controller {
 						$arr['nama'] = $row['nama'];
 						$arr['subject'] = $row['subject'];
 						$arr['status'] = $row['status'];
-						$arr['syarat_pembayaran'] = $diff->days . ' Hari';
+						//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
+						$arr['syarat_pembayaran'] = $diff->days . ' ';
 						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 						$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
@@ -1193,6 +1195,7 @@ class Receipt_material extends CI_Controller {
 						$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
 						$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
 						$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
+						$arr['pph_pembayaran'] = number_format($row['pph_pembayaran'],0,',','.');
 						$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
 						$arr['dpp_sisa_hutang'] = number_format($row['dpp_sisa_hutang'],0,',','.');
 						$arr['ppn_sisa_hutang'] = number_format($row['ppn_sisa_hutang'],0,',','.');
@@ -1203,6 +1206,7 @@ class Receipt_material extends CI_Controller {
 						$total_jumlah_tagihan += $row['jumlah_tagihan'];
 						$total_dpp_pembayaran += $row['dpp_pembayaran'];
 						$total_ppn_pembayaran += $row['ppn_pembayaran'];
+						$total_pph_pembayaran += $row['pph_pembayaran'];
 						$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
 						$total_dpp_sisa_hutang += $row['dpp_sisa_hutang'];
 						$total_ppn_sisa_hutang += $row['ppn_sisa_hutang'];
@@ -1229,6 +1233,7 @@ class Receipt_material extends CI_Controller {
 		'total_jumlah_tagihan'=>number_format($total_jumlah_tagihan,0,',','.'),
 		'total_dpp_pembayaran'=>number_format($total_dpp_pembayaran,0,',','.'),
 		'total_ppn_pembayaran'=>number_format($total_ppn_pembayaran,0,',','.'),
+		'total_pph_pembayaran'=>number_format($total_pph_pembayaran,0,',','.'),
 		'total_jumlah_pembayaran'=>number_format($total_jumlah_pembayaran,0,',','.'),
 		'total_dpp_sisa_hutang'=>number_format($total_dpp_sisa_hutang,0,',','.'),
 		'total_ppn_sisa_hutang'=>number_format($total_ppn_sisa_hutang,0,',','.'),
