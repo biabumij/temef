@@ -541,10 +541,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
-			//$data['filter_date'] = $filter_date;
-			//$data['date2'] = $end_date;
-
 			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
 			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
 			$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
