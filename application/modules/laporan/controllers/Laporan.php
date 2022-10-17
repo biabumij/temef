@@ -465,6 +465,52 @@ class Laporan extends Secure_Controller {
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+
+		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$html = <<<EOD
+		'<table width="98%" border="0" cellpadding="2">
+		<tr>
+			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th width="22%" colspan="4" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
+			<th width="14%" colspan="3" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
+		</tr>
+		<tr>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
+		</tr>
+		</table>''
+		EOD;
+		$pdf->writeHTML($html, true, false, true, false, '');
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
 
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
