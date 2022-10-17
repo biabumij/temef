@@ -42,6 +42,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url('produksi/form_hpp_bahan_baku'); ?>">HPP Bahan Baku</a>
                                             <li><a href="<?= site_url('produksi/form_akumulasi'); ?>">Akumulasi Pergerakan Bahan Baku</a></li>
+                                            <li><a href="<?= site_url('produksi/form_approval'); ?>">Approval BUA, Diskonto, Persiapan</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -51,6 +52,7 @@
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab">HPP Pergerakan Bahan Baku</a>
                                     <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>
+                                    <li role="presentation"><a href="#approval" aria-controls="approval" role="tab" data-toggle="tab">Approval BUA, Diskonto, Persiapan</a>
                                 </ul>
 
                                 <div class="tab-content">
@@ -121,6 +123,35 @@
 									</div>
 										
 									<!-- End Akumulasi -->
+									
+                                    <!-- Table Approval -->
+									
+                                    <div role="tabpanel" class="tab-pane" id="approval">
+										<div class="col-sm-4">
+											<input type="text" id="filter_date_approval" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
+										</div>
+										<br />
+										<br />										
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_approval" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">No</th>
+														<th>Tanggal</th>
+														<th>Menyetujui</th>
+														<th>Status</th>
+                                                        <th>Tindakan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                   
+                                                </tfoot>
+                                            </table>
+                                        </div>
+									</div>
 										           
                                 </div>
                             </div>
@@ -311,6 +342,76 @@
             }
             });
         }
+
+        var table_approval = $('#table_approval').DataTable({
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('produksi/table_approval'); ?>',
+                type: 'POST',
+                data: function(d) {
+                    d.filter_date = $('#filter_date_approval').val();
+                }
+            },
+            responsive: true,
+            "deferRender": true,
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
+            columns: [
+				{
+                    "data": "no"
+                },
+				{
+                    "data": "date_approval"
+                },
+				{
+                    "data": "admin_name"
+                },
+                {
+                    "data": "status"
+                },
+                {
+                    "data": "actions"
+                }
+            ],
+            "columnDefs": [{
+                    "targets": [0, 1, 2, 3, 4],
+                    "className": 'text-center',
+                }
+            ],
+        });
+		
+		$('#filter_date_approval').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_approval.ajax.reload();
+		});
+
+        function DeleteDataApproval(id) {
+        bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('produksi/delete_approval'); ?>",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        if (result.output) {
+                            table_approval.ajax.reload();
+                            bootbox.alert('Berhasil Menghapus Persetujuan BUA, Diskonto, Persiapan !!');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+            });
+        }
+
+        
 	
     </script>
 

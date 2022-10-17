@@ -151,12 +151,23 @@
 								Dibuat Oleh
 							</td>
 						</tr>
+						<?php
+							$this->db->select('ttd.*');
+							$this->db->where("(ttd.date_approval between '$date1' and '$date2')");
+							$this->db->where("ttd.approval = 1 ");
+							$this->db->order_by('ttd.date_approval','desc')->limit(1);
+							$created_group = $this->db->get('ttd_laba_rugi ttd')->row_array();
+						?>
 						<tr>
 							<td align="center" height="40px">
-								
+							<?php
+								echo '<img src="'.$created_group['ttd_1'].'" width="70"/>';
+							?>		
 							</td>
 							<td align="center">
-								
+							<?php
+								echo '<img src="'.$created_group['ttd_2'].'" width="70"/>';
+							?>
 							</td>
 						</tr>
 						<tr>

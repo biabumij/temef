@@ -101,13 +101,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal Membuat HPP Bahan Baku !!');
-			redirect('/hpp_&_akumulasi/hpp_bahan_baku');
+			redirect('/kunci_harga_&_akumulasi/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil Membuat HPP Bahan Baku !!');
-			redirect('admin//hpp_&_akumulasi');
+			redirect('admin/kunci_harga_&_akumulasi');
 		}
 	}
 
@@ -191,13 +191,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal Membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('/hpp_&_akumulasi/akumulasi');
+			redirect('/kunci_harga_&_akumulasi/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('admin//hpp_&_akumulasi');
+			redirect('admin/kunci_harga_&_akumulasi');
 		}
 	}
 
@@ -236,6 +236,95 @@ class Produksi extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->delete('akumulasi',array('id'=>$id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
+	public function form_approval()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+			$this->load->view('produksi/form_approval', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_approval()
+	{
+		$date_approval = $this->input->post('date_approval');
+		$approval = $this->input->post('approval');
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'date_approval' => date('Y-m-d', strtotime($date_approval)),
+			'approval' => $approval,
+			'ttd_1' => 'uploads/ttd_erika.png',
+			'ttd_2' => 'uploads/ttd_debby.png',
+			'status' => 'PUBLISH',
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->insert('ttd_laba_rugi', $arr_insert);
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error', 'Gagal Menyetujui BUA, Diskonto & Persiapan !!');
+			redirect('/kunci_harga_&_akumulasi/table_approval');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success', 'Gagal Menyetujui BUA, Diskonto & Persiapan !!');
+			redirect('admin/kunci_harga_&_akumulasi');
+		}
+	}
+
+	public function table_approval()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('ttd.date_approval >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('ttd.date_approval <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('ttd.id, ttd.date_approval, a.admin_name, ttd.status');
+		$this->db->join('tbl_admin a','ttd.created_by = a.admin_id','left');
+		$this->db->order_by('ttd.date_approval','desc');
+		$query = $this->db->get('ttd_laba_rugi ttd');
+		
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['date_approval'] = date('d F Y',strtotime($row['date_approval']));
+				$row['admin_name'] = $row['admin_name'];
+				$row['status'] = $row['status'];
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApproval('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
+
+	
+	public function delete_approval()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$this->db->delete('ttd_laba_rugi',array('id'=>$id));
 			{
 				$output['output'] = true;
 			}
