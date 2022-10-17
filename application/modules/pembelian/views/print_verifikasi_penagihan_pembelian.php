@@ -229,13 +229,20 @@
 		<br />
 		<br />
 		<?php
-		$pj_keuangan = $this->pmm_model->GetNameGroup(14);
-		$pj_logistik = $this->pmm_model->GetNameGroup(11);
+		$kasir = $this->pmm_model->GetNameGroup(19);
         ?>  
         <table width="98%" border="0" cellpadding="0">
             <tr border="1">
                 <td width="100%">
 				<table width="100%" border="1" cellpadding="2">
+						<tr>
+                            <td align="center" colspan="3">
+                                Proyek
+                            </td>
+							<td align="center" colspan="2">
+                                Kantor Pusat
+                            </td>
+                        </tr>
                         <tr>
                             <td align="center">
                                 Diterima
@@ -281,10 +288,10 @@
                         </tr>
                         <tr>
                             <td align="center">
-								<b><?= $pj_keuangan['admin_group_name']?></b> 
+								<b><?= $kasir['admin_group_name']?></b> 
                             </td>
                             <td align="center">
-								<b><?= $pj_logistik['admin_group_name']?></b> 
+								<b>M. Keu & SDM / M. Teknik</b> 
                             </td>
                             <td align="center">
 								<b>Kepala Proyek</b> 

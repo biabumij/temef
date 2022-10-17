@@ -938,6 +938,54 @@
 	        </tr>
 			
 	    </table>
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="15">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center" >
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="40px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<b><u>Gervasius K. Limahekin</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center" >
+								<b><u>Erika Sinaga</u><br />
+								M. Keu & SDM</b>
+							</td>
+							<td align="center" >
+								<b><u>Debi Khania</u><br />
+								Kasir</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 		
 	</body>
 </html>

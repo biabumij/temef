@@ -123,7 +123,7 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="55px">
-								<img src="uploads/ttd_gery.png" width="100px">
+								<img src="uploads/ttd_gery_kop.png" width="100px">
 							</td>
 							<?php
                                 $this->db->select('g.admin_group_name, a.admin_ttd');

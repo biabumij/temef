@@ -66,21 +66,19 @@
 				</td>
 			</tr>
 			<tr class="table-active3">
-				<th align="center" width="10%"><b>Transaksi</b></th>
-				<th align="center" width="10%"><b>COA</b></th>
+				<th align="center" width="20%"><b>COA</b></th>
 				<th align="center" width="50%"><b>Kategori</b></th>
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="5"><b>Biaya Overhead Produksi</b></th>
+				<th width="100%" align="left" colspan="4"><b>Biaya Overhead Produksi</b></th>
 			</tr>
 			<?php
 			if(!empty($biaya_langsung_parent)){
 				foreach ($biaya_langsung_parent as $key => $bl) {
 					?>
 					<tr class="table-active4">
-						<td width="10%" align="center">BIAYA</td>
-						<td width="10%" align="center"><?= $bl['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$bl['coa_parent']),'coa_number');?></td>
+						<td width="20%" align="center"><?= $bl['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$bl['coa_parent']),'coa_number');?></td>
 						<td width="50%"><?= $bl['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$bl['coa_parent']),'coa');?></td>
 						<td width="30%" align="right"></td>
 					</tr>
@@ -91,9 +89,8 @@
 			if(!empty($biaya_langsung)){
 				foreach ($biaya_langsung as $key => $bl) {
 					?>
-					<tr>	
-						<td width="10%" align="center">BIAYA</td>
-						<td width="10%" align="center"><?= $bl['coa_number'];?></td>
+					<tr>
+						<td width="20%" align="center"><?= $bl['coa_number'];?></td>
 						<td width="2%"></td>
 						<td width="48%"><?= $bl['coa'];?></td>
 						<td width="30%" align="right"><?= $this->filter->Rupiah($bl['total']);?></td>
@@ -107,8 +104,7 @@
 				foreach ($biaya_langsung_jurnal_parent as $key => $blj) {
 					?>	
 					<tr class="table-active4">
-						<td width="10%" align="center">JURNAL</td>
-						<td width="10%" align="center"><?= $blj['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$blj['coa_parent']),'coa_number');?></td>
+						<td width="20%" align="center"><?= $blj['coa_number'] = $this->crud_global->GetField('pmm_coa',array('id'=>$blj['coa_parent']),'coa_number');?></td>
 						<td width="50%"><?= $blj['coa'] = $this->crud_global->GetField('pmm_coa',array('id'=>$blj['coa_parent']),'coa');?></td>
 						<td width="30%" align="right"></td>
 					</tr>
@@ -122,8 +118,7 @@
 					foreach ($biaya_langsung_jurnal as $key => $blj) {
 						?>	
 						<tr>
-							<td width="10%" align="center">JURNAL</td>
-							<td width="10%" align="center"><?= $blj['coa_number'];?></td>
+							<td width="20%" align="center"><?= $blj['coa_number'];?></td>
 							<td width="2%"></td>
 							<td width="48%"><?= $blj['coa'];?></td>
 							<td width="30%" align="right"><?= $this->filter->Rupiah($blj['total']);?></td>
@@ -143,15 +138,12 @@
 		<br />
 		<table width="98%" border="0" cellpadding="15">
 			<tr >
-				<td width="5%"></td>
-				<td width="90%">
+				<td width="10%"></td>
+				<td width="80%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" >
-								Diperiksa Oleh
+							Diperiksa & Disetujui Oleh
 							</td>
 							<td align="center" >
 								Dibuat Oleh
@@ -164,18 +156,11 @@
 							<td align="center">
 								
 							</td>
-							<td align="center">
-								
-							</td>
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Pj. Keuangan & SDM</b>
+								<b><u>Erika Sinaga</u><br />
+								M. Keu & SDM</b>
 							</td>
 							<td align="center" >
 								<b><u>Debi Khania</u><br />
@@ -184,7 +169,7 @@
 						</tr>
 					</table>
 				</td>
-				<td width="5%"></td>
+				<td width="10%"></td>
 			</tr>
 		</table>
 	</body>

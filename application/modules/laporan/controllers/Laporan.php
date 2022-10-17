@@ -221,9 +221,9 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('laporan_keuangan/cetak_persiapan',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Diskonto');
+        $pdf->SetTitle('BBJ - Persiapan');
         $pdf->nsi_html($html);
-        $pdf->Output('diskonto.pdf', 'I');
+        $pdf->Output('persiapan.pdf', 'I');
 	}
 
 	public function cetak_penerimaan_pembelian()
@@ -459,6 +459,64 @@ class Laporan extends Secure_Controller {
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+
+		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$html = <<<EOD
+		<table width="98%" border="0" cellpadding="2">
+		<tr>
+			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th width="22%" colspan="4" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
+			<th width="14%" colspan="3" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
+		</tr>
+		<tr>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
+			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
+		</tr>
+		</table>
+		EOD;
+		$pdf->writeHTML($html, true, false, true, false, '');
+		
+		//Page3
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page4
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
 
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
@@ -522,12 +580,19 @@ class Laporan extends Secure_Controller {
 							$akhir = date_create($end_date);
 							$diff  = date_diff( $awal, $akhir );
 
+							$tanggal_tempo = date('Y-m-d', strtotime(+$row['syarat_pembayaran'].'days', strtotime($row['tanggal_lolos_verifikasi'])));
+
+							$awal_tempo  = date_create($tanggal_tempo);
+							$akhir_tempo = date_create($end_date);
+							$diff_tempo  = date_diff( $awal_tempo, $akhir_tempo);
+
 							$arr['no'] = $key + 1;
 							$arr['nama'] = $row['nama'];
 							$arr['subject'] = $row['subject'];
 							$arr['status'] = $row['status'];
 							//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 							$arr['syarat_pembayaran'] = $diff->days . ' ';
+							$arr['jatuh_tempo'] = $diff_tempo->days;
 							$arr['nomor_invoice'] = $row['nomor_invoice'];
 							$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 							$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));

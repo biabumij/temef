@@ -74,7 +74,7 @@
 						
 					}
 					?>
-					<div style="display: block;font-weight: bold;font-size: 11px;">PER <?= tgl_indo(date($date2)); ?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Per <?= tgl_indo(date($date2)); ?></div>
 				</td>
 			</tr>
 		</table>	
@@ -88,8 +88,7 @@
 				<th width="17%" align="center" colspan="3">TAGIHAN</th>
 				<th width="22%" align="center" colspan="4">PEMBAYARAN</th>
 				<th width="17%" align="center" colspan="3">SISA HUTANG</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">STATUS</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">UMUR</th>
+				<th width="14%" align="center" colspan="3">STATUS HUTANG</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center">KETERANGAN</th>
@@ -106,6 +105,9 @@
 				<th align="center">DPP</th>
 				<th align="center">PPN</th>
 				<th align="center">JUMLAH</th>
+				<th align="center">STATUS</th>
+				<th align="center">UMUR</th>
+				<th align="center">JATUH TEMPO</th>
 			</tr>		
             <?php   
             if(!empty($data)){
@@ -113,7 +115,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="16"><?php echo $row['name'];?></td>
+            			<td align="left" colspan="17"><?php echo $row['name'];?></td>
             		</tr>
 					<?php
 					$jumlah_dpp_tagihan = 0;
@@ -146,6 +148,7 @@
 						<td align="right"><?php echo $mat['jumlah_sisa_hutang'];?></td>
 						<td align="center"><?php echo $mat['status'];?></td>
 						<td align="center"><?php echo $mat['syarat_pembayaran'];?></td>
+						<td align="center"><?php echo $mat['jatuh_tempo'];?></td>
             		</tr>
 
 					<?php
@@ -175,13 +178,14 @@
 						<td align="right"><?php echo number_format($jumlah_jumlah_sisa_hutang,0,',','.');?></td>
 						<td align="center"></td>
 						<td align="center"></td>
+						<td align="center"></td>
             		</tr>
 					<?php
             		}
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="17" align="center">NO DATA</td>
+            		<td width="100%" colspan="18" align="center">NO DATA</td>
             	</tr>
             	<?php
             }
@@ -198,6 +202,7 @@
 				<th align="right"><?php echo number_format($total_dpp_sisa_hutang,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_ppn_sisa_hutang,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_jumlah_sisa_hutang,0,',','.');?></th>
+				<td align="center"></td>
 				<td align="center"></td>
 				<td align="center"></td>
             </tr>   
