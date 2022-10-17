@@ -66,8 +66,8 @@
 				</td>
 			</tr>
 			<tr class="table-active3">
-				<th align="center" width="20%"><b>COA</b></th>
-				<th align="center" width="50%"><b>Kategori</b></th>
+				<th align="center" width="20%"><b>Kode Akun</b></th>
+				<th align="center" width="50%"><b>Nama Akun</b></th>
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
 			</tr>
 			<tr class="table-active2">
