@@ -115,8 +115,6 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
-		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -161,8 +159,6 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
-		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -206,8 +202,6 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
-		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -540,12 +534,16 @@ class Laporan extends Secure_Controller {
 		$total_dpp_sisa_hutang = 0;
 		$total_ppn_sisa_hutang = 0;
 		$total_jumlah_sisa_hutang = 0;
-		$date = $this->input->post('filter_date');
+		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
 			
+			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
 
 			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
 			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
