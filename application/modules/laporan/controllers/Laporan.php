@@ -115,6 +115,8 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
+		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -159,6 +161,8 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
+		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -202,6 +206,8 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
+		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
 		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
@@ -221,9 +227,9 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('laporan_keuangan/cetak_persiapan',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Diskonto');
+        $pdf->SetTitle('BBJ - Persiapan');
         $pdf->nsi_html($html);
-        $pdf->Output('diskonto.pdf', 'I');
+        $pdf->Output('persiapan.pdf', 'I');
 	}
 
 	public function cetak_penerimaan_pembelian()
