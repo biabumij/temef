@@ -530,6 +530,8 @@ class Laporan extends Secure_Controller {
 		$filter_status = $this->input->get('filter_status');
 		$start_date = false;
 		$end_date = false;
+		$filter_date = false;
+		$date2 = false;
 		$total_dpp_tagihan = 0;
 		$total_ppn_tagihan = 0;
 		$total_jumlah_tagihan = 0;
@@ -548,7 +550,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 			
 			$data['filter_date'] = $filter_date;
-			$data['end_date'] = $end_date;
+			$data['date2'] = $end_date;
 
 			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
 			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
