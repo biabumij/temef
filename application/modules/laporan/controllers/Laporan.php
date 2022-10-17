@@ -471,7 +471,7 @@ class Laporan extends Secure_Controller {
 		$pdf->AddPage('L', 'A4');
 		$pdf->SetY(23);
 		$pdf->SetX(6);
-		$html = <<<EOD
+		$html =
 		'<table width="98%" border="0" cellpadding="2">
 		<tr>
 			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
@@ -503,8 +503,7 @@ class Laporan extends Secure_Controller {
 			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
 			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
 		</tr>
-		</table>''
-		EOD;
+		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
 
 		//Page1
