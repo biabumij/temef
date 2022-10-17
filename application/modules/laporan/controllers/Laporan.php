@@ -528,12 +528,19 @@ class Laporan extends Secure_Controller {
 							$akhir = date_create($end_date);
 							$diff  = date_diff( $awal, $akhir );
 
+							$tanggal_tempo = date('Y-m-d', strtotime(+$row['syarat_pembayaran'].'days', strtotime($row['tanggal_lolos_verifikasi'])));
+
+							$awal_tempo  = date_create($tanggal_tempo);
+							$akhir_tempo = date_create($end_date);
+							$diff_tempo  = date_diff( $awal_tempo, $akhir_tempo);
+
 							$arr['no'] = $key + 1;
 							$arr['nama'] = $row['nama'];
 							$arr['subject'] = $row['subject'];
 							$arr['status'] = $row['status'];
 							//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 							$arr['syarat_pembayaran'] = $diff->days . ' ';
+							$arr['jatuh_tempo'] = $diff_tempo->days;
 							$arr['nomor_invoice'] = $row['nomor_invoice'];
 							$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 							$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
