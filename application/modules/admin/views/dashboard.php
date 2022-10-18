@@ -188,7 +188,7 @@
                         return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
                     },
                     afterLabel : function(tooltipItem, data) {
-                        return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
+                        return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+'%)';
                     },
                     },
                 }
