@@ -263,6 +263,7 @@ class Rap extends Secure_Controller {
 				'total_b' => $total_b,
 				'total_c' => $total_c,
 				'total_d' => $total_d,
+				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')
 			);

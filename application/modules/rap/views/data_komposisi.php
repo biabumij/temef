@@ -174,7 +174,7 @@
                                     </form>
                                 
                                 <?php endif; ?>
-                                <?php if($agregat["status"] === "PUBLISH") : ?>
+                                <?php if($agregat["status"] === "PUBLISH" || $agregat["status"] === "CLOSED") : ?>
                                 <a href="<?= base_url("admin/rap/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <?php endif; ?>
                                 <a class="btn btn-warning" href="<?= base_url('rap/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-check"></i> Edit</a>
