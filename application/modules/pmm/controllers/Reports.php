@@ -4573,6 +4573,8 @@ class Reports extends CI_Controller {
 			$total_eveluasi_realisasi = ($volume_realisasi!=0)?$total_realisasi / $volume_realisasi * 1:0;
 			$total_eveluasi_all = $total_eveluasi_rap - $total_eveluasi_realisasi;
 
+			$evaluasi_1 = $total_eveluasi_rap * $volume_realisasi;
+			$evaluasi_2 = $total_realisasi - $evaluasi_1;
 			?>
 			
 			<tr class="table-active4">
@@ -4747,6 +4749,12 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_eveluasi_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_eveluasi_realisasi,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorT ?>"><?php echo number_format($total_eveluasi_all,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center" colspan="2"></th>
+				<th class="text-right"><?php echo number_format($evaluasi_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($evaluasi_2,0,',','.');?></th>
+				<th class="text-right"></th>
 	        </tr>
 	    </table>
 		<?php
