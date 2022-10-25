@@ -252,6 +252,7 @@
 							</td>
 							<td align="center">
 								<img src="uploads/ttd_gery_kop.png" width="100px">
+								<img src="uploads/ttd_erika.png" width="20px">
 							</td>
 						</tr>
 						<tr>
