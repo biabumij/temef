@@ -79,7 +79,17 @@
 				<th width="10px">:</th>
 				<th align="left"><?php echo $row['npwp_supplier'];?></th>
 			</tr>
-			
+			<?php
+			foreach ($details as $dt) {
+            ?>  
+			<tr>
+				<th>No. Penawaran</th>
+				<th width="10px">:</th>
+				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
+			</tr>
+			<?php
+			}
+			?>
 			<tr>
 				<td width="72%"></td>
 				<th width="28%" align="left"><b>Kepada Yth :</b></th>

@@ -97,6 +97,18 @@
                                                 <input type="text" id="npwp_supplier" class="form-control" value="<?php echo $npwp_supplier;?>" readonly="">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-3 control-label">No. Penawaran : </label>
+                                            <div class="col-sm-8">
+                                            <?php
+                                            foreach ($details as $dt) {
+                                            ?>
+                                                <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?>" readonly="">
+                                            <?php
+                                            }
+                                            ?>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
