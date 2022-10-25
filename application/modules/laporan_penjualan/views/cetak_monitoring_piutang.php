@@ -137,7 +137,7 @@
 						<td align="right"><?php echo $mat['dpp_sisa_piutang'];?></td>
 						<td align="right"><?php echo $mat['ppn_sisa_piutang'];?></td>
 						<td align="right"><?php echo $mat['jumlah_sisa_piutang'];?></td>
-						<td align="center"><?php echo $mat['status'];?></td>
+						<td align="center"><?php echo $mat['status_pembayaran'];?></td>
 						<td align="center"><?php echo $mat['syarat_pembayaran'];?></td>
             		</tr>
 

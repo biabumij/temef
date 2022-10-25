@@ -962,15 +962,16 @@ class Productions extends Secure_Controller {
 				$materials = $this->pmm_model->GetLaporanMonitoringPiutang($sups['client_id'],$start_date,$end_date,$filter_kategori);
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
-						$awal  = date_create($row['tanggal_invoice']);
+
+						$awal  = date_create($row['status_umur_hutang']);
 						$akhir = date_create($end_date);
-						$diff  = date_diff( $awal, $akhir );
+						$diff  = date_diff($awal, $akhir);
 
 						$arr['no'] = $key + 1;
 						$arr['nama'] = $row['nama'];
 						$arr['subject'] = $row['subject'];
-						$arr['status'] = $row['status'];
-						$arr['syarat_pembayaran'] = $diff->days . ' Hari';
+						$arr['status_pembayaran'] = $row['status_pembayaran'];
+						$arr['syarat_pembayaran'] = $diff->days . '';
 						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 						$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');

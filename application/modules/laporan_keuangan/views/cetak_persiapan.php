@@ -50,6 +50,7 @@
 				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 12px;">PERSIAPAN</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
+					<div style="display: block;font-weight: bold;font-size: 12px;text-transform: uppercase;"><?php echo $filter_date;?></div>
 				</td>
 			</tr>
 		</table>
@@ -57,21 +58,10 @@
 		<br />
 		<br />
 		<table class="table-lap" width="98%" border="0" cellpadding="3">
-			<tr class="table-active" style="">
-				<td width="20%" colspan="2">
-					<div style="display: block;font-weight: bold;font-size: 8px;">PERIODE</div>
-				</td>
-				<td align="right" width="80%">
-					<div style="display: block;font-weight: bold;font-size: 8px;"><?php echo $filter_date;?></div>
-				</td>
-			</tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th align="center" width="20%"><b>Kode Akun</b></th>
 				<th align="center" width="50%"><b>Nama Akun</b></th>
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
-			</tr>
-			<tr class="table-active2">
-				<th width="100%" align="left" colspan="4"><b>Biaya Persiapan</b></th>
 			</tr>
 			<?php
 			if(!empty($biaya_persiapan_parent)){
@@ -130,7 +120,7 @@
 			}
 			$total_d = $grand_total_biaya_persiapan + $total_biaya_persiapan_jurnal;
 			?>
-			<tr class="active">
+			<tr class="table-active2">
 				<td width="80%" style="padding-left:20px;"><b>Total Biaya Persiapan</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_d);?></b></td>
 			</tr>

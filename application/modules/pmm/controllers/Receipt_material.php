@@ -1183,9 +1183,9 @@ class Receipt_material extends CI_Controller {
 
 						$tanggal_tempo = date('Y-m-d', strtotime(+$row['syarat_pembayaran'].'days', strtotime($row['tanggal_lolos_verifikasi'])));
 
-						$awal_tempo  = date_create($tanggal_tempo);
-						$akhir_tempo = date_create($end_date);
-						$diff_tempo  = date_diff( $awal_tempo, $akhir_tempo);
+						$awal_tempo =date_create($tanggal_tempo);
+						$akhir_tempo =date_create($end_date);
+						$diff_tempo =date_diff($awal_tempo,$akhir_tempo);
 
 						$arr['no'] = $key + 1;
 						$arr['nama'] = $row['nama'];
@@ -1193,7 +1193,7 @@ class Receipt_material extends CI_Controller {
 						$arr['status'] = $row['status'];
 						//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 						$arr['syarat_pembayaran'] = $diff->days . ' ';
-						$arr['jatuh_tempo'] = $diff_tempo->days;
+						$arr['jatuh_tempo'] =  $diff_tempo->format("%R%a");
 						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
 						$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));

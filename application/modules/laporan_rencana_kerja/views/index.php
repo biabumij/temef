@@ -68,7 +68,6 @@
                                     </div>
 
                                     <!-- Laporan Rencana Kerja -->
-
                                     <div role="tabpanel" class="tab-pane" id="laporan_rencana_kerja">
                                         <div class="col-sm-15">
 											<div class="panel panel-default">

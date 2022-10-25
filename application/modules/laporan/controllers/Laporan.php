@@ -587,9 +587,9 @@ class Laporan extends Secure_Controller {
 
 							$tanggal_tempo = date('Y-m-d', strtotime(+$row['syarat_pembayaran'].'days', strtotime($row['tanggal_lolos_verifikasi'])));
 
-							$awal_tempo  = date_create($tanggal_tempo);
-							$akhir_tempo = date_create($end_date);
-							$diff_tempo  = date_diff( $awal_tempo, $akhir_tempo);
+							$awal_tempo =date_create($tanggal_tempo);
+							$akhir_tempo =date_create($end_date);
+							$diff_tempo =date_diff($awal_tempo,$akhir_tempo);
 
 							$arr['no'] = $key + 1;
 							$arr['nama'] = $row['nama'];
@@ -597,10 +597,10 @@ class Laporan extends Secure_Controller {
 							$arr['status'] = $row['status'];
 							//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
 							$arr['syarat_pembayaran'] = $diff->days . ' ';
-							$arr['jatuh_tempo'] = $diff_tempo->days;
+							$arr['jatuh_tempo'] =  $diff_tempo->format("%R%a");
 							$arr['nomor_invoice'] = $row['nomor_invoice'];
-							$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
-							$arr['tanggal_lolos_verifikasi'] =  date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
+							$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
+							$arr['tanggal_lolos_verifikasi'] = date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
 							$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
 							$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
 							$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
@@ -940,15 +940,16 @@ class Laporan extends Secure_Controller {
 					$materials = $this->pmm_model->GetLaporanMonitoringPiutang($sups['client_id'],$start_date,$end_date,$filter_kategori);
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
-							$awal  = date_create($row['tanggal_invoice']);
+							
+							$awal  = date_create($row['status_umur_hutang']);
 							$akhir = date_create($end_date);
-							$diff  = date_diff( $awal, $akhir );
+							$diff  = date_diff($awal, $akhir);
 
 							$arr['no'] = $key + 1;
                             $arr['nama'] = $row['nama'];
                             $arr['subject'] = $row['subject'];
-                            $arr['status'] = $row['status'];
-                            $arr['syarat_pembayaran'] = $diff->days . ' Hari';
+                            $arr['status_pembayaran'] = $row['status_pembayaran'];
+                            $arr['syarat_pembayaran'] = $diff->days;
                             $arr['nomor_invoice'] = $row['nomor_invoice'];
                             $arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
                             $arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
