@@ -9170,6 +9170,119 @@ class Reports extends CI_Controller {
 			?>
 			<!-- DESEMBER -->
 
+			<!-- JANUARI -->
+			<?php
+			$date_januari_awal = date('2023-01-01');
+			$date_januari_akhir = date('2023-01-31');
+			$rencana_kerja_januari = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->get()->row_array();
+			$volume_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
+			$volume_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
+			$volume_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
+			$volume_januari_produk_d = $rencana_kerja_januari['vol_produk_d'];
+
+			$total_januari_volume = $volume_januari_produk_a + $volume_januari_produk_b + $volume_januari_produk_c + $volume_januari_produk_d;
+		
+			$nilai_jual_125_januari = $volume_januari_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_januari = $volume_januari_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_januari = $volume_januari_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_januari = $volume_januari_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_januari = $nilai_jual_125_januari + $nilai_jual_225_januari + $nilai_jual_250_januari + $nilai_jual_250_18_januari;
+			
+			$total_januari_nilai = $nilai_jual_all_januari;
+
+			$rencana_kerja_januari = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->get()->row_array();
+			
+			$volume_rencana_kerja_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
+			$volume_rencana_kerja_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
+			$volume_rencana_kerja_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
+			$volume_rencana_kerja_januari_produk_d = $rencana_kerja_januari['vol_produk_d'];
+
+			//TOTAL PEMAKAIAN BAHAN JANUARI
+			//TOTAL K-125
+			$total_semen_125_januari = $komposisi_125_produk_a * $volume_rencana_kerja_januari_produk_a;
+			$total_pasir_125_januari = $komposisi_125_produk_b * $volume_rencana_kerja_januari_produk_a;
+			$total_batu1020_125_januari = $komposisi_125_produk_c * $volume_rencana_kerja_januari_produk_a;
+			$total_batu2030_125_januari = $komposisi_125_produk_d * $volume_rencana_kerja_januari_produk_a;
+
+			$nilai_semen_125_januari = $total_semen_125_januari * $komposisi_125['price_a'];
+			$nilai_pasir_125_januari = $total_pasir_125_januari * $komposisi_125['price_b'];
+			$nilai_batu1020_125_januari = $total_batu1020_125_januari * $komposisi_125['price_c'];
+			$nilai_batu2030_125_januari = $total_batu2030_125_januari * $komposisi_125['price_d'];
+
+			$total_125_januari = $nilai_semen_125_januari + $nilai_pasir_125_januari + $nilai_batu1020_125_januari + $nilai_batu2030_125_januari;
+
+			//TOTAL K-225
+			$total_semen_225_januari = $komposisi_225_produk_a * $volume_rencana_kerja_januari_produk_b;
+			$total_pasir_225_januari = $komposisi_225_produk_b * $volume_rencana_kerja_januari_produk_b;
+			$total_batu1020_225_januari = $komposisi_225_produk_c * $volume_rencana_kerja_januari_produk_b;
+			$total_batu2030_225_januari = $komposisi_225_produk_d * $volume_rencana_kerja_januari_produk_b;
+
+			$nilai_semen_225_januari = $total_semen_225_januari * $komposisi_225['price_a'];
+			$nilai_pasir_225_januari = $total_pasir_225_januari * $komposisi_225['price_b'];
+			$nilai_batu1020_225_januari = $total_batu1020_225_januari * $komposisi_225['price_c'];
+			$nilai_batu2030_225_januari = $total_batu2030_225_januari * $komposisi_225['price_d'];
+
+			$total_225_januari = $nilai_semen_225_januari + $nilai_pasir_225_januari + $nilai_batu1020_225_januari + $nilai_batu2030_225_januari;
+
+			//TOTAL K-250
+			$total_semen_250_januari = $komposisi_250_produk_a * $volume_rencana_kerja_januari_produk_c;
+			$total_pasir_250_januari = $komposisi_250_produk_b * $volume_rencana_kerja_januari_produk_c;
+			$total_batu1020_250_januari = $komposisi_250_produk_c * $volume_rencana_kerja_januari_produk_c;
+			$total_batu2030_250_januari = $komposisi_250_produk_d * $volume_rencana_kerja_januari_produk_c;
+
+			$nilai_semen_250_januari = $total_semen_250_januari * $komposisi_250['price_a'];
+			$nilai_pasir_250_januari = $total_pasir_250_januari * $komposisi_250['price_b'];
+			$nilai_batu1020_250_januari = $total_batu1020_250_januari * $komposisi_250['price_c'];
+			$nilai_batu2030_250_januari = $total_batu2030_250_januari * $komposisi_250['price_d'];
+
+			$total_250_januari = $nilai_semen_250_januari + $nilai_pasir_250_januari + $nilai_batu1020_250_januari + $nilai_batu2030_250_januari;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_januari = $komposisi_250_18_produk_a * $volume_rencana_kerja_januari_produk_d;
+			$total_pasir_250_18_januari = $komposisi_250_18_produk_b * $volume_rencana_kerja_januari_produk_d;
+			$total_batu1020_250_18_januari = $komposisi_250_18_produk_c * $volume_rencana_kerja_januari_produk_d;
+			$total_batu2030_250_18_januari = $komposisi_250_18_produk_d * $volume_rencana_kerja_januari_produk_d;
+
+			$nilai_semen_250_18_januari = $total_semen_250_18_januari * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_januari = $total_pasir_250_18_januari * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_januari = $total_batu1020_250_18_januari * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_januari = $total_batu2030_250_18_januari * $komposisi_250_18['price_d'];
+
+			$total_250_18_januari = $nilai_semen_250_18_januari + $nilai_pasir_250_18_januari + $nilai_batu1020_250_18_januari + $nilai_batu2030_250_18_januari;
+
+			//TOTAL ALL
+			$total_bahan_all_januari = $total_125_januari + $total_225_januari + $total_250_januari + $total_250_18_januari;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_januari = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_januari_akhir')")
+			->get()->row_array();
+
+			$batching_plant_januari = $total_januari_volume * $rap_alat_januari['batching_plant'];
+			$truck_mixer_januari = $total_januari_volume * $rap_alat_januari['truck_mixer'];
+			$wheel_loader_januari = $total_januari_volume * $rap_alat_januari['wheel_loader'];
+			$bbm_solar_januari = $total_januari_volume * $rap_alat_januari['bbm_solar'];
+			$biaya_alat_all_januari = $batching_plant_januari + $truck_mixer_januari + $wheel_loader_januari + $bbm_solar_januari;
+		
+			$total_januari_biaya_bahan = $total_bahan_all_januari;
+			$total_januari_biaya_alat = $biaya_alat_all_januari;
+			$total_januari_biaya_overhead = $rencana_kerja_januari['biaya_overhead'];
+			$total_januari_biaya_bank = $rencana_kerja_januari['biaya_bank'];
+			$total_januari_biaya_persiapan = $rencana_kerja_januari['biaya_persiapan'];
+
+			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank + $total_januari_biaya_persiapan;
+			?>
+			<!-- JANUARI -->
+
 			<!-- AKUMULASI BIAYA SD. SAAT INI -->
 			<?php
 			//BAHAN
@@ -9349,25 +9462,25 @@ class Reports extends CI_Controller {
 
 			<!-- TOTAL -->
 			<?php
-			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_oktober_produk_a + $volume_november_produk_a + $volume_desember_produk_a;
-			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_oktober_produk_b + $volume_november_produk_b + $volume_desember_produk_b;
-			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_oktober_produk_c + $volume_november_produk_c + $volume_desember_produk_c;
-			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_oktober_produk_d + $volume_november_produk_d + $volume_desember_produk_d;
+			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_november_produk_a + $volume_desember_produk_a;
+			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_november_produk_b + $volume_desember_produk_b;
+			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_november_produk_c + $volume_desember_produk_c;
+			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_november_produk_d + $volume_desember_produk_d;
 
-			$total_all_volume = $total_akumulasi_volume + $total_oktober_volume + $total_november_volume + $total_desember_volume;
-			$total_all_nilai = $total_akumulasi_nilai + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai;
+			$total_all_volume = $total_akumulasi_volume + $total_november_volume + $total_desember_volume;
+			$total_all_nilai = $total_akumulasi_nilai + $total_november_nilai + $total_desember_nilai;
 
-			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_oktober_biaya_bahan + $total_november_biaya_bahan + $total_desember_biaya_bahan;
-			$total_all_biaya_alat = $total_alat_akumulasi + $total_oktober_biaya_alat + $total_november_biaya_alat + $total_desember_biaya_alat;
-			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_oktober_biaya_overhead + $total_november_biaya_overhead + $total_desember_biaya_overhead;
-			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_oktober_biaya_bank + $total_november_biaya_bank + $total_desember_biaya_bank;
-			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_oktober_biaya_persiapan + $total_november_biaya_persiapan + $total_desember_biaya_persiapan;
+			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_november_biaya_bahan + $total_desember_biaya_bahan;
+			$total_all_biaya_alat = $total_alat_akumulasi + $total_november_biaya_alat + $total_desember_biaya_alat;
+			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_november_biaya_overhead + $total_desember_biaya_overhead;
+			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_november_biaya_bank + $total_desember_biaya_bank;
+			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_november_biaya_persiapan + $total_desember_biaya_persiapan;
 			
 			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank + $total_all_biaya_persiapan;
 
 			$total_laba_rap_2022 = $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya;
 			$total_laba_sd_agustus = $total_akumulasi_nilai - $total_biaya_akumulasi;
-			$total_laba_oktober = $total_oktober_nilai - $total_biaya_oktober_biaya;
+			//$total_laba_oktober = $total_oktober_nilai - $total_biaya_oktober_biaya;
 			$total_laba_november = $total_november_nilai - $total_biaya_november_biaya;
 			$total_laba_desember = $total_desember_nilai - $total_biaya_desember_biaya;
 			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
@@ -9401,19 +9514,19 @@ class Reports extends CI_Controller {
 				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">RAP 2022</th>
 				<th width="15%" class="text-center">REALISASI</th>
-				<th width="25%" class="text-center" colspan="3">RENCANA KERJA</th>
+				<th width="25%" class="text-center" colspan="2">RENCANA KERJA</th>
 				<th width="15%" class="text-center">TOTAL</th>
 				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">SD. SAAT INI</th>
-				<th class="text-center">OKTOBER</th>
+				<!--<th class="text-center">OKTOBER</th>-->
 				<th class="text-center">NOVEMBER</th>
 				<th class="text-center">DESEMBER</th>
 				<th class="text-center">SD. DESEMBER 2022</th>
 	        </tr>
 			<tr class="table-active2">
-				<th class="text-left" colspan="10">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+				<th class="text-left" colspan="9">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>
@@ -9421,7 +9534,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap_2022_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_oktober_produk_a,2,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($volume_oktober_produk_a,2,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
@@ -9433,7 +9546,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap_2022_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_oktober_produk_b,2,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($volume_oktober_produk_b,2,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
@@ -9445,7 +9558,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap_2022_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_oktober_produk_c,2,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($volume_oktober_produk_c,2,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
@@ -9457,7 +9570,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_rap_2022_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_oktober_produk_d,2,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($volume_oktober_produk_d,2,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
@@ -9468,7 +9581,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap_2022?filter_date=".$filter_date = date('d F Y',strtotime('2022-01-01')).' - '.date('d F Y',strtotime('2022-12-31'))) ?>"><?php echo number_format($total_rap_volume_2022,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_oktober?filter_date=".$filter_date = date('d F Y',strtotime($date_oktober_awal)).' - '.date('d F Y',strtotime($date_oktober_akhir))) ?>"><?php echo number_format($total_oktober_volume,2,',','.');?></a></th>
+				<!--<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_oktober?filter_date=".$filter_date = date('d F Y',strtotime($date_oktober_awal)).' - '.date('d F Y',strtotime($date_oktober_akhir))) ?>"><?php echo number_format($total_oktober_volume,2,',','.');?></a></th>-->
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_november?filter_date=".$filter_date = date('d F Y',strtotime($date_november_awal)).' - '.date('d F Y',strtotime($date_november_akhir))) ?>"><?php echo number_format($total_november_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_desember?filter_date=".$filter_date = date('d F Y',strtotime($date_desember_awal)).' - '.date('d F Y',strtotime($date_desember_akhir))) ?>"><?php echo number_format($total_desember_volume,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
@@ -9479,14 +9592,14 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_nilai,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_nilai,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_nilai,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
-				<th class="text-left" colspan="10">BIAYA</th>
+				<th class="text-left" colspan="9">BIAYA</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>
@@ -9494,7 +9607,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_biaya_bahan,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_biaya_bahan,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
@@ -9506,7 +9619,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_biaya_alat,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_biaya_alat,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
@@ -9518,7 +9631,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_biaya_overhead,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_biaya_overhead,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
@@ -9530,7 +9643,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_biaya_bank,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_biaya_bank,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
@@ -9542,7 +9655,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_persiapan_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_oktober_biaya_persiapan,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_oktober_biaya_persiapan,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_november_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_desember_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_persiapan,0,',','.');?></th>
@@ -9553,7 +9666,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_biaya_oktober_biaya,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_biaya_oktober_biaya,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_biaya_november_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_desember_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
@@ -9564,7 +9677,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_sd_agustus,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_laba_oktober,0,',','.');?></th>
+				<!--<th class="text-right"><?php echo number_format($total_laba_oktober,0,',','.');?></th>-->
 				<th class="text-right"><?php echo number_format($total_laba_november,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_desember,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_all,0,',','.');?></th>
