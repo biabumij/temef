@@ -3473,152 +3473,256 @@ class Reports extends CI_Controller {
 			?>
 			<!-- NOVEMBER -->
 
+			<!-- DESEMBER -->
+			<?php
+			$date_desember_awal = date('2022-12-01');
+			$date_desember_akhir = date('2022-12-31');
+			$rencana_kerja_desember = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
+			->get()->row_array();
+			$volume_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
+			$volume_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
+			$volume_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
+			$volume_desember_produk_d = $rencana_kerja_desember['vol_produk_d'];
+
+			$total_desember_volume = $volume_desember_produk_a + $volume_desember_produk_b + $volume_desember_produk_c + $volume_desember_produk_d;
+		
+			$nilai_jual_125_desember = $volume_desember_produk_a * $harga_jual_125_now['harga_satuan'];
+			$nilai_jual_225_desember = $volume_desember_produk_b * $harga_jual_225_now['harga_satuan'];
+			$nilai_jual_250_desember = $volume_desember_produk_c * $harga_jual_250_now['harga_satuan'];
+			$nilai_jual_250_18_desember = $volume_desember_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_all_desember = $nilai_jual_125_desember + $nilai_jual_225_desember + $nilai_jual_250_desember + $nilai_jual_250_18_desember;
+			
+			$total_desember_nilai = $nilai_jual_all_desember;
+			
+			$volume_rencana_kerja_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
+			$volume_rencana_kerja_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
+			$volume_rencana_kerja_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
+			$volume_rencana_kerja_desember_produk_d = $rencana_kerja_desember['vol_produk_d'];
+
+			//TOTAL PEMAKAIAN BAHAN DESEMBER
+			//TOTAL K-125
+			$total_semen_125_desember = $komposisi_125_produk_a * $volume_rencana_kerja_desember_produk_a;
+			$total_pasir_125_desember = $komposisi_125_produk_b * $volume_rencana_kerja_desember_produk_a;
+			$total_batu1020_125_desember = $komposisi_125_produk_c * $volume_rencana_kerja_desember_produk_a;
+			$total_batu2030_125_desember = $komposisi_125_produk_d * $volume_rencana_kerja_desember_produk_a;
+
+			$nilai_semen_125_desember = $total_semen_125_desember * $komposisi_125['price_a'];
+			$nilai_pasir_125_desember = $total_pasir_125_desember * $komposisi_125['price_b'];
+			$nilai_batu1020_125_desember = $total_batu1020_125_desember * $komposisi_125['price_c'];
+			$nilai_batu2030_125_desember = $total_batu2030_125_desember * $komposisi_125['price_d'];
+
+			$total_125_desember = $nilai_semen_125_desember + $nilai_pasir_125_desember + $nilai_batu1020_125_desember + $nilai_batu2030_125_desember;
+
+			//TOTAL K-225
+			$total_semen_225_desember = $komposisi_225_produk_a * $volume_rencana_kerja_desember_produk_b;
+			$total_pasir_225_desember = $komposisi_225_produk_b * $volume_rencana_kerja_desember_produk_b;
+			$total_batu1020_225_desember = $komposisi_225_produk_c * $volume_rencana_kerja_desember_produk_b;
+			$total_batu2030_225_desember = $komposisi_225_produk_d * $volume_rencana_kerja_desember_produk_b;
+
+			$nilai_semen_225_desember = $total_semen_225_desember * $komposisi_225['price_a'];
+			$nilai_pasir_225_desember = $total_pasir_225_desember * $komposisi_225['price_b'];
+			$nilai_batu1020_225_desember = $total_batu1020_225_desember * $komposisi_225['price_c'];
+			$nilai_batu2030_225_desember = $total_batu2030_225_desember * $komposisi_225['price_d'];
+
+			$total_225_desember = $nilai_semen_225_desember + $nilai_pasir_225_desember + $nilai_batu1020_225_desember + $nilai_batu2030_225_desember;
+
+			//TOTAL K-250
+			$total_semen_250_desember = $komposisi_250_produk_a * $volume_rencana_kerja_desember_produk_c;
+			$total_pasir_250_desember = $komposisi_250_produk_b * $volume_rencana_kerja_desember_produk_c;
+			$total_batu1020_250_desember = $komposisi_250_produk_c * $volume_rencana_kerja_desember_produk_c;
+			$total_batu2030_250_desember = $komposisi_250_produk_d * $volume_rencana_kerja_desember_produk_c;
+
+			$nilai_semen_250_desember = $total_semen_250_desember * $komposisi_250['price_a'];
+			$nilai_pasir_250_desember = $total_pasir_250_desember * $komposisi_250['price_b'];
+			$nilai_batu1020_250_desember = $total_batu1020_250_desember * $komposisi_250['price_c'];
+			$nilai_batu2030_250_desember = $total_batu2030_250_desember * $komposisi_250['price_d'];
+
+			$total_250_desember = $nilai_semen_250_desember + $nilai_pasir_250_desember + $nilai_batu1020_250_desember + $nilai_batu2030_250_desember;
+
+			//TOTAL K-250_18
+			$total_semen_250_18_desember = $komposisi_250_18_produk_a * $volume_rencana_kerja_desember_produk_d;
+			$total_pasir_250_18_desember = $komposisi_250_18_produk_b * $volume_rencana_kerja_desember_produk_d;
+			$total_batu1020_250_18_desember = $komposisi_250_18_produk_c * $volume_rencana_kerja_desember_produk_d;
+			$total_batu2030_250_18_desember = $komposisi_250_18_produk_d * $volume_rencana_kerja_desember_produk_d;
+
+			$nilai_semen_250_18_desember = $total_semen_250_18_desember * $komposisi_250_18['price_a'];
+			$nilai_pasir_250_18_desember = $total_pasir_250_18_desember * $komposisi_250_18['price_b'];
+			$nilai_batu1020_250_18_desember = $total_batu1020_250_18_desember * $komposisi_250_18['price_c'];
+			$nilai_batu2030_250_18_desember = $total_batu2030_250_18_desember * $komposisi_250_18['price_d'];
+
+			$total_250_18_desember = $nilai_semen_250_18_desember + $nilai_pasir_250_18_desember + $nilai_batu1020_250_18_desember + $nilai_batu2030_250_18_desember;
+
+			//TOTAL ALL
+			$total_bahan_all_desember = $total_125_desember + $total_225_desember + $total_250_desember + $total_250_18_desember;
+			//END TOTAL PEMAKAIAN BAHAN
+
+			//TOTAL PEMAKAIAN ALAT
+			$rap_alat_desember = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where('rap.status','PUBLISH')
+			->where("(rap.tanggal_rap_alat < '$date_desember_akhir')")
+			->get()->row_array();
+
+			$batching_plant_desember = $total_desember_volume * $rap_alat_desember['batching_plant'];
+			$truck_mixer_desember = $total_desember_volume * $rap_alat_desember['truck_mixer'];
+			$wheel_loader_desember = $total_desember_volume * $rap_alat_desember['wheel_loader'];
+			$bbm_solar_desember = $total_desember_volume * $rap_alat_desember['bbm_solar'];
+			$biaya_alat_all_desember = $batching_plant_desember + $truck_mixer_desember + $wheel_loader_desember + $bbm_solar_desember;
+		
+			$total_desember_biaya_bahan = $total_bahan_all_desember;
+			$total_desember_biaya_alat = $biaya_alat_all_desember;
+			$total_desember_biaya_overhead = $rencana_kerja_desember['biaya_overhead'];
+			$total_desember_biaya_bank = $rencana_kerja_desember['biaya_bank'];
+			$total_desember_biaya_persiapan = $rencana_kerja_desember['biaya_persiapan'];
+
+			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank + $total_desember_biaya_persiapan;
+			
+			//TERMIN DESEMBER
+			$termin_desember = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran pm')
+			->where("pm.tanggal_pembayaran between '$date_desember_awal' and '$date_desember_akhir'")
+			->where("pm.status = 'DISETUJUI'")
+			->where("pm.memo <> 'PPN'")
+			->get()->row_array();
+			?>
+			<!-- DESEMBER -->
+
 			<tr class="table-active4">
-				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="20%" class="text-center">CURRENT</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">OKTOBER</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">NOVEMBER</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">DESEMBER</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">JUMLAH</th>
+				<th width="28%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th width="12%" class="text-center">CURRENT</th>
+				<th width="12%" class="text-center" rowspan="2" style="vertical-align:middle">OKTOBER</th>
+				<th width="12%" class="text-center" rowspan="2" style="vertical-align:middle">NOVEMBER</th>
+				<th width="12%" class="text-center" rowspan="2" style="vertical-align:middle">DESEMBER</th>
+				<th width="12%" class="text-center" rowspan="2" style="vertical-align:middle">JUMLAH</th>
+				<th width="12%" class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">CASH BUDGET</th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PRODUKSI (EXCL. PPN)</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PRODUKSI (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left">AKUMULASI (%)</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7">AKUMULASI (%)</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;1. PRODUKSI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_oktober_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_november_nilai,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;2. AKUMULASI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_oktober_akumulasi['total'] + $total_oktober_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_oktober_akumulasi['total'] + $total_oktober_nilai + $total_november_nilai,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($penjualan_oktober_akumulasi['total'] + $total_oktober_nilai + $total_november_nilai + $total_desember_nilai,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PENERIMAAN (EXCL. PPN)</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PENERIMAAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Uang Muka</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Termin / Angsuran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_oktober['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_november['total'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($termin_desember['total'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Pengembalian Retensi</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;PPN Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH PENERIMAAN</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_oktober['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_november['total'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($termin_desember['total'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>AKUMULASI PENERIMAAN</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($termin_oktober_akumulasi['total'] + $termin_oktober['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_oktober_akumulasi['total'] + $termin_oktober['total'] + $termin_november['total'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($termin_oktober_akumulasi['total'] + $termin_oktober['total'] + $termin_november['total'] + $termin_desember['total'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PEMAKAIAN BAHAN & ALAT</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PEMAKAIAN BAHAN & ALAT</u></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;1. Bahan</th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_oktober,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_november,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_bahan_all_desember,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;2. Alat</th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_oktober_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH PEMAKAIAN</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_oktober + $total_oktober_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_november + $total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_bahan_all_desember + $total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>AKUMULASI PEMAKAIAN</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_oktober_akumulasi + $alat_oktober_akumulasi + $total_bahan_all_oktober + $total_oktober_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_bahan_oktober_akumulasi + $alat_oktober_akumulasi + $total_bahan_all_oktober + $total_oktober_biaya_alat + $total_bahan_all_november + $total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_bahan_oktober_akumulasi + $alat_oktober_akumulasi + $total_bahan_all_oktober + $total_oktober_biaya_alat + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PENGELUARAN (EXCL. PPN)</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PENGELUARAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;1. Biaya Bahan</th>
@@ -3626,47 +3730,53 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;2. Biaya Upah</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;3. Biaya Peralatan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;4. Biaya Subkontraktor</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_oktober['biaya_bank'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_bank'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_oktober['biaya_overhead'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;7. Rupa - Rupa</th>
@@ -3674,148 +3784,155 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;8. Persiapan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_oktober['biaya_persiapan'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;9. Lain - Lain / Susut Aktiva</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;10. PPN Masukan</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH III</i></th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_oktober['biaya_overhead'] + $rencana_kerja_oktober['biaya_bank'] + $rencana_kerja_oktober['biaya_persiapan'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<?php
 			$jumlah_penerimaan = $termin_oktober['total'];
 			$jumlah_lll_oktober = $rencana_kerja_oktober['biaya_overhead'] + $rencana_kerja_oktober['biaya_bank'] + $rencana_kerja_oktober['biaya_persiapan'];
 			$jumlah_lll_november = $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'];
+			$jumlah_lll_desember = $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'];
 			?>
 			<tr class="table-active2">
 				<th class="text-left"><i>POSISI (II - III)</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_oktober,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_november,0,',','.');?></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_desember,0,',','.');?></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PAJAK</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PAJAK</u></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_rap_2022 / 10,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH V (1-2)</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>POSISI (IV+V)</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
-				<th class="text-left"><u>PINJAMAN</u></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-left" colspan="7"><u>PINJAMAN</u></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Penerimaan Pinjaman</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Pengembalian Pinjaman</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH VII</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>POSISI (VI+VII)</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>KAS AWAL</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>KAS AKHIR</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right"></th>
-				<th class="text-right"></th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
+				<th class="text-right">-</th>
 			</tr>
 	    </table>
 		<?php
