@@ -50,7 +50,7 @@
 				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 12px;">PERSIAPAN</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
-					<div style="display: block;font-weight: bold;font-size: 12px;text-transform: uppercase;"><?php echo $filter_date;?></div>
+					<div style="display: block;font-weight: bold;font-size: 12px;text-transform: uppercase;">PERIODE : <?php echo $filter_date;?></div>
 				</td>
 			</tr>
 		</table>
