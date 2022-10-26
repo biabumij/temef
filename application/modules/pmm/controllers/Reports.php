@@ -9650,7 +9650,7 @@ class Reports extends CI_Controller {
 				table tr.table-activeago1{
 					background-color: #ffd966;
 					font-weight: bold;
-					font-size: 7px;
+					font-size: 8px;
 					color: black;
 				}
 				table tr.table-activeopening{
