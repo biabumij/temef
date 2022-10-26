@@ -3346,6 +3346,22 @@ class Reports extends CI_Controller {
 
 			$persiapan_now = $persiapan_biaya_now['total'] + $persiapan_jurnal_now['total'];
 			//END_PERSIAPAN
+
+			//PPN KELUAR
+			$ppn_keluar = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->where("pm.tanggal_pembayaran < '$date_now'")
+			->where("pm.status = 'DISETUJUI'")
+			->where("pm.memo = 'PPN'")
+			->get()->row_array();
+
+			//PPN MASUK
+			$ppn_masuk = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran pm')
+			->where("pm.tanggal_pembayaran < '$date_now'")
+			->where("pm.status = 'DISETUJUI'")
+			->where("pm.memo = 'PPN'")
+			->get()->row_array();
 			?>
 			<!-- AKUMULASI NOW -->
 
@@ -4938,7 +4954,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_juni,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_termin - ($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua),0,',','.');?></th>
-				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 - $jumlah_termin) - ($total_biaya_rap_2022_biaya - $jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua),0,',','.');?></th>
+				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left" colspan="14"><u>PAJAK</u></th>
@@ -4946,6 +4962,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($ppn_keluar['total'],0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4955,13 +4972,13 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
+				<th class="text-right"><?php echo number_format($ppn_keluar['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10) - $ppn_keluar['total'],0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_rap_2022 / 10,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($ppn_masuk['total'],0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4971,13 +4988,13 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
+				<th class="text-right"><?php echo number_format($ppn_masuk['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(($total_bahan_all_rap_2022 / 10) - $ppn_masuk['total'],0,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-left"><i>JUMLAH V (1-2)</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($ppn_keluar['total'] + $ppn_masuk['total'],0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4987,24 +5004,37 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
+				<th class="text-right"><?php echo number_format($ppn_keluar['total'] + $ppn_masuk['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10) - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
 			</tr>
+			<?php
+			$posisi_iv = $jumlah_penerimaan - ($diskonto_now + $overhead_now + $persiapan_now);
+			$posisi_iv_november = $jumlah_penerimaan - $jumlah_lll_november;
+			$posisi_iv_desember = $jumlah_penerimaan - $jumlah_lll_desember;
+			$posisi_iv_januari = $jumlah_penerimaan - $jumlah_lll_januari;
+			$posisi_iv_februari = $jumlah_penerimaan - $jumlah_lll_februari;
+			$posisi_iv_maret = $jumlah_penerimaan - $jumlah_lll_maret;
+			$posisi_iv_april = $jumlah_penerimaan - $jumlah_lll_april;
+			$posisi_iv_mei = $jumlah_penerimaan - $jumlah_lll_mei;
+			$posisi_iv_juni = $jumlah_penerimaan - $jumlah_lll_juni;
+			$posisi_iv_juli = $jumlah_penerimaan - $jumlah_lll_juli;
+
+			$posisi_lll = $jumlah_termin - ($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua);
+			?>
 			<tr class="table-active2">
 				<th class="text-left"><i>POSISI (IV+V)</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
-				<th class="text-right">-</th>
+				<th class="text-right"><?php echo number_format($posisi_iv - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_november,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_desember,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_januari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_februari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_maret,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_april,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_mei,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_juni,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_iv_juli,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($posisi_lll - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
 				<th class="text-right">-</th>
 			</tr>
 			<tr class="table-active3">
