@@ -222,7 +222,6 @@
 			</tr>			
 		</table>
 		<br />
-		<br />
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
