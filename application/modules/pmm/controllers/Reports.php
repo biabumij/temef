@@ -4537,21 +4537,30 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 			</tr>
 			<?php
-			$jumlah_termin = $termin_now['total'] + $termin_november['total'] + $termin_desember['total'] + $termin_januari['total'] + $termin_februari['total'] + $termin_maret['total'] + $termin_april['total'] + $termin_mei['total'] + $termin_juni['total'] + $termin_juli['total'];
+			$termin_november = 4684882600;
+			$termin_desember = 9055470994;
+			$termin_januari = 7468825200;
+			$termin_februari = 4222469050;
+			$termin_maret = 3534737908;
+			$termin_april = 3534737908;
+			$termin_mei = 3534737908;
+			$termin_juni = 3534737908;
+			$termin_juli = 3534737908;
+			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-active3">
 				<th class="text-left">&nbsp;&nbsp;Termin / Angsuran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_november['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_desember['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_januari['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_februari['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_maret['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_april['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_mei['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_juni['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_juli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_november,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_desember,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_januari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_februari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_maret,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_april,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_mei,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_juni,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_termin,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
@@ -4591,28 +4600,28 @@ class Reports extends CI_Controller {
 				<th class="text-left"><i>JUMLAH PENERIMAAN</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_november['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_desember['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_januari['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_februari['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_maret['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_april['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_mei['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_juni['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($termin_juli['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_november,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_desember,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_januari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_februari,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_maret,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_april,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_mei,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_juni,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($termin_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_termin,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
 			<?php
-			$akumulasi_termin_november = $termin_now['total'] + $termin_november['total'];
-			$akumulasi_termin_desember = $termin_now['total'] + $termin_desember['total'];
-			$akumulasi_termin_januari = $termin_now['total'] + $termin_januari['total'];
-			$akumulasi_termin_februari = $termin_now['total'] + $termin_februari['total'];
-			$akumulasi_termin_maret = $termin_now['total'] + $termin_maret['total'];
-			$akumulasi_termin_april = $termin_now['total'] + $termin_april['total'];
-			$akumulasi_termin_mei = $termin_now['total'] + $termin_mei['total'];
-			$akumulasi_termin_juni = $termin_now['total'] + $termin_juni['total'];
-			$akumulasi_termin_juli = $termin_now['total'] + $termin_juli['total'];
+			$akumulasi_termin_november = $termin_now['total'] + $termin_november;
+			$akumulasi_termin_desember = $termin_now['total'] + $termin_november + $termin_desember;
+			$akumulasi_termin_januari = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari;
+			$akumulasi_termin_februari = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari;
+			$akumulasi_termin_maret = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret;
+			$akumulasi_termin_april = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april;
+			$akumulasi_termin_mei = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei;
+			$akumulasi_termin_juni = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni;
+			$akumulasi_termin_juli = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			
 			<tr class="table-active2">
