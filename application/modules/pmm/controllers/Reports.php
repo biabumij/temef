@@ -1928,24 +1928,24 @@ class Reports extends CI_Controller {
 		 <style type="text/css">
 			table tr.table-active{
 				background-color: #F0F0F0;
-				font-size: 14px;
+				font-size: 12px;
 				font-weight: bold;
 			}
 				
 			table tr.table-active2{
 				background-color: #A9A9A9;
-				font-size: 14px;
+				font-size: 12px;
 				font-weight: bold;
 			}
 				
 			table tr.table-active3{
-				font-size: 14px;
+				font-size: 12px;
 			}
 				
 			table tr.table-active4{
 				background-color: #D3D3D3;
 				font-weight: bold;
-				font-size: 14px;
+				font-size: 12px;
 				color: black;
 			}
 		 </style>
@@ -2871,7 +2871,7 @@ class Reports extends CI_Controller {
 				table tr.table-active4{
 					background-color: #e69500;
 					font-weight: bold;
-					font-size: 7px;
+					font-size: 8px;
 					color: black;
 				}
 				table tr.table-active5{
@@ -9678,7 +9678,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active3{
-					font-size: 7px;
+					font-size: 8px;
 					background-color: #F0F0F0;
 				}
 					
