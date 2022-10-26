@@ -11244,13 +11244,13 @@ class Reports extends CI_Controller {
 
 			<tr class="table-active4">
 				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">RAP 2022</th>
-				<th width="15%" class="text-center">REALISASI</th>
-				<th width="25%" class="text-center" colspan="9">RENCANA KERJA</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">TOTAL</th>
-				<th width="15%" class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">RAP 2022</th>
+				<th class="text-center">REALISASI</th>
+				<th class="text-center" colspan="9">RENCANA KERJA</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">TOTAL</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4">
 				<th class="text-center">SD. SAAT INI</th>
