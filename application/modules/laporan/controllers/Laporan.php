@@ -1360,7 +1360,7 @@ class Laporan extends Secure_Controller {
         $pdf->Output('kebutuhan_bahan_rap_2022.pdf', 'I');
 	}
 
-	public function cetak_bahan_oktober()
+	public function cetak_bahan_rap()
 	{
 		$this->load->library('pdf');
 	
@@ -1379,66 +1379,12 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_oktober',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Kebutuhan Bahan Oktober');
+        $pdf->SetTitle('BBJ - Kebutuhan Bahan');
         $pdf->nsi_html($html);
-        $pdf->Output('kebutuhan_bahan_oktober.pdf', 'I');
-	}
-
-	public function cetak_bahan_november()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_november',$data,TRUE);
-
-        
-        $pdf->SetTitle('BBJ - Kebutuhan Bahan November)');
-        $pdf->nsi_html($html);
-        $pdf->Output('kebutuhan_bahan_november.pdf', 'I');
-	}
-
-	public function cetak_bahan_desember()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_desember',$data,TRUE);
-
-        
-		$pdf->SetTitle('BBJ - Kebutuhan Bahan Desember)');
-        $pdf->nsi_html($html);
-        $pdf->Output('kebutuhan_bahan_desember.pdf', 'I');
+        $pdf->Output('kebutuhan_bahan.pdf', 'I');
 	}
 	
 
