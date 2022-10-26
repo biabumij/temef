@@ -232,6 +232,34 @@ class Laporan extends Secure_Controller {
         $pdf->Output('persiapan.pdf', 'I');
 	}
 
+	public function cetak_cash_flow()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_keuangan/cetak_cash_flow',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Cash Flow');
+        $pdf->nsi_html($html);
+        $pdf->Output('cash-flow.pdf', 'I');
+	
+	}
+
 	public function cetak_penerimaan_pembelian()
 	{
 		$this->load->library('pdf');
