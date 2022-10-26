@@ -134,6 +134,11 @@
 				<td align="left">Biaya Persiapan</td>
 				<td align="right"><?= number_format($rak['biaya_persiapan'],0,',','.'); ?></td>
 			</tr>
+			<tr class="table-baris1">
+				<td align="center">4.</td>
+				<td align="left">Termin</td>
+				<td align="right"><?= number_format($rak['termin'],0,',','.'); ?></td>
+			</tr>
 		</table>
 	</body>
 </html>

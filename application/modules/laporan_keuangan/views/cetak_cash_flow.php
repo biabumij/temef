@@ -1585,23 +1585,33 @@
 			<!-- JULI -->
 			
 			<tr class="table-judul">
-				<th width="9%" align="center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th width="9%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
 				<th width="7%" align="center">CURRENT</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">SD. SAAT INI</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">NOVEMBER 2022</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">DESEMBER 2022</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">JANUARI 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">FEBRUARI 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">MARET 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">APRIL 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">MEI 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">JUNI 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">JULI 2023</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">JUMLAH</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle">SISA</th>
+				<th width="7%" align="center">REALISASI</th>
+				<th width="7%" align="center">NOVEMBER</th>
+				<th width="7%" align="center">DESEMBER</th>
+				<th width="7%" align="center">JANUARI</th>
+				<th width="7%" align="center">FEBRUARI</th>
+				<th width="7%" align="center">MARET</th>
+				<th width="7%" align="center">APRIL</th>
+				<th width="7%" align="center">MEI</th>
+				<th width="7%" align="center">JUNI</th>
+				<th width="7%" align="center">JULI</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br />JUMLAH</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br />SISA</th>
 	        </tr>
 			<tr class="table-judul">
 				<th align="center">CASH BUDGET</th>
+				<th align="center"> SD. SAAT INI</th>
+				<th align="center">2022</th>
+				<th align="center">2022</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
 	        </tr>
 			<?php
 			$presentase_now = ($penjualan_now['total'] / $total_rap_nilai_2022) * 100;
@@ -1728,15 +1738,15 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
-			$termin_november = 4684882600;
-			$termin_desember = 9055470994;
-			$termin_januari = 7468825200;
-			$termin_februari = 4222469050;
-			$termin_maret = 3534737908;
-			$termin_april = 3534737908;
-			$termin_mei = 3534737908;
-			$termin_juni = 3534737908;
-			$termin_juli = 3534737908;
+			$termin_november = $rencana_kerja_november['termin'];
+			$termin_desember = $rencana_kerja_desember['termin'];
+			$termin_januari = $rencana_kerja_januari['termin'];
+			$termin_februari = $rencana_kerja_februari['termin'];
+			$termin_maret = $rencana_kerja_maret['termin'];
+			$termin_april = $rencana_kerja_april['termin'];
+			$termin_mei = $rencana_kerja_mei['termin'];
+			$termin_juni = $rencana_kerja_juni['termin'];
+			$termin_juli = $rencana_kerja_juli['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-baris1">

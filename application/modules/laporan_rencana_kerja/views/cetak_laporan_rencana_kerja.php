@@ -1768,27 +1768,37 @@
 			<!-- SISA -->
 			
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2">&nbsp; <br />NO.</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
-				<th width="4%" align="center" rowspan="2">&nbsp; <br />SATUAN</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br />RAP 2022</th>
-				<th width="7%" align="center">REALISASI</th>
+				<th width="3%" align="center" rowspan="3">&nbsp; <br /><br />NO.</th>
+				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />URAIAN</th>
+				<th width="4%" align="center" rowspan="3">&nbsp; <br /><br />SATUAN</th>
+				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />RAP 2022</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI</th>
 				<th width="58%" align="center" colspan="9">&nbsp; <br />RENCANA KERJA</th>
-				<th width="7%" align="center">TOTAL</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br />SISA</th>
+				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />TOTAL</th>
+				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />SISA</th>
+	        </tr>
+			<tr class="table-judul">
+				<th align="center">NOVEMBER</th>
+				<th align="center">DESEMBER</th>
+				<th align="center">JANUARI</th>
+				<th align="center">FEBRUARI</th>
+				<th align="center">MARET</th>
+				<th align="center">APRIL</th>
+				<th align="center">MEI</th>
+				<th align="center">JUNI</th>
+				<th align="center">JULI</th>
 	        </tr>
 			<tr class="table-judul">
 				<th align="center"> SD. SAAT INI</th>
-				<th align="center">NOVEMBER<br />2022</th>
-				<th align="center">DESEMBER<br />2022</th>
-				<th align="center">JANUARI<br />2023</th>
-				<th align="center">FEBRUARI<br />2023</th>
-				<th align="center">MARET<br />2023</th>
-				<th align="center">APRIL<br />2023</th>
-				<th align="center">MEI<br />2023</th>
-				<th align="center">JUNI<br />2023</th>
-				<th align="center">JULI<br />2023</th>
-				<th align="center">SD. JULI<br />2023</th>
+				<th align="center">2022</th>
+				<th align="center">2022</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
+				<th align="center">2023</th>
 	        </tr>
 			<tr class="table-baris1-bold">
 				<th align="left" colspan="16">RENCANA PRODUKSI & PENDAPATAN USAHA</th>

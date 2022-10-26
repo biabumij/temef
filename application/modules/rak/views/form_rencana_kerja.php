@@ -136,6 +136,13 @@
                                                     <input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Termin</td>
+													<td>
+                                                    <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                    <td class="text-center"></td>
                                                 </tr>		
                                             </tbody>
                                 

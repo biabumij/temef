@@ -2850,47 +2850,47 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
-				table tr.table-active{
+				table tr.table-active-csf{
 					background-color: #F0F0F0;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 					color: black;
 				}
 					
-				table tr.table-active2{
+				table tr.table-active2-csf{
 					background-color: #E8E8E8;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 				}
 					
-				table tr.table-active3{
-					font-size: 12px;
+				table tr.table-active3-csf{
+					font-size: 8px;
 					background-color: #F0F0F0;
 				}
 					
-				table tr.table-active4{
+				table tr.table-active4-csf{
 					background-color: #e69500;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
-				table tr.table-active5{
+				table tr.table-active5-csf{
 					background-color: #E8E8E8;
 					text-decoration: underline;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 					color: red;
 				}
-				table tr.table-activeago1{
+				table tr.table-activeago1-csf{
 					background-color: #ffd966;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
-				table tr.table-activeopening{
+				table tr.table-activeopening-csf{
 					background-color: #2986cc;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
 			</style>
@@ -4409,24 +4409,34 @@ class Reports extends CI_Controller {
 			?>
 			<!-- JULI -->
 
-			<tr class="table-active4">
+			<tr class="table-active4-csf">
 				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center">CURRENT</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">SD. SAAT INI</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">NOVEMBER 2022</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">DESEMBER 2022</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">JANUARI 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">FEBRUARI 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">MARET 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">APRIL 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">MEI 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">JUNI 2023</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">JULI 2023</th>
+				<th class="text-center">REALISASI</th>
+				<th class="text-center">NOVEMBER</th>
+				<th class="text-center">DESEMBER</th>
+				<th class="text-center">JANUARI</th>
+				<th class="text-center">FEBRUARI</th>
+				<th class="text-center">MARET</th>
+				<th class="text-center">APRIL</th>
+				<th class="text-center">MEI</th>
+				<th class="text-center">JUNI</th>
+				<th class="text-center">JULI</th>
 				<th class="text-center" rowspan="2" style="vertical-align:middle">JUMLAH</th>
 				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
-			<tr class="table-active4">
+			<tr class="table-active4-csf">
 				<th class="text-center">CASH BUDGET</th>
+				<th class="text-center">SD. SAAT INI</th>
+				<th class="text-center">2022</th>
+				<th class="text-center">2022</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
 	        </tr>
 			<?php
 			$presentase_now = ($penjualan_now['total'] / $total_rap_nilai_2022) * 100;
@@ -4452,7 +4462,7 @@ class Reports extends CI_Controller {
 
 			$jumlah_presentase = $presentase_november + $presentase_desember + $presentase_januari + $presentase_februari + $presentase_maret + $presentase_april + $presentase_mei + $presentase_juni + $presentase_juli;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left"><u>PRODUKSI (EXCL. PPN)</u></th>
 				<th class="text-right">100%</th>
 				<th class="text-right"><?php echo number_format($presentase_now,2,',','.');?>%</th>	
@@ -4468,7 +4478,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_presentase,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format(100 - $jumlah_presentase,2,',','.');?>%</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">AKUMULASI (%)</th>
 				<th class="text-right">100%</th>
 				<th class="text-right"><?php echo number_format($presentase_now,2,',','.');?>%</th>	
@@ -4490,7 +4500,7 @@ class Reports extends CI_Controller {
 
 			$sisa_produksi = $total_rap_nilai_2022 - $jumlah_produksi;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. PRODUKSI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
@@ -4517,7 +4527,7 @@ class Reports extends CI_Controller {
 			$akumulasi_penjualan_juni = $penjualan_now['total'] + $total_november_nilai + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai;
 			$akumulasi_penjualan_juli = $penjualan_now['total'] + $total_november_nilai + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. AKUMULASI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
@@ -4533,10 +4543,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_penjualan_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_penjualan_juli,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PENERIMAAN (EXCL. PPN)</u></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;Uang Muka</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4553,18 +4563,18 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 			</tr>
 			<?php
-			$termin_november = 4684882600;
-			$termin_desember = 9055470994;
-			$termin_januari = 7468825200;
-			$termin_februari = 4222469050;
-			$termin_maret = 3534737908;
-			$termin_april = 3534737908;
-			$termin_mei = 3534737908;
-			$termin_juni = 3534737908;
-			$termin_juli = 3534737908;
+			$termin_november = $rencana_kerja_november['termin'];
+			$termin_desember = $rencana_kerja_desember['termin'];
+			$termin_januari = $rencana_kerja_januari['termin'];
+			$termin_februari = $rencana_kerja_februari['termin'];
+			$termin_maret = $rencana_kerja_maret['termin'];
+			$termin_april = $rencana_kerja_april['termin'];
+			$termin_mei = $rencana_kerja_mei['termin'];
+			$termin_juni = $rencana_kerja_juni['termin'];
+			$termin_juli = $rencana_kerja_juli['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;Termin / Angsuran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
@@ -4580,7 +4590,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_termin,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;Pengembalian Retensi</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4596,7 +4606,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;PPN Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -4612,7 +4622,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>JUMLAH PENERIMAAN</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
@@ -4640,7 +4650,7 @@ class Reports extends CI_Controller {
 			$akumulasi_termin_juli = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>AKUMULASI PENERIMAAN</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
@@ -4656,13 +4666,13 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PEMAKAIAN BAHAN & ALAT</u></th>
 			</tr>
 			<?php
 			$jumlah_bahan = $total_bahan_now + $total_bahan_all_november + $total_bahan_all_desember + $total_bahan_all_januari + $total_bahan_all_februari + $total_bahan_all_maret + $total_bahan_all_april + $total_bahan_all_mei + $total_bahan_all_juni + $total_bahan_all_juli;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Bahan</th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_now,0,',','.');?></th>
@@ -4681,7 +4691,7 @@ class Reports extends CI_Controller {
 			<?php
 			$jumlah_alat = $alat_now + $total_november_biaya_alat + $total_desember_biaya_alat + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Alat</th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($alat_now,0,',','.');?></th>
@@ -4697,7 +4707,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_alat,0,',','.');?></th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>JUMLAH PEMAKAIAN</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
@@ -4724,7 +4734,7 @@ class Reports extends CI_Controller {
 			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat  + $total_bahan_all_juni + $total_juni_biaya_alat;
 			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat  + $total_bahan_all_juni + $total_juni_biaya_alat + $total_bahan_all_juli + $total_juli_biaya_alat;
 			?>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>AKUMULASI PEMAKAIAN</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
@@ -4740,10 +4750,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PENGELUARAN (EXCL. PPN)</u></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Biaya Bahan</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_rap_2022,0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -4759,7 +4769,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Biaya Upah</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4775,7 +4785,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;3. Biaya Peralatan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -4791,7 +4801,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;4. Biaya Subkontraktor</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4810,7 +4820,7 @@ class Reports extends CI_Controller {
 			<?php
 			$jumlah_biaya_bank = $diskonto_now + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juli['biaya_bank'];
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($diskonto_now,0,',','.');?></th>
@@ -4829,7 +4839,7 @@ class Reports extends CI_Controller {
 			<?php
 			$jumlah_bua = $overhead_now + $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_april['biaya_overhead'] + $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juli['biaya_overhead'];
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($overhead_now,0,',','.');?></th>
@@ -4845,7 +4855,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_bua,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead - $jumlah_bua,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;7. Rupa - Rupa</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4864,7 +4874,7 @@ class Reports extends CI_Controller {
 			<?php
 			$jumlah_persiapan = $persiapan_now + $rencana_kerja_november['biaya_persiapan'] + $rencana_kerja_desember['biaya_persiapan'] + $rencana_kerja_januari['biaya_persiapan'] + $rencana_kerja_februari['biaya_persiapan'] + $rencana_kerja_maret['biaya_persiapan'] + $rencana_kerja_april['biaya_persiapan'] + $rencana_kerja_mei['biaya_persiapan'] + $rencana_kerja_juni['biaya_persiapan'] + $rencana_kerja_juli['biaya_persiapan'];
 			?>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;8. Persiapan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($persiapan_now,0,',','.');?></th>
@@ -4880,7 +4890,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan - $jumlah_persiapan,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;9. Lain - Lain / Susut Aktiva</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4896,7 +4906,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;10. PPN Masukan</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4917,7 +4927,7 @@ class Reports extends CI_Controller {
 			$total_biaya_bua = $total_rap_2022_biaya_overhead - $jumlah_bua;
 			$total_biaya_persiapan = $total_rap_2022_biaya_persiapan - $jumlah_persiapan;
 			?>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>JUMLAH III</i></th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($diskonto_now + $overhead_now + $persiapan_now,0,',','.');?></th>
@@ -4947,7 +4957,7 @@ class Reports extends CI_Controller {
 
 			$jumlah_penerimaan_total = $total_rap_nilai_2022 - $jumlah_termin;
 			?>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>POSISI (II - III)</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan - ($diskonto_now + $overhead_now + $persiapan_now),0,',','.');?></th>
@@ -4963,10 +4973,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_termin - ($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua),0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_penerimaan_total -  ($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan),0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PAJAK</u></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($ppn_keluar['total'],0,',','.');?></th>
@@ -4982,7 +4992,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($ppn_keluar['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10) - $ppn_keluar['total'],0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th class="text-right"><?php echo number_format($total_bahan_all_rap_2022 / 10,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($ppn_masuk['total'],0,',','.');?></th>
@@ -4998,7 +5008,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($ppn_masuk['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(($total_bahan_all_rap_2022 / 10) - $ppn_masuk['total'],0,',','.');?></th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>JUMLAH V (1-2)</i></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($ppn_keluar['total'] - $ppn_masuk['total'],0,',','.');?></th>
@@ -5030,7 +5040,7 @@ class Reports extends CI_Controller {
 			$posisi_ll_sisa = $jumlah_penerimaan_total - ($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan);
 			$posisi_lll_sisa = ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10) - ($ppn_keluar['total'] - $ppn_masuk['total']);
 			?>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>POSISI (IV+V)</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_iv - ($ppn_keluar['total'] - $ppn_masuk['total']),0,',','.');?></th>
@@ -5046,10 +5056,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($posisi_lll - $ppn_keluar['total'] - $ppn_masuk['total'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_ll_sisa - $posisi_lll_sisa,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PINJAMAN</u></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;Penerimaan Pinjaman</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -5066,7 +5076,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;Pengembalian Pinjaman</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -5082,7 +5092,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>JUMLAH VII</i></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -5098,7 +5108,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>POSISI (VI+VII)</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -5114,7 +5124,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>KAS AWAL</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -5130,7 +5140,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-csf">
 				<th class="text-left"><i>KAS AKHIR</i></th>
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
 				<th class="text-right">-</th>
@@ -9664,47 +9674,47 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
-				table tr.table-active{
+				table tr.table-active-rak{
 					background-color: #F0F0F0;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 					color: black;
 				}
 					
-				table tr.table-active2{
+				table tr.table-active2-rak{
 					background-color: #E8E8E8;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 				}
 					
-				table tr.table-active3{
-					font-size: 12px;
+				table tr.table-active3-rak{
+					font-size: 8px;
 					background-color: #F0F0F0;
 				}
 					
-				table tr.table-active4{
+				table tr.table-active4-rak{
 					background-color: #e69500;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
-				table tr.table-active5{
+				table tr.table-active5-rak{
 					background-color: #E8E8E8;
 					text-decoration: underline;
-					font-size: 12px;
+					font-size: 8px;
 					font-weight: bold;
 					color: red;
 				}
-				table tr.table-activeago1{
+				table tr.table-activeago1-rak{
 					background-color: #ffd966;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
-				table tr.table-activeopening{
+				table tr.table-activeopening-rak{
 					background-color: #2986cc;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 8px;
 					color: black;
 				}
 			</style>
@@ -11290,18 +11300,17 @@ class Reports extends CI_Controller {
 			?>
 			<!-- SISA -->
 
-			<tr class="table-active4">
-				<th width="5%" class="text-center" rowspan="2" style="vertical-align:middle">NO.</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">RAP 2022</th>
-				<th class="text-center">REALISASI</th>
+			<tr class="table-active4-rak">
+				<th width="5%" class="text-center" rowspan="3" style="vertical-align:middle">NO.</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">URAIAN</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">SATUAN</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">RAP 2022</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">REALISASI</th>
 				<th class="text-center" colspan="9">RENCANA KERJA</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">TOTAL</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">TOTAL</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">SISA</th>
 	        </tr>
-			<tr class="table-active4">
-				<th class="text-center">SD. SAAT INI</th>
+			<tr class="table-active4-rak">
 				<th class="text-center">NOVEMBER</th>
 				<th class="text-center">DESEMBER</th>
 				<th class="text-center">JANUARI</th>
@@ -11312,10 +11321,22 @@ class Reports extends CI_Controller {
 				<th class="text-center">JUNI</th>
 				<th class="text-center">JULI</th>
 	        </tr>
-			<tr class="table-active2">
+			<tr class="table-active4-rak">
+				<th class="text-center">SD. SAAT INI</th>
+				<th class="text-center">2022</th>
+				<th class="text-center">2022</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+				<th class="text-center">2023</th>
+	        </tr>
+			<tr class="table-active2-rak">
 				<th class="text-left" colspan="16">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">1</th>
 				<th class="text-left">Beton K 125 (10±2)</th>
 				<th class="text-center">M3</th>
@@ -11333,7 +11354,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_vol_produk_a,2,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">2</th>
 				<th class="text-left">Beton K 225 (10±2)</th>
 				<th class="text-center">M3</th>
@@ -11351,7 +11372,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_vol_produk_b,2,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">3</th>
 				<th class="text-left">Beton K 250 (10±2)</th>
 				<th class="text-center">M3</th>
@@ -11369,7 +11390,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
 				<th class="text-right"><?php echo number_format($sisa_vol_produk_c,2,',','.');?></th>	
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">4</th>
 				<th class="text-left">Beton K 250 (18±2)</th>
 				<th class="text-center">M3</th>
@@ -11387,7 +11408,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
 				<th class="text-right"><?php echo number_format($sisa_vol_produk_d,2,',','.');?></th>	
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">TOTAL VOLUME</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap_2022?filter_date=".$filter_date = date('d F Y',strtotime('2022-01-01')).' - '.date('d F Y',strtotime('2022-12-31'))) ?>"><?php echo number_format($total_rap_volume_2022,2,',','.');?></a></th>
@@ -11404,7 +11425,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_volume,2,',','.');?></th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">PENDAPATAN USAHA</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
@@ -11421,10 +11442,10 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_nilai,0,',','.');?></th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-rak">
 				<th class="text-left" colspan="16">BIAYA</th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">1</th>
 				<th class="text-left">Bahan</th>
 				<th class="text-center">LS</th>
@@ -11442,7 +11463,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_biaya_bahan,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">2</th>
 				<th class="text-left">Alat</th>
 				<th class="text-center">LS</th>
@@ -11460,7 +11481,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_biaya_alat,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">3</th>
 				<th class="text-left">Overhead</th>
 				<th class="text-center">LS</th>
@@ -11478,7 +11499,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_biaya_overhead,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">4</th>
 				<th class="text-left">Biaya Bank</th>
 				<th class="text-center">LS</th>
@@ -11496,7 +11517,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_biaya_bank,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3">
+			<tr class="table-active3-rak">
 				<th class="text-center">5</th>
 				<th class="text-left">Persiapan</th>
 				<th class="text-center">LS</th>
@@ -11514,7 +11535,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_all_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_all_biaya_persiapan,0,',','.');?></th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">JUMLAH</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
@@ -11531,7 +11552,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($sisa_biaya_all_biaya,0,',','.');?></th>
 			</tr>
-			<tr class="table-active2">
+			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">LABA</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
