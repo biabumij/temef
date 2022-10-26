@@ -1928,24 +1928,24 @@ class Reports extends CI_Controller {
 		 <style type="text/css">
 			table tr.table-active{
 				background-color: #F0F0F0;
-				font-size: 12px;
+				font-size: 14px;
 				font-weight: bold;
 			}
 				
 			table tr.table-active2{
 				background-color: #A9A9A9;
-				font-size: 12px;
+				font-size: 14px;
 				font-weight: bold;
 			}
 				
 			table tr.table-active3{
-				font-size: 12px;
+				font-size: 14px;
 			}
 				
 			table tr.table-active4{
 				background-color: #D3D3D3;
 				font-weight: bold;
-				font-size: 12px;
+				font-size: 14px;
 				color: black;
 			}
 		 </style>
