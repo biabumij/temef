@@ -2087,6 +2087,11 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 			</tr>
+			<?php
+			$total_biaya_bank = $total_rap_2022_biaya_bank - $jumlah_biaya_bank;
+			$total_biaya_bua = $total_rap_2022_biaya_overhead - $jumlah_bua;
+			$total_biaya_persiapan = $total_rap_2022_biaya_persiapan - $jumlah_persiapan;
+			?>
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH III</i></th>
 				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
@@ -2101,7 +2106,7 @@
 				<th align="right"><?php echo number_format($rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya - $jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_penerimaan = $termin_now['total'];
@@ -2114,6 +2119,8 @@
 			$jumlah_lll_mei = $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_mei['biaya_persiapan'];
 			$jumlah_lll_juni = $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'];
 			$jumlah_lll_juli = $rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'];
+
+			$jumlah_penerimaan_total = $total_rap_nilai_2022 - $jumlah_termin;
 			?>
 			<tr class="table-total">
 				<th align="left"><i>POSISI (II - III)</i></th>
@@ -2129,7 +2136,7 @@
 				<th align="right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_juni,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_juli,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_termin - ($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua),0,',','.');?></th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_total -  ($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan),0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left" colspan="14"><u>PAJAK</u></th>
@@ -2169,7 +2176,7 @@
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH V (1-2)</i></th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10,0,',','.');?></th>
-				<th align="right"><?php echo number_format($ppn_keluar['total'] + $ppn_masuk['total'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($ppn_keluar['total'] - $ppn_masuk['total'],0,',','.');?></th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -2179,8 +2186,8 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right"><?php echo number_format($ppn_keluar['total'] + $ppn_masuk['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10) - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
+				<th align="right"><?php echo number_format($ppn_keluar['total'] - $ppn_masuk['total'],0,',','.');?></th>
+				<th align="right"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10) - ($ppn_keluar['total'] - $ppn_masuk['total']),0,',','.');?></th>
 			</tr>
 			<?php
 			$posisi_iv = $jumlah_penerimaan - ($diskonto_now + $overhead_now + $persiapan_now);
@@ -2195,12 +2202,13 @@
 			$posisi_iv_juli = $jumlah_penerimaan - $jumlah_lll_juli;
 
 			$posisi_lll = $jumlah_termin - ($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua);
-			?>
+			$posisi_ll_sisa = $jumlah_penerimaan_total - ($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan);
+			$posisi_lll_sisa = ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10) - ($ppn_keluar['total'] - $ppn_masuk['total']);
 			?>
 			<tr class="table-total">
 				<th align="left"><i>POSISI (IV+V)</i></th>
 				<th align="right"><?php echo number_format(($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya) - ($total_rap_nilai_2022 / 10 - $total_bahan_all_rap_2022  / 10),0,',','.');?></th>
-				<th align="right"><?php echo number_format($posisi_iv - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_iv - ($ppn_keluar['total'] - $ppn_masuk['total']),0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_iv_november,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_iv_desember,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_iv_januari,0,',','.');?></th>
@@ -2210,8 +2218,8 @@
 				<th align="right"><?php echo number_format($posisi_iv_mei,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_iv_juni,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_iv_juli,0,',','.');?></th>
-				<th align="right"><?php echo number_format($posisi_lll - ($ppn_keluar['total'] + $ppn_masuk['total']),0,',','.');?></th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($posisi_lll - $ppn_keluar['total'] - $ppn_masuk['total'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_ll_sisa - $posisi_lll_sisa,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left" colspan="14"><u>PINJAMAN</u></th>
