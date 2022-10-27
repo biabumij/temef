@@ -1,4 +1,4 @@
-<form action="<?php echo site_url('produksi/remaining_material_print'); ?>" target="_blank">
+<form action="<?php echo site_url('produksi/cetak_stock_opname'); ?>" target="_blank">
     <div class="col-sm-4">
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>

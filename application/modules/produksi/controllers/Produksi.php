@@ -14,7 +14,7 @@ class Produksi extends Secure_Controller {
 		$this->load->library('session');
     }	
 	
-	public function remaining_material_print()
+	public function cetak_stock_opname()
 	{
 		$this->load->library('pdf');
 	
@@ -46,7 +46,7 @@ class Produksi extends Secure_Controller {
 		$query = $this->db->get('pmm_remaining_materials_cat');
 		$data['data'] = $query->result_array();
 		$data['custom_date'] = $this->input->get('custom_date');
-        $html = $this->load->view('produksi/remaining_material_print',$data,TRUE);
+        $html = $this->load->view('produksi/cetak_stock_opname',$data,TRUE);
 
         
         $pdf->SetTitle('Stock Opname');
