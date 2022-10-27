@@ -6019,7 +6019,7 @@ class Reports extends CI_Controller {
 			$total_volume_stock_solar_akhir = $stock_opname_solar['volume'];
 
 			$total_volume_pemakaian_solar = $total_volume_pembelian_solar_akhir - $stock_opname_solar['volume'];
-			$total_harga_pemakaian_solar = $total_harga_pembelian_solar_akhir;
+			$total_harga_pemakaian_solar = round($total_harga_pembelian_solar_akhir,0);
 			$total_nilai_pemakaian_solar = $total_volume_pemakaian_solar * $total_harga_pemakaian_solar;
 
 			$total_harga_stock_solar_akhir = $total_harga_pemakaian_solar;
@@ -9562,7 +9562,7 @@ class Reports extends CI_Controller {
 			
 
 			$total_volume_pemakaian_solar = $total_volume_pembelian_solar_akhir - $stock_opname_solar['volume'];
-			$total_harga_pemakaian_solar = $total_harga_pembelian_solar_akhir;
+			$total_harga_pemakaian_solar = round($total_harga_pembelian_solar_akhir,0);
 			$total_nilai_pemakaian_solar = $total_volume_pemakaian_solar * $total_harga_pemakaian_solar;
 
 			$total_harga_stock_solar_akhir = $total_harga_pemakaian_solar;

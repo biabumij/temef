@@ -35,13 +35,8 @@ class Produksi extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-
-		$this->db->where('status','PUBLISH');
-		$this->db->order_by('date','desc');
-		$this->db->order_by('id','desc');
-		if(!empty($this->input->get('material_id'))){
-			$this->db->where('material_id',$this->input->post('material_id'));
-		}
+		$data['date1'] = date('d F Y',strtotime($arr_filter_date[0]));
+		$data['date2'] = date('d F Y',strtotime($arr_filter_date[1]));
 		$filter_date = $this->input->get('filter_date');
 		if(!empty($filter_date)){
 			$arr_date = explode(' - ', $filter_date);
