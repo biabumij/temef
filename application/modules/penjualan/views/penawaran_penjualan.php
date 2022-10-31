@@ -75,6 +75,7 @@
                                             <label>Syarat Pembayaran</label>
                                             <select name="syarat_pembayaran" class="form-control form-select2" required="">
                                                 <option value="">Pilih Pembayaran</option>
+                                                <option value="7">7 hari</option>
                                                 <option value="14">14 hari</option>
                                                 <option value="30">30 hari</option>
                                                 <option value="60">60 hari</option>
