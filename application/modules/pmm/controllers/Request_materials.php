@@ -52,7 +52,7 @@ class Request_materials extends CI_Controller {
 
 		$this->db->select('prm.*, ps.schedule_name,ps.no_spo');
 		$this->db->join('pmm_schedule ps','prm.schedule_id = ps.id','left');
-		$this->db->where('prm.status !=','DELETED');
+		//$this->db->where('prm.status !=','DELETED');
 		if(!empty($schedule_id)){
 			$this->db->where('prm.schedule_id',$schedule_id);
 		}
@@ -110,8 +110,13 @@ class Request_materials extends CI_Controller {
 					$edit = false;
 				}
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' ';
 
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' '.$delete;
+				$row['delete'] = '-';
+				if(in_array($this->session->userdata('admin_group_id'), array(1))){
+				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
+				}
+				
 				$data[] = $row;
 			}
 

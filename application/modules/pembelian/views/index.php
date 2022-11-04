@@ -156,6 +156,7 @@
                                                     <th class="text-center">Volume</th>
                                                     <th class="text-center">Status Permintaan</th>
                                                     <th class="text-center">Tindakan</th>
+                                                    <th class="text-center">Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1002,10 +1003,11 @@
                 { "data": "volume" },
                 { "data": "status" },
                 { "data": "actions" },
+                { "data": "delete" }
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 6, 7],
+                    "targets": [0, 1, 6, 7, 8],
                     "className": 'text-center',
                 },
 				{
@@ -1104,7 +1106,7 @@
                         success : function(result){
                             if(result.output){
                                 table_request.ajax.reload();
-                                bootbox.alert('Berhasil menghapus!!');
+                                bootbox.alert('Berhasil Menghapus!!');
                             }else if(result.err){
                                 bootbox.alert(result.err);
                             }
