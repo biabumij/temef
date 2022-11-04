@@ -116,7 +116,7 @@ class Request_materials extends CI_Controller {
 				if(in_array($this->session->userdata('admin_group_id'), array(1))){
 				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
 				}
-				
+
 				$data[] = $row;
 			}
 
@@ -224,12 +224,9 @@ class Request_materials extends CI_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$data = array(
-				'status' => 'DELETED',
-				'updated_by' => $this->session->userdata('admin_id'),
-				'updated_on' => date('Y-m-d H:i:s'),
-			);
-			if($this->db->update('pmm_request_materials',$data,array('id'=>$id))){
+			$this->db->delete('pmm_request_material_details', array('request_material_id' => $id));
+			$this->db->delete('pmm_request_materials', array('id' => $id));
+			{
 				$output['output'] = true;
 			}
 		}
