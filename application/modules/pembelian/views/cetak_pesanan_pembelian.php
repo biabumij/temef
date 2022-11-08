@@ -56,9 +56,9 @@
 		<br /><br />
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
-				<th width="20%">Nomor PO</th>
+				<th width="25%">Nomor PO</th>
 				<th width="2%">:</th>
-				<th width="50%" align="left"><?php echo $row['no_po'];?></th>
+				<th width="45%" align="left"><?php echo $row['no_po'];?></th>
 				<td align="left" width="28%">
 					Jakarta, <?= convertDateDBtoIndo($row["date_po"]); ?>
 				</td>
@@ -83,7 +83,7 @@
 			foreach ($details as $dt) {
             ?>  
 			<tr>
-				<th>No. Penawaran</th>
+				<th>No. Penawaran <?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></th>
 				<th width="10px">:</th>
 				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
 			</tr>

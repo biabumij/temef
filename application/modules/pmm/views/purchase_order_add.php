@@ -103,7 +103,7 @@
                                             <?php
                                             foreach ($details as $dt) {
                                             ?>
-                                                <span class="form-control" readonly=""><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$dt['penawaran_id'])?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></a></span>
+                                                <b><?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></b><span class="form-control" readonly=""><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$dt['penawaran_id'])?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></a></span>
                                             <?php
                                             }
                                             ?>
