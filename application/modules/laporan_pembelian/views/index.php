@@ -171,17 +171,17 @@
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="penerimaan-pembelian" style="display:none;">
                                                             <thead>
                                                             <tr>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
+                                                                <th class="text-center">PRODUK</th>
+                                                                <th class="text-center">SATUAN</th>
+                                                                <th class="text-center">VOLUME</th>
+																<th class="text-center">HARGA SATUAN</th>
+                                                                <th class="text-center">NILAI</th>
                                                             </tr>
-                                                            <tr>
+                                                            <!--<tr>
                                                                 <th class="text-center">NO. PESANAN PEMBELIAN</th>
-                                                            </tr>
+                                                            </tr>-->
                                                             </thead>
                                                             <tbody></tbody>
                                                         </table>
