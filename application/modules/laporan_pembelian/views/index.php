@@ -171,17 +171,16 @@
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="penerimaan-pembelian" style="display:none;">
                                                             <thead>
                                                             <tr>
-                                                                <th class="text-center">NO.</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
-                                                                <th class="text-center">PRODUK</th>
-                                                                <th class="text-center">SATUAN</th>
-                                                                <th class="text-center">VOLUME</th>
-																<th class="text-center">HARGA SATUAN</th>
-                                                                <th class="text-center">NILAI</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
                                                             </tr>
-                                                            <!--<tr>
-                                                                <th class="text-center">NO. PESANAN PEMBELIAN</th>
-                                                            </tr>-->
+                                                            <tr>
+                                                                <th class="text-center">PRODUK</th>
+                                                            </tr>
                                                             </thead>
                                                             <tbody></tbody>
                                                         </table>
@@ -412,16 +411,16 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#penerimaan-pembelian tbody').append('<tr onclick="NextShowPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
+                                    $('#penerimaan-pembelian tbody').append('<tr onclick="NextShowPembelian(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.name + '</td><td class="text-center">' + val.measure + '</td><td class="text-right">' + val.volume + '</td><td class="text-right"></td><td class="text-right">' + val.total_price + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#penerimaan-pembelian tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left"></td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
+                                        $('#penerimaan-pembelian tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.volume + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
 
                                 });
-                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
+                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-right" colspan="3"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
-                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {

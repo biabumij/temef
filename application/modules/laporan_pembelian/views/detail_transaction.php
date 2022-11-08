@@ -36,7 +36,7 @@
                             </div>
                             <div class="panel-content">
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <table class="table table-bordered table-striped table-condensed">
                                             <tr style='background-color:#cccccc; font-weight:bold;'>
                                                 <th class="text-center" width="40%">Rekanan</th>

@@ -92,13 +92,16 @@
 		</table>	
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th align="center" width="5%">NO.</th>
-                <th align="center" width="30%" colspan="2">URAIAN</th>
-                <th align="center" width="10%">SATUAN</th>
-                <th align="center" width="15%">VOLUME</th>
-				<th align="center" width="20%">HARGA SATUAN</th>
-                <th align="center" width="20%">NILAI</th>
+                <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
+                <th align="center" width="30%">URAIAN</th>
+                <th align="center" width="10%" rowspan="2">&nbsp; <br />SATUAN</th>
+                <th align="center" width="15%" rowspan="2">&nbsp; <br />VOLUME</th>
+				<th align="center" width="20%" rowspan="2">&nbsp; <br />HARGA SATUAN</th>
+                <th align="center" width="20%" rowspan="2">&nbsp; <br />NILAI</th>
             </tr>
+			<tr class="table-judul">
+				<th align="center">PRODUK</th>
+			</tr>
             <?php
 			$total_vol = 0;
             if(!empty($data)){
@@ -106,7 +109,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="2"><?php echo $row['name'];?></td>
+            			<td align="left"><?php echo $row['name'];?></td>
             			<td align="center"><?php echo $row['measure'];?></td>
             			<td align="right"><?php echo $row['volume'];?></td>
 						<td align="right"></td>
@@ -127,8 +130,7 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-							<td width="1%"></td>
-	            			<td align="left" width="29%"><?php echo $mat['nama_produk'];?></td>
+	            			<td align="left">&nbsp;&nbsp;&nbsp;<?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['volume'];?></td>
 							<td align="right">
