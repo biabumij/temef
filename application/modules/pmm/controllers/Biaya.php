@@ -114,7 +114,7 @@ class Biaya extends CI_Controller {
         <script type="text/javascript">
         
 	        $('.form-select2').select2();
-	        $('input.numberformat').number( true, 2,',','.' );
+	        $('input.numberformat').number( true, 0,',','.' );
 
 	    </script>
 		<?php
@@ -770,16 +770,14 @@ class Biaya extends CI_Controller {
 
 		$data = array(
             'id' => $form_id_biaya_main,
-			'penerima' => $penerima,
-			'tanggal_transaksi' => $tanggal_transaksi,
-			'bayar_dari' => $bayar_dari,
-            'memo' => $memo,
+			//'penerima' => $penerima,
+			//'tanggal_transaksi' => $tanggal_transaksi,
+			//'bayar_dari' => $bayar_dari,
+            //'memo' => $memo,
             'total' => $total
 		);
 
 		if(!empty($id)){
-			$data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
 			if($this->db->update('pmm_biaya',$data,array('id'=>$form_id_biaya_main))){
 				$output['output'] = true;
 			}
@@ -802,6 +800,7 @@ class Biaya extends CI_Controller {
 		$akun = $this->input->post('akun');
 		$deskripsi = $this->input->post('deskripsi');
 		$jumlah = str_replace(',', '.', $this->input->post('jumlah'));
+        $transaction_id = $this->input->post('transaction_id');
 
 		$data = array(
             'biaya_id' => $biaya_id,
@@ -811,8 +810,6 @@ class Biaya extends CI_Controller {
 		);
 
 		if(!empty($id)){
-			$data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
 			if($this->db->update('pmm_detail_biaya',$data,array('id'=>$form_id_biaya))){
 				$output['output'] = true;
 			}

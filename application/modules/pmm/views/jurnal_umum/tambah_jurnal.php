@@ -162,7 +162,7 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
             showDropdowns : true,
@@ -220,7 +220,7 @@
             let input_jumlah = 0;
             $( ".jumlah_input" ).each(function() {
                 input_jumlah += parseInt( $(this).val());
-                $('#total_id').html(input_jumlah).number( true, 2,',','.' );
+                $('#total_id').html(input_jumlah).number( true, 0,',','.' );
                 $('#total_product').val(input_jumlah);
             });
         }
@@ -229,7 +229,7 @@
             let input_jumlah = 0;
             $( ".kredit_input" ).each(function() {
                 input_jumlah += parseInt( $(this).val());
-                $('#total_kredit').html(input_jumlah).number( true, 2,',','.' );
+                $('#total_kredit').html(input_jumlah).number( true, 0,',','.' );
                 $('#kredit_total').val(input_jumlah);
             });
         }
