@@ -1003,7 +1003,7 @@ class Receipt_material extends CI_Controller {
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
-						$arr['volume'] = number_format($row['volume'],2,',','.');
+						$arr['volume'] = '<a href="'.base_url().'pmm/receipt_material/detail_transaction/'.$start_date.'/'.$end_date.'/'.$row['supplier_id'].'/'.$row['material_id'].'" target="_blank">'.number_format($row['volume'],2,',','.').'</a>';
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
 						
@@ -1032,6 +1032,27 @@ class Receipt_material extends CI_Controller {
 		'total_nilai'=>number_format($total_nilai,0,',','.')
 	));	
 	}
+
+	public function detail_transaction($start_date,$end_date,$id,$material_id)
+    {
+        $check = $this->m_admin->check_login();
+        if($check == true){
+
+            $this->db->select('ppo.*, SUM(prm.volume) as volume');
+			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+			$this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+            $this->db->where('ppo.supplier_id',$id);
+			$this->db->where('prm.material_id',$material_id);
+			$this->db->group_by('ppo.id');
+            $query = $this->db->get('pmm_purchase_order ppo');
+            $data['row'] = $query->result_array();
+            $this->load->view('laporan_pembelian/detail_transaction',$data);
+            
+        }else {
+            redirect('admin');
+        }
+    }
 
 	function laporan_hutang()
 	{

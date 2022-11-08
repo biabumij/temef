@@ -3487,7 +3487,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('prm.purchase_order_id, prm.display_measure as measure,p.nama_produk,prm.material_id,SUM(prm.display_price) / SUM(prm.display_volume) as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
+        $this->db->select('ppo.supplier_id, prm.purchase_order_id, prm.display_measure as measure,p.nama_produk,prm.material_id,SUM(prm.display_price) / SUM(prm.display_volume) as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
         $this->db->join('produk p','prm.material_id = p.id','left');
         $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
         if(!empty($start_date) && !empty($end_date)){
