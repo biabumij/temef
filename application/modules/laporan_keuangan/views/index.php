@@ -57,10 +57,10 @@
 														<p><h5>Laporan Laba Rugi</h5></p>
                                                         <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
-                                                    <!--<div class="col-sm-5">
+                                                    <div class="col-sm-5">
 														<p><h5>Buku Besar</h5></p>
                                                         <a href="#laporan_buku_besar" aria-controls="laporan_buku_besar" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>-->
+                                                    </div>
                                                     <div class="col-sm-5">
 														<p><h5>Cash Flow</h5></p>
                                                         <a href="#cash_flow" aria-controls="cash_flow" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
