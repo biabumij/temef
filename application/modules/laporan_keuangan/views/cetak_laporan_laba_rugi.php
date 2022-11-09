@@ -589,7 +589,7 @@
 	        </tr>
 			<tr class="table-active2">
 				<th width="10%" align="center"></th>
-				<th width="40%" align="left">Beban Pokok Penjualan</th>
+				<th width="40%" align="left">Bahan</th>
 	            <th width="25%" align="center">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -597,7 +597,7 @@
 									<span>Rp.</span>
 								</th>
 								<th align="center" width="80%">
-									<span><?php echo number_format($total_biaya_operasional,0,',','.');?></span>
+									<span><?php echo number_format($bahan,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
@@ -609,7 +609,146 @@
 									<span>Rp.</span>
 								</th>
 								<th align="center" width="80%">
-									<span><?php echo number_format($total_biaya_operasional_2,0,',','.');?></span>
+									<span><?php echo number_format($bahan_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active2">
+				<th width="10%" align="center"></th>
+				<th width="40%" align="left">Alat</th>
+	            <th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($alat,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($alat_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active2">
+				<th width="10%" align="center"></th>
+				<th width="40%" align="left">Overhead</th>
+	            <th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($overhead,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($overhead_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active2">
+				<th width="10%" align="center"></th>
+				<th width="40%" align="left">Diskonto</th>
+	            <th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($diskonto,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($diskonto_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active2">
+				<th width="10%" align="center"></th>
+				<th width="40%" align="left">Persiapan</th>
+	            <th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($persiapan,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th width="25%" align="center">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span>Rp.</span>
+								</th>
+								<th align="center" width="80%">
+									<span><?php echo number_format($persiapan_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active2">
+				<th width="50%" align="left"><b>Total Beban Pokok Penjualan</b></th>
+	            <th width="25%" align="right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span><b>Rp.</b></span>
+								</th>
+								<th align="center" width="80%">
+									<span><b><?php echo number_format($total_biaya_operasional,0,',','.');?></b></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th width="25%" align="right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="20%">
+									<span><b>Rp.</b></span>
+								</th>
+								<th align="center" width="80%">
+									<span><b><?php echo number_format($total_biaya_operasional_2,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
