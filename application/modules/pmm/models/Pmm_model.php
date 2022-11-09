@@ -2295,7 +2295,8 @@ class Pmm_model extends CI_Model {
 
         $this->db->select('SUM(prm.display_price) as total');
         $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        $this->db->where("prm.material_id in (12,13,14,15,16,23,24,25)");
+        $this->db->join('produk p', 'prm.material_id = p.id','left');
+        $this->db->where("p.kategori_produk = '5'");
         $this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         if($num_data > 0){
 			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
