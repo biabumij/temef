@@ -137,7 +137,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-														<th>Tanggal</th>
+														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
 														<th>Status</th>
                                                         <th>Tindakan</th>
