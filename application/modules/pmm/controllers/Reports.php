@@ -2365,9 +2365,9 @@ class Reports extends CI_Controller {
 
 			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
 
-			$laba_sebelum_pajak = $laba_kotor;
+			$laba_usaha = $laba_kotor;
 
-			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_usaha / $total_penjualan_all)  * 100:0;
 
 			$bahan_2 = $total_nilai_2;
 			$alat_2 = $alat_2;
@@ -2379,9 +2379,9 @@ class Reports extends CI_Controller {
 
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_biaya_operasional_2;
 
-			$laba_sebelum_pajak_2 = $laba_kotor_2;
+			$laba_usaha_2 = $laba_kotor_2;
 
-			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_sebelum_pajak_2 / $total_penjualan_all_2)  * 100:0;
+			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_usaha_2 / $total_penjualan_all_2)  * 100:0;
 
 	        ?>
 
@@ -2634,8 +2634,8 @@ class Reports extends CI_Controller {
 			<?php
 				$styleColorLabaKotor = $laba_kotor < 0 ? 'color:red' : 'color:black';
 				$styleColorLabaKotor2 = $laba_kotor_2 < 0 ? 'color:red' : 'color:black';
-				$styleColorSebelumPajak = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
-				$styleColorSebelumPajak2 = $laba_sebelum_pajak_2 < 0 ? 'color:red' : 'color:black';
+				$styleColorSebelumPajak = $laba_usaha < 0 ? 'color:red' : 'color:black';
+				$styleColorSebelumPajak2 = $laba_usaha_2 < 0 ? 'color:red' : 'color:black';
 				$styleColorPresentase = $persentase_laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
 				$styleColorPresentase2 = $persentase_laba_sebelum_pajak_2 < 0 ? 'color:red' : 'color:black';
 			?>
@@ -2700,7 +2700,7 @@ class Reports extends CI_Controller {
 				<th colspan="6"></th>
 			</tr>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Laba Sebelum Pajak</th>
+	            <th colspan="4" class="text-left">Laba Usaha</th>
 	            <th class="text-right" style="<?php echo $styleColorSebelumPajak ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -2708,7 +2708,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($laba_sebelum_pajak,0,',','.');?></span>
+									<span><?php echo number_format($laba_usaha,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
@@ -2720,7 +2720,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($laba_sebelum_pajak_2,0,',','.');?></span>
+									<span><?php echo number_format($laba_usaha_2,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>

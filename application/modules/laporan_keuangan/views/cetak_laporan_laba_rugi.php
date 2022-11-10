@@ -488,9 +488,9 @@
 
 			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
 
-			$laba_sebelum_pajak = $laba_kotor;
+			$laba_usaha = $laba_kotor;
 
-			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_usaha / $total_penjualan_all)  * 100:0;
 
 			$bahan_2 = $total_nilai_2;
 			$alat_2 = $alat_2;
@@ -502,9 +502,9 @@
 
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_biaya_operasional_2;
 
-			$laba_sebelum_pajak_2 = $laba_kotor_2;
+			$laba_usaha_2 = $laba_kotor_2;
 
-			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_sebelum_pajak_2 / $total_penjualan_all_2)  * 100:0;
+			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_usaha_2 / $total_penjualan_all_2)  * 100:0;
 
 	        ?>
 
@@ -760,8 +760,8 @@
 			<?php
 				$styleColorLabaKotor = $laba_kotor < 0 ? 'color:red' : 'color:black';
 				$styleColorLabaKotor2 = $laba_kotor_2 < 0 ? 'color:red' : 'color:black';
-				$styleColorSebelumPajak = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
-				$styleColorSebelumPajak2 = $laba_sebelum_pajak_2 < 0 ? 'color:red' : 'color:black';
+				$styleColorSebelumPajak = $laba_usaha < 0 ? 'color:red' : 'color:black';
+				$styleColorSebelumPajak2 = $laba_usaha_2 < 0 ? 'color:red' : 'color:black';
 			?>	
 			<tr class="table-active2">
 	            <th width="50%" align="left"><b>Laba Kotor</b></th>
@@ -824,7 +824,7 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th width="50%" align="left"><b>Laba Sebelum Pajak</b></th>
+	            <th width="50%" align="left"><b>Laba Usaha</b></th>
 	            <th width="25%" align="right" style="<?php echo $styleColorSebelumPajak ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -832,7 +832,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_sebelum_pajak,0,',','.');?></b></span>
+									<span><b><?php echo number_format($laba_usaha,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
@@ -844,7 +844,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_sebelum_pajak_2,0,',','.');?></b></span>
+									<span><b><?php echo number_format($laba_usaha_2,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
