@@ -377,7 +377,9 @@
             singleDatePicker: true,
             locale: {
                 format: 'DD-MM-YYYY'
-            }
+            },
+            minDate: new Date()+0, 
+			maxDate: new Date()+1
         });
 
 
