@@ -275,6 +275,7 @@ class Pembelian extends Secure_Controller
                 $row['total'] = number_format($row["total"], 0, ',', '.');
                 $row['action'] = '-';
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
                 $data[] = $row;
             }
         }
