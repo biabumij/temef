@@ -334,6 +334,14 @@
                                             <tbody>
 
                                             </tbody>
+                                            <tfoot>
+                                                <th></th>
+                                                <th colspan="10" style="font-weight:bold;text-align:center !important;">TOTAL : </th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>

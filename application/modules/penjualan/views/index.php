@@ -189,6 +189,15 @@
                                                     <tbody>
 
                                                     </tbody>
+                                                    <tfoot>
+                                                        <th colspan="6" style="text-align:right">TOTAL</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+													</tfoot>
                                                 </table>
                                             </div>
 
