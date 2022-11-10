@@ -649,6 +649,7 @@ class Pembelian extends Secure_Controller
     public function closed_penawaran_pembelian($id)
     {
         $this->db->set("status", "CLOSED");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
         $this->db->where("id", $id);
         $this->db->update("pmm_penawaran_pembelian");
 
@@ -1492,9 +1493,11 @@ class Pembelian extends Secure_Controller
     public function closed_po($id)
     {
         $this->db->set("status", "CLOSED");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
         $this->db->where("id", $id);
         $this->db->update("pmm_purchase_order");
         $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed PO');
+
         redirect("admin/pembelian");
     }
 
@@ -1518,6 +1521,7 @@ class Pembelian extends Secure_Controller
     public function closed_pembayaran_penagihan($id)
 	{
 		$this->db->set("status", "LUNAS");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
         $this->db->set("verifikasi_dok", "LENGKAP");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");

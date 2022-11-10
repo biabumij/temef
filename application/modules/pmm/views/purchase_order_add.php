@@ -231,7 +231,7 @@
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
                                     <br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 ||  $this->session->userdata('admin_group_id') == 6 ||$this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 ||  $this->session->userdata('admin_group_id') == 5){
                                         ?>
                                         <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Pesanan Pembelian</button>        
