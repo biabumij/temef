@@ -457,7 +457,8 @@
 			$total_nilai_stock_semen_akhir = $total_volume_stock_semen_akhir * $total_harga_stock_semen_akhir;
 
 			$total_nilai_pemakaian_semen = ($nilai_opening_balance_semen + $total_nilai_pembelian_semen  + $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_cons + $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_opc + $total_nilai_jasa_angkut_opc) - $total_nilai_stock_semen_akhir;
-			$total_harga_pemakaian_semen = ($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0;
+			//$total_harga_pemakaian_semen = ($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0;
+			$total_harga_pemakaian_semen = $total_harga_stock_semen_akhir;
 
 			//PEMBELIAN PASIR
 			$pembelian_pasir = $this->db->select('
@@ -490,15 +491,23 @@
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
+			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.pasir')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
+			->get()->row_array();
+
 			$total_volume_stock_pasir_akhir = $stock_opname_pasir['volume'];
+			$price_stock_opname_pasir =  $hpp_bahan_baku['pasir'];
 
 			$total_volume_pemakaian_pasir = $total_volume_pembelian_pasir_akhir - $stock_opname_pasir['volume'];
-			$total_harga_pemakaian_pasir = round($total_harga_pembelian_pasir_akhir,0);
-			$total_nilai_pemakaian_pasir = $total_volume_pemakaian_pasir * $total_harga_pemakaian_pasir;
 
-			$total_harga_stock_pasir_akhir = $total_harga_pemakaian_pasir;
+			$total_harga_stock_pasir_akhir = round($price_stock_opname_pasir,0);
 			$total_nilai_stock_pasir_akhir = $total_volume_stock_pasir_akhir * $total_harga_stock_pasir_akhir;
 
+			$total_nilai_pemakaian_pasir = ($nilai_opening_balance_pasir + $total_nilai_pembelian_pasir) - $total_nilai_stock_pasir_akhir;
+			//$total_harga_pemakaian_pasir = ($total_volume_pemakaian_pasir!=0)?$total_nilai_pemakaian_pasir / $total_volume_pemakaian_pasir * 1:0;
+			$total_harga_pemakaian_pasir = $total_harga_stock_pasir_akhir;
 
 			//PEMBELIAN BATU1020
 			$pembelian_batu1020 = $this->db->select('
@@ -521,7 +530,7 @@
 			$total_harga_pembelian_batu1020 = ($total_volume_pembelian_batu1020!=0)?$total_nilai_pembelian_batu1020 / $total_volume_pembelian_batu1020 * 1:0;
 
 			$total_volume_pembelian_batu1020_akhir  = $volume_opening_balance_batu1020 + $total_volume_pembelian_batu1020;
-			$total_harga_pembelian_batu1020_akhir = ($total_volume_pembelian_batu1020_akhir!=0)?($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) / $total_volume_pembelian_batu1020_akhir * 1:0;
+			$total_harga_pembelian_batu1020_akhir = ($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) / $total_volume_pembelian_batu1020_akhir;
 			$total_nilai_pembelian_batu1020_akhir =  $total_volume_pembelian_batu1020_akhir * $total_harga_pembelian_batu1020_akhir;			
 			
 			$stock_opname_batu1020 = $this->db->select('(cat.display_volume) as volume')
@@ -531,15 +540,24 @@
 			->where("cat.status = 'PUBLISH'")
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
-			
-			$total_volume_stock_batu1020_akhir = $stock_opname_batu1020['volume'];
-			
-			$total_volume_pemakaian_batu1020 = $total_volume_pembelian_batu1020_akhir - $stock_opname_batu1020['volume'];
-			$total_harga_pemakaian_batu1020 = round($total_harga_pembelian_batu1020_akhir,0);
-			$total_nilai_pemakaian_batu1020 = $total_volume_pemakaian_batu1020 * $total_harga_pemakaian_batu1020;
 
-			$total_harga_stock_batu1020_akhir = $total_harga_pemakaian_batu1020;
+			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.batu1020')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
+			->get()->row_array();
+
+			$total_volume_stock_batu1020_akhir = $stock_opname_batu1020['volume'];
+			$price_stock_opname_batu1020 =  $hpp_bahan_baku['batu1020'];
+
+			$total_volume_pemakaian_batu1020 = $total_volume_pembelian_batu1020_akhir - $stock_opname_batu1020['volume'];
+
+			$total_harga_stock_batu1020_akhir = round($price_stock_opname_batu1020,0);
 			$total_nilai_stock_batu1020_akhir = $total_volume_stock_batu1020_akhir * $total_harga_stock_batu1020_akhir;
+
+			$total_nilai_pemakaian_batu1020 = ($nilai_opening_balance_batu1020 + $total_nilai_pembelian_batu1020) - $total_nilai_stock_batu1020_akhir;
+			//$total_harga_pemakaian_batu1020 = ($total_volume_pemakaian_batu1020!=0)?$total_nilai_pemakaian_batu1020 / $total_volume_pemakaian_batu1020 * 1:0;
+			$total_harga_pemakaian_batu1020 = $total_harga_stock_batu1020_akhir;
 
 			//PEMBELIAN BATU2030
 			$pembelian_batu2030 = $this->db->select('
@@ -561,7 +579,7 @@
 			$total_harga_pembelian_batu2030 = ($total_volume_pembelian_batu2030!=0)?$total_nilai_pembelian_batu2030 / $total_volume_pembelian_batu2030 * 1:0;
 
 			$total_volume_pembelian_batu2030_akhir  = $volume_opening_balance_batu2030 + $total_volume_pembelian_batu2030;
-			$total_harga_pembelian_batu2030_akhir = ($total_volume_pembelian_batu2030_akhir!=0)?($nilai_opening_balance_batu2030 + $total_nilai_pembelian_batu2030) / $total_volume_pembelian_batu2030_akhir * 1:0;
+			$total_harga_pembelian_batu2030_akhir = ($nilai_opening_balance_batu2030 + $total_nilai_pembelian_batu2030) / $total_volume_pembelian_batu2030_akhir;
 			$total_nilai_pembelian_batu2030_akhir =  $total_volume_pembelian_batu2030_akhir * $total_harga_pembelian_batu2030_akhir;			
 			
 			$stock_opname_batu2030 = $this->db->select('(cat.display_volume) as volume')
@@ -572,14 +590,23 @@
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			$total_volume_stock_batu2030_akhir = $stock_opname_batu2030['volume'];
-			
-			$total_volume_pemakaian_batu2030 = $total_volume_pembelian_batu2030_akhir - $stock_opname_batu2030['volume'];
-			$total_harga_pemakaian_batu2030 = round($total_harga_pembelian_batu2030_akhir,0);
-			$total_nilai_pemakaian_batu2030 = $total_volume_pemakaian_batu2030 * $total_harga_pemakaian_batu2030;
+			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.batu2030')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
+			->get()->row_array();
 
-			$total_harga_stock_batu2030_akhir = $total_harga_pemakaian_batu2030;
+			$total_volume_stock_batu2030_akhir = $stock_opname_batu2030['volume'];
+			$price_stock_opname_batu2030 =  $hpp_bahan_baku['batu2030'];
+
+			$total_volume_pemakaian_batu2030 = $total_volume_pembelian_batu2030_akhir - $stock_opname_batu2030['volume'];
+
+			$total_harga_stock_batu2030_akhir = round($price_stock_opname_batu2030,0);
 			$total_nilai_stock_batu2030_akhir = $total_volume_stock_batu2030_akhir * $total_harga_stock_batu2030_akhir;
+
+			$total_nilai_pemakaian_batu2030 = ($nilai_opening_balance_batu2030 + $total_nilai_pembelian_batu2030) - $total_nilai_stock_batu2030_akhir;
+			//$total_harga_pemakaian_batu2030 = ($total_volume_pemakaian_batu2030!=0)?$total_nilai_pemakaian_batu2030 / $total_volume_pemakaian_batu2030 * 1:0;
+			$total_harga_pemakaian_batu2030 = $total_harga_stock_batu2030_akhir;
 
 			//BAHAN BAKU
 			$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
