@@ -292,7 +292,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('ttd.date_approval >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('ttd.date_approval <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('ttd.id, ttd.date_approval, a.admin_name, ttd.status');
+        $this->db->select('ttd.id, ttd.date_approval, a.admin_name, ttd.created_on, ttd.status');
 		$this->db->join('tbl_admin a','ttd.created_by = a.admin_id','left');
 		$this->db->order_by('ttd.date_approval','desc');
 		$query = $this->db->get('ttd_laba_rugi ttd');
@@ -303,6 +303,7 @@ class Produksi extends Secure_Controller {
                 $row['no'] = $key+1;
                 $row['date_approval'] = date('d F Y',strtotime($row['date_approval']));
 				$row['admin_name'] = $row['admin_name'];
+				$row['created_on'] = date('d/m/Y h:m:d',strtotime($row['date_approval']));
 				$row['status'] = $row['status'];
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApproval('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 

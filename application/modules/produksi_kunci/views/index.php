@@ -139,6 +139,7 @@
                                                         <th width="5%">No</th>
 														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
+                                                        <th>Tanggal Approve</th>
 														<th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
@@ -369,6 +370,9 @@
                     "data": "admin_name"
                 },
                 {
+                    "data": "created_on"
+                },
+                {
                     "data": "status"
                 },
                 {
@@ -376,7 +380,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4],
+                    "targets": [0, 1, 2, 3, 4, 5],
                     "className": 'text-center',
                 }
             ],
