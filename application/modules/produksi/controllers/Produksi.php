@@ -303,7 +303,7 @@ class Produksi extends Secure_Controller {
                 $row['no'] = $key+1;
                 $row['date_approval'] = date('d F Y',strtotime($row['date_approval']));
 				$row['admin_name'] = $row['admin_name'];
-				$row['created_on'] = date('d/m/Y h:m:d',strtotime($row['date_approval']));
+				$row['created_on'] = date('d/m/Y h:m:d',strtotime($row['created_on']));
 				$row['status'] = $row['status'];
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApproval('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 

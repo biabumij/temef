@@ -106,7 +106,9 @@
                                                         <th class="text-center">Jenis</th>
                                                         <th class="text-center">Berlaku Hingga</th>
 														<th class="text-center">Jumlah</th>
-                                                        <th class="text-center">Status Penawaran</th>                                                    
+                                                        <th class="text-center">Status Penawaran</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>                                                   
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -934,11 +936,17 @@
                 },
                 {
                     "data": "status"
+                },
+                {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
                 }
             ],
             "columnDefs": [
                 {
-                "targets": [0, 1, 5, 7],
+                "targets": [0, 1, 5, 7, 8 , 9],
                 "className": 'text-center',
                 },
                 {
