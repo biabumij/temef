@@ -383,6 +383,9 @@ class Pembelian extends Secure_Controller
                 $row['status'] = (intval($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
 				//$row['status'] = $this->pmm_model->GetStatus3($row['status']);
 
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
                 $data[] = $row;
             }
         }

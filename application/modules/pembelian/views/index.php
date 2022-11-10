@@ -159,6 +159,8 @@
                                                     <th class="text-center">Status Permintaan</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Hapus</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>     
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -258,6 +260,8 @@
                                                     <th class="text-center">Status PO</th>
                                                     <th class="text-center">Lampiran</th>
                                                     <th class="text-center">Tindakan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -323,17 +327,13 @@
                                                     <th class="text-center">Satuan</th>                                                   
                                                     <th class="text-center">Volume</th>
                                                     <th class="text-center">Status Pembayaran</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                             </tbody>
-                                            <tfoot>
-                                                <th></th>
-                                                <th colspan="10" style="font-weight:bold;text-align:center !important;">TOTAL : </th>
-                                                <th class="text-center"></th>
-                                                <th class="text-center"></th>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -361,6 +361,8 @@
                                                     <th class="text-center">Sisa Tagihan</th>
                                                     <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Verifikasi Dok</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1011,11 +1013,14 @@
                 { "data": "volume" },
                 { "data": "status" },
                 { "data": "actions" },
-                { "data": "delete" }
+                { "data": "delete" },
+                { "data": "admin_name" },
+                { "data": "created_on" }
+
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 6, 7, 8],
+                    "targets": [0, 1, 6, 7, 8, 9, 10],
                     "className": 'text-center',
                 },
 				{
@@ -1178,11 +1183,17 @@
                 },
                 {
                     "data": "actions"
+                },
+                {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
                 }
             ],
             "columnDefs": [
                     {
-                        "targets": [0, 4, 6, 10, 12],
+                        "targets": [0, 4, 6, 10, 12, 13, 14],
                         "className": 'text-center',
                     },
                     {
@@ -1259,6 +1270,12 @@
                 {
                     "data": "status_payment"
                 },
+                {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                }
             ],
             select: {
                 style: 'multi'
@@ -1270,7 +1287,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 6, 7, 8, 9, 10],
+                    "targets": [1, 2, 6, 7, 8, 9, 10, 13, 14],
                     "className": 'text-center',
                 },
 				{
@@ -1359,6 +1376,12 @@
                 {
                     "data": "verifikasi_dok"
                 },
+                {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                }
             ],
             "columnDefs": [
                 {
