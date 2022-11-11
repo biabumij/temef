@@ -154,10 +154,10 @@
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                <img src="uploads/ttd_debby.png" width="70px">
+                                <img src="uploads/ttd_debby.png" width="60px">
                             </td>
                             <td align="center">
-                                <img src="uploads/ttd_debby.png" width="70px">
+                                <img src="uploads/ttd_debby.png" width="60px">
                             </td>
                             <td align="center">
                                 <img src="uploads/ttd_gery.png" width="100px">   
