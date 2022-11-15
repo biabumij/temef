@@ -129,8 +129,8 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] =  date('d F Y',strtotime($row['tanggal_rencana_kerja']));
-				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');;
+				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja_biaya/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				
@@ -174,9 +174,9 @@ class Rak extends Secure_Controller {
 
 
         
-        $pdf->SetTitle($rak['nomor_rencana_kerja']);
+        $pdf->SetTitle($rak['tanggal_rencana_kerja']);
         $pdf->nsi_html($html);
-        $pdf->Output($rak['nomor_rencana_kerja'].'.pdf', 'I');
+        $pdf->Output($rak['tanggal_rencana_kerja'].'.pdf', 'I');
 	}
 
 	public function form_rencana_kerja_biaya()
@@ -290,7 +290,7 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] =  date('d F Y',strtotime($row['tanggal_rencana_kerja']));
+				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
 				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
@@ -317,6 +317,30 @@ class Rak extends Secure_Controller {
 			}
 		}
 		echo json_encode($output);
+	}
+
+	public function cetak_rencana_kerja_biaya($id){
+
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$data['rak'] = $this->db->get_where('rak_biaya',array('id'=>$id))->row_array();
+        $html = $this->load->view('rak/cetak_rencana_kerja_biaya',$data,TRUE);
+        $rak = $this->db->get_where('rak_biaya',array('id'=>$id))->row_array();
+
+
+        
+        $pdf->SetTitle($rak['tanggal_rencana_kerja']);
+        $pdf->nsi_html($html);
+        $pdf->Output($rak['tanggal_rencana_kerja'].'.pdf', 'I');
 	}
 	
 
