@@ -40,7 +40,8 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-											<li><a href="<?= site_url('rak/form_rencana_kerja'); ?>">Rencana Kerja</a></li>
+											<li><a href="<?= site_url('rak/form_rencana_kerja'); ?>">Rencana Kerja (Produksi)</a></li>
+                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya'); ?>">Rencana Kerja (BUA, Biaya Bank, Biaya Persiapan, Termin)</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -48,7 +49,8 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab">Rencana Kerja</a></li>
+                                    <li role="presentation" class="active"><a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab">Rencana Kerja (Produksi)</a></li>
+                                    <li role="presentation"><a href="#rencana_kerja_biaya" aria-controls="rencana_kerja_biaya" role="tab" data-toggle="tab">Rencana Kerja (BUA, Biaya Bank, Biaya Persiapan, Termin)</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -62,7 +64,34 @@
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
-														<th class="text-center">Nomor</th>
+														<th class="text-center">Jumlah Produksi</th>
+                                                        <th class="text-center">Lampiran</th>
+														<th class="text-center">Tindakan</th>
+													</tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                   
+                                                </tfoot>
+                                            </table>
+                                        </div>
+									</div>
+
+                                    <!-- Rencana Kerja Biaya -->
+								
+                                    <div role="tabpanel" class="tab-pane" id="rencana_kerja_biaya">									
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_rak_biaya" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" width="5%">No.</th>
+														<th class="text-center">Tanggal</th>
+														<th class="text-center">Biaya Overhead</th>
+                                                        <th class="text-center">Biaya Bank</th>
+                                                        <th class="text-center">Persiapan</th>
+                                                        <th class="text-center">Termin</th>
                                                         <th class="text-center">Lampiran</th>
 														<th class="text-center">Tindakan</th>
 													</tr>
@@ -122,7 +151,7 @@
                     "data": "tanggal_rencana_kerja"
                 },
 				{
-                    "data": "nomor_rencana_kerja"
+                    "data": "jumlah"
                 },
                 {
                     "data": "lampiran"
@@ -134,6 +163,10 @@
             "columnDefs": [{
                     "targets": [0, 1, 3, 4],
                     "className": 'text-center',
+                },
+                {
+                "targets": [2],
+                "className": 'text-right',
                 },
             ],
         });
@@ -152,7 +185,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_rak.ajax.reload();
-                            bootbox.alert('Berhasil menghapus!!');
+                            bootbox.alert('Berhasil Menghapus!!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -160,7 +193,82 @@
                 });
             }
         });
-    }
+        }
+
+        var table_rak_biaya = $('#table_rak_biaya').DataTable({
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('rak/table_rencana_kerja_biaya'); ?>',
+                type: 'POST',
+                data: function(d) {
+                }
+            },
+            responsive: true,
+            "deferRender": true,
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
+            columns: [
+				{
+                    "data": "no"
+                },
+				{
+                    "data": "tanggal_rencana_kerja"
+                },
+				{
+                    "data": "biaya_overhead"
+                },
+                {
+                    "data": "biaya_bank"
+                },
+                {
+                    "data": "biaya_persiapan"
+                },
+                {
+                    "data": "termin"
+                },
+                {
+                    "data": "lampiran"
+                },
+				{
+					"data": "actions"
+				},
+            ],
+            "columnDefs": [{
+                    "targets": [0],
+                    "className": 'text-center',
+                },
+                {
+                "targets": [2, 3, 4, 5],
+                "className": 'text-right',
+                },
+            ],
+        });
+
+        function DeleteData2(id) {
+        bootbox.confirm("Are you sure to delete this data ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('rak/delete_rencana_kerja_biaya'); ?>",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        if (result.output) {
+                            table_rak_biaya.ajax.reload();
+                            bootbox.alert('Berhasil Menghapus!!');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+        });
+        }
     </script>
 
 </body>

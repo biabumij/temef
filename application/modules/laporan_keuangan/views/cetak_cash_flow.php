@@ -79,6 +79,11 @@
 			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
 			->get()->row_array();
 
+			$rencana_kerja_2022_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
+			->get()->row_array();
+
 			$volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
 			$volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
 			$volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
@@ -332,9 +337,9 @@
 		
 			$total_rap_2022_biaya_bahan = $total_bahan_all_rap_2022;
 			$total_rap_2022_biaya_alat = $biaya_alat_all_rap_2022;
-			$total_rap_2022_biaya_overhead = $rencana_kerja_2022['biaya_overhead'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_2022['biaya_bank'];
-			$total_rap_2022_biaya_persiapan = $rencana_kerja_2022['biaya_persiapan'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya['biaya_bank'];
+			$total_rap_2022_biaya_persiapan = $rencana_kerja_2022_biaya['biaya_persiapan'];
 
 			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank + $total_rap_2022_biaya_persiapan;
 
@@ -523,19 +528,17 @@
 			//END_PERSIAPAN
 
 			//PPN KELUAR
-			$ppn_keluar_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran_penagihan_pembelian pm')
-			->where("pm.tanggal_pembayaran < '$date_now'")
-			->where("pm.status = 'DISETUJUI'")
-			->where("pm.memo = 'PPN'")
+			$ppn_keluar_now = $this->db->select('SUM(ppd.tax) as total')
+			->from('pmm_penagihan_pembelian_detail ppd')
+			->join('pmm_penagihan_pembelian ppp','ppd.penagihan_pembelian_id = ppp.id','left')
+			->where("ppp.tanggal_invoice < '$date_now'")
 			->get()->row_array();
 
 			//PPN MASUK
-			$ppn_masuk_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran pm')
-			->where("pm.tanggal_pembayaran < '$date_now'")
-			->where("pm.status = 'DISETUJUI'")
-			->where("pm.memo = 'PPN'")
+			$ppn_masuk_now = $this->db->select('SUM(ppd.tax) as total')
+			->from('pmm_penagihan_penjualan_detail ppd')
+			->join('pmm_penagihan_penjualan ppp','ppd.penagihan_id = ppp.id','left')
+			->where("ppp.tanggal_invoice < '$date_now'")
 			->get()->row_array();
 
 			//PENERIMAAN PEMINJAMAN
@@ -564,10 +567,17 @@
 			<?php
 			$date_november_awal = date('2022-11-01');
 			$date_november_akhir = date('2022-11-30');
+
 			$rencana_kerja_november = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_november_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
+			->get()->row_array();
+
 			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
 			$volume_november_produk_b = $rencana_kerja_november['vol_produk_b'];
 			$volume_november_produk_c = $rencana_kerja_november['vol_produk_c'];
@@ -660,9 +670,9 @@
 		
 			$total_november_biaya_bahan = $total_bahan_all_november;
 			$total_november_biaya_alat = $biaya_alat_all_november;
-			$total_november_biaya_overhead = $rencana_kerja_november['biaya_overhead'];
-			$total_november_biaya_bank = $rencana_kerja_november['biaya_bank'];
-			$total_november_biaya_persiapan = $rencana_kerja_november['biaya_persiapan'];
+			$total_november_biaya_overhead = $rencana_kerja_november_biaya['biaya_overhead'];
+			$total_november_biaya_bank = $rencana_kerja_november_biaya['biaya_bank'];
+			$total_november_biaya_persiapan = $rencana_kerja_november_biaya['biaya_persiapan'];
 
 			$total_biaya_november_biaya = $total_november_biaya_bahan + $total_november_biaya_alat + $total_november_biaya_overhead + $total_november_biaya_bank + $total_november_biaya_persiapan;
 			
@@ -700,10 +710,17 @@
 			<?php
 			$date_desember_awal = date('2022-12-01');
 			$date_desember_akhir = date('2022-12-31');
+
 			$rencana_kerja_desember = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_desember_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
+			->get()->row_array();
+
 			$volume_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
 			$volume_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
 			$volume_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
@@ -796,9 +813,9 @@
 		
 			$total_desember_biaya_bahan = $total_bahan_all_desember;
 			$total_desember_biaya_alat = $biaya_alat_all_desember;
-			$total_desember_biaya_overhead = $rencana_kerja_desember['biaya_overhead'];
-			$total_desember_biaya_bank = $rencana_kerja_desember['biaya_bank'];
-			$total_desember_biaya_persiapan = $rencana_kerja_desember['biaya_persiapan'];
+			$total_desember_biaya_overhead = $rencana_kerja_desember_biaya['biaya_overhead'];
+			$total_desember_biaya_bank = $rencana_kerja_desember_biaya['biaya_bank'];
+			$total_desember_biaya_persiapan = $rencana_kerja_desember_biaya['biaya_persiapan'];
 
 			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank + $total_desember_biaya_persiapan;
 			
@@ -836,10 +853,17 @@
 			<?php
 			$date_januari_awal = date('2023-01-01');
 			$date_januari_akhir = date('2023-01-31');
+
 			$rencana_kerja_januari = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_januari_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->get()->row_array();
+
 			$volume_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
 			$volume_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
 			$volume_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
@@ -932,9 +956,9 @@
 		
 			$total_januari_biaya_bahan = $total_bahan_all_januari;
 			$total_januari_biaya_alat = $biaya_alat_all_januari;
-			$total_januari_biaya_overhead = $rencana_kerja_januari['biaya_overhead'];
-			$total_januari_biaya_bank = $rencana_kerja_januari['biaya_bank'];
-			$total_januari_biaya_persiapan = $rencana_kerja_januari['biaya_persiapan'];
+			$total_januari_biaya_overhead = $rencana_kerja_januari_biaya['biaya_overhead'];
+			$total_januari_biaya_bank = $rencana_kerja_januari_biaya['biaya_bank'];
+			$total_januari_biaya_persiapan = $rencana_kerja_januari_biaya['biaya_persiapan'];
 
 			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank + $total_januari_biaya_persiapan;
 			
@@ -972,10 +996,17 @@
 			<?php
 			$date_februari_awal = date('2023-02-01');
 			$date_februari_akhir = date('2023-02-28');
+
 			$rencana_kerja_februari = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_februari_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->get()->row_array();
+
 			$volume_februari_produk_a = $rencana_kerja_februari['vol_produk_a'];
 			$volume_februari_produk_b = $rencana_kerja_februari['vol_produk_b'];
 			$volume_februari_produk_c = $rencana_kerja_februari['vol_produk_c'];
@@ -1068,9 +1099,9 @@
 		
 			$total_februari_biaya_bahan = $total_bahan_all_februari;
 			$total_februari_biaya_alat = $biaya_alat_all_februari;
-			$total_februari_biaya_overhead = $rencana_kerja_februari['biaya_overhead'];
-			$total_februari_biaya_bank = $rencana_kerja_februari['biaya_bank'];
-			$total_februari_biaya_persiapan = $rencana_kerja_februari['biaya_persiapan'];
+			$total_februari_biaya_overhead = $rencana_kerja_februari_biaya['biaya_overhead'];
+			$total_februari_biaya_bank = $rencana_kerja_februari_biaya['biaya_bank'];
+			$total_februari_biaya_persiapan = $rencana_kerja_februari_biaya['biaya_persiapan'];
 
 			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank + $total_februari_biaya_persiapan;
 			
@@ -1108,10 +1139,17 @@
 			<?php
 			$date_maret_awal = date('2023-03-01');
 			$date_maret_akhir = date('2023-03-31');
+
 			$rencana_kerja_maret = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_maret_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->get()->row_array();
+
 			$volume_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
 			$volume_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
 			$volume_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
@@ -1204,9 +1242,9 @@
 		
 			$total_maret_biaya_bahan = $total_bahan_all_maret;
 			$total_maret_biaya_alat = $biaya_alat_all_maret;
-			$total_maret_biaya_overhead = $rencana_kerja_maret['biaya_overhead'];
-			$total_maret_biaya_bank = $rencana_kerja_maret['biaya_bank'];
-			$total_maret_biaya_persiapan = $rencana_kerja_maret['biaya_persiapan'];
+			$total_maret_biaya_overhead = $rencana_kerja_maret_biaya['biaya_overhead'];
+			$total_maret_biaya_bank = $rencana_kerja_maret_biaya['biaya_bank'];
+			$total_maret_biaya_persiapan = $rencana_kerja_maret_biaya['biaya_persiapan'];
 
 			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank + $total_maret_biaya_persiapan;
 			
@@ -1244,10 +1282,17 @@
 			<?php
 			$date_april_awal = date('2023-04-01');
 			$date_april_akhir = date('2023-04-30');
+
 			$rencana_kerja_april = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_april_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->get()->row_array();
+
 			$volume_april_produk_a = $rencana_kerja_april['vol_produk_a'];
 			$volume_april_produk_b = $rencana_kerja_april['vol_produk_b'];
 			$volume_april_produk_c = $rencana_kerja_april['vol_produk_c'];
@@ -1340,9 +1385,9 @@
 		
 			$total_april_biaya_bahan = $total_bahan_all_april;
 			$total_april_biaya_alat = $biaya_alat_all_april;
-			$total_april_biaya_overhead = $rencana_kerja_april['biaya_overhead'];
-			$total_april_biaya_bank = $rencana_kerja_april['biaya_bank'];
-			$total_april_biaya_persiapan = $rencana_kerja_april['biaya_persiapan'];
+			$total_april_biaya_overhead = $rencana_kerja_april_biaya['biaya_overhead'];
+			$total_april_biaya_bank = $rencana_kerja_april_biaya['biaya_bank'];
+			$total_april_biaya_persiapan = $rencana_kerja_april_biaya['biaya_persiapan'];
 
 			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank + $total_april_biaya_persiapan;
 			
@@ -1380,10 +1425,17 @@
             <?php
 			$date_mei_awal = date('2023-05-01');
 			$date_mei_akhir = date('2023-05-31');
+
 			$rencana_kerja_mei = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_mei_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->get()->row_array();
+
 			$volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
 			$volume_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
 			$volume_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
@@ -1476,9 +1528,9 @@
 		
 			$total_mei_biaya_bahan = $total_bahan_all_mei;
 			$total_mei_biaya_alat = $biaya_alat_all_mei;
-			$total_mei_biaya_overhead = $rencana_kerja_mei['biaya_overhead'];
-			$total_mei_biaya_bank = $rencana_kerja_mei['biaya_bank'];
-			$total_mei_biaya_persiapan = $rencana_kerja_mei['biaya_persiapan'];
+			$total_mei_biaya_overhead = $rencana_kerja_mei_biaya['biaya_overhead'];
+			$total_mei_biaya_bank = $rencana_kerja_mei_biaya['biaya_bank'];
+			$total_mei_biaya_persiapan = $rencana_kerja_mei_biaya['biaya_persiapan'];
 
 			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank + $total_mei_biaya_persiapan;
 			
@@ -1516,10 +1568,17 @@
             <?php
 			$date_juni_awal = date('2023-06-01');
 			$date_juni_akhir = date('2023-06-30');
+
 			$rencana_kerja_juni = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_juni_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->get()->row_array();
+			
 			$volume_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
 			$volume_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
 			$volume_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
@@ -1612,9 +1671,9 @@
 		
 			$total_juni_biaya_bahan = $total_bahan_all_juni;
 			$total_juni_biaya_alat = $biaya_alat_all_juni;
-			$total_juni_biaya_overhead = $rencana_kerja_juni['biaya_overhead'];
-			$total_juni_biaya_bank = $rencana_kerja_juni['biaya_bank'];
-			$total_juni_biaya_persiapan = $rencana_kerja_juni['biaya_persiapan'];
+			$total_juni_biaya_overhead = $rencana_kerja_juni_biaya['biaya_overhead'];
+			$total_juni_biaya_bank = $rencana_kerja_juni_biaya['biaya_bank'];
+			$total_juni_biaya_persiapan = $rencana_kerja_juni_biaya['biaya_persiapan'];
 
 			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank + $total_juni_biaya_persiapan;
 			
@@ -1652,10 +1711,17 @@
             <?php
 			$date_juli_awal = date('2023-07-01');
 			$date_juli_akhir = date('2023-07-31');
+
 			$rencana_kerja_juli = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_juli_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->get()->row_array();
+
 			$volume_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
 			$volume_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
 			$volume_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
@@ -1748,9 +1814,9 @@
 		
 			$total_juli_biaya_bahan = $total_bahan_all_juli;
 			$total_juli_biaya_alat = $biaya_alat_all_juli;
-			$total_juli_biaya_overhead = $rencana_kerja_juli['biaya_overhead'];
-			$total_juli_biaya_bank = $rencana_kerja_juli['biaya_bank'];
-			$total_juli_biaya_persiapan = $rencana_kerja_juli['biaya_persiapan'];
+			$total_juli_biaya_overhead = $rencana_kerja_juli_biaya['biaya_overhead'];
+			$total_juli_biaya_bank = $rencana_kerja_juli_biaya['biaya_bank'];
+			$total_juli_biaya_persiapan = $rencana_kerja_juli_biaya['biaya_persiapan'];
 
 			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank + $total_juli_biaya_persiapan;
 			
@@ -1938,15 +2004,15 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
-			$termin_november = $rencana_kerja_november['termin'];
-			$termin_desember = $rencana_kerja_desember['termin'];
-			$termin_januari = $rencana_kerja_januari['termin'];
-			$termin_februari = $rencana_kerja_februari['termin'];
-			$termin_maret = $rencana_kerja_maret['termin'];
-			$termin_april = $rencana_kerja_april['termin'];
-			$termin_mei = $rencana_kerja_mei['termin'];
-			$termin_juni = $rencana_kerja_juni['termin'];
-			$termin_juli = $rencana_kerja_juli['termin'];
+			$termin_november = $rencana_kerja_november_biaya['termin'];
+			$termin_desember = $rencana_kerja_desember_biaya['termin'];
+			$termin_januari = $rencana_kerja_januari_biaya['termin'];
+			$termin_februari = $rencana_kerja_februari_biaya['termin'];
+			$termin_maret = $rencana_kerja_maret_biaya['termin'];
+			$termin_april = $rencana_kerja_april_biaya['termin'];
+			$termin_mei = $rencana_kerja_mei_biaya['termin'];
+			$termin_juni = $rencana_kerja_juni_biaya['termin'];
+			$termin_juli = $rencana_kerja_juli_biaya['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-baris1">
@@ -2193,40 +2259,40 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
-			$jumlah_biaya_bank = $diskonto_now + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juli['biaya_bank'];
+			$jumlah_biaya_bank = $diskonto_now + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_bank'];
 			?>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($diskonto_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_november['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_desember['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_januari['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_februari['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_maret['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_april['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_mei['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juni['biaya_bank'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juli['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_november_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_april_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_bank'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_bank'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank - $jumlah_biaya_bank,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_bua = $overhead_now + $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_april['biaya_overhead'] + $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juli['biaya_overhead'];
+			$jumlah_bua = $overhead_now + $rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_overhead'];
 			?>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($overhead_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_november['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_januari['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_februari['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_maret['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_april['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_mei['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juni['biaya_overhead'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juli['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_november_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_april_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_overhead'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_overhead'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_bua,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead - $jumlah_bua,0,',','.');?></th>
 			</tr>
@@ -2247,21 +2313,21 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
-			$jumlah_persiapan = $persiapan_now + $rencana_kerja_november['biaya_persiapan'] + $rencana_kerja_desember['biaya_persiapan'] + $rencana_kerja_januari['biaya_persiapan'] + $rencana_kerja_februari['biaya_persiapan'] + $rencana_kerja_maret['biaya_persiapan'] + $rencana_kerja_april['biaya_persiapan'] + $rencana_kerja_mei['biaya_persiapan'] + $rencana_kerja_juni['biaya_persiapan'] + $rencana_kerja_juli['biaya_persiapan'];
+			$jumlah_persiapan = $persiapan_now + $rencana_kerja_november_biaya['biaya_persiapan'] + $rencana_kerja_desember_biaya['biaya_persiapan'] + $rencana_kerja_januari_biaya['biaya_persiapan'] + $rencana_kerja_februari_biaya['biaya_persiapan'] + $rencana_kerja_maret_biaya['biaya_persiapan'] + $rencana_kerja_april_biaya['biaya_persiapan'] + $rencana_kerja_mei_biaya['biaya_persiapan'] + $rencana_kerja_juni_biaya['biaya_persiapan'] + $rencana_kerja_juli_biaya['biaya_persiapan'];
 			?>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;8. Persiapan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($persiapan_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_januari['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_februari['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_maret['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_april['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_mei['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juni['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juli['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_november_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_april_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_persiapan'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_persiapan - $jumlah_persiapan,0,',','.');?></th>
 			</tr>
@@ -2306,29 +2372,29 @@
 				<th align="left"><i>JUMLAH III</i></th>
 				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($diskonto_now + $overhead_now + $persiapan_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_januari['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_februari['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_maret['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_april['biaya_overhead'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_april['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_mei['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_november_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_persiapan'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_penerimaan = $termin_now['total'];
-			$jumlah_lll_november = $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'];
-			$jumlah_lll_desember = $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'];
-			$jumlah_lll_januari = $rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_januari['biaya_persiapan'];
-			$jumlah_lll_februari = $rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_februari['biaya_persiapan'];
-			$jumlah_lll_maret = $rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_maret['biaya_persiapan'];
-			$jumlah_lll_april = $rencana_kerja_april['biaya_overhead'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_april['biaya_persiapan'];
-			$jumlah_lll_mei = $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_mei['biaya_persiapan'];
-			$jumlah_lll_juni = $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'];
-			$jumlah_lll_juli = $rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'];
+			$jumlah_lll_november = $rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_november_biaya['biaya_persiapan'];
+			$jumlah_lll_desember = $rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_persiapan'];
+			$jumlah_lll_januari = $rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_persiapan'];
+			$jumlah_lll_februari = $rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_persiapan'];
+			$jumlah_lll_maret = $rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_persiapan'];
+			$jumlah_lll_april = $rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_persiapan'];
+			$jumlah_lll_mei = $rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_persiapan'];
+			$jumlah_lll_juni = $rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_persiapan'];
+			$jumlah_lll_juli = $rencana_kerja_juli_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_persiapan'];
 
 			$jumlah_penerimaan_total = $total_rap_nilai_2022 - $jumlah_termin;
 			?>

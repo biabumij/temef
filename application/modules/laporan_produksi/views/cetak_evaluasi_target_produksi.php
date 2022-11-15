@@ -145,6 +145,11 @@
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
 
+			$rencana_kerja_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
+			->get()->row_array();
+
 			$volume_rap_produk_a = $rencana_kerja['vol_produk_a'];
 			$volume_rap_produk_b = $rencana_kerja['vol_produk_b'];
 			$volume_rap_produk_c = $rencana_kerja['vol_produk_c'];
@@ -393,9 +398,9 @@
 		
 			$total_rap_biaya_bahan = $total_bahan_all_rap;
 			$total_rap_biaya_alat = $biaya_alat_all_rap;
-			$total_rap_biaya_overhead = $rencana_kerja['biaya_overhead'];
-			$total_rap_biaya_bank = $rencana_kerja['biaya_bank'];
-			$total_rap_biaya_persiapan = $rencana_kerja['biaya_persiapan'];
+			$total_rap_biaya_overhead = $rencana_kerja_biaya['biaya_overhead'];
+			$total_rap_biaya_bank = $rencana_kerja_biaya['biaya_bank'];
+			$total_rap_biaya_persiapan = $rencana_kerja_biaya['biaya_persiapan'];
 
 			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_biaya_overhead + $total_rap_biaya_bank + $total_rap_biaya_persiapan;
 

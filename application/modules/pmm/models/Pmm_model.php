@@ -186,23 +186,6 @@ class Pmm_model extends CI_Model {
             
     }
 
-    function GetNoRencanaKerja()
-    {
-
-        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
-        $output = false;
-
-        $query = $this->db->select('id')->order_by('id','desc')->get('rak');
-        if($query->num_rows() > 0){
-            $id = $query->row_array()['id'] + 1;
-        }else {
-            $id = 1;
-        }
-        $output = sprintf('%03d', $id).'/RENCANA-KERJA/'.date('m').'/'.date('Y');
-        return $output;
-            
-    }
-
     function GetNoPenawaranPembelian()
     {
         $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();

@@ -2926,6 +2926,11 @@ class Reports extends CI_Controller {
 			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
 			->get()->row_array();
 
+			$rencana_kerja_2022_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
+			->get()->row_array();
+
 			$volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
 			$volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
 			$volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
@@ -3179,9 +3184,9 @@ class Reports extends CI_Controller {
 		
 			$total_rap_2022_biaya_bahan = $total_bahan_all_rap_2022;
 			$total_rap_2022_biaya_alat = $biaya_alat_all_rap_2022;
-			$total_rap_2022_biaya_overhead = $rencana_kerja_2022['biaya_overhead'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_2022['biaya_bank'];
-			$total_rap_2022_biaya_persiapan = $rencana_kerja_2022['biaya_persiapan'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya['biaya_bank'];
+			$total_rap_2022_biaya_persiapan = $rencana_kerja_2022_biaya['biaya_persiapan'];
 
 			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank + $total_rap_2022_biaya_persiapan;
 
@@ -3370,19 +3375,17 @@ class Reports extends CI_Controller {
 			//END_PERSIAPAN
 
 			//PPN KELUAR
-			$ppn_keluar_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran_penagihan_pembelian pm')
-			->where("pm.tanggal_pembayaran < '$date_now'")
-			->where("pm.status = 'DISETUJUI'")
-			->where("pm.memo = 'PPN'")
+			$ppn_masuk_now = $this->db->select('SUM(ppd.tax) as total')
+			->from('pmm_penagihan_pembelian_detail ppd')
+			->join('pmm_penagihan_pembelian ppp','ppd.penagihan_pembelian_id = ppp.id','left')
+			->where("ppp.tanggal_invoice < '$date_now'")
 			->get()->row_array();
 
 			//PPN MASUK
-			$ppn_masuk_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran pm')
-			->where("pm.tanggal_pembayaran < '$date_now'")
-			->where("pm.status = 'DISETUJUI'")
-			->where("pm.memo = 'PPN'")
+			$ppn_keluar_now = $this->db->select('SUM(ppd.tax) as total')
+			->from('pmm_penagihan_penjualan_detail ppd')
+			->join('pmm_penagihan_penjualan ppp','ppd.penagihan_id = ppp.id','left')
+			->where("ppp.tanggal_invoice < '$date_now'")
 			->get()->row_array();
 
 			//PENERIMAAN PEMINJAMAN
@@ -3411,10 +3414,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_november_awal = date('2022-11-01');
 			$date_november_akhir = date('2022-11-30');
+
 			$rencana_kerja_november = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_november_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
+			->get()->row_array();
+
 			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
 			$volume_november_produk_b = $rencana_kerja_november['vol_produk_b'];
 			$volume_november_produk_c = $rencana_kerja_november['vol_produk_c'];
@@ -3507,9 +3517,9 @@ class Reports extends CI_Controller {
 		
 			$total_november_biaya_bahan = $total_bahan_all_november;
 			$total_november_biaya_alat = $biaya_alat_all_november;
-			$total_november_biaya_overhead = $rencana_kerja_november['biaya_overhead'];
-			$total_november_biaya_bank = $rencana_kerja_november['biaya_bank'];
-			$total_november_biaya_persiapan = $rencana_kerja_november['biaya_persiapan'];
+			$total_november_biaya_overhead = $rencana_kerja_november_biaya['biaya_overhead'];
+			$total_november_biaya_bank = $rencana_kerja_november_biaya['biaya_bank'];
+			$total_november_biaya_persiapan = $rencana_kerja_november_biaya['biaya_persiapan'];
 
 			$total_biaya_november_biaya = $total_november_biaya_bahan + $total_november_biaya_alat + $total_november_biaya_overhead + $total_november_biaya_bank + $total_november_biaya_persiapan;
 			
@@ -3547,10 +3557,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_desember_awal = date('2022-12-01');
 			$date_desember_akhir = date('2022-12-31');
+
 			$rencana_kerja_desember = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_desember_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
+			->get()->row_array();
+
 			$volume_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
 			$volume_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
 			$volume_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
@@ -3643,9 +3660,9 @@ class Reports extends CI_Controller {
 		
 			$total_desember_biaya_bahan = $total_bahan_all_desember;
 			$total_desember_biaya_alat = $biaya_alat_all_desember;
-			$total_desember_biaya_overhead = $rencana_kerja_desember['biaya_overhead'];
-			$total_desember_biaya_bank = $rencana_kerja_desember['biaya_bank'];
-			$total_desember_biaya_persiapan = $rencana_kerja_desember['biaya_persiapan'];
+			$total_desember_biaya_overhead = $rencana_kerja_desember_biaya['biaya_overhead'];
+			$total_desember_biaya_bank = $rencana_kerja_desember_biaya['biaya_bank'];
+			$total_desember_biaya_persiapan = $rencana_kerja_desember_biaya['biaya_persiapan'];
 
 			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank + $total_desember_biaya_persiapan;
 			
@@ -3683,10 +3700,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_januari_awal = date('2023-01-01');
 			$date_januari_akhir = date('2023-01-31');
+
 			$rencana_kerja_januari = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_januari_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->get()->row_array();
+
 			$volume_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
 			$volume_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
 			$volume_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
@@ -3779,9 +3803,9 @@ class Reports extends CI_Controller {
 		
 			$total_januari_biaya_bahan = $total_bahan_all_januari;
 			$total_januari_biaya_alat = $biaya_alat_all_januari;
-			$total_januari_biaya_overhead = $rencana_kerja_januari['biaya_overhead'];
-			$total_januari_biaya_bank = $rencana_kerja_januari['biaya_bank'];
-			$total_januari_biaya_persiapan = $rencana_kerja_januari['biaya_persiapan'];
+			$total_januari_biaya_overhead = $rencana_kerja_januari_biaya['biaya_overhead'];
+			$total_januari_biaya_bank = $rencana_kerja_januari_biaya['biaya_bank'];
+			$total_januari_biaya_persiapan = $rencana_kerja_januari_biaya['biaya_persiapan'];
 
 			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank + $total_januari_biaya_persiapan;
 			
@@ -3819,10 +3843,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_februari_awal = date('2023-02-01');
 			$date_februari_akhir = date('2023-02-28');
+
 			$rencana_kerja_februari = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_februari_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->get()->row_array();
+
 			$volume_februari_produk_a = $rencana_kerja_februari['vol_produk_a'];
 			$volume_februari_produk_b = $rencana_kerja_februari['vol_produk_b'];
 			$volume_februari_produk_c = $rencana_kerja_februari['vol_produk_c'];
@@ -3915,9 +3946,9 @@ class Reports extends CI_Controller {
 		
 			$total_februari_biaya_bahan = $total_bahan_all_februari;
 			$total_februari_biaya_alat = $biaya_alat_all_februari;
-			$total_februari_biaya_overhead = $rencana_kerja_februari['biaya_overhead'];
-			$total_februari_biaya_bank = $rencana_kerja_februari['biaya_bank'];
-			$total_februari_biaya_persiapan = $rencana_kerja_februari['biaya_persiapan'];
+			$total_februari_biaya_overhead = $rencana_kerja_februari_biaya['biaya_overhead'];
+			$total_februari_biaya_bank = $rencana_kerja_februari_biaya['biaya_bank'];
+			$total_februari_biaya_persiapan = $rencana_kerja_februari_biaya['biaya_persiapan'];
 
 			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank + $total_februari_biaya_persiapan;
 			
@@ -3955,10 +3986,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_maret_awal = date('2023-03-01');
 			$date_maret_akhir = date('2023-03-31');
+
 			$rencana_kerja_maret = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_maret_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->get()->row_array();
+
 			$volume_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
 			$volume_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
 			$volume_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
@@ -4051,9 +4089,9 @@ class Reports extends CI_Controller {
 		
 			$total_maret_biaya_bahan = $total_bahan_all_maret;
 			$total_maret_biaya_alat = $biaya_alat_all_maret;
-			$total_maret_biaya_overhead = $rencana_kerja_maret['biaya_overhead'];
-			$total_maret_biaya_bank = $rencana_kerja_maret['biaya_bank'];
-			$total_maret_biaya_persiapan = $rencana_kerja_maret['biaya_persiapan'];
+			$total_maret_biaya_overhead = $rencana_kerja_maret_biaya['biaya_overhead'];
+			$total_maret_biaya_bank = $rencana_kerja_maret_biaya['biaya_bank'];
+			$total_maret_biaya_persiapan = $rencana_kerja_maret_biaya['biaya_persiapan'];
 
 			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank + $total_maret_biaya_persiapan;
 			
@@ -4091,10 +4129,17 @@ class Reports extends CI_Controller {
 			<?php
 			$date_april_awal = date('2023-04-01');
 			$date_april_akhir = date('2023-04-30');
+
 			$rencana_kerja_april = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_april_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->get()->row_array();
+
 			$volume_april_produk_a = $rencana_kerja_april['vol_produk_a'];
 			$volume_april_produk_b = $rencana_kerja_april['vol_produk_b'];
 			$volume_april_produk_c = $rencana_kerja_april['vol_produk_c'];
@@ -4187,9 +4232,9 @@ class Reports extends CI_Controller {
 		
 			$total_april_biaya_bahan = $total_bahan_all_april;
 			$total_april_biaya_alat = $biaya_alat_all_april;
-			$total_april_biaya_overhead = $rencana_kerja_april['biaya_overhead'];
-			$total_april_biaya_bank = $rencana_kerja_april['biaya_bank'];
-			$total_april_biaya_persiapan = $rencana_kerja_april['biaya_persiapan'];
+			$total_april_biaya_overhead = $rencana_kerja_april_biaya['biaya_overhead'];
+			$total_april_biaya_bank = $rencana_kerja_april_biaya['biaya_bank'];
+			$total_april_biaya_persiapan = $rencana_kerja_april_biaya['biaya_persiapan'];
 
 			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank + $total_april_biaya_persiapan;
 			
@@ -4227,10 +4272,17 @@ class Reports extends CI_Controller {
             <?php
 			$date_mei_awal = date('2023-05-01');
 			$date_mei_akhir = date('2023-05-31');
+
 			$rencana_kerja_mei = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_mei_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->get()->row_array();
+
 			$volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
 			$volume_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
 			$volume_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
@@ -4323,9 +4375,9 @@ class Reports extends CI_Controller {
 		
 			$total_mei_biaya_bahan = $total_bahan_all_mei;
 			$total_mei_biaya_alat = $biaya_alat_all_mei;
-			$total_mei_biaya_overhead = $rencana_kerja_mei['biaya_overhead'];
-			$total_mei_biaya_bank = $rencana_kerja_mei['biaya_bank'];
-			$total_mei_biaya_persiapan = $rencana_kerja_mei['biaya_persiapan'];
+			$total_mei_biaya_overhead = $rencana_kerja_mei_biaya['biaya_overhead'];
+			$total_mei_biaya_bank = $rencana_kerja_mei_biaya['biaya_bank'];
+			$total_mei_biaya_persiapan = $rencana_kerja_mei_biaya['biaya_persiapan'];
 
 			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank + $total_mei_biaya_persiapan;
 			
@@ -4363,10 +4415,17 @@ class Reports extends CI_Controller {
             <?php
 			$date_juni_awal = date('2023-06-01');
 			$date_juni_akhir = date('2023-06-30');
+
 			$rencana_kerja_juni = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_juni_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->get()->row_array();
+			
 			$volume_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
 			$volume_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
 			$volume_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
@@ -4459,9 +4518,9 @@ class Reports extends CI_Controller {
 		
 			$total_juni_biaya_bahan = $total_bahan_all_juni;
 			$total_juni_biaya_alat = $biaya_alat_all_juni;
-			$total_juni_biaya_overhead = $rencana_kerja_juni['biaya_overhead'];
-			$total_juni_biaya_bank = $rencana_kerja_juni['biaya_bank'];
-			$total_juni_biaya_persiapan = $rencana_kerja_juni['biaya_persiapan'];
+			$total_juni_biaya_overhead = $rencana_kerja_juni_biaya['biaya_overhead'];
+			$total_juni_biaya_bank = $rencana_kerja_juni_biaya['biaya_bank'];
+			$total_juni_biaya_persiapan = $rencana_kerja_juni_biaya['biaya_persiapan'];
 
 			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank + $total_juni_biaya_persiapan;
 			
@@ -4499,10 +4558,17 @@ class Reports extends CI_Controller {
             <?php
 			$date_juli_awal = date('2023-07-01');
 			$date_juli_akhir = date('2023-07-31');
+
 			$rencana_kerja_juli = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_juli_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->get()->row_array();
+
 			$volume_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
 			$volume_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
 			$volume_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
@@ -4595,9 +4661,9 @@ class Reports extends CI_Controller {
 		
 			$total_juli_biaya_bahan = $total_bahan_all_juli;
 			$total_juli_biaya_alat = $biaya_alat_all_juli;
-			$total_juli_biaya_overhead = $rencana_kerja_juli['biaya_overhead'];
-			$total_juli_biaya_bank = $rencana_kerja_juli['biaya_bank'];
-			$total_juli_biaya_persiapan = $rencana_kerja_juli['biaya_persiapan'];
+			$total_juli_biaya_overhead = $rencana_kerja_juli_biaya['biaya_overhead'];
+			$total_juli_biaya_bank = $rencana_kerja_juli_biaya['biaya_bank'];
+			$total_juli_biaya_persiapan = $rencana_kerja_juli_biaya['biaya_persiapan'];
 
 			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank + $total_juli_biaya_persiapan;
 			
@@ -4785,15 +4851,15 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpenerimaan14" style="display:none;">-</th>
 			</tr>
 			<?php
-			$termin_november = $rencana_kerja_november['termin'];
-			$termin_desember = $rencana_kerja_desember['termin'];
-			$termin_januari = $rencana_kerja_januari['termin'];
-			$termin_februari = $rencana_kerja_februari['termin'];
-			$termin_maret = $rencana_kerja_maret['termin'];
-			$termin_april = $rencana_kerja_april['termin'];
-			$termin_mei = $rencana_kerja_mei['termin'];
-			$termin_juni = $rencana_kerja_juni['termin'];
-			$termin_juli = $rencana_kerja_juli['termin'];
+			$termin_november = $rencana_kerja_november_biaya['termin'];
+			$termin_desember = $rencana_kerja_desember_biaya['termin'];
+			$termin_januari = $rencana_kerja_januari_biaya['termin'];
+			$termin_februari = $rencana_kerja_februari_biaya['termin'];
+			$termin_maret = $rencana_kerja_maret_biaya['termin'];
+			$termin_april = $rencana_kerja_april_biaya['termin'];
+			$termin_mei = $rencana_kerja_mei_biaya['termin'];
+			$termin_juni = $rencana_kerja_juni_biaya['termin'];
+			$termin_juli = $rencana_kerja_juli_biaya['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-active3-csf">
@@ -4889,61 +4955,61 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpenerimaan84" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="14"><u>PEMAKAIAN BAHAN & ALAT</u></th>
+				<th class="text-left" colspan="14"><u>PEMAKAIAN BAHAN & ALAT</u> <button id="btnpemakaian3"> Buka</button></th>
 			</tr>
 			<?php
 			$jumlah_bahan = $total_bahan_now + $total_bahan_all_november + $total_bahan_all_desember + $total_bahan_all_januari + $total_bahan_all_februari + $total_bahan_all_maret + $total_bahan_all_april + $total_bahan_all_mei + $total_bahan_all_juni + $total_bahan_all_juli;
 			?>
 			<tr class="table-active3-csf">
-				<th class="text-left">&nbsp;&nbsp;1. Bahan</th>
-				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($total_bahan_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_november,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_desember,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_januari,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_februari,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_maret,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_april,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_mei,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_juni,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_juli,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan,0,',','.');?></th>
-				<th class="text-right">-</th>
+				<th class="text-left" id="boxpemakaian1" style="display:none;">&nbsp;&nbsp;1. Bahan</th>
+				<th class="text-right" id="boxpemakaian2" style="display:none;">-</th>
+				<th class="text-right" id="boxpemakaian3" style="display:none;"><?php echo number_format($total_bahan_now,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian4" style="display:none;"><?php echo number_format($total_bahan_all_november,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian5" style="display:none;"><?php echo number_format($total_bahan_all_desember,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian6" style="display:none;"><?php echo number_format($total_bahan_all_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian7" style="display:none;"><?php echo number_format($total_bahan_all_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian8" style="display:none;"><?php echo number_format($total_bahan_all_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian9" style="display:none;"><?php echo number_format($total_bahan_all_april,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian10" style="display:none;"><?php echo number_format($total_bahan_all_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian11" style="display:none;"><?php echo number_format($total_bahan_all_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian12" style="display:none;"><?php echo number_format($total_bahan_all_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian13" style="display:none;"><?php echo number_format($jumlah_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian14" style="display:none;">-</th>
 			</tr>
 			<?php
 			$jumlah_alat = $alat_now + $total_november_biaya_alat + $total_desember_biaya_alat + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
 			?>
 			<tr class="table-active3-csf">
-				<th class="text-left">&nbsp;&nbsp;2. Alat</th>
-				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($alat_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($jumlah_alat,0,',','.');?></th>
-				<th class="text-right">-</th>
+				<th class="text-left" id="boxpemakaian15" style="display:none;">&nbsp;&nbsp;2. Alat</th>
+				<th class="text-right" id="boxpemakaian16" style="display:none;">-</th>
+				<th class="text-right" id="boxpemakaian17" style="display:none;"><?php echo number_format($alat_now,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian18" style="display:none;"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian19" style="display:none;"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian20" style="display:none;"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian21" style="display:none;"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian22" style="display:none;"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian23" style="display:none;"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian24" style="display:none;"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian25" style="display:none;"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian26" style="display:none;"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian27" style="display:none;"><?php echo number_format($jumlah_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian28" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active2-csf">
-				<th class="text-left"><i>JUMLAH PEMAKAIAN</i></th>
-				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_november + $total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_desember + $total_desember_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_januari + $total_januari_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_februari + $total_februari_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_maret + $total_maret_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_april + $total_april_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_mei + $total_mei_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_juni + $total_juni_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_all_juli + $total_juli_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($jumlah_bahan + $jumlah_alat,0,',','.');?></th>
-				<th class="text-right">-</th>
+				<th class="text-left" id="boxpemakaian29" style="display:none;"><i>JUMLAH PEMAKAIAN</i></th>
+				<th class="text-right" id="boxpemakaian30" style="display:none;">-</th>
+				<th class="text-right" id="boxpemakaian31" style="display:none;"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian32" style="display:none;"><?php echo number_format($total_bahan_all_november + $total_november_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian33" style="display:none;"><?php echo number_format($total_bahan_all_desember + $total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian34" style="display:none;"><?php echo number_format($total_bahan_all_januari + $total_januari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian35" style="display:none;"><?php echo number_format($total_bahan_all_februari + $total_februari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian36" style="display:none;"><?php echo number_format($total_bahan_all_maret + $total_maret_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian37" style="display:none;"><?php echo number_format($total_bahan_all_april + $total_april_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian38" style="display:none;"><?php echo number_format($total_bahan_all_mei + $total_mei_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian39" style="display:none;"><?php echo number_format($total_bahan_all_juni + $total_juni_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian40" style="display:none;"><?php echo number_format($total_bahan_all_juli + $total_juli_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian41" style="display:none;"><?php echo number_format($jumlah_bahan + $jumlah_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian42" style="display:none;">-</th>
 			</tr>
 			<?php
 			$akumulasi_pemakaian_november = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat;
@@ -4957,20 +5023,20 @@ class Reports extends CI_Controller {
 			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat  + $total_bahan_all_juni + $total_juni_biaya_alat + $total_bahan_all_juli + $total_juli_biaya_alat;
 			?>
 			<tr class="table-active2-csf">
-				<th class="text-left"><i>AKUMULASI PEMAKAIAN</i></th>
-				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_november,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_desember,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_januari,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_februari,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_maret,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_april,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_mei,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_juni,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
-				<th class="text-right">-</th>
+				<th class="text-left" id="boxpemakaian43" style="display:none;"><i>AKUMULASI PEMAKAIAN</i></th>
+				<th class="text-right" id="boxpemakaian44" style="display:none;">-</th>
+				<th class="text-right" id="boxpemakaian45" style="display:none;"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian46" style="display:none;"><?php echo number_format($akumulasi_pemakaian_november,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian47" style="display:none;"><?php echo number_format($akumulasi_pemakaian_desember,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian48" style="display:none;"><?php echo number_format($akumulasi_pemakaian_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian49" style="display:none;"><?php echo number_format($akumulasi_pemakaian_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian50" style="display:none;"><?php echo number_format($akumulasi_pemakaian_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian51" style="display:none;"><?php echo number_format($akumulasi_pemakaian_april,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian52" style="display:none;"><?php echo number_format($akumulasi_pemakaian_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian53" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian54" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian55" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian56" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" colspan="14"><u>PENGELUARAN (EXCL. PPN)</u></th>
@@ -5040,40 +5106,40 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 			</tr>
 			<?php
-			$jumlah_biaya_bank = $diskonto_now + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juli['biaya_bank'];
+			$jumlah_biaya_bank = $diskonto_now + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_bank'];
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($diskonto_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_januari['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_februari['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_maret['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_april['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_mei['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juni['biaya_bank'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juli['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_november_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_april_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_bank'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_bank'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_bank - $jumlah_biaya_bank,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_bua = $overhead_now + $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_april['biaya_overhead'] + $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juli['biaya_overhead'];
+			$jumlah_bua = $overhead_now + $rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_overhead'];
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($overhead_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_januari['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_februari['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_maret['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_april['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_mei['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juni['biaya_overhead'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juli['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_november_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_april_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_overhead'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_overhead'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_bua,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_overhead - $jumlah_bua,0,',','.');?></th>
 			</tr>
@@ -5094,21 +5160,21 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 			</tr>
 			<?php
-			$jumlah_persiapan = $persiapan_now + $rencana_kerja_november['biaya_persiapan'] + $rencana_kerja_desember['biaya_persiapan'] + $rencana_kerja_januari['biaya_persiapan'] + $rencana_kerja_februari['biaya_persiapan'] + $rencana_kerja_maret['biaya_persiapan'] + $rencana_kerja_april['biaya_persiapan'] + $rencana_kerja_mei['biaya_persiapan'] + $rencana_kerja_juni['biaya_persiapan'] + $rencana_kerja_juli['biaya_persiapan'];
+			$jumlah_persiapan = $persiapan_now + $rencana_kerja_november_biaya['biaya_persiapan'] + $rencana_kerja_desember_biaya['biaya_persiapan'] + $rencana_kerja_januari_biaya['biaya_persiapan'] + $rencana_kerja_februari_biaya['biaya_persiapan'] + $rencana_kerja_maret_biaya['biaya_persiapan'] + $rencana_kerja_april_biaya['biaya_persiapan'] + $rencana_kerja_mei_biaya['biaya_persiapan'] + $rencana_kerja_juni_biaya['biaya_persiapan'] + $rencana_kerja_juli_biaya['biaya_persiapan'];
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;8. Persiapan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($persiapan_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_januari['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_februari['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_maret['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_april['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_mei['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juni['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juli['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_november_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_april_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_persiapan'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_persiapan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan - $jumlah_persiapan,0,',','.');?></th>
 			</tr>
@@ -5153,29 +5219,29 @@ class Reports extends CI_Controller {
 				<th class="text-left"><i>JUMLAH III</i></th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($diskonto_now + $overhead_now + $persiapan_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_januari['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_februari['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_maret['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_april['biaya_overhead'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_april['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_mei['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_november_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_persiapan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($rencana_kerja_juli_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_persiapan'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($jumlah_biaya_bank + $jumlah_persiapan + $jumlah_bua,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_bank + $total_biaya_bua + $total_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_penerimaan = $termin_now['total'];
-			$jumlah_lll_november = $rencana_kerja_november['biaya_overhead'] + $rencana_kerja_november['biaya_bank'] + $rencana_kerja_november['biaya_persiapan'];
-			$jumlah_lll_desember = $rencana_kerja_desember['biaya_overhead'] + $rencana_kerja_desember['biaya_bank'] + $rencana_kerja_desember['biaya_persiapan'];
-			$jumlah_lll_januari = $rencana_kerja_januari['biaya_overhead'] + $rencana_kerja_januari['biaya_bank'] + $rencana_kerja_januari['biaya_persiapan'];
-			$jumlah_lll_februari = $rencana_kerja_februari['biaya_overhead'] + $rencana_kerja_februari['biaya_bank'] + $rencana_kerja_februari['biaya_persiapan'];
-			$jumlah_lll_maret = $rencana_kerja_maret['biaya_overhead'] + $rencana_kerja_maret['biaya_bank'] + $rencana_kerja_maret['biaya_persiapan'];
-			$jumlah_lll_april = $rencana_kerja_april['biaya_overhead'] + $rencana_kerja_april['biaya_bank'] + $rencana_kerja_april['biaya_persiapan'];
-			$jumlah_lll_mei = $rencana_kerja_mei['biaya_overhead'] + $rencana_kerja_mei['biaya_bank'] + $rencana_kerja_mei['biaya_persiapan'];
-			$jumlah_lll_juni = $rencana_kerja_juni['biaya_overhead'] + $rencana_kerja_juni['biaya_bank'] + $rencana_kerja_juni['biaya_persiapan'];
-			$jumlah_lll_juli = $rencana_kerja_juli['biaya_overhead'] + $rencana_kerja_juli['biaya_bank'] + $rencana_kerja_juli['biaya_persiapan'];
+			$jumlah_lll_november = $rencana_kerja_november_biaya['biaya_overhead'] + $rencana_kerja_november_biaya['biaya_bank'] + $rencana_kerja_november_biaya['biaya_persiapan'];
+			$jumlah_lll_desember = $rencana_kerja_desember_biaya['biaya_overhead'] + $rencana_kerja_desember_biaya['biaya_bank'] + $rencana_kerja_desember_biaya['biaya_persiapan'];
+			$jumlah_lll_januari = $rencana_kerja_januari_biaya['biaya_overhead'] + $rencana_kerja_januari_biaya['biaya_bank'] + $rencana_kerja_januari_biaya['biaya_persiapan'];
+			$jumlah_lll_februari = $rencana_kerja_februari_biaya['biaya_overhead'] + $rencana_kerja_februari_biaya['biaya_bank'] + $rencana_kerja_februari_biaya['biaya_persiapan'];
+			$jumlah_lll_maret = $rencana_kerja_maret_biaya['biaya_overhead'] + $rencana_kerja_maret_biaya['biaya_bank'] + $rencana_kerja_maret_biaya['biaya_persiapan'];
+			$jumlah_lll_april = $rencana_kerja_april_biaya['biaya_overhead'] + $rencana_kerja_april_biaya['biaya_bank'] + $rencana_kerja_april_biaya['biaya_persiapan'];
+			$jumlah_lll_mei = $rencana_kerja_mei_biaya['biaya_overhead'] + $rencana_kerja_mei_biaya['biaya_bank'] + $rencana_kerja_mei_biaya['biaya_persiapan'];
+			$jumlah_lll_juni = $rencana_kerja_juni_biaya['biaya_overhead'] + $rencana_kerja_juni_biaya['biaya_bank'] + $rencana_kerja_juni_biaya['biaya_persiapan'];
+			$jumlah_lll_juli = $rencana_kerja_juli_biaya['biaya_overhead'] + $rencana_kerja_juli_biaya['biaya_bank'] + $rencana_kerja_juli_biaya['biaya_persiapan'];
 
 			$jumlah_penerimaan_total = $total_rap_nilai_2022 - $jumlah_termin;
 			?>
@@ -5419,181 +5485,6 @@ class Reports extends CI_Controller {
 			
 	    </table>
 		<script>
-		
-			$('#btnpenerimaan').click(function(){
-			$('#boxpenerimaan1').slideDown(2000);
-			$('#boxpenerimaan2').slideDown(2000);
-			$('#boxpenerimaan3').slideDown(2000);
-			$('#boxpenerimaan4').slideDown(2000);
-			$('#boxpenerimaan5').slideDown(2000);
-			$('#boxpenerimaan6').slideDown(2000);
-			$('#boxpenerimaan7').slideDown(2000);
-			$('#boxpenerimaan8').slideDown(2000);
-			$('#boxpenerimaan9').slideDown(2000);
-			$('#boxpenerimaan10').slideDown(2000);
-			$('#boxpenerimaan11').slideDown(2000);
-			$('#boxpenerimaan12').slideDown(2000);
-			$('#boxpenerimaan13').slideDown(2000);
-			$('#boxpenerimaan14').slideDown(2000);
-			$('#boxpenerimaan15').slideDown(2000);
-			$('#boxpenerimaan16').slideDown(2000);
-			$('#boxpenerimaan17').slideDown(2000);
-			$('#boxpenerimaan18').slideDown(2000);
-			$('#boxpenerimaan19').slideDown(2000);
-			$('#boxpenerimaan20').slideDown(2000);
-			$('#boxpenerimaan21').slideDown(2000);
-			$('#boxpenerimaan22').slideDown(2000);
-			$('#boxpenerimaan23').slideDown(2000);
-			$('#boxpenerimaan24').slideDown(2000);
-			$('#boxpenerimaan25').slideDown(2000);
-			$('#boxpenerimaan26').slideDown(2000);
-			$('#boxpenerimaan27').slideDown(2000);
-			$('#boxpenerimaan28').slideDown(2000);
-			$('#boxpenerimaan29').slideDown(2000);
-			$('#boxpenerimaan30').slideDown(2000);
-			$('#boxpenerimaan31').slideDown(2000);
-			$('#boxpenerimaan32').slideDown(2000);
-			$('#boxpenerimaan33').slideDown(2000);
-			$('#boxpenerimaan34').slideDown(2000);
-			$('#boxpenerimaan35').slideDown(2000);
-			$('#boxpenerimaan36').slideDown(2000);
-			$('#boxpenerimaan37').slideDown(2000);
-			$('#boxpenerimaan38').slideDown(2000);
-			$('#boxpenerimaan39').slideDown(2000);
-			$('#boxpenerimaan40').slideDown(2000);
-			$('#boxpenerimaan41').slideDown(2000);
-			$('#boxpenerimaan42').slideDown(2000);
-			$('#boxpenerimaan43').slideDown(2000);
-			$('#boxpenerimaan44').slideDown(2000);
-			$('#boxpenerimaan45').slideDown(2000);
-			$('#boxpenerimaan46').slideDown(2000);
-			$('#boxpenerimaan47').slideDown(2000);
-			$('#boxpenerimaan48').slideDown(2000);
-			$('#boxpenerimaan49').slideDown(2000);
-			$('#boxpenerimaan50').slideDown(2000);
-			$('#boxpenerimaan51').slideDown(2000);
-			$('#boxpenerimaan52').slideDown(2000);
-			$('#boxpenerimaan53').slideDown(2000);
-			$('#boxpenerimaan54').slideDown(2000);
-			$('#boxpenerimaan55').slideDown(2000);
-			$('#boxpenerimaan56').slideDown(2000);
-			$('#boxpenerimaan57').slideDown(2000);
-			$('#boxpenerimaan58').slideDown(2000);
-			$('#boxpenerimaan59').slideDown(2000);
-			$('#boxpenerimaan60').slideDown(2000);
-			$('#boxpenerimaan61').slideDown(2000);
-			$('#boxpenerimaan62').slideDown(2000);
-			$('#boxpenerimaan63').slideDown(2000);
-			$('#boxpenerimaan64').slideDown(2000);
-			$('#boxpenerimaan65').slideDown(2000);
-			$('#boxpenerimaan66').slideDown(2000);
-			$('#boxpenerimaan67').slideDown(2000);
-			$('#boxpenerimaan68').slideDown(2000);
-			$('#boxpenerimaan69').slideDown(2000);
-			$('#boxpenerimaan70').slideDown(2000);
-			$('#boxpenerimaan71').slideDown(2000);
-			$('#boxpenerimaan72').slideDown(2000);
-			$('#boxpenerimaan73').slideDown(2000);
-			$('#boxpenerimaan74').slideDown(2000);
-			$('#boxpenerimaan75').slideDown(2000);
-			$('#boxpenerimaan76').slideDown(2000);
-			$('#boxpenerimaan77').slideDown(2000);
-			$('#boxpenerimaan78').slideDown(2000);
-			$('#boxpenerimaan79').slideDown(2000);
-			$('#boxpenerimaan80').slideDown(2000);
-			$('#boxpenerimaan81').slideDown(2000);
-			$('#boxpenerimaan82').slideDown(2000);
-			$('#boxpenerimaan83').slideDown(2000);
-			$('#boxpenerimaan84').slideDown(2000);
-			});
-
-			$('#btnpenerimaan2').click(function(){
-			$('#boxpenerimaan1').slideUp(1000);
-			$('#boxpenerimaan2').slideUp(1000);
-			$('#boxpenerimaan3').slideUp(1000);
-			$('#boxpenerimaan4').slideUp(1000);
-			$('#boxpenerimaan5').slideUp(1000);
-			$('#boxpenerimaan6').slideUp(1000);
-			$('#boxpenerimaan7').slideUp(1000);
-			$('#boxpenerimaan8').slideUp(1000);
-			$('#boxpenerimaan9').slideUp(1000);
-			$('#boxpenerimaan10').slideUp(1000);
-			$('#boxpenerimaan11').slideUp(1000);
-			$('#boxpenerimaan12').slideUp(1000);
-			$('#boxpenerimaan13').slideUp(1000);
-			$('#boxpenerimaan14').slideUp(1000);
-			$('#boxpenerimaan15').slideUp(1000);
-			$('#boxpenerimaan16').slideUp(1000);
-			$('#boxpenerimaan17').slideUp(1000);
-			$('#boxpenerimaan18').slideUp(1000);
-			$('#boxpenerimaan19').slideUp(1000);
-			$('#boxpenerimaan20').slideUp(1000);
-			$('#boxpenerimaan21').slideUp(1000);
-			$('#boxpenerimaan22').slideUp(1000);
-			$('#boxpenerimaan23').slideUp(1000);
-			$('#boxpenerimaan24').slideUp(1000);
-			$('#boxpenerimaan25').slideUp(1000);
-			$('#boxpenerimaan26').slideUp(1000);
-			$('#boxpenerimaan27').slideUp(1000);
-			$('#boxpenerimaan28').slideUp(1000);
-			$('#boxpenerimaan29').slideUp(1000);
-			$('#boxpenerimaan30').slideUp(1000);
-			$('#boxpenerimaan31').slideUp(1000);
-			$('#boxpenerimaan32').slideUp(1000);
-			$('#boxpenerimaan33').slideUp(1000);
-			$('#boxpenerimaan34').slideUp(1000);
-			$('#boxpenerimaan35').slideUp(1000);
-			$('#boxpenerimaan36').slideUp(1000);
-			$('#boxpenerimaan37').slideUp(1000);
-			$('#boxpenerimaan38').slideUp(1000);
-			$('#boxpenerimaan39').slideUp(1000);
-			$('#boxpenerimaan40').slideUp(1000);
-			$('#boxpenerimaan41').slideUp(1000);
-			$('#boxpenerimaan42').slideUp(1000);
-			$('#boxpenerimaan43').slideUp(1000);
-			$('#boxpenerimaan44').slideUp(1000);
-			$('#boxpenerimaan45').slideUp(1000);
-			$('#boxpenerimaan46').slideUp(1000);
-			$('#boxpenerimaan47').slideUp(1000);
-			$('#boxpenerimaan48').slideUp(1000);
-			$('#boxpenerimaan49').slideUp(1000);
-			$('#boxpenerimaan50').slideUp(1000);
-			$('#boxpenerimaan51').slideUp(1000);
-			$('#boxpenerimaan52').slideUp(1000);
-			$('#boxpenerimaan53').slideUp(1000);
-			$('#boxpenerimaan54').slideUp(1000);
-			$('#boxpenerimaan55').slideUp(1000);
-			$('#boxpenerimaan56').slideUp(1000);
-			$('#boxpenerimaan57').slideUp(1000);
-			$('#boxpenerimaan58').slideUp(1000);
-			$('#boxpenerimaan59').slideUp(1000);
-			$('#boxpenerimaan60').slideUp(1000);
-			$('#boxpenerimaan61').slideUp(1000);
-			$('#boxpenerimaan62').slideUp(1000);
-			$('#boxpenerimaan63').slideUp(1000);
-			$('#boxpenerimaan64').slideUp(1000);
-			$('#boxpenerimaan65').slideUp(1000);
-			$('#boxpenerimaan66').slideUp(1000);
-			$('#boxpenerimaan67').slideUp(1000);
-			$('#boxpenerimaan68').slideUp(1000);
-			$('#boxpenerimaan69').slideUp(1000);
-			$('#boxpenerimaan70').slideUp(1000);
-			$('#boxpenerimaan71').slideUp(1000);
-			$('#boxpenerimaan72').slideUp(1000);
-			$('#boxpenerimaan73').slideUp(1000);
-			$('#boxpenerimaan74').slideUp(1000);
-			$('#boxpenerimaan75').slideUp(1000);
-			$('#boxpenerimaan76').slideUp(1000);
-			$('#boxpenerimaan77').slideUp(1000);
-			$('#boxpenerimaan78').slideUp(1000);
-			$('#boxpenerimaan79').slideUp(1000);
-			$('#boxpenerimaan80').slideUp(1000);
-			$('#boxpenerimaan81').slideUp(1000);
-			$('#boxpenerimaan82').slideUp(1000);
-			$('#boxpenerimaan83').slideUp(1000);
-			$('#boxpenerimaan84').slideUp(1000);
-			});
-
 			$('#btnpenerimaan3').click(function(){
 			$('#boxpenerimaan1').slideToggle();
 			$('#boxpenerimaan2').slideToggle();
@@ -5679,6 +5570,66 @@ class Reports extends CI_Controller {
 			$('#boxpenerimaan82').slideToggle();
 			$('#boxpenerimaan83').slideToggle();
 			$('#boxpenerimaan84').slideToggle();
+			});
+		</script>
+		<script>
+			$('#btnpemakaian3').click(function(){
+			$('#boxpemakaian1').slideToggle();
+			$('#boxpemakaian2').slideToggle();
+			$('#boxpemakaian3').slideToggle();
+			$('#boxpemakaian4').slideToggle();
+			$('#boxpemakaian5').slideToggle();
+			$('#boxpemakaian6').slideToggle();
+			$('#boxpemakaian7').slideToggle();
+			$('#boxpemakaian8').slideToggle();
+			$('#boxpemakaian9').slideToggle();
+			$('#boxpemakaian10').slideToggle();
+			$('#boxpemakaian11').slideToggle();
+			$('#boxpemakaian12').slideToggle();
+			$('#boxpemakaian13').slideToggle();
+			$('#boxpemakaian14').slideToggle();
+			$('#boxpemakaian15').slideToggle();
+			$('#boxpemakaian16').slideToggle();
+			$('#boxpemakaian17').slideToggle();
+			$('#boxpemakaian18').slideToggle();
+			$('#boxpemakaian19').slideToggle();
+			$('#boxpemakaian20').slideToggle();
+			$('#boxpemakaian21').slideToggle();
+			$('#boxpemakaian22').slideToggle();
+			$('#boxpemakaian23').slideToggle();
+			$('#boxpemakaian24').slideToggle();
+			$('#boxpemakaian25').slideToggle();
+			$('#boxpemakaian26').slideToggle();
+			$('#boxpemakaian27').slideToggle();
+			$('#boxpemakaian28').slideToggle();
+			$('#boxpemakaian29').slideToggle();
+			$('#boxpemakaian30').slideToggle();
+			$('#boxpemakaian31').slideToggle();
+			$('#boxpemakaian32').slideToggle();
+			$('#boxpemakaian33').slideToggle();
+			$('#boxpemakaian34').slideToggle();
+			$('#boxpemakaian35').slideToggle();
+			$('#boxpemakaian36').slideToggle();
+			$('#boxpemakaian37').slideToggle();
+			$('#boxpemakaian38').slideToggle();
+			$('#boxpemakaian39').slideToggle();
+			$('#boxpemakaian40').slideToggle();
+			$('#boxpemakaian41').slideToggle();
+			$('#boxpemakaian42').slideToggle();
+			$('#boxpemakaian43').slideToggle();
+			$('#boxpemakaian44').slideToggle();
+			$('#boxpemakaian45').slideToggle();
+			$('#boxpemakaian46').slideToggle();
+			$('#boxpemakaian47').slideToggle();
+			$('#boxpemakaian48').slideToggle();
+			$('#boxpemakaian49').slideToggle();
+			$('#boxpemakaian50').slideToggle();
+			$('#boxpemakaian51').slideToggle();
+			$('#boxpemakaian52').slideToggle();
+			$('#boxpemakaian53').slideToggle();
+			$('#boxpemakaian54').slideToggle();
+			$('#boxpemakaian55').slideToggle();
+			$('#boxpemakaian56').slideToggle();
 			});
 		</script>
 		<?php
@@ -7707,6 +7658,11 @@ class Reports extends CI_Controller {
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
 
+			$rencana_kerja_biaya = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
+			->get()->row_array();
+
 			$volume_rap_produk_a = $rencana_kerja['vol_produk_a'];
 			$volume_rap_produk_b = $rencana_kerja['vol_produk_b'];
 			$volume_rap_produk_c = $rencana_kerja['vol_produk_c'];
@@ -7955,9 +7911,9 @@ class Reports extends CI_Controller {
 		
 			$total_rap_biaya_bahan = $total_bahan_all_rap;
 			$total_rap_biaya_alat = $biaya_alat_all_rap;
-			$total_rap_biaya_overhead = $rencana_kerja['biaya_overhead'];
-			$total_rap_biaya_bank = $rencana_kerja['biaya_bank'];
-			$total_rap_biaya_persiapan = $rencana_kerja['biaya_persiapan'];
+			$total_rap_biaya_overhead = $rencana_kerja_biaya['biaya_overhead'];
+			$total_rap_biaya_bank = $rencana_kerja_biaya['biaya_bank'];
+			$total_rap_biaya_persiapan = $rencana_kerja_biaya['biaya_persiapan'];
 
 			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_biaya_overhead + $total_rap_biaya_bank + $total_rap_biaya_persiapan;
 

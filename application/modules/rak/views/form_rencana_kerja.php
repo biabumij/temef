@@ -45,10 +45,6 @@
                                             <label>Tanggal</label>
                                             <input type="text" class="form-control dtpicker" name="tanggal_rencana_kerja" required="" value="" />
                                         </div>
-										<div class="col-sm-6">
-                                            <label>Nomor RAP</label>
-                                            <input type="text" class="form-control" name="nomor_rencana_kerja" required="" value="<?= $this->pmm_model->GetNoRencanaKerja();?>">
-                                        </div>
 									</div>
                                     <br />
                                     <div class="table-responsive">
@@ -104,48 +100,6 @@
                                                     <td></td>
                                                 </tr> 
                                             </tfoot>
-                                        </table>    
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
-                                            <thead>
-                                                <tr class="text-center">
-                                                    <th width="40%">URAIAN</th>
-                                                    <th width="30%">NILAI</th>
-                                                    <th width="30%"></th>                                  
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Biaya Overhead</td>
-													<td>
-                                                    <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Biaya Bank</td>
-													<td>
-                                                    <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Persiapan</td>
-													<td>
-                                                    <input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Termin</td>
-													<td>
-                                                    <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>		
-                                            </tbody>
-                                
                                         </table>    
                                     </div>
                                     <div class="row">
