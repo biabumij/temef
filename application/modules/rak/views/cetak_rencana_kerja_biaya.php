@@ -65,45 +65,29 @@
 		<br />
 		<table cellpadding="5" width="98%">
 			<tr class="table-judul">
-				<?php
-					$total = 0;
-					?>
-					<?php
-					$total = $rak['vol_produk_a'] + $rak['vol_produk_b'] + $rak['vol_produk_c'] + $rak['vol_produk_d'];
-				?>
                 <th width="5%" align="center">NO.</th>
                 <th width="35%" align="center">URAIAN</th>
-				<th width="30%" align="right">VOLUME</th>
-				<th width="30%" align="center">SATUAN</th>
+				<th width="60%" align="right">NILAI</th>
             </tr>
 			<tr class="table-baris1">
 				<td align="center">1.</td>
-				<td align="left">Beton K 125 (10±2)</td>
-				<td align="right"><?= number_format($rak['vol_produk_a'],2,',','.'); ?></td>
-				<td align="center">M3</td>
+				<td align="left">Biaya Overhead</td>
+				<td align="right"><?= number_format($rak['biaya_overhead'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">2.</td>
-				<td align="left">Beton K 225 (10±2)</td>
-				<td align="right"><?= number_format($rak['vol_produk_b'],2,',','.'); ?></td>
-				<td align="center">M3</td>
+				<td align="left">Biaya Bank</td>
+				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">3.</td>
-				<td align="left">Beton K 250 (10±2)</td>
-				<td align="right"><?= number_format($rak['vol_produk_c'],2,',','.'); ?></td>
-				<td align="center">M3</td>
+				<td align="left">Biaya Persiapan</td>
+				<td align="right"><?= number_format($rak['biaya_persiapan'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">4.</td>
-				<td align="left">Beton K 250 (18±2)</td>
-				<td align="right"><?= number_format($rak['vol_produk_d'],2,',','.'); ?></td>
-				<td align="center">M3</td>
-			</tr>
-			<tr class="table-total">
-				<td align="right" colspan="2">TOTAL VOLUME</td>
-				<td align="right"><?= number_format($total,2,',','.'); ?></td>
-				<td align="center">M3</td>
+				<td align="left">Termin</td>
+				<td align="right"><?= number_format($rak['termin'],0,',','.'); ?></td>
 			</tr>
 		</table>
 	</body>
