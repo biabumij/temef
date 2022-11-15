@@ -55,10 +55,40 @@
 		<br />
 		<br />
 		<table width="100%" border="0">
+			<?php
+			$tanggal = $rak['tanggal_rencana_kerja'];
+			$date = date('Y-m-d',strtotime($tanggal));
+			?>
+			<?php
+			function tgl_indo($date){
+				$bulan = array (
+					1 =>   'Januari',
+					'Februari',
+					'Maret',
+					'April',
+					'Mei',
+					'Juni',
+					'Juli',
+					'Agustus',
+					'September',
+					'Oktober',
+					'November',
+					'Desember'
+				);
+				$pecahkan = explode('-', $date);
+				
+				// variabel pecahkan 0 = tanggal
+				// variabel pecahkan 1 = bulan
+				// variabel pecahkan 2 = tahun
+			
+				return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+				
+			}
+			?>
 			<tr>
 				<th width="20%">Tanggal</th>
 				<th width="10px">:</th>
-				<th width="50%" align="left"><?= convertDateDBtoIndo($rak["tanggal_rencana_kerja"]); ?></th>
+				<th width="50%" align="left"><?= tgl_indo(date($date)); ?></th>
 			</tr>
 		</table>
 		<br />
