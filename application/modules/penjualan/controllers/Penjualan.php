@@ -1486,6 +1486,17 @@ class Penjualan extends Secure_Controller
         $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Penawaran Penjualan');
         redirect("admin/penjualan");
     }
+
+	public function open_penawaran_penjualan($id)
+    {
+        $this->db->set("status", "OPEN");
+		$this->db->set("updated_by", $this->session->userdata('admin_id'));
+		$this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_penawaran_penjualan");
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Penawaran Penjualan');
+        redirect("admin/penjualan");
+    }
 	
 	public function hapus_sales_po($id)
     {
@@ -1560,6 +1571,17 @@ class Penjualan extends Secure_Controller
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
         $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Sales Order');
+        redirect("admin/penjualan");
+    }
+
+	public function open_sales_order($id)
+    {
+        $this->db->set("status", "OPEN");
+		$this->db->set("updated_by", $this->session->userdata('admin_id'));
+		$this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_sales_po");
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Sales Order');
         redirect("admin/penjualan");
     }
 

@@ -271,10 +271,13 @@
                                 <?php if($data["status"] === "CLOSED") : ?>
                                     <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
+                                        </form>
+                                        <form class="form-check" action="<?= site_url("pmm/purchase_order/open_pesanan_pembelian/".$id);?>">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-folder-open-o"></i> Open</button>        
                                         </form>	
                                         <?php
                                     }

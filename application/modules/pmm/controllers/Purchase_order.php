@@ -449,6 +449,17 @@ class Purchase_order extends CI_Controller {
             redirect('admin/pembelian');
         }
     }
+
+	public function open_pesanan_pembelian($id)
+    {
+        $this->db->set("status", "PUBLISH");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_purchase_order");
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Pesanan Pembelian');
+        redirect("admin/pembelian");
+    }
 	
 
 }

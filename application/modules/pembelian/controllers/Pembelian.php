@@ -659,6 +659,19 @@ class Pembelian extends Secure_Controller
         redirect("admin/pembelian");
     }
 
+    public function open_penawaran_pembelian($id)
+    {
+        $this->db->set("status", "OPEN");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_penawaran_pembelian");
+
+        $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'OPEN'), array('penawaran_pembelian_id' => $id));
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Penawaran Pembelian');
+        redirect("admin/pembelian");
+    }
+
     public function hapus_penawaran_pembelian($id)
     {
 

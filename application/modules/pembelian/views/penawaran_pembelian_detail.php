@@ -188,10 +188,13 @@
 
                                             <?php if($row["status"] === "CLOSED") : ?>
                                                 <?php
-                                                if($this->session->userdata('admin_group_id') == 1){
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
                                                 ?>
                                                     <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
+                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                                    </form>
+                                                    <form class="form-approval" action="<?= base_url("pembelian/open_penawaran_pembelian/".$row["id"]) ?>">
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-folder-open-o"></i> Open</button>        
                                                     </form>	
                                                 <?php
                                                 }

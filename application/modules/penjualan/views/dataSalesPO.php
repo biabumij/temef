@@ -234,10 +234,10 @@
                                 <?php if($sales_po["status"] === "CLOSED") : ?>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
                                     ?>
                                         <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-                                    				
+                                        <a class="btn btn-success" href="<?= base_url("penjualan/open_sales_order/".$sales_po["id"]) ?>"><i class="fa fa-folder-open-o"></i> Open</a>
                                     <?php
                                     }
                                     ?>
