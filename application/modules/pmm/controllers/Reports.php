@@ -10470,7 +10470,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_solar_akhir,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_pembelian_solar_akhir,0,',','.');?></th>
+				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_solar_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_solar_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
@@ -10484,7 +10484,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_solar,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
-				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active5">
