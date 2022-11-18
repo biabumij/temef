@@ -234,6 +234,18 @@
                             </div>
 
                             <br />
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-1 control-label">Memo Penawaran : </label>
+                                <div class="col-sm-8">
+                                <?php
+                                foreach ($details as $dt) {
+                                ?>
+                                    <b><?php echo $dt['memo'];?></span>
+                                <?php
+                                }
+                                ?>
+                                </div>
+                            </div>
                             <div class="text-right">
 
                                 <?php
