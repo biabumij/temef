@@ -235,7 +235,7 @@
 
                             <br />
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Memo Penawaran : </label>
+                                <label for="inputEmail3" class="col-sm-1 control-label">Memo : </label>
                                 <div class="col-sm-8">
                                 <?php
                                 foreach ($details as $dt) {
