@@ -1086,7 +1086,7 @@
                 },
                 yAxis: {
                     title: {  //label yAxis
-                        text: 'Presentase (Kontrak : <?php echo number_format($total_kontrak_all,0,',','.'); ?>)'
+                        text: 'Presentase Thdp. (Kontrak : <?php echo number_format($total_kontrak_all,0,',','.'); ?>)'
                     },
                     plotLines: [{
                         value: 0,
