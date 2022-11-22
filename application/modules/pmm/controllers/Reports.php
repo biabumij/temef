@@ -7945,12 +7945,12 @@ class Reports extends CI_Controller {
 			<!-- RAP -->
 			<?php
 			$date_now = date('Y-m-d');
-			$rencana_kerja = $this->db->select('r.*')
+			$rencana_kerja = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
 			->from('rak r')
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
 
-			$rencana_kerja_biaya = $this->db->select('r.*')
+			$rencana_kerja_biaya = $this->db->select('SUM(r.biaya_overhead) as biaya_overhead, SUM(r.biaya_bank) as biaya_bank,  SUM(r.biaya_persiapan) as biaya_persiapan')
 			->from('rak_biaya r')
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
@@ -8486,7 +8486,7 @@ class Reports extends CI_Controller {
 				<th width="5%" class="text-center">NO.</th>
 				<th class="text-center">URAIAN</th>
 				<th class="text-center">SATUAN</th>
-				<th class="text-center">RAP</th>
+				<th class="text-center">RENCANA</th>
 				<th class="text-center">REALISASI</th>
 				<th class="text-center">EVALUASI</th>
 	        </tr>

@@ -140,12 +140,12 @@
 			<!-- RAP -->
 			<?php
 			$date_now = date('Y-m-d');
-			$rencana_kerja = $this->db->select('r.*')
+			$rencana_kerja = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
 			->from('rak r')
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
 
-			$rencana_kerja_biaya = $this->db->select('r.*')
+			$rencana_kerja_biaya = $this->db->select('SUM(r.biaya_overhead) as biaya_overhead, SUM(r.biaya_bank) as biaya_bank,  SUM(r.biaya_persiapan) as biaya_persiapan')
 			->from('rak_biaya r')
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
@@ -681,7 +681,7 @@
 				<th width="5%" align="center">NO.</th>
 				<th width="25%" align="center">URAIAN</th>
 				<th width="10%" align="center">SATUAN</th>
-				<th width="20%" align="center">RAP</th>
+				<th width="20%" align="center">RENCANA</th>
 				<th width="20%" align="center">REALISASI</th>
 				<th width="20%" align="center">EVALUASI</th>
 	        </tr>

@@ -29,56 +29,17 @@
     $date_januari23_awal = date('2023-01-01');
     $date_januari23_akhir = date('2023-01-31');
 
-    $rencana_kerja_2022 = $this->db->select('r.*')
-    ->from('rak r')
-    ->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
-    ->get()->row_array();
-    
-    $volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
-    $volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
-    $volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
-    $volume_rap_2022_produk_d = $rencana_kerja_2022['vol_produk_d'];
-
-    $total_rap_volume_2022 = $volume_rap_2022_produk_a + $volume_rap_2022_produk_b + $volume_rap_2022_produk_c + $volume_rap_2022_produk_d;
-    
-    $harga_jual_125_rap = $this->db->select('pod.price as harga_satuan')
-    ->from('pmm_sales_po po')
-    ->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-    ->where("pod.product_id = 2")
-    ->order_by('po.contract_date','asc')->limit(1)
+    $kontrak = $this->db->select('SUM(pod.total) as total')
+    ->from('pmm_sales_po ppo')
+    ->join('pmm_sales_po_detail pod', 'ppo.id = pod.sales_po_id','left')
+    ->where("ppo.status in ('OPEN','CLOSED')")
+    ->group_by("ppo.id")
+    ->order_by('ppo.contract_date','desc')->limit(1)
     ->get()->row_array();
 
-    $harga_jual_225_rap = $this->db->select('pod.price as harga_satuan')
-    ->from('pmm_sales_po po')
-    ->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-    ->where("pod.product_id = 1")
-    ->order_by('po.contract_date','asc')->limit(1)
-    ->get()->row_array();
+    $total_kontrak_all = $kontrak['total'];
 
-    $harga_jual_250_rap = $this->db->select('pod.price as harga_satuan')
-    ->from('pmm_sales_po po')
-    ->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-    ->where("pod.product_id = 3")
-    ->order_by('po.contract_date','asc')->limit(1)
-    ->get()->row_array();
-
-    $harga_jual_250_18_rap = $this->db->select('pod.price as harga_satuan')
-    ->from('pmm_sales_po po')
-    ->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-    ->where("pod.product_id = 11")
-    ->order_by('po.contract_date','asc')->limit(1)
-    ->get()->row_array();
-
-    $nilai_jual_125_2022 = $volume_rap_2022_produk_a * $harga_jual_125_rap['harga_satuan'];
-    $nilai_jual_225_2022 = $volume_rap_2022_produk_b * $harga_jual_225_rap['harga_satuan'];
-    $nilai_jual_250_2022 = $volume_rap_2022_produk_c * $harga_jual_250_rap['harga_satuan'];
-    $nilai_jual_250_18_2022 = $volume_rap_2022_produk_d * $harga_jual_250_18_rap['harga_satuan'];
-    $nilai_jual_all_2022 = $nilai_jual_125_2022 + $nilai_jual_225_2022 + $nilai_jual_250_2022 + $nilai_jual_250_18_2022;
-    
-    $total_rap_nilai_2022 = $nilai_jual_all_2022;
-    $total_kontrak_all = $total_rap_nilai_2022;
-
-    $penjualan_januari = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_januari = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_januari_akhir'")
@@ -90,10 +51,11 @@
     $total_penjualan_januari = $penjualan_januari['total'];
     $presentase_penjualan_januari = ($total_penjualan_januari / $total_kontrak_all) * 100;
     $net_januari = round($presentase_penjualan_januari,2);
+    $net_januari_volume = round($penjualan_januari['volume'],2);
 
     $date_februari_awal = date('2022-02-01');
     $date_februari_akhir = date('2022-02-28');
-    $penjualan_februari = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_februari = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_februari_akhir'")
@@ -105,10 +67,11 @@
     $total_penjualan_februari = $penjualan_februari['total'];
     $presentase_penjualan_februari = ($total_penjualan_februari / $total_kontrak_all) * 100;
     $net_februari = round($presentase_penjualan_februari,2);
+    $net_februari_volume = round($penjualan_februari['volume'],2);
 
     $date_maret_awal = date('2022-03-01');
     $date_maret_akhir = date('2022-03-31');
-    $penjualan_maret = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_maret = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_maret_akhir'")
@@ -120,10 +83,11 @@
     $total_penjualan_maret = $penjualan_maret['total'];
     $presentase_penjualan_maret = ($total_penjualan_maret / $total_kontrak_all) * 100;
     $net_maret = round($presentase_penjualan_maret,2);
+    $net_maret_volume = round($penjualan_maret['volume'],2);
 
     $date_april_awal = date('2022-04-01');
     $date_april_akhir = date('2022-04-30');
-    $penjualan_april = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_april = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_april_akhir'")
@@ -135,10 +99,11 @@
     $total_penjualan_april = $penjualan_april['total'];
     $presentase_penjualan_april = ($total_penjualan_april / $total_kontrak_all) * 100;
     $net_april = round($presentase_penjualan_april,2);
+    $net_april_volume = round($penjualan_april['volume'],2);
 
     $date_mei_awal = date('2022-05-01');
     $date_mei_akhir = date('2022-05-31');
-    $penjualan_mei = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_mei = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_mei_akhir'")
@@ -150,10 +115,11 @@
     $total_penjualan_mei = $penjualan_mei['total'];
     $presentase_penjualan_mei = ($total_penjualan_mei / $total_kontrak_all) * 100;
     $net_mei = round($presentase_penjualan_mei,2);
+    $net_mei_volume = round($penjualan_mei['volume'],2);
 
     $date_juni_awal = date('2022-06-01');
     $date_juni_akhir = date('2022-06-30');
-    $penjualan_juni = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_juni = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_juni_akhir'")
@@ -165,10 +131,11 @@
     $total_penjualan_juni = $penjualan_juni['total'];
     $presentase_penjualan_juni = ($total_penjualan_juni / $total_kontrak_all) * 100;
     $net_juni = round($presentase_penjualan_juni,2);
+    $net_juni_volume = round($penjualan_juni['volume'],2);
 
     $date_juli_awal = date('2022-07-01');
     $date_juli_akhir = date('2022-07-31');
-    $penjualan_juli = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_juli = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_juli_akhir'")
@@ -180,10 +147,11 @@
     $total_penjualan_juli = $penjualan_juli['total'];
     $presentase_penjualan_juli = ($total_penjualan_juli / $total_kontrak_all) * 100;
     $net_juli = round($presentase_penjualan_juli,2);
+    $net_juli_volume = round($penjualan_juli['volume'],2);
 
     $date_agustus_awal = date('2022-08-01');
     $date_agustus_akhir = date('2022-08-31');
-    $penjualan_agustus = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_agustus = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_agustus_akhir'")
@@ -195,10 +163,11 @@
     $total_penjualan_agustus = $penjualan_agustus['total'];
     $presentase_penjualan_agustus = ($total_penjualan_agustus / $total_kontrak_all) * 100;
     $net_agustus = round($presentase_penjualan_agustus,2);
+    $net_agustus_volume = round($penjualan_agustus['volume'],2);
 
     $date_september_awal = date('2022-09-01');
     $date_september_akhir = date('2022-09-30');
-    $penjualan_september = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_september = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_september_akhir'")
@@ -210,10 +179,11 @@
     $total_penjualan_september = $penjualan_september['total'];
     $presentase_penjualan_september = ($total_penjualan_september / $total_kontrak_all) * 100;
     $net_september = round($presentase_penjualan_september,2);
+    $net_september_volume = round($penjualan_september['volume'],2);
 
     $date_oktober_awal = date('2022-10-01');
     $date_oktober_akhir = date('2022-10-31');
-    $penjualan_oktober = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_oktober = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_oktober_akhir'")
@@ -225,10 +195,11 @@
     $total_penjualan_oktober = $penjualan_oktober['total'];
     $presentase_penjualan_oktober = ($total_penjualan_oktober / $total_kontrak_all) * 100;
     $net_oktober = round($presentase_penjualan_oktober,2);
+    $net_oktober_volume = round($penjualan_oktober['volume'],2);
 
     $date_november_awal = date('2022-11-01');
     $date_november_akhir = date('2022-11-30');
-    $penjualan_november = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_november = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_november_akhir'")
@@ -240,10 +211,11 @@
     $total_penjualan_november = $penjualan_november['total'];
     $presentase_penjualan_november = ($total_penjualan_november / $total_kontrak_all) * 100;
     $net_november = round($presentase_penjualan_november,2);
+    $net_november_volume = round($penjualan_november['volume'],2);
 
     $date_desember_awal = date('2022-12-01');
     $date_desember_akhir = date('2022-12-31');
-    $penjualan_desember = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_desember = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_desember_akhir'")
@@ -255,8 +227,9 @@
     $total_penjualan_desember = $penjualan_desember['total'];
     $presentase_penjualan_desember = ($total_penjualan_desember / $total_kontrak_all) * 100;
     $net_desember = round($presentase_penjualan_desember,2);
+    $net_desember_volume = round($penjualan_desember['volume'],2);
 
-    $penjualan_januari23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_januari23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_januari23_akhir'")
@@ -268,10 +241,11 @@
     $total_penjualan_januari23 = $penjualan_januari23['total'];
     $presentase_penjualan_januari23 = ($total_penjualan_januari23 / $total_kontrak_all) * 100;
     $net_januari23 = round($presentase_penjualan_januari23,2);
+    $net_januari23_volume = round($penjualan_januari23['volume'],2);
 
     $date_februari23_awal = date('2023-02-01');
     $date_februari23_akhir = date('2023-02-28');
-    $penjualan_februari23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_februari23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_februari23_akhir'")
@@ -283,10 +257,11 @@
     $total_penjualan_februari23 = $penjualan_februari23['total'];
     $presentase_penjualan_februari23 = ($total_penjualan_februari23 / $total_kontrak_all) * 100;
     $net_februari23 = round($presentase_penjualan_februari23,2);
+    $net_februari23_volume = round($penjualan_februari23['volume'],2);
 
     $date_maret23_awal = date('2023-03-01');
     $date_maret23_akhir = date('2023-03-31');
-    $penjualan_maret23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_maret23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_maret23_akhir'")
@@ -298,10 +273,11 @@
     $total_penjualan_maret23 = $penjualan_maret23['total'];
     $presentase_penjualan_maret23 = ($total_penjualan_maret23 / $total_kontrak_all) * 100;
     $net_maret23 = round($presentase_penjualan_maret23,2);
+    $net_maret23_volume = round($penjualan_maret23['volume'],2);
 
     $date_april23_awal = date('2023-04-01');
     $date_april23_akhir = date('2023-04-30');
-    $penjualan_april23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_april23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_april23_akhir'")
@@ -313,10 +289,11 @@
     $total_penjualan_april23 = $penjualan_april23['total'];
     $presentase_penjualan_april23 = ($total_penjualan_april23 / $total_kontrak_all) * 100;
     $net_april23 = round($presentase_penjualan_april23,2);
+    $net_april23_volume = round($penjualan_april23['volume'],2);
 
     $date_mei23_awal = date('2023-05-01');
     $date_mei23_akhir = date('2023-05-31');
-    $penjualan_mei23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_mei23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_mei23_akhir'")
@@ -328,10 +305,11 @@
     $total_penjualan_mei23 = $penjualan_mei23['total'];
     $presentase_penjualan_mei23 = ($total_penjualan_mei23 / $total_kontrak_all) * 100;
     $net_mei23 = round($presentase_penjualan_mei23,2);
+    $net_mei23_volume = round($penjualan_mei23['volume'],2);
 
     $date_juni23_awal = date('2023-06-01');
     $date_juni23_akhir = date('2023-06-30');
-    $penjualan_juni23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_juni23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_juni23_akhir'")
@@ -343,10 +321,11 @@
     $total_penjualan_juni23 = $penjualan_juni23['total'];
     $presentase_penjualan_juni23 = ($total_penjualan_juni23 / $total_kontrak_all) * 100;
     $net_juni23 = round($presentase_penjualan_juni23,2);
+    $net_juni23_volume = round($penjualan_juni23['volume'],2);
 
     $date_juli23_awal = date('2023-07-01');
     $date_juli23_akhir = date('2023-07-31');
-    $penjualan_juli23 = $this->db->select('SUM(pp.display_price) as total')
+    $penjualan_juli23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
     ->where("pp.date_production between '$date_januari_awal' and '$date_juli23_akhir'")
@@ -358,6 +337,7 @@
     $total_penjualan_juli23 = $penjualan_juli23['total'];
     $presentase_penjualan_juli23 = ($total_penjualan_juli23 / $total_kontrak_all) * 100;
     $net_juli23 = round($presentase_penjualan_juli23,2);
+    $net_juli23_volume = round($penjualan_juli23['volume'],2);
     ?>
 
     <?php
@@ -1071,7 +1051,7 @@
                     //Type grafik, anda bisa ganti menjadi area,bar,column dan bar
                     type: 'spline',
                     marginRight: 130,
-                    marginBottom: 50
+                    marginBottom: 100
                 },
                 title: {
                     text: 'Realisasi Produksi',
@@ -1081,8 +1061,8 @@
                     text: 'PT. Bia Bumi Jayendra - TEMEF',
                     x: -20
                 },
-                xAxis: { //X axis menampilkan data bulan 
-                    categories: ['Jan 22','Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23']
+                xAxis: { //X axis menampilkan data bulan
+                    categories: ['Jan 22<br />(<b><?php echo number_format($net_januari_volume,2,',','.'); ?></b>)','Feb 22<br />(<b><?php echo number_format($net_februari_volume,2,',','.'); ?></b>)','Mar 22<br />(<b><?php echo number_format($net_maret_volume,2,',','.'); ?></b>)','Apr 22<br />(<b><?php echo number_format($net_april_volume,2,',','.'); ?></b>)','Mei 22<br /><?php echo number_format($net_mei_volume,2,',','.'); ?></b>)','Jun 22<br />(<b><?php echo number_format($net_juni_volume,2,',','.'); ?></b>)','Jul 22<br />(<b><?php echo number_format($net_juli_volume,2,',','.'); ?></b>)','Agu 22<br />(<b><?php echo number_format($net_agustus_volume,2,',','.'); ?></b>)','Sep 22<br />(<b><?php echo number_format($net_september_volume,2,',','.'); ?></b>)','Okt 22<br />(<b><?php echo number_format($net_oktober_volume,2,',','.'); ?></b>)','Nov 22<br />(<b><?php echo number_format($net_november_volume,2,',','.'); ?></b>)','Des 22<br />(<b><?php echo number_format($net_desember_volume,2,',','.'); ?></b>)','Jan 23<br />(<b><?php echo number_format($net_januari23_volume,2,',','.'); ?></b>)','Feb 23<br />(<b><?php echo number_format($net_februari23_volume,2,',','.'); ?></b>)','Mar 23<br />(<b><?php echo number_format($net_maret23_volume,2,',','.'); ?></b>)','Apr 23<br />(<b><?php echo number_format($net_april23_volume,2,',','.'); ?></b>)','Mei 23<br /><?php echo number_format($net_mei23_volume,2,',','.'); ?></b>)','Jun 23<br />(<b><?php echo number_format($net_juni23_volume,2,',','.'); ?></b>)','Jul 23<br />(<b><?php echo number_format($net_juli23_volume,2,',','.'); ?></b>)']
                 },
                 yAxis: {
                     title: {  //label yAxis
@@ -1099,7 +1079,7 @@
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
                             return '<b>'+ this.series.name +'</b><br/>'+ 
-                            'Presentase' +': '+ this.y + '%';
+                            ''+ 'Presentase' +': '+ this.y + '%';
                             //'<b>'+ this.x +': '+ this.y +'</b><br/>'+ 
                             //'<b>'+ 'Penjualan' +': '+ this.y +'</b><br/>';
                     }
@@ -1123,22 +1103,22 @@
                             }
                         },
                         marker: {
-                            enabled: false
+                            enabled: true
                         }
                     }
                 },
-            
+        
                 series: [{  
-                    name: 'Realisasi',  
+                    name: 'RAP',  
                     
-                    data: [<?php echo json_encode($net_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($net_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>],
+                    data: [<?php echo json_encode($net_januari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23_rap, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#000000'
                 },
                 {  
-                    name: 'RAP',  
+                    name: 'Realisasi',  
                     
-                    data: [<?php echo json_encode($net_januari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23_rap, JSON_NUMERIC_CHECK); ?>],
+                    data: [<?php echo json_encode($net_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($net_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#FF0000'
                 },
