@@ -1057,8 +1057,8 @@
     TableEvaluasi();
 </script>
 
-<script src="<?php echo base_url();?>assets/chart/highcharts.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/chart/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
 <script type="text/javascript">
 	//script untuk membuat grafik, perhatikan setiap komentar agar paham
