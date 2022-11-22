@@ -1078,7 +1078,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: 'PT. Bia Bumi Jayendra',
+                    text: 'PT. Bia Bumi Jayendra - TEMEF',
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan 
