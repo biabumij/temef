@@ -96,7 +96,7 @@
     $penjualan_februari = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_februari_awal' and '$date_februari_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_februari_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -111,7 +111,7 @@
     $penjualan_maret = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_maret_awal' and '$date_maret_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_maret_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -126,7 +126,7 @@
     $penjualan_april = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_april_awal' and '$date_april_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_april_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -141,7 +141,7 @@
     $penjualan_mei = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_mei_awal' and '$date_mei_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_mei_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -156,7 +156,7 @@
     $penjualan_juni = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_juni_awal' and '$date_juni_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_juni_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -171,7 +171,7 @@
     $penjualan_juli = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_juli_awal' and '$date_juli_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_juli_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -186,7 +186,7 @@
     $penjualan_agustus = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_agustus_awal' and '$date_agustus_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_agustus_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -201,7 +201,7 @@
     $penjualan_september = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_september_awal' and '$date_september_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_september_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -216,7 +216,7 @@
     $penjualan_oktober = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_oktober_awal' and '$date_oktober_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_oktober_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -231,7 +231,7 @@
     $penjualan_november = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_november_awal' and '$date_november_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_november_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -246,7 +246,7 @@
     $penjualan_desember = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_desember_awal' and '$date_desember_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_desember_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -259,7 +259,7 @@
     $penjualan_januari23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_januari23_awal' and '$date_januari23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_januari23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -274,7 +274,7 @@
     $penjualan_februari23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_februari23_awal' and '$date_februari23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_februari23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -289,7 +289,7 @@
     $penjualan_maret23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_maret23_awal' and '$date_maret23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_maret23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -304,7 +304,7 @@
     $penjualan_april23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_april23_awal' and '$date_april23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_april23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -319,7 +319,7 @@
     $penjualan_mei23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_mei23_awal' and '$date_mei23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_mei23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -334,7 +334,7 @@
     $penjualan_juni23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_juni23_awal' and '$date_juni23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_juni23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -349,7 +349,7 @@
     $penjualan_juli23 = $this->db->select('SUM(pp.display_price) as total')
     ->from('pmm_productions pp')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_juli23_awal' and '$date_juli23_akhir'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_juli23_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
@@ -394,7 +394,7 @@
     ->get()->row_array();
 
     //JANUARI
-    $rencana_kerja_januari = $this->db->select('r.*')
+    $rencana_kerja_januari = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
     ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
     ->get()->row_array();
@@ -416,9 +416,9 @@
     $net_januari_rap = round($total_januari_nilai,2);
 
     //FEBRUARI
-    $rencana_kerja_februari = $this->db->select('r.*')
+    $rencana_kerja_februari = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_februari_akhir'")
     ->get()->row_array();
 
     $volume_februari_produk_a = $rencana_kerja_februari['vol_produk_a'];
@@ -438,9 +438,9 @@
     $net_februari_rap = round($total_februari_nilai,2);
 
     //MARET
-    $rencana_kerja_maret = $this->db->select('r.*')
+    $rencana_kerja_maret = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_maret_akhir'")
     ->get()->row_array();
 
     $volume_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
@@ -460,9 +460,9 @@
     $net_maret_rap = round($total_maret_nilai,2);
 
     //APRIL
-    $rencana_kerja_april = $this->db->select('r.*')
+    $rencana_kerja_april = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_april_akhir'")
     ->get()->row_array();
 
     $volume_april_produk_a = $rencana_kerja_april['vol_produk_a'];
@@ -482,9 +482,9 @@
     $net_april_rap = round($total_april_nilai,2);
 
     //MEI
-    $rencana_kerja_mei = $this->db->select('r.*')
+    $rencana_kerja_mei = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_mei_akhir'")
     ->get()->row_array();
 
     $volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
@@ -504,9 +504,9 @@
     $net_mei_rap = round($total_mei_nilai,2);
 
     //JUNI
-    $rencana_kerja_juni = $this->db->select('r.*')
+    $rencana_kerja_juni = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_juni_akhir'")
     ->get()->row_array();
 
     $volume_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
@@ -526,9 +526,9 @@
     $net_juni_rap = round($total_juni_nilai,2);
 
     //JULI
-    $rencana_kerja_juli = $this->db->select('r.*')
+    $rencana_kerja_juli = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_juli_akhir'")
     ->get()->row_array();
 
     $volume_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
@@ -548,9 +548,9 @@
     $net_juli_rap = round($total_juli_nilai,2);
 
     //AGUSTUS
-    $rencana_kerja_agustus = $this->db->select('r.*')
+    $rencana_kerja_agustus = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_agustus_awal' and '$date_agustus_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_agustus_akhir'")
     ->get()->row_array();
 
     $volume_agustus_produk_a = $rencana_kerja_agustus['vol_produk_a'];
@@ -570,9 +570,9 @@
     $net_agustus_rap = round($total_agustus_nilai,2);
 
     //SEPTEMBER
-    $rencana_kerja_september = $this->db->select('r.*')
+    $rencana_kerja_september = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_september_awal' and '$date_september_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_september_akhir'")
     ->get()->row_array();
 
     $volume_september_produk_a = $rencana_kerja_september['vol_produk_a'];
@@ -592,9 +592,9 @@
     $net_september_rap = round($total_september_nilai,2);
 
     //OKTOBER
-    $rencana_kerja_oktober = $this->db->select('r.*')
+    $rencana_kerja_oktober = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_oktober_awal' and '$date_oktober_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_oktober_akhir'")
     ->get()->row_array();
 
     $volume_oktober_produk_a = $rencana_kerja_oktober['vol_produk_a'];
@@ -614,9 +614,9 @@
     $net_oktober_rap = round($total_oktober_nilai,2);
 
     //NOVEMBER
-    $rencana_kerja_november = $this->db->select('r.*')
+    $rencana_kerja_november = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_november_akhir'")
     ->get()->row_array();
 
     $volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
@@ -636,9 +636,9 @@
     $net_november_rap = round($total_november_nilai,2);
 
     //DESEMBER
-    $rencana_kerja_desember = $this->db->select('r.*')
+    $rencana_kerja_desember = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_desember_akhir'")
     ->get()->row_array();
 
     $volume_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
@@ -658,9 +658,9 @@
     $net_desember_rap = round($total_desember_nilai,2);
 
     //JANUARI 2023
-    $rencana_kerja_januari23 = $this->db->select('r.*')
+    $rencana_kerja_januari23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_januari23_awal' and '$date_januari23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari23_akhir'")
     ->get()->row_array();
 
     $volume_januari23_produk_a = $rencana_kerja_januari23['vol_produk_a'];
@@ -680,9 +680,9 @@
     $net_januari23_rap = round($total_januari23_nilai,2);
 
     //FEBRUARI 2023
-    $rencana_kerja_februari23 = $this->db->select('r.*')
+    $rencana_kerja_februari23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_februari23_awal' and '$date_februari23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_februari23_akhir'")
     ->get()->row_array();
 
     $volume_februari23_produk_a = $rencana_kerja_februari23['vol_produk_a'];
@@ -702,9 +702,9 @@
     $net_februari23_rap = round($total_februari23_nilai,2);
 
     //MARET 2023
-    $rencana_kerja_maret23 = $this->db->select('r.*')
+    $rencana_kerja_maret23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_maret23_awal' and '$date_maret23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_maret23_akhir'")
     ->get()->row_array();
 
     $volume_maret23_produk_a = $rencana_kerja_maret23['vol_produk_a'];
@@ -724,9 +724,9 @@
     $net_maret23_rap = round($total_maret23_nilai,2);
 
     //APRIL 2023
-    $rencana_kerja_april23 = $this->db->select('r.*')
+    $rencana_kerja_april23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_april23_awal' and '$date_april23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_april23_akhir'")
     ->get()->row_array();
 
     $volume_april23_produk_a = $rencana_kerja_april23['vol_produk_a'];
@@ -746,9 +746,9 @@
     $net_april23_rap = round($total_april23_nilai,2);
 
     //MEI 2023
-    $rencana_kerja_mei23 = $this->db->select('r.*')
+    $rencana_kerja_mei23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_mei23_awal' and '$date_mei23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_mei23_akhir'")
     ->get()->row_array();
 
     $volume_mei23_produk_a = $rencana_kerja_mei23['vol_produk_a'];
@@ -768,9 +768,9 @@
     $net_mei23_rap = round($total_mei23_nilai,2);
 
     //JUNI 2023
-    $rencana_kerja_juni23 = $this->db->select('r.*')
+    $rencana_kerja_juni23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_juni23_awal' and '$date_juni23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_juni23_akhir'")
     ->get()->row_array();
 
     $volume_juni23_produk_a = $rencana_kerja_juni23['vol_produk_a'];
@@ -790,9 +790,9 @@
     $net_juni23_rap = round($total_juni23_nilai,2);
 
     //JULI 2023
-    $rencana_kerja_juli23 = $this->db->select('r.*')
+    $rencana_kerja_juli23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_juli23_awal' and '$date_juli23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_juli23_akhir'")
     ->get()->row_array();
 
     $volume_juli23_produk_a = $rencana_kerja_juli23['vol_produk_a'];
@@ -1099,7 +1099,7 @@
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
                             return '<b>'+ this.series.name +'</b><br/>'+ 
-                            this.x +': '+ this.y + '%';
+                            'Presentase' +': '+ this.y + '%';
                             //'<b>'+ this.x +': '+ this.y +'</b><br/>'+ 
                             //'<b>'+ 'Penjualan' +': '+ this.y +'</b><br/>';
                     }
