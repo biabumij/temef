@@ -865,136 +865,138 @@
             </div>
             <div class="content-body">
                 <div class="row animated fadeInUp">
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                    
-                    <font size="1">
-                    <table style="background-color:#FFFFFF;" border="0" width="100%">
-                            <tr>
-                                <th class="text-center" width="8%">Keterangan</th>
-                                <th class="text-center">Jan 22</th>
-                                <th class="text-center">Feb 22</th>
-                                <th class="text-center">Mar 22</th>
-                                <th class="text-center">Apr 22</th>
-                                <th class="text-center">Mei 22</th>
-                                <th class="text-center">Jun 22</th>
-                                <th class="text-center">Jul 22</th>
-                                <th class="text-center">Agu 22</th>
-                                <th class="text-center">Sep 22</th>
-                                <th class="text-center">Okt 22</th>
-                                <th class="text-center">Nov 22</th>
-                                <th class="text-center">Des 22</th>
-                                <th class="text-center">Jan 23</th>
-                                <th class="text-center">Feb 23</th>
-                                <th class="text-center">Mar 23</th>
-                                <th class="text-center">Apr 23</th>
-                                <th class="text-center">Mei 23</th>
-                                <th class="text-center">Jun 23</th>
-                                <th class="text-center">Jul 23</th>
-                                <th class="text-center" width="12%"></th>
-                            </tr>
-                            <tr style="background-color:#000000; color:white;">
-                                <th class="text-right">Vol. RAP</th>
-                                <th class="text-center"><?php echo number_format($total_januari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_februari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_maret_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_april_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_mei_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juni_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juli_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_agustus_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_september_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_oktober_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_november_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_desember_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_januari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_februari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_maret23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_april23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_mei23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juni23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juli23_volume,0,',','.');?></th>
-                                <th class="text-center"></th>
-                            </tr>
-                            <tr style="background-color:#FF0000; color:white;">
-                                <th class="text-right">Vol. Realisasi</th>
-                                <th class="text-center"><?php echo number_format($net_januari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_februari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_maret_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_april_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_mei_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_juni_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_juli_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_agustus_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_september_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_oktober_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_november_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_desember_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_januari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_februari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_maret23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_april23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_mei23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_juni23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($net_juli23_volume,0,',','.');?></th>
-                                <th class="text-center"></th>
-                            </tr>
-                            <tr style="background-color:#38761D; color:white;">
-                                <th class="text-right">Vol. Selisih</th>
-                                <th class="text-center"><?php echo number_format($total_januari_volume - $net_januari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_februari_volume - $net_februari_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_maret_volume - $net_maret_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_april_volume - $net_april_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_mei_volume - $net_mei_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juni_volume - $net_juni_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juli_volume - $net_juli_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_agustus_volume - $net_agustus_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_september_volume - $net_september_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_oktober_volume - $net_oktober_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_november_volume - $net_november_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_desember_volume - $net_desember_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_januari23_volume - $net_januari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_februari23_volume - $net_februari23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_maret23_volume - $net_maret23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_april23_volume - $net_april23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_mei23_volume - $net_mei23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juni23_volume - $net_juni23_volume,0,',','.');?></th>
-                                <th class="text-center"><?php echo number_format($total_juli23_volume - $net_juli23_volume,0,',','.');?></th>
-                                <th class="text-center"></th>
-                            </tr>                                
-                        </table>
-                    </font> 
-                    
-                </figure>
+                <div class="col-sm-16">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                        
+                        <font size="1">
+                        <table style="background-color:#FFFFFF;" border="0" width="100%">
+                                <tr>
+                                    <th class="text-center" width="8%">Keterangan</th>
+                                    <th class="text-center">Jan 22</th>
+                                    <th class="text-center">Feb 22</th>
+                                    <th class="text-center">Mar 22</th>
+                                    <th class="text-center">Apr 22</th>
+                                    <th class="text-center">Mei 22</th>
+                                    <th class="text-center">Jun 22</th>
+                                    <th class="text-center">Jul 22</th>
+                                    <th class="text-center">Agu 22</th>
+                                    <th class="text-center">Sep 22</th>
+                                    <th class="text-center">Okt 22</th>
+                                    <th class="text-center">Nov 22</th>
+                                    <th class="text-center">Des 22</th>
+                                    <th class="text-center">Jan 23</th>
+                                    <th class="text-center">Feb 23</th>
+                                    <th class="text-center">Mar 23</th>
+                                    <th class="text-center">Apr 23</th>
+                                    <th class="text-center">Mei 23</th>
+                                    <th class="text-center">Jun 23</th>
+                                    <th class="text-center">Jul 23</th>
+                                    <th class="text-center" width="12%"></th>
+                                </tr>
+                                <tr style="background-color:#000000; color:white;">
+                                    <th class="text-right">Vol. RAP</th>
+                                    <th class="text-center"><?php echo number_format($total_januari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_februari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_maret_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_april_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_mei_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juni_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juli_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_agustus_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_september_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_oktober_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_november_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_desember_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_januari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_februari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_maret23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_april23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_mei23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juni23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"></th>
+                                </tr>
+                                <tr style="background-color:#FF0000; color:white;">
+                                    <th class="text-right">Vol. Realisasi</th>
+                                    <th class="text-center"><?php echo number_format($net_januari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_februari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_maret_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_april_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_mei_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_juni_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_juli_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_agustus_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_september_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_oktober_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_november_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_desember_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_januari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_februari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_maret23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_april23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_mei23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_juni23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($net_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"></th>
+                                </tr>
+                                <tr style="background-color:#38761D; color:white;">
+                                    <th class="text-right">Vol. Selisih</th>
+                                    <th class="text-center"><?php echo number_format($total_januari_volume - $net_januari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_februari_volume - $net_februari_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_maret_volume - $net_maret_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_april_volume - $net_april_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_mei_volume - $net_mei_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juni_volume - $net_juni_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juli_volume - $net_juli_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_agustus_volume - $net_agustus_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_september_volume - $net_september_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_oktober_volume - $net_oktober_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_november_volume - $net_november_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_desember_volume - $net_desember_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_januari23_volume - $net_januari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_februari23_volume - $net_februari23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_maret23_volume - $net_maret23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_april23_volume - $net_april23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_mei23_volume - $net_mei23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juni23_volume - $net_juni23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_juli23_volume - $net_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"></th>
+                                </tr>                                
+                            </table>
+                        </font> 
+                        
+                    </figure>
+                </div>  
                 <br />
-                    <div class="col-sm-8">
-                        <div class="panel panel-default">
-                            <div class="panel-header">
-                                
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h4>Laba Rugi</h4>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
-                                    </div>
+                <div class="col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-header">
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h4>Laba Rugi</h4>
                                 </div>
-                            </div>
-                            <div class="panel-body">
-                                <div id="wait-1" class="loading-chart">
-                                    <div>Please Wait</div>
-                                    <div class="fa-3x">
-                                      <i class="fa fa-spinner fa-spin"></i>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12" style="padding:0;">
-                                    <div id="parent-lost-profit" class="chart-container">
-                                        <canvas id="canvas"></canvas>
-                                    </div>    
+                                <div class="col-sm-6">
+                                    <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
                                 </div>
                             </div>
                         </div>
+                        <div class="panel-body">
+                            <div id="wait-1" class="loading-chart">
+                                <div>Please Wait</div>
+                                <div class="fa-3x">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="padding:0;">
+                                <div id="parent-lost-profit" class="chart-container">
+                                    <canvas id="canvas"></canvas>
+                                </div>    
+                            </div>
+                        </div>
                     </div>
+                </div>
 
                 <div class="col-sm-8">
 
