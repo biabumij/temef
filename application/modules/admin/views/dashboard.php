@@ -868,10 +868,9 @@
                 <div class="col-sm-16">
                     <figure class="highcharts-figure">
                         <div id="container"></div>
-                        
                         <font size="1">
-                        <table style="background-color:#FFFFFF;" border="0" width="100%">
-                                <tr>
+                            <table style="background-color:#FFFFFF;" border="0" width="100%">
+                                <tr style="background-color:#808080; color:white;">
                                     <th class="text-center" width="8%">Keterangan</th>
                                     <th class="text-center">Jan 22</th>
                                     <th class="text-center">Feb 22</th>
