@@ -7,6 +7,47 @@
     .chart-container{
         position: relative; width:100%;height:350px;background: #fff;
     }
+    .highcharts-figure,
+    .highcharts-data-table table {
+    min-width: 65%;
+    max-width: 100%;
+    }
+
+    .highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+    }
+
+    .highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+    padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+    background: #f1f7ff;
+    }
 </style>
 <body>
 <div class="wrap">
@@ -791,6 +832,27 @@
     $total_juli23_nilai = ($nilai_jual_all_juli23 / $total_kontrak_all) * 100;;
     $net_juli23_rap = round($total_juli23_nilai,2);
     ?>
+    <?php
+    $selisih_januari = round($net_januari_rap - $net_januari,2);
+    $selisih_februari = round($net_februari_rap,2);
+    $selisih_maret = round($net_maret_rap - $net_maret,2);
+    $selisih_april = round($net_april_rap - $net_april,2);
+    $selisih_mei = round($net_mei_rap - $net_mei,2);
+    $selisih_juni = round($net_juni_rap - $net_juni,2);
+    $selisih_juli = round($net_juli_rap - $net_juli,2);
+    $selisih_agustus = round($net_agustus_rap - $net_agustus,2);
+    $selisih_september = round($net_september_rap - $net_september,2);
+    $selisih_oktober = round($net_oktober_rap - $net_oktober,2);
+    $selisih_november = round($net_november_rap - $net_november,2);
+    $selisih_desember = round($net_desember_rap - $net_desember,2);
+    $selisih_januari23 = round($net_januari23_rap - $net_januari23,2);
+    $selisih_februari23 = round($net_februari23_rap - $net_februari23,2);
+    $selisih_maret23 = round($net_maret23_rap - $net_maret23,2);
+    $selisih_april23 = round($net_april23_rap - $net_april23,2);
+    $selisih_mei23 = round($net_mei23_rap - $net_mei23,2);
+    $selisih_juni23 = round($net_juni23_rap - $net_juni23,2);
+    $selisih_juli23 = round($net_juli23_rap - $net_juli23,2);
+    ?>
     <div class="page-body">
         <?php echo $this->Templates->LeftBar();?>
         <div class="content">
@@ -803,7 +865,9 @@
             </div>
             <div class="content-body">
                 <div class="row animated fadeInUp">
-                <div id="container" style="min-width: 400px;height: 400px; margin: 0 auto"></div>
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
                 <br />
                     <div class="col-sm-8">
                         <div class="panel panel-default">
@@ -1039,6 +1103,10 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script type="text/javascript">
 	//script untuk membuat grafik, perhatikan setiap komentar agar paham
@@ -1049,9 +1117,16 @@
                 chart: {
                     renderTo: 'container', //letakan grafik di div id container
                     //Type grafik, anda bisa ganti menjadi area,bar,column dan bar
-                    type: 'spline',
+                    type: 'line',
                     marginRight: 130,
-                    marginBottom: 100
+                    marginBottom: 100,
+                    backgroundColor: {
+                        linearGradient: [0, 0, 500, 500],
+                        stops: [
+                            [0, 'rgb(255, 255, 255)'],
+                            [1, 'rgb(205, 205, 205)']
+                        ]
+                    },
                 },
                 title: {
                     text: 'Realisasi Produksi',
@@ -1062,7 +1137,7 @@
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
-                    categories: ['Jan 22<br />(<b><?php echo number_format($net_januari_volume,2,',','.'); ?></b>)','Feb 22<br />(<b><?php echo number_format($net_februari_volume,2,',','.'); ?></b>)','Mar 22<br />(<b><?php echo number_format($net_maret_volume,2,',','.'); ?></b>)','Apr 22<br />(<b><?php echo number_format($net_april_volume,2,',','.'); ?></b>)','Mei 22<br /><?php echo number_format($net_mei_volume,2,',','.'); ?></b>)','Jun 22<br />(<b><?php echo number_format($net_juni_volume,2,',','.'); ?></b>)','Jul 22<br />(<b><?php echo number_format($net_juli_volume,2,',','.'); ?></b>)','Agu 22<br />(<b><?php echo number_format($net_agustus_volume,2,',','.'); ?></b>)','Sep 22<br />(<b><?php echo number_format($net_september_volume,2,',','.'); ?></b>)','Okt 22<br />(<b><?php echo number_format($net_oktober_volume,2,',','.'); ?></b>)','Nov 22<br />(<b><?php echo number_format($net_november_volume,2,',','.'); ?></b>)','Des 22<br />(<b><?php echo number_format($net_desember_volume,2,',','.'); ?></b>)','Jan 23<br />(<b><?php echo number_format($net_januari23_volume,2,',','.'); ?></b>)','Feb 23<br />(<b><?php echo number_format($net_februari23_volume,2,',','.'); ?></b>)','Mar 23<br />(<b><?php echo number_format($net_maret23_volume,2,',','.'); ?></b>)','Apr 23<br />(<b><?php echo number_format($net_april23_volume,2,',','.'); ?></b>)','Mei 23<br /><?php echo number_format($net_mei23_volume,2,',','.'); ?></b>)','Jun 23<br />(<b><?php echo number_format($net_juni23_volume,2,',','.'); ?></b>)','Jul 23<br />(<b><?php echo number_format($net_juli23_volume,2,',','.'); ?></b>)']
+                    categories: ['Jan 22','Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23']
                 },
                 yAxis: {
                     title: {  //label yAxis
@@ -1072,15 +1147,23 @@
                         value: 0,
                         width: 1,
                         color: '#808080' //warna dari grafik line
-                    }]
+                    }],
+                    labels: {
+                        format: '{value} %'
+                    },
+                    min: 0,
+                    max: 150,
+                    tickInterval: 10,
                 },
                 tooltip: { 
                 //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
                             return '<b>'+ this.series.name +'</b><br/>'+ 
-                            ''+ 'Presentase' +': '+ this.y + '%';
-                            //'<b>'+ this.x +': '+ this.y +'</b><br/>'+ 
+                            ''+ 'Presentase' +': '+ this.y + '%<br/>';
+                            //''+ 'Vol' +': '+ this.x + '';
+
+                            //'<b>'+ 'Presentase' +': '+ this.y +'%'</b><br/>'+ 
                             //'<b>'+ 'Penjualan' +': '+ this.y +'</b><br/>';
                     }
                 },
@@ -1109,20 +1192,32 @@
                 },
         
                 series: [{  
-                    name: 'RAP',  
+                    name: 'RAP %',  
                     
                     data: [<?php echo json_encode($net_januari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23_rap, JSON_NUMERIC_CHECK); ?>],
 
-                    color: '#000000'
+                    color: '#000000',
                 },
                 {  
-                    name: 'Realisasi',  
+                    name: 'Realisasi %',  
                     
                     data: [<?php echo json_encode($net_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($net_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>],
 
-                    color: '#FF0000'
+                    color: '#FF0000',
+
+                    zones: [{
+                        value: 25
+                    }, {
+                        dashStyle: 'dot'
+                    }]
                 },
-                
+                {  
+                    name: 'Selisih %',  
+                    
+                    data: [<?php echo json_encode($selisih_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($selisih_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli23, JSON_NUMERIC_CHECK); ?>],
+
+                    color: '#38761D'
+                },
                 ]
             });
         });
