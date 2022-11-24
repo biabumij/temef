@@ -1597,5 +1597,63 @@ class Penjualan extends Secure_Controller
 		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
 		redirect("penjualan/detailPenagihan/$id");
 	}
+
+	public function main_table()
+	{	
+		$data = $this->pmm_model->TableMainKomposisi($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+	public function get_komposisi_main()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+            $data = $this->db->select('pp.*')
+            ->from('pmm_productions pp')
+            ->where('pp.id',$id)
+            ->get()->row_array();
+
+            $data['client_id'] = $this->crud_global->GetField('penerima',array('id'=>$data['client_id']),'nama');
+			$data['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$data['salesPo_id']),'contract_number');
+			$data['date_production'] = date('d-m-Y',strtotime($data['date_production']));
+			$data['product_id'] = $this->crud_global->GetField('produk',array('id'=>$data['product_id']),'nama_produk');
+			$output['output'] = $data;
+            
+		}
+		echo json_encode($output);
+	}
+
+	public function update_komposisi_main()
+	{
+		$output['output'] = false;
+
+		$production_id = $this->input->post('production_id');
+        $rekanan = $this->input->post('rekanan');
+		$sales_order = $this->input->post('sales_order');
+		$tanggal = date('Y-m-d',strtotime($this->input->post('tanggal')));
+		$surat_jalan = $this->input->post('surat_jalan');
+		$produk = $this->input->post('produk');
+        $komposisi = $this->input->post('komposisi');
+
+		$data = array(
+            'id' => $production_id,
+		    'komposisi_id' => $komposisi,
+		);
+
+		if(!empty($id)){
+			if($this->db->update('pmm_productions',$data,array('id'=>$production_id))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+            $data['updated_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_productions',$data,array('id'=>$production_id))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
+	}
 	
 }

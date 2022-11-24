@@ -78,13 +78,28 @@ class Productions extends Secure_Controller {
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['komposisi_id'] = $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				//$row['actions'] = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a><a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['edit_komposisi'] = '<a href="'.site_url().'pmm/productions/sunting_komposisi/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				//$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				//$row['actions'] = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				$data[] = $row;
 			}
 
 		}
 		echo json_encode(array('data'=>$data));
+	}
+
+	public function sunting_komposisi($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+
+			$this->db->select('pp.*');
+            $data['row'] = $this->db->get_where('pmm_productions pp', array('pp.id' => $id))->row_array();
+			$data['komposisi'] = $this->db->select('id, jobs_type,date_agregat')->order_by('date_agregat','desc')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
+			$this->load->view('penjualan/edit_komposisi', $data);
+		} else {
+			redirect('admin');
+		}
 	}
 
 	public function total_pro()

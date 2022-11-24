@@ -3832,5 +3832,32 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function TableMainKomposisi($id)
+    {
+        $data = array();
+        $this->db->select('pp.*');
+        $this->db->where('pp.id',$id);
+        $this->db->order_by('pp.id','asc');
+        $query = $this->db->get('pmm_productions pp');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['rekanan']= $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
+                $row['tanggal'] = date('d F Y',strtotime($row['date_production']));
+                $row['sales_order'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number');
+                $row['surat_jalan']= $row['no_production'];
+                $row['produk'] = $this->crud_global->GetField('produk',array('id'=>$row['product_id']),'nama_produk');
+                $row['komposisi']= $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Komposisi </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
 }
 ?>

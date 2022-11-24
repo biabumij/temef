@@ -242,21 +242,17 @@
                                         <table class="table table-striped table-hover table-bordered table-condensed" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Tanggal</th>
-                                                    <th class="text-center">No. PO</th>
-                                                    <th class="text-center">No. Surat Jalan</th>
+                                                    <th>No.</th>
                                                     <th>Pelanggan</th>
-                                                    <th>No. Kendaraan</th>
-                                                    <th>Supir</th>
+                                                    <th>Sales Order</th>
+                                                    <th>Tanggal</th>
+                                                    <th>No. Surat Jalan</th>
                                                     <th>Surat Jalan</th>
                                                     <th>Produk</th>
                                                     <th>Komposisi</th>
                                                     <th>Volume</th>
                                                     <th>Satuan</th>
-													<th>Harga Satuan</th>
-                                                    <th>Nilai</th>
-                                                    <th>Tindakan</th>
+                                                    <th>Edit Komposisi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -397,22 +393,16 @@
                     "data": "no"
                 },
                 {
-                    "data": "date_production"
+                    "data": "client_id"
                 },
                 {
                     "data": "salesPo_id"
                 },
                 {
+                    "data": "date_production"
+                },
+                {
                     "data": "no_production"
-                },
-                {
-                    "data": "client_id"
-                },
-                {
-                    "data": "nopol_truck"
-                },
-                {
-                    "data": "driver"
                 },
                 {
                     "data": "surat_jalan"
@@ -430,17 +420,11 @@
                     "data": "measure"
                 },
                 {
-                    "data": "harga_satuan"
-                },
-                {
-                    "data": "price"
-                },
-                {
-                    "data": "actions"
+                    "data": "edit_komposisi"
                 },
             ],
             "columnDefs": [{
-                "targets": [0, 1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+                "targets": [0],
                 "className": 'text-center',
             }],
         });
