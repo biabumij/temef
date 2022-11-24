@@ -1399,7 +1399,7 @@
                                     <th class="text-right"></th>
                                 </tr>
                                 <tr style="background-color:#38761D; color:white;">
-                                    <th class="text-right">Vol. Selisih</th>
+                                    <th class="text-right">Vol. Tdk. Tercapai</th>
                                     <th class="text-right"><?php echo number_format($total_pen_januari - $januari_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_februari - $februari_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_maret - $maret_total,2,',','.');?></th>
@@ -1770,7 +1770,7 @@
                     }]
                 },
                 {  
-                    name: 'Selisih %',  
+                    name: 'Tidak Tercapai %',  
                     
                     data: [<?php echo json_encode($selisih_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($selisih_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli23, JSON_NUMERIC_CHECK); ?>],
 
