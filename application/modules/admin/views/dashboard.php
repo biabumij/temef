@@ -1330,7 +1330,7 @@
                             ?>
                             <table style="background-color:#FFFFFF;" border="0" width="100%">
                                 <tr style="background-color:#808080; color:white;">
-                                    <th class="text-center" width="8%">Keterangan</th>
+                                    <th class="text-center">Keterangan</th>
                                     <th class="text-center">Jan 22</th>
                                     <th class="text-center">Feb 22</th>
                                     <th class="text-center">Mar 22</th>
@@ -1350,7 +1350,6 @@
                                     <th class="text-center">Mei 23</th>
                                     <th class="text-center">Jun 23</th>
                                     <th class="text-center">Jul 23</th>
-                                    <th class="text-center" width="12%"></th>
                                 </tr>
                                 <tr style="background-color:#000000; color:white;">
                                     <th class="text-right">Vol. RAP</th>
@@ -1373,7 +1372,6 @@
                                     <th class="text-right"><?php echo number_format($mei23_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($juni23_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($juli23_total,2,',','.');?></th>
-                                    <th class="text-right"></th>
                                 </tr>
                                 <tr style="background-color:#FF0000; color:white;">
                                     <th class="text-right">Vol. Realisasi</th>
@@ -1396,7 +1394,6 @@
                                     <th class="text-right"><?php echo number_format($total_pen_mei23,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_juni23,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_juli23,2,',','.');?></th>
-                                    <th class="text-right"></th>
                                 </tr>
                                 <tr style="background-color:#38761D; color:white;">
                                     <th class="text-right">Vol. Selisih</th>
@@ -1419,7 +1416,6 @@
                                     <th class="text-right"><?php echo number_format($total_pen_mei23 - $mei23_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_juni23 - $juni23_total,2,',','.');?></th>
                                     <th class="text-right"><?php echo number_format($total_pen_juli23 - $juli23_total,2,',','.');?></th>
-                                    <th class="text-right"></th>
                                 </tr>                                
                             </table>
                         </font> 
