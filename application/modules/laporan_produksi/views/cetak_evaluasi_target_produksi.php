@@ -650,19 +650,19 @@
 
 			<!-- SISA -->
 			<?php
-			$sisa_volume_produk_a = $volume_rap_produk_a - $volume_realisasi_produk_a;
-			$sisa_volume_produk_b = $volume_rap_produk_b - $volume_realisasi_produk_b;
-			$sisa_volume_produk_c = $volume_rap_produk_c - $volume_realisasi_produk_c;
-			$sisa_volume_produk_d = $volume_rap_produk_d - $volume_realisasi_produk_d;
+			$sisa_volume_produk_a = $volume_realisasi_produk_a - $volume_rap_produk_a;
+			$sisa_volume_produk_b = $volume_realisasi_produk_b - $volume_rap_produk_b;
+			$sisa_volume_produk_c = $volume_realisasi_produk_c - $volume_rap_produk_c;
+			$sisa_volume_produk_d = $volume_realisasi_produk_d  - $volume_rap_produk_d;
 
 			$total_sisa_volume_all_produk = $sisa_volume_produk_a + $sisa_volume_produk_b + $sisa_volume_produk_c + $sisa_volume_produk_d;
-			$total_sisa_nilai_all_produk = $total_rap_nilai - $total_realisasi_nilai;
+			$total_sisa_nilai_all_produk = $total_realisasi_nilai - $total_rap_nilai;
 
-			$sisa_biaya_bahan = $total_rap_biaya_bahan - $total_bahan_akumulasi;
-			$sisa_biaya_alat = $total_rap_biaya_alat - $total_alat_realisasi;
-			$sisa_biaya_overhead = $total_rap_biaya_overhead - $total_overhead_realisasi;
-			$sisa_biaya_bank = $total_rap_biaya_bank - $total_diskonto_realisasi;
-			$sisa_biaya_persiapan = $total_rap_biaya_persiapan - $total_persiapan_realisasi;
+			$sisa_biaya_bahan = $total_bahan_akumulasi - $total_rap_biaya_bahan;
+			$sisa_biaya_alat = $total_alat_realisasi - $total_rap_biaya_alat;
+			$sisa_biaya_overhead = $total_overhead_realisasi - $total_rap_biaya_overhead;
+			$sisa_biaya_bank = $total_diskonto_realisasi - $total_rap_biaya_bank;
+			$sisa_biaya_persiapan = $total_persiapan_realisasi - $total_rap_biaya_persiapan;
 			?>
 			<!-- SISA -->
 
@@ -671,8 +671,8 @@
 			$total_laba_rap = $total_rap_nilai - $total_biaya_rap_biaya;
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
-			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
-			$sisa_laba = $total_laba_rap - $total_laba_realisasi;
+			$sisa_biaya_realisasi = $total_biaya_realisasi - $total_biaya_rap_biaya;
+			$sisa_laba = $total_laba_realisasi - $total_laba_rap;
 
 			?>
 			<!-- TOTAL -->
@@ -688,13 +688,28 @@
 			<tr class="table-total">
 				<th align="left" colspan="6">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
+			<?php
+				$styleColorA = $sisa_volume_produk_a < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $sisa_volume_produk_b < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $sisa_volume_produk_c < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $sisa_volume_produk_d < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $total_sisa_volume_all_produk < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $total_sisa_nilai_all_produk < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $sisa_biaya_bahan < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $sisa_biaya_alat < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $sisa_biaya_overhead < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
+				$styleColorK = $sisa_biaya_persiapan < 0 ? 'color:red' : 'color:black';
+				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
+				$styleColorM = $sisa_laba < 0 ? 'color:red' : 'color:black';
+			?>
 			<tr class="table-baris1">
 				<th align="center">1</th>
 				<th align="left">Beton K 125 (10±2)</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_realisasi_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_volume_produk_a,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorA ?>"><?php echo number_format($sisa_volume_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">2</th>
@@ -702,7 +717,7 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_realisasi_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_volume_produk_b,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($sisa_volume_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">3</th>
@@ -710,7 +725,7 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_realisasi_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_volume_produk_c,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorC ?>"><?php echo number_format($sisa_volume_produk_c,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">4</th>
@@ -718,21 +733,21 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_realisasi_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_volume_produk_d,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($sisa_volume_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="right" colspan="2">TOTAL VOLUME</th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_rap_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_realisasi_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_sisa_volume_all_produk,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_sisa_volume_all_produk,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="right" colspan="2">PENDAPATAN USAHA</th>
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_rap_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_realisasi_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_sisa_nilai_all_produk,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_sisa_nilai_all_produk,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="left" colspan="6">BIAYA</th>
@@ -743,7 +758,7 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">2</th>
@@ -751,7 +766,7 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_alat_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">3</th>
@@ -759,7 +774,7 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_overhead_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorI ?>"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">4</th>
@@ -767,7 +782,7 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_diskonto_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorJ ?>"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">5</th>
@@ -775,21 +790,21 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_biaya_persiapan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_persiapan_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_persiapan,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($sisa_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="right" colspan="2">JUMLAH</th>
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_biaya_rap_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_biaya_realisasi,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorL ?>"><?php echo number_format($sisa_biaya_realisasi,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="right" colspan="2">LABA</th>
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_laba_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($sisa_laba,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorM?>"><?php echo number_format($sisa_laba,0,',','.');?></th>
 			</tr>
 			
 	    </table>
