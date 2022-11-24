@@ -159,7 +159,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Tagihan</button>
+                            <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Komposisi</button>
                         </div>
                     </form>
                 </div>
