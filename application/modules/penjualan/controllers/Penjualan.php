@@ -1598,6 +1598,17 @@ class Penjualan extends Secure_Controller
 		redirect("penjualan/detailPenagihan/$id");
 	}
 
+	public function open_penagihan($id)
+	{
+		$this->db->set("status", "OPEN");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
+		$this->db->where("id", $id);
+		$this->db->update("pmm_penagihan_penjualan");
+		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
+		redirect("penjualan/detailPenagihan/$id");
+	}
+
 	public function main_table()
 	{	
 		$data = $this->pmm_model->TableMainKomposisi($this->input->post('id'));
