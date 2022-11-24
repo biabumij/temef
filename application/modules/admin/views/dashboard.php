@@ -869,6 +869,465 @@
                     <figure class="highcharts-figure">
                         <div id="container"></div>
                         <font size="1">
+                            <?php
+                            $pen_januari = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_januari_awal' and '$date_januari_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_januari = $pen_januari['volume'];
+
+                            $pen_februari = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_februari_awal' and '$date_februari_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_februari = $pen_februari['volume'];
+
+                            $pen_maret = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_maret_awal' and '$date_maret_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_maret = $pen_maret['volume'];
+
+                            $pen_april = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_april_awal' and '$date_april_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_april = $pen_april['volume'];
+
+                            $pen_mei = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_mei_awal' and '$date_mei_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_mei = $pen_mei['volume'];
+
+                            $pen_juni = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_juni_awal' and '$date_juni_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_juni = $pen_juni['volume'];
+
+                            $pen_juli = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_juli_awal' and '$date_juli_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_juli = $pen_juli['volume'];
+
+                            $pen_agustus = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_agustus_awal' and '$date_agustus_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_agustus = $pen_agustus['volume'];
+
+                            $pen_september = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_september_awal' and '$date_september_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_september = $pen_september['volume'];
+
+                            $pen_oktober = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_oktober_awal' and '$date_oktober_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_oktober = $pen_oktober['volume'];
+
+                            $pen_november = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_november_awal' and '$date_november_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_november = $pen_november['volume'];
+
+                            $pen_desember = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_desember_awal' and '$date_desember_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_desember = $pen_desember['volume'];
+
+                            $pen_januari23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_januari23_awal' and '$date_januari23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_januari23 = $pen_januari23['volume'];
+
+                            $pen_februari23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_februari23_awal' and '$date_februari23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_februari23 = $pen_februari23['volume'];
+
+                            $pen_maret23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_maret23_awal' and '$date_maret23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_maret23 = $pen_maret23['volume'];
+
+                            $pen_april23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_april23_awal' and '$date_april23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_april23 = $pen_april23['volume'];
+
+                            $pen_mei23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_mei23_awal' and '$date_mei23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_mei23 = $pen_mei23['volume'];
+
+                            $pen_juni23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_juni23_awal' and '$date_juni23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_juni23 = $pen_juni23['volume'];
+
+                            $pen_juli23 = $this->db->select('SUM(pp.display_volume) as volume')
+                            ->from('pmm_productions pp')
+                            ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                            ->where("pp.date_production between '$date_juli23_awal' and '$date_juli23_akhir'")
+                            ->where("pp.status = 'PUBLISH'")
+                            ->where("ppo.status in ('OPEN','CLOSED')")
+                            ->group_by("pp.client_id")
+                            ->get()->row_array();
+                            
+                            $total_pen_juli23 = $pen_juli23['volume'];
+                            ?>
+                            <?php
+                            //JANUARI
+                            $januari = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+                            ->get()->row_array();
+
+                            $januari_a = $januari['vol_produk_a'];
+                            $januari_b = $januari['vol_produk_b'];
+                            $januari_c = $januari['vol_produk_c'];
+                            $januari_d = $januari['vol_produk_d'];
+
+                            $januari_total = $januari_a + $januari_b + $januari_c + $januari_d;
+
+                            //FEBRUARI
+                            $februari = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+                            ->get()->row_array();
+
+                            $februari_a = $februari['vol_produk_a'];
+                            $februari_b = $februari['vol_produk_b'];
+                            $februari_c = $februari['vol_produk_c'];
+                            $februari_d = $februari['vol_produk_d'];
+
+                            $februari_total = $februari_a + $februari_b + $februari_c + $februari_d;
+
+                            //MARET
+                            $maret = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+                            ->get()->row_array();
+
+                            $maret_a = $maret['vol_produk_a'];
+                            $maret_b = $maret['vol_produk_b'];
+                            $maret_c = $maret['vol_produk_c'];
+                            $maret_d = $maret['vol_produk_d'];
+
+                            $maret_total = $maret_a + $maret_b + $maret_c + $maret_d;
+
+                            //APRIL
+                            $april = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+                            ->get()->row_array();
+
+                            $april_a = $april['vol_produk_a'];
+                            $april_b = $april['vol_produk_b'];
+                            $april_c = $april['vol_produk_c'];
+                            $april_d = $april['vol_produk_d'];
+
+                            $april_total = $april_a + $april_b + $april_c + $april_d;
+
+                            //MEI
+                            $mei = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+                            ->get()->row_array();
+
+                            $mei_a = $mei['vol_produk_a'];
+                            $mei_b = $mei['vol_produk_b'];
+                            $mei_c = $mei['vol_produk_c'];
+                            $mei_d = $mei['vol_produk_d'];
+
+                            $mei_total = $mei_a + $mei_b + $mei_c + $mei_d;
+
+                            //JUNI
+                            $juni = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+                            ->get()->row_array();
+
+                            $juni_a = $juni['vol_produk_a'];
+                            $juni_b = $juni['vol_produk_b'];
+                            $juni_c = $juni['vol_produk_c'];
+                            $juni_d = $juni['vol_produk_d'];
+
+                            $juni_total = $juni_a + $juni_b + $juni_c + $juni_d;
+
+                            //JULI
+                            $juli = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+                            ->get()->row_array();
+
+                            $juli_a = $juli['vol_produk_a'];
+                            $juli_b = $juli['vol_produk_b'];
+                            $juli_c = $juli['vol_produk_c'];
+                            $juli_d = $juli['vol_produk_d'];
+
+                            $juli_total = $juli_a + $juli_b + $juli_c + $juli_d;
+
+                            //AGUSTUS
+                            $agustus = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_agustus_awal' and '$date_agustus_akhir'")
+                            ->get()->row_array();
+
+                            $agustus_a = $agustus['vol_produk_a'];
+                            $agustus_b = $agustus['vol_produk_b'];
+                            $agustus_c = $agustus['vol_produk_c'];
+                            $agustus_d = $agustus['vol_produk_d'];
+
+                            $agustus_total = $agustus_a + $agustus_b + $agustus_c + $agustus_d;
+
+                            //SEPTEMBER
+                            $september = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_september_awal' and '$date_september_akhir'")
+                            ->get()->row_array();
+
+                            $september_a = $september['vol_produk_a'];
+                            $september_b = $september['vol_produk_b'];
+                            $september_c = $september['vol_produk_c'];
+                            $september_d = $september['vol_produk_d'];
+
+                            $september_total = $september_a + $september_b + $september_c + $september_d;
+
+                            //OKTOBER
+                            $oktober = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_oktober_awal' and '$date_oktober_akhir'")
+                            ->get()->row_array();
+
+                            $oktober_a = $oktober['vol_produk_a'];
+                            $oktober_b = $oktober['vol_produk_b'];
+                            $oktober_c = $oktober['vol_produk_c'];
+                            $oktober_d = $oktober['vol_produk_d'];
+
+                            $oktober_total = $oktober_a + $oktober_b + $oktober_c + $oktober_d;
+
+                            //NOVEMBER
+                            $november = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
+                            ->get()->row_array();
+
+                            $november_a = $november['vol_produk_a'];
+                            $november_b = $november['vol_produk_b'];
+                            $november_c = $november['vol_produk_c'];
+                            $november_d = $november['vol_produk_d'];
+
+                            $november_total = $november_a + $november_b + $november_c + $november_d;
+
+                            //DESEMBER
+                            $desember = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
+                            ->get()->row_array();
+
+                            $desember_a = $desember['vol_produk_a'];
+                            $desember_b = $desember['vol_produk_b'];
+                            $desember_c = $desember['vol_produk_c'];
+                            $desember_d = $desember['vol_produk_d'];
+
+                            $desember_total = $desember_a + $desember_b + $desember_c + $desember_d;
+
+                            //JANUARI23
+                            $januari23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_januari23_awal' and '$date_januari23_akhir'")
+                            ->get()->row_array();
+
+                            $januari23_a = $januari23['vol_produk_a'];
+                            $januari23_b = $januari23['vol_produk_b'];
+                            $januari23_c = $januari23['vol_produk_c'];
+                            $januari23_d = $januari23['vol_produk_d'];
+
+                            $januari23_total = $januari23_a + $januari23_b + $januari23_c + $januari23_d;
+
+                            //FEBRUARI23
+                            $februari23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_februari23_awal' and '$date_februari23_akhir'")
+                            ->get()->row_array();
+
+                            $februari23_a = $februari23['vol_produk_a'];
+                            $februari23_b = $februari23['vol_produk_b'];
+                            $februari23_c = $februari23['vol_produk_c'];
+                            $februari23_d = $februari23['vol_produk_d'];
+
+                            $februari23_total = $februari23_a + $februari23_b + $februari23_c + $februari23_d;
+
+                            //MARET23
+                            $maret23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_maret23_awal' and '$date_maret23_akhir'")
+                            ->get()->row_array();
+
+                            $maret23_a = $maret23['vol_produk_a'];
+                            $maret23_b = $maret23['vol_produk_b'];
+                            $maret23_c = $maret23['vol_produk_c'];
+                            $maret23_d = $maret23['vol_produk_d'];
+
+                            $maret23_total = $maret23_a + $maret23_b + $maret23_c + $maret23_d;
+
+                            //APRIL23
+                            $april23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_april23_awal' and '$date_april23_akhir'")
+                            ->get()->row_array();
+
+                            $april23_a = $april23['vol_produk_a'];
+                            $april23_b = $april23['vol_produk_b'];
+                            $april23_c = $april23['vol_produk_c'];
+                            $april23_d = $april23['vol_produk_d'];
+
+                            $april23_total = $april23_a + $april23_b + $april23_c + $april23_d;
+
+                            //MEI23
+                            $mei23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_mei23_awal' and '$date_mei23_akhir'")
+                            ->get()->row_array();
+
+                            $mei23_a = $mei23['vol_produk_a'];
+                            $mei23_b = $mei23['vol_produk_b'];
+                            $mei23_c = $mei23['vol_produk_c'];
+                            $mei23_d = $mei23['vol_produk_d'];
+
+                            $mei23_total = $mei23_a + $mei23_b + $mei23_c + $mei23_d;
+
+                            //JUNI23
+                            $juni23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_juni23_awal' and '$date_juni23_akhir'")
+                            ->get()->row_array();
+
+                            $juni23_a = $juni23['vol_produk_a'];
+                            $juni23_b = $juni23['vol_produk_b'];
+                            $juni23_c = $juni23['vol_produk_c'];
+                            $juni23_d = $juni23['vol_produk_d'];
+
+                            $juni23_total = $juni23_a + $juni23_b + $juni23_c + $juni23_d;
+
+                            //JULI23
+                            $juli23 = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+                            ->from('rak r')
+                            ->where("r.tanggal_rencana_kerja between '$date_juli23_awal' and '$date_juli23_akhir'")
+                            ->get()->row_array();
+
+                            $juli23_a = $juli23['vol_produk_a'];
+                            $juli23_b = $juli23['vol_produk_b'];
+                            $juli23_c = $juli23['vol_produk_c'];
+                            $juli23_d = $juli23['vol_produk_d'];
+
+                            $juli23_total = $juli23_a + $juli23_b + $juli23_c + $juli23_d;
+
+                            ?>
                             <table style="background-color:#FFFFFF;" border="0" width="100%">
                                 <tr style="background-color:#808080; color:white;">
                                     <th class="text-center" width="8%">Keterangan</th>
@@ -895,71 +1354,71 @@
                                 </tr>
                                 <tr style="background-color:#000000; color:white;">
                                     <th class="text-right">Vol. RAP</th>
-                                    <th class="text-center"><?php echo number_format($total_januari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_februari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_maret_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_april_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_mei_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juni_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juli_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_agustus_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_september_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_oktober_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_november_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_desember_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_januari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_februari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_maret23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_april23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_mei23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juni23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($januari_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($februari_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($maret_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($april_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($mei_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($juni_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($juli_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($agustus_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($september_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($oktober_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($november_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($desember_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($januari23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($februari23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($maret23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($april23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($mei23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($juni23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($juli23_total,2,',','.');?></th>
                                     <th class="text-center"></th>
                                 </tr>
                                 <tr style="background-color:#FF0000; color:white;">
                                     <th class="text-right">Vol. Realisasi</th>
-                                    <th class="text-center"><?php echo number_format($net_januari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_februari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_maret_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_april_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_mei_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_juni_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_juli_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_agustus_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_september_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_oktober_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_november_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_desember_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_januari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_februari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_maret23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_april23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_mei23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_juni23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($net_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_januari,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_februari,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_maret,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_april,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_mei,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juni,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juli,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_agustus,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_september,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_oktober,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_november,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_desember,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_januari23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_februari23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_maret23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_april23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_mei23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juni23,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juli23,2,',','.');?></th>
                                     <th class="text-center"></th>
                                 </tr>
                                 <tr style="background-color:#38761D; color:white;">
                                     <th class="text-right">Vol. Selisih</th>
-                                    <th class="text-center"><?php echo number_format($total_januari_volume - $net_januari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_februari_volume - $net_februari_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_maret_volume - $net_maret_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_april_volume - $net_april_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_mei_volume - $net_mei_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juni_volume - $net_juni_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juli_volume - $net_juli_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_agustus_volume - $net_agustus_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_september_volume - $net_september_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_oktober_volume - $net_oktober_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_november_volume - $net_november_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_desember_volume - $net_desember_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_januari23_volume - $net_januari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_februari23_volume - $net_februari23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_maret23_volume - $net_maret23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_april23_volume - $net_april23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_mei23_volume - $net_mei23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juni23_volume - $net_juni23_volume,0,',','.');?></th>
-                                    <th class="text-center"><?php echo number_format($total_juli23_volume - $net_juli23_volume,0,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_januari - $januari_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_februari - $februari_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_maret - $maret_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_april - $april_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_mei - $mei_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juni - $juni_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juli - $juli_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_agustus - $agustus_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_september - $september_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_oktober - $oktober_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_november - $november_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_desember - $desember_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_januari23 - $januari23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_februari23 - $februari23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_maret23 - $maret23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_april23 - $april23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_mei23 - $mei23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juni23 - $juni23_total,2,',','.');?></th>
+                                    <th class="text-center"><?php echo number_format($total_pen_juli23 - $juli23_total,2,',','.');?></th>
                                     <th class="text-center"></th>
                                 </tr>                                
                             </table>
@@ -1315,7 +1774,9 @@
                     
                     data: [<?php echo json_encode($selisih_januari, JSON_NUMERIC_CHECK); ?>, <?php echo json_encode($selisih_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($selisih_juli23, JSON_NUMERIC_CHECK); ?>],
 
-                    color: '#38761D'
+                    color: '#38761D',
+
+                    visible: false
                 },
                 ]
             });

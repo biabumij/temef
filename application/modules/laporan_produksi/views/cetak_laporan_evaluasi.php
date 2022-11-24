@@ -111,7 +111,7 @@
 
 			<?php
 
-			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, (pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
+			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, pk.price_a, pk.price_b, pk.price_c, pk.price_d,(pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
 			->from('pmm_productions pp')
 			->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
@@ -121,6 +121,11 @@
 			$total_volume_b = 0;
 			$total_volume_c = 0;
 			$total_volume_d = 0;
+
+			$total_price_a = 0;
+			$total_price_b = 0;
+			$total_price_c = 0;
+			$total_price_d = 0;
 
 			$total_nilai_a = 0;
 			$total_nilai_b = 0;
@@ -136,6 +141,10 @@
 				$total_nilai_b += $x['nilai_b'];
 				$total_nilai_c += $x['nilai_c'];
 				$total_nilai_d += $x['nilai_d'];
+				$total_price_a = $x['price_a'];
+				$total_price_b = $x['price_b'];
+				$total_price_c = $x['price_c'];
+				$total_price_d = $x['price_d'];
 				
 			}
 
@@ -149,10 +158,10 @@
 			$nilai_c = $total_nilai_c;
 			$nilai_d = $total_nilai_d;
 
-			$price_a = ($total_volume_a!=0)?$total_nilai_a / $total_volume_a * 1:0;
-			$price_b = ($total_volume_b!=0)?$total_nilai_a / $total_volume_b * 1:0;
-			$price_c = ($total_volume_c!=0)?$total_nilai_a / $total_volume_c * 1:0;
-			$price_d = ($total_volume_d!=0)?$total_nilai_a / $total_volume_d * 1:0;
+			$price_a = $total_price_a;
+			$price_b = $total_price_b;
+			$price_c = $total_price_c;
+			$price_d = $total_price_d;
 
 			$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
 			$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;
@@ -634,19 +643,21 @@
 			
 			<tr class="table-judul">
 				<th width="5%" align = "center" rowspan="2">&nbsp;<br/>NO.</th>
-				<th width="16%" align = "center" rowspan="2">&nbsp;<br/>URAIAN</th>
+				<th width="12%" align = "center" rowspan="2">&nbsp;<br/>URAIAN</th>
 				<th width="10%" align = "center" rowspan="2">&nbsp;<br/>SATUAN</th>
-				<th width="23%" align = "center" colspan="2">RAP</th>
-				<th width="23%" align = "center" colspan="2">REALISASI</th>
-				<th width="23%" align = "center" colspan="2">EVALUASI</th>
+				<th width="28%" align = "center" colspan="3">RENCANA</th>
+				<th width="28%" align = "center" colspan="3">REALISASI</th>
+				<th width="17%" align = "center" colspan="2">EVALUASI</th>
 	        </tr>
 			<tr class="table-judul">
-				<th width="10%" align = "center">VOLUME</th>
-				<th width="13%" align = "center">NILAI</th>
-				<th width="10%" align = "center">VOLUME</th>
-				<th width="13%" align = "center">NILAI</th>
-				<th width="10%" align = "center">VOLUME</th>
-				<th width="13%" align = "center">NILAI</th>
+				<th align = "center">VOLUME</th>
+				<th align = "center">HARSAT</th>
+				<th align = "center">NILAI</th>
+				<th align = "center">VOLUME</th>
+				<th align = "center">HARSAT</th>
+				<th align = "center">NILAI</th>
+				<th align = "center">VOLUME</th>
+				<th align = "center">NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'color:red' : 'color:black';
@@ -665,8 +676,10 @@
 				<th align = "left">Semen</th>
 				<th align = "center">Ton</th>
 				<th align = "right"><?php echo number_format($volume_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($price_a,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_a,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
@@ -676,8 +689,10 @@
 				<th align = "left">Pasir</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($volume_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($price_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_b,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
@@ -687,8 +702,10 @@
 				<th align = "left">Batu Split 10-20</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($volume_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($price_c,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_c,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
@@ -698,8 +715,10 @@
 				<th align = "left">Batu Split 20-30</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($volume_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($price_d,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_d,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
 				<th align = "right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
@@ -707,7 +726,9 @@
 			<tr class="table-total">		
 				<th align = "right" colspan="3">TOTAL</th>
 				<th align = "right"></th>
+				<th align = "right"></th>
 				<th align = "right"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
+				<th align = "right"></th>
 				<th align = "right"></th>
 				<th align = "right"><?php echo number_format($total_nilai_realisasi,0,',','.');?></th>
 				<th align = "right"></th>
