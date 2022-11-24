@@ -1550,4 +1550,16 @@ class Pembelian extends Secure_Controller
 
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
+
+    public function open_penagihan($id)
+	{
+		$this->db->set("status", "BELUM LUNAS");
+        $this->db->set("verifikasi_dok", "SUDAH");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
+		$this->db->where("id", $id);
+		$this->db->update("pmm_penagihan_pembelian");
+		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
+		redirect("pembelian/penagihan_pembelian_detail/$id");
+	}
 }
