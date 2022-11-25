@@ -7088,6 +7088,7 @@ class Reports extends CI_Controller {
 			$harga_jual_125_rap = $this->db->select('pod.price as harga_satuan')
 			->from('pmm_sales_po po')
 			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("(po.contract_date between '$date1' and '$date2')")
 			->where("pod.product_id = 2")
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
@@ -7095,6 +7096,7 @@ class Reports extends CI_Controller {
 			$harga_jual_225_rap = $this->db->select('pod.price as harga_satuan')
 			->from('pmm_sales_po po')
 			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("(po.contract_date between '$date1' and '$date2')")
 			->where("pod.product_id = 1")
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
@@ -7102,6 +7104,7 @@ class Reports extends CI_Controller {
 			$harga_jual_250_rap = $this->db->select('pod.price as harga_satuan')
 			->from('pmm_sales_po po')
 			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("(po.contract_date between '$date1' and '$date2')")
 			->where("pod.product_id = 3")
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
@@ -7109,6 +7112,7 @@ class Reports extends CI_Controller {
 			$harga_jual_250_18_rap = $this->db->select('pod.price as harga_satuan')
 			->from('pmm_sales_po po')
 			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
+			->where("(po.contract_date between '$date1' and '$date2')")
 			->where("pod.product_id = 11")
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
