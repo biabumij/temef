@@ -214,51 +214,6 @@ class Laporan extends Secure_Controller {
         $pdf->Output('diskonto.pdf', 'I');
 	}
 
-	public function cetak_persiapan()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
-		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
-		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
-		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
-		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
-		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
-		$data['biaya_parent'] = $this->m_laporan->showBiaya_print_parent($arr_date);
-        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
-		$data['biaya_jurnal_parent'] = $this->m_laporan->showBiayaJurnal_print_parent($arr_date);
-		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
-		$data['biaya_lainnya_parent'] = $this->m_laporan->showBiayaLainnya_print_parent($arr_date);
-        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
-		$data['biaya_lainnya_jurnal_parent'] = $this->m_laporan->showBiayaLainnyaJurnal_print_parent($arr_date);
-		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
-		$data['biaya_persiapan_parent'] = $this->m_laporan->showPersiapanBiaya_print_parent($arr_date);
-		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
-		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
-		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
-        $html = $this->load->view('laporan_keuangan/cetak_persiapan',$data,TRUE);
-
-        
-        $pdf->SetTitle('BBJ - Persiapan');
-        $pdf->nsi_html($html);
-        $pdf->Output('persiapan.pdf', 'I');
-	}
-
 	public function cetak_cash_flow()
 	{
 		$this->load->library('pdf');
