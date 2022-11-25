@@ -9,7 +9,7 @@
     }
     .highcharts-figure,
     .highcharts-data-table table {
-    min-width: 65%;
+    min-width: 100%;
     max-width: 100%;
     }
 
