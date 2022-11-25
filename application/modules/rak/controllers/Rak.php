@@ -51,6 +51,10 @@ class Rak extends Secure_Controller {
 			'vol_produk_b' => $vol_produk_b,
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
+			'price_a' => 896600,
+			'price_b' => 1005000,
+			'price_c' => 1179200,
+			'price_d' => 1200000,
 			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),

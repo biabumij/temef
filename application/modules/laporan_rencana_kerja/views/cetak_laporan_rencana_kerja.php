@@ -342,41 +342,6 @@
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
 
-			<!--- HARGA NOW -->
-			<?php
-			$harga_jual_125_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 2")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_225_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 1")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 3")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_18_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 11")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-			?>
-
 			<?php
 			$date_november_awal = date('2022-11-01');
 			$date_november_akhir = date('2022-11-30');
@@ -396,10 +361,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_november = $volume_november_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_november = $volume_november_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_november = $volume_november_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_november = $volume_november_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_november = $volume_november_produk_a * $rencana_kerja_november['price_a'];
+			$nilai_jual_225_november = $volume_november_produk_b * $rencana_kerja_november['price_b'];
+			$nilai_jual_250_november = $volume_november_produk_c * $rencana_kerja_november['price_c'];
+			$nilai_jual_250_18_november = $volume_november_produk_d * $rencana_kerja_november['price_d'];
 			$nilai_jual_all_november = $nilai_jual_125_november + $nilai_jual_225_november + $nilai_jual_250_november + $nilai_jual_250_18_november;
 
 			$total_november_nilai = $nilai_jual_all_november;
@@ -449,10 +414,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_desember = $volume_desember_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_desember = $volume_desember_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_desember = $volume_desember_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_desember = $volume_desember_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_desember = $volume_desember_produk_a * $rencana_kerja_desember['price_a'];
+			$nilai_jual_225_desember = $volume_desember_produk_b * $rencana_kerja_desember['price_b'];
+			$nilai_jual_250_desember = $volume_desember_produk_c * $rencana_kerja_desember['price_c'];
+			$nilai_jual_250_18_desember = $volume_desember_produk_d * $rencana_kerja_desember['price_d'];
 			$nilai_jual_all_desember = $nilai_jual_125_desember + $nilai_jual_225_desember + $nilai_jual_250_desember + $nilai_jual_250_18_desember;
 
 			$total_desember_nilai = $nilai_jual_all_desember;
@@ -502,10 +467,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_januari = $volume_januari_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_januari = $volume_januari_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_januari = $volume_januari_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_januari = $volume_januari_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_januari = $volume_januari_produk_a * $rencana_kerja_januari['price_a'];
+			$nilai_jual_225_januari = $volume_januari_produk_b * $rencana_kerja_januari['price_b'];
+			$nilai_jual_250_januari = $volume_januari_produk_c * $rencana_kerja_januari['price_c'];
+			$nilai_jual_250_18_januari = $volume_januari_produk_d * $rencana_kerja_januari['price_d'];
 			$nilai_jual_all_januari = $nilai_jual_125_januari + $nilai_jual_225_januari + $nilai_jual_250_januari + $nilai_jual_250_18_januari;
 
 			$total_januari_nilai = $nilai_jual_all_januari;
@@ -555,10 +520,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_februari = $volume_februari_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_februari = $volume_februari_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_februari = $volume_februari_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_februari = $volume_februari_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_februari = $volume_februari_produk_a * $rencana_kerja_februari['price_a'];
+			$nilai_jual_225_februari = $volume_februari_produk_b * $rencana_kerja_februari['price_b'];
+			$nilai_jual_250_februari = $volume_februari_produk_c * $rencana_kerja_februari['price_c'];
+			$nilai_jual_250_18_februari = $volume_februari_produk_d * $rencana_kerja_februari['price_d'];
 			$nilai_jual_all_februari = $nilai_jual_125_februari + $nilai_jual_225_februari + $nilai_jual_250_februari + $nilai_jual_250_18_februari;
 
 			$total_februari_nilai = $nilai_jual_all_februari;
@@ -608,10 +573,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_maret = $volume_maret_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_maret = $volume_maret_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_maret = $volume_maret_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_maret = $volume_maret_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_maret = $volume_maret_produk_a * $rencana_kerja_maret['price_a'];
+			$nilai_jual_225_maret = $volume_maret_produk_b * $rencana_kerja_maret['price_b'];
+			$nilai_jual_250_maret = $volume_maret_produk_c * $rencana_kerja_maret['price_c'];
+			$nilai_jual_250_18_maret = $volume_maret_produk_d * $rencana_kerja_maret['price_d'];
 			$nilai_jual_all_maret = $nilai_jual_125_maret + $nilai_jual_225_maret + $nilai_jual_250_maret + $nilai_jual_250_18_maret;
 
 			$total_maret_nilai = $nilai_jual_all_maret;
@@ -661,10 +626,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_april = $volume_april_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_april = $volume_april_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_april = $volume_april_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_april = $volume_april_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_april = $volume_april_produk_a * $rencana_kerja_april['price_a'];
+			$nilai_jual_225_april = $volume_april_produk_b * $rencana_kerja_april['price_b'];
+			$nilai_jual_250_april = $volume_april_produk_c * $rencana_kerja_april['price_c'];
+			$nilai_jual_250_18_april = $volume_april_produk_d * $rencana_kerja_april['price_d'];
 			$nilai_jual_all_april = $nilai_jual_125_april + $nilai_jual_225_april + $nilai_jual_250_april + $nilai_jual_250_18_april;
 
 			$total_april_nilai = $nilai_jual_all_april;
@@ -714,10 +679,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_mei = $volume_mei_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_mei = $volume_mei_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_mei = $volume_mei_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_mei = $volume_mei_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_mei = $volume_mei_produk_a * $rencana_kerja_mei['price_a'];
+			$nilai_jual_225_mei = $volume_mei_produk_b * $rencana_kerja_mei['price_b'];
+			$nilai_jual_250_mei = $volume_mei_produk_c * $rencana_kerja_mei['price_c'];
+			$nilai_jual_250_18_mei = $volume_mei_produk_d * $rencana_kerja_mei['price_d'];
 			$nilai_jual_all_mei = $nilai_jual_125_mei + $nilai_jual_225_mei + $nilai_jual_250_mei + $nilai_jual_250_18_mei;
 
 			$total_mei_nilai = $nilai_jual_all_mei;
@@ -767,10 +732,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_juni = $volume_juni_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_juni = $volume_juni_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_juni = $volume_juni_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_juni = $volume_juni_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_juni = $volume_juni_produk_a * $rencana_kerja_juni['price_a'];
+			$nilai_jual_225_juni = $volume_juni_produk_b * $rencana_kerja_juni['price_b'];
+			$nilai_jual_250_juni = $volume_juni_produk_c * $rencana_kerja_juni['price_c'];
+			$nilai_jual_250_18_juni = $volume_juni_produk_d * $rencana_kerja_juni['price_d'];
 			$nilai_jual_all_juni = $nilai_jual_125_juni + $nilai_jual_225_juni + $nilai_jual_250_juni + $nilai_jual_250_18_juni;
 
 			$total_juni_nilai = $nilai_jual_all_juni;
@@ -820,10 +785,10 @@
 			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_juli = $volume_juli_produk_a * $harga_jual_125_now['harga_satuan'];
-			$nilai_jual_225_juli = $volume_juli_produk_b * $harga_jual_225_now['harga_satuan'];
-			$nilai_jual_250_juli = $volume_juli_produk_c * $harga_jual_250_now['harga_satuan'];
-			$nilai_jual_250_18_juli = $volume_juli_produk_d * $harga_jual_250_18_now['harga_satuan'];
+			$nilai_jual_125_juli = $volume_juli_produk_a * $rencana_kerja_juli['price_a'];
+			$nilai_jual_225_juli = $volume_juli_produk_b * $rencana_kerja_juli['price_b'];
+			$nilai_jual_250_juli = $volume_juli_produk_c * $rencana_kerja_juli['price_c'];
+			$nilai_jual_250_18_juli = $volume_juli_produk_d * $rencana_kerja_juli['price_d'];
 			$nilai_jual_all_juli = $nilai_jual_125_juli + $nilai_jual_225_juli + $nilai_jual_250_juli + $nilai_jual_250_18_juli;
 
 			$total_juli_nilai = $nilai_jual_all_juli;
