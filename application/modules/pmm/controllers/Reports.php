@@ -10664,8 +10664,7 @@ class Reports extends CI_Controller {
 			$total_rap_2022_biaya_alat = $rencana_kerja_biaya_2022['biaya_alat'];
 			$total_rap_2022_biaya_overhead = $rencana_kerja_biaya_2022['biaya_overhead'];
 			$total_rap_2022_biaya_bank = $rencana_kerja_biaya_2022['biaya_bank'];
-			$total_rap_2022_biaya_persiapan = $rencana_kerja_biaya_2022['biaya_persiapan'];
-			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank + $total_rap_2022_biaya_persiapan;
+			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 
 			?>
 			<!-- RAP TERBARU -->
@@ -10733,6 +10732,146 @@ class Reports extends CI_Controller {
 
 			$total_akumulasi_volume = $volume_akumulasi_produk_a + $volume_akumulasi_produk_b + $volume_akumulasi_produk_c + $volume_akumulasi_produk_d;
 			$total_akumulasi_nilai = $nilai_akumulasi_produk_a + $nilai_akumulasi_produk_b + $nilai_akumulasi_produk_c + $nilai_akumulasi_produk_d;
+		
+			//AKUMULASI BIAYA
+			//BAHAN
+			$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi <= '$last_opname')")
+			->get()->result_array();
+
+			$total_akumulasi = 0;
+
+			foreach ($akumulasi as $a){
+				$total_akumulasi += $a['total_nilai_keluar'];
+			}
+
+			$total_bahan_akumulasi = $total_akumulasi;
+		
+			//ALAT
+			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("(prm.date_receipt <= '$last_opname')")
+			->where("p.kategori_produk = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->get()->row_array();
+
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi <= '$last_opname')")
+			->get()->result_array();
+
+			$total_akumulasi_bbm = 0;
+
+			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm = $total_akumulasi_bbm;
+
+			$total_insentif_tm = 0;
+
+			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 220")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$total_insentif_tm = $insentif_tm['total'];
+
+			$total_alat_akumulasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+
+			//OVERHEAD
+			$overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$overhead_jurnal_15_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',15)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$overhead_16_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$overhead_jurnal_16_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$overhead_17_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$overhead_jurnal_17_akumulasi = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("c.id <> 220 ")
+			->where("c.id <> 168 ")
+			->where("c.id <> 228 ")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$total_overhead_akumulasi =  $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $overhead_16_akumulasi['total'] + $overhead_jurnal_16_akumulasi['total'] + $overhead_17_akumulasi['total'] + $overhead_jurnal_17_akumulasi['total'];
+			
+			//DISKONTO
+			$diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 168")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+
+			$total_diskonto_akumulasi = $diskonto_akumulasi['total'];
+			$total_biaya_akumulasi = $total_bahan_akumulasi + $total_alat_akumulasi + $total_overhead_akumulasi + $total_diskonto_akumulasi;
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
 
@@ -10770,8 +10909,7 @@ class Reports extends CI_Controller {
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
 			?>
-			
-			<!-- NOVEMBER -->
+
 			<?php
 			$date_november_awal = date('2022-11-01');
 			$date_november_akhir = date('2022-11-30');
@@ -10820,8 +10958,7 @@ class Reports extends CI_Controller {
 			$total_november_biaya_alat = $rencana_kerja_biaya_november['biaya_alat'];
 			$total_november_biaya_overhead = $rencana_kerja_biaya_november['biaya_overhead'];
 			$total_november_biaya_bank = $rencana_kerja_biaya_november['biaya_bank'];
-			$total_november_biaya_persiapan = $rencana_kerja_biaya_november['biaya_persiapan'];
-			$total_biaya_november_biaya = $total_november_biaya_bahan + $total_november_biaya_alat + $total_november_biaya_overhead + $total_november_biaya_bank + $total_november_biaya_persiapan;
+			$total_biaya_november_biaya = $total_november_biaya_bahan + $total_november_biaya_alat + $total_november_biaya_overhead + $total_november_biaya_bank;
 			?>
 			<!-- NOVEMBER -->
 
@@ -10874,8 +11011,7 @@ class Reports extends CI_Controller {
 			$total_desember_biaya_alat = $rencana_kerja_biaya_desember['biaya_alat'];
 			$total_desember_biaya_overhead = $rencana_kerja_biaya_desember['biaya_overhead'];
 			$total_desember_biaya_bank = $rencana_kerja_biaya_desember['biaya_bank'];
-			$total_desember_biaya_persiapan = $rencana_kerja_biaya_desember['biaya_persiapan'];
-			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank + $total_desember_biaya_persiapan;
+			$total_biaya_desember_biaya = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank;
 			?>
 			<!-- DESEMBER -->
 
@@ -10928,8 +11064,7 @@ class Reports extends CI_Controller {
 			$total_januari_biaya_alat = $rencana_kerja_biaya_januari['biaya_alat'];
 			$total_januari_biaya_overhead = $rencana_kerja_biaya_januari['biaya_overhead'];
 			$total_januari_biaya_bank = $rencana_kerja_biaya_januari['biaya_bank'];
-			$total_januari_biaya_persiapan = $rencana_kerja_biaya_januari['biaya_persiapan'];
-			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank + $total_januari_biaya_persiapan;
+			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank;
 			?>
 			<!-- JANUARI -->
 
@@ -10982,8 +11117,7 @@ class Reports extends CI_Controller {
 			$total_februari_biaya_alat = $rencana_kerja_biaya_februari['biaya_alat'];
 			$total_februari_biaya_overhead = $rencana_kerja_biaya_februari['biaya_overhead'];
 			$total_februari_biaya_bank = $rencana_kerja_biaya_februari['biaya_bank'];
-			$total_februari_biaya_persiapan = $rencana_kerja_biaya_februari['biaya_persiapan'];
-			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank + $total_februari_biaya_persiapan;
+			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			?>
 			<!-- FEBRUARI -->
 
@@ -11036,8 +11170,7 @@ class Reports extends CI_Controller {
 			$total_maret_biaya_alat = $rencana_kerja_biaya_maret['biaya_alat'];
 			$total_maret_biaya_overhead = $rencana_kerja_biaya_maret['biaya_overhead'];
 			$total_maret_biaya_bank = $rencana_kerja_biaya_maret['biaya_bank'];
-			$total_maret_biaya_persiapan = $rencana_kerja_biaya_maret['biaya_persiapan'];
-			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank + $total_maret_biaya_persiapan;
+			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
 			?>
 			<!-- MARET -->
 
@@ -11090,8 +11223,7 @@ class Reports extends CI_Controller {
 			$total_april_biaya_alat = $rencana_kerja_biaya_april['biaya_alat'];
 			$total_april_biaya_overhead = $rencana_kerja_biaya_april['biaya_overhead'];
 			$total_april_biaya_bank = $rencana_kerja_biaya_april['biaya_bank'];
-			$total_april_biaya_persiapan = $rencana_kerja_biaya_april['biaya_persiapan'];
-			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank + $total_april_biaya_persiapan;
+			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
 			?>
 			<!-- APRIL -->
 
@@ -11144,8 +11276,7 @@ class Reports extends CI_Controller {
 			$total_mei_biaya_alat = $rencana_kerja_biaya_mei['biaya_alat'];
 			$total_mei_biaya_overhead = $rencana_kerja_biaya_mei['biaya_overhead'];
 			$total_mei_biaya_bank = $rencana_kerja_biaya_mei['biaya_bank'];
-			$total_mei_biaya_persiapan = $rencana_kerja_biaya_mei['biaya_persiapan'];
-			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank + $total_mei_biaya_persiapan;
+			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank;
 			?>
 			<!-- MEI -->
 
@@ -11198,8 +11329,7 @@ class Reports extends CI_Controller {
 			$total_juni_biaya_alat = $rencana_kerja_biaya_juni['biaya_alat'];
 			$total_juni_biaya_overhead = $rencana_kerja_biaya_juni['biaya_overhead'];
 			$total_juni_biaya_bank = $rencana_kerja_biaya_juni['biaya_bank'];
-			$total_juni_biaya_persiapan = $rencana_kerja_biaya_juni['biaya_persiapan'];
-			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank + $total_juni_biaya_persiapan;
+			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank;
 			?>
 			<!-- JUNI -->
 
@@ -11252,186 +11382,9 @@ class Reports extends CI_Controller {
 			$total_juli_biaya_alat = $rencana_kerja_biaya_juli['biaya_alat'];
 			$total_juli_biaya_overhead = $rencana_kerja_biaya_juli['biaya_overhead'];
 			$total_juli_biaya_bank = $rencana_kerja_biaya_juli['biaya_bank'];
-			$total_juli_biaya_persiapan = $rencana_kerja_biaya_juli['biaya_persiapan'];
-			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank + $total_juli_biaya_persiapan;
+			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank;
 			?>
 			<!-- JULI -->
-
-			<!-- AKUMULASI BIAYA SD. SAAT INI -->
-			<?php
-			//BAHAN
-			$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
-			->from('akumulasi pp')
-			->where("(pp.date_akumulasi <= '$date_now')")
-			->get()->result_array();
-
-			$total_akumulasi = 0;
-
-			foreach ($akumulasi as $a){
-				$total_akumulasi += $a['total_nilai_keluar'];
-			}
-
-			$total_bahan_akumulasi = $total_akumulasi;
-			//END BAHAN
-			?>
-
-			<?php
-			//ALAT
-			$nilai_alat = $this->db->select('SUM(prm.display_price) as nilai')
-			->from('pmm_receipt_material prm')
-			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->join('produk p', 'prm.material_id = p.id','left')
-			->where("(prm.date_receipt <= '$date_now')")
-			->where("p.kategori_produk = '5'")
-			->where("po.status in ('PUBLISH','CLOSED')")
-			->get()->row_array();
-
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
-			->from('akumulasi pp')
-			->where("(pp.date_akumulasi <= '$date_now')")
-			->get()->result_array();
-
-			$total_akumulasi_bbm = 0;
-
-			foreach ($akumulasi_bbm as $b){
-				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
-			}
-
-			$total_nilai_bbm = $total_akumulasi_bbm;
-
-			$total_insentif_tm = 0;
-
-			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$total_insentif_tm = $insentif_tm['total'];
-
-			$total_alat_akumulasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
-			//END ALAT
-			?>
-
-			<?php
-			//OVERHEAD
-			$overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',15)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$overhead_jurnal_15_akumulasi = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',15)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$overhead_16_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',16)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$overhead_jurnal_16_akumulasi = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',16)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$overhead_17_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',17)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$overhead_jurnal_17_akumulasi = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where('c.coa_category',17)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$total_overhead_akumulasi =  $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $overhead_16_akumulasi['total'] + $overhead_jurnal_16_akumulasi['total'] + $overhead_17_akumulasi['total'] + $overhead_jurnal_17_akumulasi['total'];
-			?>
-
-			<?php
-			//DISKONTO
-			$diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 168")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$total_diskonto_akumulasi = $diskonto_akumulasi['total'];
-			//DISKONTO
-			?>
-
-			<?php
-			//PERSIAPAN
-			$persiapan_biaya_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 228")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$persiapan_jurnal_akumulasi = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 228")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$date_now')")
-			->get()->row_array();
-
-			$total_persiapan_akumulasi = $persiapan_biaya_akumulasi['total'] + $persiapan_jurnal_akumulasi['total'];
-			$total_biaya_akumulasi = $total_bahan_akumulasi + $total_alat_akumulasi + $total_overhead_akumulasi + $total_diskonto_akumulasi + $total_persiapan_akumulasi;
-			//END PERSIAPAN
-			?>
-			<!-- AKUMULASI BIAYA SD. SAAT INI -->
 
 			<!-- TOTAL -->
 			<?php
@@ -11447,9 +11400,8 @@ class Reports extends CI_Controller {
 			$total_all_biaya_alat = $total_alat_akumulasi + $total_november_biaya_alat + $total_desember_biaya_alat + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
 			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_november_biaya_overhead + $total_desember_biaya_overhead + $total_januari_biaya_overhead + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
 			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_november_biaya_bank + $total_desember_biaya_bank + $total_januari_biaya_bank + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
-			$total_all_biaya_persiapan = $total_persiapan_akumulasi + $total_november_biaya_persiapan + $total_desember_biaya_persiapan + $total_januari_biaya_persiapan + $total_februari_biaya_persiapan + $total_maret_biaya_persiapan + $total_april_biaya_persiapan + $total_mei_biaya_persiapan + $total_juni_biaya_persiapan + $total_juli_biaya_persiapan;
 			
-			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank + $total_all_biaya_persiapan;
+			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank;
 
 			$total_laba_rap_2022 = $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya;
 			$total_laba_sd_agustus = $total_akumulasi_nilai - $total_biaya_akumulasi;
@@ -11466,27 +11418,6 @@ class Reports extends CI_Controller {
 			?>
 			<!-- TOTAL -->
 
-			<!-- SISA -->
-			<?php
-			$sisa_vol_produk_a = $volume_rap_2022_produk_a - $total_all_produk_a;
-			$sisa_vol_produk_b = $volume_rap_2022_produk_b - $total_all_produk_b;
-			$sisa_vol_produk_c = $volume_rap_2022_produk_c - $total_all_produk_c;
-			$sisa_vol_produk_d = $volume_rap_2022_produk_d - $total_all_produk_d;
-			$sisa_all_volume = $total_rap_volume_2022 - $total_all_volume;
-			$sisa_all_nilai = $total_rap_nilai_2022 - $total_all_nilai;
-
-			$sisa_all_biaya_bahan = $total_rap_2022_biaya_bahan - $total_all_biaya_bahan;
-			$sisa_all_biaya_alat = $total_rap_2022_biaya_alat - $total_all_biaya_alat;
-			$sisa_all_biaya_overhead = $total_rap_2022_biaya_overhead - $total_all_biaya_overhead ;
-			$sisa_all_biaya_bank = $total_rap_2022_biaya_bank - $total_all_biaya_bank;
-			$sisa_all_biaya_persiapan = $total_rap_2022_biaya_persiapan - $total_all_biaya_persiapan;
-			$sisa_biaya_all_biaya = $total_biaya_rap_2022_biaya - $total_biaya_all_biaya;
-			$x = $total_laba_rap_2022;
-			$y = - $total_laba_all;
-			$sisa_laba_all = $x - $y;
-			?>
-			<!-- SISA -->
-
 			<tr class="table-active4-rak">
 				<th width="5%" class="text-center" rowspan="3" style="vertical-align:middle">NO.</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">URAIAN</th>
@@ -11495,7 +11426,6 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="2" style="vertical-align:middle">REALISASI</th>
 				<th class="text-center" colspan="9">PROGNOSA</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">TOTAL</th>
-				<th class="text-center" rowspan="3" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4-rak">
 				<th class="text-center">NOVEMBER</th>
@@ -11521,7 +11451,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">2023</th>
 	        </tr>
 			<tr class="table-active2-rak">
-				<th class="text-left" colspan="16">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+				<th class="text-left" colspan="15">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">1</th>
@@ -11539,7 +11469,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_juni_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_juli_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_vol_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">2</th>
@@ -11557,7 +11486,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_juni_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_juli_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_vol_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">3</th>
@@ -11575,7 +11503,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_juni_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_juli_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
-				<th class="text-right"><?php echo number_format($sisa_vol_produk_c,2,',','.');?></th>	
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">4</th>
@@ -11592,8 +11519,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_mei_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_juni_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_juli_produk_d,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>	
-				<th class="text-right"><?php echo number_format($sisa_vol_produk_d,2,',','.');?></th>	
+				<th class="text-right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">TOTAL VOLUME</th>
@@ -11610,7 +11536,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_juni_awal)).' - '.date('d F Y',strtotime($date_juni_akhir))) ?>"><?php echo number_format($total_juni_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_juli_awal)).' - '.date('d F Y',strtotime($date_juli_akhir))) ?>"><?php echo number_format($total_juli_volume,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">PENDAPATAN USAHA</th>
@@ -11627,10 +11552,9 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_juni_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_juli_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_nilai,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
-				<th class="text-left" colspan="16">BIAYA</th>
+				<th class="text-left" colspan="15">BIAYA</th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">1</th>
@@ -11648,7 +11572,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">2</th>
@@ -11666,7 +11589,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">3</th>
@@ -11684,7 +11606,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_juni_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_juli_biaya_overhead,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-rak">
 				<th class="text-center">4</th>
@@ -11702,25 +11623,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_juni_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_juli_biaya_bank,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_biaya_bank,0,',','.');?></th>
-			</tr>
-			<tr class="table-active3-rak">
-				<th class="text-center">5</th>
-				<th class="text-left">Persiapan</th>
-				<th class="text-center">LS</th>
-				<th class="text-right"><?php echo number_format($total_rap_2022_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_persiapan_akumulasi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_november_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_desember_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_januari_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_februari_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_maret_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_april_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_mei_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_juni_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_juli_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_all_biaya_persiapan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_all_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">JUMLAH</th>
@@ -11737,7 +11639,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_biaya_juni_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_juli_biaya,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_biaya_all_biaya,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
 				<th class="text-right" colspan="2">LABA</th>
@@ -11754,7 +11655,6 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_laba_juni,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_juli,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_all,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($sisa_laba_all,0,',','.');?></th>
 			</tr>
 	    </table>
 		<?php
