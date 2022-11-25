@@ -139,14 +139,10 @@
 			</style>
 			<!-- RAP -->
 			<?php
+			//VOLUME
 			$date_now = date('Y-m-d');
 			$rencana_kerja = $this->db->select('SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
 			->from('rak r')
-			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
-			->get()->row_array();
-
-			$rencana_kerja_biaya = $this->db->select('SUM(r.biaya_overhead) as biaya_overhead, SUM(r.biaya_bank) as biaya_bank,  SUM(r.biaya_persiapan) as biaya_persiapan')
-			->from('rak_biaya r')
 			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
 
@@ -185,38 +181,6 @@
 			->order_by('po.contract_date','desc')->limit(1)
 			->get()->row_array();
 
-			$harga_jual_125_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 2")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_225_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 1")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 3")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_18_now = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("(po.contract_date < '$date_now')")
-			->where("pod.product_id = 11")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
 			$nilai_jual_125 = $volume_rap_produk_a * $harga_jual_125_rap['harga_satuan'];
 			$nilai_jual_225 = $volume_rap_produk_b * $harga_jual_225_rap['harga_satuan'];
 			$nilai_jual_250 = $volume_rap_produk_c * $harga_jual_250_rap['harga_satuan'];
@@ -225,184 +189,18 @@
 			
 			$total_rap_nilai = $nilai_jual_all;
 
-			//KOMPOSISI RAP
-			//K125
-			$komposisi_125_rap = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 2")
-			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','desc')->limit(1)
+			//BIAYA
+			$rencana_kerja_biaya = $this->db->select('SUM(r.biaya_bahan) as biaya_bahan, SUM(r.biaya_alat) as biaya_alat, SUM(r.biaya_overhead) as biaya_overhead, SUM(r.biaya_bank) as biaya_bank')
+			->from('rak_biaya r')
+			->where("(r.tanggal_rencana_kerja between '$date1' and '$date2')")
 			->get()->row_array();
-
-			$komposisi_125_produk_a_rap = $komposisi_125_rap['presentase_a'];
-			$komposisi_125_produk_b_rap = $komposisi_125_rap['presentase_b'];
-			$komposisi_125_produk_c_rap = $komposisi_125_rap['presentase_c'];
-			$komposisi_125_produk_d_rap = $komposisi_125_rap['presentase_d'];
-
-			//K225
-			$komposisi_225_rap = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 1")
-			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_225_produk_a_rap = $komposisi_225_rap['presentase_a'];
-			$komposisi_225_produk_b_rap = $komposisi_225_rap['presentase_b'];
-			$komposisi_225_produk_c_rap = $komposisi_225_rap['presentase_c'];
-			$komposisi_225_produk_d_rap = $komposisi_225_rap['presentase_d'];
-
-			//K250
-			$komposisi_250_rap = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 3")
-			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_250_produk_a_rap = $komposisi_250_rap['presentase_a'];
-			$komposisi_250_produk_b_rap = $komposisi_250_rap['presentase_b'];
-			$komposisi_250_produk_c_rap = $komposisi_250_rap['presentase_c'];
-			$komposisi_250_produk_d_rap = $komposisi_250_rap['presentase_d'];
-
-			//K250_18
-			$komposisi_250_18_rap = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 11")
-			->where('pk.status','PUBLISH')
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_250_18_produk_a_rap = $komposisi_250_18_rap['presentase_a'];
-			$komposisi_250_18_produk_b_rap = $komposisi_250_18_rap['presentase_b'];
-			$komposisi_250_18_produk_c_rap = $komposisi_250_18_rap['presentase_c'];
-			$komposisi_250_18_produk_d_rap = $komposisi_250_18_rap['presentase_d'];
-
-			//KOMPOSISI
-			//K125
-			$komposisi_125 = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 2")
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_125_produk_a = $komposisi_125['presentase_a'];
-			$komposisi_125_produk_b = $komposisi_125['presentase_b'];
-			$komposisi_125_produk_c = $komposisi_125['presentase_c'];
-			$komposisi_125_produk_d = $komposisi_125['presentase_d'];
-
-			//K225
-			$komposisi_225 = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 1")
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_225_produk_a = $komposisi_225['presentase_a'];
-			$komposisi_225_produk_b = $komposisi_225['presentase_b'];
-			$komposisi_225_produk_c = $komposisi_225['presentase_c'];
-			$komposisi_225_produk_d = $komposisi_225['presentase_d'];
-
-			//K250
-			$komposisi_250 = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 3")
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_250_produk_a = $komposisi_250['presentase_a'];
-			$komposisi_250_produk_b = $komposisi_250['presentase_b'];
-			$komposisi_250_produk_c = $komposisi_250['presentase_c'];
-			$komposisi_250_produk_d = $komposisi_250['presentase_d'];
-
-			//K250_18
-			$komposisi_250_18 = $this->db->select('pk.*')
-			->from('pmm_agregat pk')
-			->where("pk.mutu_beton = 11")
-			->order_by('pk.date_agregat','desc')->limit(1)
-			->get()->row_array();
-
-			$komposisi_250_18_produk_a = $komposisi_250_18['presentase_a'];
-			$komposisi_250_18_produk_b = $komposisi_250_18['presentase_b'];
-			$komposisi_250_18_produk_c = $komposisi_250_18['presentase_c'];
-			$komposisi_250_18_produk_d = $komposisi_250_18['presentase_d'];
-
-			//TOTAL PEMAKAIAN BAHAN RAP
-			//TOTAL K-125
-			$total_semen_125_rap = $komposisi_125_produk_a_rap * $volume_rap_produk_a;
-			$total_pasir_125_rap = $komposisi_125_produk_b_rap * $volume_rap_produk_a;
-			$total_batu1020_125_rap = $komposisi_125_produk_c_rap * $volume_rap_produk_a;
-			$total_batu2030_125_rap = $komposisi_125_produk_d_rap * $volume_rap_produk_a;
-
-			$nilai_semen_125_rap = $total_semen_125_rap * $komposisi_125_rap['price_a'];
-			$nilai_pasir_125_rap = $total_pasir_125_rap * $komposisi_125_rap['price_b'];
-			$nilai_batu1020_125_rap = $total_batu1020_125_rap * $komposisi_125_rap['price_c'];
-			$nilai_batu2030_125_rap = $total_batu2030_125_rap * $komposisi_125_rap['price_d'];
-
-			$total_125_rap = $nilai_semen_125_rap + $nilai_pasir_125_rap + $nilai_batu1020_125_rap + $nilai_batu2030_125_rap;
-
-			//TOTAL K-225
-			$total_semen_225_rap = $komposisi_225_produk_a_rap * $volume_rap_produk_b;
-			$total_pasir_225_rap = $komposisi_225_produk_b_rap * $volume_rap_produk_b;
-			$total_batu1020_225_rap = $komposisi_225_produk_c_rap * $volume_rap_produk_b;
-			$total_batu2030_225_rap = $komposisi_225_produk_d_rap * $volume_rap_produk_b;
-
-			$nilai_semen_225_rap = $total_semen_225_rap * $komposisi_225_rap['price_a'];
-			$nilai_pasir_225_rap = $total_pasir_225_rap * $komposisi_225_rap['price_b'];
-			$nilai_batu1020_225_rap = $total_batu1020_225_rap * $komposisi_225_rap['price_c'];
-			$nilai_batu2030_225_rap = $total_batu2030_225_rap * $komposisi_225_rap['price_d'];
-
-			$total_225_rap = $nilai_semen_225_rap + $nilai_pasir_225_rap + $nilai_batu1020_225_rap + $nilai_batu2030_225_rap;
-
-			//TOTAL K-250
-			$total_semen_250_rap = $komposisi_250_produk_a_rap * $volume_rap_produk_c;
-			$total_pasir_250_rap = $komposisi_250_produk_b_rap * $volume_rap_produk_c;
-			$total_batu1020_250_rap = $komposisi_250_produk_c_rap * $volume_rap_produk_c;
-			$total_batu2030_250_rap = $komposisi_250_produk_d_rap * $volume_rap_produk_c;
-
-			$nilai_semen_250_rap = $total_semen_250_rap * $komposisi_250_rap['price_a'];
-			$nilai_pasir_250_rap = $total_pasir_250_rap * $komposisi_250_rap['price_b'];
-			$nilai_batu1020_250_rap = $total_batu1020_250_rap * $komposisi_250_rap['price_c'];
-			$nilai_batu2030_250_rap = $total_batu2030_250_rap * $komposisi_250_rap['price_d'];
-
-			$total_250_rap = $nilai_semen_250_rap + $nilai_pasir_250_rap + $nilai_batu1020_250_rap + $nilai_batu2030_250_rap;
-
-			//TOTAL K-250_18
-			$total_semen_250_18_rap = $komposisi_250_18_produk_a_rap * $volume_rap_produk_d;
-			$total_pasir_250_18_rap = $komposisi_250_18_produk_b_rap * $volume_rap_produk_d;
-			$total_batu1020_250_18_rap = $komposisi_250_18_produk_c_rap * $volume_rap_produk_d;
-			$total_batu2030_250_18_rap = $komposisi_250_18_produk_d_rap * $volume_rap_produk_d;
-
-			$nilai_semen_250_18_rap = $total_semen_250_18_rap * $komposisi_250_18_rap['price_a'];
-			$nilai_pasir_250_18_rap = $total_pasir_250_18_rap * $komposisi_250_18_rap['price_b'];
-			$nilai_batu1020_250_18_rap = $total_batu1020_250_18_rap * $komposisi_250_18_rap['price_c'];
-			$nilai_batu2030_250_18_rap = $total_batu2030_250_18_rap * $komposisi_250_18_rap['price_d'];
-
-			$total_250_18_rap = $nilai_semen_250_18_rap + $nilai_pasir_250_18_rap + $nilai_batu1020_250_18_rap + $nilai_batu2030_250_18_rap;
-
-			//TOTAL ALL
-			$total_bahan_all_rap = $total_125_rap + $total_225_rap + $total_250_rap + $total_250_18_rap;
-			//END TOTAL PEMAKAIAN BAHAN
-
-			//TOTAL PEMAKAIAN ALAT
-			$rap_alat_rap = $this->db->select('rap.*')
-			->from('rap_alat rap')
-			->where('rap.status','PUBLISH')
-			->get()->row_array();
-
-			$batching_plant_rap = $total_rap_volume * $rap_alat_rap['batching_plant'];
-			$truck_mixer_rap = $total_rap_volume * $rap_alat_rap['truck_mixer'];
-			$wheel_loader_rap = $total_rap_volume * $rap_alat_rap['wheel_loader'];
-			$bbm_solar_rap = $total_rap_volume * $rap_alat_rap['bbm_solar'];
-			$biaya_alat_all_rap = $batching_plant_rap + $truck_mixer_rap + $wheel_loader_rap + $bbm_solar_rap;
 		
-			$total_rap_biaya_bahan = $total_bahan_all_rap;
-			$total_rap_biaya_alat = $biaya_alat_all_rap;
+			$total_rap_biaya_bahan = $rencana_kerja_biaya['biaya_bahan'];
+			$total_rap_biaya_alat = $rencana_kerja_biaya['biaya_alat'];
 			$total_rap_biaya_overhead = $rencana_kerja_biaya['biaya_overhead'];
 			$total_rap_biaya_bank = $rencana_kerja_biaya['biaya_bank'];
-			$total_rap_biaya_persiapan = $rencana_kerja_biaya['biaya_persiapan'];
 
-			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_biaya_overhead + $total_rap_biaya_bank + $total_rap_biaya_persiapan;
+			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_biaya_overhead + $total_rap_biaya_bank;
 
 			?>
 			<!-- RAP 2022 -->
@@ -469,8 +267,6 @@
 			$total_realisasi_nilai = $nilai_realisasi_produk_a + $nilai_realisasi_produk_b + $nilai_realisasi_produk_c + $nilai_realisasi_produk_d;
 			?>
 			<!-- REALISASI SD. SAAT INI -->
-
-		
 
 			<!-- REALISASI BIAYA -->
 			<?php
@@ -662,7 +458,6 @@
 			$sisa_biaya_alat = $total_alat_realisasi - $total_rap_biaya_alat;
 			$sisa_biaya_overhead = $total_overhead_realisasi - $total_rap_biaya_overhead;
 			$sisa_biaya_bank = $total_diskonto_realisasi - $total_rap_biaya_bank;
-			$sisa_biaya_persiapan = $total_persiapan_realisasi - $total_rap_biaya_persiapan;
 			?>
 			<!-- SISA -->
 
@@ -699,7 +494,6 @@
 				$styleColorH = $sisa_biaya_alat < 0 ? 'color:red' : 'color:black';
 				$styleColorI = $sisa_biaya_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
-				$styleColorK = $sisa_biaya_persiapan < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $sisa_laba < 0 ? 'color:red' : 'color:black';
 			?>
@@ -783,14 +577,6 @@
 				<th align="right"><?php echo number_format($total_rap_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_diskonto_realisasi,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorJ ?>"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="center">5</th>
-				<th align="left">Persiapan</th>
-				<th align="center">LS</th>
-				<th align="right"><?php echo number_format($total_rap_biaya_persiapan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_persiapan_realisasi,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($sisa_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="right" colspan="2">JUMLAH</th>
