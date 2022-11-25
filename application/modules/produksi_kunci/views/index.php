@@ -295,7 +295,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_hpp_bahan_baku.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus HPP Pergerakan Bahan Baku !!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -366,7 +366,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_akumulasi.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus Akumulasi Pergerakan Bahan Baku !!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -437,7 +437,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_approval.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus Persetujuan BUA, Diskonto, Persiapan !!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -508,7 +508,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_approval.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus Persetujuan BUA, Diskonto, Persiapan !!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }

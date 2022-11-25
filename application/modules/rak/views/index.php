@@ -40,8 +40,8 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-											<li><a href="<?= site_url('rak/form_rencana_kerja'); ?>">Rencana Kerja (Produksi)</a></li>
-                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya'); ?>">Rencana Kerja (BUA, Biaya Bank, Biaya Persiapan, Termin)</a></li>
+											<li><a href="<?= site_url('rak/form_rencana_kerja'); ?>">Rencana Kerja (Volume)</a></li>
+                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya'); ?>">Rencana Kerja (Biaya & Termin)</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -49,8 +49,8 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab">Rencana Kerja (Produksi)</a></li>
-                                    <li role="presentation"><a href="#rencana_kerja_biaya" aria-controls="rencana_kerja_biaya" role="tab" data-toggle="tab">Rencana Kerja (BUA, Biaya Bank, Biaya Persiapan, Termin)</a></li>
+                                    <li role="presentation" class="active"><a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab">Rencana Kerja (Volume)</a></li>
+                                    <li role="presentation"><a href="#rencana_kerja_biaya" aria-controls="rencana_kerja_biaya" role="tab" data-toggle="tab">Rencana Kerja (Biaya & Termin)</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -88,12 +88,14 @@
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Biaya Bahan</th>
+                                                        <th class="text-center">Biaya Alat</th>
 														<th class="text-center">Biaya Overhead</th>
                                                         <th class="text-center">Biaya Bank</th>
-                                                        <th class="text-center">Persiapan</th>
                                                         <th class="text-center">Termin</th>
                                                         <th class="text-center">Lampiran</th>
-														<th class="text-center">Tindakan</th>
+														<th class="text-center">Edit</th>
+                                                        <th class="text-center">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -185,7 +187,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_rak.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus!!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }
@@ -216,6 +218,12 @@
 				{
                     "data": "tanggal_rencana_kerja"
                 },
+                {
+                    "data": "biaya_bahan"
+                },
+                {
+                    "data": "biaya_alat"
+                },
 				{
                     "data": "biaya_overhead"
                 },
@@ -223,16 +231,16 @@
                     "data": "biaya_bank"
                 },
                 {
-                    "data": "biaya_persiapan"
-                },
-                {
                     "data": "termin"
                 },
                 {
                     "data": "lampiran"
                 },
+                {
+					"data": "edit"
+				},
 				{
-					"data": "actions"
+					"data": "delete"
 				},
             ],
             "columnDefs": [{
@@ -240,7 +248,7 @@
                     "className": 'text-center',
                 },
                 {
-                "targets": [2, 3, 4, 5],
+                "targets": [2, 3, 4, 5, 6, 7, 8],
                 "className": 'text-right',
                 },
             ],
@@ -260,7 +268,7 @@
                     success: function(result) {
                         if (result.output) {
                             table_rak_biaya.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus!!');
+                            bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);
                         }

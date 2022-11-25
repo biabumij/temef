@@ -23,9 +23,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
-                            
+                            <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Rencana Produksi</li>
                             <li><a>Rencana Kerja</a></li>
+                            <li><a>Rencana Kerja (Volume)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Rencana Kerja</h3>
+                                    <h3 class="">Rencana Kerja (Volume)</h3>
                                     
                                 </div>
                             </div>

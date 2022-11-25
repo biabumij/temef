@@ -23,9 +23,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
-                            
+                            <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Rencana Produksi</li>
                             <li><a>Rencana Kerja</a></li>
+                            <li><a>Rencana Kerja (Biaya & Termin)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Rencana Kerja</h3>
+                                    <h3 class="">Rencana Kerja (Biaya & Termin)</h3>
                                     
                                 </div>
                             </div>
@@ -58,6 +58,20 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td>Biaya Bahan</td>
+													<td>
+                                                    <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                    <td class="text-center"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Biaya Alat</td>
+													<td>
+                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                    <td class="text-center"></td>
+                                                </tr>
+                                                <tr>
                                                     <td>Biaya Overhead</td>
 													<td>
                                                     <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
@@ -68,13 +82,6 @@
                                                     <td>Biaya Bank</td>
 													<td>
                                                     <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                    <td class="text-center"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Persiapan</td>
-													<td>
-                                                    <input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
@@ -170,38 +177,6 @@
             });
             
         });
-
-        function changeData(id)
-        {
-			var vol_produk_a = $('#vol_produk_a').val();
-            var vol_produk_b = $('#vol_produk_b').val();
-            var vol_produk_c = $('#vol_produk_c').val();
-            var vol_produk_d = $('#vol_produk_d').val();
-            				
-			vol_produk_a = ( vol_produk_a);
-            $('#vol_produk_a').val(vol_produk_a);
-            vol_produk_b = ( vol_produk_b);
-            $('#vol_produk_b').val(vol_produk_b);
-            vol_produk_c = ( vol_produk_c);
-            $('#vol_produk_c').val(vol_produk_c);
-            vol_produk_d = ( vol_produk_d);
-            $('#vol_produk_d').val(vol_produk_d);
-            getTotal();
-        }
-
-        function getTotal()
-        {
-            var sub_total = $('#sub-total-val').val();
-
-            sub_total = parseFloat($('#vol_produk_a').val()) + parseFloat($('#vol_produk_b').val()) + parseFloat($('#vol_produk_c').val()) + parseFloat($('#vol_produk_d').val());
-            
-            $('#sub-total-val').val(sub_total);
-            $('#sub-total').text($.number( sub_total, 2,',','.' ));
-
-            total_total = parseFloat(sub_total);
-            $('#total-val').val(total_total);
-            $('#total').text($.number( total_total, 2,',','.' ));
-        }
 
     </script>
 

@@ -129,7 +129,7 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja_biaya/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
 				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
@@ -172,11 +172,9 @@ class Rak extends Secure_Controller {
         $html = $this->load->view('rak/cetak_rencana_kerja',$data,TRUE);
         $rak = $this->db->get_where('rak',array('id'=>$id))->row_array();
 
-
-        
-        $pdf->SetTitle($rak['tanggal_rencana_kerja']);
+		$pdf->SetTitle('BBJ - Rencana Kerja');
         $pdf->nsi_html($html);
-        $pdf->Output($rak['tanggal_rencana_kerja'].'.pdf', 'I');
+        $pdf->Output('rencana_kerja.pdf', 'I');
 	}
 
 	public function form_rencana_kerja_biaya()
@@ -198,9 +196,10 @@ class Rak extends Secure_Controller {
 	public function submit_rencana_kerja_biaya()
 	{
 		$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
+		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
+		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
-		$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
 
 		$this->db->trans_start(); # Starting Transaction
@@ -208,9 +207,10 @@ class Rak extends Secure_Controller {
 
 		$arr_insert = array(
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
+			'biaya_bahan' => $biaya_bahan,
+			'biaya_alat' => $biaya_alat,
 			'biaya_overhead' => $biaya_overhead,
 			'biaya_bank' => $biaya_bank,
-			'biaya_persiapan' => $biaya_persiapan,
 			'termin' => $termin,
 			
 			'status' => 'PUBLISH',
@@ -290,13 +290,16 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja_biaya/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
+				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
-				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
 				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData2('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData2('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja_biaya/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				
 				
                 $data[] = $row;
             }
@@ -336,13 +339,66 @@ class Rak extends Secure_Controller {
         $html = $this->load->view('rak/cetak_rencana_kerja_biaya',$data,TRUE);
         $rak = $this->db->get_where('rak_biaya',array('id'=>$id))->row_array();
 
-
-        
-        $pdf->SetTitle($rak['tanggal_rencana_kerja']);
+		$pdf->SetTitle('BBJ - Rencana Kerja');
         $pdf->nsi_html($html);
-        $pdf->Output($rak['tanggal_rencana_kerja'].'.pdf', 'I');
+        $pdf->Output('rencana_kerja.pdf', 'I');
 	}
 	
+	public function sunting_rencana_kerja_biaya($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['tes'] = '';
+			$data['rak'] = $this->db->get_where("rak_biaya", ["id" => $id])->row_array();
+			$data['lampiran'] = $this->db->get_where("lampiran_rak_biaya", ["rak_id" => $id])->result_array();
+			$this->load->view('rak/sunting_rencana_kerja_biaya', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_sunting_rencana_biaya()
+	{
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); #
+
+			$id = $this->input->post('id');
+			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
+			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
+			$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
+			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
+			$termin =  str_replace('.', '', $this->input->post('termin'));
+
+			$arr_update = array(
+				'biaya_bahan' => $biaya_bahan,
+				'biaya_alat' => $biaya_alat,
+				'biaya_overhead' => $biaya_overhead,
+				'biaya_bank' => $biaya_bank,
+				'termin' => $termin,
+				'status' => 'PUBLISH',
+				'updated_by' => $this->session->userdata('admin_id'),
+				'updated_on' => date('Y-m-d H:i:s')
+			);
+
+			$this->db->where('id', $id);
+			if ($this->db->update('rak_biaya', $arr_update)) {
+				
+			}
+
+			if ($this->db->trans_status() === FALSE) {
+				# Something went wrong.
+				$this->db->trans_rollback();
+				$this->session->set_flashdata('notif_error', 'Gagal Memperbaharui Rencana Kerja (Biaya & Termin) !!');
+				redirect('admin/rencana_kerja');
+			} else {
+				# Everything is Perfect. 
+				# Committing data to the database.
+				$this->db->trans_commit();
+				$this->session->set_flashdata('notif_success', 'Berhasil Memperbaharui Rencana Kerja (Biaya & Termin) !!');
+				redirect('admin/rencana_kerja');
+			}
+	}
 
 }
 ?>
