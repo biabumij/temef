@@ -885,12 +885,42 @@
 			?>
 			<!-- TOTAL -->
 			
+			<?php
+			$tanggal = $last_opname;
+			$date = date('Y-m-d',strtotime($tanggal));
+			?>
+			<?php
+			function tgl_indo($date){
+				$bulan = array (
+					1 =>   'Jan',
+					'Feb',
+					'Mar',
+					'Apr',
+					'Mei',
+					'Jun',
+					'Jul',
+					'Agu',
+					'Sep',
+					'Okt',
+					'Nov',
+					'Des'
+				);
+				$pecahkan = explode('-', $date);
+				
+				// variabel pecahkan 0 = tanggal
+				// variabel pecahkan 1 = bulan
+				// variabel pecahkan 2 = tahun
+			
+				return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+				
+			}
+			?>
 			<tr class="table-judul">
 				<th width="3%" align="center" rowspan="3">&nbsp; <br /><br />NO.</th>
 				<th width="14%" align="center" rowspan="3">&nbsp; <br /><br />URAIAN</th>
 				<th width="4%" align="center" rowspan="3">&nbsp; <br /><br />SATUAN</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />ADEDENDUM RAP</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></div></th>
 				<th width="58%" align="center" colspan="9">&nbsp; <br />PROGNOSA</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
@@ -906,7 +936,7 @@
 				<th align="center">JULI</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center">SD. BULAN TERAKHIR</th>
+				<th align="center"></th>
 				<th align="center">2022</th>
 				<th align="center">2022</th>
 				<th align="center">2023</th>

@@ -3810,7 +3810,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active4-csf">
 				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center">CURRENT</th>
-				<th class="text-center">REALISASI</th>
+				<th class="text-center">REALISASI SD.</th>
 				<th class="text-center">NOVEMBER</th>
 				<th class="text-center">DESEMBER</th>
 				<th class="text-center">JANUARI</th>
@@ -3824,8 +3824,38 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4-csf">
+				<?php
+				$tanggal = $last_opname;
+				$date = date('Y-m-d',strtotime($tanggal));
+				?>
+				<?php
+				function tgl_indo($date){
+					$bulan = array (
+						1 =>   'Jan',
+						'Feb',
+						'Mar',
+						'Apr',
+						'Mei',
+						'Jun',
+						'Jul',
+						'Agu',
+						'Sep',
+						'Okt',
+						'Nov',
+						'Des'
+					);
+					$pecahkan = explode('-', $date);
+					
+					// variabel pecahkan 0 = tanggal
+					// variabel pecahkan 1 = bulan
+					// variabel pecahkan 2 = tahun
+				
+					return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+					
+				}
+				?>
 				<th class="text-center">CASH BUDGET</th>
-				<th class="text-center">SD. BULAN TERAKHIR</th>
+				<th class="text-center" style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></th>
 				<th class="text-center">2022</th>
 				<th class="text-center">2022</th>
 				<th class="text-center">2023</th>
@@ -4074,15 +4104,15 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpemakaian1" style="display:none;">&nbsp;&nbsp;1. Bahan</th>
 				<th class="text-right" id="boxpemakaian2" style="display:none;">-</th>
 				<th class="text-right" id="boxpemakaian3" style="display:none;"><?php echo number_format($total_bahan_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian4" style="display:none;"><?php echo number_format($total_bahan_all_november,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian5" style="display:none;"><?php echo number_format($total_bahan_all_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian6" style="display:none;"><?php echo number_format($total_bahan_all_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian7" style="display:none;"><?php echo number_format($total_bahan_all_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian8" style="display:none;"><?php echo number_format($total_bahan_all_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian9" style="display:none;"><?php echo number_format($total_bahan_all_april,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian10" style="display:none;"><?php echo number_format($total_bahan_all_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian11" style="display:none;"><?php echo number_format($total_bahan_all_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian12" style="display:none;"><?php echo number_format($total_bahan_all_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian4" style="display:none;"><?php echo number_format($total_november_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian5" style="display:none;"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian6" style="display:none;"><?php echo number_format($total_januari_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian7" style="display:none;"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian8" style="display:none;"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian9" style="display:none;"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian10" style="display:none;"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian11" style="display:none;"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian12" style="display:none;"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian13" style="display:none;"><?php echo number_format($jumlah_bahan,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian14" style="display:none;">-</th>
 			</tr>
@@ -4109,28 +4139,28 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpemakaian29" style="display:none;"><i>JUMLAH PEMAKAIAN</i></th>
 				<th class="text-right" id="boxpemakaian30" style="display:none;">-</th>
 				<th class="text-right" id="boxpemakaian31" style="display:none;"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian32" style="display:none;"><?php echo number_format($total_bahan_all_november + $total_november_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian33" style="display:none;"><?php echo number_format($total_bahan_all_desember + $total_desember_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian34" style="display:none;"><?php echo number_format($total_bahan_all_januari + $total_januari_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian35" style="display:none;"><?php echo number_format($total_bahan_all_februari + $total_februari_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian36" style="display:none;"><?php echo number_format($total_bahan_all_maret + $total_maret_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian37" style="display:none;"><?php echo number_format($total_bahan_all_april + $total_april_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian38" style="display:none;"><?php echo number_format($total_bahan_all_mei + $total_mei_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian39" style="display:none;"><?php echo number_format($total_bahan_all_juni + $total_juni_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian40" style="display:none;"><?php echo number_format($total_bahan_all_juli + $total_juli_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian32" style="display:none;"><?php echo number_format($total_november_biaya_bahan + $total_november_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian33" style="display:none;"><?php echo number_format($total_desember_biaya_bahan + $total_desember_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian34" style="display:none;"><?php echo number_format($total_januari_biaya_bahan + $total_januari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian35" style="display:none;"><?php echo number_format($total_februari_biaya_bahan + $total_februari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian36" style="display:none;"><?php echo number_format($total_maret_biaya_bahan + $total_maret_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian37" style="display:none;"><?php echo number_format($total_april_biaya_bahan + $total_april_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian38" style="display:none;"><?php echo number_format($total_mei_biaya_bahan + $total_mei_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian39" style="display:none;"><?php echo number_format($total_juni_biaya_bahan + $total_juni_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian40" style="display:none;"><?php echo number_format($total_juli_biaya_bahan + $total_juli_biaya_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian41" style="display:none;"><?php echo number_format($jumlah_bahan + $jumlah_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian42" style="display:none;">-</th>
 			</tr>
 			<?php
-			$akumulasi_pemakaian_november = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat;
-			$akumulasi_pemakaian_desember = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat;
-			$akumulasi_pemakaian_januari = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat;
-			$akumulasi_pemakaian_februari = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat;
-			$akumulasi_pemakaian_maret = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat;
-			$akumulasi_pemakaian_april = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat;
-			$akumulasi_pemakaian_mei = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat;
-			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat  + $total_bahan_all_juni + $total_juni_biaya_alat;
-			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_bahan_all_november + $total_november_biaya_alat + $total_bahan_all_desember + $total_desember_biaya_alat + $total_bahan_all_januari + $total_januari_biaya_alat + $total_bahan_all_februari + $total_februari_biaya_alat + $total_bahan_all_maret + $total_maret_biaya_alat + $total_bahan_all_april + $total_april_biaya_alat + $total_bahan_all_mei + $total_mei_biaya_alat  + $total_bahan_all_juni + $total_juni_biaya_alat + $total_bahan_all_juli + $total_juli_biaya_alat;
+			$akumulasi_pemakaian_november = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat;
+			$akumulasi_pemakaian_desember = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat;
+			$akumulasi_pemakaian_januari = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat;
+			$akumulasi_pemakaian_februari = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat;
+			$akumulasi_pemakaian_maret = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_maret_biaya_bahan + $total_maret_biaya_alat;
+			$akumulasi_pemakaian_april = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_april_biaya_bahan + $total_april_biaya_alat;
+			$akumulasi_pemakaian_mei = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_april_biaya_bahan + $total_april_biaya_alat + $total_mei_biaya_bahan + $total_mei_biaya_alat;
+			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_april_biaya_bahan + $total_april_biaya_alat + $total_mei_biaya_bahan + $total_mei_biaya_alat  + $total_juni_biaya_bahan + $total_juni_biaya_alat;
+			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_april_biaya_bahan + $total_april_biaya_alat + $total_mei_biaya_bahan + $total_mei_biaya_alat  + $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juli_biaya_bahan + $total_juli_biaya_alat;
 			?>
 			<tr class="table-active2-csf">
 				<th class="text-left" id="boxpemakaian43" style="display:none;"><i>AKUMULASI PEMAKAIAN</i></th>
@@ -4822,20 +4852,6 @@ class Reports extends CI_Controller {
 			$('#boxpengeluaran96').slideToggle();
 			$('#boxpengeluaran97').slideToggle();
 			$('#boxpengeluaran98').slideToggle();
-			$('#boxpengeluaran99').slideToggle();
-			$('#boxpengeluaran100').slideToggle();
-			$('#boxpengeluaran101').slideToggle();
-			$('#boxpengeluaran102').slideToggle();
-			$('#boxpengeluaran103').slideToggle();
-			$('#boxpengeluaran104').slideToggle();
-			$('#boxpengeluaran105').slideToggle();
-			$('#boxpengeluaran106').slideToggle();
-			$('#boxpengeluaran107').slideToggle();
-			$('#boxpengeluaran108').slideToggle();
-			$('#boxpengeluaran109').slideToggle();
-			$('#boxpengeluaran110').slideToggle();
-			$('#boxpengeluaran111').slideToggle();
-			$('#boxpengeluaran112').slideToggle();
 			$('#boxpengeluaran113').slideToggle();
 			$('#boxpengeluaran114').slideToggle();
 			$('#boxpengeluaran115').slideToggle();
@@ -10299,7 +10315,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="3" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">SATUAN</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">ADEDENDUM RAP</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">REALISASI</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">REALISASI SD.</th>
 				<th class="text-center" colspan="9">PROGNOSA</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">TOTAL</th>
 	        </tr>
@@ -10315,7 +10331,37 @@ class Reports extends CI_Controller {
 				<th class="text-center">JULI</th>
 	        </tr>
 			<tr class="table-active4-rak">
-				<th class="text-center">SD. BULAN TERAKHIR</th>
+				<?php
+				$tanggal = $last_opname;
+				$date = date('Y-m-d',strtotime($tanggal));
+				?>
+				<?php
+				function tgl_indo($date){
+					$bulan = array (
+						1 =>   'Jan',
+						'Feb',
+						'Mar',
+						'Apr',
+						'Mei',
+						'Jun',
+						'Jul',
+						'Agu',
+						'Sep',
+						'Okt',
+						'Nov',
+						'Des'
+					);
+					$pecahkan = explode('-', $date);
+					
+					// variabel pecahkan 0 = tanggal
+					// variabel pecahkan 1 = bulan
+					// variabel pecahkan 2 = tahun
+				
+					return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+					
+				}
+				?>
+				<th class="text-center" style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></th>
 				<th class="text-center">2022</th>
 				<th class="text-center">2022</th>
 				<th class="text-center">2023</th>
