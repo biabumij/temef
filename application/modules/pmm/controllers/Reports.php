@@ -4068,7 +4068,7 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="14"><u>PEMAKAIAN BAHAN & ALAT</u> <button id="btnpemakaian3">Buka</button></th>
 			</tr>
 			<?php
-			$jumlah_bahan = $total_bahan_now + $total_bahan_all_november + $total_bahan_all_desember + $total_bahan_all_januari + $total_bahan_all_februari + $total_bahan_all_maret + $total_bahan_all_april + $total_bahan_all_mei + $total_bahan_all_juni + $total_bahan_all_juli;
+			$jumlah_bahan = $total_bahan_now + $total_november_biaya_bahan + $total_desember_biaya_bahan +$total_januari_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpemakaian1" style="display:none;">&nbsp;&nbsp;1. Bahan</th>
