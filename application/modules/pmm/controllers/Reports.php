@@ -10355,15 +10355,15 @@ class Reports extends CI_Controller {
 				<th class="text-center">M3</th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap_2022?filter_date=".$filter_date = date('d F Y',strtotime('2022-01-01')).' - '.date('d F Y',strtotime('2022-12-31'))) ?>"><?php echo number_format($total_rap_volume_2022,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_november_awal)).' - '.date('d F Y',strtotime($date_november_akhir))) ?>"><?php echo number_format($total_november_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_desember_awal)).' - '.date('d F Y',strtotime($date_desember_akhir))) ?>"><?php echo number_format($total_desember_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_januari_awal)).' - '.date('d F Y',strtotime($date_januari_akhir))) ?>"><?php echo number_format($total_januari_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_februari_awal)).' - '.date('d F Y',strtotime($date_februari_akhir))) ?>"><?php echo number_format($total_februari_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_maret_awal)).' - '.date('d F Y',strtotime($date_maret_akhir))) ?>"><?php echo number_format($total_maret_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_april_awal)).' - '.date('d F Y',strtotime($date_april_akhir))) ?>"><?php echo number_format($total_april_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_mei_awal)).' - '.date('d F Y',strtotime($date_mei_akhir))) ?>"><?php echo number_format($total_mei_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_juni_awal)).' - '.date('d F Y',strtotime($date_juni_akhir))) ?>"><?php echo number_format($total_juni_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan_rap?filter_date=".$filter_date = date('d F Y',strtotime($date_juli_awal)).' - '.date('d F Y',strtotime($date_juli_akhir))) ?>"><?php echo number_format($total_juli_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_november_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_desember_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_januari_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_februari_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_maret_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_april_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_mei_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_juni_volume,2,',','.');?></a></th>
+				<th class="text-right"><?php echo number_format($total_juli_volume,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-active2-rak">
