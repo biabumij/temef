@@ -9,7 +9,7 @@
     }
     .highcharts-figure,
     .highcharts-data-table table {
-    min-width: 100%;
+    min-width: 65%;
     max-width: 100%;
     }
 
@@ -1030,17 +1030,13 @@
             </div>
             <div class="content-body">
                 <div class="row animated fadeInUp">
-                <div class="col-sm-16">
-                    <div class="panel panel-default">
-                    <br />
+                    <div class="col-sm-12">
                         <figure class="highcharts-figure">
                             <div id="container"></div>
-                           <br />
                             
                         </figure>
+                        <br />
                     </div>
-                </div>  
-                <br />
                 <div class="col-sm-8">
                     <div class="panel panel-default">
                         <div class="panel-header">
