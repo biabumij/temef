@@ -1345,7 +1345,7 @@
                         format: '{value} %'
                     },
                     min: 0,
-                    max: 100,
+                    max: 150,
                     tickInterval: 10,
                 },
                 tooltip: { 
