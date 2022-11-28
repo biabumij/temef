@@ -137,7 +137,8 @@ class Rak extends Secure_Controller {
 				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				
+				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+
                 $data[] = $row;
             }
 
@@ -179,6 +180,64 @@ class Rak extends Secure_Controller {
 		$pdf->SetTitle('BBJ - Rencana Kerja');
         $pdf->nsi_html($html);
         $pdf->Output('rencana_kerja.pdf', 'I');
+	}
+
+	public function sunting_rencana_kerja($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['tes'] = '';
+			$data['rak'] = $this->db->get_where("rak", ["id" => $id])->row_array();
+			$data['lampiran'] = $this->db->get_where("lampiran_rak", ["rak_id" => $id])->result_array();
+			$this->load->view('rak/sunting_rencana_kerja', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_sunting_rencana_kerja()
+	{
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); #
+
+			$id = $this->input->post('id');
+			$vol_produk_a =  str_replace('.', '', $this->input->post('vol_produk_a'));
+			$vol_produk_a =  str_replace(',', '.', $vol_produk_a);
+			$vol_produk_b =  str_replace('.', '', $this->input->post('vol_produk_b'));
+			$vol_produk_b =  str_replace(',', '.', $vol_produk_b);
+			$vol_produk_c =  str_replace('.', '', $this->input->post('vol_produk_c'));
+			$vol_produk_c =  str_replace(',', '.', $vol_produk_c);
+			$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
+			$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
+
+			$arr_update = array(
+				'vol_produk_a' => $vol_produk_a,
+				'vol_produk_b' => $vol_produk_b,
+				'vol_produk_c' => $vol_produk_c,
+				'vol_produk_d' => $vol_produk_d,
+				'status' => 'PUBLISH',
+				'updated_by' => $this->session->userdata('admin_id'),
+				'updated_on' => date('Y-m-d H:i:s')
+			);
+
+			$this->db->where('id', $id);
+			if ($this->db->update('rak', $arr_update)) {
+				
+			}
+
+			if ($this->db->trans_status() === FALSE) {
+				# Something went wrong.
+				$this->db->trans_rollback();
+				$this->session->set_flashdata('notif_error', 'Gagal Memperbaharui Rencana Kerja !!');
+				redirect('admin/rencana_kerja');
+			} else {
+				# Everything is Perfect. 
+				# Committing data to the database.
+				$this->db->trans_commit();
+				$this->session->set_flashdata('notif_success', 'Berhasil Memperbaharui Rencana Kerja !!');
+				redirect('admin/rencana_kerja');
+			}
 	}
 
 	public function form_rencana_kerja_biaya()

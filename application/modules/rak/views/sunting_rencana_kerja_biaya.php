@@ -109,13 +109,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $total = 0;
-                                            $biaya_bahan = 0;
-                                            ?>
-                                            <?php
-                                            $total = $rak['biaya_bahan'];
-                                            ?>
                                             <tr>
                                                 <td class="text-left">Biaya Bahan</td>
                                                 <td class="text-right"><input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bahan'] ?>" required="" autocomplete="off"></td>

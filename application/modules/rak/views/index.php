@@ -66,7 +66,8 @@
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Jumlah Produksi</th>
                                                         <th class="text-center">Lampiran</th>
-														<th class="text-center">Tindakan</th>
+                                                        <th class="text-center">Edit</th>
+														<th class="text-center">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -158,12 +159,15 @@
                 {
                     "data": "lampiran"
                 },
+                {
+					"data": "edit"
+				},
 				{
 					"data": "actions"
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4],
+                    "targets": [0, 1, 3, 4, 5],
                     "className": 'text-center',
                 },
                 {
