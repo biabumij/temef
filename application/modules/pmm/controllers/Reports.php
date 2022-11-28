@@ -2946,7 +2946,6 @@ class Reports extends CI_Controller {
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi <= '$last_opname')")
 			->get()->result_array();
-			file_put_contents("D:\\bahan_now.txt", $this->db->last_query());
 
 			$total_bahan_now = 0;
 
