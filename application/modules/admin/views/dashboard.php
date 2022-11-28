@@ -1328,7 +1328,7 @@
                             $juli23_total = $juli23_a + $juli23_b + $juli23_c + $juli23_d;
 
                             ?>
-                            <table style="background-color:#FFFFFF;" border="0" width="100%">
+                            <!--<table style="background-color:#FFFFFF;" border="0" width="100%">
                                 <tr style="background-color:#808080; color:white;">
                                     <th class="text-center" width="8%">Keterangan</th>
                                     <th class="text-center">Jan 22</th>
@@ -1421,8 +1421,8 @@
                                     <th class="text-right"><?php echo number_format($total_pen_juli23 - $juli23_total,2,',','.');?></th>
                                     <th class="text-right"></th>
                                 </tr>                                
-                            </table>
-                        </font> 
+                            </table>-->
+                        </font>
                         
                     </figure>
                 </div>  
