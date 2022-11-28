@@ -66,6 +66,9 @@
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Jumlah Produksi</th>
                                                         <th class="text-center">Lampiran</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Cetak</th>
                                                         <th class="text-center">Edit</th>
 														<th class="text-center">Hapus</th>
 													</tr>
@@ -95,6 +98,9 @@
                                                         <th class="text-center">Biaya Bank</th>
                                                         <th class="text-center">Termin</th>
                                                         <th class="text-center">Lampiran</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Cetak</th>
 														<th class="text-center">Edit</th>
                                                         <th class="text-center">Hapus</th>
 													</tr>
@@ -160,6 +166,15 @@
                     "data": "lampiran"
                 },
                 {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "print"
+				},
+                {
 					"data": "edit"
 				},
 				{
@@ -167,7 +182,7 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5],
+                    "targets": [0, 1, 3, 4, 5, 6, 7, 8],
                     "className": 'text-center',
                 },
                 {
@@ -241,6 +256,15 @@
                     "data": "lampiran"
                 },
                 {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "print"
+				},
+                {
 					"data": "edit"
 				},
 				{
@@ -248,11 +272,11 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0],
+                    "targets": [0, 1, 8, 9, 10, 11, 12],
                     "className": 'text-center',
                 },
                 {
-                "targets": [2, 3, 4, 5, 6, 7, 8],
+                "targets": [2, 3, 4, 5, 6, 7],
                 "className": 'text-right',
                 },
             ],

@@ -101,21 +101,26 @@
             </tr>
 			<tr class="table-baris1">
 				<td align="center">1.</td>
+				<td align="left">Biaya Bahan</td>
+				<td align="right"><?= number_format($rak['biaya_bahan'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">2.</td>
+				<td align="left">Biaya Alat</td>
+				<td align="right"><?= number_format($rak['biaya_alat'],0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center">3.</td>
 				<td align="left">Biaya Overhead</td>
 				<td align="right"><?= number_format($rak['biaya_overhead'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
-				<td align="center">2.</td>
+				<td align="center">4.</td>
 				<td align="left">Biaya Bank</td>
 				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
-				<td align="center">3.</td>
-				<td align="left">Biaya Persiapan</td>
-				<td align="right"><?= number_format($rak['biaya_persiapan'],0,',','.'); ?></td>
-			</tr>
-			<tr class="table-baris1">
-				<td align="center">4.</td>
+				<td align="center">5.</td>
 				<td align="left">Termin</td>
 				<td align="right"><?= number_format($rak['termin'],0,',','.'); ?></td>
 			</tr>

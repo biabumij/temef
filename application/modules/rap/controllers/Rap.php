@@ -160,7 +160,7 @@ class Rap extends Secure_Controller {
 			$this->db->where('ag.date_agregat >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('ag.date_agregat <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, p.nama_produk as mutu_beton, lk.agregat_id, lk.lampiran, ag.status');
+        $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, p.nama_produk as mutu_beton, lk.agregat_id, lk.lampiran, ag.status, ag.created_by, ag.created_on');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');
 		$this->db->join('produk p', 'ag.mutu_beton = p.id','left');
 		$this->db->order_by('ag.date_agregat','desc');	
@@ -169,12 +169,17 @@ class Rap extends Secure_Controller {
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['jobs_type'] = "<a href=" . base_url('rap/data_komposisi/' . $row["id"]) . ">" . $row["jobs_type"] . "</a>";
+				$row['jobs_type'] = $row['jobs_type'];
                 $row['date_agregat'] = date('d F Y',strtotime($row['date_agregat']));
-				$row['mutu_beton'] = "<a href=" . base_url('rap/cetak_komposisi/' . $row["id"]) .'" target="_blank">'. $row["mutu_beton"] . "</a>";
+				$row['mutu_beton'] = $row['mutu_beton'];
 				$row['lampiran'] = '<a href="' . base_url('uploads/agregat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';           
-                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['view'] = '<a href="'.site_url().'rap/data_komposisi/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-gears"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rap/cetak_komposisi/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+			
 				$data[] = $row;
             }
 
@@ -449,12 +454,13 @@ class Rap extends Secure_Controller {
 		
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
-				$total = $row['batching_plant'] + $row['truck_mixer'] + $row['wheel_loader'] + $row['bbm_solar'];
                 $row['no'] = $key+1;
 				$row['tanggal_rap_alat'] =  date('d F Y',strtotime($row['tanggal_rap_alat']));
-				$row['nomor_rap_alat'] = "<a href=" . base_url('rap/cetak_rap_alat/' . $row["id"]) .'" target="_blank">' . $row["nomor_rap_alat"] . "</a>";
-				$row['total'] = number_format($total,0,',','.');
-				$row['lampiran'] = '<a href="' . base_url('uploads/rap_alat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
+				$row['nomor_rap_alat'] = $row["nomor_rap_alat"];
+				$row['lampiran'] = '<a href="' . base_url('uploads/rap_alat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['print'] = '<a href="'.site_url().'rap/cetak_rap_alat/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				
                 $data[] = $row;
@@ -818,10 +824,13 @@ class Rap extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
 				$row['tanggal_rap_bua'] =  date('d F Y',strtotime($row['tanggal_rap_bua']));
-				$row['nomor_rap_bua'] = "<a href=" . base_url('rap/cetak_rap_bua/' . $row["id"]) .' target="_blank">' . $row["nomor_rap_bua"] . "</a>";
+				$row['nomor_rap_bua'] = $row["nomor_rap_bua"];
 				$row['masa_kontrak'] = $row['masa_kontrak'];
 				$row['total'] = number_format($row['total'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rap_bua/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['print'] = '<a href="'.site_url().'rap/cetak_rap_bua/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBUA('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				
                 $data[] = $row;

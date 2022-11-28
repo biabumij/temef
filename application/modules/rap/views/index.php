@@ -69,12 +69,16 @@
                                             <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
-														<th width="20%">Tanggal</th>
-														<th width="20%">Mutu Beton</th>
-                                                        <th width="20%">Judul</th>
-														<th width="20%">Lampiran</th>
-                                                        <th width="15%">Status</th>
+                                                        <th class="text-center">No</th>
+														<th class="text-center">Tanggal</th>
+														<th class="text-center">Mutu Beton</th>
+                                                        <th class="text-center">Judul</th>
+														<th class="text-center">Lampiran</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Lihat Data</th>
+                                                        <th class="text-center">Cetak</th>
+                                                        <th class="text-center">Status</th>
 														
                                                     </tr>
                                                 </thead>
@@ -99,9 +103,11 @@
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
                                                         <th class="text-center">Masa Kontrak</th>
-														<th class="text-center">Total RAP</th>
                                                         <th class="text-center">Lampiran</th>
-														<th class="text-center">Tindakan</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Cetak</th>
+														<th class="text-center">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -125,9 +131,11 @@
 														<th class="text-center">Tanggal</th>
 														<th class="text-center">Nomor</th>
                                                         <th class="text-center">Masa Kontrak</th>
-                                                        <th class="text-center">Total BUA</th>
                                                         <th class="text-center">Lampiran</th>
-														<th class="text-center">Tindakan</th>
+														<th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Cetak</th>
+														<th class="text-center">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -210,11 +218,23 @@
                     "data": "lampiran"
                 },
                 {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "view"
+				},
+                {
+					"data": "print"
+				},
+                {
                     "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 5],
+                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
@@ -256,18 +276,24 @@
                 {
                     "data": "masa_kontrak"
                 },
-				{
-                    "data": "total"
-                },
                 {
                     "data": "lampiran"
                 },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "print"
+				},
 				{
 					"data": "actions"
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 6],
+                    "targets": [0, 1, 3, 5, 6, 7, 8],
                     "className": 'text-center',
                 },
                 {
@@ -332,22 +358,24 @@
                     "data": "masa_kontrak"
                 },
                 {
-                    "data": "total"
-                },
-                {
                     "data": "lampiran"
                 },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "print"
+				},
                 {
                     "data": "actions"
                 },
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 6],
+                    "targets": [0, 1, 3, 5, 6, 7, 8],
                     "className": 'text-center',
-                },
-                {
-                    "targets": [4],
-                    "className": 'text-right',
                 }
             ],
         });

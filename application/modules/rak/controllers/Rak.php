@@ -136,7 +136,10 @@ class Rak extends Secure_Controller {
 				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
 				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
 
                 $data[] = $row;
@@ -353,14 +356,17 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja_biaya/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
 				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
 				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
 				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData2('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja_biaya/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja_biaya/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
 				
 				
