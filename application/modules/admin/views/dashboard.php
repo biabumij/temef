@@ -70,19 +70,16 @@
     $date_januari23_awal = date('2023-01-01');
     $date_januari23_akhir = date('2023-01-31');
 
-    $stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1,5)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-    $last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
-    $penjualan_now = $this->db->select('SUM(pp.display_price) as total')
+    $kontrak = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
-    ->join('penerima p', 'pp.client_id = p.id','left')
     ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production < '$last_opname'")
+    ->where("pp.date_production between '$date_januari_awal' and '$date_j_akhir'")
     ->where("pp.status = 'PUBLISH'")
     ->where("ppo.status in ('OPEN','CLOSED')")
     ->group_by("pp.client_id")
     ->get()->row_array();
 
-    $total_kontrak_all = $stock_opname['total'];
+    $total_kontrak_all = $kontrak['total'];
 
     $penjualan_januari = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
     ->from('pmm_productions pp')
