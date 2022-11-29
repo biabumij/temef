@@ -195,7 +195,7 @@
                 { "data": "harga_beli" },
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0,1,3,4,5],
@@ -223,7 +223,7 @@
                 { "data": "harga_beli" },
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0,1,3,4,5],
@@ -251,7 +251,7 @@
                 { "data": "harga_beli" },
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0,1,3,4,5],
@@ -308,7 +308,7 @@
                 { "data": "harga_beli" },
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0,1,3,4,5],

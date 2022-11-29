@@ -187,7 +187,6 @@
 		});
 		
 		var table_agregat = $('#table_agregat').DataTable({
-            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -198,6 +197,7 @@
                 }
             },
             responsive: true,
+            paging : false,
             "deferRender": true,
             "language": {
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
@@ -251,7 +251,6 @@
     <script type="text/javascript">
 		
 		var table_rap_alat = $('#table_rap_alat').DataTable({
-            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -261,6 +260,7 @@
                 }
             },
             responsive: true,
+            paging : false,
             "deferRender": true,
             "language": {
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '

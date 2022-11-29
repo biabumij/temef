@@ -146,6 +146,7 @@
     });	
 		
         var table_biaya = $('#table_biaya').DataTable( {
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -155,7 +156,7 @@
                     d.filter_date = $('#filter_date_biaya').val();
                 }
             },
-            pageLength: 25,
+            paging : false,
             columns: [
                 { "data": "no" },
                 { "data": "tanggal"},

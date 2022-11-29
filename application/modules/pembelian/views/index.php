@@ -965,6 +965,7 @@
                 }
             ],
             responsive: true,
+            paging : false,
         });
 
         $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
@@ -1037,6 +1038,7 @@
                 }
             ],
             responsive: true,
+            paging : false,
         });
 
         $('#filter_status').change(function(){
@@ -1210,6 +1212,7 @@
                     }
                  ],
                 responsive: true,
+                paging : false,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1289,6 +1292,7 @@
                 style: 'multi'
             },
             responsive: true,
+            paging : false,
             "columnDefs": [{
                     "targets": [0],
                     "orderable": false,
@@ -1439,6 +1443,7 @@
                 },
             ],
             responsive: true,
+            paging : false,
         });
 
 

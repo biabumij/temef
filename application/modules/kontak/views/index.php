@@ -170,7 +170,7 @@
                 { "data": "telepon"}
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -197,7 +197,7 @@
                 { "data": "telepon"}
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -224,7 +224,7 @@
                 { "data": "telepon"}
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -251,7 +251,7 @@
                 { "data": "telepon"}
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
                     "targets": [0],
