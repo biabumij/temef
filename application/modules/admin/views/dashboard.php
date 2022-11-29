@@ -70,13 +70,12 @@
     $date_januari23_awal = date('2023-01-01');
     $date_januari23_akhir = date('2023-01-31');
 
-    $kontrak = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
-    ->from('pmm_productions pp')
-    ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
-    ->where("pp.date_production between '$date_januari_awal' and '$date_j_akhir'")
-    ->where("pp.status = 'PUBLISH'")
+    $kontrak = $this->db->select('SUM(pod.total) as total')
+    ->from('pmm_sales_po ppo')
+    ->join('pmm_sales_po_detail pod', 'ppo.id = pod.sales_po_id','left')
     ->where("ppo.status in ('OPEN','CLOSED')")
-    ->group_by("pp.client_id")
+    ->group_by("ppo.id")
+    ->order_by('ppo.contract_date','desc')->limit(1)
     ->get()->row_array();
 
     $total_kontrak_all = $kontrak['total'];
@@ -1335,7 +1334,7 @@
                 },
                 yAxis: {
                     title: {  //label yAxis
-                        text: 'Laba : <?php echo number_format($total_kontrak_all,0,',','.'); ?>)'
+                        text: 'Presentase Thdp. (Kontrak : <?php echo number_format($total_kontrak_all,0,',','.'); ?>)'
                     },
                     plotLines: [{
                         value: 0,
