@@ -110,7 +110,7 @@
                                         </thead>
                                         <tbody>
                                             </tr>
-                                                <td colspan="3" class="text-center" style="background-color:#AEAEAE;"><b>PRODUKSI</b></td>
+                                                <td colspan="3" class="text-center" style="background-color:#EEEEEE;"><b>PRODUKSI</b></td>
                                             <tr>
                                             <tr>
                                                 <td class="text-left">Biaya Bahan</td>
@@ -121,7 +121,7 @@
                                                 <td class="text-right"><input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="<?= $rak['biaya_alat'] ?>" required="" autocomplete="off"></td>
                                             </tr>
                                             </tr>
-                                                <td colspan="3" class="text-center" style="background-color:#AEAEAE;"><b>KEUANGAN</b></td>
+                                                <td colspan="3" class="text-center" style="background-color:#EEEEEE;"><b>KEUANGAN</b></td>
                                             <tr>
                                             <tr>
                                                 <td class="text-left">Biaya Overhead</td>
