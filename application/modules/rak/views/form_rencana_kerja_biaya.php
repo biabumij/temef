@@ -71,6 +71,9 @@
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
+                                                    <td colspan="3"></td>
+                                                <tr>
+                                                </tr>
                                                 <tr>
                                                     <td>Biaya Overhead</td>
 													<td>
