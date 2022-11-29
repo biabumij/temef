@@ -1612,7 +1612,7 @@ class Pmm extends CI_Controller {
 	        $end = strtotime($ex_date[1]);
 		}else {
 			$month =  strtotime(date('d-m-Y'). '-3 months');
-			$end = strtotime(date('d-m-Y'). '+3 months');
+			$end = strtotime(date('d-m-Y'). '+9 months');
 
 		}
 		
