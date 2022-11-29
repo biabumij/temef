@@ -75,7 +75,7 @@
 			//VOLUME RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
-			
+
 			$rencana_kerja_2022_1 = $this->db->select('r.*')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
@@ -106,15 +106,21 @@
 			$total_rap_nilai_2022 = $nilai_jual_all_2022;
 
 			//BIAYA RAP 2022
-			$rencana_kerja_biaya_2022 = $this->db->select('r.*')
+			$rencana_kerja_biaya_2022_1 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
 			->get()->row_array();
 
-			$total_rap_2022_biaya_bahan = $rencana_kerja_biaya_2022['biaya_bahan'];
-			$total_rap_2022_biaya_alat = $rencana_kerja_biaya_2022['biaya_alat'];
-			$total_rap_2022_biaya_overhead = $rencana_kerja_biaya_2022['biaya_overhead'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_biaya_2022['biaya_bank'];
+			$rencana_kerja_biaya_2022_2 = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
+			->get()->row_array();
+
+
+			$total_rap_2022_biaya_bahan = $rencana_kerja_biaya_2022_1['biaya_bahan'] + $rencana_kerja_biaya_2022_2['biaya_bahan'];
+			$total_rap_2022_biaya_alat = $rencana_kerja_biaya_2022_1['biaya_alat'] + $rencana_kerja_biaya_2022_2['biaya_alat'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_biaya_2022_1['biaya_overhead'] + $rencana_kerja_biaya_2022_2['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_biaya_2022_1['biaya_bank'] + $rencana_kerja_biaya_2022_2['biaya_bank'];
 			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 
 			?>
