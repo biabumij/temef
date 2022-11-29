@@ -722,7 +722,7 @@
                 <div class="col-sm-12">
                     <figure class="highcharts-figure">
                         <div id="container"></div>
-                        <?php echo number_format($sisa_realisasi,0,',','.');?>
+                        
                     </figure>
                     <br />
                 </div>
