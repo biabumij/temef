@@ -187,6 +187,7 @@
 		});
 		
 		var table_agregat = $('#table_agregat').DataTable({
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -250,6 +251,7 @@
     <script type="text/javascript">
 		
 		var table_rap_alat = $('#table_rap_alat').DataTable({
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -331,6 +333,7 @@
     <script type="text/javascript">
 		
 		var table_rap_bua = $('#table_rap_bua').DataTable({
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,

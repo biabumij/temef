@@ -139,6 +139,7 @@
     <script type="text/javascript">
 		
 		var table_rak = $('#table_rak').DataTable({
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -217,6 +218,7 @@
         }
 
         var table_rak_biaya = $('#table_rak_biaya').DataTable({
+            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
