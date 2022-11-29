@@ -66,13 +66,6 @@
     <?php
     $date_now = date('Y-m-d');
     $date_januari_awal = date('2022-01-01');
-    $date_juni_akhir = date('2022-06-30');
-    $date_juli_awal = date('2022-07-01');
-    $date_juli_akhir = date('2022-07-31');
-    $date_agustus_awal = date('2022-08-01');
-    $date_agustus_akhir = date('2022-08-31');
-    $date_september_awal = date('2022-09-01');
-    $date_september_akhir = date('2022-09-30');
     $date_oktober_awal = date('2022-10-01');
     $date_oktober_akhir = date('2022-10-31');
     $date_november_awal = date('2022-11-01');
@@ -569,7 +562,7 @@
                         <div class="panel-header">
                             
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <h4>Laba Rugi</h4>
                                 </div>
                                 <div class="col-sm-6">
