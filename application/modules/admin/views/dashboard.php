@@ -998,7 +998,7 @@
                 },
                 yAxis: {
                     title: {  //label yAxis
-                        text: 'Realisasi + Rencana (Jul 22 + Jul 23) <br /> <?php echo number_format($total_kontrak_all,0,',','.'); ?>'
+                        text: 'Realisasi + Rencana<br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
                     },
                     plotLines: [{
                         value: 0,
