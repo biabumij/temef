@@ -5,7 +5,7 @@
 </head>
 <style type="text/css">
     .chart-container{
-        position: relative; width:100%;height:350px;background: #fff;
+        position: relative; max-width: 100%; height:350px; background: #fff;
     }
     .highcharts-figure,
     .highcharts-data-table table {
@@ -557,70 +557,60 @@
                     </figure>
                     <br />
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                     <div class="panel panel-default">
-                        <div class="panel-header">
-                            
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Laba Rugi</h3>
+                        </div>
+                        <div style="margin: 20px">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <h4>Laba Rugi</h4>
-                                </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel-body">
-                            <div id="wait-1" class="loading-chart">
+                            <br />
+                            <div id="wait" style=" text-align: center; align-content: center; display: none;">	
                                 <div>Please Wait</div>
-                                <div class="fa-3x">
-                                    <i class="fa fa-spinner fa-spin"></i>
-                                </div>
-                            </div>
-                            <div class="col-sm-12" style="padding:0;">
-                                <div id="parent-lost-profit" class="chart-container">
-                                    <canvas id="canvas"></canvas>
-                                </div>    
+                                    <div class="fa-3x">
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                    </div>
+                            </div>		
+                            <div id="parent-lost-profit" class="chart-container">
+                                <canvas id="canvas"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-8">
+                <!-- Laporan Evaluasi -->               
+                <div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
+                    <div class="col-sm-8">
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3>
+                            </div>
+                            <div style="margin: 20px">
+                                <div class="row"> 
+                                    <div class="col-sm-4">
+                                        <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+                                    </div>   
+                                </div>
+                                <br />
+                                <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                    <div>Please Wait</div>
+                                    <div class="fa-3x">
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                    </div>
+                                </div>				
+                                <div class="table-responsive" id="box-ajax-evaluasi">													
+                                
 
-                    <!-- Laporan Evaluasi -->
-                                    
-                    <div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
-                        <div class="col-sm-15">
-                        <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3>
                                 </div>
-                                <div style="margin: 20px">
-                                    <div class="row"> 
-                                        <div class="col-sm-4">
-                                            <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-                                        </div>   
-                                    </div>
-                                    <br />
-                                    <div id="wait" style=" text-align: center; align-content: center; display: none;">	
-                                        <div>Please Wait</div>
-                                        <div class="fa-3x">
-                                            <i class="fa fa-spinner fa-spin"></i>
-                                        </div>
-                                    </div>				
-                                    <div class="table-responsive" id="box-ajax-evaluasi">													
-                                    
-    
-                                    </div>
-                                </div>
-                        </div>
-                        
-                        </div>
+                            </div>
+                    </div>
+                    
                     </div>
                 </div>
-
-
             </div>  
         </div>
        
