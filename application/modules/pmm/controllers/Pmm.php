@@ -1611,8 +1611,8 @@ class Pmm extends CI_Controller {
 	        $month = strtotime($ex_date[0]);
 	        $end = strtotime($ex_date[1]);
 		}else {
-			$month =  strtotime(date('d-m-Y'). '-11 months');
-			$end = strtotime(date('d-m-Y'). '+1 months');
+			$month =  strtotime(date('d-m-Y'). '-3 months');
+			$end = strtotime(date('d-m-Y'). '+3 months');
 
 		}
 		
