@@ -58,7 +58,7 @@
                                             </thead>
                                             <tbody>
                                                 </tr>
-                                                    <td colspan="3" class="text-center" style="background-color:#808080;"><b>PRODUKSI</b></td>
+                                                    <td colspan="3" class="text-center" style="background-color:#979797;"><b>PRODUKSI</b></td>
                                                 <tr>
                                                 <tr>
                                                     <td>Biaya Bahan</td>
@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
-                                                    <td colspan="3" class="text-center" style="background-color:#808080;"><b>KEUANGAN</b></td>
+                                                    <td colspan="3" class="text-center" style="background-color:#979797;"><b>KEUANGAN</b></td>
                                                 <tr>
                                                 </tr>
                                                 <tr>
