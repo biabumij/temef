@@ -58,7 +58,7 @@
                                             </thead>
                                             <tbody>
                                                 </tr>
-                                                    <td colspan="3">PRODUKSI</td>
+                                                    <td colspan="3" class="text-center"><b>PRODUKSI</b></td>
                                                 <tr>
                                                 <tr>
                                                     <td>Biaya Bahan</td>
@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
-                                                    <td colspan="3">KEUANGAN</td>
+                                                    <td colspan="3" class="text-center"><b>KEUANGAN</b></td>
                                                 <tr>
                                                 </tr>
                                                 <tr>
