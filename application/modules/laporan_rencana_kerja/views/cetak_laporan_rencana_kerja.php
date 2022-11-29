@@ -75,50 +75,34 @@
 			//VOLUME RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
-			$rencana_kerja_2022 = $this->db->select('r.*')
-			->from('rak r')
-			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
-			->get()->row_array();
-			$volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
-			$volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
-			$volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
-			$volume_rap_2022_produk_d = $rencana_kerja_2022['vol_produk_d'];
-			$total_rap_volume_2022 = $volume_rap_2022_produk_a + $volume_rap_2022_produk_b + $volume_rap_2022_produk_c + $volume_rap_2022_produk_d;
 			
-			//HARGA JUAL RAP
-			$harga_jual_125_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 2")
-			->order_by('po.contract_date','desc')->limit(1)
+			$rencana_kerja_2022_1 = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
 			->get()->row_array();
 
-			$harga_jual_225_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 1")
-			->order_by('po.contract_date','desc')->limit(1)
+			$rencana_kerja_2022_2 = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
 
-			$harga_jual_250_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 3")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
+			$volume_rap_2022_produk_a = $rencana_kerja_2022_1['vol_produk_a'] + $rencana_kerja_2022_2['vol_produk_a'];
+			$volume_rap_2022_produk_b = $rencana_kerja_2022_1['vol_produk_b'] + $rencana_kerja_2022_2['vol_produk_b'];
+			$volume_rap_2022_produk_c = $rencana_kerja_2022_1['vol_produk_c'] + $rencana_kerja_2022_2['vol_produk_c'];
+			$volume_rap_2022_produk_d = $rencana_kerja_2022_1['vol_produk_d'] + $rencana_kerja_2022_2['vol_produk_d'];
+			$total_rap_volume_2022 = $rencana_kerja_2022_1['vol_produk_a'] + $rencana_kerja_2022_1['vol_produk_b'] + $rencana_kerja_2022_1['vol_produk_c'] + $rencana_kerja_2022_1['vol_produk_d'] + $rencana_kerja_2022_2['vol_produk_a'] + $rencana_kerja_2022_2['vol_produk_b'] + $rencana_kerja_2022_2['vol_produk_c'] + $rencana_kerja_2022_2['vol_produk_d'];
 
-			$harga_jual_250_18_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 11")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
+			$price_produk_a_1 = $rencana_kerja_2022_1['vol_produk_a'] * $rencana_kerja_2022_1['price_a'];
+			$price_produk_b_1 = $rencana_kerja_2022_1['vol_produk_b'] * $rencana_kerja_2022_1['price_b'];
+			$price_produk_c_1 = $rencana_kerja_2022_1['vol_produk_c'] * $rencana_kerja_2022_1['price_c'];
+			$price_produk_d_1 = $rencana_kerja_2022_1['vol_produk_d'] * $rencana_kerja_2022_1['price_d'];
 
-			$nilai_jual_125_2022 = $volume_rap_2022_produk_a * $harga_jual_125_rap['harga_satuan'];
-			$nilai_jual_225_2022 = $volume_rap_2022_produk_b * $harga_jual_225_rap['harga_satuan'];
-			$nilai_jual_250_2022 = $volume_rap_2022_produk_c * $harga_jual_250_rap['harga_satuan'];
-			$nilai_jual_250_18_2022 = $volume_rap_2022_produk_d * $harga_jual_250_18_rap['harga_satuan'];
-			$nilai_jual_all_2022 = $nilai_jual_125_2022 + $nilai_jual_225_2022 + $nilai_jual_250_2022 + $nilai_jual_250_18_2022;
+			$price_produk_a_2 = $rencana_kerja_2022_2['vol_produk_a'] * $rencana_kerja_2022_2['price_a'];
+			$price_produk_b_2 = $rencana_kerja_2022_2['vol_produk_b'] * $rencana_kerja_2022_2['price_b'];
+			$price_produk_c_2 = $rencana_kerja_2022_2['vol_produk_c'] * $rencana_kerja_2022_2['price_c'];
+			$price_produk_d_2 = $rencana_kerja_2022_2['vol_produk_d'] * $rencana_kerja_2022_2['price_d'];
+
+			$nilai_jual_all_2022 = $price_produk_a_1 + $price_produk_b_1 + $price_produk_c_1 + $price_produk_d_1 + $price_produk_a_2 + $price_produk_b_2 + $price_produk_c_2 + $price_produk_d_2;
 			$total_rap_nilai_2022 = $nilai_jual_all_2022;
 
 			//BIAYA RAP 2022
