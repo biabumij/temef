@@ -980,17 +980,17 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 500, 500],
                         stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
+                            [0, 'rgb(200,233,233)'],
+                            [1, 'rgb(164,219,232)']
                         ]
                     },
                 },
                 title: {
-                    text: 'Realisasi Produksi',
+                    text: 'REALISASI PRODUKSI',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: 'PT. Bia Bumi Jayendra - TEMEF',
+                    text: 'PT. BIA BUMI JAYENDRA - TEMEF',
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
