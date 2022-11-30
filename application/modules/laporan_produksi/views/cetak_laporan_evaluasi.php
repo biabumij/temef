@@ -645,7 +645,7 @@
 				<th width="5%" align = "center" rowspan="2">&nbsp;<br/>NO.</th>
 				<th width="12%" align = "center" rowspan="2">&nbsp;<br/>URAIAN</th>
 				<th width="10%" align = "center" rowspan="2">&nbsp;<br/>SATUAN</th>
-				<th width="28%" align = "center" colspan="3">RENCANA</th>
+				<th width="28%" align = "center" colspan="3">KOMPOSISI</th>
 				<th width="28%" align = "center" colspan="3">REALISASI</th>
 				<th width="17%" align = "center" colspan="2">EVALUASI</th>
 	        </tr>
