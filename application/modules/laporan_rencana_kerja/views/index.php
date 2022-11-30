@@ -56,10 +56,14 @@
                                         <br />
 											<div class="row">
 												<div width="100%">
-													<div class="panel panel-default">                                            
+													<div class="panel panel-default">
+													<div class="col-sm-5">
+                                                            <p><h5>Rencana Kerja</h5></p>
+                                                            <a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+														</div>	                                       
                                                         <div class="col-sm-5">
-                                                            <p><h5>Laporan Rencana Kerja Produksi</h5></p>
-                                                            <a href="#laporan_rencana_kerja" aria-controls="laporan_rencana_kerja" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                            <p><h5>Prognosa Produksi</h5></p>
+                                                            <a href="#prognosa_produksi" aria-controls="prognosa_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 														</div>											
 													</div>
 												</div>
@@ -67,19 +71,19 @@
 										</div>
                                     </div>
 
-                                    <!-- Laporan Rencana Kerja -->
-                                    <div role="tabpanel" class="tab-pane" id="laporan_rencana_kerja">
+									<!-- Prognosa Produksi -->
+                                    <div role="tabpanel" class="tab-pane" id="rencana_kerja">
                                         <div class="col-sm-15">
 											<div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Rencana Kerja Produksi</h3>
+                                                    <h3 class="panel-title">Rencana Kerja</h3>
 													<a href="laporan_rencana_kerja">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/cetak_laporan_rencana_kerja');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_rencana_kerja');?>" target="_blank">
 															<!--<div class="col-sm-3">
-																<input type="text" id="filter_date_laporan_rencana_kerja" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_rencana_kerja" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>-->
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -94,7 +98,42 @@
 														  <i class="fa fa-spinner fa-spin"></i>
 														</div>
 													</div>				
-													<div class="table-responsive" id="laporan-rencana-kerja">
+													<div class="table-responsive" id="rencana-kerja">
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
+
+                                    <!-- Prognosa Produksi -->
+                                    <div role="tabpanel" class="tab-pane" id="prognosa_produksi">
+                                        <div class="col-sm-15">
+											<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Prognosa Produksi</h3>
+													<a href="laporan_rencana_kerja">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/cetak_prognosa_produksi');?>" target="_blank">
+															<!--<div class="col-sm-3">
+																<input type="text" id="filter_date_prognosa_produksi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>-->
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="prognosa-produksi">
 													</div>
 												</div>
 										</div>
@@ -123,7 +162,7 @@
         
 		<!-- Script Laporan Rencana Kerja -->
 		<script type="text/javascript">
-			$('#filter_date_laporan_rencana_kerja').daterangepicker({
+			$('#filter_date_prognosa_produksi').daterangepicker({
             autoUpdateInput : false,
 			showDropdowns: true,
             locale: {
@@ -139,30 +178,30 @@
             }
 			});
 
-			$('#filter_date_laporan_rencana_kerja').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_prognosa_produksi').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  LaporanRencanaKerja();
+				  PrognosaProduksi();
 			});
 
 
-			function LaporanRencanaKerja()
+			function PrognosaProduksi()
 			{
 				$('#wait').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/laporan_rencana_kerja'); ?>/"+Math.random(),
+					url     : "<?php echo site_url('pmm/reports/prognosa_produksi'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_laporan_rencana_kerja').val(),
+						filter_date : $('#filter_date_prognosa_produksi').val(),
 					},
 					success : function(result){
-						$('#laporan-rencana-kerja').html(result);
+						$('#prognosa-produksi').html(result);
 						$('#wait').fadeOut('fast');
 					}
 				});
 			}
 
-			LaporanRencanaKerja();
+			PrognosaProduksi();
 
         </script>
 

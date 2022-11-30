@@ -1315,7 +1315,7 @@ class Laporan extends Secure_Controller {
     
     }
 
-	public function cetak_laporan_rencana_kerja()
+	public function cetak_prognosa_produksi()
 	{
 		$this->load->library('pdf');
 	
@@ -1334,12 +1334,12 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_rencana_kerja/cetak_laporan_rencana_kerja',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_prognosa_produksi',$data,TRUE);
 
         
-        $pdf->SetTitle('BBJ - Laporan Rencana Kerja');
+        $pdf->SetTitle('BBJ - Prognosa Produksi');
         $pdf->nsi_html($html);
-        $pdf->Output('laporan-rencana-kerja.pdf', 'I');
+        $pdf->Output('prognosa_produksi.pdf', 'I');
 	
 	}
 
@@ -1370,7 +1370,7 @@ class Laporan extends Secure_Controller {
         $pdf->Output('kebutuhan_bahan_rap_2022.pdf', 'I');
 	}
 
-	public function cetak_bahan_rap()
+	public function cetak_rencana_kerja()
 	{
 		$this->load->library('pdf');
 	
@@ -1386,10 +1386,10 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+			$filter_date = date('Y-m-d',strtotime($arr_filter_date[0])).' - '.date('Y-m-d',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_rencana_kerja/cetak_bahan',$data,TRUE);
+        $html = $this->load->view('laporan_rencana_kerja/cetak_rencana_kerja',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Kebutuhan Bahan');
