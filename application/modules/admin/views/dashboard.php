@@ -425,7 +425,6 @@
     
     $total_februari_nilai = ($nilai_jual_all_februari / $total_kontrak_all) * 100;
     $net_februari_rap = round($total_februari_nilai,2);
-    $net_februari = round($presentase_penjualan_februari,2);
 
     //MARET
     $rencana_kerja_maret = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -448,7 +447,6 @@
     
     $total_maret_nilai = ($nilai_jual_all_maret / $total_kontrak_all) * 100;
     $net_maret_rap = round($total_maret_nilai,2);
-    $net_maret = round($presentase_penjualan_maret,2);
 
     //APRIL
     $rencana_kerja_april = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -471,7 +469,6 @@
     
     $total_april_nilai = ($nilai_jual_all_april / $total_kontrak_all) * 100;
     $net_april_rap = round($total_april_nilai,2);
-    $net_april = round($presentase_penjualan_april,2);
 
     //MEI
     $rencana_kerja_mei = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -494,7 +491,6 @@
     
     $total_mei_nilai = ($nilai_jual_all_mei / $total_kontrak_all) * 100;
     $net_mei_rap = round($total_mei_nilai,2);
-    $net_mei = round($presentase_penjualan_mei,2);
     
     //JUNI
     $rencana_kerja_juni = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -517,7 +513,6 @@
     
     $total_juni_nilai = ($nilai_jual_all_juni / $total_kontrak_all) * 100;
     $net_juni_rap = round($total_juni_nilai,2);
-    $net_juni = round($presentase_penjualan_juni,2);
 
     //JULI
     $rencana_kerja_juli = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -540,7 +535,6 @@
     
     $total_juli_nilai = ($nilai_jual_all_juli / $total_kontrak_all) * 100;
     $net_juli_rap = round($total_juli_nilai,2);
-    $net_juli = round($presentase_penjualan_juli,2);
 
     //AGUSTUS
     $rencana_kerja_agustus = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -563,7 +557,6 @@
     
     $total_agustus_nilai = ($nilai_jual_all_agustus / $total_kontrak_all) * 100;
     $net_agustus_rap = round($total_agustus_nilai,2);
-    $net_agustus = round($presentase_penjualan_agustus,2);
 
     //SEPTEMBER
     $rencana_kerja_september = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -586,7 +579,6 @@
     
     $total_september_nilai = ($nilai_jual_all_september / $total_kontrak_all) * 100;
     $net_september_rap = round($total_september_nilai,2);
-    $net_september = round($presentase_penjualan_september,2);
 
     //OKTOBER
     $rencana_kerja_oktober = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -609,7 +601,6 @@
     
     $total_oktober_nilai = ($nilai_jual_all_oktober / $total_kontrak_all) * 100;
     $net_oktober_rap = round($total_oktober_nilai,2);
-    $net_oktober = round($presentase_penjualan_oktober,2);
 
     //NOVEMBER
     $rencana_kerja_november = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -724,7 +715,7 @@
     //APRIL23
     $rencana_kerja_april23 = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
     ->from('rak r')
-    ->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_april23_akhir'")
+    ->where("r.tanggal_rencana_kerja between '$date_april23_awal' and '$date_april23_akhir'")
     ->get()->row_array();
 
     $volume_april23_produk_a = $rencana_kerja_april23['vol_produk_a'];
@@ -738,7 +729,7 @@
     $nilai_jual_225_april23 = $volume_april23_produk_b * $rencana_kerja_april23['price_b'];
     $nilai_jual_250_april23 = $volume_april23_produk_c * $rencana_kerja_april23['price_c'];
     $nilai_jual_250_18_april23 = $volume_april23_produk_d * $rencana_kerja_april23['price_d'];
-    $nilai_jual_all_april23 = $nilai_jual_125_april23 + $nilai_jual_225_april23 + $nilai_jual_250_april23 + $nilai_jual_250_18_april23;
+    $nilai_jual_all_april23 = $nilai_jual_all_maret23 + $nilai_jual_125_april23 + $nilai_jual_225_april23 + $nilai_jual_250_april23 + $nilai_jual_250_18_april23;
     
     $total_april23_nilai = ($nilai_jual_all_april23 / $total_kontrak_all) * 100;
     $net_april23_rap = round($total_april23_nilai,2);

@@ -24,6 +24,14 @@ class Rak extends Secure_Controller {
 			->where("p.betonreadymix = 1 ")
 			->order_by('nama_produk','asc')
 			->get()->result_array();
+
+			$data['komposisi'] = $this->db->select('id, jobs_type,date_agregat')->order_by('date_agregat','desc')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
+
+			$data['semen'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
+			$data['pasir'] = $this->pmm_model->getMatByPenawaranRencanaKerjaPasir();
+			$data['batu1020'] = $this->pmm_model->getMatByPenawaranRencanaKerjaBatu1020();
+			$data['batu2030'] = $this->pmm_model->getMatByPenawaranRencanaKerjaBatu2030();
+			$data['solar'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSolar();
 			$this->load->view('rak/form_rencana_kerja', $data);
 		} else {
 			redirect('admin');
@@ -42,19 +50,91 @@ class Rak extends Secure_Controller {
 		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 		$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
 
+		$komposisi_125 =  $this->input->post('komposisi_125');
+		$komposisi_225 =  $this->input->post('komposisi_225');
+		$komposisi_250 =  $this->input->post('komposisi_250');
+		$komposisi_250_2 =  $this->input->post('komposisi_250_2');
+
+		$penawaran_id_semen =  $this->input->post('penawaran_id_semen');
+		$penawaran_id_pasir =  $this->input->post('penawaran_id_pasir');
+		$penawaran_id_batu1020 =  $this->input->post('penawaran_id_batu1020');
+		$penawaran_id_batu2030 =  $this->input->post('penawaran_id_batu2030');
+		$penawaran_id_solar =  $this->input->post('penawaran_id_solar');
+
+		$harga_semen =  str_replace('.', '', $this->input->post('price_semen'));
+		$harga_pasir =  str_replace('.', '', $this->input->post('price_pasir'));
+		$harga_batu1020 =  str_replace('.', '', $this->input->post('price_batu1020'));
+		$harga_batu2030 =  str_replace('.', '', $this->input->post('price_batu2030'));
+		$harga_solar =  str_replace('.', '', $this->input->post('price_solar'));
+
+		$satuan_semen =  $this->input->post('measure_semen');
+		$satuan_pasir =  $this->input->post('measure_pasir');
+		$satuan_batu1020 =  $this->input->post('measure_batu1020');
+		$satuan_batu2030 =  $this->input->post('measure_batu2030');
+		$satuan_solar =  $this->input->post('measure_solar');
+
+		$tax_id_semen =  $this->input->post('tax_id_semen');
+		$tax_id_pasir =  $this->input->post('tax_id_pasir');
+		$tax_id_batu1020 =  $this->input->post('tax_id_batu1020');
+		$tax_id_batu2030 =  $this->input->post('tax_id_batu2030');
+		$tax_id_solar =  $this->input->post('tax_id_solar');
+
+		$supplier_id_semen =  $this->input->post('supplier_id_semen');
+		$supplier_id_pasir =  $this->input->post('supplier_id_pasir');
+		$supplier_id_batu1020 =  $this->input->post('supplier_id_batu1020');
+		$supplier_id_batu2030 =  $this->input->post('supplier_id_batu2030');
+		$supplier_id_solar =  $this->input->post('supplier_id_solar');
+
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
 		$arr_insert = array(
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
+
 			'vol_produk_a' => $vol_produk_a,
 			'vol_produk_b' => $vol_produk_b,
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
+
+			'komposisi_125' => $komposisi_125,
+			'komposisi_225' => $komposisi_225,
+			'komposisi_250' => $komposisi_250,
+			'komposisi_250_2' => $komposisi_250_2,
+
 			'price_a' => 896600,
 			'price_b' => 1005000,
 			'price_c' => 1179200,
 			'price_d' => 1200000,
+
+			'penawaran_id_semen' => $penawaran_id_semen,
+			'penawaran_id_pasir' => $penawaran_id_pasir,
+			'penawaran_id_batu1020' => $penawaran_id_batu1020,
+			'penawaran_id_batu2030' => $penawaran_id_batu2030,
+			'penawaran_id_solar' => $penawaran_id_solar,
+
+			'harga_semen' => $harga_semen,
+			'harga_pasir' => $harga_pasir,
+			'harga_batu1020' => $harga_batu1020,
+			'harga_batu2030' => $harga_batu2030,
+			'harga_solar' => $harga_solar,
+
+			'satuan_semen' => $satuan_semen,
+			'satuan_pasir' => $satuan_pasir,
+			'satuan_batu1020' => $satuan_batu1020,
+			'satuan_batu2030' => $satuan_batu2030,
+			'satuan_solar' => $satuan_solar,
+
+			'tax_id_semen' => $tax_id_semen,
+			'tax_id_pasir' => $tax_id_pasir,
+			'tax_id_batu1020' => $tax_id_batu1020,
+			'tax_id_batu2030' => $tax_id_batu2030,
+			'tax_id_solar' => $tax_id_solar,
+
+			'supplier_id_semen' => $supplier_id_semen,
+			'supplier_id_pasir' => $supplier_id_pasir,
+			'supplier_id_batu1020' => $supplier_id_batu1020,
+			'supplier_id_batu2030' => $supplier_id_batu2030,
+			'supplier_id_solar' => $supplier_id_solar,
 			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
@@ -192,6 +272,12 @@ class Rak extends Secure_Controller {
 			$data['tes'] = '';
 			$data['rak'] = $this->db->get_where("rak", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("lampiran_rak", ["rak_id" => $id])->result_array();
+			$data['komposisi'] = $this->db->select('id, jobs_type,date_agregat')->order_by('date_agregat','desc')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
+			$data['semen'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
+			$data['pasir'] = $this->pmm_model->getMatByPenawaranRencanaKerjaPasir();
+			$data['batu1020'] = $this->pmm_model->getMatByPenawaranRencanaKerjaBatu1020();
+			$data['batu2030'] = $this->pmm_model->getMatByPenawaranRencanaKerjaBatu2030();
+			$data['solar'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSolar();
 			$this->load->view('rak/sunting_rencana_kerja', $data);
 		} else {
 			redirect('admin');
@@ -214,11 +300,87 @@ class Rak extends Secure_Controller {
 			$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 			$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
 
+			$komposisi_125 =  $this->input->post('komposisi_125');
+			$komposisi_225 =  $this->input->post('komposisi_225');
+			$komposisi_250 =  $this->input->post('komposisi_250');
+			$komposisi_250_2 =  $this->input->post('komposisi_250_2');
+
+			$penawaran_id_semen =  $this->input->post('penawaran_id_semen');
+			$penawaran_id_pasir =  $this->input->post('penawaran_id_pasir');
+			$penawaran_id_batu1020 =  $this->input->post('penawaran_id_batu1020');
+			$penawaran_id_batu2030 =  $this->input->post('penawaran_id_batu2030');
+			$penawaran_id_solar =  $this->input->post('penawaran_id_solar');
+
+			$harga_semen =  str_replace('.', '', $this->input->post('price_semen'));
+			$harga_pasir =  str_replace('.', '', $this->input->post('price_pasir'));
+			$harga_batu1020 =  str_replace('.', '', $this->input->post('price_batu1020'));
+			$harga_batu2030 =  str_replace('.', '', $this->input->post('price_batu2030'));
+			$harga_solar =  str_replace('.', '', $this->input->post('price_solar'));
+
+			$satuan_semen =  $this->input->post('measure_semen');
+			$satuan_pasir =  $this->input->post('measure_pasir');
+			$satuan_batu1020 =  $this->input->post('measure_batu1020');
+			$satuan_batu2030 =  $this->input->post('measure_batu2030');
+			$satuan_solar =  $this->input->post('measure_solar');
+
+			$tax_id_semen =  $this->input->post('tax_id_semen');
+			$tax_id_pasir =  $this->input->post('tax_id_pasir');
+			$tax_id_batu1020 =  $this->input->post('tax_id_batu1020');
+			$tax_id_batu2030 =  $this->input->post('tax_id_batu2030');
+			$tax_id_solar =  $this->input->post('tax_id_solar');
+
+			$supplier_id_semen =  $this->input->post('supplier_id_semen');
+			$supplier_id_pasir =  $this->input->post('supplier_id_pasir');
+			$supplier_id_batu1020 =  $this->input->post('supplier_id_batu1020');
+			$supplier_id_batu2030 =  $this->input->post('supplier_id_batu2030');
+			$supplier_id_solar =  $this->input->post('supplier_id_solar');
+
 			$arr_update = array(
 				'vol_produk_a' => $vol_produk_a,
 				'vol_produk_b' => $vol_produk_b,
 				'vol_produk_c' => $vol_produk_c,
 				'vol_produk_d' => $vol_produk_d,
+
+				'komposisi_125' => $komposisi_125,
+				'komposisi_225' => $komposisi_225,
+				'komposisi_250' => $komposisi_250,
+				'komposisi_250_2' => $komposisi_250_2,
+
+				'price_a' => 896600,
+				'price_b' => 1005000,
+				'price_c' => 1179200,
+				'price_d' => 1200000,
+
+				'penawaran_id_semen' => $penawaran_id_semen,
+				'penawaran_id_pasir' => $penawaran_id_pasir,
+				'penawaran_id_batu1020' => $penawaran_id_batu1020,
+				'penawaran_id_batu2030' => $penawaran_id_batu2030,
+				'penawaran_id_solar' => $penawaran_id_solar,
+
+				'harga_semen' => $harga_semen,
+				'harga_pasir' => $harga_pasir,
+				'harga_batu1020' => $harga_batu1020,
+				'harga_batu2030' => $harga_batu2030,
+				'harga_solar' => $harga_solar,
+
+				'satuan_semen' => $satuan_semen,
+				'satuan_pasir' => $satuan_pasir,
+				'satuan_batu1020' => $satuan_batu1020,
+				'satuan_batu2030' => $satuan_batu2030,
+				'satuan_solar' => $satuan_solar,
+
+				'tax_id_semen' => $tax_id_semen,
+				'tax_id_pasir' => $tax_id_pasir,
+				'tax_id_batu1020' => $tax_id_batu1020,
+				'tax_id_batu2030' => $tax_id_batu2030,
+				'tax_id_solar' => $tax_id_solar,
+
+				'supplier_id_semen' => $supplier_id_semen,
+				'supplier_id_pasir' => $supplier_id_pasir,
+				'supplier_id_batu1020' => $supplier_id_batu1020,
+				'supplier_id_batu2030' => $supplier_id_batu2030,
+				'supplier_id_solar' => $supplier_id_solar,
+				
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')
@@ -420,6 +582,7 @@ class Rak extends Secure_Controller {
 			$data['tes'] = '';
 			$data['rak'] = $this->db->get_where("rak_biaya", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("lampiran_rak_biaya", ["rak_id" => $id])->result_array();
+			$this->load->view('rak/form_rencana_kerja', $data);
 			$this->load->view('rak/sunting_rencana_kerja_biaya', $data);
 		} else {
 			redirect('admin');
