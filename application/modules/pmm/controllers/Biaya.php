@@ -771,7 +771,8 @@ class Biaya extends CI_Controller {
 		$data = array(
             'id' => $form_id_biaya_main,
 			//'penerima' => $penerima,
-			//'tanggal_transaksi' => $tanggal_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
+            'nomor_transaksi' => $nomor_transaksi,
 			//'bayar_dari' => $bayar_dari,
             //'memo' => $memo,
             'total' => $total

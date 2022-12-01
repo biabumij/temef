@@ -461,8 +461,8 @@ class Jurnal_umum extends CI_Controller {
 
 		$data = array(
             'id' => $form_id_jurnal_main,
-            //'nomor_transaksi' => $nomor_transaksi,
-			//'tanggal_transaksi' => $tanggal_transaksi,
+            'nomor_transaksi' => $nomor_transaksi,
+			'tanggal_transaksi' => $tanggal_transaksi,
             //'memo' => $memo,
             'total' => $total,
             'total_debit' => $total_debit,

@@ -190,7 +190,7 @@
                                     }
                                     ?>
                             </select>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label>Nomor Transaksi</label>
                             <input type="text" id="nomor_transaksi" name="nomor_transaksi" class="form-control" required="" autocomplete="off" />
@@ -199,7 +199,7 @@
                             <label>Tanggal Transaksi</label>
                             <input type="text" id="tanggal_transaksi" name="tanggal_transaksi" class="form-control dtpicker" required="" autocomplete="off" />
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label>Akun Penarikan</label>
                             <select id="bayar_dari" name="bayar_dari" class="form-control select2" required="">
                                 <option value="">Pilih Akun Penarikan</option>

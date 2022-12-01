@@ -184,7 +184,7 @@
                     <form class="form-horizontal" style="padding: 0 10px 0 20px;" >
                         <input type="hidden" name="jurnal_umum" id="id" value="<?= $data['id'] ?>">
                         <input type="hidden" id="form_id_jurnal_main" name="form_id_jurnal_main" class="form-control" required="" autocomplete="off" />
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label>Nomor Transaksi</label>
                             <input type="text" id="nomor_transaksi" name="nomor_transaksi" class="form-control" required="" autocomplete="off" />
                         </div>
@@ -196,7 +196,7 @@
                             <label>Total</label>
                             <input type="text" id="total" name="total" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
-                        <div class="form-group">
+                       <!--<div class="form-group">
                             <label>Memo</label>
                             <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" />
                         </div>-->
