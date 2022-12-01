@@ -1450,6 +1450,33 @@ class Laporan extends Secure_Controller {
         $pdf->nsi_html($html);
         $pdf->Output('kebutuhan_bahan.pdf', 'I');
 	}
+
+	public function cetak_rencana_kerja()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('Y-m-d',strtotime($arr_filter_date[0])).' - '.date('Y-m-d',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_rencana_kerja/cetak_rencana_kerja',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Rencana Kerja Produksi');
+        $pdf->nsi_html($html);
+        $pdf->Output('rencana_kerja_produksi.pdf', 'I');
+	}
 	
 
 }
