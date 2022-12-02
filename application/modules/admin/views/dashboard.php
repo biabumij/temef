@@ -2924,7 +2924,7 @@
                 <div class="col-sm-12">
                     <figure class="highcharts-figure">
                         <div id="container_laba_rugi"></div>
-                        <?php echo number_format($cost_maret,0,',','.');?>
+                        
                     </figure>
                     <br />
                 </div>
