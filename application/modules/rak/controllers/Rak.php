@@ -582,7 +582,6 @@ class Rak extends Secure_Controller {
 			$data['tes'] = '';
 			$data['rak'] = $this->db->get_where("rak_biaya", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("lampiran_rak_biaya", ["rak_id" => $id])->result_array();
-			$this->load->view('rak/form_rencana_kerja', $data);
 			$this->load->view('rak/sunting_rencana_kerja_biaya', $data);
 		} else {
 			redirect('admin');
