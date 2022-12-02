@@ -103,7 +103,7 @@ class Produk extends Secure_Controller {
 
     	$id = $this->input->post('id');
     	$nama_produk = $this->input->post('nama_produk');
-    	$kode_produk = $this->input->post('kode_produk');
+    	//$kode_produk = $this->input->post('kode_produk');
         $bahanbaku = $this->input->post('bahanbaku');
     	$betonreadymix = $this->input->post('betonreadymix');
     	$jasa = $this->input->post('jasa');
@@ -135,7 +135,7 @@ class Produk extends Secure_Controller {
 
 
     	$data = array(
-    		'kode_produk' => $kode_produk,
+    		//'kode_produk' => $kode_produk,
     		'nama_produk' => $nama_produk,
     		'harga_beli' => $harga_beli,
     		'akun_beli' => $akun_beli,

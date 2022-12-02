@@ -52,11 +52,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -74,11 +71,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,11 +89,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -116,11 +107,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -137,11 +125,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kode</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -188,17 +173,14 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
-                { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "satuan" }
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2],
                     "className": 'text-center',
                 }
             ],
@@ -216,17 +198,14 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
-                { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "satuan" }
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2],
                     "className": 'text-center',
                 }
             ],
@@ -244,17 +223,14 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
-                { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "satuan" }
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2],
                     "className": 'text-center',
                 }
             ],
@@ -273,17 +249,14 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
-                { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "satuan" }
             ],
             responsive: true,
-            pageLength : 25,
+            paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2],
                     "className": 'text-center',
                 }
             ],
@@ -301,17 +274,14 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
-                { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "satuan" }
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2],
                     "className": 'text-center',
                 }
             ],
