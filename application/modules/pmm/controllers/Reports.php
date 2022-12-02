@@ -11435,15 +11435,15 @@ class Reports extends CI_Controller {
 				<th width="5%" class="text-center">NO.</th>
 				<th class="text-center">URAIAN</th>
 				<th class="text-center">SATUAN</th>
-				<th class="text-center">NOVEMBER</th>
-				<th class="text-center">DESEMBER</th>
-				<th class="text-center">JANUARI</th>
-				<th class="text-center">FEBRUARI</th>
-				<th class="text-center">MARET</th>
-				<th class="text-center">APRIL</th>
-				<th class="text-center">MEI</th>
-				<th class="text-center">JUNI</th>
-				<th class="text-center">JULI</th>
+				<th class="text-center">NOVEMBER 2022</th>
+				<th class="text-center">DESEMBER 2022</th>
+				<th class="text-center">JANUARI 2023</th>
+				<th class="text-center">FEBRUARI 2023</th>
+				<th class="text-center">MARET 2023</th>
+				<th class="text-center">APRIL 2023</th>
+				<th class="text-center">MEI 2023</th>
+				<th class="text-center">JUNI 2023</th>
+				<th class="text-center">JULI 2023</th>
 	        </tr>
 			<tr class="table-baris">
 				<th class="text-center">1</th>

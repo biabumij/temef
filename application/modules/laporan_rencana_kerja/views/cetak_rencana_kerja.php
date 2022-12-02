@@ -93,7 +93,7 @@
 			//NOVEMBER
 			$rencana_kerja_november = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date1' and '$date'")
 			->get()->row_array();
 
 			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
@@ -987,15 +987,15 @@
 				<th width="5%" align="center">NO.</th>
 				<th width="15%" align = "center">URAIAN</th>
 				<th width="8%" align = "center">SATUAN</th>
-				<th width="8%" align = "center">NOVEMBER</th>
-				<th width="8%" align = "center">DESEMBER</th>
-				<th width="8%" align = "center">JANUARI</th>
-				<th width="8%" align = "center">FEBRUARI</th>
-				<th width="8%" align = "center">MARET</th>
-				<th width="8%" align = "center">APRIL</th>
-				<th width="8%" align = "center">MEI</th>
-				<th width="8%" align = "center">JUNI</th>
-				<th width="8%" align = "center">JULI</th>
+				<th width="8%" align = "center">NOVEMBER 2022</th>
+				<th width="8%" align = "center">DESEMBER 2022</th>
+				<th width="8%" align = "center">JANUARI 2023</th>
+				<th width="8%" align = "center">FEBRUARI 2023</th>
+				<th width="8%" align = "center">MARET 2023</th>
+				<th width="8%" align = "center">APRIL 2023</th>
+				<th width="8%" align = "center">MEI 2023</th>
+				<th width="8%" align = "center">JUNI 2023</th>
+				<th width="8%" align = "center">JULI 2023</th>
 	        </tr>
 			<tr class="table-baris111">
 				<th align = "center">1</th>
