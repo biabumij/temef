@@ -103,6 +103,8 @@
     $date_juni23_akhir = date('2023-06-30');
     $date_juli23_awal = date('2023-07-01');
     $date_juli23_akhir = date('2023-07-31');
+    $date_akumulasi_awal = date('2022-01-01');
+    $date_akumulasi_akhir = date('2023-07-31');
 
     $stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1,5)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
     $last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
@@ -396,6 +398,20 @@
     $total_penjualan_juli23 = $total_penjualan_juni23 + $penjualan_juli23['total'];
     $presentase_penjualan_juli23 = ($total_penjualan_juli23 / $total_kontrak_all) * 100;
     $net_juli23 = round($presentase_penjualan_juli23,2);
+
+    //AKUMULASI
+    $penjualan_akumulasi = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+    ->from('pmm_productions pp')
+    ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+    ->where("pp.date_production between '$date_akumulasi_awal' and '$date_akumulasi_akhir'")
+    ->where("pp.status = 'PUBLISH'")
+    ->where("ppo.status in ('OPEN','CLOSED')")
+    ->group_by("pp.client_id")
+    ->get()->row_array();
+
+    $total_penjualan_akumulasi = $penjualan_akumulasi['total'];
+    $presentase_penjualan_akumulasi = ($total_penjualan_akumulasi / $total_kontrak_all) * 100;
+    $net_akumulasi = round($presentase_penjualan_akumulasi,2);
 
     //SISA
     $sisa_realisasi = $total_kontrak_all - $total_penjualan_juli23;
@@ -2920,6 +2936,120 @@
                 $presentase_laba_rugi_juli23 = ($penjualan_juli23['total']!=0)?($laba_rugi_juli23 / $penjualan_juli23['total'])  * 100:0;
                 $presentase_laba_rugi_juli23_fix = round($presentase_laba_rugi_juli23,2);
 
+                //AKUMULASI	
+                $akumulasi_akumulasi = $this->db->select('pp.date_akumulasi, sum(pp.total_nilai_keluar) as total_nilai_keluar')
+                ->from('akumulasi pp')
+                ->where("(pp.date_akumulasi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $nilai_alat_akumulasi = $this->db->select('SUM(prm.display_price) as nilai')
+                ->from('pmm_receipt_material prm')
+                ->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+                ->join('produk p', 'prm.material_id = p.id','left')
+                ->where("prm.date_receipt between '$date_akumulasi_awal' and '$date_akumulasi_akhir'")
+                ->where("p.kategori_produk = '5'")
+                ->where("po.status in ('PUBLISH','CLOSED')")
+                ->get()->row_array();
+
+                $akumulasi_bbm_akumulasi = $this->db->select('pp.date_akumulasi, sum(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
+                ->from('akumulasi pp')
+                ->where("(pp.date_akumulasi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $insentif_tm_akumulasi = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun = 220")
+                ->where("status = 'PAID'")
+                ->where("(tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+                ->from('pmm_biaya pb ')
+                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',15)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_jurnal_15_akumulasi = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',15)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_16_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+                ->from('pmm_biaya pb ')
+                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',16)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_jurnal_16_akumulasi = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',16)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_17_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+                ->from('pmm_biaya pb ')
+                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',17)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $overhead_jurnal_17_akumulasi = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where('c.coa_category',17)
+                ->where("c.id <> 220 ")
+                ->where("c.id <> 168 ")
+                ->where("c.id <> 228 ")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+                ->from('pmm_biaya pb ')
+                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where("pdb.akun = 168")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();   
+
+                $cost_akumulasi = $akumulasi_akumulasi['total_nilai_keluar'] + $nilai_alat_akumulasi['nilai'] + $akumulasi_bbm_akumulasi['total_nilai_keluar_2'] + $insentif_tm_akumulasi['total'] + $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $overhead_16_akumulasi['total'] + $overhead_jurnal_16_akumulasi['total'] + $overhead_17_akumulasi['total'] + $overhead_jurnal_17_akumulasi['total'] + $diskonto_akumulasi['total'];
+                $laba_rugi_akumulasi = $penjualan_akumulasi['total'] - $cost_akumulasi;
+                $presentase_laba_rugi_akumulasi = ($penjualan_akumulasi['total']!=0)?($laba_rugi_akumulasi / $penjualan_akumulasi['total'])  * 100:0;
+                $presentase_laba_rugi_akumulasi_fix = round($presentase_laba_rugi_akumulasi,2);
+
                 ?>
                 <div class="col-sm-12">
                     <figure class="highcharts-figure">
@@ -3313,7 +3443,7 @@
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
-                    categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23']
+                    categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Akumulasi']
                 },
                 yAxis: {
                     title: {  //label yAxis
@@ -3371,14 +3501,14 @@
                 series: [{  
                     name: 'Target Laba %',  
                     
-                    data: [2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,],
+                    data: [2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,2.96,4.98],
 
                     color: '#000000',
                 },
                 {  
                     name: 'Laba Rugi %',  
                     
-                    data: [ <?php echo json_encode($presentase_laba_rugi_februari_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_maret_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_april_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juni_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juli_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_agustus_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_september_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_oktober_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_november_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_desember_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_januari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_februari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_maret23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_april23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_mei23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juni23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juli23_fix, JSON_NUMERIC_CHECK); ?>],
+                    data: [ <?php echo json_encode($presentase_laba_rugi_februari_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_maret_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_april_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juni_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juli_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_agustus_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_september_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_oktober_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_november_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_desember_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_januari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_februari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_maret23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_april23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_mei23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juni23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juli23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_akumulasi_fix, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#FF0000',
 
