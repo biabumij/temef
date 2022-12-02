@@ -51,18 +51,10 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                Deskripsi
+                                                Kategori Produk
                                             </th>        
                                             <td>
-                                                <?= $row['deskripsi'];?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                Tipe Produk
-                                            </th>        
-                                            <td>
-                                                <?= $row['tipe_produk'];?>
+                                            <?= $this->crud_global->GetField('kategori_produk',array('id'=>$row['kategori_produk']),'nama_kategori_produk');?>
                                             </td>
                                         </tr>
                                     </table>
