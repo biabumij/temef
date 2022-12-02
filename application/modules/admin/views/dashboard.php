@@ -868,21 +868,21 @@
                     <br />
                 </div>
                 <?php
-                $stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1,5)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+                //$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1,5)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
                 //$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1,1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-                $last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
+                //$last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
     
-                $date_november_awal = date('Y-m-d', strtotime('+1 days', strtotime($last_opname)));
-                $date_november_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_november_awal)));
-                $november = date('F Y', strtotime('+1 days', strtotime($last_opname)));
+                //$date_november_awal = date('Y-m-d', strtotime('+1 days', strtotime($last_opname)));
+                //$date_november_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_november_awal)));
+                //$november = date('F Y', strtotime('+1 days', strtotime($last_opname)));
     
-                $date_desember_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_november_akhir)));
-                $date_desember_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_desember_awal)));
-                $desember = date('F Y', strtotime('+1 days', strtotime($date_november_akhir)));
+                //$date_desember_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_november_akhir)));
+                //$date_desember_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_desember_awal)));
+                //$desember = date('F Y', strtotime('+1 days', strtotime($date_november_akhir)));
     
-                $date_januari23_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_desember_akhir)));
-                $date_januari23_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_januari23_awal)));
-                $januari23 = date('F Y', strtotime('+1 days', strtotime($date_desember_akhir)));
+                //$date_januari23_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_desember_akhir)));
+                //$date_januari23_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_januari23_awal)));
+                //$januari23 = date('F Y', strtotime('+1 days', strtotime($date_desember_akhir)));
 
                 //FEBRUARI	
                 $akumulasi_februari = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
