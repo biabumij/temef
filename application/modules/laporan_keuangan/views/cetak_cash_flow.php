@@ -74,80 +74,55 @@
 			<?php
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
-			$rencana_kerja_2022 = $this->db->select('r.*')
+
+			$rencana_kerja_2022_1 = $this->db->select('r.*')
 			->from('rak r')
-			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
 			->get()->row_array();
-
-			$volume_rap_2022_produk_a = $rencana_kerja_2022['vol_produk_a'];
-			$volume_rap_2022_produk_b = $rencana_kerja_2022['vol_produk_b'];
-			$volume_rap_2022_produk_c = $rencana_kerja_2022['vol_produk_c'];
-			$volume_rap_2022_produk_d = $rencana_kerja_2022['vol_produk_d'];
-
-			$total_rap_volume_2022 = $volume_rap_2022_produk_a + $volume_rap_2022_produk_b + $volume_rap_2022_produk_c + $volume_rap_2022_produk_d;
 			
-			//HARGA JUAL RAP
-			$harga_jual_125_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 2")
-			->order_by('po.contract_date','desc')->limit(1)
+			$rencana_kerja_2022_2 = $this->db->select('r.*')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
-
-			$harga_jual_225_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 1")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 3")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$harga_jual_250_18_rap = $this->db->select('pod.price as harga_satuan')
-			->from('pmm_sales_po po')
-			->join('pmm_sales_po_detail pod', 'po.id = pod.sales_po_id','left')
-			->where("pod.product_id = 11")
-			->order_by('po.contract_date','desc')->limit(1)
-			->get()->row_array();
-
-			$nilai_jual_125_2022 = $volume_rap_2022_produk_a * $harga_jual_125_rap['harga_satuan'];
-			$nilai_jual_225_2022 = $volume_rap_2022_produk_b * $harga_jual_225_rap['harga_satuan'];
-			$nilai_jual_250_2022 = $volume_rap_2022_produk_c * $harga_jual_250_rap['harga_satuan'];
-			$nilai_jual_250_18_2022 = $volume_rap_2022_produk_d * $harga_jual_250_18_rap['harga_satuan'];
-			$nilai_jual_all_2022 = $nilai_jual_125_2022 + $nilai_jual_225_2022 + $nilai_jual_250_2022 + $nilai_jual_250_18_2022;
 			
+
+			$volume_rap_2022_produk_a = $rencana_kerja_2022_1['vol_produk_a'] + $rencana_kerja_2022_2['vol_produk_a'];
+			$volume_rap_2022_produk_b = $rencana_kerja_2022_1['vol_produk_b'] + $rencana_kerja_2022_2['vol_produk_b'];
+			$volume_rap_2022_produk_c = $rencana_kerja_2022_1['vol_produk_c'] + $rencana_kerja_2022_2['vol_produk_c'];
+			$volume_rap_2022_produk_d = $rencana_kerja_2022_1['vol_produk_d'] + $rencana_kerja_2022_2['vol_produk_d'];
+
+			$total_rap_volume_2022 = $rencana_kerja_2022_1['vol_produk_a'] + $rencana_kerja_2022_1['vol_produk_b'] + $rencana_kerja_2022_1['vol_produk_c'] + $rencana_kerja_2022_1['vol_produk_d'] + $rencana_kerja_2022_2['vol_produk_a'] + $rencana_kerja_2022_2['vol_produk_b'] + $rencana_kerja_2022_2['vol_produk_c'] + $rencana_kerja_2022_2['vol_produk_d'];
+			
+			$price_produk_a_1 = $rencana_kerja_2022_1['vol_produk_a'] * $rencana_kerja_2022_1['price_a'];
+			$price_produk_b_1 = $rencana_kerja_2022_1['vol_produk_b'] * $rencana_kerja_2022_1['price_b'];
+			$price_produk_c_1 = $rencana_kerja_2022_1['vol_produk_c'] * $rencana_kerja_2022_1['price_c'];
+			$price_produk_d_1 = $rencana_kerja_2022_1['vol_produk_d'] * $rencana_kerja_2022_1['price_d'];
+
+			$price_produk_a_2 = $rencana_kerja_2022_2['vol_produk_a'] * $rencana_kerja_2022_2['price_a'];
+			$price_produk_b_2 = $rencana_kerja_2022_2['vol_produk_b'] * $rencana_kerja_2022_2['price_b'];
+			$price_produk_c_2 = $rencana_kerja_2022_2['vol_produk_c'] * $rencana_kerja_2022_2['price_c'];
+			$price_produk_d_2 = $rencana_kerja_2022_2['vol_produk_d'] * $rencana_kerja_2022_2['price_d'];
+
+			$nilai_jual_all_2022 = $price_produk_a_1 + $price_produk_b_1 + $price_produk_c_1 + $price_produk_d_1 + $price_produk_a_2 + $price_produk_b_2 + $price_produk_c_2 + $price_produk_d_2;
 			$total_rap_nilai_2022 = $nilai_jual_all_2022;
 
 			//BIAYA RAP 2022
-			$rencana_kerja_2022_biaya = $this->db->select('r.*')
+			$rencana_kerja_2022_biaya_1 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->order_by('r.tanggal_rencana_kerja','asc')->limit(1)
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
 			->get()->row_array();
 
-			$total_bahan_all_rap_2022 = $rencana_kerja_2022_biaya['biaya_bahan'];
-
-			//TOTAL PEMAKAIAN ALAT
-			$rap_alat_rap_2022 = $this->db->select('rap.*')
-			->from('rap_alat rap')
-			->where('rap.status','PUBLISH')
-			->where("(rap.tanggal_rap_alat < '$date_end')")
+			$rencana_kerja_2022_biaya_2 = $this->db->select('r.*')
+			->from('rak_biaya r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
 
-			$batching_plant_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['batching_plant'];
-			$truck_mixer_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['truck_mixer'];
-			$wheel_loader_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['wheel_loader'];
-			$bbm_solar_rap_2022 = $total_rap_volume_2022 * $rap_alat_rap_2022['bbm_solar'];
-			$biaya_alat_all_rap_2022 = $batching_plant_rap_2022 + $truck_mixer_rap_2022 + $wheel_loader_rap_2022 + $bbm_solar_rap_2022;
+			$total_bahan_all_rap_2022 = $rencana_kerja_2022_biaya_1['biaya_bahan'] + $rencana_kerja_2022_biaya_2['biaya_bahan'];
 		
-			$total_rap_2022_biaya_bahan = $total_bahan_all_rap_2022;
-			$total_rap_2022_biaya_alat = $biaya_alat_all_rap_2022;
-			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya['biaya_overhead'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya['biaya_bank'];
+			$total_rap_2022_biaya_bahan = $rencana_kerja_2022_biaya_1['biaya_bahan'] + $rencana_kerja_2022_biaya_2['biaya_bahan'];
+			$total_rap_2022_biaya_alat = $rencana_kerja_2022_biaya_1['biaya_alat'] + $rencana_kerja_2022_biaya_2['biaya_alat'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya_1['biaya_overhead'] + $rencana_kerja_2022_biaya_2['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya_1['biaya_bank'] + $rencana_kerja_2022_biaya_2['biaya_bank'];
 
 			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 
@@ -173,7 +148,6 @@
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi <= '$last_opname')")
 			->get()->result_array();
-			file_put_contents("D:\\bahan_now.txt", $this->db->last_query());
 
 			$total_bahan_now = 0;
 
@@ -1228,7 +1202,7 @@
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;PPN Keluaran</th>
-				<th align="right"><?php echo number_format($total_rap_nilai_2022 / 10,0,',','.');?></th>
+				<th align="right"><?php echo number_format(($total_rap_nilai_2022 * 11) / 100,0,',','.');?></th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1244,7 +1218,7 @@
 			</tr>
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH PENERIMAAN</i></th>
-				<th align="right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022,0,',','.');?></th>
+				<th align="right"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_november,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_desember,0,',','.');?></th>
@@ -1294,7 +1268,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Bahan</th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_november_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
@@ -1313,7 +1287,7 @@
 			?>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;2. Alat</th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($alat_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_november_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
@@ -1329,7 +1303,7 @@
 			</tr>
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH PEMAKAIAN</i></th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_november_biaya_bahan + $total_november_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_desember_biaya_bahan + $total_desember_biaya_alat,0,',','.');?></th>
@@ -1344,6 +1318,7 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
+			$akumulasi_pemakaian_rap_bahan_alat = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat;
 			$akumulasi_pemakaian_november = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat;
 			$akumulasi_pemakaian_desember = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat;
 			$akumulasi_pemakaian_januari = $total_bahan_now + $alat_now + $total_november_biaya_bahan + $total_november_biaya_alat + $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_januari_biaya_bahan + $total_januari_biaya_alat;
@@ -1356,7 +1331,7 @@
 			?>
 			<tr class="table-total">
 				<th align="left"><i>AKUMULASI PEMAKAIAN</i></th>
-				<th align="right">-</th>
+				<th align="right"><?php echo number_format($akumulasi_pemakaian_rap_bahan_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_pemakaian_november,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_pemakaian_desember,0,',','.');?></th>
@@ -1375,7 +1350,7 @@
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Biaya Bahan</th>
-				<th align="right"><?php echo number_format($total_bahan_all_rap_2022,0,',','.');?></th>
+				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1407,7 +1382,7 @@
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;3. Biaya Peralatan</th>
-				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
+				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1559,7 +1534,7 @@
 			?>
 			<tr class="table-total">
 				<th align="left"><i>POSISI (II - III)</i></th>
-				<th align="right"><?php echo number_format($total_rap_nilai_2022 / 10 + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan - ($diskonto_now + $overhead_now),0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_november,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_penerimaan - $jumlah_lll_desember,0,',','.');?></th>
