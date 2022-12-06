@@ -163,31 +163,22 @@
                             </table>
                             <br />
 							<br />
-                            
                             <div class="text-right">
-                                <?php if($agregat["status"] === "DRAFT") : ?>
-                                    <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$agregat["id"]) ?>">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approved</button>        
-                                    </form>
-                                    <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$agregat["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Rejected</button>        
-                                    </form>
-                                
-                                <?php endif; ?>
-                                <?php if($agregat["status"] === "PUBLISH" || $agregat["status"] === "CLOSED") : ?>
                                 <a href="<?= base_url("admin/rap/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                <?php endif; ?>
                                 <a href="<?= base_url("rap/cetak_komposisi/".$agregat["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <?php
+                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
+                                ?>
                                 <a class="btn btn-warning" href="<?= base_url('rap/sunting_komposisi/' . $agregat["id"]) ?>"><i class="fa fa-edit"></i> Edit</a>
 								<!--<a class="btn btn-danger" onclick="DeleteData('<?= site_url('rap/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>-->
                                 <br />
                                 <form class="form-approval" action="<?= base_url("rap/closed_komposisi/".$agregat["id"]) ?>">
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-envelope-o"></i> Closed</button>
+                                <?php
+                                }
+                                ?>
                                 </form>	
                             </div>
-                            
-                            
-                            
                         </div>
                     </div>
                 </div>

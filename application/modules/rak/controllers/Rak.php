@@ -218,9 +218,19 @@ class Rak extends Secure_Controller {
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				}else {
+					$row['edit'] = '-';
+				}
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
 
                 $data[] = $row;
             }
@@ -527,11 +537,20 @@ class Rak extends Secure_Controller {
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData2('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja_biaya/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja_biaya/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
-				
-				
+				}else {
+					$row['edit'] = '-';
+				}
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData2('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['delete'] = '-';
+				}
+
                 $data[] = $row;
             }
 
