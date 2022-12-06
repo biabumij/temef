@@ -45,6 +45,8 @@
                                             <th width="5%">No.</th>
                                             <th>Satuan</th>
                                             <th>Status</th>
+                                            <th>Dibuat Oleh</th>
+                                            <th>Dibuat Tanggal</th>
                                             <th>Tindakan</th>
                                         </tr>
                                     </thead>
@@ -150,7 +152,7 @@
                                     <th width="5%">No</th>
                                     <th>Satuan</th>
                                     <th>Nilai</th>
-                                    <th>Tindakan</th>
+                                    <th>Tindakan</th>zz
                                 </tr>
                             </thead>
                             <tbody>
@@ -181,11 +183,13 @@
                 { "data": "no" },
                 { "data": "measure_name" },
                 { "data": "status" },
-                { "data": "actions" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
+                { "data": "actions" }
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 2, 3],
+                    "targets": [0,2,3,4,5],
                     "className": 'text-center',
                 }
             ],
