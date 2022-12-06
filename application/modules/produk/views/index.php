@@ -192,7 +192,7 @@
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,2],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
