@@ -409,14 +409,15 @@ class Pmm extends CI_Controller {
 		);
 
 		if(!empty($id)){
-			if($this->db->update('pmm_measures',$data,array('id'=>$id))){
+				$data['updated_by'] = $this->session->userdata('admin_id');
+				$data['updated_on'] = date('Y-m-d H:i:s');
+				$this->db->update('pmm_measures',$data,array('id'=>$id));
 				$output['output'] = true;
-			}
 		}else{
-			if($this->db->insert('pmm_measures',$data)){
+				$data['created_by'] = $this->session->userdata('admin_id');
+				$data['created_on'] = date('Y-m-d H:i:s');
+				$this->db->insert('pmm_measures',$data);
 				$output['output'] = true;
-			}	
-				
 		}
 		
 		echo json_encode($output);	
