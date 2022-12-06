@@ -141,7 +141,7 @@
                                         <div class="col-sm-12 text-right">
                                             <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
                                             <?php
-                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
                                             <?php if($detail["status"] === "UNPAID") : ?>
                                                 <a href="<?= base_url("pmm/Jurnal_umum/approvalJurnal/".$detail["id"]) ?>" class="btn btn-success"><i class="fa fa-check"></i> Approve</a>
