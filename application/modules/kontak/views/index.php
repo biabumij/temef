@@ -54,7 +54,12 @@
 		                                    <thead>
 		                                        <tr>
 		                                            <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center" width="95%">Nama</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -70,7 +75,12 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center" width="95%">Nama</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -86,7 +96,12 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center" width="95%">Nama</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -102,7 +117,12 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center" width="95%">Nama</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -152,7 +172,12 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "nama"}
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
@@ -176,7 +201,12 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"}
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
@@ -200,7 +230,12 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"}
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
@@ -224,7 +259,12 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"}
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
