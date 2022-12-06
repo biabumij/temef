@@ -79,7 +79,7 @@
                                                         <th>Batu Split 2-3</th>
                                                         <th>Solar</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -111,7 +111,7 @@
 														<th>Total Nilai Keluar (Bahan Baku)</th>
                                                         <th>Total Nilai Keluar (Solar)</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -143,7 +143,7 @@
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -173,7 +173,7 @@
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
