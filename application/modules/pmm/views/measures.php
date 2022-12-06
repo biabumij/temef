@@ -184,7 +184,7 @@
                 { "data": "measure_name" },
                 { "data": "status" },
                 { "data": "admin_name"},
-                { "data": "created_on"}
+                { "data": "created_on"},
                 { "data": "actions" }
             ],
             "columnDefs": [
