@@ -292,6 +292,7 @@ class Pmm extends CI_Controller {
 	{	
 		$data = array();
 		$this->db->where('status !=','DELETED');
+		$this->db->order_by('measure_name','asc');
 		$query = $this->db->get('pmm_measures');
 
 		if($query->num_rows() > 0){
