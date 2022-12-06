@@ -51,9 +51,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbaku" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,9 +72,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-betonreadymix" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -88,9 +92,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-jasa" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -106,9 +112,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-peralatan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -124,9 +132,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbakar" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%">No</th>
                                                     <th class="text-center">Nama</th>
                                                     <th>Satuan</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -174,7 +184,9 @@
             columns: [
                 { "data": "no" },
                 { "data": "nama_produk" },
-                { "data": "satuan" }
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
@@ -199,13 +211,15 @@
             columns: [
                 { "data": "no" },
                 { "data": "nama_produk" },
-                { "data": "satuan" }
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,2],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -224,13 +238,15 @@
             columns: [
                 { "data": "no" },
                 { "data": "nama_produk" },
-                { "data": "satuan" }
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,2],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -250,13 +266,15 @@
             columns: [
                 { "data": "no" },
                 { "data": "nama_produk" },
-                { "data": "satuan" }
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,2],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -275,13 +293,15 @@
             columns: [
                 { "data": "no" },
                 { "data": "nama_produk" },
-                { "data": "satuan" }
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             paging : false,
             "columnDefs": [
                 {
-                    "targets": [0,2],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
