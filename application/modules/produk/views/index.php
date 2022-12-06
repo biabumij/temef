@@ -52,10 +52,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -73,10 +73,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -93,10 +93,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -113,10 +113,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -133,10 +133,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
