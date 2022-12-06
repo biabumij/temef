@@ -130,7 +130,7 @@
                                     <div class="col-sm-12 text-right">
                                         <a href="<?= base_url('admin/biaya_bua') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
 										<?php
-											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 15){
+											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
 										<?php if($row["status"] === "UNPAID") : ?>
 											<a href="<?= base_url("pmm/biaya/approvalBiaya/".$row["id"]) ?>" class="btn btn-success"><i class="fa fa-check"></i> Approve</a>
@@ -143,7 +143,7 @@
                                         <?php if($row["status"] === "PAID") : ?>
                                             <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13|| $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
                                             ?>
                                             <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/biaya/delete/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <a  href="<?= base_url('pmm/biaya/form/'.$row['id']) ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
