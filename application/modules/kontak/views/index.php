@@ -54,8 +54,7 @@
 		                                    <thead>
 		                                        <tr>
 		                                            <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center" width="95%">Nama</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -71,8 +70,7 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center" width="95%">Nama</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -88,8 +86,7 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center" width="95%">Nama</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -105,8 +102,7 @@
 		                                    <thead>
 		                                        <tr>
                                                     <th class="text-center" width="5%">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center" width="95%">Nama</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -156,8 +152,7 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "nama"},
-                { "data": "alamat"}
+                { "data": "nama"}
             ],
             responsive: true,
             paging : false,
@@ -181,8 +176,7 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"},
-                { "data": "alamat"}
+                { "data": "nama"}
             ],
             responsive: true,
             paging : false,
@@ -206,8 +200,7 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"},
-                { "data": "alamat"}
+                { "data": "nama"}
             ],
             responsive: true,
             paging : false,
@@ -231,8 +224,7 @@
             },
             columns: [
                 { "data": "no"},
-                { "data": "nama"},
-                { "data": "alamat"}
+                { "data": "nama"}
             ],
             responsive: true,
             paging : false,
