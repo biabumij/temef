@@ -57,9 +57,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                </tr>
-                                                    <td colspan="3" class="text-center" style="background-color:#EEEEEE;"><b>PRODUKSI</b></td>
-                                                <tr>
                                                 <tr>
                                                     <td>Biaya Bahan</td>
 													<td>

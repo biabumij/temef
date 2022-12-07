@@ -109,9 +109,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            </tr>
-                                                <td colspan="3" class="text-center" style="background-color:#EEEEEE;"><b>PRODUKSI</b></td>
-                                            <tr>
                                             <tr>
                                                 <td class="text-left">Biaya Bahan</td>
                                                 <td class="text-right"><input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bahan'] ?>" required="" autocomplete="off"></td>
