@@ -85,7 +85,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" min="0" name="qty_1" id="qty-1" class="form-control input-sm text-center" onchange="changeData(1)" required="" />
+                                                    <input type="text" name="qty_1" id="qty-1" class="form-control input-sm numberformat text-center" onchange="changeData(1)" required="" />
                                                 </td>
                                                 <td>
                                                 <select id="satuan-1" class="form-control form-select2" name="satuan_1" required="">
@@ -103,10 +103,10 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="harga_satuan_1" id="harga_satuan-1" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                    <input type="text" name="harga_satuan_1" id="harga_satuan-1" class="form-control rupiahformat tex-left input-sm text-right" onchange="changeData(1)"/>
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="jumlah_1" id="jumlah-1" class="form-control numberformat tex-left input-sm text-right" readonly=""/>
+                                                    <input type="text" name="jumlah_1" id="jumlah-1" class="form-control rupiahformat tex-left input-sm text-right"/>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -114,7 +114,7 @@
                                                 <tr>
                                                     <td colspan="5" class="text-right">GRAND TOTAL</td>
                                                     <td>
-                                                    <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control numberformat tex-left input-sm text-right" readonly="">
+                                                    <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control rupiahformat tex-left input-sm text-right" readonly="">
                                                     </td>
                                                 </tr> 
                                             </tfoot>
@@ -176,7 +176,8 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 0,',','.' );
+        $('input.numberformat').number( true, 2,',','.' );
+		$('input.rupiahformat').number( true, 0,',','.' );
         
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
@@ -252,11 +253,11 @@
                 }
             }
             $('#sub-total-val').val(sub_total);
-            $('#sub-total').text($.number( sub_total, 2,',','.' ));
+            $('#sub-total').text($.number( sub_total, 0,',','.' ));
 
             total_total = parseInt(sub_total);
             $('#total-val').val(total_total);
-            $('#total').text($.number( total_total, 2,',','.' ));
+            $('#total').text($.number( total_total, 0,',','.' ));
         }
 
         $(document).ready(function() {

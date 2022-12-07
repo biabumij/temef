@@ -558,7 +558,7 @@ class Rap extends Secure_Controller {
 				</select>
 			</td>
             <td>
-				<input type="number" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control input-sm text-center" />
+				<input type="text" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control input-sm numberformat text-center" />
 			</td>
 			<td>
 				<select id="satuan-<?php echo $no; ?>" class="form-control form-select2" name="satuan_<?php echo $no; ?>" required="">
@@ -575,16 +575,18 @@ class Rap extends Secure_Controller {
 					</select>
 				</td>
 			<td>
-				<input type="text" name="harga_satuan_<?php echo $no; ?>" id="harga_satuan-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" />
+				<input type="text" name="harga_satuan_<?php echo $no; ?>" id="harga_satuan-<?php echo $no; ?>" class="form-control rupiahformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" />
 			</td>
 			<td>
-				<input type="text" name="jumlah_<?php echo $no; ?>" id="jumlah-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" readonly="" />
+				<input type="text" name="jumlah_<?php echo $no; ?>" id="jumlah-<?php echo $no; ?>" class="form-control rupiahformat tex-left input-sm text-right"/>
 			</td>
 		</tr>
 
         <script type="text/javascript">
             $('.form-select2').select2();
-            $('input.numberformat').number(true, 0, ',', '.');
+			
+            $('input.numberformat').number( true, 2,',','.' );
+			$('input.rupiahformat').number( true, 0,',','.' );
 
 			$(document).ready(function() {
         setTimeout(function(){
@@ -727,7 +729,7 @@ class Rap extends Secure_Controller {
 
             for ($i = 1; $i <= $total_product; $i++) {
 				$coa = $this->input->post('coa_' . $i);
-				$qty = $this->input->post('qty_' . $i);
+				$qty = str_replace(',', '.', $this->input->post('qty_' . $i));
 				$satuan = $this->input->post('satuan_' . $i);
 
 
