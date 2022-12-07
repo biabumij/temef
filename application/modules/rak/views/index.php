@@ -41,7 +41,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
 											<li><a href="<?= site_url('rak/form_rencana_kerja'); ?>">Rencana Kerja (Volume)</a></li>
-                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya'); ?>">Rencana Kerja (Biaya & Termin)</a></li>
+                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya'); ?>">Rencana Kerja (Biaya)</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -50,7 +50,7 @@
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#rencana_kerja" aria-controls="rencana_kerja" role="tab" data-toggle="tab">Rencana Kerja (Volume)</a></li>
-                                    <li role="presentation"><a href="#rencana_kerja_biaya" aria-controls="rencana_kerja_biaya" role="tab" data-toggle="tab">Rencana Kerja (Biaya & Termin)</a></li>
+                                    <li role="presentation"><a href="#rencana_kerja_biaya" aria-controls="rencana_kerja_biaya" role="tab" data-toggle="tab">Rencana Kerja (Biaya)</a></li>
                                 </ul>
 
                                 <div class="tab-content">
