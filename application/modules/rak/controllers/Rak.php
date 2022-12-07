@@ -449,7 +449,7 @@ class Rak extends Secure_Controller {
 			'biaya_alat' => $biaya_alat,
 			'biaya_overhead' => $biaya_overhead,
 			'biaya_bank' => $biaya_bank,
-			'termin' => $termin,
+			//'termin' => $termin,
 			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
@@ -625,7 +625,7 @@ class Rak extends Secure_Controller {
 				'biaya_alat' => $biaya_alat,
 				'biaya_overhead' => $biaya_overhead,
 				'biaya_bank' => $biaya_bank,
-				'termin' => $termin,
+				//'termin' => $termin,
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')

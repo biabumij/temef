@@ -74,9 +74,6 @@
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
-                                                    <td colspan="3" class="text-center" style="background-color:#EEEEEE;"><b>KEUANGAN</b></td>
-                                                <tr>
-                                                </tr>
                                                 <tr>
                                                     <td>Biaya Overhead</td>
 													<td>
@@ -91,13 +88,13 @@
                                                     </td>
                                                     <td class="text-center"></td>
                                                 </tr>
-                                                <tr>
+                                                <!--<tr>
                                                     <td>Termin</td>
 													<td>
                                                     <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center"></td>
-                                                </tr>		
+                                                </tr>-->	
                                             </tbody>
                                 
                                         </table>    
