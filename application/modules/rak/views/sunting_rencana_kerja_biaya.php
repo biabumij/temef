@@ -104,8 +104,8 @@
                                     <table class="mytable table-bordered table-hover table-striped" width="100%">
                                         <thead>
                                             <tr>
-                                            <th class="text-center" width="50%">URAIAN</th>
-                                            <th class="text-center" width="50%">NILAI</th>
+                                                <th class="text-center" width="50%">URAIAN</th>
+                                                <th class="text-center" width="50%">NILAI</th>
                                             </tr>
                                         </thead>
                                         <tbody>

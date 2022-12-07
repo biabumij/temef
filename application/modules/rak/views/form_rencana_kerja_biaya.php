@@ -51,9 +51,8 @@
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr class="text-center">
-                                                    <th width="40%">URAIAN</th>
-                                                    <th width="30%">NILAI</th>
-                                                    <th width="30%"></th>                                  
+                                                    <th width="50%">URAIAN</th>
+                                                    <th width="50%">NILAI</th>                               
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -62,35 +61,30 @@
 													<td>
                                                     <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Biaya Alat</td>
 													<td>
                                                     <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Biaya Overhead</td>
 													<td>
                                                     <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Biaya Bank</td>
 													<td>
                                                     <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center"></td>
                                                 </tr>
                                                 <!--<tr>
                                                     <td>Termin</td>
 													<td>
                                                     <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
-                                                    <td class="text-center"></td>
                                                 </tr>-->	
                                             </tbody>
                                 
