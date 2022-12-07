@@ -788,9 +788,6 @@
 								Disetujui Oleh
 							</td>
 							<td align="center">
-								Diperiksa Oleh
-							</td>
-							<td align="center">
 								Dibuat Oleh
 							</td>
 						</tr>
@@ -801,21 +798,11 @@
 							<td align="center">
 							
 							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
 						</tr>
 						<tr>
 							<td align="center">
 								<b><u>Deddy Sarwobiso</u><br />
-								Dir. Produksi, HSE & Sistem</b>
-							</td>
-							<td align="center">
-								<b><u>Annisa Putri</u><br />
-								</b>
+								Direktur Utama</b>
 							</td>
 							<td align="center">
 								<b><u>Gervasius K. Limahekin</u><br />
