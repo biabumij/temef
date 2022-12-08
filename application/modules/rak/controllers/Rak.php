@@ -532,7 +532,6 @@ class Rak extends Secure_Controller {
 				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
-				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
