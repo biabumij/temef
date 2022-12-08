@@ -96,7 +96,6 @@
                                                         <th class="text-center">Biaya Alat</th>
 														<th class="text-center">Biaya Overhead</th>
                                                         <th class="text-center">Biaya Bank</th>
-                                                        <th class="text-center">Termin</th>
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
@@ -253,9 +252,6 @@
                     "data": "biaya_bank"
                 },
                 {
-                    "data": "termin"
-                },
-                {
                     "data": "lampiran"
                 },
                 {
@@ -275,11 +271,11 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 8, 9, 10, 11, 12],
+                    "targets": [0, 1, 7, 8, 9, 10, 11],
                     "className": 'text-center',
                 },
                 {
-                "targets": [2, 3, 4, 5, 6, 7],
+                "targets": [2, 3, 4, 5],
                 "className": 'text-right',
                 },
             ],
