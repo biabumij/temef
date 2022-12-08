@@ -124,10 +124,6 @@
                                                 <td class="text-left">Biaya Bank</td>
                                                 <td class="text-right"><input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bank'] ?>" required="" autocomplete="off"></td>
                                             </tr>
-                                            <!--<tr>
-                                                <td class="text-left">Termin</td>
-                                                <td class="text-right"><input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="<?= $rak['termin'] ?>" required="" autocomplete="off"></td>
-                                            </tr>-->
                                         </tbody>
                                     </table>
 									<br />

@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Rencana Kerja (Biaya & Termin)</h3>
+                                    <h3 class="">Rencana Kerja (Biaya)</h3>
                                     
                                 </div>
                             </div>
@@ -80,12 +80,6 @@
                                                     <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
-                                                <!--<tr>
-                                                    <td>Termin</td>
-													<td>
-                                                    <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                </tr>-->	
                                             </tbody>
                                 
                                         </table>    

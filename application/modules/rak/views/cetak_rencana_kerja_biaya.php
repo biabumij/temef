@@ -119,11 +119,6 @@
 				<td align="left">Biaya Bank</td>
 				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
 			</tr>
-			<tr class="table-baris1">
-				<td align="center">5.</td>
-				<td align="left">Termin</td>
-				<td align="right"><?= number_format($rak['termin'],0,',','.'); ?></td>
-			</tr>
 		</table>
 	</body>
 </html>
