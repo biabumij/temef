@@ -1231,15 +1231,15 @@
 				<th align="right">-</th>
 			</tr>
 			<?php
-			$termin_november = $rencana_kerja_november_biaya['termin'];
-			$termin_desember = $rencana_kerja_desember_biaya['termin'];
-			$termin_januari = $rencana_kerja_januari_biaya['termin'];
-			$termin_februari = $rencana_kerja_februari_biaya['termin'];
-			$termin_maret = $rencana_kerja_maret_biaya['termin'];
-			$termin_april = $rencana_kerja_april_biaya['termin'];
-			$termin_mei = $rencana_kerja_mei_biaya['termin'];
-			$termin_juni = $rencana_kerja_juni_biaya['termin'];
-			$termin_juli = $rencana_kerja_juli_biaya['termin'];
+			$termin_november = $rencana_kerja_november_biaya_cash_flow['termin'];
+			$termin_desember = $rencana_kerja_desember_biaya_cash_flow['termin'];
+			$termin_januari = $rencana_kerja_januari_biaya_cash_flow['termin'];
+			$termin_februari = $rencana_kerja_februari_biaya_cash_flow['termin'];
+			$termin_maret = $rencana_kerja_maret_biaya_cash_flow['termin'];
+			$termin_april = $rencana_kerja_april_biaya_cash_flow['termin'];
+			$termin_mei = $rencana_kerja_mei_biaya_cash_flow['termin'];
+			$termin_juni = $rencana_kerja_juni_biaya_cash_flow['termin'];
+			$termin_juli = $rencana_kerja_juli_biaya_cash_flow['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_november + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-baris1">
