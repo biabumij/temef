@@ -210,7 +210,8 @@
 
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030')
 			->from('hpp_bahan_baku pp')
-			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+			->where("(pp.date_hpp < '$date1')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 			
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
