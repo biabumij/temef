@@ -2028,7 +2028,7 @@ class Reports extends CI_Controller {
 			//PENJUALAN_2
 
 			//BAHAN		
-			$akumulasi = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+			$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total_nilai_keluar')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->result_array();
@@ -2043,7 +2043,7 @@ class Reports extends CI_Controller {
 			//END BAHAN
 
 			//BAHAN_2		
-			$akumulasi_2 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+			$akumulasi_2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total_nilai_keluar')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date3' and '$date2')")
 			->get()->result_array();
@@ -2067,7 +2067,7 @@ class Reports extends CI_Controller {
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->result_array();
