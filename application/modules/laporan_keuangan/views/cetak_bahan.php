@@ -145,7 +145,8 @@
 
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030')
 			->from('hpp_bahan_baku pp')
-			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+			->where("(pp.date_hpp < '$date1')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 			
 			$volume_opening_balance_semen = round($total_volume_stock_semen_ago,2);
@@ -315,7 +316,7 @@
 
 			$total_volume_pembelian_semen_cons_akhir  = $total_volume_pembelian_semen_akhir + $total_volume_pembelian_semen_cons;
 			$total_harga_pembelian_semen_cons_akhir = ($total_volume_pembelian_semen_cons_akhir!=0)?($total_nilai_pembelian_semen_akhir + $total_nilai_pembelian_semen_cons) / $total_volume_pembelian_semen_cons_akhir * 1:0;
-			$total_nilai_pembelian_semen_cons_akhir =  $total_volume_pembelian_semen_cons_akhir * $total_harga_pembelian_semen_cons_akhir;
+			$total_nilai_pembelian_semen_cons_akhir =  $total_nilai_pembelian_semen_cons + $total_nilai_jasa_angkut_akhir;
 
 			$jasa_angkut_semen_cons = $this->db->select('
 			p.nama_produk, 
