@@ -189,15 +189,23 @@
 		->order_by('cat.date','desc')->limit(1)
 		->get()->row_array();
 		
-		$total_volume_stock_solar_akhir = $stock_opname_solar['volume'];
+		$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.solar')
+		->from('hpp_bahan_baku pp')
+		->where("(pp.date_hpp between '$date1' and '$date2')")
+		->order_by('pp.date_hpp','desc')->limit(1)
+		->get()->row_array();
 		
+		$total_volume_stock_solar_akhir = $stock_opname_solar['volume'];
+		$price_stock_opname_solar =  $hpp_bahan_baku['solar'];
 
 		$total_volume_pemakaian_solar = $total_volume_pembelian_solar_akhir - $stock_opname_solar['volume'];
-		$total_harga_pemakaian_solar = round($total_harga_pembelian_solar_akhir,0);
-		$total_nilai_pemakaian_solar = $total_volume_pemakaian_solar * $total_harga_pemakaian_solar;
 
-		$total_harga_stock_solar_akhir = $total_harga_pemakaian_solar;
+		$total_harga_stock_solar_akhir = round($price_stock_opname_solar,0);
 		$total_nilai_stock_solar_akhir = $total_volume_stock_solar_akhir * $total_harga_stock_solar_akhir;
+
+		$total_nilai_pemakaian_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) - $total_nilai_stock_solar_akhir;
+		//$total_harga_pemakaian_solar = ($total_volume_pemakaian_solar!=0)?$total_nilai_pemakaian_solar / $total_volume_pemakaian_solar * 1:0;
+		$total_harga_pemakaian_solar = $total_harga_stock_solar_akhir;
 
 		//TOTAL
 		$total_nilai_pembelian = $total_nilai_pembelian_solar;
