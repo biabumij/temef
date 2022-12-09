@@ -594,7 +594,7 @@
 				<th align="left">Semen</th>
 				<th align="center">Ton</th>
 				<th align="center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_harga_pembelian_semen,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_harga_pembelian_semen_all,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian_semen_all,0,',','.');?></th>
 				<th align="center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
