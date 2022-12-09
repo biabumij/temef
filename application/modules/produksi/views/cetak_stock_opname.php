@@ -142,7 +142,6 @@
 			->where("cat.material_id = 8")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
-			file_put_contents("D:\\test.txt", $this->db->last_query());
 
 			$nilai_stok_semen = $stock_opname_semen['volume'] * $harga_hpp_bahan_baku['semen'];
 			$nilai_stok_pasir = $stock_opname_pasir['volume'] * $harga_hpp_bahan_baku['pasir'];
