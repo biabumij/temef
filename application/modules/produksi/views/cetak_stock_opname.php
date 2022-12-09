@@ -105,8 +105,9 @@
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$awal' and '$akhir')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
-
+			
 			$stock_opname_semen = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("cat.date between '$awal' and '$akhir'")
@@ -141,6 +142,7 @@
 			->where("cat.material_id = 8")
 			->where("cat.status = 'PUBLISH'")
 			->get()->row_array();
+			file_put_contents("D:\\test.txt", $this->db->last_query());
 
 			$nilai_stok_semen = $stock_opname_semen['volume'] * $harga_hpp_bahan_baku['semen'];
 			$nilai_stok_pasir = $stock_opname_pasir['volume'] * $harga_hpp_bahan_baku['pasir'];
@@ -210,27 +212,24 @@
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="0">
 			<tr >
-				<td width="5%"></td>
-				<td width="90%">
+				<td width="10%"></td>
+				<td width="80%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" colspan="2">
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
+							<td align="center">
 								Diperiksa Oleh
 							</td>
 							<td align="center">
 								Dibuat Oleh
-							</td>
+							</td>	
 						</tr>
-						<tr>
-							<td align="center" height="40px">
-								
-							</td>
-							<td align="center">
+						<tr class="">
+							<td align="center" height="55px">
 								
 							</td>
 							<td align="center">
@@ -245,7 +244,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u>Gervasius K. Limahekin</u><br />
 								Ka. Plant</b>
 							</td>
 							<td align="center" >
@@ -254,20 +253,16 @@
 							</td>
 							<td align="center">
 								<b><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center">
-								<b><br />
 								M. Teknik</b>
 							</td>
 							<td align="center">
-								<b><br />
+								<b><u>Agustinus Pakaenoni</u><br />
 								Pj. Logistik</b>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td width="5%"></td>
+				<td width="10%"></td>
 			</tr>
 		</table>
 		

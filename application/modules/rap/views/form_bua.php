@@ -110,14 +110,14 @@
                                                 </td>
                                             </tr>
                                             </tbody>
-                                            <tfoot>
+                                            <!--<tfoot>
                                                 <tr>
                                                     <td colspan="5" class="text-right">GRAND TOTAL</td>
                                                     <td>
                                                     <input type="text" id="sub-total-val" name="sub_total" value="0" class="form-control rupiahformat tex-left input-sm text-right" readonly="">
                                                     </td>
                                                 </tr> 
-                                            </tfoot>
+                                            </tfoot>-->
                                         </table>    
                                     </div>
                                     <div class="col-sm-12">
