@@ -885,7 +885,7 @@
                 //$januari23 = date('F Y', strtotime('+1 days', strtotime($date_desember_akhir)));
 
                 //FEBRUARI	
-                $akumulasi_februari = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_februari = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();
@@ -899,7 +899,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_februari = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_februari = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();
@@ -999,7 +999,7 @@
                 $presentase_laba_rugi_februari_fix = round($presentase_laba_rugi_februari,2);
 
                 //MARET	
-                $akumulasi_maret = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_maret = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();
@@ -1013,7 +1013,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_maret = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_maret = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();
@@ -1113,7 +1113,7 @@
                 $presentase_laba_rugi_maret_fix = round($presentase_laba_rugi_maret,2);
 
                 //APRIL	
-                $akumulasi_april = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_april = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();
@@ -1127,7 +1127,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_april = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_april = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();
@@ -1227,7 +1227,7 @@
                 $presentase_laba_rugi_april_fix = round($presentase_laba_rugi_april,2);
 
                 //MEI	
-                $akumulasi_mei = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_mei = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();
@@ -1241,7 +1241,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_mei = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_mei = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();
@@ -1341,7 +1341,7 @@
                 $presentase_laba_rugi_mei_fix = round($presentase_laba_rugi_mei,2);
 
                 //JUNI	
-                $akumulasi_juni = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_juni = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();
@@ -1355,7 +1355,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_juni = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_juni = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();
@@ -1455,7 +1455,7 @@
                 $presentase_laba_rugi_juni_fix = round($presentase_laba_rugi_juni,2);
 
                 //JULI	
-                $akumulasi_juli = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_juli = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();
@@ -1469,7 +1469,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_juli = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_juli = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();
@@ -1569,7 +1569,7 @@
                 $presentase_laba_rugi_juli_fix = round($presentase_laba_rugi_juli,2);
 
                 //AGUSTUS	
-                $akumulasi_agustus = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_agustus = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();
@@ -1583,7 +1583,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_agustus = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_agustus = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();
@@ -1683,7 +1683,7 @@
                 $presentase_laba_rugi_agustus_fix = round($presentase_laba_rugi_agustus,2);
 
                 //SEPTEMBER	
-                $akumulasi_september = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_september = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();
@@ -1697,7 +1697,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_september = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_september = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();
@@ -1797,7 +1797,7 @@
                 $presentase_laba_rugi_september_fix = round($presentase_laba_rugi_september,2);
 
                 //OKTOBER	
-                $akumulasi_oktober = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_oktober = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();
@@ -1811,7 +1811,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_oktober = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_oktober = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();
@@ -1911,7 +1911,7 @@
                 $presentase_laba_rugi_oktober_fix = round($presentase_laba_rugi_oktober,2);
 
                 //NOVEMBER	
-                $akumulasi_november = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_november = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();
@@ -1925,7 +1925,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_november = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_november = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();
@@ -2025,7 +2025,7 @@
                 $presentase_laba_rugi_november_fix = round($presentase_laba_rugi_november,2);
 
                 //DESEMBER	
-                $akumulasi_desember = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_desember = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();
@@ -2039,7 +2039,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_desember = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_desember = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();
@@ -2139,7 +2139,7 @@
                 $presentase_laba_rugi_desember_fix = round($presentase_laba_rugi_desember,2);
 
                 //JANUARI23	
-                $akumulasi_januari23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_januari23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();
@@ -2153,7 +2153,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_januari23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_januari23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();
@@ -2253,7 +2253,7 @@
                 $presentase_laba_rugi_januari23_fix = round($presentase_laba_rugi_januari23,2);
 
                 //FEBRUARI23	
-                $akumulasi_februari23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_februari23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();
@@ -2267,7 +2267,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_februari23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_februari23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();
@@ -2367,7 +2367,7 @@
                 $presentase_laba_rugi_februari23_fix = round($presentase_laba_rugi_februari23,2);
 
                 //MARET23	
-                $akumulasi_maret23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_maret23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();
@@ -2381,7 +2381,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_maret23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_maret23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();
@@ -2481,7 +2481,7 @@
                 $presentase_laba_rugi_maret23_fix = round($presentase_laba_rugi_maret23,2);
 
                 //APRIL23	
-                $akumulasi_april23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_april23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();
@@ -2495,7 +2495,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_april23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_april23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();
@@ -2595,7 +2595,7 @@
                 $presentase_laba_rugi_april23_fix = round($presentase_laba_rugi_april23,2);
 
                 //MEI23	
-                $akumulasi_mei23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_mei23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();
@@ -2609,7 +2609,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_mei23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_mei23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();
@@ -2709,7 +2709,7 @@
                 $presentase_laba_rugi_mei23_fix = round($presentase_laba_rugi_mei23,2);
 
                 //JUNI23	
-                $akumulasi_juni23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar')
+                $akumulasi_juni23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar) as total_nilai_keluar')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();
@@ -2723,7 +2723,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_juni23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_juni23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();
@@ -2837,7 +2837,7 @@
                 ->where("po.status in ('PUBLISH','CLOSED')")
                 ->get()->row_array();
 
-                $akumulasi_bbm_juli23 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+                $akumulasi_bbm_juli23 = $this->db->select('pp.date_akumulasi,  SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
                 ->from('akumulasi pp')
                 ->where("(pp.date_akumulasi between '$date_juli23_awal' and '$date_juli23_akhir')")
                 ->get()->row_array();
