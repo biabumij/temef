@@ -85,10 +85,10 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" name="qty_1" id="qty-1" class="form-control input-sm numberformat text-center" onchange="changeData(1)" required="" />
+                                                    <input type="text" name="qty_1" id="qty-1" class="form-control input-sm numberformat text-center" onchange="changeData(1)"/>
                                                 </td>
                                                 <td>
-                                                <select id="satuan-1" class="form-control form-select2" name="satuan_1" required="">
+                                                <select id="satuan-1" class="form-control form-select2" name="satuan_1">
                                                         <option value="">Pilih Satuan</option>
                                                         <?php
                                                         if(!empty($satuan)){

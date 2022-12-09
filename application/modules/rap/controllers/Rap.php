@@ -561,7 +561,7 @@ class Rap extends Secure_Controller {
 				<input type="text" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control input-sm numberformat text-center" />
 			</td>
 			<td>
-				<select id="satuan-<?php echo $no; ?>" class="form-control form-select2" name="satuan_<?php echo $no; ?>" required="">
+				<select id="satuan-<?php echo $no; ?>" class="form-control form-select2" name="satuan_<?php echo $no; ?>">
 						<option value="">Pilih Satuan</option>
 						<?php
 						if(!empty($satuan)){
