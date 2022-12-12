@@ -7,30 +7,30 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris111{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 		}
 
 		table tr.table-baris111-bold{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 			font-weight: bold;
 		}
 			
 		table tr.table-baris112{
-			font-size: 8px;
+			font-size: 7px;
 			background-color: #E8E8E8;
 		}
 			
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
@@ -93,7 +93,7 @@
 			//NOVEMBER
 			$rencana_kerja_november = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date1' and '$date'")
+			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
 			->get()->row_array();
 
 			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
@@ -983,6 +983,7 @@
 			$total_volume_solar_jun23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
 			$total_volume_solar_jul23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
 			?>
+
 			<tr class="table-judul">
 				<th width="5%" align="center">NO.</th>
 				<th width="15%" align = "center">URAIAN</th>
@@ -1001,81 +1002,81 @@
 				<th align = "center">1</th>
 				<th align = "left">Beton K 125 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_januari23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_februari23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_maret23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_april23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_mei23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juni23_produk_a,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juli23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_januari23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_februari23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_maret23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_april23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_mei23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juni23_produk_a,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juli23_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris111">
 				<th align = "center">2</th>
 				<th align = "left">Beton K 225 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_januari23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_februari23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_maret23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_april23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_mei23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juni23_produk_b,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juli23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_januari23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_februari23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_maret23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_april23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_mei23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juni23_produk_b,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juli23_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris111">
 				<th align = "center">3</th>
 				<th align = "left">Beton K 250 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_januari23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_februari23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_maret23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_april23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_mei23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juni23_produk_c,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juli23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_januari23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_februari23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_maret23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_april23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_mei23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juni23_produk_c,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juli23_produk_c,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris111">
 				<th align = "center">4</th>
 				<th align = "left">Beton K 250 (18±2)</th>
 				<th align = "center">M3</th>
-				<th align = "center"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_januari23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_februari23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_maret23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_april23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_mei23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juni23_produk_d,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_juli23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_januari23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_februari23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_maret23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_april23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_mei23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juni23_produk_d,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($volume_juli23_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align = "center" colspan="3">TOTAL VOLUME</th>
-				<th align = "center"><?php echo number_format($total_november_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_desember_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_januari23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_februari23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_maret23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_april23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_mei23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_juni23_volume,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_juli23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_november_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_desember_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_januari23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_februari23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_maret23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_april23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_mei23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_juni23_volume,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_juli23_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align = "center" colspan="3">PENDAPATAN USAHA</th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_november,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_desember,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_januari23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_februari23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_maret23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_april23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_mei23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_juni23,2,',','.');?></th>
-				<th align = "center"><?php echo number_format($nilai_jual_all_juli23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_november,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_desember,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_januari23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_februari23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_maret23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_april23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_mei23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_juni23,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_juli23,2,',','.');?></th>
 			</tr>
 			<tr class="table-judul">
 				<th width="5%" align = "center" style="vertical-align:middle">NO.</th>
