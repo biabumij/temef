@@ -129,7 +129,7 @@
 			$nilai_pasir = 0;
 
 			foreach ($stock_opname_pasir as $x){
-				$nilai_pasir = $x['nilai'];
+				$nilai_pasir += $x['nilai'];
 			}
 
 			$stock_opname_batu1020 = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.batu1020 as harsat, (cat.display_volume * pp.batu1020) as nilai')
@@ -146,7 +146,7 @@
 			$total = 0;
 
 			foreach ($stock_opname_batu1020 as $x){
-				$nilai_batu1020 = $x['nilai'];
+				$nilai_batu1020 += $x['nilai'];
 			}
 
 			$stock_opname_batu2030 = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.batu2030 as harsat, (cat.display_volume * pp.batu2030) as nilai')
@@ -163,7 +163,7 @@
 			$total = 0;
 
 			foreach ($stock_opname_batu2030 as $x){
-				$nilai_batu2030 = $x['nilai'];
+				$nilai_batu2030 += $x['nilai'];
 			}
 
 			$stock_opname_solar = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.solar as harsat, (cat.display_volume * pp.solar) as nilai')
@@ -179,7 +179,7 @@
 			$nilai_solar = 0;
 
 			foreach ($stock_opname_solar as $x){
-				$nilai_solar = $x['nilai'];
+				$nilai_solar += $x['nilai'];
 			}
 
 			?>
