@@ -89,125 +89,169 @@
 		<br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="5%" align="center">NO.</th>
                 <th width="15%" align="center">TANGGAL</th>
                 <th width="20%" align="center">URAIAN</th>
-                <th width="10%" align="center">SATUAN</th>
-				<th width="10%" align="center">VOLUME</th>
+				<th width="15%" align="center">SATUAN</th>
+				<th width="15%" align="center">VOLUME</th>
 				<th width="15%" align="center">HARGA SATUAN</th>
-				<th width="15%" align="center">NILAI</th>
-				<th width="10%" align="center">CATATAN</th>
+				<th width="20%" align="center">NILAI</th>
             </tr>
 			<?php
 			$awal = date('Y-m-d',strtotime($date1));
 			$akhir = date('Y-m-d',strtotime($date2));
-
-			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
-			->from('hpp_bahan_baku pp')
-			->where("(pp.date_hpp between '$awal' and '$akhir')")
-			->order_by('pp.date_hpp','desc')->limit(1)
-			->get()->row_array();
 			
-			$stock_opname_semen = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
+			$stock_opname_semen = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.semen as harsat, (cat.display_volume * pp.semen) as nilai')
 			->from('pmm_remaining_materials_cat cat ')
+			->join('hpp_bahan_baku pp', 'cat.date = pp.date_hpp', 'left')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
-			->get()->row_array();
+			->group_by('cat.id')
+			->order_by('cat.material_id','asc')
+			->get()->result_array();
 
-			$stock_opname_pasir = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
+			$nilai_semen = 0;
+
+			foreach ($stock_opname_semen as $x){
+				$nilai_semen += $x['nilai'];
+			}
+
+			$stock_opname_pasir = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.pasir as harsat, (cat.display_volume * pp.pasir) as nilai')
 			->from('pmm_remaining_materials_cat cat ')
+			->join('hpp_bahan_baku pp', 'cat.date = pp.date_hpp', 'left')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 5")
 			->where("cat.status = 'PUBLISH'")
-			->get()->row_array();
+			->group_by('cat.id')
+			->order_by('cat.material_id','asc')
+			->get()->result_array();
 
-			$stock_opname_batu1020 = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
+			$nilai_pasir = 0;
+
+			foreach ($stock_opname_pasir as $x){
+				$nilai_pasir = $x['nilai'];
+			}
+
+			$stock_opname_batu1020 = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.batu1020 as harsat, (cat.display_volume * pp.batu1020) as nilai')
 			->from('pmm_remaining_materials_cat cat ')
+			->join('hpp_bahan_baku pp', 'cat.date = pp.date_hpp', 'left')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 6")
 			->where("cat.status = 'PUBLISH'")
-			->get()->row_array();
+			->group_by('cat.id')
+			->order_by('cat.material_id','asc')
+			->get()->result_array();
 
-			$stock_opname_batu2030 = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
+			$nilai_batu1020 = 0;
+			$total = 0;
+
+			foreach ($stock_opname_batu1020 as $x){
+				$nilai_batu1020 = $x['nilai'];
+			}
+
+			$stock_opname_batu2030 = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.batu2030 as harsat, (cat.display_volume * pp.batu2030) as nilai')
 			->from('pmm_remaining_materials_cat cat ')
+			->join('hpp_bahan_baku pp', 'cat.date = pp.date_hpp', 'left')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 7")
 			->where("cat.status = 'PUBLISH'")
-			->get()->row_array();
+			->group_by('cat.id')
+			->order_by('cat.material_id','asc')
+			->get()->result_array();
 
-			$stock_opname_solar = $this->db->select('SUM(cat.display_volume) as volume, cat.measure as satuan')
+			$nilai_batu2030 = 0;
+			$total = 0;
+
+			foreach ($stock_opname_batu2030 as $x){
+				$nilai_batu2030 = $x['nilai'];
+			}
+
+			$stock_opname_solar = $this->db->select('cat.date, cat.measure as satuan, cat.material_id, cat.notes, cat.display_volume as volume, pp.solar as harsat, (cat.display_volume * pp.solar) as nilai')
 			->from('pmm_remaining_materials_cat cat ')
+			->join('hpp_bahan_baku pp', 'cat.date = pp.date_hpp', 'left')
 			->where("cat.date between '$awal' and '$akhir'")
 			->where("cat.material_id = 8")
 			->where("cat.status = 'PUBLISH'")
-			->get()->row_array();
+			->group_by('cat.id')
+			->order_by('cat.material_id','asc')
+			->get()->result_array();
 
-			$nilai_stok_semen = $stock_opname_semen['volume'] * $harga_hpp_bahan_baku['semen'];
-			$nilai_stok_pasir = $stock_opname_pasir['volume'] * $harga_hpp_bahan_baku['pasir'];
-			$nilai_stok_batu1020 = $stock_opname_batu1020['volume'] * $harga_hpp_bahan_baku['batu1020'];
-			$nilai_stok_batu2030 = $stock_opname_batu2030['volume'] * $harga_hpp_bahan_baku['batu2030'];
-			$nilai_stok_solar = $stock_opname_solar['volume'] * $harga_hpp_bahan_baku['solar'];
+			$nilai_solar = 0;
 
-			$nilai_stok_all = $nilai_stok_semen + $nilai_stok_pasir + $nilai_stok_batu1020 + $nilai_stok_batu2030 + $nilai_stok_solar;
+			foreach ($stock_opname_solar as $x){
+				$nilai_solar = $x['nilai'];
+			}
 
 			?>
+			<?php
+			foreach ($stock_opname_semen as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center">1.</td>
-				<td align="center"><?php echo $date2;?></td>
+				<td align="center"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
 				<td align="left">Semen</td>
-				<td align="center"><?= $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_semen['satuan']),'measure_name');?></td>
-				<td align="right"><?php echo number_format($stock_opname_semen['volume'],2,',','.');?></td>
-				<td align="right"><?php echo number_format($harga_hpp_bahan_baku['semen'],0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_stok_semen,0,',','.');?></td>
-				<td align="left"></td>
+				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
+				<td align="right"><?= number_format($row['volume'],2,',','.'); ?></td>
+				<td align="right"><?= number_format($row['harsat'],0,',','.'); ?></td>
+				<td align="right"><?= number_format($row['nilai'],0,',','.'); ?></td>
 			</tr>
+			<?php
+			endforeach; ?>
+			
+			<?php
+			foreach ($stock_opname_pasir as $row) : ?>  
 			<tr class="table-baris2">
-				<td align="center">2.</td>
-				<td align="center"><?php echo $date2;?></td>
-				<td align="left">Pasir</td>
-				<td align="center"><?= $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_pasir['satuan']),'measure_name');?></td>
-				<td align="right"><?php echo number_format($stock_opname_pasir['volume'],2,',','.');?></td>
-				<td align="right"><?php echo number_format($harga_hpp_bahan_baku['pasir'],0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_stok_pasir,0,',','.');?></td>
-				<td align="left"></td>
+				<td align="center"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
+				<td align="left"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
+				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
+				<td align="right"><?= number_format($row['volume'],2,',','.'); ?></td>
+				<td align="right"><?= number_format($row['harsat'],0,',','.'); ?></td>
+				<td align="right"><?= number_format($row['nilai'],0,',','.'); ?></td>
 			</tr>
-			<tr class="table-baris2">
-				<td align="center">3.</td>
-				<td align="center"><?php echo $date2;?></td>
-				<td align="left">Batu Split 1020</td>
-				<td align="center"><?= $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_batu1020['satuan']),'measure_name');?></td>
-				<td align="right"><?php echo number_format($stock_opname_batu1020['volume'],2,',','.');?></td>
-				<td align="right"><?php echo number_format($harga_hpp_bahan_baku['batu1020'],0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_stok_batu1020,0,',','.');?></td>
-				<td align="left"></td>
-			</tr>
-			<tr class="table-baris2">
-				<td align="center">4.</td>
-				<td align="center"><?php echo $date2;?></td>
-				<td align="left">Batu Split 2030</td>
-				<td align="center"><?= $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_batu2030['satuan']),'measure_name');?></td>
-				<td align="right"><?php echo number_format($stock_opname_batu2030['volume'],2,',','.');?></td>
-				<td align="right"><?php echo number_format($harga_hpp_bahan_baku['batu2030'],0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_stok_batu2030,0,',','.');?></td>
-				<td align="left"></td>
-			</tr>
-			<tr class="table-baris2">
-				<td align="center">5.</td>
-				<td align="center"><?php echo $date2;?></td>
-				<td align="left">BBM Solar</td>
-				<td align="center"><?= $this->crud_global->GetField('pmm_measures',array('id'=>$stock_opname_solar['satuan']),'measure_name');?></td>
-				<td align="right"><?php echo number_format($stock_opname_solar['volume'],2,',','.');?></td>
-				<td align="right"><?php echo number_format($harga_hpp_bahan_baku['solar'],0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_stok_solar,0,',','.');?></td>
-				<td align="left"></td>
-			</tr>
-			<tr class="table-total">
-				<td align="right" colspan="6">TOTAL</td>
-				<td align="right"><?php echo number_format($nilai_stok_all,0,',','.');?></td>
-				<td align="left"></td>
-			</tr>
+			<?php
+			endforeach; ?>
 
+			<?php
+			foreach ($stock_opname_batu1020 as $row) : ?>  
+			<tr class="table-baris2">
+				<td align="center"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
+				<td align="left"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
+				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
+				<td align="right"><?= number_format($row['volume'],2,',','.'); ?></td>
+				<td align="right"><?= number_format($row['harsat'],0,',','.'); ?></td>
+				<td align="right"><?= number_format($row['nilai'],0,',','.'); ?></td>
+			</tr>
+			<?php
+			endforeach; ?>
+
+			<?php
+			foreach ($stock_opname_batu2030 as $row) : ?>  
+			<tr class="table-baris2">
+				<td align="center"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
+				<td align="left"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
+				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
+				<td align="right"><?= number_format($row['volume'],2,',','.'); ?></td>
+				<td align="right"><?= number_format($row['harsat'],0,',','.'); ?></td>
+				<td align="right"><?= number_format($row['nilai'],0,',','.'); ?></td>
+			</tr>
+			<?php
+			endforeach; ?>
+
+			<?php
+			foreach ($stock_opname_solar as $row) : ?>  
+			<tr class="table-baris2">
+				<td align="center"><?php echo $row['date'] = date('d-m-Y',strtotime($row['date']));;?></td>
+				<td align="left"><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
+				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');?></td>
+				<td align="right"><?= number_format($row['volume'],2,',','.'); ?></td>
+				<td align="right"><?= number_format($row['harsat'],0,',','.'); ?></td>
+				<td align="right"><?= number_format($row['nilai'],0,',','.'); ?></td>
+			</tr>
+			<?php
+			endforeach; ?>
+
+			<tr class="table-total">
+				<td align="right" colspan="5">TOTAL</td>
+				<td align="right"><?php echo number_format($nilai_semen + $nilai_pasir + $nilai_batu1020 + $nilai_batu2030 + + $nilai_solar,0,',','.');?></td>
+			</tr>
 		</table>
 		<br />
 		<br />
