@@ -311,18 +311,27 @@
 			$total_nilai_bbm = $total_akumulasi_bbm;
 
 			$total_insentif_tm = 0;
-
 			$insentif_tm = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
 			$total_insentif_tm = $insentif_tm['total'];
 
-			$total_alat_realisasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+			$biaya_alat_lainnya = 0;
+			$biaya_alat_lainnya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("c.id = '219'")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+			$biaya_alat_lainnya = $biaya_alat_lainnya['total'];
+
+			$total_alat_realisasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $biaya_alat_lainnya;
 			//END ALAT
 			?>
 
@@ -333,9 +342,10 @@
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',15)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -345,9 +355,10 @@
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',15)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -357,9 +368,10 @@
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',16)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -369,9 +381,10 @@
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',16)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -381,9 +394,10 @@
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',17)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -393,9 +407,10 @@
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where('c.coa_category',17)
-			->where("c.id <> 220 ")
-			->where("c.id <> 168 ")
-			->where("c.id <> 228 ")
+			->where("c.id <> 168 ") //Biaya Diskonto Bank
+			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
+			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();

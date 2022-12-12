@@ -108,17 +108,16 @@
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
 		<?php
-
 			$pembelian = $this->db->select('
-			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id in (12,13,14,15,16,23,24,25)")
+			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.harga_satuan')
 			->order_by('pn.nama','asc')
 			->get()->result_array();
 
@@ -128,18 +127,40 @@
 				$total_nilai += $x['price'];
 			}
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->row_array();
+			->get()->result_array();
 
-			$total_nilai_bbm = 0;
-			$total_nilai_bbm = $akumulasi_bbm['total_nilai_keluar_2'];
+			$total_akumulasi_bbm = 0;
+
+			foreach ($akumulasi_bbm as $b){
+				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
+			}
+
+			$total_nilai_bbm = $total_akumulasi_bbm;
 
 			$total_nilai_all = 0;
 			$total_nilai_all = $total_nilai + $total_nilai_bbm;
 
-			$total_insentif_tm = 0;
+			$biaya_batching_plant = $this->db->select('pdb.deskripsi as deskripsi, sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("c.id = '219'")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_biaya_batching_plant = 0;
+
+			foreach ($biaya_batching_plant as $y){
+				$total_biaya_batching_plant += $y['total'];
+			}
+
+			$total_biaya_batching_plant_all = 0;
+			$total_biaya_batching_plant_all = $total_biaya_batching_plant;
 
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -159,8 +180,7 @@
 			$total_insentif_tm_all = 0;
 			$total_insentif_tm_all = $total_insentif_tm;
 
-			$total_nilai = $total_nilai_all + $total_insentif_tm_all;
-
+			$total_nilai = $total_nilai_all + $total_insentif_tm_all + $total_biaya_batching_plant_all;
 			?>
 			
 			<tr class="table-judul">
@@ -186,6 +206,12 @@
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
 			</tr>
+			<?php foreach ($biaya_batching_plant as $y): ?>
+			<tr class="table-baris1">
+				<th align="left" colspan="4">&bull; <?= $y['deskripsi'] ?></th>
+				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
 			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>

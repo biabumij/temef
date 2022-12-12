@@ -129,6 +129,22 @@
 				$total_nilai_batching_plant += $x['price'];
 			}
 
+			$biaya_batching_plant = $this->db->select('pdb.deskripsi as deskripsi, sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("c.id = '219'")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_biaya_batching_plant = 0;
+
+			foreach ($biaya_batching_plant as $y){
+				$total_biaya_batching_plant += $y['total'];
+			}
+
 			//Truck Mixer
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -149,11 +165,11 @@
 			}
 
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
+			->from('pmm_jurnal_umum pb')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
@@ -306,12 +322,10 @@
 			$total_pemakaian_vol_wheel_loader = $total_vol_wheel_loader;
 			$total_pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
 
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
 			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
-			
-
 			?>
 
 			<!-- RAP Alat -->
