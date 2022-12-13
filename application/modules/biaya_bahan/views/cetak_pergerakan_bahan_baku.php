@@ -388,14 +388,14 @@
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			//$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
-			//->from('hpp_bahan_baku pp')
-			//->where("(pp.date_hpp between '$date1' and '$date2')")
-			//->order_by('pp.date_hpp','desc')->limit(1)
-			//->get()->row_array();
+			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.semen_custom, pp.semen_custom_nilai')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->order_by('pp.date_hpp','desc')->limit(1)
+			->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
-			$price_stock_opname_semen =  $total_harga_pembelian_semen_opc_akhir;
+			$price_stock_opname_semen =  $hpp_bahan_baku['semen'];
 
 			$total_volume_pemakaian_semen = $total_volume_pembelian_semen_opc_akhir - $stock_opname_semen['volume'];
 
@@ -403,8 +403,8 @@
 			$total_nilai_stock_semen_akhir = $total_volume_stock_semen_akhir * $total_harga_stock_semen_akhir;
 
 			$total_nilai_pemakaian_semen = ($nilai_opening_balance_semen + $total_nilai_pembelian_semen  + $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_cons + $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_opc + $total_nilai_jasa_angkut_opc) - $total_nilai_stock_semen_akhir;
-			//$total_harga_pemakaian_semen = ($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0;
-			$total_harga_pemakaian_semen = $total_harga_stock_semen_akhir;
+			$total_harga_pemakaian_semen = (($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0) * $hpp_bahan_baku['semen_custom'] + $hpp_bahan_baku['semen_custom_nilai'] ;
+			//$total_harga_pemakaian_semen = $total_harga_pembelian_semen_opc_akhir;
 
 			//PEMBELIAN PASIR
 			$pembelian_pasir = $this->db->select('
