@@ -111,7 +111,7 @@
 
 			<?php
 
-			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, pk.price_a, pk.price_b, pk.price_c, pk.price_d,(pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
+			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, (pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
 			->from('pmm_productions pp')
 			->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
@@ -121,11 +121,6 @@
 			$total_volume_b = 0;
 			$total_volume_c = 0;
 			$total_volume_d = 0;
-
-			$total_price_a = 0;
-			$total_price_b = 0;
-			$total_price_c = 0;
-			$total_price_d = 0;
 
 			$total_nilai_a = 0;
 			$total_nilai_b = 0;
@@ -141,10 +136,6 @@
 				$total_nilai_b += $x['nilai_b'];
 				$total_nilai_c += $x['nilai_c'];
 				$total_nilai_d += $x['nilai_d'];
-				$total_price_a = $x['price_a'];
-				$total_price_b = $x['price_b'];
-				$total_price_c = $x['price_c'];
-				$total_price_d = $x['price_d'];
 				
 			}
 
@@ -158,10 +149,10 @@
 			$nilai_c = $total_nilai_c;
 			$nilai_d = $total_nilai_d;
 
-			$price_a = $total_price_a;
-			$price_b = $total_price_b;
-			$price_c = $total_price_c;
-			$price_d = $total_price_d;
+			$price_a = ($total_volume_a!=0)?$total_nilai_a / $total_volume_a * 1:0;
+			$price_b = ($total_volume_b!=0)?$total_nilai_a / $total_volume_b * 1:0;
+			$price_c = ($total_volume_c!=0)?$total_nilai_a / $total_volume_c * 1:0;
+			$price_d = ($total_volume_d!=0)?$total_nilai_a / $total_volume_d * 1:0;
 
 			$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
 			$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;
@@ -452,7 +443,7 @@
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
+			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen, pp.semen_custom, pp.semen_custom_nilai')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date1' and '$date2')")
 			->order_by('pp.date_hpp','desc')->limit(1)
@@ -467,8 +458,8 @@
 			$total_nilai_stock_semen_akhir = $total_volume_stock_semen_akhir * $total_harga_stock_semen_akhir;
 
 			$total_nilai_pemakaian_semen = ($nilai_opening_balance_semen + $total_nilai_pembelian_semen  + $total_nilai_jasa_angkut + $total_nilai_pembelian_semen_cons + $total_nilai_jasa_angkut_cons + $total_nilai_pembelian_semen_opc + $total_nilai_jasa_angkut_opc) - $total_nilai_stock_semen_akhir;
-			//$total_harga_pemakaian_semen = ($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0;
-			$total_harga_pemakaian_semen = $total_harga_stock_semen_akhir;
+			$total_harga_pemakaian_semen = (($total_volume_pemakaian_semen!=0)?$total_nilai_pemakaian_semen / $total_volume_pemakaian_semen * 1:0) * $hpp_bahan_baku['semen_custom'] + $hpp_bahan_baku['semen_custom_nilai'] ;
+			//$total_harga_pemakaian_semen = $total_harga_pembelian_semen_opc_akhir;
 
 			//PEMBELIAN PASIR
 			$pembelian_pasir = $this->db->select('
@@ -617,6 +608,14 @@
 			$total_nilai_pemakaian_batu2030 = ($nilai_opening_balance_batu2030 + $total_nilai_pembelian_batu2030) - $total_nilai_stock_batu2030_akhir;
 			//$total_harga_pemakaian_batu2030 = ($total_volume_pemakaian_batu2030!=0)?$total_nilai_pemakaian_batu2030 / $total_volume_pemakaian_batu2030 * 1:0;
 			$total_harga_pemakaian_batu2030 = $total_harga_stock_batu2030_akhir;
+
+			//BAHAN BAKU
+			$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
+
+			//TOTAL
+			$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
+			$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
+			$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
 
 			//BAHAN BAKU
 			$total_opening_balance_bahan_baku = $nilai_opening_balance_semen + $nilai_opening_balance_pasir + $nilai_opening_balance_batu1020 + $nilai_opening_balance_batu2030;
