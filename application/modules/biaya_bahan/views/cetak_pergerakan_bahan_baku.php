@@ -388,14 +388,14 @@
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 			
-			$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
-			->from('hpp_bahan_baku pp')
-			->where("(pp.date_hpp between '$date1' and '$date2')")
-			->order_by('pp.date_hpp','desc')->limit(1)
-			->get()->row_array();
+			//$hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.semen')
+			//->from('hpp_bahan_baku pp')
+			//->where("(pp.date_hpp between '$date1' and '$date2')")
+			//->order_by('pp.date_hpp','desc')->limit(1)
+			//->get()->row_array();
 			
 			$total_volume_stock_semen_akhir = $stock_opname_semen['volume'];
-			$price_stock_opname_semen =  $hpp_bahan_baku['semen'];
+			$price_stock_opname_semen =  $total_harga_pembelian_semen_opc_akhir;
 
 			$total_volume_pemakaian_semen = $total_volume_pembelian_semen_opc_akhir - $stock_opname_semen['volume'];
 
