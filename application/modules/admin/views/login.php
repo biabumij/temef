@@ -77,33 +77,24 @@
 	                            <!-- <a href="pages_forgot-password.html">Forgot password?</a> -->
 	                        </div>
 	                    </form>
-						<br />
-						<div class="tomorrow"
-							data-location-id=""
-							data-language="ID"
-							data-unit-system="METRIC"
-							data-skin="light"
-							data-widget-type="aqiMini"
-							style="padding-bottom:22px;position:relative;"
-							>
-							<a
-								href="https://www.tomorrow.io/weather-api/"
-								rel="nofollow noopener noreferrer"
-								target="_blank"
-								style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
-							>
-								<img
-								alt="Powered by the Tomorrow.io Weather API"
-								src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
-								width="250"
-								height="18"
-								/>
-							</a>
-						</div>
 	                </div>
 	            </div>
 	        </div>
 	        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+		
+			<div class="box">
+			<div class="tomorrow"
+				data-location-id=""
+				data-language="ID"
+				data-unit-system="METRIC"
+				data-skin="light"
+				data-widget-type="aqiMini"
+				style="padding-bottom:15px;position:relative;"
+				>
+			</div>
+		</div>
+
+
 		</div>
 	</div>
 	<!--BASIC scripts-->

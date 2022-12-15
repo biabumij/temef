@@ -3116,7 +3116,7 @@ html.accounts .box {
   border-radius: 5px;
   padding: 15px;
   max-width: 400px;
-  margin: 20px auto 0px;
+  margin: -20px auto 0px;
 }
 
 html.sign-in body {
