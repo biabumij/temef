@@ -83,16 +83,16 @@
 	        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 		
 			<div class="box">
-			<div class="tomorrow"
-				data-location-id=""
-				data-language="ID"
-				data-unit-system="METRIC"
-				data-skin="light"
-				data-widget-type="aqiMini"
-				style="padding-bottom:15px;position:relative;"
-				>
+				<div class="tomorrow"
+					data-location-id=""
+					data-language="ID"
+					data-unit-system="METRIC"
+					data-skin="light"
+					data-widget-type="aqiMini"
+					style="padding-bottom:15px;position:relative;"
+					>
+				</div>
 			</div>
-		</div>
 
 
 		</div>
