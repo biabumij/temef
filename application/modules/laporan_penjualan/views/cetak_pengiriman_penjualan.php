@@ -89,11 +89,11 @@
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
                 <th width="5%" align="center">NO.</th>
-                <th width="40%" align="center">URAIAN / MUTU BETON</th>
+                <th width="40%" align="center">PELANGGAN / MUTU BETON</th>
 				<th width="10%" align="center">SATUAN</th>
                 <th width="15%" align="center">VOLUME</th>
 				<th width="15%" align="center">HARGA SATUAN</th>
-                <th width="15%" align="center">TOTAL</th>
+                <th width="15%" align="center">NILAI</th>
             </tr>
             <?php
 			$vol_jasa_angkut = 0;

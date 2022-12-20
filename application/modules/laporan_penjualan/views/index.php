@@ -127,12 +127,12 @@
                                                         </div>
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="pengiriman-penjualan" style="display:none;">
                                                             <thead>
-                                                                <th class="text-center">No</th>
-                                                                <th class="text-center">Pelanggan / Mutu Beton</th>
-																<th class="text-center">Satuan</th>
-                                                                <th class="text-center">Volume</th>
-																<th class="text-center">Harga Satuan</th>
-                                                                <th class="text-center">Total</th>
+                                                                <th class="text-center">NO.</th>
+                                                                <th class="text-center">PELANGGAN / MUTU BETON</th>
+																<th class="text-center">SATUAN</th>
+                                                                <th class="text-center">VOLUME</th>
+																<th class="text-center">HARGA SATUAN</th>
+                                                                <th class="text-center">NILAI</th>
                                                             </thead>
                                                             <tbody>
 
