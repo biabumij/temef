@@ -286,16 +286,10 @@
 
 
     </script>
-	
-	</script>
+    
 	<script type="text/javascript">
         var form_control = '';
     </script>
-	
-    <script type="text/javascript">
-    
-	
-	</script>
 
 </body>
 </html>
