@@ -1088,9 +1088,9 @@ class Productions extends Secure_Controller {
         $html = $this->load->view('pmm/productions_print',$data,TRUE);
 
         
-        $pdf->SetTitle('rekap_surat_jalan_penjualan');
+        $pdf->SetTitle('Pengiriman');
         $pdf->nsi_html($html);
-        $pdf->Output('rekap_surat_jalan_penjualan.pdf', 'I');
+        $pdf->Output('rekap_surat_jalan_pengiriman.pdf', 'I');
 	
 	}
 
