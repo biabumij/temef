@@ -180,7 +180,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            paging : false,
             "columnDefs": [
                 {
                     "targets": [0],

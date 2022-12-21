@@ -147,7 +147,6 @@
 		});	
 		
         var table_jurnal = $('#table_jurnal').DataTable( {
-            paging : false,
             ajax: {
                 processing: true,
                 serverSide: true,

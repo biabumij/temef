@@ -194,7 +194,6 @@
                 }
             ],
             responsive: true,
-            paging : false,
         });
 
         var table_detail = $('#detail-table').DataTable( {

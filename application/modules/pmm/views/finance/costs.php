@@ -156,7 +156,6 @@
                     d.filter_date = $('#filter_date_biaya').val();
                 }
             },
-            paging : false,
             columns: [
                 { "data": "no" },
                 { "data": "tanggal"},
