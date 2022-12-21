@@ -275,40 +275,52 @@
 
                                 <div role="tabpanel" class="tab-pane" id="messages">
                                     <div class="row">
-                                    
-                                        <div class="col-sm-3">
-                                            <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select id="filter_supplier_id" name="supplier_id" class="form-control select2">
-                                                <option value="">Pilih Rekanan</option>
-                                                <?php
-                                                foreach ($suppliers as $key => $supplier) {
-                                                ?>
-                                                    <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select id="filter_po_id" name="purchase_order_id" class="form-control select2">
-                                                <option value="">Pilih PO</option>
-                                                <?php
-                                                foreach ($arr_po as $key => $po) {
-                                                ?>
-                                                    <option value="<?php echo $po['id']; ?>" data-client-id="<?= $po['supplier_id'] ?>" disabled><?php echo $po['no_po']; ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="text-left">
-                                                <input type="hidden" id="val-receipt-id" name="">
-                                                <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
+                                        <form action="<?php echo site_url('pmm/receipt_material/cetak_surat_jalan');?>" method="GET" target="_blank">
+                                            <div class="col-sm-3">
+                                                <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
                                             </div>
-                                        </div>
+                                            <div class="col-sm-3">
+                                                <select id="filter_supplier_id" name="supplier_id" class="form-control select2">
+                                                    <option value="">Pilih Rekanan</option>
+                                                    <?php
+                                                    foreach ($suppliers as $key => $supplier) {
+                                                    ?>
+                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select id="filter_po_id" name="purchase_order_id" class="form-control select2">
+                                                    <option value="">Pilih PO</option>
+                                                    <?php
+                                                    foreach ($arr_po as $key => $po) {
+                                                    ?>
+                                                        <option value="<?php echo $po['id']; ?>" data-client-id="<?= $po['supplier_id'] ?>" disabled><?php echo $po['no_po']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select id="material_id" name="material_id" class="form-control select2"">
+                                                    <option value="">Pilih Produk</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <div class="col-sm-3">
+                                                <div class="text-left">
+                                                    <input type="hidden" id="val-receipt-id" name="">
+                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
+                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </form>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover" id="table-receipt" style="width:100%;">
@@ -965,7 +977,7 @@
                 }
             ],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
 
         $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
@@ -1038,7 +1050,7 @@
                 }
             ],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
 
         $('#filter_status').change(function(){
@@ -1212,7 +1224,7 @@
                     }
                  ],
                 responsive: true,
-                paging : false,
+                //paging : false,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1236,7 +1248,7 @@
                     d.purchase_order_id = $('#filter_po_id').val();
                     d.supplier_id = $('#filter_supplier_id').val();
                     d.filter_date = $('#filter_date').val();
-                    d.material_id = $('#filter_material').val();
+                    d.material_id = $('#material_id').val();
                 }
             },
             "language": {
@@ -1292,7 +1304,7 @@
                 style: 'multi'
             },
             responsive: true,
-            paging : false,
+            //paging : false,
             "columnDefs": [{
                     "targets": [0],
                     "orderable": false,
@@ -1370,7 +1382,42 @@
             $('#filter_po_id').select2('destroy');
             $('#filter_po_id').select2();
         });
+
         $('#filter_po_id').change(function() {
+            table_receipt.ajax.reload();
+        });
+
+        function SelectMatByPo() {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/receipt_material/get_mat_pembelian'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: {
+                    purchase_order_id: $('#filter_po_id').val(),
+                    material_id: $('#material_id').val(),
+                },
+                success: function(result) {
+                    if (result.data) {
+                        $('#material_id').empty();
+                        $('#material_id').select2({
+                            data: result.data
+                        });
+                        $('#material_id').trigger('change');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                }
+            });
+        }
+
+        $('#filter_po_id').change(function(){
+    
+        $('#filter_po_id').val($(this).val());
+            table_receipt.ajax.reload();
+            SelectMatByPo();
+        });
+
+        $('#material_id').change(function() {
             table_receipt.ajax.reload();
         });
 		
@@ -1443,7 +1490,7 @@
                 },
             ],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
 
 

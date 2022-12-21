@@ -130,8 +130,8 @@
                                         $sales_po = $this->db->select('id,contract_number,client_id')->get_where('pmm_sales_po')->result_array();
                                         $suppliers = $this->db->order_by('id,nama')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'pelanggan' => 1))->result_array();
                                         ?>
-                                        <form id="form_production">
-                                            <div class="row">
+                                        <div class="row">
+                                            <form action="<?php echo site_url('pmm/productions/cetak_surat_jalan');?>" method="GET" target="_blank">
                                                 <div class="col-sm-3">
                                                     <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
                                                 </div>
@@ -162,47 +162,55 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-3">
+                                                    <select id="product_id" name="product_id" class="form-control select2">
+                                                        <option value="">Pilih Produk</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div class="col-sm-3">
                                                     <div class="text-right">
                                                         <button type="button" id="btn_production" class="btn btn-success">Penagihan Penjualan</button>
+                                                        <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button> 
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <br>
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-hover" id="table-production" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>No</th>
-                                                            <th class="text-center">Tanggal</th>
-                                                            <th class="text-center">Nomor Produksi</th>
-                                                            <th class="text-center">Nomor Sales Order</th>
-                                                            <th class="text-center">Produk</th>
-                                                            <th class="text-center">Pelanggan</th>
-                                                            <th class="text-center">Volume</th>
-															<th class="text-center">Satuan</th>
-                                                            <th class="text-center">Status Pembayaran</th>
-                                                            <th class="text-center">Dibuat Oleh</th>
-                                                            <th class="text-center">Dibuat Tanggal</th>
-														</tr>
-                                                    </thead>
-                                                    <tbody>
+                                                <br />
+                                                <br />
+                                            </form>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table-production" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>No</th>
+                                                        <th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Nomor Produksi</th>
+                                                        <th class="text-center">Nomor Sales Order</th>
+                                                        <th class="text-center">Produk</th>
+                                                        <th class="text-center">Pelanggan</th>
+                                                        <th class="text-center">Volume</th>
+                                                        <th class="text-center">Satuan</th>
+                                                        <th class="text-center">Status Pembayaran</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                    </tbody>
-                                                    <!--<tfoot>
-                                                        <th colspan="6" style="text-align:right">TOTAL</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-													</tfoot>-->
-                                                </table>
-                                            </div>
-
-                                        </form>
-
+                                                </tbody>
+                                                <!--<tfoot>
+                                                    <th colspan="6" style="text-align:right">TOTAL</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tfoot>-->
+                                            </table>
+                                        </div>
                                     </div>
 
                                     <!-- Tagihan Penjualan -->
@@ -313,7 +321,7 @@
 				}
 			],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
         
         $('#filter_date_penawaran').on('apply.daterangepicker', function(ev, picker) {
@@ -382,7 +390,7 @@
                 }
             ],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
 
         $('#filter_date_sales_order').on('apply.daterangepicker', function(ev, picker) {
@@ -400,6 +408,7 @@
                     d.filter_date = $('#filter_date').val();
                     d.supplier_id = $('#filter_supplier_id').val();
                     d.sales_po_id = $('#sales_po_id').val();
+                    d.product_id = $('#product_id').val();
                 }
             },
             "language": {
@@ -446,7 +455,7 @@
                 style: 'multi'
             },
             responsive: true,
-            paging : false,
+            //paging : false,
             "columnDefs": [
 				{
                     "targets": [0],
@@ -520,6 +529,44 @@
         });
 
         $('#sales_po_id').change(function() {
+            tableProduction.ajax.reload();
+        });
+
+        function SelectMatByPo() {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/productions/get_mat_penjualan'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: {
+                    sales_po_id: $('#sales_po_id').val(),
+                    product_id: $('#product_id').val(),
+                },
+                success: function(result) {
+                    if (result.data) {
+                        $('#product_id').empty();
+                        $('#product_id').select2({
+                            data: result.data
+                        });
+                        $('#product_id').trigger('change');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                }
+            });
+        }
+
+        $('#sales_po_id').change(function(){
+    
+        $('#sales_po_id').val($(this).val());
+            tableProduction.ajax.reload();
+            SelectMatByPo();
+        });
+
+        $('#product_id').change(function() {
+            tableProduction.ajax.reload();
+        });
+
+        $('#product_id').change(function() {
             tableProduction.ajax.reload();
         });
 
@@ -605,7 +652,7 @@
                 },
             ],
             responsive: true,
-            paging : false,
+            //paging : false,
         });
 
 		$('#filter_date_tagihan').daterangepicker({
