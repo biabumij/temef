@@ -146,7 +146,6 @@
     });	
 		
         var table_biaya = $('#table_biaya').DataTable( {
-            "displayLength":50,
             ajax: {
                 processing: true,
                 serverSide: true,
