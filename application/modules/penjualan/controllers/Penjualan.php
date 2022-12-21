@@ -1605,6 +1605,7 @@ class Penjualan extends Secure_Controller
 	public function open_penagihan($id)
 	{
 		$this->db->set("status", "OPEN");
+		$this->db->set("status_pembayaran", "BELUM LUNAS");
         $this->db->set("updated_by", $this->session->userdata('admin_id'));
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
