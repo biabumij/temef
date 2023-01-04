@@ -158,7 +158,7 @@
 			$total_biaya_batching_plant_all = 0;
 			$total_biaya_batching_plant_all = $total_biaya_batching_plant;
 
-			$jurnal_biaya_lainnya = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			$biaya_alat_lainnya_jurnal = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun in ('219','505')")
@@ -167,14 +167,14 @@
 			->group_by('pdb.id')
 			->get()->result_array();
 			
-			$total_jurnal_biaya_lainnya = 0;
+			$total_biaya_alat_lainnya_jurnal = 0;
 
-			foreach ($jurnal_biaya_lainnya as $y){
-				$total_jurnal_biaya_lainnya += $y['total'];
+			foreach ($biaya_alat_lainnya_jurnal as $y){
+				$total_biaya_alat_lainnya_jurnal += $y['total'];
 			}
 
-			$total_jurnal_biaya_lainnya_all = 0;
-			$total_jurnal_biaya_lainnya_all = $total_jurnal_biaya_lainnya;
+			$total_biaya_alat_lainnya_jurnal_all = 0;
+			$total_biaya_alat_lainnya_jurnal_all = $total_biaya_alat_lainnya_jurnal;
 
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -194,7 +194,7 @@
 			$total_insentif_tm_all = 0;
 			$total_insentif_tm_all = $total_insentif_tm;
 
-			$total_nilai = $total_nilai_all + $total_biaya_batching_plant_all + $total_insentif_tm_all + $total_jurnal_biaya_lainnya_all;
+			$total_nilai = $total_nilai_all + $total_biaya_batching_plant_all + $total_insentif_tm_all + $total_biaya_alat_lainnya_jurnal_all;
 
 			?>
 			
@@ -227,7 +227,7 @@
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
-			<?php foreach ($jurnal_biaya_lainnya as $y): ?>
+			<?php foreach ($biaya_alat_lainnya_jurnal as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
