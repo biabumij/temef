@@ -214,6 +214,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
@@ -227,6 +228,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
@@ -240,6 +242,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
@@ -265,6 +268,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
@@ -278,6 +282,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();

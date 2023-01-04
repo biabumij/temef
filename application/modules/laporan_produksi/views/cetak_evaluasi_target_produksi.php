@@ -325,7 +325,7 @@
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("c.id = '219'")
+			->where("c.id in ('219','505')")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -346,6 +346,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -359,6 +360,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -372,6 +374,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -385,6 +388,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -398,6 +402,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -411,6 +416,7 @@
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
 			->where("c.id <> 228 ") //Biaya Persiapan
+			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();

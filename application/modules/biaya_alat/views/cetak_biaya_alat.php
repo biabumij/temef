@@ -109,7 +109,7 @@
 		
 		<?php
 			$pembelian = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			p.nama_produk, pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
@@ -147,7 +147,7 @@
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("c.id = '219'")
+			->where("c.id in ('219','505')")
 			->where("pb.status = 'PAID'")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
@@ -161,6 +161,24 @@
 
 			$total_biaya_batching_plant_all = 0;
 			$total_biaya_batching_plant_all = $total_biaya_batching_plant;
+
+			$jurnal_biaya_lainnya = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun in ('219','505')")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+			
+			$total_jurnal_biaya_lainnya = 0;
+
+			foreach ($jurnal_biaya_lainnya as $y){
+				$total_jurnal_biaya_lainnya += $y['total'];
+			}
+
+			$total_jurnal_biaya_lainnya_all = 0;
+			$total_jurnal_biaya_lainnya_all = $total_jurnal_biaya_lainnya;
 
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -180,7 +198,7 @@
 			$total_insentif_tm_all = 0;
 			$total_insentif_tm_all = $total_insentif_tm;
 
-			$total_nilai = $total_nilai_all + $total_insentif_tm_all + $total_biaya_batching_plant_all;
+			$total_nilai = $total_nilai_all + $total_insentif_tm_all + $total_biaya_batching_plant_all + $total_jurnal_biaya_lainnya_all;
 			?>
 			
 			<tr class="table-judul">
@@ -209,6 +227,12 @@
 			<?php foreach ($biaya_batching_plant as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['deskripsi'] ?></th>
+				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($jurnal_biaya_lainnya as $y): ?>
+			<tr class="table-baris1">
+				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
