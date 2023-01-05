@@ -3711,9 +3711,9 @@
                     labels: {
                         format: '{value} %'
                     },
-                    min: -40,
-                    max: 60,
-                    tickInterval: 5,
+                    min: -500,
+                    max: 100,
+                    tickInterval: 100,
                 },
                 tooltip: { 
                 //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
