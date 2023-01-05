@@ -3640,7 +3640,7 @@
                     //zones: [{
                         //value: 24
                     //}, {
-                        dashStyle: 'dot'
+                        //dashStyle: 'dot'
                     //}]
                 }
                 ]
