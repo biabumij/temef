@@ -1279,8 +1279,8 @@ class Reports extends CI_Controller {
 		$arr_filter_date = explode(' - ', $arr_date);
 
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-		$last_production_2 = $this->db->select('date')->order_by('date','desc')->limit(1,2)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','material_id'=>'4'))->row_array();
-		
+		$last_production_2 = $this->db->select('date')->order_by('date','desc')->limit(1,1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','material_id'=>'4'))->row_array();
+
 		$date1 = date('Y-m-d', strtotime('+1 days', strtotime($last_production_2['date'])));
 		$date2 =  date('Y-m-d', strtotime($last_production['date']));
 		$date1_filter = date('d F Y', strtotime($date1));
@@ -5686,6 +5686,21 @@ class Reports extends CI_Controller {
 				$total_biaya_batching_plant += $y['total'];
 			}
 
+			$jurnal_biaya_lainnya = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun in ('219','505')")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+			
+			$total_jurnal_biaya_lainnya = 0;
+
+			foreach ($jurnal_biaya_lainnya as $y){
+				$total_jurnal_biaya_lainnya += $y['total'];
+			}
+
 			//Truck Mixer
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -5836,7 +5851,6 @@ class Reports extends CI_Controller {
 				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
 			}
 			
-			
 			//PENJUALAN
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
@@ -5863,7 +5877,7 @@ class Reports extends CI_Controller {
 			$total_pemakaian_vol_wheel_loader = $total_vol_wheel_loader;
 			$total_pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
 
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant + $total_jurnal_biaya_lainnya;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
 			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;

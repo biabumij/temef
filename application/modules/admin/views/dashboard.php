@@ -891,7 +891,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_februari = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();
@@ -905,6 +913,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();
@@ -918,58 +927,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_februari = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_februari = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_februari = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_februari = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();
@@ -983,7 +941,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_februari_awal' and '$date_februari_akhir')")
                 ->get()->row_array();   
 
-                $cost_februari = $akumulasi_februari['total_nilai_keluar'] + $nilai_alat_februari['nilai'] + $akumulasi_bbm_februari['total_nilai_keluar_2'] + $insentif_tm_februari['total'] + $biaya_alat_lainnya_februari['total'] + $overhead_15_februari['total'] + $overhead_jurnal_15_februari['total'] + $overhead_16_februari['total'] + $overhead_jurnal_16_februari['total'] + $overhead_17_februari['total'] + $overhead_jurnal_17_februari['total'] + $diskonto_februari['total'];
+                $cost_februari = $akumulasi_februari['total_nilai_keluar'] + $nilai_alat_februari['nilai'] + $akumulasi_bbm_februari['total_nilai_keluar_2'] + $insentif_tm_februari['total'] + $biaya_alat_lainnya_februari['total'] + $biaya_alat_lainnya_jurnal_februari['total'] + $overhead_15_februari['total'] + $overhead_jurnal_15_februari['total'] + $diskonto_februari['total'];
                 $laba_rugi_februari = $penjualan_februari['total'] - $cost_februari;
                 $presentase_laba_rugi_februari = ($penjualan_februari['total']!=0)?($laba_rugi_februari / $penjualan_februari['total'])  * 100:0;
                 $presentase_laba_rugi_februari_fix = round($presentase_laba_rugi_februari,2);
@@ -1020,7 +978,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_maret = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();
@@ -1034,6 +1000,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();
@@ -1047,58 +1014,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_maret = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_maret = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_maret = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_maret = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();
@@ -1112,7 +1028,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_maret_awal' and '$date_maret_akhir')")
                 ->get()->row_array();   
 
-                $cost_maret = $akumulasi_maret['total_nilai_keluar'] + $nilai_alat_maret['nilai'] + $akumulasi_bbm_maret['total_nilai_keluar_2'] + $insentif_tm_maret['total'] + $biaya_alat_lainnya_maret['total'] + $overhead_15_maret['total'] + $overhead_jurnal_15_maret['total'] + $overhead_16_maret['total'] + $overhead_jurnal_16_maret['total'] + $overhead_17_maret['total'] + $overhead_jurnal_17_maret['total'] + $diskonto_maret['total'];
+                $cost_maret = $akumulasi_maret['total_nilai_keluar'] + $nilai_alat_maret['nilai'] + $akumulasi_bbm_maret['total_nilai_keluar_2'] + $insentif_tm_maret['total'] + $biaya_alat_lainnya_maret['total'] + $biaya_alat_lainnya_jurnal_maret['total'] + $overhead_15_maret['total'] + $overhead_jurnal_15_maret['total'] + $diskonto_maret['total'];
                 $laba_rugi_maret = $penjualan_maret['total'] - $cost_maret;
                 $presentase_laba_rugi_maret = ($penjualan_maret['total']!=0)?($laba_rugi_maret / $penjualan_maret['total'])  * 100:0;
                 $presentase_laba_rugi_maret_fix = round($presentase_laba_rugi_maret,2);
@@ -1149,7 +1065,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_april = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();
@@ -1163,6 +1087,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();
@@ -1176,58 +1101,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_april = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_april = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_april = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_april = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();
@@ -1241,7 +1115,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_april_awal' and '$date_april_akhir')")
                 ->get()->row_array();   
 
-                $cost_april = $akumulasi_april['total_nilai_keluar'] + $nilai_alat_april['nilai'] + $akumulasi_bbm_april['total_nilai_keluar_2'] + $insentif_tm_april['total'] + $biaya_alat_lainnya_april['total'] + $overhead_15_april['total'] + $overhead_jurnal_15_april['total'] + $overhead_16_april['total'] + $overhead_jurnal_16_april['total'] + $overhead_17_april['total'] + $overhead_jurnal_17_april['total'] + $diskonto_april['total'];
+                $cost_april = $akumulasi_april['total_nilai_keluar'] + $nilai_alat_april['nilai'] + $akumulasi_bbm_april['total_nilai_keluar_2'] + $insentif_tm_april['total'] + $biaya_alat_lainnya_april['total'] + $biaya_alat_lainnya_jurnal_april['total'] + $overhead_15_april['total'] + $overhead_jurnal_15_april['total'] + $diskonto_april['total'];
                 $laba_rugi_april = $penjualan_april['total'] - $cost_april;
                 $presentase_laba_rugi_april = ($penjualan_april['total']!=0)?($laba_rugi_april / $penjualan_april['total'])  * 100:0;
                 $presentase_laba_rugi_april_fix = round($presentase_laba_rugi_april,2);
@@ -1278,7 +1152,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_mei = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();
@@ -1292,6 +1174,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();
@@ -1305,58 +1188,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_mei = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_mei = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_mei = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_mei = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();
@@ -1370,7 +1202,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_mei_awal' and '$date_mei_akhir')")
                 ->get()->row_array();   
 
-                $cost_mei = $akumulasi_mei['total_nilai_keluar'] + $nilai_alat_mei['nilai'] + $akumulasi_bbm_mei['total_nilai_keluar_2'] + $insentif_tm_mei['total'] + $biaya_alat_lainnya_mei['total'] + $overhead_15_mei['total'] + $overhead_jurnal_15_mei['total'] + $overhead_16_mei['total'] + $overhead_jurnal_16_mei['total'] + $overhead_17_mei['total'] + $overhead_jurnal_17_mei['total'] + $diskonto_mei['total'];
+                $cost_mei = $akumulasi_mei['total_nilai_keluar'] + $nilai_alat_mei['nilai'] + $akumulasi_bbm_mei['total_nilai_keluar_2'] + $insentif_tm_mei['total'] + $biaya_alat_lainnya_mei['total'] + $biaya_alat_lainnya_jurnal_mei['total'] + $overhead_15_mei['total'] + $overhead_jurnal_15_mei['total'] + $diskonto_mei['total'];
                 $laba_rugi_mei = $penjualan_mei['total'] - $cost_mei;
                 $presentase_laba_rugi_mei = ($penjualan_mei['total']!=0)?($laba_rugi_mei / $penjualan_mei['total'])  * 100:0;
                 $presentase_laba_rugi_mei_fix = round($presentase_laba_rugi_mei,2);
@@ -1407,7 +1239,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_juni = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();
@@ -1421,6 +1261,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();
@@ -1434,58 +1275,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_juni = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_juni = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_juni = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_juni = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();
@@ -1499,7 +1289,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_juni_awal' and '$date_juni_akhir')")
                 ->get()->row_array();   
 
-                $cost_juni = $akumulasi_juni['total_nilai_keluar'] + $nilai_alat_juni['nilai'] + $akumulasi_bbm_juni['total_nilai_keluar_2'] + $insentif_tm_juni['total'] + $biaya_alat_lainnya_juni['total'] + $overhead_15_juni['total'] + $overhead_jurnal_15_juni['total'] + $overhead_16_juni['total'] + $overhead_jurnal_16_juni['total'] + $overhead_17_juni['total'] + $overhead_jurnal_17_juni['total'] + $diskonto_juni['total'];
+                $cost_juni = $akumulasi_juni['total_nilai_keluar'] + $nilai_alat_juni['nilai'] + $akumulasi_bbm_juni['total_nilai_keluar_2'] + $insentif_tm_juni['total'] + $biaya_alat_lainnya_juni['total'] + $biaya_alat_lainnya_jurnal_juni['total'] + $overhead_15_juni['total'] + $overhead_jurnal_15_juni['total'] + $diskonto_juni['total'];
                 $laba_rugi_juni = $penjualan_juni['total'] - $cost_juni;
                 $presentase_laba_rugi_juni = ($penjualan_juni['total']!=0)?($laba_rugi_juni / $penjualan_juni['total'])  * 100:0;
                 $presentase_laba_rugi_juni_fix = round($presentase_laba_rugi_juni,2);
@@ -1536,7 +1326,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_juli = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();
@@ -1550,6 +1348,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();
@@ -1563,58 +1362,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_juli = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_juli = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_juli = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_juli = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();
@@ -1628,7 +1376,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_juli_awal' and '$date_juli_akhir')")
                 ->get()->row_array();   
 
-                $cost_juli = $akumulasi_juli['total_nilai_keluar'] + $nilai_alat_juli['nilai'] + $akumulasi_bbm_juli['total_nilai_keluar_2'] + $insentif_tm_juli['total'] + $biaya_alat_lainnya_juli['total'] + $overhead_15_juli['total'] + $overhead_jurnal_15_juli['total'] + $overhead_16_juli['total'] + $overhead_jurnal_16_juli['total'] + $overhead_17_juli['total'] + $overhead_jurnal_17_juli['total'] + $diskonto_juli['total'];
+                $cost_juli = $akumulasi_juli['total_nilai_keluar'] + $nilai_alat_juli['nilai'] + $akumulasi_bbm_juli['total_nilai_keluar_2'] + $insentif_tm_juli['total'] + $biaya_alat_lainnya_juli['total'] + $biaya_alat_lainnya_jurnal_juli['total'] + $overhead_15_juli['total'] + $overhead_jurnal_15_juli['total'] + $diskonto_juli['total'];
                 $laba_rugi_juli = $penjualan_juli['total'] - $cost_juli;
                 $presentase_laba_rugi_juli = ($penjualan_juli['total']!=0)?($laba_rugi_juli / $penjualan_juli['total'])  * 100:0;
                 $presentase_laba_rugi_juli_fix = round($presentase_laba_rugi_juli,2);
@@ -1665,7 +1413,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_agustus = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();
@@ -1679,6 +1435,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();
@@ -1692,58 +1449,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_agustus = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_agustus = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_agustus = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_agustus = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();
@@ -1757,7 +1463,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_agustus_awal' and '$date_agustus_akhir')")
                 ->get()->row_array();   
 
-                $cost_agustus = $akumulasi_agustus['total_nilai_keluar'] + $nilai_alat_agustus['nilai'] + $akumulasi_bbm_agustus['total_nilai_keluar_2'] + $insentif_tm_agustus['total'] + $biaya_alat_lainnya_agustus['total'] + $overhead_15_agustus['total'] + $overhead_jurnal_15_agustus['total'] + $overhead_16_agustus['total'] + $overhead_jurnal_16_agustus['total'] + $overhead_17_agustus['total'] + $overhead_jurnal_17_agustus['total'] + $diskonto_agustus['total'];
+                $cost_agustus = $akumulasi_agustus['total_nilai_keluar'] + $nilai_alat_agustus['nilai'] + $akumulasi_bbm_agustus['total_nilai_keluar_2'] + $insentif_tm_agustus['total'] + $biaya_alat_lainnya_agustus['total'] + $biaya_alat_lainnya_jurnal_agustus['total'] + $overhead_15_agustus['total'] + $overhead_jurnal_15_agustus['total'] + $diskonto_agustus['total'];
                 $laba_rugi_agustus = $penjualan_agustus['total'] - $cost_agustus;
                 $presentase_laba_rugi_agustus = ($penjualan_agustus['total']!=0)?($laba_rugi_agustus / $penjualan_agustus['total'])  * 100:0;
                 $presentase_laba_rugi_agustus_fix = round($presentase_laba_rugi_agustus,2);
@@ -1794,7 +1500,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_september = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();
@@ -1808,6 +1522,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();
@@ -1821,58 +1536,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_september = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_september = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_september = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_september = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();
@@ -1886,7 +1550,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_september_awal' and '$date_september_akhir')")
                 ->get()->row_array();   
 
-                $cost_september = $akumulasi_september['total_nilai_keluar'] + $nilai_alat_september['nilai'] + $akumulasi_bbm_september['total_nilai_keluar_2'] + $insentif_tm_september['total'] + $biaya_alat_lainnya_september['total'] + $overhead_15_september['total'] + $overhead_jurnal_15_september['total'] + $overhead_16_september['total'] + $overhead_jurnal_16_september['total'] + $overhead_17_september['total'] + $overhead_jurnal_17_september['total'] + $diskonto_september['total'];
+                $cost_september = $akumulasi_september['total_nilai_keluar'] + $nilai_alat_september['nilai'] + $akumulasi_bbm_september['total_nilai_keluar_2'] + $insentif_tm_september['total'] + $biaya_alat_lainnya_september['total'] + $biaya_alat_lainnya_jurnal_september['total'] + $overhead_15_september['total'] + $overhead_jurnal_15_september['total'] + $diskonto_september['total'];
                 $laba_rugi_september = $penjualan_september['total'] - $cost_september;
                 $presentase_laba_rugi_september = ($penjualan_september['total']!=0)?($laba_rugi_september / $penjualan_september['total'])  * 100:0;
                 $presentase_laba_rugi_september_fix = round($presentase_laba_rugi_september,2);
@@ -1923,7 +1587,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_oktober = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();
@@ -1937,6 +1609,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();
@@ -1950,58 +1623,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_oktober = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_oktober = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_oktober = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_oktober = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();
@@ -2015,7 +1637,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_oktober_awal' and '$date_oktober_akhir')")
                 ->get()->row_array();   
 
-                $cost_oktober = $akumulasi_oktober['total_nilai_keluar'] + $nilai_alat_oktober['nilai'] + $akumulasi_bbm_oktober['total_nilai_keluar_2'] + $insentif_tm_oktober['total'] + $biaya_alat_lainnya_oktober['total'] +$overhead_15_oktober['total'] + $overhead_jurnal_15_oktober['total'] + $overhead_16_oktober['total'] + $overhead_jurnal_16_oktober['total'] + $overhead_17_oktober['total'] + $overhead_jurnal_17_oktober['total'] + $diskonto_oktober['total'];
+                $cost_oktober = $akumulasi_oktober['total_nilai_keluar'] + $nilai_alat_oktober['nilai'] + $akumulasi_bbm_oktober['total_nilai_keluar_2'] + $insentif_tm_oktober['total'] + $biaya_alat_lainnya_oktober['total'] + $biaya_alat_lainnya_jurnal_oktober['total'] + $overhead_15_oktober['total'] + $overhead_jurnal_15_oktober['total'] + $diskonto_oktober['total'];
                 $laba_rugi_oktober = $penjualan_oktober['total'] - $cost_oktober;
                 $presentase_laba_rugi_oktober = ($penjualan_oktober['total']!=0)?($laba_rugi_oktober / $penjualan_oktober['total'])  * 100:0;
                 $presentase_laba_rugi_oktober_fix = round($presentase_laba_rugi_oktober,2);
@@ -2052,7 +1674,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_november = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();
@@ -2066,6 +1696,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();
@@ -2079,58 +1710,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_november = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_november = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_november = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_november = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();
@@ -2144,7 +1724,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_november_awal' and '$date_november_akhir')")
                 ->get()->row_array();   
 
-                $cost_november = $akumulasi_november['total_nilai_keluar'] + $nilai_alat_november['nilai'] + $akumulasi_bbm_november['total_nilai_keluar_2'] + $insentif_tm_november['total'] + $biaya_alat_lainnya_november['total'] + $overhead_15_november['total'] + $overhead_jurnal_15_november['total'] + $overhead_16_november['total'] + $overhead_jurnal_16_november['total'] + $overhead_17_november['total'] + $overhead_jurnal_17_november['total'] + $diskonto_november['total'];
+                $cost_november = $akumulasi_november['total_nilai_keluar'] + $nilai_alat_november['nilai'] + $akumulasi_bbm_november['total_nilai_keluar_2'] + $insentif_tm_november['total'] + $biaya_alat_lainnya_november['total'] + $biaya_alat_lainnya_jurnal_november['total'] + $overhead_15_november['total'] + $overhead_jurnal_15_november['total'] + $diskonto_november['total'];
                 $laba_rugi_november = $penjualan_november['total'] - $cost_november;
                 $presentase_laba_rugi_november = ($penjualan_november['total']!=0)?($laba_rugi_november / $penjualan_november['total'])  * 100:0;
                 $presentase_laba_rugi_november_fix = round($presentase_laba_rugi_november,2);
@@ -2181,7 +1761,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_desember = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();
@@ -2195,6 +1783,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();
@@ -2208,58 +1797,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_desember = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_desember = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_desember = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_desember = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();
@@ -2273,7 +1811,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir')")
                 ->get()->row_array();   
 
-                $cost_desember = $akumulasi_desember['total_nilai_keluar'] + $nilai_alat_desember['nilai'] + $akumulasi_bbm_desember['total_nilai_keluar_2'] + $insentif_tm_desember['total'] + $biaya_alat_lainnya_desember['total'] + $overhead_15_desember['total'] + $overhead_jurnal_15_desember['total'] + $overhead_16_desember['total'] + $overhead_jurnal_16_desember['total'] + $overhead_17_desember['total'] + $overhead_jurnal_17_desember['total'] + $diskonto_desember['total'];
+                $cost_desember = $akumulasi_desember['total_nilai_keluar'] + $nilai_alat_desember['nilai'] + $akumulasi_bbm_desember['total_nilai_keluar_2'] + $insentif_tm_desember['total'] + $biaya_alat_lainnya_desember['total'] + $biaya_alat_lainnya_jurnal_desember['total'] + $overhead_15_desember['total'] + $overhead_jurnal_15_desember['total'] + $diskonto_desember['total'];
                 $laba_rugi_desember = $penjualan_desember['total'] - $cost_desember;
                 $presentase_laba_rugi_desember = ($penjualan_desember['total']!=0)?($laba_rugi_desember / $penjualan_desember['total'])  * 100:0;
                 $presentase_laba_rugi_desember_fix = round($presentase_laba_rugi_desember,2);
@@ -2310,7 +1848,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_januari23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();
@@ -2324,6 +1870,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();
@@ -2337,58 +1884,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_januari23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_januari23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_januari23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_januari23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();
@@ -2402,7 +1898,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_januari23_awal' and '$date_januari23_akhir')")
                 ->get()->row_array();   
 
-                $cost_januari23 = $akumulasi_januari23['total_nilai_keluar'] + $nilai_alat_januari23['nilai'] + $akumulasi_bbm_januari23['total_nilai_keluar_2'] + $insentif_tm_januari23['total'] + $biaya_alat_lainnya_januari23['total'] + $overhead_15_januari23['total'] + $overhead_jurnal_15_januari23['total'] + $overhead_16_januari23['total'] + $overhead_jurnal_16_januari23['total'] + $overhead_17_januari23['total'] + $overhead_jurnal_17_januari23['total'] + $diskonto_januari23['total'];
+                $cost_januari23 = $akumulasi_januari23['total_nilai_keluar'] + $nilai_alat_januari23['nilai'] + $akumulasi_bbm_januari23['total_nilai_keluar_2'] + $insentif_tm_januari23['total'] + $biaya_alat_lainnya_januari23['total'] + $biaya_alat_lainnya_jurnal_januari23['total'] + $overhead_15_januari23['total'] + $overhead_jurnal_15_januari23['total'] + $diskonto_januari23['total'];
                 $laba_rugi_januari23 = $penjualan_januari23['total'] - $cost_januari23;
                 $presentase_laba_rugi_januari23 = ($penjualan_januari23['total']!=0)?($laba_rugi_januari23 / $penjualan_januari23['total'])  * 100:0;
                 $presentase_laba_rugi_januari23_fix = round($presentase_laba_rugi_januari23,2);
@@ -2439,7 +1935,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_februari23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();
@@ -2453,6 +1957,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();
@@ -2466,58 +1971,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_februari23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_februari23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_februari23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_februari23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();
@@ -2531,7 +1985,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_februari23_awal' and '$date_februari23_akhir')")
                 ->get()->row_array();   
 
-                $cost_februari23 = $akumulasi_februari23['total_nilai_keluar'] + $nilai_alat_februari23['nilai'] + $akumulasi_bbm_februari23['total_nilai_keluar_2'] + $insentif_tm_februari23['total'] + $biaya_alat_lainnya_februari23['total'] + $overhead_15_februari23['total'] + $overhead_jurnal_15_februari23['total'] + $overhead_16_februari23['total'] + $overhead_jurnal_16_februari23['total'] + $overhead_17_februari23['total'] + $overhead_jurnal_17_februari23['total'] + $diskonto_februari23['total'];
+                $cost_februari23 = $akumulasi_februari23['total_nilai_keluar'] + $nilai_alat_februari23['nilai'] + $akumulasi_bbm_februari23['total_nilai_keluar_2'] + $insentif_tm_februari23['total'] + $biaya_alat_lainnya_februari23['total'] + $biaya_alat_lainnya_jurnal_februari23['total'] + $overhead_15_februari23['total'] + $overhead_jurnal_15_februari23['total'] + $diskonto_februari23['total'];
                 $laba_rugi_februari23 = $penjualan_februari23['total'] - $cost_februari23;
                 $presentase_laba_rugi_februari23 = ($penjualan_februari23['total']!=0)?($laba_rugi_februari23 / $penjualan_februari23['total'])  * 100:0;
                 $presentase_laba_rugi_februari23_fix = round($presentase_laba_rugi_februari23,2);
@@ -2568,7 +2022,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_maret23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();
@@ -2582,6 +2044,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();
@@ -2595,58 +2058,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_maret23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_maret23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_maret23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_maret23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();
@@ -2660,7 +2072,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_maret23_awal' and '$date_maret23_akhir')")
                 ->get()->row_array();   
 
-                $cost_maret23 = $akumulasi_maret23['total_nilai_keluar'] + $nilai_alat_maret23['nilai'] + $akumulasi_bbm_maret23['total_nilai_keluar_2'] + $insentif_tm_maret23['total'] + $biaya_alat_lainnya_maret23['total'] + $overhead_15_maret23['total'] + $overhead_jurnal_15_maret23['total'] + $overhead_16_maret23['total'] + $overhead_jurnal_16_maret23['total'] + $overhead_17_maret23['total'] + $overhead_jurnal_17_maret23['total'] + $diskonto_maret23['total'];
+                $cost_maret23 = $akumulasi_maret23['total_nilai_keluar'] + $nilai_alat_maret23['nilai'] + $akumulasi_bbm_maret23['total_nilai_keluar_2'] + $insentif_tm_maret23['total'] + $biaya_alat_lainnya_maret23['total'] + $biaya_alat_lainnya_jurnal_maret23['total'] + $overhead_15_maret23['total'] + $overhead_jurnal_15_maret23['total'] + $diskonto_maret23['total'];
                 $laba_rugi_maret23 = $penjualan_maret23['total'] - $cost_maret23;
                 $presentase_laba_rugi_maret23 = ($penjualan_maret23['total']!=0)?($laba_rugi_maret23 / $penjualan_maret23['total'])  * 100:0;
                 $presentase_laba_rugi_maret23_fix = round($presentase_laba_rugi_maret23,2);
@@ -2697,7 +2109,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_april23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();
@@ -2711,6 +2131,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();
@@ -2724,58 +2145,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_april23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_april23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_april23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_april23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();
@@ -2789,7 +2159,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_april23_awal' and '$date_april23_akhir')")
                 ->get()->row_array();   
 
-                $cost_april23 = $akumulasi_april23['total_nilai_keluar'] + $nilai_alat_april23['nilai'] + $akumulasi_bbm_april23['total_nilai_keluar_2'] + $insentif_tm_april23['total'] + $biaya_alat_lainnya_april23['total'] + $overhead_15_april23['total'] + $overhead_jurnal_15_april23['total'] + $overhead_16_april23['total'] + $overhead_jurnal_16_april23['total'] + $overhead_17_april23['total'] + $overhead_jurnal_17_april23['total'] + $diskonto_april23['total'];
+                $cost_april23 = $akumulasi_april23['total_nilai_keluar'] + $nilai_alat_april23['nilai'] + $akumulasi_bbm_april23['total_nilai_keluar_2'] + $insentif_tm_april23['total'] + $biaya_alat_lainnya_april23['total'] + $biaya_alat_lainnya_jurnal_april23['total'] + $overhead_15_april23['total'] + $overhead_jurnal_15_april23['total'] + $diskonto_april23['total'];
                 $laba_rugi_april23 = $penjualan_april23['total'] - $cost_april23;
                 $presentase_laba_rugi_april23 = ($penjualan_april23['total']!=0)?($laba_rugi_april23 / $penjualan_april23['total'])  * 100:0;
                 $presentase_laba_rugi_april23_fix = round($presentase_laba_rugi_april23,2);
@@ -2826,7 +2196,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_mei23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();
@@ -2840,6 +2218,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();
@@ -2853,58 +2232,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_mei23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_mei23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_mei23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_mei23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();
@@ -2918,7 +2246,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_mei23_awal' and '$date_mei23_akhir')")
                 ->get()->row_array();   
 
-                $cost_mei23 = $akumulasi_mei23['total_nilai_keluar'] + $nilai_alat_mei23['nilai'] + $akumulasi_bbm_mei23['total_nilai_keluar_2'] + $insentif_tm_mei23['total'] + $biaya_alat_lainnya_mei23['total'] + $overhead_15_mei23['total'] + $overhead_jurnal_15_mei23['total'] + $overhead_16_mei23['total'] + $overhead_jurnal_16_mei23['total'] + $overhead_17_mei23['total'] + $overhead_jurnal_17_mei23['total'] + $diskonto_mei23['total'];
+                $cost_mei23 = $akumulasi_mei23['total_nilai_keluar'] + $nilai_alat_mei23['nilai'] + $akumulasi_bbm_mei23['total_nilai_keluar_2'] + $insentif_tm_mei23['total'] + $biaya_alat_lainnya_mei23['total'] + $biaya_alat_lainnya_jurnal_mei23['total'] + $overhead_15_mei23['total'] + $overhead_jurnal_15_mei23['total'] + $diskonto_mei23['total'];
                 $laba_rugi_mei23 = $penjualan_mei23['total'] - $cost_mei23;
                 $presentase_laba_rugi_mei23 = ($penjualan_mei23['total']!=0)?($laba_rugi_mei23 / $penjualan_mei23['total'])  * 100:0;
                 $presentase_laba_rugi_mei23_fix = round($presentase_laba_rugi_mei23,2);
@@ -2955,7 +2283,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_juni23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();
@@ -2969,6 +2305,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();
@@ -2982,58 +2319,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_juni23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_juni23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_juni23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_juni23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();
@@ -3047,7 +2333,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_juni23_awal' and '$date_juni23_akhir')")
                 ->get()->row_array();   
 
-                $cost_juni23 = $akumulasi_juni23['total_nilai_keluar'] + $nilai_alat_juni23['nilai'] + $akumulasi_bbm_juni23['total_nilai_keluar_2'] + $insentif_tm_juni23['total'] + $insentif_tm_juni23['total'] + $overhead_15_juni23['total'] + $overhead_jurnal_15_juni23['total'] + $overhead_16_juni23['total'] + $overhead_jurnal_16_juni23['total'] + $overhead_17_juni23['total'] + $overhead_jurnal_17_juni23['total'] + $diskonto_juni23['total'];
+                $cost_juni23 = $akumulasi_juni23['total_nilai_keluar'] + $nilai_alat_juni23['nilai'] + $akumulasi_bbm_juni23['total_nilai_keluar_2'] + $insentif_tm_juni23['total'] + $biaya_alat_lainnya_juni23['total'] + $biaya_alat_lainnya_jurnal_juni23['total'] + $overhead_15_juni23['total'] + $overhead_jurnal_15_juni23['total'] + $diskonto_juni23['total'];
                 $laba_rugi_juni23 = $penjualan_juni23['total'] - $cost_juni23;
                 $presentase_laba_rugi_juni23 = ($penjualan_juni23['total']!=0)?($laba_rugi_juni23 / $penjualan_juni23['total'])  * 100:0;
                 $presentase_laba_rugi_juni23_fix = round($presentase_laba_rugi_juni23,2);
@@ -3084,7 +2370,15 @@
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
                 ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where("c.id = '219'")
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_juli23 = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
                 ->get()->row_array();
@@ -3098,6 +2392,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
                 ->get()->row_array();
@@ -3111,58 +2406,7 @@
                 ->where("c.id <> 219 ") //biaya alat batching plant 
                 ->where("c.id <> 220 ") //biaya alat truck mixer
                 ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
-                ->get()->row_array();
-
-                $overhead_16_juli23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_juli23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_juli23 = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_juli23 = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
+                ->where("c.id <> 505 ") //Biaya oli
                 ->where("pb.status = 'PAID'")
                 ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
                 ->get()->row_array();
@@ -3176,7 +2420,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_juli23_awal' and '$date_juli23_akhir')")
                 ->get()->row_array();   
 
-                $cost_juli23 = $akumulasi_juli23['total_nilai_keluar'] + $nilai_alat_juli23['nilai'] + $akumulasi_bbm_juli23['total_nilai_keluar_2'] + $insentif_tm_juli23['total'] + $biaya_alat_lainnya_juli23['total'] + $overhead_15_juli23['total'] + $overhead_jurnal_15_juli23['total'] + $overhead_16_juli23['total'] + $overhead_jurnal_16_juli23['total'] + $overhead_17_juli23['total'] + $overhead_jurnal_17_juli23['total'] + $diskonto_juli23['total'];
+                $cost_juli23 = $akumulasi_juli23['total_nilai_keluar'] + $nilai_alat_juli23['nilai'] + $akumulasi_bbm_juli23['total_nilai_keluar_2'] + $insentif_tm_juli23['total'] + $biaya_alat_lainnya_juli23['total'] + $biaya_alat_lainnya_jurnal_juli23['total'] + $overhead_15_juli23['total'] + $overhead_jurnal_15_juli23['total'] + $diskonto_juli23['total'];
                 $laba_rugi_juli23 = $penjualan_juli23['total'] - $cost_juli23;
                 $presentase_laba_rugi_juli23 = ($penjualan_juli23['total']!=0)?($laba_rugi_juli23 / $penjualan_juli23['total'])  * 100:0;
                 $presentase_laba_rugi_juli23_fix = round($presentase_laba_rugi_juli23,2);
@@ -3209,6 +2453,23 @@
                 ->where("(tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
                 ->get()->row_array();
 
+                $biaya_alat_lainnya_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+                ->from('pmm_biaya pb ')
+                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+                ->join('pmm_coa c','pdb.akun = c.id','left')
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
+                $biaya_alat_lainnya_jurnal_akumulasi = $this->db->select('sum(pdb.debit) as total')
+                ->from('pmm_jurnal_umum pb ')
+                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+                ->where("pdb.akun in ('219','505')")
+                ->where("pb.status = 'PAID'")
+                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
+                ->get()->row_array();
+
                 $overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -3235,58 +2496,6 @@
                 ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
                 ->get()->row_array();
 
-                $overhead_16_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_16_akumulasi = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',16)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
-                ->get()->row_array();
-
-                $overhead_17_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
-                ->from('pmm_biaya pb ')
-                ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
-                ->get()->row_array();
-
-                $overhead_jurnal_17_akumulasi = $this->db->select('sum(pdb.debit) as total')
-                ->from('pmm_jurnal_umum pb ')
-                ->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-                ->join('pmm_coa c','pdb.akun = c.id','left')
-                ->where('c.coa_category',17)
-                ->where("c.id <> 168 ") //biaya diskonto bank
-                ->where("c.id <> 219 ") //biaya alat batching plant 
-                ->where("c.id <> 220 ") //biaya alat truck mixer
-                ->where("c.id <> 228 ") //biaya persiapan
-                ->where("pb.status = 'PAID'")
-                ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
-                ->get()->row_array();
-
                 $diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
                 ->from('pmm_biaya pb ')
                 ->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -3296,7 +2505,7 @@
                 ->where("(pb.tanggal_transaksi between '$date_akumulasi_awal' and '$date_akumulasi_akhir')")
                 ->get()->row_array();   
 
-                $cost_akumulasi = $akumulasi_akumulasi['total_nilai_keluar'] + $nilai_alat_akumulasi['nilai'] + $akumulasi_bbm_akumulasi['total_nilai_keluar_2'] + $insentif_tm_akumulasi['total'] + $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $overhead_16_akumulasi['total'] + $overhead_jurnal_16_akumulasi['total'] + $overhead_17_akumulasi['total'] + $overhead_jurnal_17_akumulasi['total'] + $diskonto_akumulasi['total'];
+                $cost_akumulasi = $akumulasi_akumulasi['total_nilai_keluar'] + $nilai_alat_akumulasi['nilai'] + $akumulasi_bbm_akumulasi['total_nilai_keluar_2'] + $insentif_tm_akumulasi['total'] + $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'] + $biaya_alat_lainnya_akumulasi['total'] + $biaya_alat_lainnya_jurnal_akumulasi['total'] + $diskonto_akumulasi['total'];
                 $laba_rugi_akumulasi = $penjualan_akumulasi['total'] - $cost_akumulasi;
                 $presentase_laba_rugi_akumulasi = ($penjualan_akumulasi['total']!=0)?($laba_rugi_akumulasi / $penjualan_akumulasi['total'])  * 100:0;
                 $presentase_laba_rugi_akumulasi_fix = round($presentase_laba_rugi_akumulasi,2);

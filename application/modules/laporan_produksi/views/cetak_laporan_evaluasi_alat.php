@@ -145,6 +145,21 @@
 				$total_biaya_batching_plant += $y['total'];
 			}
 
+			$jurnal_biaya_lainnya = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun in ('219','505')")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+			
+			$total_jurnal_biaya_lainnya = 0;
+
+			foreach ($jurnal_biaya_lainnya as $y){
+				$total_jurnal_biaya_lainnya += $y['total'];
+			}
+
 			//Truck Mixer
 			$pembelian_truck_mixer = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -322,7 +337,7 @@
 			$total_pemakaian_vol_wheel_loader = $total_vol_wheel_loader;
 			$total_pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
 
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant + total_jurnal_biaya_lainnya;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
 			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
