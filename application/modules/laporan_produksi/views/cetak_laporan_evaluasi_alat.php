@@ -337,7 +337,7 @@
 			$total_pemakaian_vol_wheel_loader = $total_vol_wheel_loader;
 			$total_pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
 
-			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant + total_jurnal_biaya_lainnya;
+			$total_pemakaian_batching_plant = $total_nilai_batching_plant + $total_biaya_batching_plant + $total_jurnal_biaya_lainnya;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
 			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
