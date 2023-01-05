@@ -3637,11 +3637,11 @@
 
                     color: '#FF0000',
 
-                    zones: [{
-                        value: 24
-                    }, {
+                    //zones: [{
+                        //value: 24
+                    //}, {
                         dashStyle: 'dot'
-                    }]
+                    //}]
                 }
                 ]
             });
