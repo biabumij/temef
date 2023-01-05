@@ -3638,7 +3638,7 @@
                     color: '#FF0000',
 
                     zones: [{
-                        value: 23
+                        value: 23.99
                     }, {
                         dashStyle: 'dot'
                     }]
