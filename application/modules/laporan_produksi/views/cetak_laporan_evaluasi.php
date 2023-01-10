@@ -150,9 +150,9 @@
 			$nilai_d = $total_nilai_d;
 
 			$price_a = ($total_volume_a!=0)?$total_nilai_a / $total_volume_a * 1:0;
-			$price_b = ($total_volume_b!=0)?$total_nilai_a / $total_volume_b * 1:0;
-			$price_c = ($total_volume_c!=0)?$total_nilai_a / $total_volume_c * 1:0;
-			$price_d = ($total_volume_d!=0)?$total_nilai_a / $total_volume_d * 1:0;
+			$price_b = ($total_volume_b!=0)?$total_nilai_b / $total_volume_b * 1:0;
+			$price_c = ($total_volume_c!=0)?$total_nilai_c / $total_volume_c * 1:0;
+			$price_d = ($total_volume_d!=0)?$total_nilai_d / $total_volume_d * 1:0;
 
 			$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
 			$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;
