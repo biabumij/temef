@@ -2586,7 +2586,7 @@ class Reports extends CI_Controller {
 				<th colspan="6"></th>
 			</tr>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Laba Usaha</th>
+	            <th colspan="4" class="text-left">Laba Rugi Usaha</th>
 	            <th class="text-right" style="<?php echo $styleColorSebelumPajak ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
