@@ -667,7 +667,7 @@ class Laporan extends Secure_Controller {
 			$data['total_jumlah_tagihan'] = $total_jumlah_tagihan;
 			$data['total_dpp_pembayaran'] = $total_dpp_pembayaran;
 			$data['total_ppn_pembayaran'] = $total_ppn_pembayaran;
-			$data['total_pph_pembayaran'] = $total_ppn_pembayaran;
+			$data['total_pph_pembayaran'] = $total_pph_pembayaran;
 			$data['total_jumlah_pembayaran'] = $total_jumlah_pembayaran;
 			$data['total_dpp_sisa_hutang'] = $total_dpp_sisa_hutang;
 			$data['total_ppn_sisa_hutang'] = $total_ppn_sisa_hutang;
