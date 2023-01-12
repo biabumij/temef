@@ -701,7 +701,7 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<tr class="table-active3">
-	            <th width="50%" align="left"><b>Laba Rugi Usaha</b></th>
+	            <th width="50%" align="left"><b>Laba Usaha</b></th>
 	            <th width="25%" align="right" style="<?php echo $styleColorSebelumPajak ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
