@@ -1349,5 +1349,4 @@ class Receipt_material extends CI_Controller {
 	
 	}
 	
-
 }
