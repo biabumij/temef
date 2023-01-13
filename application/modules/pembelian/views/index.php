@@ -1315,7 +1315,7 @@
                     "className": 'text-center',
                 },
 				{
-                    "targets": [11, 12],
+                    "targets": [11],
                     "className": 'text-right',
                 }
             ],
