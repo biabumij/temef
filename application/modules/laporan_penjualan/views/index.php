@@ -189,7 +189,7 @@
                                                             <tr>
                                                                 <th class="text-center">NO. PESANAN PEMBELIAN</th>
                                                                 <th class="text-center">PENJUALAN</th>
-                                                                <th class="text-center">INVOICE</th>
+                                                                <th class="text-center">TAGIHAN</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>

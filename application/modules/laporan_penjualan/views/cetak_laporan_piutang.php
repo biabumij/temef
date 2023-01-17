@@ -92,7 +92,7 @@
 			<tr class="table-judul">
 				<th align="center">BRUTO</th>
 				<th align="center">PENJUALAN</th>
-				<th align="center">INVOICE</th>
+				<th align="center">TAGIHAN</th>
 			</tr>			
             <?php   
             if(!empty($data)){
