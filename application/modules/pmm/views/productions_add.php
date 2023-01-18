@@ -239,7 +239,7 @@
                                     </div>
                                     <br />
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover table-bordered table-condensed" id="guest-table" style="width: 100%;">
+                                        <table class="table table-striped table-hover table-bordered table-condensed table-center" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
@@ -253,6 +253,7 @@
                                                     <th>Volume</th>
                                                     <th>Satuan</th>
                                                     <th>Edit Komposisi</th>
+                                                    <th>Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -422,6 +423,9 @@
                 {
                     "data": "edit_komposisi"
                 },
+                {
+                    "data": "delete"
+                }
             ],
             "columnDefs": [{
                 "targets": [0],
