@@ -10960,13 +10960,13 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-total">
 				<th class="text-right" colspan="3">TOTAL VOLUME</th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_3") ?>"><?php echo number_format($total_januari23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_4") ?>"><?php echo number_format($total_februari23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_5") ?>"><?php echo number_format($total_maret23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_6") ?>"><?php echo number_format($total_april23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_7") ?>"><?php echo number_format($total_mei23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_8") ?>"><?php echo number_format($total_juni23_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_9") ?>"><?php echo number_format($total_juli23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_1") ?>"><?php echo number_format($total_januari23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_2") ?>"><?php echo number_format($total_februari23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_3") ?>"><?php echo number_format($total_maret23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_4") ?>"><?php echo number_format($total_april23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_5") ?>"><?php echo number_format($total_mei23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_6") ?>"><?php echo number_format($total_juni23_volume,2,',','.');?></a></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_7") ?>"><?php echo number_format($total_juli23_volume,2,',','.');?></a></th>
 			</tr>
 			<tr class="table-total">
 				<th class="text-right" colspan="3">PENDAPATAN USAHA</th>
