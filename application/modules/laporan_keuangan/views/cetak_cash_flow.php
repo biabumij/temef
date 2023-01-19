@@ -866,8 +866,8 @@
 			<!-- JULI -->
 
 			<tr class="table-judul">
-				<th width="16%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
-				<th width="7%" align="center">CURRENT</th>
+				<th width="20%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
+				<th width="10%" align="center">CURRENT</th>
 				<th width="7%" align="center">REALISASI SD.</th>
 				<th width="7%" align="center">JANUARI</th>
 				<th width="7%" align="center">FEBRUARI</th>
@@ -967,7 +967,6 @@
 				<th align="right"><?php echo number_format($presentase_akumulasi_juli,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_akumulasi_juli,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format(100 - $presentase_akumulasi_juli,2,',','.');?>%</th>
-				
 			</tr>
 			<?php
 			$jumlah_produksi = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
@@ -1012,7 +1011,7 @@
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_penjualan_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="13"><u>PENERIMAAN (EXCL. PPN)</u></th>
+				<th align="left" colspan="12"><u>PENERIMAAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;Uang Muka</th>
@@ -1121,7 +1120,7 @@
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="13"><u>PEMAKAIAN BAHAN & ALAT</u></th>
+				<th align="left" colspan="12"><u>PEMAKAIAN BAHAN & ALAT</u></th>
 			</tr>
 			<?php
 			$jumlah_bahan_rap = $total_bahan_now + $total_januari_biaya_bahan_rap + $total_februari_biaya_bahan_rap + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
@@ -1204,13 +1203,6 @@
 				<th align="right"><?php echo number_format($sisa_pemakaian_rap,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="13"><u>PENGELUARAN (EXCL. PPN)</u></th>
-			</tr>
-			<?php
-			$jumlah_biaya_bahan = $total_januari_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
-			$sisa_biaya_bahan = $total_rap_2022_biaya_bahan - $jumlah_biaya_bahan;
-			?>
-			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Biaya Bahan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_bahan_now,0,',','.');?></th>
@@ -1225,7 +1217,7 @@
 				<th align="right"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;2. Biaya Upah</th>\
+				<th align="left">&nbsp;&nbsp;2. Biaya Upah</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1310,7 +1302,7 @@
 				<th align="left">&nbsp;&nbsp;7. Rupa - Rupa</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right"></th>
+				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1369,7 +1361,7 @@
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_april,0,',','.');?></th>
-				<th align="right">><?php echo number_format($jumlah_pengeluaran_mei,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_pengeluaran_mei,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_juni,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_juli,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pengeluaran,0,',','.');?></th>
@@ -1377,7 +1369,7 @@
 			</tr>
 			<?php
 			$akumulasi_4 = $akumulasi_2 - $jumlah_pengeluaran;
-			$jumlah_akumulasi_now = $akumulasi_4 - $jumlah_pengeluaran_akumulasi;\
+			$jumlah_akumulasi_now = $akumulasi_4 - $jumlah_pengeluaran_akumulasi;
 			$jumlah_akumulasi_januari = $jumlah_akumulasi_now - $jumlah_pengeluaran_januari;
 			$jumlah_akumulasi_februari = $jumlah_akumulasi_januari - $jumlah_pengeluaran_februari;
 			$jumlah_akumulasi_maret = $jumlah_akumulasi_februari - $jumlah_pengeluaran_januari;
@@ -1403,7 +1395,7 @@
 				<th align="right"><?php echo number_format($sisa_akumulasi,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="13"><u>PAJAK</u></th>
+				<th align="left" colspan="12"><u>PAJAK</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Pajak Keluaran</th>
@@ -1467,7 +1459,7 @@
 				<th align="right"><?php echo number_format($sisa_akumulasi_pajak,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="13"><u>PINJAMAN</u></th>
+				<th align="left" colspan="12"><u>PINJAMAN</u></th>
 			</tr>
 			<?php
             $total_penerimaan_penjualan = $penerimaan_penjualan_now['total'] + $penerimaan_penjualan_januari['total'] + $penerimaan_penjualan_februari['total'] + $penerimaan_penjualan_maret['total'] + $penerimaan_penjualan_april['total'] + $penerimaan_penjualan_mei['total'] + $penerimaan_penjualan_juni['total'] + $penerimaan_penjualan_juli['total'];
