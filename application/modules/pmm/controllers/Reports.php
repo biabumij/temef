@@ -2916,27 +2916,6 @@ class Reports extends CI_Controller {
 				$total_akumulasi_bbm_now += $b['total_nilai_keluar_2'];
 			}
 
-			$biaya_alat_lainnya = 0;
-			$biaya_alat_lainnya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya = $biaya_alat_lainnya['total'];
-
-			$biaya_alat_lainnya_jurnal = 0;
-			$biaya_alat_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
-
 			$total_insentif_tm_now = 0;
 			$insentif_tm_now = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -2946,6 +2925,28 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
 			$total_insentif_tm_now = $insentif_tm_now['total'];
+
+			$biaya_alat_lainnya = 0;
+			$biaya_alat_lainnya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun in ('219','505')")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+			$biaya_alat_lainnya = $biaya_alat_lainnya['total'];
+
+			$biaya_alat_lainnya_jurnal = 0;
+			$biaya_alat_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun in ('219','505')")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
+
 			$alat_now = $nilai_alat_now['nilai'] + $total_akumulasi_bbm_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
 			//AKUMULASI ALAT
 
@@ -3036,86 +3037,6 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
-
-			<!-- DESEMBER -->
-			<?php
-			$date_desember_awal = date('2022-12-01');
-			$date_desember_akhir = date('2022-12-31');
-
-			$rencana_kerja_desember = $this->db->select('r.*')
-			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->row_array();
-
-			$rencana_kerja_desember_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->row_array();
-
-			$rencana_kerja_desember_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->row_array();
-
-			$volume_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
-			$volume_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
-			$volume_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
-			$volume_desember_produk_d = $rencana_kerja_desember['vol_produk_d'];
-
-			$total_desember_volume = $volume_desember_produk_a + $volume_desember_produk_b + $volume_desember_produk_c + $volume_desember_produk_d;
-		
-			$nilai_jual_125_desember = $volume_desember_produk_a * $rencana_kerja_desember['price_a'];
-			$nilai_jual_225_desember = $volume_desember_produk_b * $rencana_kerja_desember['price_b'];
-			$nilai_jual_250_desember = $volume_desember_produk_c * $rencana_kerja_desember['price_c'];
-			$nilai_jual_250_18_desember = $volume_desember_produk_d * $rencana_kerja_desember['price_d'];
-			$nilai_jual_all_desember = $nilai_jual_125_desember + $nilai_jual_225_desember + $nilai_jual_250_desember + $nilai_jual_250_18_desember;
-			
-			$total_desember_nilai = $nilai_jual_all_desember;
-			
-			$volume_rencana_kerja_desember_produk_a = $rencana_kerja_desember['vol_produk_a'];
-			$volume_rencana_kerja_desember_produk_b = $rencana_kerja_desember['vol_produk_b'];
-			$volume_rencana_kerja_desember_produk_c = $rencana_kerja_desember['vol_produk_c'];
-			$volume_rencana_kerja_desember_produk_d = $rencana_kerja_desember['vol_produk_d'];
-		
-			$total_desember_biaya_bahan_rap = $rencana_kerja_desember_biaya['biaya_bahan'];
-			$total_desember_biaya_alat_rap = $rencana_kerja_desember_biaya['biaya_alat'];
-			$total_biaya_desember_biaya_rap = $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap;
-
-			$total_desember_biaya_bahan = $rencana_kerja_desember_biaya_cash_flow['biaya_bahan'];
-			$total_desember_biaya_alat = $rencana_kerja_desember_biaya_cash_flow['biaya_alat'];
-			$total_desember_biaya_overhead = $rencana_kerja_desember_biaya_cash_flow['biaya_overhead'];
-			$total_desember_biaya_bank = $rencana_kerja_desember_biaya_cash_flow['biaya_bank'];
-			$total_desember_biaya_termin = $rencana_kerja_desember_biaya_cash_flow['biaya_bank'];
-			
-			//TERMIN DESEMBER
-			$termin_desember = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran pm')
-			->where("pm.tanggal_pembayaran between '$date_desember_awal' and '$date_desember_akhir'")
-			->where("pm.status = 'DISETUJUI'")
-			->where("pm.memo <> 'PPN'")
-			->get()->row_array();
-
-			//PENERIMAAN PEMINJAMAN
-			$penerimaan_penjualan_desember = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
-			->where("pb.status = 'PAID'")
-			->where("pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->row_array();
-
-			//PENGEMBALIAN PEMINJAMAN
-			$pengembalian_penjualan_desember = $this->db->select('sum(pdb.kredit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
-			->where("pb.status = 'PAID'")
-			->where("pb.tanggal_transaksi between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->row_array();
-			?>
-			<!-- DESEMBER -->
 
 			<!-- JANUARI -->
 			<?php
@@ -3681,7 +3602,6 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center">CURRENT</th>
 				<th class="text-center">REALISASI SD.</th>
-				<th class="text-center">DESEMBER</th>
 				<th class="text-center">JANUARI</th>
 				<th class="text-center">FEBRUARI</th>
 				<th class="text-center">MARET</th>
@@ -3725,7 +3645,6 @@ class Reports extends CI_Controller {
 				?>
 				<th class="text-center">CASH BUDGET</th>
 				<th class="text-center" style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></th>
-				<th class="text-center">2022</th>
 				<th class="text-center">2023</th>
 				<th class="text-center">2023</th>
 				<th class="text-center">2023</th>
@@ -3736,7 +3655,6 @@ class Reports extends CI_Controller {
 	        </tr>
 			<?php
 			$presentase_now = ($penjualan_now['total'] / $total_rap_nilai_2022) * 100;
-			$presentase_desember = ($total_desember_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_januari = ($total_januari_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_februari = ($total_februari_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_maret = ($total_maret_nilai / $total_rap_nilai_2022) * 100;
@@ -3745,8 +3663,7 @@ class Reports extends CI_Controller {
 			$presentase_juni = ($total_juni_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_juli = ($total_juli_nilai / $total_rap_nilai_2022) * 100;
 
-			$presentase_akumulasi_desember = $presentase_now + $presentase_desember;
-			$presentase_akumulasi_januari = $presentase_akumulasi_desember + $presentase_januari;
+			$presentase_akumulasi_januari = $presentase_now + $presentase_januari;
 			$presentase_akumulasi_februari = $presentase_akumulasi_januari + $presentase_februari;
 			$presentase_akumulasi_maret = $presentase_akumulasi_februari + $presentase_maret;
 			$presentase_akumulasi_april = $presentase_akumulasi_maret + $presentase_april;
@@ -3754,13 +3671,12 @@ class Reports extends CI_Controller {
 			$presentase_akumulasi_juni = $presentase_akumulasi_mei + $presentase_juni;
 			$presentase_akumulasi_juli = $presentase_akumulasi_juni + $presentase_juli;
 
-			$jumlah_presentase = $presentase_desember + $presentase_januari + $presentase_februari + $presentase_maret + $presentase_april + $presentase_mei + $presentase_juni + $presentase_juli;
+			$jumlah_presentase = $presentase_januari + $presentase_februari + $presentase_maret + $presentase_april + $presentase_mei + $presentase_juni + $presentase_juli;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left"><u>PRODUKSI (EXCL. PPN)</u></th>
 				<th class="text-right">100%</th>
-				<th class="text-right"><?php echo number_format($presentase_now,2,',','.');?>%</th>	
-				<th class="text-right"><?php echo number_format($presentase_desember,2,',','.');?>%</th>
+				<th class="text-right"><?php echo number_format($presentase_now,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_januari,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_februari,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_maret,2,',','.');?>%</th>
@@ -3775,7 +3691,6 @@ class Reports extends CI_Controller {
 				<th class="text-left">AKUMULASI (%)</th>
 				<th class="text-right">100%</th>
 				<th class="text-right"><?php echo number_format($presentase_now,2,',','.');?>%</th>
-				<th class="text-right"><?php echo number_format($presentase_akumulasi_desember,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_akumulasi_januari,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_akumulasi_februari,2,',','.');?>%</th>
 				<th class="text-right"><?php echo number_format($presentase_akumulasi_maret,2,',','.');?>%</th>
@@ -3788,14 +3703,13 @@ class Reports extends CI_Controller {
 				
 			</tr>
 			<?php
-			$jumlah_produksi = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$jumlah_produksi = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 			$sisa_produksi = $total_rap_nilai_2022 - $jumlah_produksi;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. PRODUKSI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_desember_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_januari_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_februari_nilai,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_maret_nilai,0,',','.');?></th>
@@ -3807,21 +3721,19 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($sisa_produksi,0,',','.');?></th>
 			</tr>
 			<?php
-			$akumulasi_penjualan_desember = $penjualan_now['total'] + $total_desember_nilai;
-			$akumulasi_penjualan_januari = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai;
-			$akumulasi_penjualan_februari = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai;
-			$akumulasi_penjualan_maret = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai;
-			$akumulasi_penjualan_april = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai;
-			$akumulasi_penjualan_mei = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai;
-			$akumulasi_penjualan_juni = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai;
-			$akumulasi_penjualan_juli = $penjualan_now['total'] + $total_desember_nilai + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$akumulasi_penjualan_januari = $penjualan_now['total'] + $total_januari_nilai;
+			$akumulasi_penjualan_februari = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai;
+			$akumulasi_penjualan_maret = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai;
+			$akumulasi_penjualan_april = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai;
+			$akumulasi_penjualan_mei = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai;
+			$akumulasi_penjualan_juni = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai;
+			$akumulasi_penjualan_juli = $penjualan_now['total'] + $total_januari_nilai + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 			$akumulasi_1 = $total_rap_nilai_2022;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. AKUMULASI (Rp.)</th>
 				<th class="text-right"><?php echo number_format($akumulasi_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_penjualan_desember,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_penjualan_januari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_penjualan_februari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_penjualan_maret,0,',','.');?></th>
@@ -3833,10 +3745,11 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_penjualan_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="13"><u>PENERIMAAN (EXCL. PPN)</u> <button id="btnpenerimaan3">Buka</button></th>
+				<th class="text-left" colspan="12"><u>PENERIMAAN (EXCL. PPN)</u> <button id="btnpenerimaan3">Buka</button></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpenerimaan1" style="display:none;">&nbsp;&nbsp;Uang Muka</th>
+				<th class="text-right" id="boxpenerimaan2" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan3" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan4" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan5" style="display:none;">-</th>
@@ -3847,11 +3760,8 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpenerimaan10" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan11" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan12" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan13" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan14" style="display:none;">-</th>
 			</tr>
 			<?php
-			$termin_desember = $rencana_kerja_desember_biaya_cash_flow['termin'];
 			$termin_januari = $rencana_kerja_januari_biaya_cash_flow['termin'];
 			$termin_februari = $rencana_kerja_februari_biaya_cash_flow['termin'];
 			$termin_maret = $rencana_kerja_maret_biaya_cash_flow['termin'];
@@ -3859,25 +3769,25 @@ class Reports extends CI_Controller {
 			$termin_mei = $rencana_kerja_mei_biaya_cash_flow['termin'];
 			$termin_juni = $rencana_kerja_juni_biaya_cash_flow['termin'];
 			$termin_juli = $rencana_kerja_juli_biaya_cash_flow['termin'];
-			$jumlah_termin = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
+			$jumlah_termin = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpenerimaan15" style="display:none;">&nbsp;&nbsp;Termin / Angsuran</th>
 				<th class="text-right" id="boxpenerimaan16" style="display:none;"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right" id="boxpenerimaan17" style="display:none;"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan19" style="display:none;"><?php echo number_format($termin_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan20" style="display:none;"><?php echo number_format($termin_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan21" style="display:none;"><?php echo number_format($termin_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan22" style="display:none;"><?php echo number_format($termin_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan23" style="display:none;"><?php echo number_format($termin_april,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan24" style="display:none;"><?php echo number_format($termin_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan25" style="display:none;"><?php echo number_format($termin_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan26" style="display:none;"><?php echo number_format($termin_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan27" style="display:none;"><?php echo number_format($jumlah_termin,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan28" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan18" style="display:none;"><?php echo number_format($termin_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan19" style="display:none;"><?php echo number_format($termin_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan20" style="display:none;"><?php echo number_format($termin_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan21" style="display:none;"><?php echo number_format($termin_april,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan22" style="display:none;"><?php echo number_format($termin_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan23" style="display:none;"><?php echo number_format($termin_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan24" style="display:none;"><?php echo number_format($termin_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan25" style="display:none;"><?php echo number_format($jumlah_termin,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan26" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpenerimaan29" style="display:none;">&nbsp;&nbsp;Pengembalian Retensi</th>
+				<th class="text-right" id="boxpenerimaan30" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan31" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan32" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan33" style="display:none;">-</th>
@@ -3888,12 +3798,11 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpenerimaan38" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan39" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan40" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan41" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan42" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpenerimaan43" style="display:none;">&nbsp;&nbsp;PPN Keluaran</th>
 				<th class="text-right" id="boxpenerimaan44" style="display:none;"><?php echo number_format(($total_rap_nilai_2022 * 11) / 100,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan45" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan46" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan47" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan48" style="display:none;">-</th>
@@ -3903,33 +3812,29 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpenerimaan52" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan53" style="display:none;">-</th>
 				<th class="text-right" id="boxpenerimaan54" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan55" style="display:none;">-</th>
-				<th class="text-right" id="boxpenerimaan56" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left" id="boxpenerimaan57" style="display:none;"><i>JUMLAH PENERIMAAN</i></th>
 				<th class="text-right" id="boxpenerimaan58" style="display:none;"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-right" id="boxpenerimaan59" style="display:none;"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan61" style="display:none;"><?php echo number_format($termin_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan62" style="display:none;"><?php echo number_format($termin_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan63" style="display:none;"><?php echo number_format($termin_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan64" style="display:none;"><?php echo number_format($termin_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan65" style="display:none;"><?php echo number_format($termin_april,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan66" style="display:none;"><?php echo number_format($termin_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan67" style="display:none;"><?php echo number_format($termin_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan68" style="display:none;"><?php echo number_format($termin_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan69" style="display:none;"><?php echo number_format($jumlah_termin,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan70" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan60" style="display:none;"><?php echo number_format($termin_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan61" style="display:none;"><?php echo number_format($termin_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan62" style="display:none;"><?php echo number_format($termin_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan63" style="display:none;"><?php echo number_format($termin_april,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan64" style="display:none;"><?php echo number_format($termin_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan65" style="display:none;"><?php echo number_format($termin_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan66" style="display:none;"><?php echo number_format($termin_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan67" style="display:none;"><?php echo number_format($jumlah_termin,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan68" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
 			<?php
-			$akumulasi_termin_desember = $termin_now['total'] + $termin_desember;
-			$akumulasi_termin_januari = $termin_now['total'] + $termin_desember + $termin_januari;
-			$akumulasi_termin_februari = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari;
-			$akumulasi_termin_maret = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret;
-			$akumulasi_termin_april = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april;
-			$akumulasi_termin_mei = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei;
-			$akumulasi_termin_juni = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni;
-			$akumulasi_termin_juli = $termin_now['total'] + $termin_desember + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
+			$akumulasi_termin_januari = $termin_now['total'] + $termin_januari;
+			$akumulasi_termin_februari = $termin_now['total'] + $termin_januari + $termin_februari;
+			$akumulasi_termin_maret = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret;
+			$akumulasi_termin_april = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret + $termin_april;
+			$akumulasi_termin_mei = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei;
+			$akumulasi_termin_juni = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni;
+			$akumulasi_termin_juli = $termin_now['total'] + $termin_januari + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			
 			$akumulasi_2 = (($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022;
 			?>
@@ -3938,57 +3843,54 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpenerimaan71" style="display:none;"><i>AKUMULASI PENERIMAAN</i></th>
 				<th class="text-right" id="boxpenerimaan72" style="display:none;"><?php echo number_format($akumulasi_2,0,',','.');?></th>
 				<th class="text-right" id="boxpenerimaan73" style="display:none;"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan75" style="display:none;"><?php echo number_format($akumulasi_termin_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan76" style="display:none;"><?php echo number_format($akumulasi_termin_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan77" style="display:none;"><?php echo number_format($akumulasi_termin_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan78" style="display:none;"><?php echo number_format($akumulasi_termin_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan79" style="display:none;"><?php echo number_format($akumulasi_termin_april,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan80" style="display:none;"><?php echo number_format($akumulasi_termin_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan81" style="display:none;"><?php echo number_format($akumulasi_termin_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan82" style="display:none;"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan83" style="display:none;"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpenerimaan84" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan74" style="display:none;"><?php echo number_format($akumulasi_termin_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan75" style="display:none;"><?php echo number_format($akumulasi_termin_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan76" style="display:none;"><?php echo number_format($akumulasi_termin_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan77" style="display:none;"><?php echo number_format($akumulasi_termin_april,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan78" style="display:none;"><?php echo number_format($akumulasi_termin_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan79" style="display:none;"><?php echo number_format($akumulasi_termin_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan80" style="display:none;"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan81" style="display:none;"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpenerimaan82" style="display:none;"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="13"><u>PEMAKAIAN BAHAN & ALAT</u> <button id="btnpemakaian3">Buka</button></th>
+				<th class="text-left" colspan="12"><u>PEMAKAIAN BAHAN & ALAT</u> <button id="btnpemakaian3">Buka</button></th>
 			</tr>
 			<?php
-			$jumlah_bahan_rap = $total_bahan_now + $total_desember_biaya_bahan_rap + $total_januari_biaya_bahan_rap + $total_februari_biaya_bahan_rap + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
+			$jumlah_bahan_rap = $total_bahan_now + $total_januari_biaya_bahan_rap + $total_februari_biaya_bahan_rap + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
 			$sisa_bahan_rap = $total_rap_2022_biaya_bahan - $jumlah_bahan_rap;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpemakaian1" style="display:none;">&nbsp;&nbsp;1. Bahan</th>
 				<th class="text-right" id="boxpemakaian2" style="display:none;"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian3" style="display:none;"><?php echo number_format($total_bahan_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian5" style="display:none;"><?php echo number_format($total_desember_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian6" style="display:none;"><?php echo number_format($total_januari_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian7" style="display:none;"><?php echo number_format($total_februari_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian8" style="display:none;"><?php echo number_format($total_maret_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian9" style="display:none;"><?php echo number_format($total_april_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian10" style="display:none;"><?php echo number_format($total_mei_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian11" style="display:none;"><?php echo number_format($total_juni_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian12" style="display:none;"><?php echo number_format($total_juli_biaya_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian13" style="display:none;"><?php echo number_format($jumlah_bahan_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian14" style="display:none;"><?php echo number_format($sisa_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian4" style="display:none;"><?php echo number_format($total_januari_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian5" style="display:none;"><?php echo number_format($total_februari_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian6" style="display:none;"><?php echo number_format($total_maret_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian7" style="display:none;"><?php echo number_format($total_april_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian8" style="display:none;"><?php echo number_format($total_mei_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian9" style="display:none;"><?php echo number_format($total_juni_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian10" style="display:none;"><?php echo number_format($total_juli_biaya_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian11" style="display:none;"><?php echo number_format($jumlah_bahan_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian12" style="display:none;"><?php echo number_format($sisa_bahan_rap,0,',','.');?></th>
 			</tr>
 			<?php
-			$jumlah_alat_rap = $alat_now + $total_desember_biaya_alat_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_alat_rap + $total_april_biaya_alat_rap + $total_mei_biaya_alat_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_alat_rap;
+			$jumlah_alat_rap = $alat_now + $total_januari_biaya_alat_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_alat_rap + $total_april_biaya_alat_rap + $total_mei_biaya_alat_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_alat_rap;
 			$sisa_alat_rap = $total_rap_2022_biaya_alat - $jumlah_alat_rap;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpemakaian15" style="display:none;">&nbsp;&nbsp;2. Alat</th>
 				<th class="text-right" id="boxpemakaian16" style="display:none;"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian17" style="display:none;"><?php echo number_format($alat_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian19" style="display:none;"><?php echo number_format($total_desember_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian20" style="display:none;"><?php echo number_format($total_januari_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian21" style="display:none;"><?php echo number_format($total_februari_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian22" style="display:none;"><?php echo number_format($total_maret_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian23" style="display:none;"><?php echo number_format($total_april_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian24" style="display:none;"><?php echo number_format($total_mei_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian25" style="display:none;"><?php echo number_format($total_juni_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian26" style="display:none;"><?php echo number_format($total_juli_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian27" style="display:none;"><?php echo number_format($jumlah_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian28" style="display:none;"><?php echo number_format($sisa_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian18" style="display:none;"><?php echo number_format($total_januari_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian19" style="display:none;"><?php echo number_format($total_februari_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian20" style="display:none;"><?php echo number_format($total_maret_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian21" style="display:none;"><?php echo number_format($total_april_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian22" style="display:none;"><?php echo number_format($total_mei_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian23" style="display:none;"><?php echo number_format($total_juni_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian24" style="display:none;"><?php echo number_format($total_juli_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian25" style="display:none;"><?php echo number_format($jumlah_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian26" style="display:none;"><?php echo number_format($sisa_alat_rap,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_pemakaian_rap = $jumlah_bahan_rap + $jumlah_alat_rap;
@@ -3998,27 +3900,25 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpemakaian29" style="display:none;"><i>JUMLAH PEMAKAIAN</i></th>
 				<th class="text-right" id="boxpemakaian30" style="display:none;"><?php echo number_format($total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian31" style="display:none;"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian33" style="display:none;"><?php echo number_format($total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian34" style="display:none;"><?php echo number_format($total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian35" style="display:none;"><?php echo number_format($total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian36" style="display:none;"><?php echo number_format($total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian37" style="display:none;"><?php echo number_format($total_april_biaya_bahan_rap + $total_april_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian38" style="display:none;"><?php echo number_format($total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian39" style="display:none;"><?php echo number_format($total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian40" style="display:none;"><?php echo number_format($total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian41" style="display:none;"><?php echo number_format($jumlah_pemakaian_rap,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian42" style="display:none;"><?php echo number_format($sisa_pemakaian_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian32" style="display:none;"><?php echo number_format($total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian33" style="display:none;"><?php echo number_format($total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian34" style="display:none;"><?php echo number_format($total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian35" style="display:none;"><?php echo number_format($total_april_biaya_bahan_rap + $total_april_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian36" style="display:none;"><?php echo number_format($total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian37" style="display:none;"><?php echo number_format($total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian38" style="display:none;"><?php echo number_format($total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian39" style="display:none;"><?php echo number_format($jumlah_pemakaian_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian40" style="display:none;"><?php echo number_format($sisa_pemakaian_rap,0,',','.');?></th>
 			</tr>
 			<?php
 			$akumulasi_pemakaian_rap_bahan_alat = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat;
-			$akumulasi_pemakaian_desember = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap;
-			$akumulasi_pemakaian_januari = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap;
-			$akumulasi_pemakaian_februari = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap;
-			$akumulasi_pemakaian_maret = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap;
-			$akumulasi_pemakaian_april = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap;
-			$akumulasi_pemakaian_mei = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap;
-			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap;
-			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_desember_biaya_bahan_rap + $total_desember_biaya_alat_rap + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap;
+			$akumulasi_pemakaian_januari = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap;
+			$akumulasi_pemakaian_februari = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap;
+			$akumulasi_pemakaian_maret = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap;
+			$akumulasi_pemakaian_april = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap;
+			$akumulasi_pemakaian_mei = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap;
+			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap;
+			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_januari_biaya_bahan_rap + $total_januari_biaya_alat_rap + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap;
 			$akumulasi_3 = $akumulasi_2 - $akumulasi_pemakaian_rap_bahan_alat;
 			$jumlah_akumulasi = $akumulasi_pemakaian_juli;
 			?>
@@ -4026,19 +3926,18 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpemakaian43" style="display:none;"><i>AKUMULASI PEMAKAIAN</i></th>
 				<th class="text-right" id="boxpemakaian44" style="display:none;"><?php echo number_format($akumulasi_3,0,',','.');?></th>
 				<th class="text-right" id="boxpemakaian45" style="display:none;"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian47" style="display:none;"><?php echo number_format($akumulasi_pemakaian_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian48" style="display:none;"><?php echo number_format($akumulasi_pemakaian_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian49" style="display:none;"><?php echo number_format($akumulasi_pemakaian_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian50" style="display:none;"><?php echo number_format($akumulasi_pemakaian_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian51" style="display:none;"><?php echo number_format($akumulasi_pemakaian_april,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian52" style="display:none;"><?php echo number_format($akumulasi_pemakaian_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian53" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian54" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian55" style="display:none;"><?php echo number_format($jumlah_akumulasi,0,',','.');?></th>
-				<th class="text-right" id="boxpemakaian56" style="display:none;"><?php echo number_format($sisa_pemakaian_rap,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian46" style="display:none;"><?php echo number_format($akumulasi_pemakaian_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian47" style="display:none;"><?php echo number_format($akumulasi_pemakaian_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian48" style="display:none;"><?php echo number_format($akumulasi_pemakaian_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian49" style="display:none;"><?php echo number_format($akumulasi_pemakaian_april,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian50" style="display:none;"><?php echo number_format($akumulasi_pemakaian_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian51" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian52" style="display:none;"><?php echo number_format($akumulasi_pemakaian_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian53" style="display:none;"><?php echo number_format($jumlah_akumulasi,0,',','.');?></th>
+				<th class="text-right" id="boxpemakaian54" style="display:none;"><?php echo number_format($sisa_pemakaian_rap,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="13"><u>PENGELUARAN (EXCL. PPN)</u> <button id="btnpengeluaran3">Buka</th>
+				<th class="text-left" colspan="12"><u>PENGELUARAN (EXCL. PPN)</u> <button id="btnpengeluaran3">Buka</th>
 			</tr>
 			<?php
 			$jumlah_biaya_bahan = $total_desember_biaya_bahan + $total_januari_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
@@ -4048,19 +3947,19 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpengeluaran1" style="display:none;">&nbsp;&nbsp;1. Biaya Bahan</th>
 				<th class="text-right" id="boxpengeluaran2" style="display:none;"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran3" style="display:none;"><?php echo number_format($pembayaran_bahan_now,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran5" style="display:none;"><?php echo number_format($total_desember_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran6" style="display:none;"><?php echo number_format($total_januari_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran7" style="display:none;"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran8" style="display:none;"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran9" style="display:none;"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran10" style="display:none;"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran11" style="display:none;"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran12" style="display:none;"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran13" style="display:none;"><?php echo number_format($jumlah_biaya_bahan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran14" style="display:none;"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran4" style="display:none;"><?php echo number_format($total_januari_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran5" style="display:none;"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran6" style="display:none;"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran7" style="display:none;"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran8" style="display:none;"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran9" style="display:none;"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran10" style="display:none;"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran11" style="display:none;"><?php echo number_format($jumlah_biaya_bahan,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran12" style="display:none;"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran15" style="display:none;">&nbsp;&nbsp;2. Biaya Upah</th>
+				<th class="text-right" id="boxpengeluaran16" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran17" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran18" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran19" style="display:none;">-</th>
@@ -4071,27 +3970,24 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran24" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran25" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran26" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran27" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran28" style="display:none;">-</th>
 			</tr>
 			<?php
-			$jumlah_biaya_alat = $total_desember_biaya_alat + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
+			$jumlah_biaya_alat = $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
 			$sisa_biaya_alat = $total_rap_2022_biaya_alat - $jumlah_biaya_alat;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran29" style="display:none;">&nbsp;&nbsp;3. Biaya Peralatan</th>
 				<th class="text-right" id="boxpengeluaran30" style="display:none;"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran31" style="display:none;"><?php echo number_format($alat_now,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran33" style="display:none;"><?php echo number_format($total_desember_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran34" style="display:none;"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran35" style="display:none;"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran36" style="display:none;"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran37" style="display:none;"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran38" style="display:none;"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran39" style="display:none;"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran40" style="display:none;"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran41" style="display:none;"><?php echo number_format($jumlah_biaya_alat,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran42" style="display:none;"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran32" style="display:none;"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran33" style="display:none;"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran34" style="display:none;"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran35" style="display:none;"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran36" style="display:none;"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran37" style="display:none;"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran38" style="display:none;"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran39" style="display:none;"><?php echo number_format($jumlah_biaya_alat,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran40" style="display:none;"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran43" style="display:none;">&nbsp;&nbsp;4. Biaya Subkontraktor</th>
@@ -4106,26 +4002,24 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran53" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran54" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran55" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran56" style="display:none;">-</th>
 			</tr>
 			<?php
-			$jumlah_biaya_bank = $total_desember_biaya_bank + $total_januari_biaya_bank + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
+			$jumlah_biaya_bank = $total_januari_biaya_bank + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
 			$sisa_biaya_bank = $total_rap_2022_biaya_bank - $jumlah_biaya_bank;
 			?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran57" style="display:none;">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th class="text-right" id="boxpengeluaran58" style="display:none;"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran59" style="display:none;"><?php echo number_format($diskonto_now,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran61" style="display:none;"><?php echo number_format($total_desember_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran62" style="display:none;"><?php echo number_format($total_januari_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran63" style="display:none;"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran64" style="display:none;"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran65" style="display:none;"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran66" style="display:none;"><?php echo number_format($total_mei_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran67" style="display:none;"><?php echo number_format($total_juni_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran68" style="display:none;"><?php echo number_format($total_juli_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran69" style="display:none;"><?php echo number_format($jumlah_biaya_bank,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran70" style="display:none;"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran60" style="display:none;"><?php echo number_format($total_januari_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran61" style="display:none;"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran62" style="display:none;"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran63" style="display:none;"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran64" style="display:none;"><?php echo number_format($total_mei_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran65" style="display:none;"><?php echo number_format($total_juni_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran66" style="display:none;"><?php echo number_format($total_juli_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran67" style="display:none;"><?php echo number_format($jumlah_biaya_bank,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran68" style="display:none;"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_biaya_overhead = $total_desember_biaya_overhead + $total_januari_biaya_overhead + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
@@ -4135,21 +4029,20 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpengeluaran71" style="display:none;">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th class="text-right" id="boxpengeluaran72" style="display:none;"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran73" style="display:none;"><?php echo number_format($overhead_now,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran75" style="display:none;"><?php echo number_format($total_desember_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran76" style="display:none;"><?php echo number_format($total_januari_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran77" style="display:none;"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran78" style="display:none;"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran79" style="display:none;"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran80" style="display:none;"><?php echo number_format($total_mei_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran81" style="display:none;"><?php echo number_format($total_juni_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran82" style="display:none;"><?php echo number_format($total_juli_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran83" style="display:none;"><?php echo number_format($jumlah_biaya_overhead,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran84" style="display:none;"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran74" style="display:none;"><?php echo number_format($total_januari_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran75" style="display:none;"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran76" style="display:none;"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran77" style="display:none;"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran78" style="display:none;"><?php echo number_format($total_mei_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran79" style="display:none;"><?php echo number_format($total_juni_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran80" style="display:none;"><?php echo number_format($total_juli_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran81" style="display:none;"><?php echo number_format($jumlah_biaya_overhead,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran82" style="display:none;"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran85" style="display:none;">&nbsp;&nbsp;7. Rupa - Rupa</th>
+				<th class="text-right" id="boxpengeluaran86" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran87" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran88" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran89" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran90" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran91" style="display:none;">-</th>
@@ -4159,10 +4052,10 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran95" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran96" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran97" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran98" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran113" style="display:none;">&nbsp;&nbsp;8. Lain - Lain / Susut Aktiva</th>
+				<th class="text-right" id="boxpengeluaran114" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran115" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran116" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran117" style="display:none;">-</th>
@@ -4173,12 +4066,9 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran122" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran123" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran124" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran125" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran126" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpengeluaran127" style="display:none;">&nbsp;&nbsp;9. PPN Masukan</th>
-				<th class="text-right" id="boxpengeluaran129" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran130" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran131" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran132" style="display:none;">-</th>
@@ -4194,7 +4084,6 @@ class Reports extends CI_Controller {
 			<?php
 			$jumlah_pengeluaran = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now;
-			$jumlah_pengeluaran_desember = $total_desember_biaya_bahan + $total_desember_biaya_alat + $total_desember_biaya_overhead + $total_desember_biaya_bank;
 			$jumlah_pengeluaran_januari = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank;
 			$jumlah_pengeluaran_februari = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			$jumlah_pengeluaran_maret = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
@@ -4209,22 +4098,20 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpengeluaran141" style="display:none;"><i>JUMLAH PENGELUARAN</i></th>
 				<th class="text-right" id="boxpengeluaran142" style="display:none;"><?php echo number_format($jumlah_pengeluaran,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran143" style="display:none;"><?php echo number_format($jumlah_pengeluaran_akumulasi,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran145" style="display:none;"><?php echo number_format($jumlah_pengeluaran_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran146" style="display:none;"><?php echo number_format($jumlah_pengeluaran_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran147" style="display:none;"><?php echo number_format($jumlah_pengeluaran_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran148" style="display:none;"><?php echo number_format($jumlah_pengeluaran_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran149" style="display:none;"><?php echo number_format($jumlah_pengeluaran_april,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran150" style="display:none;"><?php echo number_format($jumlah_pengeluaran_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran151" style="display:none;"><?php echo number_format($jumlah_pengeluaran_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran152" style="display:none;"><?php echo number_format($jumlah_pengeluaran_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran153" style="display:none;"><?php echo number_format($total_pengeluaran,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran154" style="display:none;"><?php echo number_format($sisa_pengeluaran,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran144" style="display:none;"><?php echo number_format($jumlah_pengeluaran_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran145" style="display:none;"><?php echo number_format($jumlah_pengeluaran_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran146" style="display:none;"><?php echo number_format($jumlah_pengeluaran_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran147" style="display:none;"><?php echo number_format($jumlah_pengeluaran_april,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran148" style="display:none;"><?php echo number_format($jumlah_pengeluaran_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran149" style="display:none;"><?php echo number_format($jumlah_pengeluaran_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran150" style="display:none;"><?php echo number_format($jumlah_pengeluaran_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran151" style="display:none;"><?php echo number_format($total_pengeluaran,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran152" style="display:none;"><?php echo number_format($sisa_pengeluaran,0,',','.');?></th>
 			</tr>
 			<?php
 			$akumulasi_4 = $akumulasi_2 - $jumlah_pengeluaran;
 			$jumlah_akumulasi_now = $akumulasi_4 - $jumlah_pengeluaran_akumulasi;
-			$jumlah_akumulasi_desember = $jumlah_akumulasi_now - $jumlah_pengeluaran_desember;
-			$jumlah_akumulasi_januari = $jumlah_akumulasi_desember - $jumlah_pengeluaran_januari;
+			$jumlah_akumulasi_januari = $jumlah_akumulasi_now - $jumlah_pengeluaran_januari;
 			$jumlah_akumulasi_februari = $jumlah_akumulasi_januari - $jumlah_pengeluaran_februari;
 			$jumlah_akumulasi_maret = $jumlah_akumulasi_februari - $jumlah_pengeluaran_januari;
 			$jumlah_akumulasi_april = $jumlah_akumulasi_maret - $jumlah_pengeluaran_januari;
@@ -4238,64 +4125,60 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpengeluaran155" style="display:none;"><i>AKUMULASI PENGELUARAN</i></th>
 				<th class="text-right" id="boxpengeluaran156" style="display:none;"><?php echo number_format($akumulasi_4,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran157" style="display:none;"><?php echo number_format($jumlah_akumulasi_now,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran159" style="display:none;"><?php echo number_format($jumlah_akumulasi_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran160" style="display:none;"><?php echo number_format($jumlah_akumulasi_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran161" style="display:none;"><?php echo number_format($jumlah_akumulasi_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran162" style="display:none;"><?php echo number_format($jumlah_akumulasi_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran163" style="display:none;"><?php echo number_format($jumlah_akumulasi_april,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran164" style="display:none;"><?php echo number_format($jumlah_akumulasi_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran165" style="display:none;"><?php echo number_format($jumlah_akumulasi_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran166" style="display:none;"><?php echo number_format($jumlah_akumulasi_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran167" style="display:none;"><?php echo number_format($total_akumulasi,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran168" style="display:none;"><?php echo number_format($sisa_akumulasi,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran158" style="display:none;"><?php echo number_format($jumlah_akumulasi_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran159" style="display:none;"><?php echo number_format($jumlah_akumulasi_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran160" style="display:none;"><?php echo number_format($jumlah_akumulasi_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran161" style="display:none;"><?php echo number_format($jumlah_akumulasi_april,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran162" style="display:none;"><?php echo number_format($jumlah_akumulasi_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran163" style="display:none;"><?php echo number_format($jumlah_akumulasi_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran164" style="display:none;"><?php echo number_format($jumlah_akumulasi_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran165" style="display:none;"><?php echo number_format($total_akumulasi,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran166" style="display:none;"><?php echo number_format($sisa_akumulasi,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="13"><u>PAJAK</u> <button id="btnpajak3">Buka</th>
+				<th class="text-left" colspan="12"><u>PAJAK</u> <button id="btnpajak3">Buka</th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpajak1" style="display:none;">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th class="text-right" id="boxpajak2" style="display:none;"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100),0,',','.');?></th>
 				<th class="text-right" id="boxpajak3" style="display:none;"><?php echo number_format($ppn_keluar_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak4" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak5" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak6" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak7" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak8" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak9" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak10" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak11" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak12" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak13" style="display:none;"><?php echo number_format($ppn_keluar_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpajak14" style="display:none;"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) - $ppn_keluar_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak11" style="display:none;"><?php echo number_format($ppn_keluar_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak12" style="display:none;"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) - $ppn_keluar_now['total'],0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpajak15" style="display:none;">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th class="text-right" id="boxpajak16" style="display:none;"><?php echo number_format((($total_rap_2022_biaya_bahan * 11) / 100),0,',','.');?></th>
 				<th class="text-right" id="boxpajak17" style="display:none;"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak18" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak19" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak20" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak21" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak22" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak23" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak24" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak25" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak26" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak27" style="display:none;"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpajak28" style="display:none;"><?php echo number_format((($total_rap_2022_biaya_bahan * 11) / 100) - $ppn_masuk_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak25" style="display:none;"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak26" style="display:none;"><?php echo number_format((($total_rap_2022_biaya_bahan * 11) / 100) - $ppn_masuk_now['total'],0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left" id="boxpajak29" style="display:none;"><i>JUMLAH PAJAK</i></th>
 				<th class="text-right" id="boxpajak30" style="display:none;"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) - (($total_rap_2022_biaya_bahan * 11) / 100),0,',','.');?></th>
 				<th class="text-right" id="boxpajak31" style="display:none;"><?php echo number_format($ppn_keluar_now['total'] - $ppn_masuk_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak32" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak33" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak34" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak35" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak36" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak37" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak38" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak39" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak40" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak41" style="display:none;"><?php echo number_format($ppn_keluar_now['total'] - $ppn_masuk_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpajak42" style="display:none;"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_rap_2022_biaya_bahan  / 10) - ($ppn_keluar_now['total'] - $ppn_masuk_now['total']),0,',','.');?></th>
+				<th class="text-right" id="boxpajak39" style="display:none;"><?php echo number_format($ppn_keluar_now['total'] - $ppn_masuk_now['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpajak40" style="display:none;"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_rap_2022_biaya_bahan  / 10) - ($ppn_keluar_now['total'] - $ppn_masuk_now['total']),0,',','.');?></th>
 			</tr>
 			<?php
 			$akumulasi_5 = $akumulasi_4 - ((($total_rap_nilai_2022 * 11) / 100) - (($total_rap_2022_biaya_bahan * 11) / 100));
@@ -4306,62 +4189,58 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpajak43" style="display:none;"><i>AKUMULASI PAJAK</i></th>
 				<th class="text-right" id="boxpajak44" style="display:none;"><?php echo number_format($akumulasi_5,0,',','.');?></th>
 				<th class="text-right" id="boxpajak45" style="display:none;"><?php echo number_format($akumulasi_5 - ($ppn_keluar_now['total'] - $ppn_masuk_now['total']),0,',','.');?></th>
+				<th class="text-right" id="boxpajak46" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak47" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak48" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak49" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak50" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak51" style="display:none;">-</th>
 				<th class="text-right" id="boxpajak52" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak53" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak54" style="display:none;">-</th>
-				<th class="text-right" id="boxpajak55" style="display:none;"><?php echo number_format($total_akumulasi_pajak,0,',','.');?></th>
-				<th class="text-right" id="boxpajak56" style="display:none;"><?php echo number_format($sisa_akumulasi_pajak,0,',','.');?></th>
+				<th class="text-right" id="boxpajak53" style="display:none;"><?php echo number_format($total_akumulasi_pajak,0,',','.');?></th>
+				<th class="text-right" id="boxpajak54" style="display:none;"><?php echo number_format($sisa_akumulasi_pajak,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" colspan="13"><u>PINJAMAN</u> <button id="btnpinjaman3">Buka</th>
+				<th class="text-left" colspan="12"><u>PINJAMAN</u> <button id="btnpinjaman3">Buka</th>
 			</tr>
             <?php
-            $total_penerimaan_penjualan = $penerimaan_penjualan_now['total'] + $penerimaan_penjualan_desember['total'] + $penerimaan_penjualan_januari['total'] + $penerimaan_penjualan_februari['total'] + $penerimaan_penjualan_maret['total'] + $penerimaan_penjualan_april['total'] + $penerimaan_penjualan_mei['total'] + $penerimaan_penjualan_juni['total'] + $penerimaan_penjualan_juli['total'];
+            $total_penerimaan_penjualan = $penerimaan_penjualan_now['total'] + $penerimaan_penjualan_januari['total'] + $penerimaan_penjualan_februari['total'] + $penerimaan_penjualan_maret['total'] + $penerimaan_penjualan_april['total'] + $penerimaan_penjualan_mei['total'] + $penerimaan_penjualan_juni['total'] + $penerimaan_penjualan_juli['total'];
             $sisa_penerimaan_penjualan = $penerimaan_penjualan_now['total'] - $total_penerimaan_penjualan;
             ?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpinjaman1" style="display:none;">&nbsp;&nbsp;Penerimaan Pinjaman</th>
 				<th class="text-right" id="boxpinjaman2" style="display:none;"><?php echo number_format($penerimaan_penjualan_now['total'],0,',','.');?></th>
 				<th class="text-right" id="boxpinjaman3" style="display:none;"><?php echo number_format($penerimaan_penjualan_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman5" style="display:none;"><?php echo number_format($penerimaan_penjualan_desember['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman6" style="display:none;"><?php echo number_format($penerimaan_penjualan_januari['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman7" style="display:none;"><?php echo number_format($penerimaan_penjualan_februari['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman8" style="display:none;"><?php echo number_format($penerimaan_penjualan_maret['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman9" style="display:none;"><?php echo number_format($penerimaan_penjualan_april['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman10" style="display:none;"><?php echo number_format($penerimaan_penjualan_mei['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman11" style="display:none;"><?php echo number_format($penerimaan_penjualan_juni['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman12" style="display:none;"><?php echo number_format($penerimaan_penjualan_juli['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman13" style="display:none;"><?php echo number_format($total_penerimaan_penjualan,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman14" style="display:none;"><?php echo number_format($sisa_penerimaan_penjualan,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman4" style="display:none;"><?php echo number_format($penerimaan_penjualan_januari['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman5" style="display:none;"><?php echo number_format($penerimaan_penjualan_februari['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman6" style="display:none;"><?php echo number_format($penerimaan_penjualan_maret['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman7" style="display:none;"><?php echo number_format($penerimaan_penjualan_april['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman8" style="display:none;"><?php echo number_format($penerimaan_penjualan_mei['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman9" style="display:none;"><?php echo number_format($penerimaan_penjualan_juni['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman10" style="display:none;"><?php echo number_format($penerimaan_penjualan_juli['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman11" style="display:none;"><?php echo number_format($total_penerimaan_penjualan,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman12" style="display:none;"><?php echo number_format($sisa_penerimaan_penjualan,0,',','.');?></th>
 			</tr>
             <?php
-            $total_pengembalian_penjualan = $pengembalian_penjualan_now['total'] + $pengembalian_penjualan_desember['total'] + $pengembalian_penjualan_januari['total'] + $pengembalian_penjualan_februari['total'] + $pengembalian_penjualan_maret['total'] + $pengembalian_penjualan_april['total'] + $pengembalian_penjualan_mei['total'] + $pengembalian_penjualan_juni['total'] + $pengembalian_penjualan_juli['total'];
+            $total_pengembalian_penjualan = $pengembalian_penjualan_now['total'] + $pengembalian_penjualan_januari['total'] + $pengembalian_penjualan_februari['total'] + $pengembalian_penjualan_maret['total'] + $pengembalian_penjualan_april['total'] + $pengembalian_penjualan_mei['total'] + $pengembalian_penjualan_juni['total'] + $pengembalian_penjualan_juli['total'];
             $sisa_pengembalian_penjualan = $pengembalian_penjualan_now['total'] - $total_pengembalian_penjualan;
             ?>
 			<tr class="table-active3-csf">
 				<th class="text-left" id="boxpinjaman15" style="display:none;">&nbsp;&nbsp;Pengembalian Pinjaman</th>
 				<th class="text-right" id="boxpinjaman16" style="display:none;"><?php echo number_format($pengembalian_penjualan_now['total'],0,',','.');?></th>
 				<th class="text-right" id="boxpinjaman17" style="display:none;"><?php echo number_format($pengembalian_penjualan_now['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman19" style="display:none;"><?php echo number_format($pengembalian_penjualan_desember['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman20" style="display:none;"><?php echo number_format($pengembalian_penjualan_januari['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman21" style="display:none;"><?php echo number_format($pengembalian_penjualan_februari['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman22" style="display:none;"><?php echo number_format($pengembalian_penjualan_maret['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman23" style="display:none;"><?php echo number_format($pengembalian_penjualan_april['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman24" style="display:none;"><?php echo number_format($pengembalian_penjualan_mei['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman25" style="display:none;"><?php echo number_format($pengembalian_penjualan_juni['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman26" style="display:none;"><?php echo number_format($pengembalian_penjualan_juli['total'],0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman27" style="display:none;"><?php echo number_format($total_pengembalian_penjualan,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman28" style="display:none;"><?php echo number_format($sisa_pengembalian_penjualan,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman18" style="display:none;"><?php echo number_format($pengembalian_penjualan_januari['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman19" style="display:none;"><?php echo number_format($pengembalian_penjualan_februari['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman20" style="display:none;"><?php echo number_format($pengembalian_penjualan_maret['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman21" style="display:none;"><?php echo number_format($pengembalian_penjualan_april['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman22" style="display:none;"><?php echo number_format($pengembalian_penjualan_mei['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman23" style="display:none;"><?php echo number_format($pengembalian_penjualan_juni['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman24" style="display:none;"><?php echo number_format($pengembalian_penjualan_juli['total'],0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman25" style="display:none;"><?php echo number_format($total_pengembalian_penjualan,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman26" style="display:none;"><?php echo number_format($sisa_pengembalian_penjualan,0,',','.');?></th>
 			</tr>
 			<?php
 			$jumlah_vii_rap = $penerimaan_penjualan_now['total'] + $pengembalian_penjualan_now['total'];
 			$jumlah_vii_now = $penerimaan_penjualan_now['total'] + $pengembalian_penjualan_now['total'];
-			$jumlah_vii_desember = $penerimaan_penjualan_desember['total'] + $pengembalian_penjualan_desember['total'];
 			$jumlah_vii_januari = $penerimaan_penjualan_januari['total'] + $pengembalian_penjualan_januari['total'];
 			$jumlah_vii_februari = $penerimaan_penjualan_februari['total'] + $pengembalian_penjualan_februari['total'];
 			$jumlah_vii_maret = $penerimaan_penjualan_maret['total'] + $pengembalian_penjualan_maret['total'];
@@ -4376,22 +4255,20 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpinjaman29" style="display:none;"><i>JUMLAH PINJAMAN</i></th>
 				<th class="text-right" id="boxpinjaman30" style="display:none;"><?php echo number_format($jumlah_vii_rap,0,',','.');?></th>
 				<th class="text-right" id="boxpinjaman31" style="display:none;"><?php echo number_format($jumlah_vii_now,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman33" style="display:none;"><?php echo number_format($jumlah_vii_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman34" style="display:none;"><?php echo number_format($jumlah_vii_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman35" style="display:none;"><?php echo number_format($jumlah_vii_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman36" style="display:none;"><?php echo number_format($jumlah_vii_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman37" style="display:none;"><?php echo number_format($jumlah_vii_april,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman38" style="display:none;"><?php echo number_format($jumlah_vii_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman39" style="display:none;"><?php echo number_format($jumlah_vii_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman40" style="display:none;"><?php echo number_format($jumlah_vii_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman41" style="display:none;"><?php echo number_format($total_jumlah_vii,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman42" style="display:none;"><?php echo number_format($sisa_jumlah_vii,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman32" style="display:none;"><?php echo number_format($jumlah_vii_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman33" style="display:none;"><?php echo number_format($jumlah_vii_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman34" style="display:none;"><?php echo number_format($jumlah_vii_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman35" style="display:none;"><?php echo number_format($jumlah_vii_april,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman36" style="display:none;"><?php echo number_format($jumlah_vii_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman37" style="display:none;"><?php echo number_format($jumlah_vii_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman38" style="display:none;"><?php echo number_format($jumlah_vii_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman39" style="display:none;"><?php echo number_format($total_jumlah_vii,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman40" style="display:none;"><?php echo number_format($sisa_jumlah_vii,0,',','.');?></th>
 			</tr>
 			<?php
 			$akumulasi_6 = $akumulasi_5 - $jumlah_vii_rap;
 			$posisi_vi_now = $akumulasi_6 - $jumlah_vii_now;
-			$posisi_vi_desember = $posisi_vi_now - $jumlah_vii_desember;
-			$posisi_vi_januari = $posisi_vi_desember - $jumlah_vii_januari;
+			$posisi_vi_januari = $posisi_vi_now - $jumlah_vii_januari;
 			$posisi_vi_februari = $posisi_vi_januari - $jumlah_vii_februari;
 			$posisi_vi_maret = $posisi_vi_februari - $jumlah_vii_maret;
 			$posisi_vi_april = $posisi_vi_maret - $jumlah_vii_april;
@@ -4406,22 +4283,20 @@ class Reports extends CI_Controller {
 				<th class="text-left" id="boxpinjaman43" style="display:none;"><i>AKUMULASI PINJAMAN</i></th>
 				<th class="text-right" id="boxpinjaman44" style="display:none;"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th class="text-right" id="boxpinjaman45" style="display:none;"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman47" style="display:none;"><?php echo number_format($posisi_vi_desember,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman48" style="display:none;"><?php echo number_format($posisi_vi_januari,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman49" style="display:none;"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman50" style="display:none;"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman51" style="display:none;"><?php echo number_format($posisi_vi_april,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman52" style="display:none;"><?php echo number_format($posisi_vi_mei,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman53" style="display:none;"><?php echo number_format($posisi_vi_juni,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman54" style="display:none;"><?php echo number_format($posisi_vi_juli,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman55" style="display:none;"><?php echo number_format($posisi_vi_total,0,',','.');?></th>
-				<th class="text-right" id="boxpinjaman56" style="display:none;"><?php echo number_format($posisi_vi_sisa,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman46" style="display:none;"><?php echo number_format($posisi_vi_januari,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman47" style="display:none;"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman48" style="display:none;"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman49" style="display:none;"><?php echo number_format($posisi_vi_april,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman50" style="display:none;"><?php echo number_format($posisi_vi_mei,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman51" style="display:none;"><?php echo number_format($posisi_vi_juni,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman52" style="display:none;"><?php echo number_format($posisi_vi_juli,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman53" style="display:none;"><?php echo number_format($posisi_vi_total,0,',','.');?></th>
+				<th class="text-right" id="boxpinjaman54" style="display:none;"><?php echo number_format($posisi_vi_sisa,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left"><i>KAS AWAL</i></th>
 				<th class="text-right"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_vi_desember,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_januari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
@@ -4436,7 +4311,6 @@ class Reports extends CI_Controller {
 				<th class="text-left"><i>KAS AKHIR</i></th>
 				<th class="text-right"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_vi_desember,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_januari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
@@ -10291,10 +10165,6 @@ class Reports extends CI_Controller {
 			</style>
 
 			<?php
-			$date_november_awal = date('2022-11-01');
-			$date_november_akhir = date('2022-11-30');
-			$date_desember_awal = date('2022-12-01');
-			$date_desember_akhir = date('2022-12-31');
 			$date_januari23_awal = date('2023-01-01');
 			$date_januari23_akhir = date('2023-01-31');
 			$date_februari23_awal = date('2023-02-01');
@@ -10309,25 +10179,6 @@ class Reports extends CI_Controller {
 			$date_juni23_akhir = date('2023-06-30');
 			$date_juli23_awal = date('2023-07-01');
 			$date_juli23_akhir = date('2023-07-31');
-
-			//NOVEMBER
-			$rencana_kerja_november = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
-			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->row_array();
-
-			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
-			$volume_november_produk_b = $rencana_kerja_november['vol_produk_b'];
-			$volume_november_produk_c = $rencana_kerja_november['vol_produk_c'];
-			$volume_november_produk_d = $rencana_kerja_november['vol_produk_d'];
-
-			$total_november_volume = $volume_november_produk_a + $volume_november_produk_b + $volume_november_produk_c + $volume_november_produk_d;
-				
-			$nilai_jual_125_november = $volume_november_produk_a * $rencana_kerja_november['price_a'];
-			$nilai_jual_225_november = $volume_november_produk_b * $rencana_kerja_november['price_b'];
-			$nilai_jual_250_november = $volume_november_produk_c * $rencana_kerja_november['price_c'];
-			$nilai_jual_250_18_november = $volume_november_produk_d * $rencana_kerja_november['price_d'];
-			$nilai_jual_all_november = $nilai_jual_125_november + $nilai_jual_225_november + $nilai_jual_250_november + $nilai_jual_250_18_november;
 
 			//DESEMBER
 			$rencana_kerja_desember = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -10484,162 +10335,7 @@ class Reports extends CI_Controller {
 
 			
 			<?php
-			//NOV
-			$komposisi_125_nov = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_125 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_125_nov = 0;
-			$total_volume_pasir_125_nov = 0;
-			$total_volume_batu1020_125_nov = 0;
-			$total_volume_batu2030_125_nov = 0;
-
-			foreach ($komposisi_125_nov as $x){
-				$total_volume_semen_125_nov = $x['komposisi_semen_125'];
-				$total_volume_pasir_125_nov = $x['komposisi_pasir_125'];
-				$total_volume_batu1020_125_nov = $x['komposisi_batu1020_125'];
-				$total_volume_batu2030_125_nov = $x['komposisi_batu2030_125'];
-			}
-
-			$komposisi_225_nov = $this->db->select('(r.vol_produk_b * pk.presentase_a) as komposisi_semen_225, (vol_produk_b * pk.presentase_b) as komposisi_pasir_225, (vol_produk_b * pk.presentase_c) as komposisi_batu1020_225, (vol_produk_b * pk.presentase_d) as komposisi_batu2030_225')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_225 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_225_nov = 0;
-			$total_volume_pasir_225_nov = 0;
-			$total_volume_batu1020_225_nov = 0;
-			$total_volume_batu2030_225_nov = 0;
-
-			foreach ($komposisi_225_nov as $x){
-				$total_volume_semen_225_nov = $x['komposisi_semen_225'];
-				$total_volume_pasir_225_nov = $x['komposisi_pasir_225'];
-				$total_volume_batu1020_225_nov = $x['komposisi_batu1020_225'];
-				$total_volume_batu2030_225_nov = $x['komposisi_batu2030_225'];
-			}
-
-			$komposisi_250_nov = $this->db->select('(r.vol_produk_c * pk.presentase_a) as komposisi_semen_250, (vol_produk_c * pk.presentase_b) as komposisi_pasir_250, (vol_produk_c * pk.presentase_c) as komposisi_batu1020_250, (vol_produk_c * pk.presentase_d) as komposisi_batu2030_250')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_nov = 0;
-			$total_volume_pasir_250_nov = 0;
-			$total_volume_batu1020_250_nov = 0;
-			$total_volume_batu2030_250_nov = 0;
-
-			foreach ($komposisi_250_nov as $x){
-				$total_volume_semen_250_nov = $x['komposisi_semen_250'];
-				$total_volume_pasir_250_nov = $x['komposisi_pasir_250'];
-				$total_volume_batu1020_250_nov = $x['komposisi_batu1020_250'];
-				$total_volume_batu2030_250_nov = $x['komposisi_batu2030_250'];
-			}
-
-			$komposisi_250_2_nov = $this->db->select('(r.vol_produk_d * pk.presentase_a) as komposisi_semen_250_2, (vol_produk_d * pk.presentase_b) as komposisi_pasir_250_2, (vol_produk_d * pk.presentase_c) as komposisi_batu1020_250_2, (vol_produk_d * pk.presentase_d) as komposisi_batu2030_250_2')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250_2 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_2_nov = 0;
-			$total_volume_pasir_250_2_nov = 0;
-			$total_volume_batu1020_250_2_nov = 0;
-			$total_volume_batu2030_250_2_nov = 0;
-
-			foreach ($komposisi_250_2_nov as $x){
-				$total_volume_semen_250_2_nov = $x['komposisi_semen_250_2'];
-				$total_volume_pasir_250_2_nov = $x['komposisi_pasir_250_2'];
-				$total_volume_batu1020_250_2_nov = $x['komposisi_batu1020_250_2'];
-				$total_volume_batu2030_250_2_nov = $x['komposisi_batu2030_250_2'];
-			}
-
-			$total_volume_semen_nov = $total_volume_semen_125_nov + $total_volume_semen_225_nov + $total_volume_semen_250_nov + $total_volume_semen_250_2_nov;
-			$total_volume_pasir_nov = $total_volume_pasir_125_nov + $total_volume_pasir_225_nov + $total_volume_pasir_250_nov + $total_volume_pasir_250_2_nov;
-			$total_volume_batu1020_nov = $total_volume_batu1020_125_nov + $total_volume_batu1020_225_nov + $total_volume_batu1020_250_nov + $total_volume_batu1020_250_2_nov;
-			$total_volume_batu2030_nov = $total_volume_batu2030_125_nov + $total_volume_batu2030_225_nov + $total_volume_batu2030_250_nov + $total_volume_batu2030_250_2_nov;
-
-			//DES
-			$komposisi_125_des = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_125 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_125_des = 0;
-			$total_volume_pasir_125_des = 0;
-			$total_volume_batu1020_125_des = 0;
-			$total_volume_batu2030_125_des = 0;
-
-			foreach ($komposisi_125_des as $x){
-				$total_volume_semen_125_des = $x['komposisi_semen_125'];
-				$total_volume_pasir_125_des = $x['komposisi_pasir_125'];
-				$total_volume_batu1020_125_des = $x['komposisi_batu1020_125'];
-				$total_volume_batu2030_125_des = $x['komposisi_batu2030_125'];
-			}
-
-			$komposisi_225_des = $this->db->select('(r.vol_produk_b * pk.presentase_a) as komposisi_semen_225, (vol_produk_b * pk.presentase_b) as komposisi_pasir_225, (vol_produk_b * pk.presentase_c) as komposisi_batu1020_225, (vol_produk_b * pk.presentase_d) as komposisi_batu2030_225')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_225 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_225_des = 0;
-			$total_volume_pasir_225_des = 0;
-			$total_volume_batu1020_225_des = 0;
-			$total_volume_batu2030_225_des = 0;
-
-			foreach ($komposisi_225_des as $x){
-				$total_volume_semen_225_des = $x['komposisi_semen_225'];
-				$total_volume_pasir_225_des = $x['komposisi_pasir_225'];
-				$total_volume_batu1020_225_des = $x['komposisi_batu1020_225'];
-				$total_volume_batu2030_225_des = $x['komposisi_batu2030_225'];
-			}
-
-			$komposisi_250_des = $this->db->select('(r.vol_produk_c * pk.presentase_a) as komposisi_semen_250, (vol_produk_c * pk.presentase_b) as komposisi_pasir_250, (vol_produk_c * pk.presentase_c) as komposisi_batu1020_250, (vol_produk_c * pk.presentase_d) as komposisi_batu2030_250')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_des = 0;
-			$total_volume_pasir_250_des = 0;
-			$total_volume_batu1020_250_des = 0;
-			$total_volume_batu2030_250_des = 0;
-
-			foreach ($komposisi_250_des as $x){
-				$total_volume_semen_250_des = $x['komposisi_semen_250'];
-				$total_volume_pasir_250_des = $x['komposisi_pasir_250'];
-				$total_volume_batu1020_250_des = $x['komposisi_batu1020_250'];
-				$total_volume_batu2030_250_des = $x['komposisi_batu2030_250'];
-			}
-
-			$komposisi_250_2_des = $this->db->select('(r.vol_produk_d * pk.presentase_a) as komposisi_semen_250_2, (vol_produk_d * pk.presentase_b) as komposisi_pasir_250_2, (vol_produk_d * pk.presentase_c) as komposisi_batu1020_250_2, (vol_produk_d * pk.presentase_d) as komposisi_batu2030_250_2')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250_2 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_2_des = 0;
-			$total_volume_pasir_250_2_des = 0;
-			$total_volume_batu1020_250_2_des = 0;
-			$total_volume_batu2030_250_2_des = 0;
-
-			foreach ($komposisi_250_2_des as $x){
-				$total_volume_semen_250_2_des = $x['komposisi_semen_250_2'];
-				$total_volume_pasir_250_2_des = $x['komposisi_pasir_250_2'];
-				$total_volume_batu1020_250_2_des = $x['komposisi_batu1020_250_2'];
-				$total_volume_batu2030_250_2_des = $x['komposisi_batu2030_250_2'];
-			}
-
-			$total_volume_semen_des = $total_volume_semen_125_des + $total_volume_semen_225_des + $total_volume_semen_250_des + $total_volume_semen_250_2_des;
-			$total_volume_pasir_des = $total_volume_pasir_125_des + $total_volume_pasir_225_des + $total_volume_pasir_250_des + $total_volume_pasir_250_2_des;
-			$total_volume_batu1020_des = $total_volume_batu1020_125_des + $total_volume_batu1020_225_des + $total_volume_batu1020_250_des + $total_volume_batu1020_250_2_des;
-			$total_volume_batu2030_des = $total_volume_batu2030_125_des + $total_volume_batu2030_225_des + $total_volume_batu2030_250_des + $total_volume_batu2030_250_2_des;
-
+			
 			//JAN23
 			$komposisi_125_jan23 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
 			->from('rak r')
@@ -11192,24 +10888,20 @@ class Reports extends CI_Controller {
 			->where('rap.status','PUBLISH')
 			->order_by('rap.id','desc')->limit(1)
 			->get()->row_array();
-
-			$total_volume_solar_nov = $total_november_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_des = $total_desember_volume * $rap_solar['vol_bbm_solar'];
+			
 			$total_volume_solar_jan23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_feb23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_mar23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_apr23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_mei23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_jun23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_jul23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_feb23 = $total_februari23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_mar23 = $total_maret23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_apr23 = $total_april23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_mei23 = $total_mei23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_jun23 = $total_juni23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_jul23 = $total_juli23_volume * $rap_solar['vol_bbm_solar'];
 			?>
 
 			<tr class="table-judul">
 				<th width="5%" class="text-center">NO.</th>
 				<th class="text-center">URAIAN</th>
 				<th class="text-center">SATUAN</th>
-				<th class="text-center">NOVEMBER 2022</th>
-				<th class="text-center">DESEMBER 2022</th>
 				<th class="text-center">JANUARI 2023</th>
 				<th class="text-center">FEBRUARI 2023</th>
 				<th class="text-center">MARET 2023</th>
@@ -11222,8 +10914,6 @@ class Reports extends CI_Controller {
 				<th class="text-center">1</th>
 				<th class="text-left">Beton K 125 (10±2)</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_januari23_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_februari23_produk_a,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_maret23_produk_a,2,',','.');?></th>
@@ -11236,8 +10926,6 @@ class Reports extends CI_Controller {
 				<th class="text-center">2</th>
 				<th class="text-left">Beton K 225 (10±2)</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_januari23_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_februari23_produk_b,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_maret23_produk_b,2,',','.');?></th>
@@ -11250,8 +10938,6 @@ class Reports extends CI_Controller {
 				<th class="text-center">3</th>
 				<th class="text-left">Beton K 250 (10±2)</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_januari23_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_februari23_produk_c,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_maret23_produk_c,2,',','.');?></th>
@@ -11264,8 +10950,6 @@ class Reports extends CI_Controller {
 				<th class="text-center">4</th>
 				<th class="text-left">Beton K 250 (18±2)</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_januari23_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_februari23_produk_d,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($volume_maret23_produk_d,2,',','.');?></th>
@@ -11276,8 +10960,6 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-total">
 				<th class="text-right" colspan="3">TOTAL VOLUME</th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan") ?>"><?php echo number_format($total_november_volume,2,',','.');?></a></th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_2") ?>"><?php echo number_format($total_desember_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_3") ?>"><?php echo number_format($total_januari23_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_4") ?>"><?php echo number_format($total_februari23_volume,2,',','.');?></a></th>
 				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_kebutuhan_bahan_5") ?>"><?php echo number_format($total_maret23_volume,2,',','.');?></a></th>
@@ -11288,8 +10970,6 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-total">
 				<th class="text-right" colspan="3">PENDAPATAN USAHA</th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_november,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_desember,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_jual_all_januari23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_jual_all_februari23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_jual_all_maret23,2,',','.');?></th>
@@ -11309,14 +10989,10 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
 				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
 				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
-				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
-				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
 	        </tr>
 			<tr class="table-baris">
 				<th class="text-right" colspan="2">Semen</th>
 				<th class="text-center">Ton</th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_nov,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_des,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_jan23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_feb23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_mar23,2,',','.');?></th>
@@ -11328,8 +11004,6 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-right" colspan="2">Pasir</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_nov,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_des,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_jan23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_feb23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_mar23,2,',','.');?></th>
@@ -11341,8 +11015,6 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-right" colspan="2">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_nov,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_des,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_jan23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_feb23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_mar23,2,',','.');?></th>
@@ -11354,8 +11026,6 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-right" colspan="2">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_nov,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_des,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_jan23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_feb23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_mar23,2,',','.');?></th>
@@ -11367,8 +11037,6 @@ class Reports extends CI_Controller {
 			<tr class="table-baris">
 				<th class="text-right" colspan="2">Solar</th>
 				<th class="text-center">Liter</th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_nov,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_des,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_jan23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_feb23,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_mar23,2,',','.');?></th>

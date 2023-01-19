@@ -71,10 +71,6 @@
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
 		<?php
-			$date_november_awal = date('2022-11-01');
-			$date_november_akhir = date('2022-11-30');
-			$date_desember_awal = date('2022-12-01');
-			$date_desember_akhir = date('2022-12-31');
 			$date_januari23_awal = date('2023-01-01');
 			$date_januari23_akhir = date('2023-01-31');
 			$date_februari23_awal = date('2023-02-01');
@@ -89,25 +85,6 @@
 			$date_juni23_akhir = date('2023-06-30');
 			$date_juli23_awal = date('2023-07-01');
 			$date_juli23_akhir = date('2023-07-31');
-
-			//NOVEMBER
-			$rencana_kerja_november = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
-			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->row_array();
-
-			$volume_november_produk_a = $rencana_kerja_november['vol_produk_a'];
-			$volume_november_produk_b = $rencana_kerja_november['vol_produk_b'];
-			$volume_november_produk_c = $rencana_kerja_november['vol_produk_c'];
-			$volume_november_produk_d = $rencana_kerja_november['vol_produk_d'];
-
-			$total_november_volume = $volume_november_produk_a + $volume_november_produk_b + $volume_november_produk_c + $volume_november_produk_d;
-				
-			$nilai_jual_125_november = $volume_november_produk_a * $rencana_kerja_november['price_a'];
-			$nilai_jual_225_november = $volume_november_produk_b * $rencana_kerja_november['price_b'];
-			$nilai_jual_250_november = $volume_november_produk_c * $rencana_kerja_november['price_c'];
-			$nilai_jual_250_18_november = $volume_november_produk_d * $rencana_kerja_november['price_d'];
-			$nilai_jual_all_november = $nilai_jual_125_november + $nilai_jual_225_november + $nilai_jual_250_november + $nilai_jual_250_18_november;
 
 			//DESEMBER
 			$rencana_kerja_desember = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
@@ -264,162 +241,7 @@
 
 			
 			<?php
-			//NOV
-			$komposisi_125_nov = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_125 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_125_nov = 0;
-			$total_volume_pasir_125_nov = 0;
-			$total_volume_batu1020_125_nov = 0;
-			$total_volume_batu2030_125_nov = 0;
-
-			foreach ($komposisi_125_nov as $x){
-				$total_volume_semen_125_nov = $x['komposisi_semen_125'];
-				$total_volume_pasir_125_nov = $x['komposisi_pasir_125'];
-				$total_volume_batu1020_125_nov = $x['komposisi_batu1020_125'];
-				$total_volume_batu2030_125_nov = $x['komposisi_batu2030_125'];
-			}
-
-			$komposisi_225_nov = $this->db->select('(r.vol_produk_b * pk.presentase_a) as komposisi_semen_225, (vol_produk_b * pk.presentase_b) as komposisi_pasir_225, (vol_produk_b * pk.presentase_c) as komposisi_batu1020_225, (vol_produk_b * pk.presentase_d) as komposisi_batu2030_225')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_225 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_225_nov = 0;
-			$total_volume_pasir_225_nov = 0;
-			$total_volume_batu1020_225_nov = 0;
-			$total_volume_batu2030_225_nov = 0;
-
-			foreach ($komposisi_225_nov as $x){
-				$total_volume_semen_225_nov = $x['komposisi_semen_225'];
-				$total_volume_pasir_225_nov = $x['komposisi_pasir_225'];
-				$total_volume_batu1020_225_nov = $x['komposisi_batu1020_225'];
-				$total_volume_batu2030_225_nov = $x['komposisi_batu2030_225'];
-			}
-
-			$komposisi_250_nov = $this->db->select('(r.vol_produk_c * pk.presentase_a) as komposisi_semen_250, (vol_produk_c * pk.presentase_b) as komposisi_pasir_250, (vol_produk_c * pk.presentase_c) as komposisi_batu1020_250, (vol_produk_c * pk.presentase_d) as komposisi_batu2030_250')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_nov = 0;
-			$total_volume_pasir_250_nov = 0;
-			$total_volume_batu1020_250_nov = 0;
-			$total_volume_batu2030_250_nov = 0;
-
-			foreach ($komposisi_250_nov as $x){
-				$total_volume_semen_250_nov = $x['komposisi_semen_250'];
-				$total_volume_pasir_250_nov = $x['komposisi_pasir_250'];
-				$total_volume_batu1020_250_nov = $x['komposisi_batu1020_250'];
-				$total_volume_batu2030_250_nov = $x['komposisi_batu2030_250'];
-			}
-
-			$komposisi_250_2_nov = $this->db->select('(r.vol_produk_d * pk.presentase_a) as komposisi_semen_250_2, (vol_produk_d * pk.presentase_b) as komposisi_pasir_250_2, (vol_produk_d * pk.presentase_c) as komposisi_batu1020_250_2, (vol_produk_d * pk.presentase_d) as komposisi_batu2030_250_2')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250_2 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_november_awal' and '$date_november_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_2_nov = 0;
-			$total_volume_pasir_250_2_nov = 0;
-			$total_volume_batu1020_250_2_nov = 0;
-			$total_volume_batu2030_250_2_nov = 0;
-
-			foreach ($komposisi_250_2_nov as $x){
-				$total_volume_semen_250_2_nov = $x['komposisi_semen_250_2'];
-				$total_volume_pasir_250_2_nov = $x['komposisi_pasir_250_2'];
-				$total_volume_batu1020_250_2_nov = $x['komposisi_batu1020_250_2'];
-				$total_volume_batu2030_250_2_nov = $x['komposisi_batu2030_250_2'];
-			}
-
-			$total_volume_semen_nov = $total_volume_semen_125_nov + $total_volume_semen_225_nov + $total_volume_semen_250_nov + $total_volume_semen_250_2_nov;
-			$total_volume_pasir_nov = $total_volume_pasir_125_nov + $total_volume_pasir_225_nov + $total_volume_pasir_250_nov + $total_volume_pasir_250_2_nov;
-			$total_volume_batu1020_nov = $total_volume_batu1020_125_nov + $total_volume_batu1020_225_nov + $total_volume_batu1020_250_nov + $total_volume_batu1020_250_2_nov;
-			$total_volume_batu2030_nov = $total_volume_batu2030_125_nov + $total_volume_batu2030_225_nov + $total_volume_batu2030_250_nov + $total_volume_batu2030_250_2_nov;
-
-			//DES
-			$komposisi_125_des = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_125 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_125_des = 0;
-			$total_volume_pasir_125_des = 0;
-			$total_volume_batu1020_125_des = 0;
-			$total_volume_batu2030_125_des = 0;
-
-			foreach ($komposisi_125_des as $x){
-				$total_volume_semen_125_des = $x['komposisi_semen_125'];
-				$total_volume_pasir_125_des = $x['komposisi_pasir_125'];
-				$total_volume_batu1020_125_des = $x['komposisi_batu1020_125'];
-				$total_volume_batu2030_125_des = $x['komposisi_batu2030_125'];
-			}
-
-			$komposisi_225_des = $this->db->select('(r.vol_produk_b * pk.presentase_a) as komposisi_semen_225, (vol_produk_b * pk.presentase_b) as komposisi_pasir_225, (vol_produk_b * pk.presentase_c) as komposisi_batu1020_225, (vol_produk_b * pk.presentase_d) as komposisi_batu2030_225')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_225 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_225_des = 0;
-			$total_volume_pasir_225_des = 0;
-			$total_volume_batu1020_225_des = 0;
-			$total_volume_batu2030_225_des = 0;
-
-			foreach ($komposisi_225_des as $x){
-				$total_volume_semen_225_des = $x['komposisi_semen_225'];
-				$total_volume_pasir_225_des = $x['komposisi_pasir_225'];
-				$total_volume_batu1020_225_des = $x['komposisi_batu1020_225'];
-				$total_volume_batu2030_225_des = $x['komposisi_batu2030_225'];
-			}
-
-			$komposisi_250_des = $this->db->select('(r.vol_produk_c * pk.presentase_a) as komposisi_semen_250, (vol_produk_c * pk.presentase_b) as komposisi_pasir_250, (vol_produk_c * pk.presentase_c) as komposisi_batu1020_250, (vol_produk_c * pk.presentase_d) as komposisi_batu2030_250')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_des = 0;
-			$total_volume_pasir_250_des = 0;
-			$total_volume_batu1020_250_des = 0;
-			$total_volume_batu2030_250_des = 0;
-
-			foreach ($komposisi_250_des as $x){
-				$total_volume_semen_250_des = $x['komposisi_semen_250'];
-				$total_volume_pasir_250_des = $x['komposisi_pasir_250'];
-				$total_volume_batu1020_250_des = $x['komposisi_batu1020_250'];
-				$total_volume_batu2030_250_des = $x['komposisi_batu2030_250'];
-			}
-
-			$komposisi_250_2_des = $this->db->select('(r.vol_produk_d * pk.presentase_a) as komposisi_semen_250_2, (vol_produk_d * pk.presentase_b) as komposisi_pasir_250_2, (vol_produk_d * pk.presentase_c) as komposisi_batu1020_250_2, (vol_produk_d * pk.presentase_d) as komposisi_batu2030_250_2')
-			->from('rak r')
-			->join('pmm_agregat pk', 'r.komposisi_250_2 = pk.id','left')
-			->where("r.tanggal_rencana_kerja between '$date_desember_awal' and '$date_desember_akhir'")
-			->get()->result_array();
-
-			$total_volume_semen_250_2_des = 0;
-			$total_volume_pasir_250_2_des = 0;
-			$total_volume_batu1020_250_2_des = 0;
-			$total_volume_batu2030_250_2_des = 0;
-
-			foreach ($komposisi_250_2_des as $x){
-				$total_volume_semen_250_2_des = $x['komposisi_semen_250_2'];
-				$total_volume_pasir_250_2_des = $x['komposisi_pasir_250_2'];
-				$total_volume_batu1020_250_2_des = $x['komposisi_batu1020_250_2'];
-				$total_volume_batu2030_250_2_des = $x['komposisi_batu2030_250_2'];
-			}
-
-			$total_volume_semen_des = $total_volume_semen_125_des + $total_volume_semen_225_des + $total_volume_semen_250_des + $total_volume_semen_250_2_des;
-			$total_volume_pasir_des = $total_volume_pasir_125_des + $total_volume_pasir_225_des + $total_volume_pasir_250_des + $total_volume_pasir_250_2_des;
-			$total_volume_batu1020_des = $total_volume_batu1020_125_des + $total_volume_batu1020_225_des + $total_volume_batu1020_250_des + $total_volume_batu1020_250_2_des;
-			$total_volume_batu2030_des = $total_volume_batu2030_125_des + $total_volume_batu2030_225_des + $total_volume_batu2030_250_des + $total_volume_batu2030_250_2_des;
-
+			
 			//JAN23
 			$komposisi_125_jan23 = $this->db->select('(r.vol_produk_a * pk.presentase_a) as komposisi_semen_125, (vol_produk_a * pk.presentase_b) as komposisi_pasir_125, (vol_produk_a * pk.presentase_c) as komposisi_batu1020_125, (vol_produk_a * pk.presentase_d) as komposisi_batu2030_125')
 			->from('rak r')
@@ -972,38 +794,32 @@
 			->where('rap.status','PUBLISH')
 			->order_by('rap.id','desc')->limit(1)
 			->get()->row_array();
-
-			$total_volume_solar_nov = $total_november_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_des = $total_desember_volume * $rap_solar['vol_bbm_solar'];
+			
 			$total_volume_solar_jan23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_feb23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_mar23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_apr23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_mei23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_jun23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
-			$total_volume_solar_jul23 = $total_januari23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_feb23 = $total_februari23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_mar23 = $total_maret23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_apr23 = $total_april23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_mei23 = $total_mei23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_jun23 = $total_juni23_volume * $rap_solar['vol_bbm_solar'];
+			$total_volume_solar_jul23 = $total_juli23_volume * $rap_solar['vol_bbm_solar'];
 			?>
 
 			<tr class="table-judul">
 				<th width="5%" align="center">NO.</th>
 				<th width="15%" align = "center">URAIAN</th>
-				<th width="8%" align = "center">SATUAN</th>
-				<th width="8%" align = "center">NOVEMBER 2022</th>
-				<th width="8%" align = "center">DESEMBER 2022</th>
-				<th width="8%" align = "center">JANUARI 2023</th>
-				<th width="8%" align = "center">FEBRUARI 2023</th>
-				<th width="8%" align = "center">MARET 2023</th>
-				<th width="8%" align = "center">APRIL 2023</th>
-				<th width="8%" align = "center">MEI 2023</th>
-				<th width="8%" align = "center">JUNI 2023</th>
-				<th width="8%" align = "center">JULI 2023</th>
+				<th width="10%" align = "center">SATUAN</th>
+				<th width="10%" align = "center">JANUARI 2023</th>
+				<th width="10%" align = "center">FEBRUARI 2023</th>
+				<th width="10%" align = "center">MARET 2023</th>
+				<th width="10%" align = "center">APRIL 2023</th>
+				<th width="10%" align = "center">MEI 2023</th>
+				<th width="10%" align = "center">JUNI 2023</th>
+				<th width="10%" align = "center">JULI 2023</th>
 	        </tr>
 			<tr class="table-baris111">
 				<th align = "center">1</th>
 				<th align = "left">Beton K 125 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_november_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_desember_produk_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_januari23_produk_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_februari23_produk_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_maret23_produk_a,2,',','.');?></th>
@@ -1016,8 +832,6 @@
 				<th align = "center">2</th>
 				<th align = "left">Beton K 225 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_november_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_desember_produk_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_januari23_produk_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_februari23_produk_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_maret23_produk_b,2,',','.');?></th>
@@ -1030,8 +844,6 @@
 				<th align = "center">3</th>
 				<th align = "left">Beton K 250 (10±2)</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_november_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_desember_produk_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_januari23_produk_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_februari23_produk_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_maret23_produk_c,2,',','.');?></th>
@@ -1044,8 +856,6 @@
 				<th align = "center">4</th>
 				<th align = "left">Beton K 250 (18±2)</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_november_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_desember_produk_d,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_januari23_produk_d,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_februari23_produk_d,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_maret23_produk_d,2,',','.');?></th>
@@ -1056,8 +866,6 @@
 			</tr>
 			<tr class="table-total">
 				<th align = "center" colspan="3">TOTAL VOLUME</th>
-				<th align = "right"><?php echo number_format($total_november_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_desember_volume,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_januari23_volume,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_februari23_volume,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_maret23_volume,2,',','.');?></th>
@@ -1068,8 +876,6 @@
 			</tr>
 			<tr class="table-total">
 				<th align = "center" colspan="3">PENDAPATAN USAHA</th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_november,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_desember,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_jual_all_januari23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_jual_all_februari23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($nilai_jual_all_maret23,2,',','.');?></th>
@@ -1089,14 +895,10 @@
 				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
 				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
 				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
 	        </tr>
 			<tr class="table-baris111">
 				<th align = "left" colspan="2">Semen</th>
 				<th align = "center">Ton</th>
-				<th align = "right"><?php echo number_format($total_volume_semen_nov,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_des,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_jan23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_feb23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_mar23,2,',','.');?></th>
@@ -1108,8 +910,6 @@
 			<tr class="table-baris111">
 				<th align = "left" colspan="2">Pasir</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_nov,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_des,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_jan23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_feb23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_mar23,2,',','.');?></th>
@@ -1121,8 +921,6 @@
 			<tr class="table-baris111">
 				<th align = "left" colspan="2">Batu Split 10-20</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_nov,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_des,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_jan23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_feb23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_mar23,2,',','.');?></th>
@@ -1134,8 +932,6 @@
 			<tr class="table-baris111">
 				<th align = "left" colspan="2">Batu Split 20-30</th>
 				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_nov,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_des,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_jan23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_feb23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_mar23,2,',','.');?></th>
@@ -1147,8 +943,6 @@
 			<tr class="table-baris111">
 				<th align = "left" colspan="2">Solar</th>
 				<th align = "center">Liter</th>
-				<th align = "right"><?php echo number_format($total_volume_solar_nov,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_des,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_solar_jan23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_solar_feb23,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_solar_mar23,2,',','.');?></th>
