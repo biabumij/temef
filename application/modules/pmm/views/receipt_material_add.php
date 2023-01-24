@@ -442,11 +442,11 @@
             }else {
                 
                 if(select_operation == '*'){
-                    var display_volume = volume * val;
+                    var display_volume = volume;
                 }else {
                     var display_volume = volume / val;
                 }
-                $('#display_volume').val($.number(display_volume,4,',','.'));
+                $('#display_volume').val(display_volume);
                 // console.log(volume+'='+jumlah_berat_isi);
             }
         }
@@ -465,7 +465,7 @@
                 }else {
                     var edit_display_volume = edit_volume / edit_val;
                 }
-                $('#edit_display_volume').val($.number(edit_display_volume,4,',','.'));
+                $('#edit_display_volume').val(edit_display_volume);
                 // console.log(volume+'='+edit_display_volume);
             }
         }
