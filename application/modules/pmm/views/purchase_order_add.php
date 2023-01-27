@@ -255,7 +255,7 @@
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
                                     <br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 ||  $this->session->userdata('admin_group_id') == 5){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Pesanan Pembelian</button>        
@@ -283,7 +283,7 @@
                                 <?php if($data["status"] === "CLOSED") : ?>
                                     <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
