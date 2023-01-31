@@ -330,9 +330,9 @@
                                                     <th>No</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">No PO</th>
-                                                    <th class="text-center">No Surat Jalan</th>
-                                                    <th class="text-center">No Kendaraan</th>
+                                                    <th class="text-center">No. Pesanan Pembelian</th>
+                                                    <th class="text-center">No. Surat Jalan</th>
+                                                    <th class="text-center">No. Kendaraan</th>
                                                     <th class="text-center">Nama Supir</th>
                                                     <th class="text-center">Surat Jalan</th>
                                                     <th class="text-center">Produk</th>
@@ -346,14 +346,6 @@
                                             <tbody>
 
                                             </tbody>
-                                            <!--<tfoot>
-                                                <th></th>
-                                                <th colspan="10" style="font-weight:bold;text-align:center !important;">TOTAL : </th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tfoot>-->
                                         </table>
                                     </div>
                                 </div>
@@ -1319,29 +1311,6 @@
                     "className": 'text-right',
                 }
             ],
-            "footerCallback": function(row, data, start, end, display) {
-                var api = this.api(),
-                    data;
-
-                // Remove the formatting to get integer data for summation
-                var intVal = function(i) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                        i : 0;
-                };
-
-                // Total over all pages
-                total = api
-                    .column(11)
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-
-                // Update footer
-                $(api.column(11).footer()).html($.number(total, 0, ',', '.'));
-            }
         });
 
         $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
