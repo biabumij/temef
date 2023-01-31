@@ -517,7 +517,7 @@
             $('#pajak-val-6').val(pajak_6);
             $('#pajak-total-6 h5').text($.number( pajak_6, 2,',','.' ));
 
-            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6) + parseInt(pajak_3) - parseInt(pajak_4) - parseInt(pajak_5) + parseInt(pajak_6);
+            total_total = parseInt(sub_total) + (parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6)) + (parseInt(pajak_3) - parseInt(pajak_4) - parseInt(pajak_5) + parseInt(pajak_6));
             $('#total-val').val(total_total);
             $('#total').text($.number( total_total, 2,',','.' ));
 
