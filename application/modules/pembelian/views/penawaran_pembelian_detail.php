@@ -86,7 +86,7 @@
                                                     <th class="text-center" width="10%">Harga Satuan</th>
                                                     <th class="text-center" width="20%">Nilai</th>
 													<th class="text-center" width="10%">Pajak</th>
-                                                    <th class="text-center" width="10%">Pajak</th>
+                                                    <th class="text-center" width="10%">Pajak (2)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
