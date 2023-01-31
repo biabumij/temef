@@ -89,7 +89,8 @@
                                         </select>
                                     </div>
                                     
-										<input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
+									<input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
+                                    <input type="hidden" id="pajak_id" name="pajak_id" class="form-control" value="" required="" readonly="">
     
                                 </div>    
                                 <div class="row">
@@ -585,7 +586,7 @@
                         $('#alert-receipt-material').html('');
                         var no_alert = 1;
                         $.each(result.data,function(key,val){
-                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'">'+val.text+'</option>');
+                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'" data-pajak_id="'+val.pajak_id+'">'+val.text+'</option>');
                             $('#filter_material').append('<option value="'+val.id+'" >'+val.text+'</option>');
 
                             if(key > 0){
@@ -640,6 +641,8 @@
             $('#measure_id').val(measure);
             var tax_id = $(this).find(':selected').data('tax_id');
             $('#tax_id').val(tax_id);
+            var pajak_id = $(this).find(':selected').data('pajak_id');
+            $('#pajak_id').val(pajak_id);
         });
 
         $('#form-product').submit(function(event){

@@ -80,12 +80,13 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center" width="5%">No</th>
-                                                    <th class="text-center" width="22%">Produk</th>
-                                                    <th class="text-center" width="12%">Volume</th>
+                                                    <th class="text-center" width="25%">Produk</th>
+                                                    <th class="text-center" width="10%">Volume</th>
                                                     <th class="text-center" width="10%">Satuan</th>
-                                                    <th class="text-center" width="15%">Harga Satuan</th>
+                                                    <th class="text-center" width="10%">Harga Satuan</th>
                                                     <th class="text-center" width="20%">Nilai</th>
 													<th class="text-center" width="10%">Pajak</th>
+                                                    <th class="text-center" width="10%">Pajak</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,6 +96,10 @@
                                     $tax_ppn = 0;
                                     $tax_0 = false;
                                     $tax_ppn11 = 0;
+                                    $pajak_pph = 0;
+                                    $pajak_ppn = 0;
+                                    $pajak_0 = false;
+                                    $pajak_ppn11 = 0;
                                     $total = 0;
 									$details = $this->db->get_where('pmm_penawaran_pembelian_detail',array('penawaran_pembelian_id'=>$row['id']))->result_array();
 									?>
@@ -103,6 +108,7 @@
 										$produk = $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');
 										$measure = $this->crud_global->GetField('pmm_measures',array('id'=>$dt['measure']),'measure_name');
 										$tax = $this->crud_global->GetField('pmm_taxs',array('id'=>$dt['tax_id']),'tax_name');
+                                        $pajak = $this->crud_global->GetField('pmm_taxs',array('id'=>$dt['pajak_id']),'tax_name');
 									?>
                                         <tr>
                                             <td class="text-center"><?= $key + 1;?></td>
@@ -112,6 +118,7 @@
                                             <td class="text-right"><?= number_format($dt['price'],0,',','.'); ?></td>
                                             <td class="text-right"><?= number_format($dt['total'],0,',','.'); ?></td>
 											<td class="text-center"><?= $tax ?></td>
+                                            <td class="text-center"><?= $pajak ?></td>
                                         </tr>
 
                                         <?php
@@ -128,8 +135,19 @@
                                         if($dt['tax_id'] == 6){
                                             $tax_ppn11 += $dt['tax'];
                                         }
-
-										}
+                                        if($dt['pajak_id'] == 4){
+                                            $pajak_0 = true;
+                                        }
+                                        if($dt['pajak_id'] == 3){
+                                            $pajak_ppn += $dt['tax'];
+                                        }
+                                        if($dt['pajak_id'] == 5){
+                                            $pajak_pph += $dt['tax'];
+                                        }
+                                        if($dt['pajak_id'] == 6){
+                                            $pajak_ppn11 += $dt['tax'];
+                                        }
+                                        }
                                         ?>
                                 </tbody>
 								</table>    

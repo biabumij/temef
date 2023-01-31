@@ -850,7 +850,9 @@ class Pmm_model extends CI_Model {
                     'measure' => $measure,
 					'penawaran_id' => $row['penawaran_id'],
 					'tax_id' => $row['tax_id'],
-					'tax' => $row['tax']
+					'tax' => $row['tax'],
+                    'pajak_id' => $row['pajak_id'],
+					'pajak' => $row['pajak']
                 );
                 $total +=  $row['price'] * $row['volume'];
                 $this->db->insert('pmm_purchase_order_detail',$arr);
@@ -1005,7 +1007,7 @@ class Pmm_model extends CI_Model {
     function GetPOMaterials($supplier_id,$id=false)
     {
         $data = array();
-        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax, pod.tax_id as tax_id');
+        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax, pod.tax_id as tax_id, pod.pajak as pajak, pod.pajak_id as pajak_id');
         if(!empty($supplier_id)){
             $this->db->where('po.supplier_id',$supplier_id);
         }
@@ -3216,7 +3218,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaran($id)
     {
 
-        $this->db->select('pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax');
+        $this->db->select('pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');

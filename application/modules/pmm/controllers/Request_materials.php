@@ -244,6 +244,8 @@ class Request_materials extends CI_Controller {
 		$penawaran_id = $this->input->post('penawaran_id');
 		$tax_id = $this->input->post('tax_id');
 		$tax = str_replace(',', '.', $this->input->post('tax'));
+		$pajak_id = $this->input->post('pajak_id');
+		$pajak = str_replace(',', '.', $this->input->post('pajak'));
 		$volume = str_replace(',', '.', $this->input->post('volume'));
 		$supplier_id = $this->input->post('supplier_id');
 		$measure = $this->input->post('measure_id');
@@ -268,6 +270,8 @@ class Request_materials extends CI_Controller {
 				'penawaran_id' => $penawaran_id,
 				'tax_id' => $tax_id,
 				'tax' => $tax * $volume,
+				'pajak_id' => $pajak_id,
+				'pajak' => $pajak * $volume,
 				'volume' => $volume,
 				'measure_id' => $measure,
 				'price' => $price,
@@ -310,14 +314,14 @@ class Request_materials extends CI_Controller {
 			if($type == 1){
 				$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
 
-				$this->session->set_flashdata('notif_success','Berhasil menyetujui Permintaan !!');
+				$this->session->set_flashdata('notif_success','Berhasil Menyetujui Permintaan !!');
 				$this->pmm_model->CreatePO($id);
 				
 			}else if($type == 2){
 				$arr = array('status'=>'REJECTED');
-				$this->session->set_flashdata('notif_success','Berhasil menolak Permintaan !!');
+				$this->session->set_flashdata('notif_success','Berhasil Menolak Permintaan !!');
 			}else {
-				$this->session->set_flashdata('notif_success','Berhasil menambahkan Permintaan !!');
+				$this->session->set_flashdata('notif_success','Berhasil Menambahkan Permintaan !!');
 				$arr = array('status'=>'WAITING');
 			}
 

@@ -148,7 +148,7 @@
 
                                                 foreach ($materials as $key => $mt) {
                                                     ?>
-                                                    <option value="<?php echo $mt['material_id'];?>" data-measure="<?php echo $mt['measure'];?>"data-price="<?php echo $mt['price'];?>" data-penawaran_id="<?php echo $mt['id'];?>" data-tax_id="<?php echo $mt['tax_id'];?>" data-tax="<?php echo $mt['tax'];?>" data-id="<?= $mt['id'];?>"><?php echo $mt['material_name'];?> (Penawaran : <?php echo $mt['nomor_penawaran'];?>)</option>?>
+                                                    <option value="<?php echo $mt['material_id'];?>" data-measure="<?php echo $mt['measure'];?>"data-price="<?php echo $mt['price'];?>" data-penawaran_id="<?php echo $mt['id'];?>" data-tax_id="<?php echo $mt['tax_id'];?>" data-tax="<?php echo $mt['tax'];?>" data-pajak_id="<?php echo $mt['pajak_id'];?>" data-pajak="<?php echo $mt['pajak'];?>" data-id="<?= $mt['id'];?>"><?php echo $mt['material_name'];?> (Penawaran : <?php echo $mt['nomor_penawaran'];?>)</option>?>
                                                     <?php
                                                 }
                                                 ?>
@@ -180,11 +180,6 @@
                                                 ?>
                                             </select>
                                         </div>	
-										
-                                                <input type="hidden" id="tax_id" name="tax_id" class="form-control" required="" autocomplete="off" placeholder="Tax ID" readonly=""/>
-                                        
-                                                <input type="hidden" id="tax" name="tax" class="form-control" required="" autocomplete="off" placeholder="Tax" readonly=""/>
-                                        									
                                         <div class="col-sm-2">
                                                 <input type="text" id="volume" name="volume" class="form-control numberformat" required="" autocomplete="off" placeholder="Volume" />
                                         </div>
@@ -192,6 +187,12 @@
                                                 <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
                                                 <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
                                         </div>
+
+                                        <input type="hidden" id="tax_id" name="tax_id" class="form-control" required="" autocomplete="off" placeholder="Tax ID" readonly=""/>
+                                        <input type="hidden" id="tax" name="tax" class="form-control" required="" autocomplete="off" placeholder="Tax" readonly=""/>
+                                        <input type="hidden" id="pajak_id" name="pajak_id" class="form-control" required="" autocomplete="off" placeholder="Pajak ID" readonly=""/>
+                                        <input type="hidden" id="pajak" name="pajak" class="form-control" required="" autocomplete="off" placeholder="Pajak" readonly=""/>
+
                                     </div>
                                 </form>
                                 <?php
@@ -449,6 +450,10 @@
             $('#tax_id').val(tax_id);
 			var tax = $(this).find(':selected').data('tax');
             $('#tax').val(tax);
+            var pajak_id = $(this).find(':selected').data('pajak_id');
+            $('#pajak_id').val(pajak_id);
+			var pajak = $(this).find(':selected').data('pajak');
+            $('#pajak').val(pajak);
         });
 
     </script>

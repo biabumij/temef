@@ -174,6 +174,18 @@
                                            if($dt['tax_id'] == 6){
                                                $tax_ppn11 += $dt['tax'];
                                            }
+                                           if($dt['pajak_id'] == 4){
+                                               $pajak_0 = true;
+                                           }
+                                           if($dt['pajak_id'] == 3){
+                                               $pajak_ppn += $dt['pajak'];
+                                           }
+                                           if($dt['pajak_id'] == 5){
+                                               $pajak_pph += $dt['pajak'];
+                                           }
+                                           if($dt['pajak_id'] == 6){
+                                               $pajak_ppn11 += $dt['pajak'];
+                                           }
                                            
                                        }
                                        ?>
@@ -222,7 +234,47 @@
                                         </tr>
                                         <?php
                                     }
-                                    $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
+                                    ?>
+                                    <?php
+                                    if($pajak_ppn > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 10%)</th>
+                                            <th  class="text-right"><?= number_format($pajak_ppn,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($pajak_0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 0%)</th>
+                                            <th  class="text-right"><?= number_format(0,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($pajak_pph > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (2) - (PPh 23)</th>
+                                            <th  class="text-right"><?= number_format($pajak_pph,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($pajak_ppn11 > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 11%)</th>
+                                            <th  class="text-right"><?= number_format($pajak_ppn11,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    $total = $subtotal + ($tax_ppn - $tax_pph + $tax_ppn11) + ($pajak_ppn - $pajak_pph + $pajak_ppn11);
                                     ?>
                                     
                                     <tr>

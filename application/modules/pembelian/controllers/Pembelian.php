@@ -164,6 +164,7 @@ class Pembelian extends Secure_Controller
 				$price = str_replace('.', '', $price);
 				$price = str_replace(',', '.', $price);
 				$tax_id = $this->input->post('tax_' . $i);
+                $pajak_id = $this->input->post('pajak_' . $i);
 				$total_pro = $this->input->post('total_' . $i);
 				$total_pro = str_replace('.', '', $total_pro);
 				$total_pro = str_replace(',', '.', $total_pro);
@@ -171,6 +172,7 @@ class Pembelian extends Secure_Controller
 				if (!empty($product_id)) {
 
 					$tax = 0;
+                    $pajak = 0;
 					if ($tax_id == 3) {
 						$tax = ($total_pro * 10) / 100;
 					}
@@ -186,6 +188,22 @@ class Pembelian extends Secure_Controller
                     if ($tax_id == 6) {
 						$tax = ($total_pro * 11) / 100;
 					}
+
+					if ($pajak_id == 3) {
+						$pajak = ($total_pro * 10) / 100;
+					}
+
+					if ($pajak_id == 4) {
+						$pajak = ($total_pro * 0) / 100;
+					}
+
+					if ($pajak_id == 5) {
+						$pajak = ($total_pro * 2) / 100;
+					}
+
+                    if ($pajak_id == 6) {
+						$pajak = ($total_pro * 11) / 100;
+					}
                     $arr_detail = array(
                         'penawaran_pembelian_id' => $penawaran_pembelian_id,
                         'material_id' => $product_id,
@@ -194,6 +212,8 @@ class Pembelian extends Secure_Controller
                         'price' => $price,
                         'tax_id' => $tax_id,
 						'tax' => $tax,
+                        'pajak_id' => $pajak_id,
+						'pajak' => $pajak,
                         'total' => $total_pro,
                         'status' => 'DRAFT'
                     );
@@ -545,11 +565,14 @@ class Pembelian extends Secure_Controller
                 $price = str_replace(',', '.', $price);
                 $tax = $this->input->post('tax_' . $i);
 				$tax_id = $this->input->post('tax_id_' . $i);
+                $pajak = $this->input->post('pajak_' . $i);
+				$pajak_id = $this->input->post('pajak_id_' . $i);
                 $total_pro = $qty * $price;
 
                 if (!empty($material_id)) {
 
                     $tax = 0;
+                    $pajak = 0;
 					if ($tax_id == 3) {
 						$tax = ($total_pro * 10) / 100;
 					}
@@ -566,6 +589,22 @@ class Pembelian extends Secure_Controller
 						$tax = ($total_pro * 11) / 100;
 					}
 
+                    if ($pajak_id == 3) {
+						$pajak = ($total_pro * 10) / 100;
+					}
+
+					if ($pajak_id == 4) {
+						$pajak = ($total_pro * 0) / 100;
+					}
+
+					if ($pajak_id == 5) {
+						$pajak = ($total_pro * 2) / 100;
+					}
+
+                    if ($pajak_id == 6) {
+						$pajak = ($total_pro * 11) / 100;
+					}
+
                     $arr_detail = array(
                         'penagihan_pembelian_id' => $tagihan_id,
                         'material_id' => $material_id,
@@ -574,6 +613,8 @@ class Pembelian extends Secure_Controller
                         'price' => $price,
                         'tax_id' => $tax_id,
                         'tax' => $tax,
+                        'pajak_id' => $pajak_id,
+                        'pajak' => $pajak,
                         'total' => $total_pro
                     );
 
@@ -719,14 +760,14 @@ class Pembelian extends Secure_Controller
         
         $query['ppn'] = $detail['tax'];
 
-        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
+        $this->db->select('ppd.pajak_id, sum(ppd.pajak) as pajak, p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
-        $this->db->where("ppd.tax_id in (5)");
+        $this->db->where("ppd.pajak_id in (5)");
         $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
 		
-        $query['pph'] = $detail_2['tax'];
-        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['tax'];
-        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['tax'];
+        $query['pph'] = $detail_2['pajak'];
+        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['pajak'];
+        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['pajak'];
 
         
 		
@@ -1097,6 +1138,20 @@ class Pembelian extends Secure_Controller
 			<td>
 				<select id="tax-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="tax_<?php echo $no; ?>" required="">
 					<option value="">Pilih Pajak</option>
+					<?php
+					if (!empty($taxs)) {
+						foreach ($taxs as $row) {
+					?>
+							<option value="<?php echo $row['id']; ?>"><?php echo $row['tax_name']; ?></option>
+					<?php
+						}
+					}
+					?>
+				</select>
+			</td>
+            <td>
+				<select id="pajak-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="pajak_<?php echo $no; ?>" required="">
+					<option value="">Pilih Pajak (2)</option>
 					<?php
 					if (!empty($taxs)) {
 						foreach ($taxs as $row) {
