@@ -239,7 +239,7 @@
                                     if($pajak_ppn > 0){
                                         ?>
                                         <tr>
-                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 10%)</th>
+                                            <th colspan="5" class="text-right">Pajak (PPN 10%)</th>
                                             <th  class="text-right"><?= number_format($pajak_ppn,0,',','.'); ?></th>
                                         </tr>
                                         <?php
@@ -249,7 +249,7 @@
                                     if($pajak_0){
                                         ?>
                                         <tr>
-                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 0%)</th>
+                                            <th colspan="5" class="text-right">Pajak (PPN 0%)</th>
                                             <th  class="text-right"><?= number_format(0,0,',','.'); ?></th>
                                         </tr>
                                         <?php
@@ -259,7 +259,7 @@
                                     if($pajak_pph > 0){
                                         ?>
                                         <tr>
-                                            <th colspan="5" class="text-right">Pajak (2) - (PPh 23)</th>
+                                            <th colspan="5" class="text-right">Pajak (PPh 23)</th>
                                             <th  class="text-right"><?= number_format($pajak_pph,0,',','.'); ?></th>
                                         </tr>
                                         <?php
@@ -269,7 +269,7 @@
                                     if($pajak_ppn11 > 0){
                                         ?>
                                         <tr>
-                                            <th colspan="5" class="text-right">Pajak (2) - (PPN 11%)</th>
+                                            <th colspan="5" class="text-right">Pajak (PPN 11%)</th>
                                             <th  class="text-right"><?= number_format($pajak_ppn11,0,',','.'); ?></th>
                                         </tr>
                                         <?php
