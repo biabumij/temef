@@ -1040,7 +1040,7 @@
 					<div style="display: block;font-weight: bold;font-size: 11px;">KEBUTUHAN BAHAN BAKU</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo $februari23;?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">PERIODE : FEBRUARI 2023</div>
 				</td>
 			</tr>
 			<br />
@@ -1060,8 +1060,8 @@
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$feb23['supplier_id_semen']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_semen_feb23,2,',','.');?></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($feb23['harga_semen'],2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_semen_feb23 * $feb23['harga_semen'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($feb23['harga_semen'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_semen_feb23 * $feb23['harga_semen'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">2.</th>	
@@ -1069,8 +1069,8 @@
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$feb23['supplier_id_pasir']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_pasir_feb23,2,',','.');?></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($feb23['harga_pasir'],2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_pasir_feb23 * $feb23['harga_pasir'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($feb23['harga_pasir'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pasir_feb23 * $feb23['harga_pasir'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3.</th>	
@@ -1078,8 +1078,8 @@
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$feb23['supplier_id_batu1020']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_batu1020_feb23,2,',','.');?></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($feb23['harga_batu1020'],2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_batu1020_feb23 * $feb23['harga_batu1020'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($feb23['harga_batu1020'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_batu1020_feb23 * $feb23['harga_batu1020'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4.</th>	
@@ -1087,8 +1087,8 @@
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$feb23['supplier_id_batu2030']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_batu2030_feb23,2,',','.');?></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($feb23['harga_batu2030'],2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_batu2030_feb23 * $feb23['harga_batu2030'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($feb23['harga_batu2030'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_batu2030_feb23 * $feb23['harga_batu2030'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">5.</th>	
@@ -1096,8 +1096,15 @@
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$feb23['supplier_id_solar']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_solar_feb23,2,',','.');?></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($feb23['harga_solar'],2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_solar_feb23 * $feb23['harga_solar'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($feb23['harga_solar'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_solar_feb23 * $feb23['harga_solar'],0,',','.');?></th>
+	        </tr>
+			<?php
+			$total = ($total_volume_semen_feb23 * $feb23['harga_semen']) + ($total_volume_pasir_feb23 * $feb23['harga_pasir']) + ($total_volume_batu1020_feb23 * $feb23['harga_batu1020']) + ($total_volume_batu2030_feb23 * $feb23['harga_batu2030']) + ($total_volume_solar_feb23 * $feb23['harga_solar']);
+			?>
+			<tr class="table-total">	
+				<th align="right" colspan="6">TOTAL</th>
+				<th align="right"><?php echo number_format($total,0,',','.');?></th>
 	        </tr>
 	    </table>
 	</body>
