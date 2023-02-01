@@ -203,8 +203,7 @@
     });
 
     $("#convert, #volume, #select_operation").change(function(){
-            
-            getTotalDisplay();
+        getTotalDisplay();
         });
 
     function getTotalDisplay()
@@ -222,7 +221,7 @@
                     var display_volume = volume / val;
                 }
                 $('#display_volume').val($.number(display_volume,2,',','.'));
-                // console.log(volume+'='+jumlah_berat_isi);
+                // console.log(volume+'='+convert);
             }
         }	
     </script>
