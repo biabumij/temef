@@ -220,7 +220,7 @@
                 }else {
                     var display_volume = volume / val;
                 }
-                $('#display_volume').val($.number(display_volume,2,',','.'));
+                $('#display_volume').val(display_volume);
                 // console.log(volume+'='+convert);
             }
         }	
