@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <label>Nomor Purchase Order</label>
-                                        <input type="text" class="form-control" value="<?= $row['no_po']; ?>" readonly>
+                                        <div class="form-control" readonly><a target="_blank" href="<?= base_url("pmm/purchase_order/manage/".$row['purchase_order_id']) ?>"><?php echo $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');?></a></div>
                                     </div>  
                                 </div>
                                 <div class="row">
