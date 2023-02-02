@@ -670,23 +670,23 @@
 
 			<!-- TOTAL -->
 			<?php
-			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_januari_produk_a + $volume_februari_produk_a + $volume_maret_produk_a + $volume_april_produk_a + $volume_mei_produk_a + $volume_juni_produk_a + $volume_juli_produk_a;
-			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_januari_produk_b + $volume_februari_produk_b + $volume_maret_produk_b + $volume_april_produk_b + $volume_mei_produk_b + $volume_juni_produk_b + $volume_juli_produk_b;
-			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_januari_produk_c + $volume_februari_produk_c + $volume_maret_produk_c + $volume_april_produk_c + $volume_mei_produk_c + $volume_juni_produk_c + $volume_juli_produk_c;
-			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_januari_produk_d + $volume_februari_produk_d + $volume_maret_produk_d + $volume_april_produk_d + $volume_mei_produk_d + $volume_juni_produk_d + $volume_juli_produk_d;
+			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_februari_produk_a + $volume_maret_produk_a + $volume_april_produk_a + $volume_mei_produk_a + $volume_juni_produk_a + $volume_juli_produk_a;
+			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_februari_produk_b + $volume_maret_produk_b + $volume_april_produk_b + $volume_mei_produk_b + $volume_juni_produk_b + $volume_juli_produk_b;
+			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_februari_produk_c + $volume_maret_produk_c + $volume_april_produk_c + $volume_mei_produk_c + $volume_juni_produk_c + $volume_juli_produk_c;
+			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_februari_produk_d + $volume_maret_produk_d + $volume_april_produk_d + $volume_mei_produk_d + $volume_juni_produk_d + $volume_juli_produk_d;
 
-			$total_all_volume = $total_akumulasi_volume + $total_januari_volume + $total_februari_volume + $total_maret_volume + $total_april_volume + $total_mei_volume + $total_juni_volume + $total_juli_volume;
-			$total_all_nilai = $total_akumulasi_nilai + $total_januari_nilai +  + $total_februari_nilai +  + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$total_all_volume = $total_akumulasi_volume + $total_februari_volume + $total_maret_volume + $total_april_volume + $total_mei_volume + $total_juni_volume + $total_juli_volume;
+			$total_all_nilai = $total_akumulasi_nilai +  + $total_februari_nilai +  + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 
-			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_januari_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
-			$total_all_biaya_alat = $total_alat_akumulasi + $total_januari_biaya_alat + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
-			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_januari_biaya_overhead + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
-			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_januari_biaya_bank + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
+			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
+			$total_all_biaya_alat = $total_alat_akumulasi + $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
+			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
+			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
 			
 			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank;
 
 			$total_laba_rap_2022 = $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya;
-			$total_laba_sd_agustus = $total_akumulasi_nilai - $total_biaya_akumulasi;
+			$total_laba_saat_ini = $total_akumulasi_nilai - $total_biaya_akumulasi;
 			$total_laba_januari = $total_januari_nilai - $total_biaya_januari_biaya;
 			$total_laba_februari = $total_februari_nilai - $total_biaya_februari_biaya;
 			$total_laba_maret = $total_maret_nilai - $total_biaya_maret_biaya;
@@ -734,11 +734,10 @@
 				<th width="4%" align="center" rowspan="3">&nbsp; <br /><br />SATUAN</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />ADEDENDUM RAP</th>
 				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></div></th>
-				<th width="58%" align="center" colspan="7">&nbsp; <br />PROGNOSA</th>
+				<th width="58%" align="center" colspan="6">&nbsp; <br />PROGNOSA</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center">JANUARI</th>
 				<th align="center">FEBRUARI</th>
 				<th align="center">MARET</th>
 				<th align="center">APRIL</th>
@@ -754,10 +753,9 @@
 				<th align="center">2023</th>
 				<th align="center">2023</th>
 				<th align="center">2023</th>
-				<th align="center">2023</th>
 	        </tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="13">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+				<th align="left" colspan="12">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -765,7 +763,6 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_januari_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_maret_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_april_produk_a,2,',','.');?></th>
@@ -780,7 +777,6 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_januari_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_maret_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_april_produk_b,2,',','.');?></th>
@@ -795,7 +791,6 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_januari_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_maret_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_april_produk_c,2,',','.');?></th>
@@ -810,7 +805,6 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_januari_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_februari_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_maret_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_april_produk_d,2,',','.');?></th>
@@ -824,7 +818,6 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_rap_volume_2022,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_volume,2,',','.');?></th>
@@ -838,7 +831,6 @@
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_nilai,0,',','.');?></th>
@@ -848,7 +840,7 @@
 				<th align="right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="13">BIAYA</th>
+				<th align="left" colspan="12">BIAYA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -856,7 +848,6 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
@@ -871,7 +862,6 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
@@ -886,7 +876,6 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
@@ -901,7 +890,6 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_januari_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
@@ -915,7 +903,6 @@
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_januari_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_februari_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_maret_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_april_biaya,0,',','.');?></th>
@@ -928,8 +915,7 @@
 				<th align="right" colspan="2">LABA</th>
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_sd_agustus,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_januari,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_saat_ini,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_april,0,',','.');?></th>
