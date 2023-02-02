@@ -282,7 +282,7 @@
                                         if ($pajak_ppn > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (2) - (PPN 10%)</label>
+                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_ppn,0,',','.'); ?></h5>
                                                 </div>
@@ -294,7 +294,7 @@
                                         if ($pajak_0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (2) - (PPN 0%)</label>
+                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
                                                 </div>
@@ -306,7 +306,7 @@
                                         if ($pajak_pph > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (2) - (PPh 23)</label>
+                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_pph,0,',','.'); ?></h5>
                                                 </div>
@@ -318,7 +318,7 @@
                                         if ($pajak_ppn11 > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (2) - (PPN 11%)</label>
+                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_ppn11,0,',','.'); ?></h5>
                                                 </div>
