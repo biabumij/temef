@@ -2846,11 +2846,11 @@
 
                     color: '#FF0000',
 
-                    //zones: [{
-                        //value: 24
-                    //}, {
-                        //dashStyle: 'dot'
-                    //}]
+                    zones: [{
+                        value: 26.34
+                    }, {
+                        dashStyle: 'dot'
+                    }]
                 }
                 ]
             });
