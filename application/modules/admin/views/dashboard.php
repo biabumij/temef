@@ -2920,8 +2920,8 @@
                     labels: {
                         format: '{value} %'
                     },
-                    min: -100,
-                    max: 100,
+                    min: -50,
+                    max: 50,
                     tickInterval: 5,
                 },
                 tooltip: { 
