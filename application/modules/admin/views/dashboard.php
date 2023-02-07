@@ -2920,7 +2920,7 @@
                     labels: {
                         format: '{value} %'
                     },
-                    min: -500,
+                    min: -100,
                     max: 100,
                     tickInterval: 100,
                 },
