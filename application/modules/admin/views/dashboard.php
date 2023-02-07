@@ -2762,27 +2762,53 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 500, 500],
                         stops: [
-                            [0, 'rgb(255,255,255)'],
-                            //[1, 'rgb(230, 149, 0)']
-                            [1, 'rgb(255,255,255)']
+                            [0, 'rgb(255,217,102)'],
+                            [1, 'rgb(143,206,0)']
+                            //[1, 'rgb(255,255,255)']
                         ]
                     },
                 },
                 title: {
+                    style: {
+                        color: '#ffffff',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'monospace'
+                    },
                     text: 'REALISASI PRODUKSI',
-                    x: -20 //center
+                    x: -20 //center            
                 },
                 subtitle: {
+                    style: {
+                        color: '#ffffff',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'monospace'
+                    },
                     text: 'PT. BIA BUMI JAYENDRA - TEMEF',
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
                     categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Sisa']
                 },
                 yAxis: {
-                    title: {  //label yAxis
+                    //title: {  //label yAxis
                         //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
-                        text: 'Presentase'
+                        //text: 'Presentase'
+                    //},
+                    title: {
+                        style: {
+                            color: '#ffffff',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            fontFamily: 'monospace'
+                        },
+                        text: 'Presentase'           
                     },
                     plotLines: [{
                         value: 0,
@@ -2790,6 +2816,9 @@
                         color: '#808080' //warna dari grafik line
                     }],
                     labels: {
+                        style: {
+                            color: '#ffffff'
+                        },
                         format: '{value} %'
                     },
                     min: 0,
@@ -2890,27 +2919,53 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 500, 500],
                         stops: [
-                            [0, 'rgb(255,255,255)'],
-                            //[1, 'rgb(230, 149, 0)']
-                            [1, 'rgb(255,255,255)']
+                            [0, 'rgb(255,217,102)'],
+                            [1, 'rgb(143,206,0)']
+                            //[1, 'rgb(255,255,255)']
                         ]
                     },
                 },
                 title: {
+                    style: {
+                        color: '#ffffff',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'monospace'
+                    },
                     text: 'LABA RUGI',
-                    x: -20 //center
+                    x: -20 //center            
                 },
                 subtitle: {
+                    style: {
+                        color: '#ffffff',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'monospace'
+                    },
                     text: 'PT. BIA BUMI JAYENDRA - TEMEF',
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
                     categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Akumulasi']
                 },
                 yAxis: {
-                    title: {  //label yAxis
+                    //title: {  //label yAxis
                         //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
-                        text: 'Presentase'
+                        //text: 'Presentase'
+                    //},
+                    title: {
+                        style: {
+                            color: '#ffffff',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            fontFamily: 'monospace'
+                        },
+                        text: 'Presentase'           
                     },
                     plotLines: [{
                         value: 0,
@@ -2918,6 +2973,9 @@
                         color: '#808080' //warna dari grafik line
                     }],
                     labels: {
+                        style: {
+                            color: '#ffffff'
+                        },
                         format: '{value} %'
                     },
                     min: -50,
