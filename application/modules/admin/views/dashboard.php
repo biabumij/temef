@@ -2922,7 +2922,7 @@
                     },
                     min: -100,
                     max: 100,
-                    tickInterval: 10,
+                    tickInterval: 5,
                 },
                 tooltip: { 
                 //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
