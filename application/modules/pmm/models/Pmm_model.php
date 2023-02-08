@@ -984,7 +984,7 @@ class Pmm_model extends CI_Model {
                 $row['no'] = $key+1;
                 $row['total'] = $row['volume'] * $row['price'];
                 $row['volume']= number_format($row['volume'],2,',','.');
-				$row['price']= number_format($row['price'],2,',','.');
+				$row['price']= number_format($row['price'],0,',','.');
                 $row['material_name'] = $row['material_name'];
                 $row['measure'] = $row['measure_name'];
                 $get_status = $this->crud_global->GetField('pmm_request_materials',array('id'=>$row['request_material_id']),'status');
