@@ -272,8 +272,8 @@ class Produksi extends Secure_Controller {
 		$arr_insert = array(
 			'date_approval' => date('Y-m-d', strtotime($date_approval)),
 			'approval' => $approval,
-			'ttd_1' => 'uploads/ttd_erika.png',
-			'ttd_2' => 'uploads/ttd_debby.png',
+			'ttd_1' => 'uploads/ttd_gery.png',
+			'ttd_2' => 'uploads/ttd_theresia.png',
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -318,7 +318,7 @@ class Produksi extends Secure_Controller {
 				$row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $row['status'];
 
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10){
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApproval('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
