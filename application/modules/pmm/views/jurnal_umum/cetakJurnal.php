@@ -117,10 +117,7 @@
                                 Dibuat Oleh
                             </td>
                             <td align="center">
-                                Diperiksa Oleh
-                            </td>
-                            <td align="center" >
-                                Disetujui Oleh
+                                Diperiksa Oleh dan Disetujui Oleh
                             </td>
                             <td align="center" >
                                 Diterima Oleh
@@ -128,10 +125,7 @@
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                <img src="uploads/ttd_debby.png" width="100px"> 
-                            </td>
-                            <td align="center">
-                                <img src="uploads/ttd_debby.png" width="100px">  
+                                <!--<img src="uploads/ttd_debby.png" width="100px">-->
                             </td>
                             <td align="center">
                                 <img src="uploads/ttd_gery.png" width="100px">
@@ -142,29 +136,22 @@
                         </tr>
                         <tr class="table-active3">
                             <?php
-                            $kasir = $this->pmm_model->GetNameGroup(19);
-                            $pj_keuangan = $this->pmm_model->GetNameGroup(14);
+                            $admin = $this->pmm_model->GetNameGroup(20);
                             $ka_plant = $this->pmm_model->GetNameGroup(8);
                             ?>  
                             <td align="center">
-                                <?=  $kasir['admin_name'];?>
-                            </td>
-                                <td align="center">
-                                <?=  $pj_keuangan['admin_name'];?>
+                                <?=  $admin['admin_name'];?>
                             </td>
                             <td align="center">
-                                Gervasius K. Limahekin
+                                <?=  $ka_plant['admin_name'];?>
                             </td>
                             <td align="center">
-                                
+                                <?= $biaya["penerima"] ?>
                             </td>
                         </tr>
                         <tr class="table-active3">
                             <td align="center">
-                                <?= $kasir['admin_group_name']?>
-                            </td>
-                            <td align="center">
-                                <?=  $pj_keuangan['admin_group_name'];?>
+                                <?= $admin['admin_group_name']?>
                             </td>
                             <td align="center">
                                 KA. Proyek
