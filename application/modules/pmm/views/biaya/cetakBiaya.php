@@ -168,18 +168,14 @@
                         </tr>
                         <tr>
                             <?php
-                            $kasir = $this->pmm_model->GetNameGroup(19);
-                            $pj_keuangan = $this->pmm_model->GetNameGroup(14);
+                            $admin = $this->pmm_model->GetNameGroup(20);
                             $ka_plant = $this->pmm_model->GetNameGroup(8);
                             ?>  
                             <td align="center">
-                                <?=  $kasir['admin_name'];?>
-                            </td>
-                                <td align="center">
-                                <?=  $pj_keuangan['admin_name'];?>
+                                <?=  $admin['admin_name'];?>
                             </td>
                             <td align="center">
-                                Gervasius K. Limahekin
+                                <?=  $ka_plant['admin_name'];?>
                             </td>
                             <td align="center">
                                 <?= $biaya["penerima"] ?>
@@ -187,10 +183,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <?= $kasir['admin_group_name']?>
-                            </td>
-                            <td align="center">
-                                <?=  $pj_keuangan['admin_group_name'];?>
+                                <?= $admin['admin_group_name']?>
                             </td>
                             <td align="center">
                                 KA. Proyek
