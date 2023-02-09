@@ -133,7 +133,7 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" >
-							Diperiksa & Disetujui Oleh
+								Diperiksa & Disetujui Oleh
 							</td>
 							<td align="center" >
 								Dibuat Oleh
@@ -160,12 +160,12 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Erika Sinaga</u><br />
-								M. Keu & SDM</b>
+								<b><u>Gervasius K. Limahekin</u><br />
+								KA. Proyek</b>
 							</td>
 							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Kasir</b>
+								<b><u>Theresia Desiana L.</u><br />
+								Admin</b>
 							</td>
 						</tr>
 					</table>

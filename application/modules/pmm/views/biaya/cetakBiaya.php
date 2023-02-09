@@ -166,7 +166,7 @@
                         <tr>
                             <?php
                             $admin = $this->pmm_model->GetNameGroup(20);
-                            $ka_plant = $this->pmm_model->GetNameGroup(8);
+                            $ka_plant = $this->pmm_model->GetNameGroup(15);
                             ?>  
                             <td align="center">
                                 <?=  $admin['admin_name'];?>
