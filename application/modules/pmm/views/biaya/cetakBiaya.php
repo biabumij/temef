@@ -143,7 +143,7 @@
                                 Dibuat Oleh
                             </td>
                             <td align="center">
-                                Diperiksa Oleh dan Disetujui Oleh
+                                Diperiksa & Disetujui Oleh
                             </td>
                             <td align="center" >
                                 Diterima Oleh
