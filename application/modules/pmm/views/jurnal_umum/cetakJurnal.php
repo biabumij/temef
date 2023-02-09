@@ -125,10 +125,10 @@
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                <img src="uploads/ttd_theresia.png" width="150px">
+                                <img src="uploads/ttd_theresia.png" width="100px">
                             </td>
                             <td align="center">
-                                <img src="uploads/ttd_gery.png" width="150px">
+                                <img src="uploads/ttd_gery.png" width="100px">
                             </td>
                             <td align="center">
                                 
