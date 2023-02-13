@@ -1300,8 +1300,8 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-active{
-				background-color: #ffb732;
-				color: black;
+				background-color: #2986CC;
+				color: white;
 			}
 			</style>
 
@@ -1881,11 +1881,11 @@ class Reports extends CI_Controller {
 				</th>
 			</tr>
 			<tr>
-				<th width="5%" class="text-center" style='background-color:rgb(0,206,209); color:black'>NO.</th>
-				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>URAIAN</th>
-				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>SATUAN</th>
-				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>VOLUME</th>
-				<th class="text-center" style='background-color:rgb(0,206,209); color:black'>NILAI</th>
+				<th width="5%" class="text-center" style='background-color:rgb(105,170,219); color:white'>NO.</th>
+				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>URAIAN</th>
+				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>SATUAN</th>
+				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>VOLUME</th>
+				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'background-color:red' : 'background-color:none';
