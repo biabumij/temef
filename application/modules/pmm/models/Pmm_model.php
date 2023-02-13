@@ -1532,7 +1532,7 @@ class Pmm_model extends CI_Model {
                 $row['date_po'] = date('d/m/Y',strtotime($row['date_po']));
                 $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
 
-                $total_volume = $this->db->select('SUM(volume) as total,measure,SUM(volume *price) as total_tanpa_ppn')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$row['id']))->row_array();
+                $total_volume = $this->db->select('SUM(volume) as total,measure,SUM(volume * price) as total_tanpa_ppn')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$row['id']))->row_array();
                 $row['volume'] = number_format($total_volume['total'],2,',','.');
                 $row['measure'] = $total_volume['measure'];
                 $row['total_val'] = intval($row['total']);
