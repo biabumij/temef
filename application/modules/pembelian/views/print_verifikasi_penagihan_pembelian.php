@@ -229,7 +229,7 @@
 		<br />
 		<br />
 		<?php
-		$kasir = $this->pmm_model->GetNameGroup(19);
+		$admin = $this->pmm_model->GetNameGroup(20);
         ?>  
         <table width="98%" border="0" cellpadding="0">
             <tr border="1">
@@ -288,7 +288,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-								<b><?= $kasir['admin_group_name']?></b> 
+								<b><?= $admin['admin_group_name']?></b> 
                             </td>
                             <td align="center">
 								<b>M. Keu & SDM / M. Teknik</b> 
