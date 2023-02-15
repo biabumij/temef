@@ -75,9 +75,9 @@
                                                         <th>No</th>
 														<th class="text-center">Tanggal Penawaran</th>
 														<th class="text-center">Nomor Penawaran</th>
-                                                        <th class="text-center">Pelanggan</th>          
+                                                        <th class="text-center">Pelanggan</th>
+                                                        <th class="text-center">Perihal</th>        
                                                         <th class="text-center">Total</th>
-                                                        <th class="text-center">Perihal</th> 
                                                         <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
