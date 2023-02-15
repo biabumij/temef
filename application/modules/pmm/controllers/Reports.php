@@ -1881,11 +1881,11 @@ class Reports extends CI_Controller {
 				</th>
 			</tr>
 			<tr>
-				<th width="5%" class="text-center" style='background-color:rgb(105,170,219); color:white'>NO.</th>
-				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>URAIAN</th>
-				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>SATUAN</th>
-				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>VOLUME</th>
-				<th class="text-center" style='background-color:rgb(105,170,219); color:white'>NILAI</th>
+				<th width="5%" class="text-center" style='background-color:rgb(238,238,238); color:black'>NO.</th>
+				<th class="text-center" style='background-color:rgb(238,238,238); color:black'>URAIAN</th>
+				<th class="text-center" style='background-color:rgb(238,238,238); color:black'>SATUAN</th>
+				<th class="text-center" style='background-color:rgb(238,238,238); color:black'>VOLUME</th>
+				<th class="text-center" style='background-color:rgb(238,238,238); color:black'>NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'background-color:red' : 'background-color:none';
