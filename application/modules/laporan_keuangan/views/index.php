@@ -303,7 +303,7 @@
                                 });
                                 
                             } else {
-                                $('#buku-besar tbody').append('<tr><td class="text-center" colspan="2"><b>No Data</b></td></tr>');
+                                $('#buku-besar tbody').append('<tr><td class="text-center" colspan="2"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {

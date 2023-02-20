@@ -210,8 +210,9 @@
 													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <?php
-                                                    $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
-                                                    ?>
+                                                $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
+                                                $status_pembayaran = $this->db->group_by('status_pembayaran', 'asc')->get_where('pmm_penagihan_penjualan')->result_array();
+                                                ?>
                                                 <div style="margin: 20px">
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_monitoring_piutang'); ?>" target="_blank">
@@ -229,7 +230,19 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                            </div>                                                    
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_status_monitoring_piutang" name="filter_status" class="form-control select2">
+                                                                    <option value="">Pilih Status</option>
+                                                                    <?php
+                                                                    foreach ($status_pembayaran as $key => $st) {
+                                                                    ?>
+                                                                        <option value="<?php echo $st['status_pembayaran']; ?>"><?php echo $st['status_pembayaran']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>                                                   
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
                                                             </div>
@@ -345,7 +358,7 @@
                                 });
                                 $('#pengiriman-penjualan tbody').append('<tr><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
-                                $('#pengiriman-penjualan tbody').append('<tr><td class="text-center" colspan="6"><b>No Data</b></td></tr>');
+                                $('#pengiriman-penjualan tbody').append('<tr><td class="text-center" colspan="6"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -441,7 +454,7 @@
                                 });
                                 $('#laporan-piutang tbody').append('<tr><td class="text-right" colspan="2"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_penerimaan + '</b></td><td class="text-right"><b>' + result.total_tagihan + '</b></td><td class="text-right"><b>' + result.total_tagihan_bruto + '</b></td><td class="text-right"><b>' + result.total_pembayaran + '</b></td><td class="text-right"><b>' + result.total_sisa_piutang_penerimaan + '</b></td><td class="text-right"><b>' + result.total_sisa_piutang_tagihan + '</b></td></tr>');
                             } else {
-                                $('#laporan-piutang tbody').append('<tr><td class="text-center" colspan="8"><b>NO DATA</b></td></tr>');
+                                $('#laporan-piutang tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -501,6 +514,7 @@
                     data: {
                         filter_date: $('#filter_date_monitoring_piutang').val(),
                         filter_kategori: $('#filter_kategori_monitoring_piutang').val(),
+                        filter_status: $('#filter_status_monitoring_piutang').val(),
                     },
                     success: function(result) {
                         if (result.data) {
@@ -540,7 +554,7 @@
                                 });
                                 $('#monitoring-piutang tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_piutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_piutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_piutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
                             } else {
-                                $('#monitoring-piutang tbody').append('<tr><td class="text-center" colspan="13"><b>NO DATA</b></td></tr>');
+                                $('#monitoring-piutang tbody').append('<tr><td class="text-center" colspan="13"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -556,6 +570,10 @@
             }
 
             $('#filter_kategori_monitoring_piutang').change(function() {
+                LaporanMonitoringPiutang();
+            });
+
+            $('#filter_status_monitoring_piutang').change(function() {
                 LaporanMonitoringPiutang();
             });
 
