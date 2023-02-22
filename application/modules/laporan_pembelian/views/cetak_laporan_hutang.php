@@ -141,8 +141,7 @@
 						<td align="right"><?php echo number_format($jumlah_sisa_hutang_tagihan,0,',','.');?></td>
             		</tr>
 					<?php
-					endforeach; 
-            		}
+					endforeach;
             }else {
             	?>
             	<tr>
