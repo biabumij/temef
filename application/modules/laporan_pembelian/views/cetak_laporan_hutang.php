@@ -92,7 +92,8 @@
 				<th align="center">PENERIMAAN</th>
 				<th align="center">INVOICE</th>
 			</tr>			
-            <?php   
+            <?php
+			$i=0;  
             if(!empty($data)){
             	foreach ($data as $key => $row) :
 				$i++;
