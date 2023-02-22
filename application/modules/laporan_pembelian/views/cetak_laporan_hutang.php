@@ -78,7 +78,7 @@
 				</td>
 			</tr>
 		</table>	
-		<table cellpadding="2" width="98%">
+		<table cellpadding="4" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp; <br />NO.</th>
 				<th width="30%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
