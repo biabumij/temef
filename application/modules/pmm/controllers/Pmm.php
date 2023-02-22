@@ -1385,6 +1385,8 @@ class Pmm extends CI_Controller {
 				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
 				//$row['total'] = '<a href="javascript:void(0);" onclick="modalDetail('.$title.','.$row['id'].')" >'.number_format($row['total'],2,',','.').'</a>';
 				$row['total'] = number_format($row['total'],2,',','.');
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['actions'] = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				$data[] = $row;
 			}
