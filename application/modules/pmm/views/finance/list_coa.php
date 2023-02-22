@@ -59,8 +59,8 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Kode Akun</th>
-                                            <th>Kategori AKun</th>
-                                            <th>Action</th>
+                                            <th>Kategori Akun</th>
+                                            <th>Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
