@@ -10,10 +10,12 @@ class Templates extends CI_Model {
 
     function Header()
     {
+		$arr_menu = $this->uri->segment(2);
     	?>
     	<meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	    <title><?php echo $this->m_themes->GetThemes('site_name');?> Admin</title>
+	    <!--<title><?php echo $this->m_themes->GetThemes('site_name');?></title>-->
+		<title><?= strtoupper($arr_menu);?></title>
 	    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url().$this->m_themes->GetThemes('site_favico');?>">
 	    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url().$this->m_themes->GetThemes('site_favico');?>">
 	    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url().$this->m_themes->GetThemes('site_favico');?>">
