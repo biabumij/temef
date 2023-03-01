@@ -3746,12 +3746,12 @@ class Reports extends CI_Controller {
 			<?php
 			$akumulasi_4 = $akumulasi_2 - $jumlah_pengeluaran;
 			$jumlah_akumulasi_now = $akumulasi_4 - $jumlah_pengeluaran_akumulasi;
-			$jumlah_akumulasi_maret = $jumlah_akumulasi_now - $jumlah_pengeluaran_maret;
-			$jumlah_akumulasi_april = $jumlah_akumulasi_maret - $jumlah_pengeluaran_april;
-			$jumlah_akumulasi_mei = $jumlah_akumulasi_april - $jumlah_pengeluaran_mei;
-			$jumlah_akumulasi_juni = $jumlah_akumulasi_mei - $jumlah_pengeluaran_juni;
-			$jumlah_akumulasi_juli = $jumlah_akumulasi_juni - $jumlah_pengeluaran_juli;
-			$total_akumulasi = $jumlah_akumulasi_juli - $total_pengeluaran;
+			$jumlah_akumulasi_maret = $akumulasi_penjualan_maret - $jumlah_pengeluaran_maret;
+			$jumlah_akumulasi_april = $akumulasi_penjualan_april - $jumlah_pengeluaran_april;
+			$jumlah_akumulasi_mei = $akumulasi_penjualan_mei - $jumlah_pengeluaran_mei;
+			$jumlah_akumulasi_juni = $akumulasi_penjualan_juni - $jumlah_pengeluaran_juni;
+			$jumlah_akumulasi_juli = $akumulasi_penjualan_juli - $jumlah_pengeluaran_juli;
+			$total_akumulasi = $akumulasi_penjualan_maret - $total_pengeluaran;
 			$sisa_akumulasi = $akumulasi_4 - $total_akumulasi;
 			?>
 			<?php
