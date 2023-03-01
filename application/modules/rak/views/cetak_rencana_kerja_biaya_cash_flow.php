@@ -111,13 +111,13 @@
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">3.</td>
-				<td align="left">Biaya Overhead</td>
-				<td align="right"><?= number_format($rak['biaya_overhead'],0,',','.'); ?></td>
+				<td align="left">Biaya Bank</td>
+				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">4.</td>
-				<td align="left">Biaya Bank</td>
-				<td align="right"><?= number_format($rak['biaya_bank'],0,',','.'); ?></td>
+				<td align="left">Biaya Overhead</td>
+				<td align="right"><?= number_format($rak['biaya_overhead'],0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
 				<td align="center">5.</td>
