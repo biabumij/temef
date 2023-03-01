@@ -3375,7 +3375,7 @@ class Reports extends CI_Controller {
 
 			$rencana_kerja_mei_biaya_cash_flow = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
 			->get()->row_array();
 
 			$volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
