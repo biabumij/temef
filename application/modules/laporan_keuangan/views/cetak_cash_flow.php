@@ -867,16 +867,15 @@
 
 			<tr class="table-judul">
 				<th width="20%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
-				<th width="10%" align="center">CURRENT</th>
+				<th width="16%" align="center">CURRENT</th>
 				<th width="8%" align="center">REALISASI SD.</th>
-				<th width="8%" align="center">FEBRUARI</th>
 				<th width="8%" align="center">MARET</th>
 				<th width="8%" align="center">APRIL</th>
 				<th width="8%" align="center">MEI</th>
 				<th width="8%" align="center">JUNI</th>
 				<th width="8%" align="center">JULI</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br />JUMLAH</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br />SISA</th>
+				<th width="8%" align="center" rowspan="2">&nbsp; <br />JUMLAH</th>
+				<th width="8%" align="center" rowspan="2">&nbsp; <br />SISA</th>
 	        </tr>
 			<tr class="table-judul">
 			<?php
@@ -916,64 +915,58 @@
 				<th align="center">2023</th>
 				<th align="center">2023</th>
 				<th align="center">2023</th>
-				<th align="center">2023</th>
 	        </tr>
 			<?php
 			$presentase_now = ($penjualan_now['total'] / $total_rap_nilai_2022) * 100;
-			$presentase_februari = ($total_februari_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_maret = ($total_maret_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_april = ($total_april_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_mei = ($total_mei_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_juni = ($total_juni_nilai / $total_rap_nilai_2022) * 100;
 			$presentase_juli = ($total_juli_nilai / $total_rap_nilai_2022) * 100;
 
-			$presentase_akumulasi_februari = $presentase_now + $presentase_februari;
-			$presentase_akumulasi_maret = $presentase_akumulasi_februari + $presentase_maret;
+			$presentase_akumulasi_maret = $presentase_now + $presentase_maret;
 			$presentase_akumulasi_april = $presentase_akumulasi_maret + $presentase_april;
 			$presentase_akumulasi_mei = $presentase_akumulasi_april + $presentase_mei;
 			$presentase_akumulasi_juni = $presentase_akumulasi_mei + $presentase_juni;
 			$presentase_akumulasi_juli = $presentase_akumulasi_juni + $presentase_juli;
 
-			$jumlah_presentase = $presentase_februari + $presentase_maret + $presentase_april + $presentase_mei + $presentase_juni + $presentase_juli;
+			$jumlah_presentase = $presentase_maret + $presentase_april + $presentase_mei + $presentase_juni + $presentase_juli;
 			?>
 			<?php
-			$jumlah_produksi = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$jumlah_produksi = $penjualan_now['total'] + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 			$sisa_produksi = $total_rap_nilai_2022 - $jumlah_produksi;
 			?>
 			<?php
-			$akumulasi_penjualan_februari = $penjualan_now['total'] + $total_februari_nilai;
-			$akumulasi_penjualan_maret = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai;
-			$akumulasi_penjualan_april = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai + $total_april_nilai;
-			$akumulasi_penjualan_mei = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai;
-			$akumulasi_penjualan_juni = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai;
-			$akumulasi_penjualan_juli = $penjualan_now['total'] + $total_februari_nilai + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$akumulasi_penjualan_maret = $penjualan_now['total'] + $total_maret_nilai;
+			$akumulasi_penjualan_april = $penjualan_now['total'] + $total_maret_nilai + $total_april_nilai;
+			$akumulasi_penjualan_mei = $penjualan_now['total'] + $total_maret_nilai + $total_april_nilai + $total_mei_nilai;
+			$akumulasi_penjualan_juni = $penjualan_now['total'] + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai;
+			$akumulasi_penjualan_juli = $penjualan_now['total'] + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
 			$akumulasi_1 = $total_rap_nilai_2022;
 			?>
 			<?php
-			$termin_februari = $rencana_kerja_februari_biaya_cash_flow['termin'];
 			$termin_maret = $rencana_kerja_maret_biaya_cash_flow['termin'];
 			$termin_april = $rencana_kerja_april_biaya_cash_flow['termin'];
 			$termin_mei = $rencana_kerja_mei_biaya_cash_flow['termin'];
 			$termin_juni = $rencana_kerja_juni_biaya_cash_flow['termin'];
 			$termin_juli = $rencana_kerja_juli_biaya_cash_flow['termin'];
-			$jumlah_termin = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
+			$jumlah_termin = $termin_now['total'] + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			?>
 			<?php
-			$akumulasi_termin_februari = $termin_now['total'] + $termin_februari;
-			$akumulasi_termin_maret = $termin_now['total'] + $termin_februari + $termin_maret;
-			$akumulasi_termin_april = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april;
-			$akumulasi_termin_mei = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei;
-			$akumulasi_termin_juni = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni;
-			$akumulasi_termin_juli = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
+			$akumulasi_termin_maret = $termin_now['total'] + $termin_maret;
+			$akumulasi_termin_april = $termin_now['total'] + $termin_maret + $termin_april;
+			$akumulasi_termin_mei = $termin_now['total'] + $termin_maret + $termin_april + $termin_mei;
+			$akumulasi_termin_juni = $termin_now['total'] + $termin_maret + $termin_april + $termin_mei + $termin_juni;
+			$akumulasi_termin_juli = $termin_now['total'] + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
 			
 			$akumulasi_2 = (($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022;
 			?>
 			<?php
-			$jumlah_bahan_rap = $total_bahan_now + $total_februari_biaya_bahan_rap + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
+			$jumlah_bahan_rap = $total_bahan_now + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
 			$sisa_bahan_rap = $total_rap_2022_biaya_bahan - $jumlah_bahan_rap;
 			?>
 			<?php
-			$jumlah_alat_rap = $alat_now + $total_februari_biaya_alat_rap + $total_maret_biaya_alat_rap + $total_april_biaya_alat_rap + $total_mei_biaya_alat_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_alat_rap;
+			$jumlah_alat_rap = $alat_now + $total_maret_biaya_alat_rap + $total_april_biaya_alat_rap + $total_mei_biaya_alat_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_alat_rap;
 			$sisa_alat_rap = $total_rap_2022_biaya_alat - $jumlah_alat_rap;
 			?>
 			<?php
@@ -982,48 +975,45 @@
 			?>
 			<?php
 			$akumulasi_pemakaian_rap_bahan_alat = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat;
-			$akumulasi_pemakaian_februari = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap;
-			$akumulasi_pemakaian_maret = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap;
-			$akumulasi_pemakaian_april = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap;
-			$akumulasi_pemakaian_mei = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap;
-			$akumulasi_pemakaian_juni = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap;
-			$akumulasi_pemakaian_juli = $total_bahan_now + $alat_now + $total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap + $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap;
+			$akumulasi_pemakaian_maret = $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap;
+			$akumulasi_pemakaian_april = $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap;
+			$akumulasi_pemakaian_mei = $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap;
+			$akumulasi_pemakaian_juni = $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap;
+			$akumulasi_pemakaian_juli = $total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap + $total_april_biaya_bahan_rap + $total_april_biaya_alat_rap + $total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap  + $total_juni_biaya_bahan_rap + $total_juni_biaya_alat_rap + $total_juli_biaya_bahan_rap + $total_juli_biaya_alat_rap;
 			$akumulasi_3 = $akumulasi_2 - $akumulasi_pemakaian_rap_bahan_alat;
 			$jumlah_akumulasi = $akumulasi_pemakaian_juli;
 			?>
 			<?php
-			$jumlah_biaya_bahan = $total_desember_biaya_bahan + $total_februari_biaya_bahan + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
+			$jumlah_biaya_bahan = $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
 			$sisa_biaya_bahan = $total_rap_2022_biaya_bahan - $jumlah_biaya_bahan;
 			?>
 			<?php
-			$jumlah_biaya_alat = $total_februari_biaya_alat + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
+			$jumlah_biaya_alat = $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
 			$sisa_biaya_alat = $total_rap_2022_biaya_alat - $jumlah_biaya_alat;
 			?>
 			<?php
-			$jumlah_biaya_bank = $total_februari_biaya_bank + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
+			$jumlah_biaya_bank = $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
 			$sisa_biaya_bank = $total_rap_2022_biaya_bank - $jumlah_biaya_bank;
 			?>
 			<?php
 			$jumlah_pengeluaran = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now;
-			$jumlah_pengeluaran_februari = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			$jumlah_pengeluaran_maret = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
 			$jumlah_pengeluaran_april = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
 			$jumlah_pengeluaran_mei = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank;
 			$jumlah_pengeluaran_juni = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank;
 			$jumlah_pengeluaran_juli = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank;
-			$total_pengeluaran = $jumlah_pengeluaran_februari + $jumlah_pengeluaran_maret + $jumlah_pengeluaran_april + $jumlah_pengeluaran_mei + $jumlah_pengeluaran_juni + $jumlah_pengeluaran_juli;
+			$total_pengeluaran = $jumlah_pengeluaran_maret + $jumlah_pengeluaran_april + $jumlah_pengeluaran_mei + $jumlah_pengeluaran_juni + $jumlah_pengeluaran_juli;
 			$sisa_pengeluaran = $jumlah_pengeluaran - $total_pengeluaran;
 			?>
 			<?php
-			$jumlah_biaya_overhead = $total_desember_biaya_overhead + $total_februari_biaya_overhead + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
+			$jumlah_biaya_overhead = $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
 			$sisa_biaya_overhead = $total_rap_2022_biaya_overhead - $jumlah_biaya_overhead;
 			?>
 			<?php
 			$akumulasi_4 = $akumulasi_2 - $jumlah_pengeluaran;
 			$jumlah_akumulasi_now = $akumulasi_4 - $jumlah_pengeluaran_akumulasi;
-			$jumlah_akumulasi_februari = $jumlah_akumulasi_now - $jumlah_pengeluaran_februari;
-			$jumlah_akumulasi_maret = $jumlah_akumulasi_februari - $jumlah_pengeluaran_maret;
+			$jumlah_akumulasi_maret = $jumlah_akumulasi_now - $jumlah_pengeluaran_maret;
 			$jumlah_akumulasi_april = $jumlah_akumulasi_maret - $jumlah_pengeluaran_april;
 			$jumlah_akumulasi_mei = $jumlah_akumulasi_april - $jumlah_pengeluaran_mei;
 			$jumlah_akumulasi_juni = $jumlah_akumulasi_mei - $jumlah_pengeluaran_juni;
@@ -1037,17 +1027,16 @@
 			$sisa_akumulasi_pajak = $total_akumulasi_pajak - ($ppn_keluar_now['total'] - $ppn_masuk_now['total']);
 			?>
             <?php
-            $total_penerimaan_penjualan = $penerimaan_penjualan_now['total'] + $penerimaan_penjualan_februari['total'] + $penerimaan_penjualan_maret['total'] + $penerimaan_penjualan_april['total'] + $penerimaan_penjualan_mei['total'] + $penerimaan_penjualan_juni['total'] + $penerimaan_penjualan_juli['total'];
+            $total_penerimaan_penjualan = $penerimaan_penjualan_now['total'] + $penerimaan_penjualan_maret['total'] + $penerimaan_penjualan_april['total'] + $penerimaan_penjualan_mei['total'] + $penerimaan_penjualan_juni['total'] + $penerimaan_penjualan_juli['total'];
             $sisa_penerimaan_penjualan = $penerimaan_penjualan_now['total'] - $total_penerimaan_penjualan;
             ?>
             <?php
-            $total_pengembalian_penjualan = $pengembalian_penjualan_now['total'] + $pengembalian_penjualan_februari['total'] + $pengembalian_penjualan_maret['total'] + $pengembalian_penjualan_april['total'] + $pengembalian_penjualan_mei['total'] + $pengembalian_penjualan_juni['total'] + $pengembalian_penjualan_juli['total'];
+            $total_pengembalian_penjualan = $pengembalian_penjualan_now['total'] + $pengembalian_penjualan_maret['total'] + $pengembalian_penjualan_april['total'] + $pengembalian_penjualan_mei['total'] + $pengembalian_penjualan_juni['total'] + $pengembalian_penjualan_juli['total'];
             $sisa_pengembalian_penjualan = $pengembalian_penjualan_now['total'] - $total_pengembalian_penjualan;
             ?>
 			<?php
 			$jumlah_vii_rap = $penerimaan_penjualan_now['total'] + $pengembalian_penjualan_now['total'];
 			$jumlah_vii_now = $penerimaan_penjualan_now['total'] + $pengembalian_penjualan_now['total'];
-			$jumlah_vii_februari = $penerimaan_penjualan_februari['total'] + $pengembalian_penjualan_februari['total'];
 			$jumlah_vii_maret = $penerimaan_penjualan_maret['total'] + $pengembalian_penjualan_maret['total'];
 			$jumlah_vii_april = $penerimaan_penjualan_april['total'] + $pengembalian_penjualan_april['total'];
 			$jumlah_vii_mei = $penerimaan_penjualan_mei['total'] + $pengembalian_penjualan_mei['total'];
@@ -1059,8 +1048,7 @@
 			<?php
 			$akumulasi_6 = $akumulasi_5 - $jumlah_vii_rap;
 			$posisi_vi_now = $akumulasi_6 - $jumlah_vii_now;
-			$posisi_vi_februari = $posisi_vi_now - $jumlah_vii_februari;
-			$posisi_vi_maret = $posisi_vi_februari - $jumlah_vii_maret;
+			$posisi_vi_maret = $posisi_vi_now - $jumlah_vii_maret;
 			$posisi_vi_april = $posisi_vi_maret - $jumlah_vii_april;
 			$posisi_vi_mei = $posisi_vi_april - $jumlah_vii_mei;
 			$posisi_vi_juni = $posisi_vi_mei - $jumlah_vii_juni;
@@ -1072,7 +1060,6 @@
 				<th align="left"><u>PRODUKSI (EXCL. PPN)</u></th>
 				<th align="right">100%</th>
 				<th align="right"><?php echo number_format($presentase_now,2,',','.');?>%</th>
-				<th align="right"><?php echo number_format($presentase_februari,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_maret,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_april,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_mei,2,',','.');?>%</th>
@@ -1085,7 +1072,6 @@
 				<th align="left">AKUMULASI (%)</th>
 				<th align="right">100%</th>
 				<th align="right"><?php echo number_format($presentase_now,2,',','.');?>%</th>
-				<th align="right"><?php echo number_format($presentase_akumulasi_februari,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_akumulasi_maret,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_akumulasi_april,2,',','.');?>%</th>
 				<th align="right"><?php echo number_format($presentase_akumulasi_mei,2,',','.');?>%</th>
@@ -1098,7 +1084,6 @@
 				<th align="left">&nbsp;&nbsp;1. PRODUKSI (Rp.)</th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_nilai,0,',','.');?></th>
@@ -1111,7 +1096,6 @@
 				<th align="left">&nbsp;&nbsp;2. AKUMULASI (Rp.)</th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($penjualan_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_penjualan_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_penjualan_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_penjualan_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_penjualan_mei,0,',','.');?></th>
@@ -1121,11 +1105,10 @@
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_penjualan_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="11"><u>PENERIMAAN (EXCL. PPN)</u></th>
+				<th align="left" colspan="10"><u>PENERIMAAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;Uang Muka</th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1140,7 +1123,6 @@
 				<th align="left">&nbsp;&nbsp;Termin / Angsuran</th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_mei,0,',','.');?></th>
@@ -1151,7 +1133,6 @@
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;Pengembalian Retensi</th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1173,13 +1154,11 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
 			</tr>
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH PENERIMAAN</i></th>
 				<th align="right"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_mei,0,',','.');?></th>
@@ -1192,7 +1171,6 @@
 				<th align="left"><i>AKUMULASI PENERIMAAN</i></th>
 				<th align="right"><?php echo number_format($akumulasi_2,0,',','.');?></th>
 				<th align="right"><?php echo number_format($termin_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_termin_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_termin_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_termin_mei,0,',','.');?></th>
@@ -1202,13 +1180,12 @@
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 - $akumulasi_termin_juli,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="11"><u>PEMAKAIAN BAHAN & ALAT</u></th>
+				<th align="left" colspan="10"><u>PEMAKAIAN BAHAN & ALAT</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Bahan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_bahan_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bahan_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bahan_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_bahan_rap,0,',','.');?></th>
@@ -1221,7 +1198,6 @@
 				<th align="left">&nbsp;&nbsp;2. Alat</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($alat_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_alat_rap,0,',','.');?></th>
@@ -1238,7 +1214,6 @@
 				<th align="left"><i>JUMLAH PEMAKAIAN</i></th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_bahan_rap + $total_februari_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bahan_rap + $total_maret_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bahan_rap + $total_april_biaya_alat_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_bahan_rap + $total_mei_biaya_alat_rap,0,',','.');?></th>
@@ -1251,7 +1226,6 @@
 				<th align="left"><i>AKUMULASI PEMAKAIAN</i></th>
 				<th align="right"><?php echo number_format($akumulasi_3,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_now + $alat_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_pemakaian_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_pemakaian_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_pemakaian_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($akumulasi_pemakaian_mei,0,',','.');?></th>
@@ -1264,7 +1238,6 @@
 				<th align="left">&nbsp;&nbsp;1. Biaya Bahan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($pembayaran_bahan_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
@@ -1284,13 +1257,11 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;3. Biaya Peralatan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($alat_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
@@ -1310,13 +1281,11 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;5. Biaya Bank</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($diskonto_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_bank,0,',','.');?></th>
@@ -1329,7 +1298,6 @@
 				<th align="left">&nbsp;&nbsp;6. BAU Proyek</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($overhead_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_mei_biaya_overhead,0,',','.');?></th>
@@ -1340,7 +1308,6 @@
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;7. Rupa - Rupa</th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1362,11 +1329,9 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;9. PPN Masukan</th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1381,7 +1346,6 @@
 				<th align="left"><i>JUMLAH PENGELUARAN</i></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($jumlah_pengeluaran_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_pengeluaran_mei,0,',','.');?></th>
@@ -1394,8 +1358,6 @@
 				<th align="left"><i>AKUMULASI PENGELUARAN</i></th>
 				<th align="right"><?php echo number_format($akumulasi_4,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_akumulasi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($jumlah_akumulasi_januari,0,',','.');?></th>
-				<th align="right"><?php echo number_format($jumlah_akumulasi_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_akumulasi_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_akumulasi_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_akumulasi_mei,0,',','.');?></th>
@@ -1405,13 +1367,12 @@
 				<th align="right"><?php echo number_format($sisa_akumulasi,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="11"><u>PAJAK</u></th>
+				<th align="left" colspan="10"><u>PAJAK</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th align="right"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100),0,',','.');?></th>
 				<th align="right"><?php echo number_format($ppn_keluar_now['total'],0,',','.');?></th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1423,7 +1384,6 @@
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th align="right"><?php echo number_format((($total_rap_2022_biaya_bahan * 11) / 100),0,',','.');?></th>
-				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
@@ -1442,7 +1402,6 @@
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
 				<th align="right"><?php echo number_format($ppn_keluar_now['total'] - $ppn_masuk_now['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(($total_rap_nilai_2022 / 10 - $total_rap_2022_biaya_bahan  / 10) - ($ppn_keluar_now['total'] - $ppn_masuk_now['total']),0,',','.');?></th>
 			</tr>
@@ -1455,18 +1414,16 @@
 				<th align="right"></th>
 				<th align="right"></th>
 				<th align="right"></th>
-				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_akumulasi_pajak,0,',','.');?></th>
 				<th align="right"><?php echo number_format($sisa_akumulasi_pajak,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left" colspan="11"><u>PINJAMAN</u></th>
+				<th align="left" colspan="10"><u>PINJAMAN</u></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;Penerimaan Pinjaman</th>
 				<th align="right"><?php echo number_format($penerimaan_penjualan_now['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($penerimaan_penjualan_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($penerimaan_penjualan_februari['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($penerimaan_penjualan_maret['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($penerimaan_penjualan_april['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($penerimaan_penjualan_mei['total'],0,',','.');?></th>
@@ -1479,7 +1436,6 @@
 				<th align="left">&nbsp;&nbsp;Pengembalian Pinjaman</th>
 				<th align="right"><?php echo number_format($pengembalian_penjualan_now['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pengembalian_penjualan_now['total'],0,',','.');?></th>
-				<th align="right"><?php echo number_format($pengembalian_penjualan_februari['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pengembalian_penjualan_maret['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pengembalian_penjualan_april['total'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($pengembalian_penjualan_mei['total'],0,',','.');?></th>
@@ -1492,7 +1448,6 @@
 				<th align="left"><i>JUMLAH PINJAMAN</i></th>
 				<th align="right"><?php echo number_format($jumlah_vii_rap,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_vii_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($jumlah_vii_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_vii_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_vii_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($jumlah_vii_mei,0,',','.');?></th>
@@ -1505,7 +1460,6 @@
 				<th align="left"><i>AKUMULASI PINJAMAN</i></th>
 				<th align="right"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_mei,0,',','.');?></th>
@@ -1518,7 +1472,6 @@
 				<th align="left"><i>KAS AWAL</i></th>
 				<th align="right"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_mei,0,',','.');?></th>
@@ -1531,7 +1484,6 @@
 				<th align="left"><i>KAS AKHIR</i></th>
 				<th align="right"><?php echo number_format($akumulasi_6,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($posisi_vi_februari,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_maret,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_april,0,',','.');?></th>
 				<th align="right"><?php echo number_format($posisi_vi_mei,0,',','.');?></th>
