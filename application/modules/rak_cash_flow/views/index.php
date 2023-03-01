@@ -64,8 +64,8 @@
 														<th class="text-center">Tanggal</th>
                                                         <th class="text-center">Biaya Bahan</th>
                                                         <th class="text-center">Biaya Alat</th>
-														<th class="text-center">Biaya Overhead</th>
                                                         <th class="text-center">Biaya Bank</th>
+														<th class="text-center">Biaya Overhead</th>
                                                         <th class="text-center">Termin</th>
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
@@ -136,11 +136,11 @@
                 {
                     "data": "biaya_alat"
                 },
-				{
-                    "data": "biaya_overhead"
-                },
                 {
                     "data": "biaya_bank"
+                },
+				{
+                    "data": "biaya_overhead"
                 },
                 {
                     "data": "termin"

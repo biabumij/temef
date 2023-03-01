@@ -669,8 +669,8 @@ class Rak extends Secure_Controller {
 		$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
 		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
-		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
+		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
 
 		$this->db->trans_start(); # Starting Transaction
@@ -680,8 +680,8 @@ class Rak extends Secure_Controller {
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
 			'biaya_bahan' => $biaya_bahan,
 			'biaya_alat' => $biaya_alat,
-			'biaya_overhead' => $biaya_overhead,
 			'biaya_bank' => $biaya_bank,
+			'biaya_overhead' => $biaya_overhead,
 			'termin' => $termin,
 			
 			'status' => 'PUBLISH',
@@ -765,8 +765,8 @@ class Rak extends Secure_Controller {
 				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
 				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
 				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
-				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
+				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya_cash_flow/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
