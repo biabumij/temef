@@ -65,7 +65,7 @@
                                                 <tr>
                                                     <td>Biaya Alat</td>
 													<td>
-                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
