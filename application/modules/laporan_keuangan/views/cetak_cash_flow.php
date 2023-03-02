@@ -307,12 +307,20 @@
 			->get()->row_array();*/
 			$pengembalian_pinjaman_now = 895000000;
 
-			$piutang = $this->db->select('SUM(prm.display_price) as sisa_hutang_penerimaan')
+			$piutang = $this->db->select('SUM(pp.display_price) as total')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po po','pp.salesPo_id = po.id','left')
+			->where("po.status in ('OPEN','CLOSED')")
+			->where("pp.date_production <= '$last_opname'")
+			->get()->row_array();
+
+			$hutang = $this->db->select('SUM(prm.display_price) as total')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left')
 			->where("ppo.status in ('PUBLISH','CLOSED')")
 			->where("prm.date_receipt <= '$last_opname'")
 			->get()->row_array();
+			
 
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
@@ -956,24 +964,15 @@
 			$akumulasi_juni = $akumulasi_now;
 			$akumulasi_juli = $akumulasi_now;
 
-			$kas_awal_rap = ((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022) - $jumlah_pengeluaran - $jumlah_pajak_rap;
-			$kas_awal_akumulasi_now = $penjualan_now['total'] - $jumlah_pengeluaran_akumulasi - $jumlah_pinjaman_now;
-			$kas_awal_akumulasi_februari = $total_februari_nilai - $jumlah_pengeluaran_februari;
-			$kas_awal_akumulasi_maret = $total_maret_nilai - $jumlah_pengeluaran_maret;
-			$kas_awal_akumulasi_april = $total_april_nilai - $jumlah_pengeluaran_april;
-			$kas_awal_akumulasi_mei = $total_mei_nilai - $jumlah_pengeluaran_mei;
-			$kas_awal_akumulasi_juni = $total_juni_nilai - $jumlah_pengeluaran_juni;
-			$kas_awal_akumulasi_juli = $total_juli_nilai - $jumlah_pengeluaran_juli;
-			$total_kas_awal = $kas_awal_akumulasi_now + $kas_awal_akumulasi_februari + $kas_awal_akumulasi_maret + $kas_awal_akumulasi_april + $kas_awal_akumulasi_mei + $kas_awal_akumulasi_juni + $kas_awal_akumulasi_juli;
-
-			$kas_akhir_rap = $kas_awal_rap;
-			$kas_akhir_akumulasi_now = $kas_awal_akumulasi_now;
-			$kas_akhir_akumulasi_februari = $kas_akhir_akumulasi_now + $kas_awal_akumulasi_februari;
-			$kas_akhir_akumulasi_maret = $kas_akhir_akumulasi_februari + $kas_awal_akumulasi_maret;
-			$kas_akhir_akumulasi_april = $kas_akhir_akumulasi_maret + $kas_awal_akumulasi_april;
-			$kas_akhir_akumulasi_mei = $kas_akhir_akumulasi_april + $kas_awal_akumulasi_mei;
-			$kas_akhir_akumulasi_juni = $kas_akhir_akumulasi_mei + $kas_awal_akumulasi_juni;
-			$kas_akhir_akumulasi_juli = $kas_akhir_akumulasi_juni + $kas_awal_akumulasi_juli;
+			$posisi_dana_rap = ((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022) - $jumlah_pengeluaran - $jumlah_pajak_rap;
+			$posisi_dana_akumulasi_now = ($jumlah_penerimaan_now - $jumlah_pengeluaran_akumulasi - $jumlah_pinjaman_now) + $piutang['total'] - $hutang['total'];
+			$posisi_dana_akumulasi_februari = $jumlah_penerimaan_februari - $jumlah_pengeluaran_februari;
+			$posisi_dana_akumulasi_maret = $jumlah_penerimaan_maret - $jumlah_pengeluaran_maret;
+			$posisi_dana_akumulasi_april = $jumlah_penerimaan_april - $jumlah_pengeluaran_april;
+			$posisi_dana_akumulasi_mei = $jumlah_penerimaan_mei - $jumlah_pengeluaran_mei;
+			$posisi_dana_akumulasi_juni = $jumlah_penerimaan_juni - $jumlah_pengeluaran_juni;
+			$posisi_dana_akumulasi_juli = $jumlah_penerimaan_juli - $jumlah_pengeluaran_juli;
+			$total_posisi_dana = $posisi_dana_akumulasi_now + $posisi_dana_akumulasi_februari + $posisi_dana_akumulasi_maret + $posisi_dana_akumulasi_april + $posisi_dana_akumulasi_mei + $posisi_dana_akumulasi_juni + $posisi_dana_akumulasi_juli;
 			?>
 			<tr class="table-baris1">
 				<th align="left"><u>PRODUKSI (EXCL. PPN)</u></th>
@@ -1417,29 +1416,16 @@
 				<th align="right">-</th>
 			</tr>
 			<tr class="table-total">
-				<th align="left"><i>KAS AWAL</i></th>
-				<th align="right"><?php echo number_format($kas_awal_rap);?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_februari,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_maret,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_april,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_mei,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_juni,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_awal_akumulasi_juli,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_kas_awal,0,',','.');?></th>
-				<th align="right">-</th>
-			</tr>
-			<tr class="table-total">
-				<th align="left"><i>KAS AKHIR</i></th>
-				<th align="right"><?php echo number_format($kas_akhir_rap);?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_now,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_februari,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_maret,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_april,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_mei,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_juni,0,',','.');?></th>
-				<th align="right"><?php echo number_format($kas_akhir_akumulasi_juli,0,',','.');?></th>
-				<th align="right">-</th>
+				<th align="left"><i>POSISI DANA</i></th>
+				<th align="right"><?php echo number_format($posisi_dana_rap);?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_now,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_februari,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_maret,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_april,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_mei,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_juni,0,',','.');?></th>
+				<th align="right"><?php echo number_format($posisi_dana_akumulasi_juli,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_posisi_dana,0,',','.');?></th>
 				<th align="right">-</th>
 			</tr>
 	    </table>
