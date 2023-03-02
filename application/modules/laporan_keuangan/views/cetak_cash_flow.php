@@ -272,10 +272,10 @@
 			//END DISKONTO
 
 			//PPN KELUAR
-			$ppn_masuk_now = $this->db->select('SUM(ppd.tax) as total')
-			->from('pmm_penagihan_pembelian_detail ppd')
-			->join('pmm_penagihan_pembelian ppp','ppd.penagihan_pembelian_id = ppp.id','left')
-			->where("ppp.tanggal_invoice < '$last_opname'")
+			$ppn_masuk_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->where("pm.memo = 'PPN'")
+			->where("pm.tanggal_pembayaran < '$last_opname'")
 			->get()->row_array();
 
 			//PPN MASUK
@@ -296,7 +296,6 @@
 			->get()->row_array();*/
 			$penerimaan_pinjaman_now = 1300000000;
 			
-
 			//PENGEMBALIAN PEMINJAMAN
 			/*$pengembalian_pinjaman_now = $this->db->select('sum(pdb.kredit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -307,6 +306,14 @@
 			->where("pb.tanggal_transaksi < '$last_opname'")
 			->get()->row_array();*/
 			$pengembalian_pinjaman_now = 895000000;
+
+			$piutang = $this->db->select('SUM(prm.display_price) as sisa_hutang_penerimaan')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left')
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("prm.date_receipt <= '$last_opname'")
+			->get()->row_array();
+
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
 
@@ -837,6 +844,7 @@
 			$akumulasi_penjualan_total = $akumulasi_penjualan_juli;
 			?>
 			<?php
+			//TERMIN
 			$termin_februari = $rencana_kerja_februari_biaya_cash_flow['termin'];
 			$termin_maret = $rencana_kerja_maret_biaya_cash_flow['termin'];
 			$termin_april = $rencana_kerja_april_biaya_cash_flow['termin'];
@@ -844,14 +852,24 @@
 			$termin_juni = $rencana_kerja_juni_biaya_cash_flow['termin'];
 			$termin_juli = $rencana_kerja_juli_biaya_cash_flow['termin'];
 			$jumlah_termin = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
-			?>
-			<?php
-			$akumulasi_termin_februari = $termin_now['total'] + $termin_februari;
-			$akumulasi_termin_maret = $termin_now['total'] + $termin_februari + $termin_maret;
-			$akumulasi_termin_april = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april;
-			$akumulasi_termin_mei = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei;
-			$akumulasi_termin_juni = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni;
-			$akumulasi_termin_juli = $termin_now['total'] + $termin_februari + $termin_maret + $termin_april + $termin_mei + $termin_juni + $termin_juli;
+			//JUMLAH PENERIMAAN
+			$jumlah_penerimaan_now = $termin_now['total'] + $ppn_masuk_now['total'];
+			$jumlah_penerimaan_februari = $rencana_kerja_februari_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_maret = $rencana_kerja_maret_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_april = $rencana_kerja_april_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_mei = $rencana_kerja_mei_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_juni = $rencana_kerja_juni_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_juli = $rencana_kerja_juli_biaya_cash_flow['termin'];
+			$jumlah_penerimaan_total = $jumlah_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret + $jumlah_penerimaan_april + $jumlah_penerimaan_mei + $jumlah_penerimaan_juni + $jumlah_penerimaan_juli;
+			$sisa_penerimaan_total = (($total_rap_nilai_2022 * 11) / 100) - $ppn_masuk_now['total'];
+			//AKUMULASI PENERIMAAN
+			$akumulasi_penerimaan_now =  $jumlah_penerimaan_now;
+			$akumulasi_penerimaan_februari = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari;
+			$akumulasi_penerimaan_maret = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret;
+			$akumulasi_penerimaan_april = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret + $jumlah_penerimaan_april;
+			$akumulasi_penerimaan_mei = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret + $jumlah_penerimaan_april + $jumlah_penerimaan_mei;
+			$akumulasi_penerimaan_juni = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret + $jumlah_penerimaan_april + $jumlah_penerimaan_mei + $jumlah_penerimaan_juni;
+			$akumulasi_penerimaan_juli = $akumulasi_penerimaan_now + $jumlah_penerimaan_februari + $jumlah_penerimaan_maret + $jumlah_penerimaan_april + $jumlah_penerimaan_mei + $jumlah_penerimaan_juni + $jumlah_penerimaan_juli;
 			?>
 			<?php
 			$jumlah_bahan_rap = $total_bahan_now + $total_februari_biaya_bahan_rap + $total_maret_biaya_bahan_rap + $total_april_biaya_bahan_rap + $total_mei_biaya_bahan_rap + $total_juni_biaya_bahan_rap + $total_juli_biaya_bahan_rap;
@@ -1054,39 +1072,39 @@
 			<tr class="table-baris1">
 				<th align="left">&nbsp;&nbsp;PPN Keluaran</th>
 				<th align="right"><?php echo number_format(($total_rap_nilai_2022 * 11) / 100,0,',','.');?></th>
+				<th align="right"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right"></th>
-				<th align="right"><?php echo number_format(($total_rap_nilai_2022 * 11) / 100,0,',','.');?></th>
+				<th align="right"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($sisa_penerimaan_total,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="left"><i>JUMLAH PENERIMAAN</i></th>
 				<th align="right"><?php echo number_format((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_now['total'] + (($termin_now['total'] * 11) / 100),0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_februari,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_maret,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_april,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_mei,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_juni,0,',','.');?></th>
-				<th align="right"><?php echo number_format($termin_juli,0,',','.');?></th>
-				<th align="right"><?php echo number_format($jumlah_termin,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_now,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_februari,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_maret,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_april,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_mei,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_juni,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_juli,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_total,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022 - $jumlah_termin,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
 				<th align="left"><i>AKUMULASI PENERIMAAN</i></th>
 				<th align="right">-</th>
-				<th align="right"><?php echo number_format($termin_now['total'] + (($termin_now['total'] * 11) / 100),0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_februari,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_maret,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_april,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_mei,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_juni,0,',','.');?></th>
-				<th align="right"><?php echo number_format($akumulasi_termin_juli,0,',','.');?></th>
+				<th align="right"><?php echo number_format($jumlah_penerimaan_now,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_februari,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_maret,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_april,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_mei,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_juni,0,',','.');?></th>
+				<th align="right"><?php echo number_format($akumulasi_penerimaan_juli,0,',','.');?></th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 			</tr>
