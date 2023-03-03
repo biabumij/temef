@@ -158,7 +158,6 @@
 			$pembayaran_bahan_now = $this->db->select('SUM(pm.total) as total')
 			->from('pmm_pembayaran_penagihan_pembelian pm')
 			->where("(pm.tanggal_pembayaran <= '$last_opname')")
-			->where("pm.status = 'DISETUJUI'")
 			->get()->row_array();
 			$pembayaran_bahan_now = $pembayaran_bahan_now['total'];
 
