@@ -3055,19 +3055,36 @@ class Reports extends CI_Controller {
 			->where("pb.tanggal_transaksi < '$last_opname'")
 			->get()->row_array();
 
-			$piutang_now = $this->db->select('SUM(pp.display_price) as total')
+			//PIUTANG
+			$penerimaan_piutang_now = $this->db->select('SUM(pp.display_price) as total')
 			->from('pmm_productions pp')
 			->join('pmm_sales_po po','pp.salesPo_id = po.id','left')
 			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.date_production <= '$last_opname'")
 			->get()->row_array();
 
-			$hutang_now = $this->db->select('SUM(prm.display_price) as total')
+			$pembayaran_piutang_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran pm')
+			->where("pm.memo <> 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
+
+			$piutang_now = $penerimaan_piutang_now['total'] - $pembayaran_piutang_now['total'];
+
+			$penerimaan_hutang_now = $this->db->select('SUM(prm.display_price) as total')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left')
 			->where("ppo.status in ('PUBLISH','CLOSED')")
 			->where("prm.date_receipt <= '$last_opname'")
 			->get()->row_array();
+
+			$pembayaran_hutang_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->where("pm.memo <> 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
+
+			$hutang_now = $penerimaan_hutang_now['total'] - $pembayaran_hutang_now['total'];
 			
 
 			?>
@@ -3713,7 +3730,7 @@ class Reports extends CI_Controller {
 			$akumulasi_pinjaman_juli = $akumulasi_pinjaman_now;
 
 			$posisi_dana_rap = ((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022) - $jumlah_pengeluaran - $jumlah_pajak_rap;
-			$posisi_dana_akumulasi_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - ($jumlah_pengeluaran_akumulasi - $pengembalian_pinjaman_now - $jumlah_pinjaman_now - $pemakaian_dana_now['total']) + ($piutang_now['total'] - $hutang_now['total']);
+			$posisi_dana_akumulasi_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - ($jumlah_pengeluaran_akumulasi - $pengembalian_pinjaman_now - $jumlah_pinjaman_now - $pemakaian_dana_now['total']) + ($piutang_now - $hutang_now);
 			$posisi_dana_akumulasi_februari = $jumlah_penerimaan_februari - $jumlah_pengeluaran_februari;
 			$posisi_dana_akumulasi_maret = $jumlah_penerimaan_maret - $jumlah_pengeluaran_maret;
 			$posisi_dana_akumulasi_april = $jumlah_penerimaan_april - $jumlah_pengeluaran_april;
@@ -4183,7 +4200,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active2-csf">
 				<th class="text-left"><i>PIUTANG</i></th>
 				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($piutang_now['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($piutang_now,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
@@ -4196,7 +4213,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active2-csf">
 				<th class="text-left"><i>HUTANG</i></th>
 				<th class="text-right">-</th>
-				<th class="text-right"><?php echo number_format($hutang_now['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_now,0,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
