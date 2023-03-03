@@ -992,7 +992,7 @@
 			$akumulasi_pinjaman_juli = $akumulasi_pinjaman_now;
 
 			$posisi_dana_rap = ((($total_rap_nilai_2022 * 11) / 100) + $total_rap_nilai_2022) - $jumlah_pengeluaran - $jumlah_pajak_rap;
-			$posisi_dana_akumulasi_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - ($jumlah_pengeluaran_akumulasi - $pengembalian_pinjaman_now - $jumlah_pinjaman_now - $pemakaian_dana_now['total']) + ($piutang_now - $hutang_now);
+			$posisi_dana_akumulasi_now = $penerimaan_pinjaman_now + $jumlah_penerimaan_now - $jumlah_pengeluaran_akumulasi - $pengembalian_pinjaman_now - $jumlah_pinjaman_now - $pemakaian_dana_now['total'] + $piutang_now - $hutang_now;
 			$posisi_dana_akumulasi_februari = $jumlah_penerimaan_februari - $jumlah_pengeluaran_februari;
 			$posisi_dana_akumulasi_maret = $jumlah_penerimaan_maret - $jumlah_pengeluaran_maret;
 			$posisi_dana_akumulasi_april = $jumlah_penerimaan_april - $jumlah_pengeluaran_april;
