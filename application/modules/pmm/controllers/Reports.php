@@ -2895,11 +2895,13 @@ class Reports extends CI_Controller {
 
 			$pembayaran_bahan_now = $this->db->select('SUM(pm.total) as total')
 			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
+			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("(pm.tanggal_pembayaran <= '$last_opname')")
+			->where("ppo.kategori_id = '1'")
+			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$pembayaran_bahan_now = $pembayaran_bahan_now['total'];
-
-			//AKUMULASI BAHAN
 
 			//AKUMULASI ALAT
 			$nilai_alat_now = $this->db->select('SUM(prm.display_price) as nilai')
@@ -2921,6 +2923,16 @@ class Reports extends CI_Controller {
 			foreach ($akumulasi_bbm_now as $b){
 				$total_akumulasi_bbm_now += $b['total_nilai_keluar_2'];
 			}
+
+			$pembayaran_alat_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
+			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
+			->where("(pm.tanggal_pembayaran <= '$last_opname')")
+			->where("ppo.kategori_id = '5'")
+			->where("pm.memo <> 'PPN'")
+			->get()->row_array();
+			$pembayaran_alat_now = $pembayaran_alat_now['total'];
 
 			$total_insentif_tm_now = 0;
 			$insentif_tm_now = $this->db->select('sum(pdb.debit) as total')
@@ -2953,8 +2965,7 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
 
-			$alat_now = $nilai_alat_now['nilai'] + $total_akumulasi_bbm_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
-			//AKUMULASI ALAT
+			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
 
 			//TERMIN NOW
 			$termin_now = $this->db->select('SUM(pm.total) as total')
@@ -3682,7 +3693,7 @@ class Reports extends CI_Controller {
 			?>
 			<?php
 			$jumlah_pengeluaran = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank + $pajak_masukan;
-			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now;
+			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now + $penerimaan_pinjaman_now;
 			$jumlah_pengeluaran_februari = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			$jumlah_pengeluaran_maret = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
 			$jumlah_pengeluaran_april = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
@@ -3944,20 +3955,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran11" style="display:none;"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran12" style="display:none;">&nbsp;&nbsp;2. Biaya Upah</th>
-				<th class="text-right" id="boxpengeluaran13" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran14" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran15" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran16" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran17" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran18" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran19" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran20" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran21" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran22" style="display:none;">-</th>
-			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran23" style="display:none;">&nbsp;&nbsp;3. Biaya Peralatan</th>
+				<th class="text-left" id="boxpengeluaran23" style="display:none;">&nbsp;&nbsp;2. Biaya Peralatan</th>
 				<th class="text-right" id="boxpengeluaran24" style="display:none;"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran25" style="display:none;"><?php echo number_format($alat_now,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran26" style="display:none;"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
@@ -3970,20 +3968,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran33" style="display:none;"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran34" style="display:none;">&nbsp;&nbsp;4. Biaya Subkontraktor</th>
-				<th class="text-right" id="boxpengeluaran35" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran36" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran37" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran38" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran39" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran40" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran41" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran42" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran43" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran44" style="display:none;">-</th>
-			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran45" style="display:none;">&nbsp;&nbsp;5. Biaya Bank</th>
+				<th class="text-left" id="boxpengeluaran45" style="display:none;">&nbsp;&nbsp;3. Biaya Bank</th>
 				<th class="text-right" id="boxpengeluaran46" style="display:none;"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran47" style="display:none;"><?php echo number_format($diskonto_now,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran48" style="display:none;"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
@@ -3996,7 +3981,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran55" style="display:none;"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran56" style="display:none;">&nbsp;&nbsp;6. BAU Proyek</th>
+				<th class="text-left" id="boxpengeluaran56" style="display:none;">&nbsp;&nbsp;4. BUA</th>
 				<th class="text-right" id="boxpengeluaran57" style="display:none;"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran58" style="display:none;"><?php echo number_format($overhead_now,0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran59" style="display:none;"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
@@ -4009,35 +3994,9 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran66" style="display:none;"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran67" style="display:none;">&nbsp;&nbsp;7. Rupa - Rupa</th>
-				<th class="text-right" id="boxpengeluaran68" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran69" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran70" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran71" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran72" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran73" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran74" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran75" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran76" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran77" style="display:none;">-</th>
-			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran78" style="display:none;">&nbsp;&nbsp;8. Lain - Lain / Susut Aktiva</th>
-				<th class="text-right" id="boxpengeluaran79" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran80" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran81" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran82" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran83" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran84" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran85" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran86" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran87" style="display:none;">-</th>
-				<th class="text-right" id="boxpengeluaran88" style="display:none;">-</th>
-			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left" id="boxpengeluaran89" style="display:none;">&nbsp;&nbsp;9. PPN Masukan</th>
+				<th class="text-left" id="boxpengeluaran89" style="display:none;">&nbsp;&nbsp;5. PPN Masukan</th>
 				<th class="text-right" id="boxpengeluaran90" style="display:none;"><?php echo number_format($pajak_masukan,0,',','.');?></th>
-				<th class="text-right" id="boxpengeluaran91" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran91" style="display:none;"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
 				<th class="text-right" id="boxpengeluaran92" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran93" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran94" style="display:none;">-</th>
@@ -4046,6 +4005,19 @@ class Reports extends CI_Controller {
 				<th class="text-right" id="boxpengeluaran97" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran98" style="display:none;">-</th>
 				<th class="text-right" id="boxpengeluaran99" style="display:none;">-</th>
+			</tr>
+			<tr class="table-active3-csf">
+				<th class="text-left" id="boxpengeluaran78" style="display:none;">&nbsp;&nbsp;6. Biaya Persiapan</th>
+				<th class="text-right" id="boxpengeluaran79" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran80" style="display:none;"><?php echo number_format($penerimaan_pinjaman_now,0,',','.');?></th>
+				<th class="text-right" id="boxpengeluaran81" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran82" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran83" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran84" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran85" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran86" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran87" style="display:none;">-</th>
+				<th class="text-right" id="boxpengeluaran88" style="display:none;">-</th>
 			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left" id="boxpengeluaran100" style="display:none;"><i>JUMLAH PENGELUARAN</i></th>

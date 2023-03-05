@@ -157,11 +157,13 @@
 
 			$pembayaran_bahan_now = $this->db->select('SUM(pm.total) as total')
 			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
+			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
 			->where("(pm.tanggal_pembayaran <= '$last_opname')")
+			->where("ppo.kategori_id = '1'")
+			->where("pm.memo <> 'PPN'")
 			->get()->row_array();
 			$pembayaran_bahan_now = $pembayaran_bahan_now['total'];
-
-			//AKUMULASI BAHAN
 
 			//AKUMULASI ALAT
 			$nilai_alat_now = $this->db->select('SUM(prm.display_price) as nilai')
@@ -183,6 +185,16 @@
 			foreach ($akumulasi_bbm_now as $b){
 				$total_akumulasi_bbm_now += $b['total_nilai_keluar_2'];
 			}
+
+			$pembayaran_alat_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->join('pmm_penagihan_pembelian ppp','pm.penagihan_pembelian_id = ppp.id','left')
+			->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left')
+			->where("(pm.tanggal_pembayaran <= '$last_opname')")
+			->where("ppo.kategori_id = '5'")
+			->where("pm.memo <> 'PPN'")
+			->get()->row_array();
+			$pembayaran_alat_now = $pembayaran_alat_now['total'];
 
 			$total_insentif_tm_now = 0;
 			$insentif_tm_now = $this->db->select('sum(pdb.debit) as total')
@@ -215,8 +227,7 @@
 			->get()->row_array();
 			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
 
-			$alat_now = $nilai_alat_now['nilai'] + $total_akumulasi_bbm_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
-			//AKUMULASI ALAT
+			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
 
 			//TERMIN NOW
 			$termin_now = $this->db->select('SUM(pm.total) as total')
@@ -944,7 +955,7 @@
 			?>
 			<?php
 			$jumlah_pengeluaran = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank + $pajak_masukan;
-			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now;
+			$jumlah_pengeluaran_akumulasi = $pembayaran_bahan_now + $alat_now + $diskonto_now + $overhead_now + $penerimaan_pinjaman_now;
 			$jumlah_pengeluaran_februari = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			$jumlah_pengeluaran_maret = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
 			$jumlah_pengeluaran_april = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
@@ -1202,20 +1213,7 @@
 				<th align="right"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;2. Biaya Upah</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;3. Biaya Peralatan</th>
+				<th align="left">&nbsp;&nbsp;2. Biaya Peralatan</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($alat_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_alat,0,',','.');?></th>
@@ -1228,20 +1226,7 @@
 				<th align="right"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;4. Biaya Subkontraktor</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;5. Biaya Bank</th>
+				<th align="left">&nbsp;&nbsp;3. Biaya Bank</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($diskonto_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_bank,0,',','.');?></th>
@@ -1254,7 +1239,7 @@
 				<th align="right"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;6. BAU Proyek</th>
+				<th align="left">&nbsp;&nbsp;4. BUA</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($overhead_now,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_februari_biaya_overhead,0,',','.');?></th>
@@ -1267,35 +1252,23 @@
 				<th align="right"><?php echo number_format($sisa_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;7. Rupa - Rupa</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;8. Lain - Lain / Susut Aktiva</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-				<th align="right">-</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="left">&nbsp;&nbsp;9. PPN Masukan</th>
+				<th align="left">&nbsp;&nbsp;5. PPN Masukan</th>
 				<th align="right"><?php echo number_format($pajak_masukan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($ppn_masuk_now['total'],0,',','.');?></th>
 				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+				<th align="right">-</th>
+			</tr>
+			
+			<tr class="table-baris1">
+				<th align="left">&nbsp;&nbsp;6. Biaya Persiapan</th>
+				<th align="right">-</th>
+				<th align="right"><?php echo number_format($penerimaan_pinjaman_now,0,',','.');?></th>
 				<th align="right">-</th>
 				<th align="right">-</th>
 				<th align="right">-</th>
