@@ -672,6 +672,7 @@ class Rak extends Secure_Controller {
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
+		$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -683,6 +684,7 @@ class Rak extends Secure_Controller {
 			'biaya_bank' => $biaya_bank,
 			'biaya_overhead' => $biaya_overhead,
 			'termin' => $termin,
+			'biaya_persiapan' => $biaya_persiapan,
 			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
@@ -767,6 +769,7 @@ class Rak extends Secure_Controller {
 				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
+				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
 				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya_cash_flow/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
@@ -853,6 +856,7 @@ class Rak extends Secure_Controller {
 			$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 			$termin =  str_replace('.', '', $this->input->post('termin'));
+			$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 
 			$arr_update = array(
 				'biaya_bahan' => $biaya_bahan,
@@ -860,6 +864,7 @@ class Rak extends Secure_Controller {
 				'biaya_overhead' => $biaya_overhead,
 				'biaya_bank' => $biaya_bank,
 				'termin' => $termin,
+				'biaya_persiapan' => $biaya_persiapan,
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')
