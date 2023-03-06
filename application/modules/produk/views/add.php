@@ -95,7 +95,7 @@
                                                         }
                                                     }
                                                     ?>
-                                                </select>
+                                                </select><p style='color:red;font-weight:bold;'> * KATEGORI ALAT wajib di isi jika memilih kategori PERALATAN, jika bukan abaikan saja.</p>
                                             </div>
 										</div>
                                         <div class="form-group">
