@@ -94,6 +94,25 @@ class M_produk extends CI_Model {
         return $output;
     }
 
+    function getKategoriAlat($id=false,$row=false)
+    {
+        $output = false;
 
+        $this->db->select('nama_kategori_alat,id');
+        if($id){
+            $this->db->where('id',$id);
+        }
+        $this->db->where('status','PUBLISH');
+        $query = $this->db->get('kategori_alat');
+        if($query->num_rows() > 0){
+            if($row){
+                $output = $query->row_array();
+            }else {
+                $output = $query->result_array();    
+            }
+            
+        }
+        return $output;
+    }
 
 }

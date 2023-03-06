@@ -78,6 +78,27 @@
                                             </div>
 										</div>
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Kategori Alat</label>
+                                            <div class="col-sm-10">
+                                                <select id="kategori_alat" class="form-control form-select2" name="kategori_alat">
+                                                    <option>Pilih Kategori Alat</option>
+                                                    <?php
+                                                    if($kategori_alat){
+                                                        foreach ($kategori_alat as $key => $kal) {
+                                                            $selected = false;
+                                                            if(isset($edit) && $edit['kategori_alat'] == $kal['id']){
+                                                                $selected = 'selected';
+                                                            }
+                                                            ?>
+                                                            <option value="<?= $kal['id'];?>" <?= $selected;?> ><?= $kal['nama_kategori_alat'];?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+										</div>
+                                        <div class="form-group">
                                              <label class="col-sm-2 control-label">Tipe Produk</label>
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="bahanbaku" id="bahanbaku" value="1" <?= (isset($edit) && $edit['bahanbaku'] == 1) ? 'checked' : '' ;?> > Bahan Baku
