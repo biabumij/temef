@@ -2876,7 +2876,7 @@
                     color: '#FF0000',
 
                     zones: [{
-                        value: [<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>],
+                        value: [<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>],
                     }, {
                         dashStyle: 'dot'
                     }]
