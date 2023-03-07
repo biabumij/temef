@@ -79,6 +79,8 @@
                                                         <th>Batu Split 2-3</th>
                                                         <th>Solar</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -111,6 +113,8 @@
 														<th>Total Nilai Keluar (Bahan Baku)</th>
                                                         <th>Total Nilai Keluar (Solar)</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -266,11 +270,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5, 6, 7, 8],
+                    "targets": [0, 2, 3, 4, 5, 6, 7, 8, 9. 10],
                     "className": 'text-center',
                 }
             ],
@@ -339,11 +349,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5],
+                    "targets": [0, 2, 3, 4, 5, 6, 7],
                     "className": 'text-center',
                 }
             ],
