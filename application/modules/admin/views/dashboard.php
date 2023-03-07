@@ -2876,7 +2876,7 @@
                     color: '#FF0000',
 
                     zones: [{
-                        value: 26.34
+                        value: 30.01
                     }, {
                         dashStyle: 'dot'
                     }]
