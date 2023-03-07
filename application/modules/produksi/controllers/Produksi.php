@@ -117,7 +117,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_hpp >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_hpp <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar, pp.status');
+        $this->db->select('pp.id, pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp_bahan_baku pp');
 		
@@ -215,7 +215,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_keluar_2, pp.status');
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_keluar_2, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi pp');
 		
