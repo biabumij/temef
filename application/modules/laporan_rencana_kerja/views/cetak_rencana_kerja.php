@@ -45,7 +45,7 @@
 					<div style="display: block;font-weight: bold;font-size: 12px;">RENCANA KERJA PRODUKSI</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : 2022 - 2023</div>
+					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
 				</td>
 			</tr>
 		</table>

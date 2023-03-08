@@ -45,7 +45,7 @@
 					<div style="display: block;font-weight: bold;font-size: 12px;">PROGNOSA PRODUKSI</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : 2022 - 2023</div>
+					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
 				</td>
 			</tr>
 		</table>
@@ -309,496 +309,467 @@
 
 			<!-- JANUARI -->
 			<?php
-			$date_januari_awal = date('2023-01-01');
-			$date_januari_akhir = date('2023-01-31');
-			$rencana_kerja_januari = $this->db->select('r.*')
+			$date_now = date('Y-m-d');
+
+			//BULAN 1
+			$date_1_awal = date('Y-m-01', (strtotime($date_now)));
+			$date_1_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_1_awal)));
+
+			$rencana_kerja_1 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
-			$volume_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
-			$volume_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
-			$volume_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
-			$volume_januari_produk_d = $rencana_kerja_januari['vol_produk_d'];
+			$volume_1_produk_a = $rencana_kerja_1['vol_produk_a'];
+			$volume_1_produk_b = $rencana_kerja_1['vol_produk_b'];
+			$volume_1_produk_c = $rencana_kerja_1['vol_produk_c'];
+			$volume_1_produk_d = $rencana_kerja_1['vol_produk_d'];
 
-			$total_januari_volume = $volume_januari_produk_a + $volume_januari_produk_b + $volume_januari_produk_c + $volume_januari_produk_d;
+			$total_1_volume = $volume_1_produk_a + $volume_1_produk_b + $volume_1_produk_c + $volume_1_produk_d;
 
-			$rencana_kerja_biaya_januari = $this->db->select('r.*')
+			$rencana_kerja_biaya_1 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_januari = $volume_januari_produk_a * $rencana_kerja_januari['price_a'];
-			$nilai_jual_225_januari = $volume_januari_produk_b * $rencana_kerja_januari['price_b'];
-			$nilai_jual_250_januari = $volume_januari_produk_c * $rencana_kerja_januari['price_c'];
-			$nilai_jual_250_18_januari = $volume_januari_produk_d * $rencana_kerja_januari['price_d'];
-			$nilai_jual_all_januari = $nilai_jual_125_januari + $nilai_jual_225_januari + $nilai_jual_250_januari + $nilai_jual_250_18_januari;
+			$nilai_jual_125_1 = $volume_1_produk_a * $rencana_kerja_1['price_a'];
+			$nilai_jual_225_1 = $volume_1_produk_b * $rencana_kerja_1['price_b'];
+			$nilai_jual_250_1 = $volume_1_produk_c * $rencana_kerja_1['price_c'];
+			$nilai_jual_250_18_1 = $volume_1_produk_d * $rencana_kerja_1['price_d'];
+			$nilai_jual_all_1 = $nilai_jual_125_1 + $nilai_jual_225_1 + $nilai_jual_250_1 + $nilai_jual_250_18_1;
 
-			$total_januari_nilai = $nilai_jual_all_januari;
+			$total_1_nilai = $nilai_jual_all_1;
 
 			//VOLUME
-			$rencana_kerja_januari = $this->db->select('r.*')
+			$rencana_kerja_1 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_januari_produk_a = $rencana_kerja_januari['vol_produk_a'];
-			$volume_rencana_kerja_januari_produk_b = $rencana_kerja_januari['vol_produk_b'];
-			$volume_rencana_kerja_januari_produk_c = $rencana_kerja_januari['vol_produk_c'];
-			$volume_rencana_kerja_januari_produk_d = $rencana_kerja_januari['vol_produk_d'];
+			$volume_rencana_kerja_1_produk_a = $rencana_kerja_1['vol_produk_a'];
+			$volume_rencana_kerja_1_produk_b = $rencana_kerja_1['vol_produk_b'];
+			$volume_rencana_kerja_1_produk_c = $rencana_kerja_1['vol_produk_c'];
+			$volume_rencana_kerja_1_produk_d = $rencana_kerja_1['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_januari = $this->db->select('r.*')
+			$rencana_kerja_biaya_1 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_januari = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_1 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 		
-			$total_januari_biaya_bahan = $rencana_kerja_biaya_januari['biaya_bahan'];
-			$total_januari_biaya_alat = $rencana_kerja_biaya_januari['biaya_alat'];
-			$total_januari_biaya_overhead = $rencana_kerja_biaya_cash_flow_januari['biaya_overhead'];
-			$total_januari_biaya_bank = $rencana_kerja_biaya_cash_flow_januari['biaya_bank'];
-			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank;
+			$total_1_biaya_bahan = $rencana_kerja_biaya_1['biaya_bahan'];
+			$total_1_biaya_alat = $rencana_kerja_biaya_1['biaya_alat'];
+			$total_1_biaya_overhead = $rencana_kerja_biaya_cash_flow_1['biaya_overhead'];
+			$total_1_biaya_bank = $rencana_kerja_biaya_cash_flow_1['biaya_bank'];
+			$total_biaya_1_biaya = $total_1_biaya_bahan + $total_1_biaya_alat + $total_1_biaya_overhead + $total_1_biaya_bank;
 			?>
-			<!-- JANUARI -->
 
-			<!-- FEBRUARI -->
 			<?php
-			$date_februari_awal = date('2023-02-01');
-			$date_februari_akhir = date('2023-02-28');
-			$rencana_kerja_februari = $this->db->select('r.*')
+			//BULAN 2
+			$date_2_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_1_akhir)));
+			$date_2_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_2_awal)));
+
+			$rencana_kerja_2 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
-			$volume_februari_produk_a = $rencana_kerja_februari['vol_produk_a'];
-			$volume_februari_produk_b = $rencana_kerja_februari['vol_produk_b'];
-			$volume_februari_produk_c = $rencana_kerja_februari['vol_produk_c'];
-			$volume_februari_produk_d = $rencana_kerja_februari['vol_produk_d'];
+			$volume_2_produk_a = $rencana_kerja_2['vol_produk_a'];
+			$volume_2_produk_b = $rencana_kerja_2['vol_produk_b'];
+			$volume_2_produk_c = $rencana_kerja_2['vol_produk_c'];
+			$volume_2_produk_d = $rencana_kerja_2['vol_produk_d'];
 
-			$total_februari_volume = $volume_februari_produk_a + $volume_februari_produk_b + $volume_februari_produk_c + $volume_februari_produk_d;
+			$total_2_volume = $volume_2_produk_a + $volume_2_produk_b + $volume_2_produk_c + $volume_2_produk_d;
 
-			$rencana_kerja_biaya_februari = $this->db->select('r.*')
+			$rencana_kerja_biaya_2 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_februari = $volume_februari_produk_a * $rencana_kerja_februari['price_a'];
-			$nilai_jual_225_februari = $volume_februari_produk_b * $rencana_kerja_februari['price_b'];
-			$nilai_jual_250_februari = $volume_februari_produk_c * $rencana_kerja_februari['price_c'];
-			$nilai_jual_250_18_februari = $volume_februari_produk_d * $rencana_kerja_februari['price_d'];
-			$nilai_jual_all_februari = $nilai_jual_125_februari + $nilai_jual_225_februari + $nilai_jual_250_februari + $nilai_jual_250_18_februari;
+			$nilai_jual_125_2 = $volume_2_produk_a * $rencana_kerja_2['price_a'];
+			$nilai_jual_225_2 = $volume_2_produk_b * $rencana_kerja_2['price_b'];
+			$nilai_jual_250_2 = $volume_2_produk_c * $rencana_kerja_2['price_c'];
+			$nilai_jual_250_18_2 = $volume_2_produk_d * $rencana_kerja_2['price_d'];
+			$nilai_jual_all_2 = $nilai_jual_125_2 + $nilai_jual_225_2 + $nilai_jual_250_2 + $nilai_jual_250_18_2;
 
-			$total_februari_nilai = $nilai_jual_all_februari;
+			$total_2_nilai = $nilai_jual_all_2;
 
 			//VOLUME
-			$rencana_kerja_februari = $this->db->select('r.*')
+			$rencana_kerja_2 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_februari_produk_a = $rencana_kerja_februari['vol_produk_a'];
-			$volume_rencana_kerja_februari_produk_b = $rencana_kerja_februari['vol_produk_b'];
-			$volume_rencana_kerja_februari_produk_c = $rencana_kerja_februari['vol_produk_c'];
-			$volume_rencana_kerja_februari_produk_d = $rencana_kerja_februari['vol_produk_d'];
+			$volume_rencana_kerja_2_produk_a = $rencana_kerja_2['vol_produk_a'];
+			$volume_rencana_kerja_2_produk_b = $rencana_kerja_2['vol_produk_b'];
+			$volume_rencana_kerja_2_produk_c = $rencana_kerja_2['vol_produk_c'];
+			$volume_rencana_kerja_2_produk_d = $rencana_kerja_2['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_februari = $this->db->select('r.*')
+			$rencana_kerja_biaya_2 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_februari = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_2 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 		
-			$total_februari_biaya_bahan = $rencana_kerja_biaya_februari['biaya_bahan'];
-			$total_februari_biaya_alat = $rencana_kerja_biaya_februari['biaya_alat'];
-			$total_februari_biaya_overhead = $rencana_kerja_biaya_cash_flow_februari['biaya_overhead'];
-			$total_februari_biaya_bank = $rencana_kerja_biaya_cash_flow_februari['biaya_bank'];
-			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
+			$total_2_biaya_bahan = $rencana_kerja_biaya_2['biaya_bahan'];
+			$total_2_biaya_alat = $rencana_kerja_biaya_2['biaya_alat'];
+			$total_2_biaya_overhead = $rencana_kerja_biaya_cash_flow_2['biaya_overhead'];
+			$total_2_biaya_bank = $rencana_kerja_biaya_cash_flow_2['biaya_bank'];
+			$total_biaya_2_biaya = $total_2_biaya_bahan + $total_2_biaya_alat + $total_2_biaya_overhead + $total_2_biaya_bank;
 			?>
-			<!-- FEBRUARI -->
 
-			<!-- MARET -->
 			<?php
-			$date_maret_awal = date('2023-03-01');
-			$date_maret_akhir = date('2023-03-31');
-			$rencana_kerja_maret = $this->db->select('r.*')
+			$date_3_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_2_akhir)));
+			$date_3_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_3_awal)));
+
+			$rencana_kerja_3 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
-			$volume_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
-			$volume_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
-			$volume_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
-			$volume_maret_produk_d = $rencana_kerja_maret['vol_produk_d'];
+			$volume_3_produk_a = $rencana_kerja_3['vol_produk_a'];
+			$volume_3_produk_b = $rencana_kerja_3['vol_produk_b'];
+			$volume_3_produk_c = $rencana_kerja_3['vol_produk_c'];
+			$volume_3_produk_d = $rencana_kerja_3['vol_produk_d'];
 
-			$total_maret_volume = $volume_maret_produk_a + $volume_maret_produk_b + $volume_maret_produk_c + $volume_maret_produk_d;
+			$total_3_volume = $volume_3_produk_a + $volume_3_produk_b + $volume_3_produk_c + $volume_3_produk_d;
 
-			$rencana_kerja_biaya_maret = $this->db->select('r.*')
+			$rencana_kerja_biaya_3 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_maret = $volume_maret_produk_a * $rencana_kerja_maret['price_a'];
-			$nilai_jual_225_maret = $volume_maret_produk_b * $rencana_kerja_maret['price_b'];
-			$nilai_jual_250_maret = $volume_maret_produk_c * $rencana_kerja_maret['price_c'];
-			$nilai_jual_250_18_maret = $volume_maret_produk_d * $rencana_kerja_maret['price_d'];
-			$nilai_jual_all_maret = $nilai_jual_125_maret + $nilai_jual_225_maret + $nilai_jual_250_maret + $nilai_jual_250_18_maret;
+			$nilai_jual_125_3 = $volume_3_produk_a * $rencana_kerja_3['price_a'];
+			$nilai_jual_225_3 = $volume_3_produk_b * $rencana_kerja_3['price_b'];
+			$nilai_jual_250_3 = $volume_3_produk_c * $rencana_kerja_3['price_c'];
+			$nilai_jual_250_18_3 = $volume_3_produk_d * $rencana_kerja_3['price_d'];
+			$nilai_jual_all_3 = $nilai_jual_125_3 + $nilai_jual_225_3 + $nilai_jual_250_3 + $nilai_jual_250_18_3;
 
-			$total_maret_nilai = $nilai_jual_all_maret;
+			$total_3_nilai = $nilai_jual_all_3;
 
 			//VOLUME
-			$rencana_kerja_maret = $this->db->select('r.*')
+			$rencana_kerja_3 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_maret_produk_a = $rencana_kerja_maret['vol_produk_a'];
-			$volume_rencana_kerja_maret_produk_b = $rencana_kerja_maret['vol_produk_b'];
-			$volume_rencana_kerja_maret_produk_c = $rencana_kerja_maret['vol_produk_c'];
-			$volume_rencana_kerja_maret_produk_d = $rencana_kerja_maret['vol_produk_d'];
+			$volume_rencana_kerja_3_produk_a = $rencana_kerja_3['vol_produk_a'];
+			$volume_rencana_kerja_3_produk_b = $rencana_kerja_3['vol_produk_b'];
+			$volume_rencana_kerja_3_produk_c = $rencana_kerja_3['vol_produk_c'];
+			$volume_rencana_kerja_3_produk_d = $rencana_kerja_3['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_maret = $this->db->select('r.*')
+			$rencana_kerja_biaya_3 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_maret = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_3 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 		
-			$total_maret_biaya_bahan = $rencana_kerja_biaya_maret['biaya_bahan'];
-			$total_maret_biaya_alat = $rencana_kerja_biaya_maret['biaya_alat'];
-			$total_maret_biaya_overhead = $rencana_kerja_biaya_cash_flow_maret['biaya_overhead'];
-			$total_maret_biaya_bank = $rencana_kerja_biaya_cash_flow_maret['biaya_bank'];
-			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
+			$total_3_biaya_bahan = $rencana_kerja_biaya_3['biaya_bahan'];
+			$total_3_biaya_alat = $rencana_kerja_biaya_3['biaya_alat'];
+			$total_3_biaya_overhead = $rencana_kerja_biaya_cash_flow_3['biaya_overhead'];
+			$total_3_biaya_bank = $rencana_kerja_biaya_cash_flow_3['biaya_bank'];
+			$total_biaya_3_biaya = $total_3_biaya_bahan + $total_3_biaya_alat + $total_3_biaya_overhead + $total_3_biaya_bank;
 			?>
-			<!-- MARET -->
 
-			<!-- APRIL -->
 			<?php
-			$date_april_awal = date('2023-04-01');
-			$date_april_akhir = date('2023-04-30');
-			$rencana_kerja_april = $this->db->select('r.*')
+			//BULAN 4
+			$date_4_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_3_akhir)));
+			$date_4_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_4_awal)));
+
+			$rencana_kerja_4 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
-			$volume_april_produk_a = $rencana_kerja_april['vol_produk_a'];
-			$volume_april_produk_b = $rencana_kerja_april['vol_produk_b'];
-			$volume_april_produk_c = $rencana_kerja_april['vol_produk_c'];
-			$volume_april_produk_d = $rencana_kerja_april['vol_produk_d'];
+			$volume_4_produk_a = $rencana_kerja_4['vol_produk_a'];
+			$volume_4_produk_b = $rencana_kerja_4['vol_produk_b'];
+			$volume_4_produk_c = $rencana_kerja_4['vol_produk_c'];
+			$volume_4_produk_d = $rencana_kerja_4['vol_produk_d'];
 
-			$total_april_volume = $volume_april_produk_a + $volume_april_produk_b + $volume_april_produk_c + $volume_april_produk_d;
+			$total_4_volume = $volume_4_produk_a + $volume_4_produk_b + $volume_4_produk_c + $volume_4_produk_d;
 
-			$rencana_kerja_biaya_april = $this->db->select('r.*')
+			$rencana_kerja_biaya_4 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_april = $volume_april_produk_a * $rencana_kerja_april['price_a'];
-			$nilai_jual_225_april = $volume_april_produk_b * $rencana_kerja_april['price_b'];
-			$nilai_jual_250_april = $volume_april_produk_c * $rencana_kerja_april['price_c'];
-			$nilai_jual_250_18_april = $volume_april_produk_d * $rencana_kerja_april['price_d'];
-			$nilai_jual_all_april = $nilai_jual_125_april + $nilai_jual_225_april + $nilai_jual_250_april + $nilai_jual_250_18_april;
+			$nilai_jual_125_4 = $volume_4_produk_a * $rencana_kerja_4['price_a'];
+			$nilai_jual_225_4 = $volume_4_produk_b * $rencana_kerja_4['price_b'];
+			$nilai_jual_250_4 = $volume_4_produk_c * $rencana_kerja_4['price_c'];
+			$nilai_jual_250_18_4 = $volume_4_produk_d * $rencana_kerja_4['price_d'];
+			$nilai_jual_all_4 = $nilai_jual_125_4 + $nilai_jual_225_4 + $nilai_jual_250_4 + $nilai_jual_250_18_4;
 
-			$total_april_nilai = $nilai_jual_all_april;
+			$total_4_nilai = $nilai_jual_all_4;
 
 			//VOLUME
-			$rencana_kerja_april = $this->db->select('r.*')
+			$rencana_kerja_4 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_april_produk_a = $rencana_kerja_april['vol_produk_a'];
-			$volume_rencana_kerja_april_produk_b = $rencana_kerja_april['vol_produk_b'];
-			$volume_rencana_kerja_april_produk_c = $rencana_kerja_april['vol_produk_c'];
-			$volume_rencana_kerja_april_produk_d = $rencana_kerja_april['vol_produk_d'];
+			$volume_rencana_kerja_4_produk_a = $rencana_kerja_4['vol_produk_a'];
+			$volume_rencana_kerja_4_produk_b = $rencana_kerja_4['vol_produk_b'];
+			$volume_rencana_kerja_4_produk_c = $rencana_kerja_4['vol_produk_c'];
+			$volume_rencana_kerja_4_produk_d = $rencana_kerja_4['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_april = $this->db->select('r.*')
+			$rencana_kerja_biaya_4 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_april = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_4 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 		
-			$total_april_biaya_bahan = $rencana_kerja_biaya_april['biaya_bahan'];
-			$total_april_biaya_alat = $rencana_kerja_biaya_april['biaya_alat'];
-			$total_april_biaya_overhead = $rencana_kerja_biaya_cash_flow_april['biaya_overhead'];
-			$total_april_biaya_bank = $rencana_kerja_biaya_cash_flow_april['biaya_bank'];
-			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
+			$total_4_biaya_bahan = $rencana_kerja_biaya_4['biaya_bahan'];
+			$total_4_biaya_alat = $rencana_kerja_biaya_4['biaya_alat'];
+			$total_4_biaya_overhead = $rencana_kerja_biaya_cash_flow_4['biaya_overhead'];
+			$total_4_biaya_bank = $rencana_kerja_biaya_cash_flow_4['biaya_bank'];
+			$total_biaya_4_biaya = $total_4_biaya_bahan + $total_4_biaya_alat + $total_4_biaya_overhead + $total_4_biaya_bank;
 			?>
-			<!-- APRIL -->
 
-			<!-- MEI -->
 			<?php
-			$date_mei_awal = date('2023-05-01');
-			$date_mei_akhir = date('2023-05-31');
-			$rencana_kerja_mei = $this->db->select('r.*')
+			//BULAN 5
+			$date_5_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_4_akhir)));
+			$date_5_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_5_awal)));
+
+			$rencana_kerja_5 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
-			$volume_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
-			$volume_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
-			$volume_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
-			$volume_mei_produk_d = $rencana_kerja_mei['vol_produk_d'];
+			$volume_5_produk_a = $rencana_kerja_5['vol_produk_a'];
+			$volume_5_produk_b = $rencana_kerja_5['vol_produk_b'];
+			$volume_5_produk_c = $rencana_kerja_5['vol_produk_c'];
+			$volume_5_produk_d = $rencana_kerja_5['vol_produk_d'];
 
-			$total_mei_volume = $volume_mei_produk_a + $volume_mei_produk_b + $volume_mei_produk_c + $volume_mei_produk_d;
+			$total_5_volume = $volume_5_produk_a + $volume_5_produk_b + $volume_5_produk_c + $volume_5_produk_d;
 
-			$rencana_kerja_biaya_mei = $this->db->select('r.*')
+			$rencana_kerja_biaya_5 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_mei = $volume_mei_produk_a * $rencana_kerja_mei['price_a'];
-			$nilai_jual_225_mei = $volume_mei_produk_b * $rencana_kerja_mei['price_b'];
-			$nilai_jual_250_mei = $volume_mei_produk_c * $rencana_kerja_mei['price_c'];
-			$nilai_jual_250_18_mei = $volume_mei_produk_d * $rencana_kerja_mei['price_d'];
-			$nilai_jual_all_mei = $nilai_jual_125_mei + $nilai_jual_225_mei + $nilai_jual_250_mei + $nilai_jual_250_18_mei;
+			$nilai_jual_125_5 = $volume_5_produk_a * $rencana_kerja_5['price_a'];
+			$nilai_jual_225_5 = $volume_5_produk_b * $rencana_kerja_5['price_b'];
+			$nilai_jual_250_5 = $volume_5_produk_c * $rencana_kerja_5['price_c'];
+			$nilai_jual_250_18_5 = $volume_5_produk_d * $rencana_kerja_5['price_d'];
+			$nilai_jual_all_5 = $nilai_jual_125_5 + $nilai_jual_225_5 + $nilai_jual_250_5 + $nilai_jual_250_18_5;
 
-			$total_mei_nilai = $nilai_jual_all_mei;
+			$total_5_nilai = $nilai_jual_all_5;
 
 			//VOLUME
-			$rencana_kerja_mei = $this->db->select('r.*')
+			$rencana_kerja_5 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_mei_produk_a = $rencana_kerja_mei['vol_produk_a'];
-			$volume_rencana_kerja_mei_produk_b = $rencana_kerja_mei['vol_produk_b'];
-			$volume_rencana_kerja_mei_produk_c = $rencana_kerja_mei['vol_produk_c'];
-			$volume_rencana_kerja_mei_produk_d = $rencana_kerja_mei['vol_produk_d'];
+			$volume_rencana_kerja_5_produk_a = $rencana_kerja_5['vol_produk_a'];
+			$volume_rencana_kerja_5_produk_b = $rencana_kerja_5['vol_produk_b'];
+			$volume_rencana_kerja_5_produk_c = $rencana_kerja_5['vol_produk_c'];
+			$volume_rencana_kerja_5_produk_d = $rencana_kerja_5['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_mei = $this->db->select('r.*')
+			$rencana_kerja_biaya_5 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_mei = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_5 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 		
-			$total_mei_biaya_bahan = $rencana_kerja_biaya_mei['biaya_bahan'];
-			$total_mei_biaya_alat = $rencana_kerja_biaya_mei['biaya_alat'];
-			$total_mei_biaya_overhead = $rencana_kerja_biaya_cash_flow_mei['biaya_overhead'];
-			$total_mei_biaya_bank = $rencana_kerja_biaya_cash_flow_mei['biaya_bank'];
-			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank;
+			$total_5_biaya_bahan = $rencana_kerja_biaya_5['biaya_bahan'];
+			$total_5_biaya_alat = $rencana_kerja_biaya_5['biaya_alat'];
+			$total_5_biaya_overhead = $rencana_kerja_biaya_cash_flow_5['biaya_overhead'];
+			$total_5_biaya_bank = $rencana_kerja_biaya_cash_flow_5['biaya_bank'];
+			$total_biaya_5_biaya = $total_5_biaya_bahan + $total_5_biaya_alat + $total_5_biaya_overhead + $total_5_biaya_bank;
 			?>
-			<!-- MEI -->
 
-			<!-- JUNI -->
 			<?php
-			$date_juni_awal = date('2023-06-01');
-			$date_juni_akhir = date('2023-06-30');
-			$rencana_kerja_juni = $this->db->select('r.*')
+			//BULAN 4
+			$date_4_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_3_akhir)));
+			$date_4_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_4_awal)));
+
+			$rencana_kerja_4 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
-			$volume_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
-			$volume_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
-			$volume_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
-			$volume_juni_produk_d = $rencana_kerja_juni['vol_produk_d'];
+			$volume_4_produk_a = $rencana_kerja_4['vol_produk_a'];
+			$volume_4_produk_b = $rencana_kerja_4['vol_produk_b'];
+			$volume_4_produk_c = $rencana_kerja_4['vol_produk_c'];
+			$volume_4_produk_d = $rencana_kerja_4['vol_produk_d'];
 
-			$total_juni_volume = $volume_juni_produk_a + $volume_juni_produk_b + $volume_juni_produk_c + $volume_juni_produk_d;
+			$total_4_volume = $volume_4_produk_a + $volume_4_produk_b + $volume_4_produk_c + $volume_4_produk_d;
 
-			$rencana_kerja_biaya_juni = $this->db->select('r.*')
+			$rencana_kerja_biaya_4 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_juni = $volume_juni_produk_a * $rencana_kerja_juni['price_a'];
-			$nilai_jual_225_juni = $volume_juni_produk_b * $rencana_kerja_juni['price_b'];
-			$nilai_jual_250_juni = $volume_juni_produk_c * $rencana_kerja_juni['price_c'];
-			$nilai_jual_250_18_juni = $volume_juni_produk_d * $rencana_kerja_juni['price_d'];
-			$nilai_jual_all_juni = $nilai_jual_125_juni + $nilai_jual_225_juni + $nilai_jual_250_juni + $nilai_jual_250_18_juni;
+			$nilai_jual_125_4 = $volume_4_produk_a * $rencana_kerja_4['price_a'];
+			$nilai_jual_225_4 = $volume_4_produk_b * $rencana_kerja_4['price_b'];
+			$nilai_jual_250_4 = $volume_4_produk_c * $rencana_kerja_4['price_c'];
+			$nilai_jual_250_18_4 = $volume_4_produk_d * $rencana_kerja_4['price_d'];
+			$nilai_jual_all_4 = $nilai_jual_125_4 + $nilai_jual_225_4 + $nilai_jual_250_4 + $nilai_jual_250_18_4;
 
-			$total_juni_nilai = $nilai_jual_all_juni;
+			$total_4_nilai = $nilai_jual_all_4;
 
 			//VOLUME
-			$rencana_kerja_juni = $this->db->select('r.*')
+			$rencana_kerja_4 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_juni_produk_a = $rencana_kerja_juni['vol_produk_a'];
-			$volume_rencana_kerja_juni_produk_b = $rencana_kerja_juni['vol_produk_b'];
-			$volume_rencana_kerja_juni_produk_c = $rencana_kerja_juni['vol_produk_c'];
-			$volume_rencana_kerja_juni_produk_d = $rencana_kerja_juni['vol_produk_d'];
+			$volume_rencana_kerja_4_produk_a = $rencana_kerja_4['vol_produk_a'];
+			$volume_rencana_kerja_4_produk_b = $rencana_kerja_4['vol_produk_b'];
+			$volume_rencana_kerja_4_produk_c = $rencana_kerja_4['vol_produk_c'];
+			$volume_rencana_kerja_4_produk_d = $rencana_kerja_4['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_juni = $this->db->select('r.*')
+			$rencana_kerja_biaya_4 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_juni = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_4 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 		
-			$total_juni_biaya_bahan = $rencana_kerja_biaya_juni['biaya_bahan'];
-			$total_juni_biaya_alat = $rencana_kerja_biaya_juni['biaya_alat'];
-			$total_juni_biaya_overhead = $rencana_kerja_biaya_cash_flow_juni['biaya_overhead'];
-			$total_juni_biaya_bank = $rencana_kerja_biaya_cash_flow_juni['biaya_bank'];
-			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank;
+			$total_4_biaya_bahan = $rencana_kerja_biaya_4['biaya_bahan'];
+			$total_4_biaya_alat = $rencana_kerja_biaya_4['biaya_alat'];
+			$total_4_biaya_overhead = $rencana_kerja_biaya_cash_flow_4['biaya_overhead'];
+			$total_4_biaya_bank = $rencana_kerja_biaya_cash_flow_4['biaya_bank'];
+			$total_biaya_4_biaya = $total_4_biaya_bahan + $total_4_biaya_alat + $total_4_biaya_overhead + $total_4_biaya_bank;
 			?>
-			<!-- JUNI -->
 
-			<!-- JULI -->
 			<?php
-			$date_juli_awal = date('2023-07-01');
-			$date_juli_akhir = date('2023-07-31');
-			$rencana_kerja_juli = $this->db->select('r.*')
+			//BULAN 5
+			$date_6_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_5_akhir)));
+			$date_6_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_6_awal)));
+
+			$rencana_kerja_6 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
-			$volume_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
-			$volume_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
-			$volume_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
-			$volume_juli_produk_d = $rencana_kerja_juli['vol_produk_d'];
+			$volume_6_produk_a = $rencana_kerja_6['vol_produk_a'];
+			$volume_6_produk_b = $rencana_kerja_6['vol_produk_b'];
+			$volume_6_produk_c = $rencana_kerja_6['vol_produk_c'];
+			$volume_6_produk_d = $rencana_kerja_6['vol_produk_d'];
 
-			$total_juli_volume = $volume_juli_produk_a + $volume_juli_produk_b + $volume_juli_produk_c + $volume_juli_produk_d;
+			$total_6_volume = $volume_6_produk_a + $volume_6_produk_b + $volume_6_produk_c + $volume_6_produk_d;
 
-			$rencana_kerja_biaya_juli = $this->db->select('r.*')
+			$rencana_kerja_biaya_6 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 
-			$nilai_jual_125_juli = $volume_juli_produk_a * $rencana_kerja_juli['price_a'];
-			$nilai_jual_225_juli = $volume_juli_produk_b * $rencana_kerja_juli['price_b'];
-			$nilai_jual_250_juli = $volume_juli_produk_c * $rencana_kerja_juli['price_c'];
-			$nilai_jual_250_18_juli = $volume_juli_produk_d * $rencana_kerja_juli['price_d'];
-			$nilai_jual_all_juli = $nilai_jual_125_juli + $nilai_jual_225_juli + $nilai_jual_250_juli + $nilai_jual_250_18_juli;
+			$nilai_jual_125_6 = $volume_6_produk_a * $rencana_kerja_6['price_a'];
+			$nilai_jual_225_6 = $volume_6_produk_b * $rencana_kerja_6['price_b'];
+			$nilai_jual_250_6 = $volume_6_produk_c * $rencana_kerja_6['price_c'];
+			$nilai_jual_250_18_6 = $volume_6_produk_d * $rencana_kerja_6['price_d'];
+			$nilai_jual_all_6 = $nilai_jual_125_6 + $nilai_jual_225_6 + $nilai_jual_250_6 + $nilai_jual_250_18_6;
 
-			$total_juli_nilai = $nilai_jual_all_juli;
+			$total_6_nilai = $nilai_jual_all_6;
 
 			//VOLUME
-			$rencana_kerja_juli = $this->db->select('r.*')
+			$rencana_kerja_6 = $this->db->select('r.*')
 			->from('rak r')
-			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 			
-			$volume_rencana_kerja_juli_produk_a = $rencana_kerja_juli['vol_produk_a'];
-			$volume_rencana_kerja_juli_produk_b = $rencana_kerja_juli['vol_produk_b'];
-			$volume_rencana_kerja_juli_produk_c = $rencana_kerja_juli['vol_produk_c'];
-			$volume_rencana_kerja_juli_produk_d = $rencana_kerja_juli['vol_produk_d'];
+			$volume_rencana_kerja_6_produk_a = $rencana_kerja_6['vol_produk_a'];
+			$volume_rencana_kerja_6_produk_b = $rencana_kerja_6['vol_produk_b'];
+			$volume_rencana_kerja_6_produk_c = $rencana_kerja_6['vol_produk_c'];
+			$volume_rencana_kerja_6_produk_d = $rencana_kerja_6['vol_produk_d'];
 
 			//BIAYA
-			$rencana_kerja_biaya_juli = $this->db->select('r.*')
+			$rencana_kerja_biaya_6 = $this->db->select('r.*')
 			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_biaya_cash_flow_juli = $this->db->select('r.*')
+			$rencana_kerja_biaya_cash_flow_6 = $this->db->select('r.*')
 			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 		
-			$total_juli_biaya_bahan = $rencana_kerja_biaya_juli['biaya_bahan'];
-			$total_juli_biaya_alat = $rencana_kerja_biaya_juli['biaya_alat'];
-			$total_juli_biaya_overhead = $rencana_kerja_biaya_cash_flow_juli['biaya_overhead'];
-			$total_juli_biaya_bank = $rencana_kerja_biaya_cash_flow_juli['biaya_bank'];
-			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank;
+			$total_6_biaya_bahan = $rencana_kerja_biaya_6['biaya_bahan'];
+			$total_6_biaya_alat = $rencana_kerja_biaya_6['biaya_alat'];
+			$total_6_biaya_overhead = $rencana_kerja_biaya_cash_flow_6['biaya_overhead'];
+			$total_6_biaya_bank = $rencana_kerja_biaya_cash_flow_6['biaya_bank'];
+			$total_biaya_6_biaya = $total_6_biaya_bahan + $total_6_biaya_alat + $total_6_biaya_overhead + $total_6_biaya_bank;
 			?>
-			<!-- JULI -->
 
-			<!-- TOTAL -->
 			<?php
-			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_maret_produk_a + $volume_april_produk_a + $volume_mei_produk_a + $volume_juni_produk_a + $volume_juli_produk_a;
-			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_maret_produk_b + $volume_april_produk_b + $volume_mei_produk_b + $volume_juni_produk_b + $volume_juli_produk_b;
-			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_maret_produk_c + $volume_april_produk_c + $volume_mei_produk_c + $volume_juni_produk_c + $volume_juli_produk_c;
-			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_maret_produk_d + $volume_april_produk_d + $volume_mei_produk_d + $volume_juni_produk_d + $volume_juli_produk_d;
+			//TOTAL
+			$total_all_produk_a = $volume_akumulasi_produk_a + $volume_1_produk_a + $volume_2_produk_a + $volume_3_produk_a + $volume_4_produk_a + $volume_5_produk_a + $volume_6_produk_a;
+			$total_all_produk_b = $volume_akumulasi_produk_b + $volume_1_produk_b + $volume_2_produk_b + $volume_3_produk_b + $volume_4_produk_b + $volume_5_produk_b + $volume_6_produk_b;
+			$total_all_produk_c = $volume_akumulasi_produk_c + $volume_1_produk_c + $volume_2_produk_c + $volume_3_produk_c + $volume_4_produk_c + $volume_5_produk_c + $volume_6_produk_c;
+			$total_all_produk_d = $volume_akumulasi_produk_d + $volume_1_produk_d + $volume_2_produk_d + $volume_3_produk_d + $volume_4_produk_d + $volume_5_produk_d + $volume_6_produk_d;
 
-			$total_all_volume = $total_akumulasi_volume + $total_maret_volume + $total_april_volume + $total_mei_volume + $total_juni_volume + $total_juli_volume;
-			$total_all_nilai = $total_akumulasi_nilai  + $total_maret_nilai + $total_april_nilai + $total_mei_nilai + $total_juni_nilai + $total_juli_nilai;
+			$total_all_volume = $total_akumulasi_volume + $total_1_volume + $total_2_volume + $total_3_volume + $total_4_volume + $total_5_volume + $total_6_volume;
+			$total_all_nilai = $total_akumulasi_nilai  + $total_1_nilai + $total_2_nilai + $total_3_nilai + $total_4_nilai + $total_5_nilai + $total_6_nilai;
 
-			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_maret_biaya_bahan + $total_april_biaya_bahan + $total_mei_biaya_bahan + $total_juni_biaya_bahan + $total_juli_biaya_bahan;
-			$total_all_biaya_alat = $total_alat_akumulasi + $total_maret_biaya_alat + $total_april_biaya_alat + $total_mei_biaya_alat + $total_juni_biaya_alat + $total_juli_biaya_alat;
-			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_maret_biaya_overhead + $total_april_biaya_overhead + $total_mei_biaya_overhead + $total_juni_biaya_overhead + $total_juli_biaya_overhead;
-			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_maret_biaya_bank + $total_april_biaya_bank + $total_mei_biaya_bank + $total_juni_biaya_bank + $total_juli_biaya_bank;
+			$total_all_biaya_bahan = $total_bahan_akumulasi + $total_1_biaya_bahan + $total_2_biaya_bahan + $total_3_biaya_bahan + $total_4_biaya_bahan + $total_5_biaya_bahan + $total_6_biaya_bahan;
+			$total_all_biaya_alat = $total_alat_akumulasi + $total_1_biaya_alat + $total_2_biaya_alat + $total_3_biaya_alat + $total_4_biaya_alat + $total_5_biaya_alat + $total_6_biaya_alat;
+			$total_all_biaya_overhead = $total_overhead_akumulasi + $total_1_biaya_overhead + $total_2_biaya_overhead + $total_3_biaya_overhead + $total_4_biaya_overhead + $total_5_biaya_overhead + $total_6_biaya_overhead;
+			$total_all_biaya_bank = $total_diskonto_akumulasi + $total_1_biaya_bank + $total_2_biaya_bank + $total_3_biaya_bank + $total_4_biaya_bank + $total_5_biaya_bank + $total_6_biaya_bank;
 			
 			$total_biaya_all_biaya = $total_all_biaya_bahan + $total_all_biaya_alat + $total_all_biaya_overhead + $total_all_biaya_bank;
 
 			$total_laba_rap_2022 = $total_rap_nilai_2022 - $total_biaya_rap_2022_biaya;
 			$total_laba_saat_ini = $total_akumulasi_nilai - $total_biaya_akumulasi;
-			$total_laba_januari = $total_januari_nilai - $total_biaya_januari_biaya;
-			$total_laba_februari = $total_februari_nilai - $total_biaya_februari_biaya;
-			$total_laba_maret = $total_maret_nilai - $total_biaya_maret_biaya;
-			$total_laba_april = $total_april_nilai - $total_biaya_april_biaya;
-			$total_laba_mei = $total_mei_nilai - $total_biaya_mei_biaya;
-			$total_laba_juni = $total_juni_nilai - $total_biaya_juni_biaya;
-			$total_laba_juli = $total_juli_nilai - $total_biaya_juli_biaya;
+			$total_laba_1 = $total_1_nilai - $total_biaya_1_biaya;
+			$total_laba_2 = $total_2_nilai - $total_biaya_2_biaya;
+			$total_laba_3 = $total_3_nilai - $total_biaya_3_biaya;
+			$total_laba_4 = $total_4_nilai - $total_biaya_4_biaya;
+			$total_laba_5 = $total_5_nilai - $total_biaya_5_biaya;
 			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
 			?>
-			<!-- TOTAL -->
 			
-			<?php
-			$tanggal = $last_opname;
-			$date = date('Y-m-d',strtotime($tanggal));
-			?>
-			<?php
-			function tgl_indo($date){
-				$bulan = array (
-					1 =>   'Jan',
-					'Feb',
-					'Mar',
-					'Apr',
-					'Mei',
-					'Jun',
-					'Jul',
-					'Agu',
-					'Sep',
-					'Okt',
-					'Nov',
-					'Des'
-				);
-				$pecahkan = explode('-', $date);
-				
-				// variabel pecahkan 0 = tanggal
-				// variabel pecahkan 1 = bulan
-				// variabel pecahkan 2 = tahun
-			
-				return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-				
-			}
-			?>
 			<tr class="table-judul">
 				<th width="3%" align="center" rowspan="3">&nbsp; <br /><br />NO.</th>
 				<th width="14%" align="center" rowspan="3">&nbsp; <br /><br />URAIAN</th>
 				<th width="4%" align="center" rowspan="3">&nbsp; <br /><br />SATUAN</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />ADEDENDUM RAP</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?= tgl_indo(date($date)); ?></div></th>
-				<th width="58%" align="center" colspan="5">&nbsp; <br />PROGNOSA</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
+				<th width="58%" align="center" colspan="6">&nbsp; <br />PROGNOSA</th>
 				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center">MARET</th>
-				<th align="center">APRIL</th>
-				<th align="center">MEI</th>
-				<th align="center">JUNI</th>
-				<th align="center">JULI</th>
-	        </tr>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F');?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
+			</tr>
 			<tr class="table-judul">
 				<th align="center"></th>
-				<th align="center">2023</th>
-				<th align="center">2023</th>
-				<th align="center">2023</th>
-				<th align="center">2023</th>
-				<th align="center">2023</th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('Y');?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 	        </tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="11">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
+				<th align="left" colspan="12">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -806,11 +777,12 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_maret_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_april_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_mei_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juni_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juli_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_1_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_2_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_3_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_4_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
@@ -819,11 +791,12 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_maret_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_april_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_mei_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juni_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juli_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_1_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_2_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_3_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_4_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
@@ -832,11 +805,12 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_maret_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_april_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_mei_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juni_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juli_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_1_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_2_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_3_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_4_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
 			</tr>
 			<tr class="table-baris1">
@@ -845,11 +819,12 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($volume_rap_2022_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_maret_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_april_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_mei_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juni_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_juli_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_1_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_2_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_3_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_4_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_5_produk_d,2,',','.');?></th>
+				<th align="right"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
@@ -857,11 +832,12 @@
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_rap_volume_2022,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_volume,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_volume,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
@@ -869,15 +845,16 @@
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_nilai,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_nilai,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1-bold">
-				<th align="left" colspan="11">BIAYA</th>
+				<th align="left" colspan="12">BIAYA</th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>
@@ -885,11 +862,12 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_biaya_bahan,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_biaya_bahan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
@@ -898,11 +876,12 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_biaya_alat,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_biaya_alat,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
@@ -911,11 +890,12 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_biaya_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_biaya_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_biaya_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_biaya_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_biaya_overhead,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_biaya_overhead,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
@@ -924,11 +904,12 @@
 				<th align="center">LS</th>
 				<th align="right"><?php echo number_format($total_rap_2022_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_diskonto_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_maret_biaya_bank,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_april_biaya_bank,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_mei_biaya_bank,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juni_biaya_bank,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_juli_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_1_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_2_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_3_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_4_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_5_biaya_bank,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_6_biaya_bank,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_all_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
@@ -936,11 +917,12 @@
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_maret_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_april_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_mei_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_juni_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_juli_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_1_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_2_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_3_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_4_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_5_biaya,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_biaya_6_biaya,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
 			</tr>
 			<tr class="table-total">
@@ -948,11 +930,12 @@
 				<th align="center"></th>
 				<th align="right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_saat_ini,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_maret,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_april,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_mei,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_juni,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_juli,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_1,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_2,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_3,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_4,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_5,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_laba_6,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_laba_all,0,',','.');?></th>
 			</tr>
 	    </table>
