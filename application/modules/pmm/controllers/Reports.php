@@ -9512,7 +9512,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="3" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">SATUAN</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">ADEDENDUM RAP</th>
-				<th class="text-center" rowspan="3" style="vertical-align:middle">REALISASI SD. <?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle;text-transform:uppercase;">REALISASI SD. <br /><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
 				<th class="text-center" colspan="6">PROGNOSA</th>
 				<th class="text-center" rowspan="3" style="vertical-align:middle">TOTAL</th>
 	        </tr>
@@ -10352,7 +10352,6 @@ class Reports extends CI_Controller {
 			$total_volume_pasir_6 = $total_volume_pasir_125_6 + $total_volume_pasir_225_6 + $total_volume_pasir_250_6 + $total_volume_pasir_250_2_6;
 			$total_volume_batu1020_6 = $total_volume_batu1020_125_6 + $total_volume_batu1020_225_6 + $total_volume_batu1020_250_6 + $total_volume_batu1020_250_2_6;
 			$total_volume_batu2030_6 = $total_volume_batu2030_125_6 + $total_volume_batu2030_225_6 + $total_volume_batu2030_250_6 + $total_volume_batu2030_250_2_6;
-
 			
 			//SOLAR
 			$rap_solar = $this->db->select('rap.*')

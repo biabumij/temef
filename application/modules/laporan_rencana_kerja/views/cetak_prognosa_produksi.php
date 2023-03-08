@@ -743,31 +743,22 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="3">&nbsp; <br /><br />NO.</th>
-				<th width="14%" align="center" rowspan="3">&nbsp; <br /><br />URAIAN</th>
-				<th width="4%" align="center" rowspan="3">&nbsp; <br /><br />SATUAN</th>
-				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />ADEDENDUM RAP</th>
+				<th width="3%" align="center" rowspan="2">&nbsp; <br /><br />NO.</th>
+				<th width="14%" align="center" rowspan="2">&nbsp; <br /><br />URAIAN</th>
+				<th width="4%" align="center" rowspan="2">&nbsp; <br /><br />SATUAN</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />ADEDENDUM RAP</th>
 				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
 				<th width="58%" align="center" colspan="6">&nbsp; <br />PROGNOSA</th>
-				<th width="7%" align="center" rowspan="3">&nbsp; <br /><br />TOTAL</th>
+				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F');?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
+				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 			</tr>
-			<tr class="table-judul">
-				<th align="center"></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('Y');?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
-	        </tr>
 			<tr class="table-baris1-bold">
 				<th align="left" colspan="12">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
