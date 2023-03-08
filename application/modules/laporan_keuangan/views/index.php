@@ -91,7 +91,7 @@
 														
 													</div>
 													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+													<div id="wait-laba-rugi" style=" text-align: center; align-content: center; display: none;">	
 														<div>Please Wait</div>
 														<div class="fa-3x">
 														  <i class="fa fa-spinner fa-spin"></i>
@@ -174,7 +174,7 @@
 														
 													</div>
 													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+													<div id="wait-cash-flow" style=" text-align: center; align-content: center; display: none;">	
 														<div>Please Wait</div>
 														<div class="fa-3x">
 														  <i class="fa fa-spinner fa-spin"></i>
@@ -233,7 +233,7 @@
 
         function LabaRugi()
         {
-            $('#wait').fadeIn('fast');   
+            $('#wait-laba-rugi').fadeIn('fast');   
             $.ajax({
                 type    : "POST",
                 url     : "<?php echo site_url('pmm/reports/laba_rugi'); ?>/"+Math.random(),
@@ -243,7 +243,7 @@
                 },
                 success : function(result){
                     $('#laba-rugi').html(result);
-                    $('#wait').fadeOut('fast');
+                    $('#wait-laba-rugi').fadeOut('fast');
                 }
             });
         }
@@ -344,7 +344,7 @@
 
 			function CashFlow()
 			{
-				$('#wait').fadeIn('fast');   
+				$('#wait-cash-flow').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
 					url     : "<?php echo site_url('pmm/reports/cash_flow'); ?>/"+Math.random(),
@@ -354,7 +354,7 @@
 					},
 					success : function(result){
 						$('#cash-flow').html(result);
-						$('#wait').fadeOut('fast');
+						$('#wait-cash-flow').fadeOut('fast');
 					}
 				});
 			}

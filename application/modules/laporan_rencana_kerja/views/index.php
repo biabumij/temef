@@ -92,7 +92,7 @@
 														
 													</div>
 													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+													<div id="wait-rencana-kerja" style=" text-align: center; align-content: center; display: none;">	
 														<div>Please Wait</div>
 														<div class="fa-3x">
 														  <i class="fa fa-spinner fa-spin"></i>
@@ -127,7 +127,7 @@
 														
 													</div>
 													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+													<div id="wait-prognosa-produksi" style=" text-align: center; align-content: center; display: none;">	
 														<div>Please Wait</div>
 														<div class="fa-3x">
 														  <i class="fa fa-spinner fa-spin"></i>
@@ -186,7 +186,7 @@
 
 			function RencanaKerja()
 			{
-				$('#wait').fadeIn('fast');   
+				$('#wait-rencana-kerja').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
 					url     : "<?php echo site_url('pmm/reports/rencana_kerja'); ?>/"+Math.random(),
@@ -196,7 +196,7 @@
 					},
 					success : function(result){
 						$('#rencana-kerja').html(result);
-						$('#wait').fadeOut('fast');
+						$('#wait-rencana-kerja').fadeOut('fast');
 					}
 				});
 			}
@@ -231,7 +231,7 @@
 
 			function PrognosaProduksi()
 			{
-				$('#wait').fadeIn('fast');   
+				$('#wait-prognosa-produksi').fadeIn('fast');   
 				$.ajax({
 					type    : "POST",
 					url     : "<?php echo site_url('pmm/reports/prognosa_produksi'); ?>/"+Math.random(),
@@ -241,7 +241,7 @@
 					},
 					success : function(result){
 						$('#prognosa-produksi').html(result);
-						$('#wait').fadeOut('fast');
+						$('#wait-prognosa-produksi').fadeOut('fast');
 					}
 				});
 			}
