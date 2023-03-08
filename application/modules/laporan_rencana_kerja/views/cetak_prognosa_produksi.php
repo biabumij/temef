@@ -116,11 +116,21 @@
 			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
 
+			$rencana_kerja_biaya_cash_flow_2022_1 = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
+			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_2022_2 = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
+			->get()->row_array();
+
 
 			$total_rap_2022_biaya_bahan = $rencana_kerja_biaya_2022_1['biaya_bahan'] + $rencana_kerja_biaya_2022_2['biaya_bahan'];
 			$total_rap_2022_biaya_alat = $rencana_kerja_biaya_2022_1['biaya_alat'] + $rencana_kerja_biaya_2022_2['biaya_alat'];
-			$total_rap_2022_biaya_overhead = $rencana_kerja_biaya_2022_1['biaya_overhead'] + $rencana_kerja_biaya_2022_2['biaya_overhead'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_biaya_2022_1['biaya_bank'] + $rencana_kerja_biaya_2022_2['biaya_bank'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_biaya_cash_flow_2022_1['biaya_overhead'] + $rencana_kerja_biaya_cash_flow_2022_2['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_biaya_cash_flow_2022_1['biaya_bank'] + $rencana_kerja_biaya_cash_flow_2022_2['biaya_bank'];
 			$total_biaya_rap_2022_biaya = $total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat + $total_rap_2022_biaya_overhead + $total_rap_2022_biaya_bank;
 
 			?>
@@ -341,11 +351,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_januari = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_januari_awal' and '$date_januari_akhir'")
+			->get()->row_array();
 		
 			$total_januari_biaya_bahan = $rencana_kerja_biaya_januari['biaya_bahan'];
 			$total_januari_biaya_alat = $rencana_kerja_biaya_januari['biaya_alat'];
-			$total_januari_biaya_overhead = $rencana_kerja_biaya_januari['biaya_overhead'];
-			$total_januari_biaya_bank = $rencana_kerja_biaya_januari['biaya_bank'];
+			$total_januari_biaya_overhead = $rencana_kerja_biaya_cash_flow_januari['biaya_overhead'];
+			$total_januari_biaya_bank = $rencana_kerja_biaya_cash_flow_januari['biaya_bank'];
 			$total_biaya_januari_biaya = $total_januari_biaya_bahan + $total_januari_biaya_alat + $total_januari_biaya_overhead + $total_januari_biaya_bank;
 			?>
 			<!-- JANUARI -->
@@ -394,11 +409,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_februari = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_februari_awal' and '$date_februari_akhir'")
+			->get()->row_array();
 		
 			$total_februari_biaya_bahan = $rencana_kerja_biaya_februari['biaya_bahan'];
 			$total_februari_biaya_alat = $rencana_kerja_biaya_februari['biaya_alat'];
-			$total_februari_biaya_overhead = $rencana_kerja_biaya_februari['biaya_overhead'];
-			$total_februari_biaya_bank = $rencana_kerja_biaya_februari['biaya_bank'];
+			$total_februari_biaya_overhead = $rencana_kerja_biaya_cash_flow_februari['biaya_overhead'];
+			$total_februari_biaya_bank = $rencana_kerja_biaya_cash_flow_februari['biaya_bank'];
 			$total_biaya_februari_biaya = $total_februari_biaya_bahan + $total_februari_biaya_alat + $total_februari_biaya_overhead + $total_februari_biaya_bank;
 			?>
 			<!-- FEBRUARI -->
@@ -447,11 +467,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_maret = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_maret_awal' and '$date_maret_akhir'")
+			->get()->row_array();
 		
 			$total_maret_biaya_bahan = $rencana_kerja_biaya_maret['biaya_bahan'];
 			$total_maret_biaya_alat = $rencana_kerja_biaya_maret['biaya_alat'];
-			$total_maret_biaya_overhead = $rencana_kerja_biaya_maret['biaya_overhead'];
-			$total_maret_biaya_bank = $rencana_kerja_biaya_maret['biaya_bank'];
+			$total_maret_biaya_overhead = $rencana_kerja_biaya_cash_flow_maret['biaya_overhead'];
+			$total_maret_biaya_bank = $rencana_kerja_biaya_cash_flow_maret['biaya_bank'];
 			$total_biaya_maret_biaya = $total_maret_biaya_bahan + $total_maret_biaya_alat + $total_maret_biaya_overhead + $total_maret_biaya_bank;
 			?>
 			<!-- MARET -->
@@ -500,11 +525,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_april = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_april_awal' and '$date_april_akhir'")
+			->get()->row_array();
 		
 			$total_april_biaya_bahan = $rencana_kerja_biaya_april['biaya_bahan'];
 			$total_april_biaya_alat = $rencana_kerja_biaya_april['biaya_alat'];
-			$total_april_biaya_overhead = $rencana_kerja_biaya_april['biaya_overhead'];
-			$total_april_biaya_bank = $rencana_kerja_biaya_april['biaya_bank'];
+			$total_april_biaya_overhead = $rencana_kerja_biaya_cash_flow_april['biaya_overhead'];
+			$total_april_biaya_bank = $rencana_kerja_biaya_cash_flow_april['biaya_bank'];
 			$total_biaya_april_biaya = $total_april_biaya_bahan + $total_april_biaya_alat + $total_april_biaya_overhead + $total_april_biaya_bank;
 			?>
 			<!-- APRIL -->
@@ -553,11 +583,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_mei = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_mei_awal' and '$date_mei_akhir'")
+			->get()->row_array();
 		
 			$total_mei_biaya_bahan = $rencana_kerja_biaya_mei['biaya_bahan'];
 			$total_mei_biaya_alat = $rencana_kerja_biaya_mei['biaya_alat'];
-			$total_mei_biaya_overhead = $rencana_kerja_biaya_mei['biaya_overhead'];
-			$total_mei_biaya_bank = $rencana_kerja_biaya_mei['biaya_bank'];
+			$total_mei_biaya_overhead = $rencana_kerja_biaya_cash_flow_mei['biaya_overhead'];
+			$total_mei_biaya_bank = $rencana_kerja_biaya_cash_flow_mei['biaya_bank'];
 			$total_biaya_mei_biaya = $total_mei_biaya_bahan + $total_mei_biaya_alat + $total_mei_biaya_overhead + $total_mei_biaya_bank;
 			?>
 			<!-- MEI -->
@@ -606,11 +641,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_juni = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_juni_awal' and '$date_juni_akhir'")
+			->get()->row_array();
 		
 			$total_juni_biaya_bahan = $rencana_kerja_biaya_juni['biaya_bahan'];
 			$total_juni_biaya_alat = $rencana_kerja_biaya_juni['biaya_alat'];
-			$total_juni_biaya_overhead = $rencana_kerja_biaya_juni['biaya_overhead'];
-			$total_juni_biaya_bank = $rencana_kerja_biaya_juni['biaya_bank'];
+			$total_juni_biaya_overhead = $rencana_kerja_biaya_cash_flow_juni['biaya_overhead'];
+			$total_juni_biaya_bank = $rencana_kerja_biaya_cash_flow_juni['biaya_bank'];
 			$total_biaya_juni_biaya = $total_juni_biaya_bahan + $total_juni_biaya_alat + $total_juni_biaya_overhead + $total_juni_biaya_bank;
 			?>
 			<!-- JUNI -->
@@ -659,11 +699,16 @@
 			->from('rak_biaya r')
 			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
 			->get()->row_array();
+
+			$rencana_kerja_biaya_cash_flow_juli = $this->db->select('r.*')
+			->from('rak_biaya_cash_flow r')
+			->where("r.tanggal_rencana_kerja between '$date_juli_awal' and '$date_juli_akhir'")
+			->get()->row_array();
 		
 			$total_juli_biaya_bahan = $rencana_kerja_biaya_juli['biaya_bahan'];
 			$total_juli_biaya_alat = $rencana_kerja_biaya_juli['biaya_alat'];
-			$total_juli_biaya_overhead = $rencana_kerja_biaya_juli['biaya_overhead'];
-			$total_juli_biaya_bank = $rencana_kerja_biaya_juli['biaya_bank'];
+			$total_juli_biaya_overhead = $rencana_kerja_biaya_cash_flow_juli['biaya_overhead'];
+			$total_juli_biaya_bank = $rencana_kerja_biaya_cash_flow_juli['biaya_bank'];
 			$total_biaya_juli_biaya = $total_juli_biaya_bahan + $total_juli_biaya_alat + $total_juli_biaya_overhead + $total_juli_biaya_bank;
 			?>
 			<!-- JULI -->

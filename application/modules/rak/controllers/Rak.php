@@ -436,9 +436,6 @@ class Rak extends Secure_Controller {
 		$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
 		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
-		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
-		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
-		$termin =  str_replace('.', '', $this->input->post('termin'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -447,9 +444,6 @@ class Rak extends Secure_Controller {
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
 			'biaya_bahan' => $biaya_bahan,
 			'biaya_alat' => $biaya_alat,
-			'biaya_overhead' => $biaya_overhead,
-			'biaya_bank' => $biaya_bank,
-			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -530,8 +524,6 @@ class Rak extends Secure_Controller {
 				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
 				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
 				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
-				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
-				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak_biaya/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
@@ -614,16 +606,10 @@ class Rak extends Secure_Controller {
 			$id = $this->input->post('id');
 			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
-			$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
-			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
-			$termin =  str_replace('.', '', $this->input->post('termin'));
 
 			$arr_update = array(
 				'biaya_bahan' => $biaya_bahan,
 				'biaya_alat' => $biaya_alat,
-				'biaya_overhead' => $biaya_overhead,
-				'biaya_bank' => $biaya_bank,
-				//'termin' => $termin,
 				'status' => 'PUBLISH',
 				'updated_by' => $this->session->userdata('admin_id'),
 				'updated_on' => date('Y-m-d H:i:s')
@@ -667,8 +653,6 @@ class Rak extends Secure_Controller {
 	public function submit_rencana_kerja_biaya_cash_flow()
 	{
 		$tanggal_rencana_kerja = $this->input->post('tanggal_rencana_kerja');
-		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
-		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 		$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 		$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 		$termin =  str_replace('.', '', $this->input->post('termin'));
@@ -679,13 +663,10 @@ class Rak extends Secure_Controller {
 
 		$arr_insert = array(
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
-			'biaya_bahan' => $biaya_bahan,
-			'biaya_alat' => $biaya_alat,
 			'biaya_bank' => $biaya_bank,
 			'biaya_overhead' => $biaya_overhead,
 			'termin' => $termin,
 			'biaya_persiapan' => $biaya_persiapan,
-			
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -765,8 +746,6 @@ class Rak extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
 				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
-				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
-				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
 				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
 				$row['biaya_overhead'] = number_format($row['biaya_overhead'],0,',','.');
 				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
@@ -851,16 +830,12 @@ class Rak extends Secure_Controller {
 		$this->db->trans_strict(FALSE); #
 
 			$id = $this->input->post('id');
-			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
-			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 			$biaya_overhead =  str_replace('.', '', $this->input->post('biaya_overhead'));
 			$biaya_bank =  str_replace('.', '', $this->input->post('biaya_bank'));
 			$termin =  str_replace('.', '', $this->input->post('termin'));
 			$biaya_persiapan =  str_replace('.', '', $this->input->post('biaya_persiapan'));
 
 			$arr_update = array(
-				'biaya_bahan' => $biaya_bahan,
-				'biaya_alat' => $biaya_alat,
 				'biaya_overhead' => $biaya_overhead,
 				'biaya_bank' => $biaya_bank,
 				'termin' => $termin,

@@ -68,18 +68,6 @@
                                                     <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Biaya Overhead</td>
-													<td>
-                                                    <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Biaya Bank</td>
-													<td>
-                                                    <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                 
                                         </table>    

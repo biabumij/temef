@@ -116,14 +116,6 @@
                                                 <td class="text-left">Biaya Alat</td>
                                                 <td class="text-right"><input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="<?= $rak['biaya_alat'] ?>" required="" autocomplete="off"></td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-left">Biaya Overhead</td>
-                                                <td class="text-right"><input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="<?= $rak['biaya_overhead'] ?>" required="" autocomplete="off"></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-left">Biaya Bank</td>
-                                                <td class="text-right"><input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bank'] ?>" required="" autocomplete="off"></td>
-                                            </tr>
                                         </tbody>
                                     </table>
 									<br />
