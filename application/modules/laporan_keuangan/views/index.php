@@ -168,7 +168,7 @@
 																<input type="text" id="filter_date_cash_flow" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>-->
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button> *Print Out Proses Revisi
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button> <p style="color:red;">*Print Out Proses Revisi</p>
 															</div>
 														</form>
 														
