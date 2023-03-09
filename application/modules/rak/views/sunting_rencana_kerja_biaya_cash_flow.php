@@ -122,7 +122,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-left">Biaya Persiapan</td>
-                                                <td class="text-right"><input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="<?= $rak['termin'] ?>" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="<?= $rak['biaya_persiapan'] ?>" required="" autocomplete="off"></td>
                                             </tr>
                                         </tbody>
                                     </table>
