@@ -118,7 +118,7 @@
 			->where("p.kategori_produk = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('prm.material_id')
-			->order_by('pn.nama','asc')
+			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_nilai = 0;
