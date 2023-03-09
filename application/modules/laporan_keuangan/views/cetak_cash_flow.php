@@ -283,7 +283,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi < '$last_opname'")
 			->get()->row_array();
@@ -370,7 +370,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
@@ -442,7 +442,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
@@ -513,7 +513,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
@@ -584,7 +584,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
@@ -655,7 +655,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
@@ -726,7 +726,7 @@
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun = 502")
+			->where("pdb.akun = 232")
 			->where("pb.status = 'PAID'")
 			->where("pb.tanggal_transaksi between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
