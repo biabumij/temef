@@ -127,57 +127,8 @@
 			$total_c = $grand_total_pemakaian_dana + $total_pemakaian_dana_jurnal;
 			?>
 			<tr class="table-active2">
-				<td width="80%" style="padding-left:20px;"><b>Total Pemakaian_dana</b></td>
+				<td width="80%" style="padding-left:20px;"><b>Total Pemakaian Dana</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="15">
-			<tr >
-				<td width="10%"></td>
-				<td width="80%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center" >
-							Diperiksa & Disetujui Oleh
-							</td>
-							<td align="center" >
-								Dibuat Oleh
-							</td>
-						</tr>
-						<?php
-							$this->db->select('ttd.*');
-							$this->db->where("(ttd.date_approval between '$date1' and '$date2')");
-							$this->db->where("ttd.approval = 1 ");
-							$this->db->order_by('ttd.date_approval','desc')->limit(1);
-							$created_group = $this->db->get('ttd_laba_rugi ttd')->row_array();
-						?>
-						<tr>
-							<td align="center" height="40px">
-							<?php
-								echo '<img src="'.$created_group['ttd_1'].'" width="70"/>';
-							?>		
-							</td>
-							<td align="center">
-							<?php
-								echo '<img src="'.$created_group['ttd_2'].'" width="70"/>';
-							?>
-							</td>
-						</tr>
-						<tr>
-							<td align="center" >
-								<b><u>Erika Sinaga</u><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center" >
-								<b><u>Theresia Desiana L.</u><br />
-								Admin</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="10%"></td>
 			</tr>
 		</table>
 	</body>
