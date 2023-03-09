@@ -225,7 +225,7 @@
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
+					<table width="100%" border="0" cellpadding="0">
 						<tr>
 							<td align="center">
 								Penerima Order
@@ -249,14 +249,14 @@
 							</td>	
 						</tr>
 						<tr class="">
-							<td align="center" height="45px">
+							<td align="center" height="40px">
 								
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_gery_kop.png" width="100px">
+								<img src="uploads/ttd_gery_kop.png" width="90px">
 								<img src="uploads/ttd_erika.png" width="20px">
 							</td>
 						</tr>
