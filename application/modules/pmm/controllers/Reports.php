@@ -3867,12 +3867,12 @@ class Reports extends CI_Controller {
 			//POSISI DANA
 			$posisi_dana_rap = ($total_rap_nilai_2022 + $ppn_keluaran_rap) - $jumlah_pengeluaran - ($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan) - ($total_rap_2022_penerimaan_pinjaman - $total_rap_2022_pengembalian_pinjaman);
 			$posisi_dana_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - $jumlah_pengeluaran_now - $pengembalian_pinjaman_now - ($penerimaan_pinjaman_now - $pengembalian_pinjaman_now) - ($pinjaman_dana_now - $pengembalian_pinjaman_dana_now) + $piutang_now - $hutang_now;
-			$posisi_dana_1 = $jumlah_penerimaan_1 - $jumlah_pengeluaran_1 - ($pajak_keluaran_1 - $pajak_masukan_1) - ($penerimaan_pinjaman_1 - $pengembalian_pinjaman_1) - ($pinjaman_dana_1 - $pengembalian_pinjaman_dana_1) + $piutang_1 + $hutang_1;
-			$posisi_dana_2 = $jumlah_penerimaan_2 - $jumlah_pengeluaran_2 - ($pajak_keluaran_2 - $pajak_masukan_2) - ($penerimaan_pinjaman_2 - $pengembalian_pinjaman_2) - ($pinjaman_dana_2 - $pengembalian_pinjaman_dana_2) + $piutang_2 + $hutang_2;
-			$posisi_dana_3 = $jumlah_penerimaan_3 - $jumlah_pengeluaran_3 - ($pajak_keluaran_3 - $pajak_masukan_3) - ($penerimaan_pinjaman_3 - $pengembalian_pinjaman_3) - ($pinjaman_dana_3 - $pengembalian_pinjaman_dana_3) + $piutang_3 + $hutang_3;
-			$posisi_dana_4 = $jumlah_penerimaan_4 - $jumlah_pengeluaran_4 - ($pajak_keluaran_4 - $pajak_masukan_4) - ($penerimaan_pinjaman_4 - $pengembalian_pinjaman_4) - ($pinjaman_dana_4 - $pengembalian_pinjaman_dana_4) + $piutang_4 + $hutang_4;
-			$posisi_dana_5 = $jumlah_penerimaan_5 - $jumlah_pengeluaran_5 - ($pajak_keluaran_5 - $pajak_masukan_5) - ($penerimaan_pinjaman_5 - $pengembalian_pinjaman_5) - ($pinjaman_dana_5 - $pengembalian_pinjaman_dana_5) + $piutang_5 + $hutang_5;
-			$posisi_dana_6 = $jumlah_penerimaan_6 - $jumlah_pengeluaran_6 - ($pajak_keluaran_6 - $pajak_masukan_6) - ($penerimaan_pinjaman_6 - $pengembalian_pinjaman_6) - ($pinjaman_dana_6 - $pengembalian_pinjaman_dana_6) + $piutang_6 + $hutang_6;
+			$posisi_dana_1 = $jumlah_penerimaan_1 - $jumlah_pengeluaran_1 - ($pajak_keluaran_1 - $pajak_masukan_1) - ($penerimaan_pinjaman_1 - $pengembalian_pinjaman_1) - ($pinjaman_dana_1 - $pengembalian_pinjaman_dana_1);
+			$posisi_dana_2 = $jumlah_penerimaan_2 - $jumlah_pengeluaran_2 - ($pajak_keluaran_2 - $pajak_masukan_2) - ($penerimaan_pinjaman_2 - $pengembalian_pinjaman_2) - ($pinjaman_dana_2 - $pengembalian_pinjaman_dana_2);
+			$posisi_dana_3 = $jumlah_penerimaan_3 - $jumlah_pengeluaran_3 - ($pajak_keluaran_3 - $pajak_masukan_3) - ($penerimaan_pinjaman_3 - $pengembalian_pinjaman_3) - ($pinjaman_dana_3 - $pengembalian_pinjaman_dana_3);
+			$posisi_dana_4 = $jumlah_penerimaan_4 - $jumlah_pengeluaran_4 - ($pajak_keluaran_4 - $pajak_masukan_4) - ($penerimaan_pinjaman_4 - $pengembalian_pinjaman_4) - ($pinjaman_dana_4 - $pengembalian_pinjaman_dana_4);
+			$posisi_dana_5 = $jumlah_penerimaan_5 - $jumlah_pengeluaran_5 - ($pajak_keluaran_5 - $pajak_masukan_5) - ($penerimaan_pinjaman_5 - $pengembalian_pinjaman_5) - ($pinjaman_dana_5 - $pengembalian_pinjaman_dana_5);
+			$posisi_dana_6 = $jumlah_penerimaan_6 - $jumlah_pengeluaran_6 - ($pajak_keluaran_6 - $pajak_masukan_6) - ($penerimaan_pinjaman_6 - $pengembalian_pinjaman_6) - ($pinjaman_dana_6 - $pengembalian_pinjaman_dana_6);
 			$total_posisi_dana = $posisi_dana_now + $posisi_dana_1 + $posisi_dana_2 + $posisi_dana_3 + $posisi_dana_4 + $posisi_dana_5 + $posisi_dana_6;
 			
 			//AKUMULASI POSISI DANA
@@ -4091,7 +4091,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_biaya_persiapan_5,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($biaya_persiapan_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_biaya_persiapan_6,0,',','.');?></th>
-				<th class="text-right"><?php echo $sisa_biaya_persiapan < 0 ? "(".number_format($sisa_biaya_persiapan,0,',','.').")" : $sisa_biaya_persiapan;?></th>
+				<th class="text-right"><?php echo $sisa_biaya_persiapan < 0 ? "(".number_format($sisa_biaya_persiapan,0,',','.').")" : number_format($sisa_biaya_persiapan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left">JUMLAH PENGELUARAN</th>
@@ -4328,20 +4328,20 @@ class Reports extends CI_Controller {
 			<tr class="table-active4-csf">
 				<th class="text-center">VIII</th>
 				<th class="text-left"><u>POSISI DANA</u></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_rap,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($posisi_dana_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_posisi_dana_6,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_rap < 0 ? "(".number_format($posisi_dana_rap,0,',','.').")" : number_format($posisi_dana_rap,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_now < 0 ? "(".number_format($posisi_dana_now,0,',','.').")" : number_format($posisi_dana_now,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_1 < 0 ? "(".number_format($posisi_dana_1,0,',','.').")" : number_format($posisi_dana_1,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_1 < 0 ? "(".number_format($akumulasi_posisi_dana_1,0,',','.').")" : number_format($akumulasi_posisi_dana_1,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_2 < 0 ? "(".number_format($posisi_dana_2,0,',','.').")" : number_format($posisi_dana_2,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_2 < 0 ? "(".number_format($akumulasi_posisi_dana_2,0,',','.').")" : number_format($akumulasi_posisi_dana_2,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_3 < 0 ? "(".number_format($posisi_dana_3,0,',','.').")" : number_format($posisi_dana_3,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_3 < 0 ? "(".number_format($akumulasi_posisi_dana_3,0,',','.').")" : number_format($akumulasi_posisi_dana_3,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_4 < 0 ? "(".number_format($posisi_dana_4,0,',','.').")" : number_format($posisi_dana_4,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_4 < 0 ? "(".number_format($akumulasi_posisi_dana_4,0,',','.').")" : number_format($akumulasi_posisi_dana_4,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_5 < 0 ? "(".number_format($posisi_dana_5,0,',','.').")" : number_format($posisi_dana_5,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_5 < 0 ? "(".number_format($akumulasi_posisi_dana_5,0,',','.').")" : number_format($akumulasi_posisi_dana_5,0,',','.');?></th>
+				<th class="text-right"><?php echo $posisi_dana_6 < 0 ? "(".number_format($posisi_dana_6,0,',','.').")" : number_format($posisi_dana_6,0,',','.');?></th>
+				<th class="text-right"><?php echo $akumulasi_posisi_dana_6 < 0 ? "(".number_format($akumulasi_posisi_dana_6,0,',','.').")" : number_format($akumulasi_posisi_dana_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 	    </table>
