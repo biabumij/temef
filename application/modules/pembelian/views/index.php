@@ -217,7 +217,7 @@
 													</div>
 													<div class="form-group">
 														<label>Memo</label>
-                                                        <textarea id="memo" name="memo" class="form-control" data-required="false">
+                                                        <textarea id="memo" name="memo" class="form-control" data-required="false" rows="20">
 <p><b>Syarat &amp; Ketentuan :</b></p>
 <p>1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
 <p>2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef, Desa Konbaki, Kecamatan Polen, KAB. TTS</p>
