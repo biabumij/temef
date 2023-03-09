@@ -466,7 +466,7 @@
 			<tr class="table-baris1">
 				<th align="center">3</th>			
 				<th align="left">Wheel Loader</th>
-				<th align="center">M3</th>
+				<th align="center">Bulan</th>
 				<th align="right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
 				<th align="right"><?php echo number_format($wheel_loader,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>
