@@ -171,8 +171,8 @@
 								M. Keu & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Kasir</b>
+								<b><u>Theresia Desiana L.</u><br />
+								Admin</b>
 							</td>
 						</tr>
 					</table>
