@@ -203,7 +203,6 @@
             </tr>
 		</table>
 		<p><?= $row["memo"] ?></p>
-		<br />
 		<!--<table>
 			<?php
 			$memo = $this->db->select('memo')
@@ -222,7 +221,7 @@
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="15">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
