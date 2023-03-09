@@ -5463,7 +5463,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">3</th>			
 				<th class="text-left">Wheel Loader</th>
-				<th class="text-center">M3</th>
+				<th class="text-center">Bulan</th>
 				<th class="text-right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($wheel_loader,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>

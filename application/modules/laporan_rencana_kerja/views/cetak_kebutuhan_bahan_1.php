@@ -770,7 +770,7 @@
 				<th align="left">BBM Solar</th>
 				<th align="left"><?= $this->crud_global->GetField('penerima',array('id'=>$harga_1['supplier_id_solar']),'nama');?></th>
 				<th align="center"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
-				<th align="center">Ton</th>
+				<th align="center">Litter</th>
 				<th align="right"><?php echo number_format($harga_1['harga_solar'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_volume_solar_1 * $harga_1['harga_solar'],0,',','.');?></th>
 	        </tr>
