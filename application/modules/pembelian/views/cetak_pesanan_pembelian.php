@@ -204,7 +204,6 @@
 		</table>
 		<p><?= $row["memo"] ?></p>
 		<br />
-		<br />
 		<!--<table>
 			<?php
 			$memo = $this->db->select('memo')
@@ -220,7 +219,6 @@
 				<th><?php echo $memo['memo'];?></th>
 			</tr>			
 		</table>-->
-		<br />
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
