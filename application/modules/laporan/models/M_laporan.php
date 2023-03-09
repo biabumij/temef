@@ -593,4 +593,82 @@ class M_laporan extends CI_Model {
         return $branch;
     }
 
+    function showBiayaPemakaianDanaParent($date)
+    {
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 502");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('c.coa_parent');
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_biaya b');
+        return $query->result_array();
+    }
+
+    function showBiayaPemakaianDana($date)
+    {
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi, b.memo');
+        $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 502");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('c.coa');
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_biaya b');
+        return $query->result_array();
+    }
+
+    function showBiayaPemakaianDanaJurnalParent($date)
+    {
+
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 502");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('c.coa_parent');
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_jurnal_umum b');
+        return $query->result_array();
+    }
+
+    function showBiayaPemakaianDanaJurnal($date)
+    {
+
+        $arr_date = explode(' - ', $date);
+        $start_date = date('Y-m-d',strtotime($arr_date[0]));
+        $end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi, b.memo');
+        $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
+        $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
+        $this->db->where("pdb.akun = 502");
+        $this->db->where('b.status','PAID');
+        $this->db->group_by('pdb.id');
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_jurnal_umum b');
+        return $query->result_array();
+    }
+
 }

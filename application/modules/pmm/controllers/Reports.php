@@ -4236,7 +4236,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Pinjaman Dana</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_pinjaman_dana,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_now,0,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_pemakaian_dana?filter_date=".$filter_date = date('2021-01-01',strtotime('2021-01-01')).' - '.date('Y-m-d',strtotime($stock_opname['date']))) ?>"><?php echo number_format($pinjaman_dana_now,0,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($pinjaman_dana_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pinjaman_dana_2,0,',','.');?></th>
