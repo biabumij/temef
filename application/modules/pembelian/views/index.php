@@ -218,21 +218,21 @@
 													<div class="form-group">
 														<label>Memo</label>
                                                         <textarea id="memo" name="memo" class="form-control" data-required="false" rows="20">
-<p><b>Syarat &amp; Ketentuan :</b></p>
-<p>1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
-<p>2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef, Desa Konbaki, Kecamatan Polen, KAB. TTS</p>
-<p>3.&nbsp;Cara Pembayaran : 30 (Tiga Puluh) Hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
-<p>&nbsp;&nbsp;&nbsp; dokumen sebagai berikut :</p>
-<p>&nbsp;&nbsp;&nbsp;3.1 Tagihan</p>
-<p>&nbsp;&nbsp;&nbsp;3.2 Kwitansi</p>
-<p>&nbsp;&nbsp;&nbsp;3.3 BAP (Berita Acara Pembayaran)</p>
-<p>&nbsp;&nbsp;&nbsp;3.4 BAST (Berita Acara Serah Terima) &amp; rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
-<p>&nbsp;&nbsp;&nbsp;3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
-<p>&nbsp;&nbsp;&nbsp;3.6 PO</p>
-<p>&nbsp;&nbsp;&nbsp;3.7 Faktur Pajak</p>
-<p>4. Lain-lain :</p>
-<p>&nbsp;&nbsp;&nbsp;4.1 Barang harus dalam kondisi 100% baik</p>
-<p>&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
+<p style="font-size:6;"><b>Syarat &amp; Ketentuan :</b></p>
+<p style="font-size:6;">1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
+<p style="font-size:6;">2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef, Desa Konbaki, Kecamatan Polen, KAB. TTS</p>
+<p style="font-size:6;">3.&nbsp;Cara Pembayaran : 30 (Tiga Puluh) Hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp; dokumen sebagai berikut :</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.1 Tagihan</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.2 Kwitansi</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.3 BAP (Berita Acara Pembayaran)</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.4 BAST (Berita Acara Serah Terima) &amp; rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.6 PO</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.7 Faktur Pajak</p>
+<p style="font-size:6;">4. Lain-lain :</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.1 Barang harus dalam kondisi 100% baik</p>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
                                                          </textarea>
 														
 													</div>
