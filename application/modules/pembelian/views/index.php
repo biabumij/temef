@@ -220,7 +220,7 @@
                                                         <textarea class="form-control" name="memo" data-required="false" id="about_text">
 <p><b>Syarat &amp; Ketentuan :</b></p>
 <p>1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
-<p>2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef Desa konbaki Kecamatan Polen KAB. TTS</p>
+<p>2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef, Desa Konbaki, Kecamatan Polen, KAB. TTS</p>
 <p>3.&nbsp;Cara Pembayaran : 30 (Tiga Puluh) Hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
 <p>&nbsp;&nbsp;&nbsp; dokumen sebagai berikut :</p>
 <p>&nbsp;&nbsp;&nbsp;3.1 Tagihan</p>
