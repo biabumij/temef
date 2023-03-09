@@ -43,10 +43,8 @@ class Productions extends Secure_Controller {
 		$sales_po_id = $this->input->post('salesPo_id');
 		$w_date = $this->input->post('filter_date');
 		$date_now = date('Y-m-d');
-		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','material_id'=>'4'))->row_array();
-		
-		$awal_bulan = date('Y-m-d', strtotime('+1 days', strtotime($last_production['date'])));
-		$akhir_bulan = date('Y-m-d', strtotime($date_now));
+		$awal_bulan = date('Y-m-01', strtotime($date_now));
+		$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
 
 		$this->db->select('');
 		$this->db->where('status !=','DELETED');

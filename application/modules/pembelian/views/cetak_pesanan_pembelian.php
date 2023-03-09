@@ -202,11 +202,10 @@
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
 		</table>
-		<!--<p><b>Memo</b></p>
-		<p><?= $row["memo"] ?></p>-->
+		<p><?= $row["memo"] ?></p>
 		<br />
 		<br />
-		<table>
+		<!--<table>
 			<?php
 			$memo = $this->db->select('memo')
 			->from('pmm_penawaran_pembelian')
@@ -220,7 +219,7 @@
 			<tr>
 				<th><?php echo $memo['memo'];?></th>
 			</tr>			
-		</table>
+		</table>-->
 		<br />
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);

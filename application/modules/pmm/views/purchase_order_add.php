@@ -281,22 +281,14 @@
                                         <th colspan="5" class="text-right">TOTAL</th>
                                         <th  class="text-right"><?= number_format($total,0,',','.'); ?></th>
                                     </tr>
+                                    <tr>
+                                        <th class="text-left" colspan="6">Memo :</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left" colspan="6"><?php echo $data['memo'];?></th>
+                                    </tr>
                                 </tfoot>
                                 </table>
-                            </div>
-
-                            <br />
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-1 control-label">Memo : </label>
-                                <div class="col-sm-8">
-                                <?php
-                                foreach ($details as $dt) {
-                                ?>
-                                    <b><?php echo $dt['memo'];?></span>
-                                <?php
-                                }
-                                ?>
-                                </div>
                             </div>
                             <div class="text-right">
 

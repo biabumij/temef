@@ -217,7 +217,24 @@
 													</div>
 													<div class="form-group">
 														<label>Memo</label>
-														<input type="text" id="memo" name="memo" class="form-control" autocomplete="off"  />
+                                                        <textarea class="form-control" name="memo" data-required="false" id="about_text">
+<p>Syarat &amp; <b>Ketentuan :</b></p>
+<p>1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
+<p>2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef Desa konbaki Kecamatan Polen KAB. TTS</p>
+<p>3.&nbsp;Cara Pembayaran : 30 (Tiga Puluh) Hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
+<p>&nbsp;&nbsp;&nbsp; dokumen sebagai berikut :</p>
+<p>&nbsp;&nbsp;&nbsp;3.1 Tagihan</p>
+<p>&nbsp;&nbsp;&nbsp;3.2 Kwitansi</p>
+<p>&nbsp;&nbsp;&nbsp;3.3 BAP (Berita Acara Pembayaran)</p>
+<p>&nbsp;&nbsp;&nbsp;3.4 BAST (Berita Acara Serah Terima) &amp; rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
+<p>&nbsp;&nbsp;&nbsp;3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
+<p>&nbsp;&nbsp;&nbsp;3.6 PO</p>
+<p>&nbsp;&nbsp;&nbsp;3.7 Faktur Pajak</p>
+<p>4. Lain-lain :</p>
+<p>&nbsp;&nbsp;&nbsp;4.1 Barang harus dalam kondisi 100% baik</p>
+<p>&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
+                                                         </textarea>
+														
 													</div>
 													
 													<div class="form-group">
@@ -883,6 +900,11 @@
 		
         $('input#contract').number(true, 2, ',', '.');
         $('input.numberformat').number(true, 2, ',', '.');
+        tinymce.init({
+          selector: 'textarea#about_text',
+          height: 200,
+          menubar: false,
+         });
         $('.dtpicker-single').daterangepicker({
             autoUpdateInput: false,
             singleDatePicker: true,

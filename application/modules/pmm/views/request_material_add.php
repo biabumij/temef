@@ -66,11 +66,6 @@
                                     <td><?php echo $this->crud_global->GetField('kategori_produk',array('id'=>$data['kategori_id']),'nama_kategori_produk');?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">Memo</th>
-                                    <th width="50px">:</th>
-                                    <td><?php echo $data['memo'];?></td>
-                                </tr>
-                                <tr>
                                     <th width="150px">Dibuat Oleh</th>
                                     <th width="50px">:</th>
                                     <td><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?></td>
@@ -79,6 +74,9 @@
                                     <th width="150px">Dibuat Tanggal</th>
                                     <th width="50px">:</th>
                                     <td><?= date('d/m/Y H:i:s',strtotime($data['created_on']));?></td>
+                                </tr>
+                                <tr>
+                                    <td width="200px" colspan="3"><b>Memo</b> : <br /><br /> <?php echo $data['memo'];?></td>
                                 </tr>
                             </table>
 
