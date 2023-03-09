@@ -70,7 +70,7 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-			<?php
+		<?php
 			$date_now = date('Y-m-d');
 
 			//BULAN 1
@@ -676,7 +676,6 @@
 			$total_volume_pasir_6 = $total_volume_pasir_125_6 + $total_volume_pasir_225_6 + $total_volume_pasir_250_6 + $total_volume_pasir_250_2_6;
 			$total_volume_batu1020_6 = $total_volume_batu1020_125_6 + $total_volume_batu1020_225_6 + $total_volume_batu1020_250_6 + $total_volume_batu1020_250_2_6;
 			$total_volume_batu2030_6 = $total_volume_batu2030_125_6 + $total_volume_batu2030_225_6 + $total_volume_batu2030_250_6 + $total_volume_batu2030_250_2_6;
-
 			
 			//SOLAR
 			$rap_solar = $this->db->select('rap.*')
