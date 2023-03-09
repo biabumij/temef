@@ -220,6 +220,12 @@
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
 			</tr>
+			<?php foreach ($insentif_tm as $y): ?>
+			<tr class="table-baris1">
+				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
+				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
 			<?php foreach ($biaya_batching_plant as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['deskripsi'] ?></th>
@@ -227,12 +233,6 @@
 			</tr>
 			<?php endforeach; ?>
 			<?php foreach ($biaya_alat_lainnya_jurnal as $y): ?>
-			<tr class="table-baris1">
-				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
-				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
-			</tr>
-			<?php endforeach; ?>
-			<?php foreach ($insentif_tm as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
