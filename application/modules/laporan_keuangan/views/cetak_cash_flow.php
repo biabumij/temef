@@ -39,13 +39,18 @@
 	<body>
 		<br />
 		<br />
+		<?php
+		//NOW
+		$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+		$last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
+		?>
 		<table width="98%" cellpadding="3">
 			<tr>
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 12px;">CASH FLOW</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : 2022 - 2023</div>
+					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $last_opname = date('Y', strtotime('0 days', strtotime($last_opname)));?></div>
 				</td>
 			</tr>
 		</table>
