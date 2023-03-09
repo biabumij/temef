@@ -604,7 +604,7 @@ class M_laporan extends CI_Model {
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
-        $this->db->where("pdb.akun = 502");
+        $this->db->where("pdb.akun = 232");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
         $this->db->order_by('c.coa_number','asc');
@@ -623,7 +623,7 @@ class M_laporan extends CI_Model {
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
-        $this->db->where("pdb.akun = 502");
+        $this->db->where("pdb.akun = 232");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa');
         $this->db->order_by('c.coa_number','asc');
@@ -643,7 +643,7 @@ class M_laporan extends CI_Model {
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
-        $this->db->where("pdb.akun = 502");
+        $this->db->where("pdb.akun = 232");
         $this->db->where('b.status','PAID');
         $this->db->group_by('c.coa_parent');
         $this->db->order_by('c.coa_number','asc');
@@ -663,7 +663,7 @@ class M_laporan extends CI_Model {
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
         $this->db->where('b.tanggal_transaksi <=',$end_date.' 23:59:59');
-        $this->db->where("pdb.akun = 502");
+        $this->db->where("pdb.akun = 232");
         $this->db->where('b.status','PAID');
         $this->db->group_by('pdb.id');
         $this->db->order_by('c.coa_number','asc');

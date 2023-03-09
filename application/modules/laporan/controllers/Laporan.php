@@ -275,7 +275,7 @@ class Laporan extends Secure_Controller {
 		$data['pemakaian_dana_jurnal_parent'] = $this->m_laporan->showBiayaPemakaianDanaJurnalParent($arr_date);
 		$data['pemakaian_dana_jurnal'] = $this->m_laporan->showBiayaPemakaianDanaJurnal($arr_date);
 		
-		$html = $this->load->view('laporan_rencana_kerja/cetak_pemakaian_dana',$data,TRUE);
+		$html = $this->load->view('laporan_keuangan/cetak_pemakaian_dana',$data,TRUE);
         
         $pdf->SetTitle('BBJ - Pemakaian Dana');
         $pdf->nsi_html($html);
