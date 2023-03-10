@@ -24,7 +24,7 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Rencana Produksi</li>
-                            <li><a>Rencana Kerja</a></li>
+                            <li><a>Rencana Cash Flow</a></li>
                             <li><a>Rencana Kerja (Cash Flow)</a></li>
                         </ul>
                     </div>
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <form method="POST" action="<?php echo site_url('rak/submit_rencana_kerja_biaya_cash_flow');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
+                                <form method="POST" action="<?php echo site_url('rak/submit_rencana_cash_flow');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
 										<div class="col-sm-3">
                                             <label>Tanggal</label>
@@ -51,30 +51,49 @@
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr class="text-center">
+                                                    <th width="5%">NO.</th>
                                                     <th width="50%">URAIAN</th>
-                                                    <th width="50%">NILAI</th>                               
+                                                    <th width="45%">NILAI</th>                               
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td class="text-center">1.</td>
+                                                    <td>Biaya Bahan</td>
+													<td>
+                                                    <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td>Biaya Alat</td>
+													<td>
+                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
                                                     <td>Biaya Bank</td>
 													<td>
                                                     <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Biaya Overhead</td>
+                                                    <td class="text-center">4.</td>
+                                                    <td>Overhead</td>
 													<td>
-                                                    <input type="text" id="biaya_overhead" name="biaya_overhead" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
+                                                    <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="text-center">5.</td>
                                                     <td>Termin</td>
 													<td>
                                                     <input type="text" id="termin" name="termin" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td class="text-center">6.</td>
                                                     <td>Biaya Persiapan</td>
 													<td>
                                                     <input type="text" id="biaya_persiapan" name="biaya_persiapan" class="form-control rupiahformat text-right" value="0" required="" autocomplete="off">
@@ -95,7 +114,7 @@
 									<br />
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/rencana_kerja_keu');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
+                                            <a href="<?= site_url('admin/rencana_cash_flow');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
                                             <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>

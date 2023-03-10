@@ -44,7 +44,7 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 9px;
+			font-size: 8px;
 			color: black;
 		}
 			
@@ -55,19 +55,19 @@
 
 		table tr.table-baris1-bold{
 			background-color: #F0F0F0;
-			font-size: 9px;
+			font-size: 8px;
 			font-weight: bold;
 		}
 			
 		table tr.table-baris2{
-			font-size: 9px;
+			font-size: 8px;
 			background-color: #E8E8E8;
 		}
 			
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 9px;
+			font-size: 8px;
 			color: black;
 		}
 	  </style>
@@ -110,30 +110,30 @@
 				table tr.table-judul{
 					background-color: #e69500;
 					font-weight: bold;
-					font-size: 9px;
+					font-size: 8px;
 					color: black;
 				}
 					
 				table tr.table-baris1{
 					background-color: #F0F0F0;
-					font-size: 9px;
+					font-size: 8px;
 				}
 
 				table tr.table-baris1-bold{
 					background-color: #F0F0F0;
-					font-size: 9px;
+					font-size: 8px;
 					font-weight: bold;
 				}
 					
 				table tr.table-baris2{
-					font-size: 9px;
+					font-size: 8px;
 					background-color: #E8E8E8;
 				}
 					
 				table tr.table-total{
 					background-color: #cccccc;
 					font-weight: bold;
-					font-size: 9px;
+					font-size: 8px;
 					color: black;
 				}
 			</style>

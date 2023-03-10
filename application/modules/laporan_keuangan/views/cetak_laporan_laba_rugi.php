@@ -102,7 +102,7 @@
 		
 		<table width="98%" border="0" cellpadding="3">
 		
-		<?php
+			<?php
 
 			//PENJUALAN
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
@@ -213,28 +213,7 @@
 			->get()->row_array();
 			$total_insentif_tm = $insentif_tm['total'];
 
-			$biaya_alat_lainnya = 0;
-			$biaya_alat_lainnya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya = $biaya_alat_lainnya['total'];
-
-			$biaya_alat_lainnya_jurnal = 0;
-			$biaya_alat_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
-
-			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
+			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
 			//END ALAT
 
 			//ALAT_2
@@ -270,29 +249,7 @@
 			->get()->row_array();
 			$total_insentif_tm_2 = $insentif_tm_2['total'];
 
-			$biaya_alat_lainnya_2 = 0;
-			$biaya_alat_lainnya_2 = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("c.id in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date3' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya_2 = $biaya_alat_lainnya_2['total'];
-
-			$biaya_alat_lainnya_jurnal_2 = 0;
-			$biaya_alat_lainnya_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("c.id in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->get()->row_array();
-			$biaya_alat_lainnya_jurnal_2 = $biaya_alat_lainnya_jurnal_2['total'];
-
-			$alat_2 = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2 + $biaya_alat_lainnya_2 + $biaya_alat_lainnya_jurnal_2;
+			$alat_2 = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2;
 			//END_ALAT_2
 
 			//OVERHEAD

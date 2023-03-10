@@ -138,43 +138,6 @@
 			$total_nilai_all = 0;
 			$total_nilai_all = $total_nilai + $total_nilai_bbm;
 
-			$biaya_batching_plant = $this->db->select('pdb.deskripsi as deskripsi, sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("c.id in ('219','234')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-
-			$total_biaya_batching_plant = 0;
-
-			foreach ($biaya_batching_plant as $y){
-				$total_biaya_batching_plant += $y['total'];
-			}
-
-			$total_biaya_batching_plant_all = 0;
-			$total_biaya_batching_plant_all = $total_biaya_batching_plant;
-
-			$biaya_alat_lainnya_jurnal = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun in ('219','234')")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-			
-			$total_biaya_alat_lainnya_jurnal = 0;
-
-			foreach ($biaya_alat_lainnya_jurnal as $y){
-				$total_biaya_alat_lainnya_jurnal += $y['total'];
-			}
-
-			$total_biaya_alat_lainnya_jurnal_all = 0;
-			$total_biaya_alat_lainnya_jurnal_all = $total_biaya_alat_lainnya_jurnal;
-
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
@@ -193,7 +156,7 @@
 			$total_insentif_tm_all = 0;
 			$total_insentif_tm_all = $total_insentif_tm;
 
-			$total_nilai = $total_nilai_all + $total_biaya_batching_plant_all + $total_insentif_tm_all + $total_biaya_alat_lainnya_jurnal_all;
+			$total_nilai = $total_nilai_all + $total_biaya_batching_plant_all;
 
 			?>
 			
@@ -221,18 +184,6 @@
 				<th align="right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
 			</tr>
 			<?php foreach ($insentif_tm as $y): ?>
-			<tr class="table-baris1">
-				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
-				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
-			</tr>
-			<?php endforeach; ?>
-			<?php foreach ($biaya_batching_plant as $y): ?>
-			<tr class="table-baris1">
-				<th align="left" colspan="4">&bull; <?= $y['deskripsi'] ?></th>
-				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>
-			</tr>
-			<?php endforeach; ?>
-			<?php foreach ($biaya_alat_lainnya_jurnal as $y): ?>
 			<tr class="table-baris1">
 				<th align="left" colspan="4">&bull; <?= $y['memo'] ?></th>
 				<th align="right"><?php echo number_format($y['total'],0,',','.');?></th>

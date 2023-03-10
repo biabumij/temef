@@ -40,7 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?= site_url('rak/form_rencana_kerja_biaya_cash_flow'); ?>">Rencana Kerja (Cash Flow)</a></li>
+                                            <li><a href="<?= site_url('rak/form_rencana_cash_flow'); ?>">Rencana Cash Flow</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -48,22 +48,22 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#rencana_kerja_biaya_cash_flow" aria-controls="rencana_kerja_biaya_cash_flow" role="tab" data-toggle="tab">Rencana Kerja (Cash Flow)</a></li>
+                                    <li role="presentation" class="active"><a href="#rencana_cash_flow" aria-controls="rencana_cash_flow" role="tab" data-toggle="tab">Rencana Cash Flow</a></li>
                                 </ul>
 
                                 <div class="tab-content">
-
-                                    <!-- Rencana Kerja Biaya (Cash Flow)-->
 								
-                                    <div role="tabpanel" class="tab-pane active" id="rencana_kerja_biaya_cash_flow">									
+                                    <div role="tabpanel" class="tab-pane active" id="rencana_cash_flow">									
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_rak_biaya_cash_flow" style="width:100%">
+                                            <table class="table table-striped table-hover" id="table_rencana_cash_flow" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Biaya Bahan</th>
+                                                        <th class="text-center">Biaya Alat</th>
                                                         <th class="text-center">Biaya Bank</th>
-														<th class="text-center">Biaya Overhead</th>
+														<th class="text-center">Overhead</th>
                                                         <th class="text-center">Termin</th>
                                                         <th class="text-center">Biaya Persiapan</th>
                                                         <th class="text-center">Lampiran</th>
@@ -107,11 +107,11 @@
 
     <script type="text/javascript">
 
-        var table_rak_biaya_cash_flow = $('#table_rak_biaya_cash_flow').DataTable({
+        var table_rencana_cash_flow = $('#table_rencana_cash_flow').DataTable({
             ajax: {
                 processing: true,
                 serverSide: true,
-                url: '<?php echo site_url('rak/table_rencana_kerja_biaya_cash_flow'); ?>',
+                url: '<?php echo site_url('rak/table_rencana_cash_flow'); ?>',
                 type: 'POST',
                 data: function(d) {
                 }
@@ -130,10 +130,16 @@
                     "data": "tanggal_rencana_kerja"
                 },
                 {
+                    "data": "biaya_bahan"
+                },
+                {
+                    "data": "biaya_alat"
+                },
+                {
                     "data": "biaya_bank"
                 },
 				{
-                    "data": "biaya_overhead"
+                    "data": "overhead"
                 },
                 {
                     "data": "termin"
@@ -161,11 +167,11 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 7, 8, 9, 10, 11],
+                    "targets": [0, 1, 8, 9, 10, 11, 12],
                     "className": 'text-center',
                 },
                 {
-                "targets": [2, 3, 4, 5],
+                "targets": [2, 3, 4, 5, 6, 7],
                 "className": 'text-right',
                 },
             ],
@@ -177,14 +183,14 @@
             if (result) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('rak/delete_rencana_kerja_biaya_cash_flow'); ?>",
+                    url: "<?php echo site_url('rak/delete_rencana_cash_flow'); ?>",
                     dataType: 'json',
                     data: {
                         id: id
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_rak_biaya_cash_flow.ajax.reload();
+                            table_rencana_cash_flow.ajax.reload();
                             bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);

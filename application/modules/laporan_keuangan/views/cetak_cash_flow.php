@@ -75,7 +75,7 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-		<?php
+			<?php
 			//RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
@@ -113,29 +113,19 @@
 
 			//BIAYA RAP 2022
 			$rencana_kerja_2022_biaya_1 = $this->db->select('r.*')
-			->from('rak_biaya r')
+			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
 			->get()->row_array();
 
 			$rencana_kerja_2022_biaya_2 = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
-			->get()->row_array();
-
-			$rencana_kerja_2022_biaya_cash_flow_1 = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
-			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
-			->get()->row_array();
-
-			$rencana_kerja_2022_biaya_cash_flow_2 = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rak r')
 			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
 		
 			$total_rap_2022_biaya_bahan = $rencana_kerja_2022_biaya_1['biaya_bahan'] + $rencana_kerja_2022_biaya_2['biaya_bahan'];
 			$total_rap_2022_biaya_alat = $rencana_kerja_2022_biaya_1['biaya_alat'] + $rencana_kerja_2022_biaya_2['biaya_alat'];
-			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya_cash_flow_1['biaya_bank'] + $rencana_kerja_2022_biaya_cash_flow_2['biaya_bank'];
-			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya_cash_flow_1['biaya_overhead'] + $rencana_kerja_2022_biaya_cash_flow_2['biaya_overhead'];
+			$total_rap_2022_biaya_bank = $rencana_kerja_2022_biaya_1['biaya_bank'] + $rencana_kerja_2022_biaya_2['biaya_bank'];
+			$total_rap_2022_biaya_overhead = $rencana_kerja_2022_biaya_1['overhead'] + $rencana_kerja_2022_biaya_2['overhead'];
 			$total_rap_2022_biaya_persiapan = 0;
 			$total_rap_2022_pajak_keluaran = ($total_rap_nilai_2022 * 11) / 100;
 			$total_rap_2022_pajak_masukan = (($total_rap_2022_biaya_bahan + $total_rap_2022_biaya_alat) * 11) / 100;
@@ -193,26 +183,7 @@
 			->get()->row_array();
 			$total_insentif_tm_now = $insentif_tm_now['total'];
 
-			$biaya_alat_lainnya = $this->db->select('sum(pdb.jumlah) as total')
-			->from('pmm_biaya pb ')
-			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
-			->join('pmm_coa c','pdb.akun = c.id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$last_opname')")
-			->get()->row_array();
-			$biaya_alat_lainnya = $biaya_alat_lainnya['total'];
-
-			$biaya_alat_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun in ('219','505')")
-			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi <= '$last_opname')")
-			->get()->row_array();
-			$biaya_alat_lainnya_jurnal = $biaya_alat_lainnya_jurnal['total'];
-
-			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now + $biaya_alat_lainnya + $biaya_alat_lainnya_jurnal;
+			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now;
 
 			//DISKONTO NOW
 			$diskonto_now = $this->db->select('sum(pdb.jumlah) as total')
@@ -279,7 +250,7 @@
 
 			//BIAYA PERSIAPAN NOW
 			$biaya_persiapan_now = $this->db->select('r.*, SUM(r.biaya_persiapan) as total')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja < '$last_opname'")
 			->get()->row_array();
 
@@ -334,13 +305,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_1_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_1_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 
@@ -364,10 +330,10 @@
 			$volume_rencana_kerja_1_produk_c = $rencana_kerja_1['vol_produk_c'];
 			$volume_rencana_kerja_1_produk_d = $rencana_kerja_1['vol_produk_d'];
 
-			$total_1_biaya_bahan = $rencana_kerja_1_biaya['biaya_bahan'];
-			$total_1_biaya_alat = $rencana_kerja_1_biaya['biaya_alat'];
+			$total_1_biaya_bahan = $rencana_kerja_1_biaya_cash_flow['biaya_bahan'];
+			$total_1_biaya_alat = $rencana_kerja_1_biaya_cash_flow['biaya_alat'];
 			$total_1_biaya_bank = $rencana_kerja_1_biaya_cash_flow['biaya_bank'];
-			$total_1_biaya_overhead = $rencana_kerja_1_biaya_cash_flow['biaya_overhead'];
+			$total_1_biaya_overhead = $rencana_kerja_1_biaya_cash_flow['overhead'];
 			$total_1_biaya_termin = $rencana_kerja_1_biaya_cash_flow['termin'];
 			$total_1_biaya_persiapan = $rencana_kerja_1_biaya_cash_flow['biaya_persiapan'];
 
@@ -406,13 +372,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_2_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_2_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 
@@ -436,10 +397,10 @@
 			$volume_rencana_kerja_2_produk_c = $rencana_kerja_2['vol_produk_c'];
 			$volume_rencana_kerja_2_produk_d = $rencana_kerja_2['vol_produk_d'];
 
-			$total_2_biaya_bahan = $rencana_kerja_2_biaya['biaya_bahan'];
-			$total_2_biaya_alat = $rencana_kerja_2_biaya['biaya_alat'];
+			$total_2_biaya_bahan = $rencana_kerja_2_biaya_cash_flow['biaya_bahan'];
+			$total_2_biaya_alat = $rencana_kerja_2_biaya_cash_flow['biaya_alat'];
 			$total_2_biaya_bank = $rencana_kerja_2_biaya_cash_flow['biaya_bank'];
-			$total_2_biaya_overhead = $rencana_kerja_2_biaya_cash_flow['biaya_overhead'];
+			$total_2_biaya_overhead = $rencana_kerja_2_biaya_cash_flow['overhead'];
 			$total_2_biaya_termin = $rencana_kerja_2_biaya_cash_flow['termin'];
 			$total_2_biaya_persiapan = $rencana_kerja_2_biaya_cash_flow['biaya_persiapan'];
 
@@ -477,13 +438,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_3_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_3_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 
@@ -507,10 +463,10 @@
 			$volume_rencana_kerja_3_produk_c = $rencana_kerja_3['vol_produk_c'];
 			$volume_rencana_kerja_3_produk_d = $rencana_kerja_3['vol_produk_d'];
 
-			$total_3_biaya_bahan = $rencana_kerja_3_biaya['biaya_bahan'];
-			$total_3_biaya_alat = $rencana_kerja_3_biaya['biaya_alat'];
+			$total_3_biaya_bahan = $rencana_kerja_3_biaya_cash_flow['biaya_bahan'];
+			$total_3_biaya_alat = $rencana_kerja_3_biaya_cash_flow['biaya_alat'];
 			$total_3_biaya_bank = $rencana_kerja_3_biaya_cash_flow['biaya_bank'];
-			$total_3_biaya_overhead = $rencana_kerja_3_biaya_cash_flow['biaya_overhead'];
+			$total_3_biaya_overhead = $rencana_kerja_3_biaya_cash_flow['overhead'];
 			$total_3_biaya_termin = $rencana_kerja_3_biaya_cash_flow['termin'];
 			$total_3_biaya_persiapan = $rencana_kerja_3_biaya_cash_flow['biaya_persiapan'];
 
@@ -548,13 +504,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_4_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_4_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
@@ -578,10 +529,10 @@
 			$volume_rencana_kerja_4_produk_c = $rencana_kerja_4['vol_produk_c'];
 			$volume_rencana_kerja_4_produk_d = $rencana_kerja_4['vol_produk_d'];
 
-			$total_4_biaya_bahan = $rencana_kerja_4_biaya['biaya_bahan'];
-			$total_4_biaya_alat = $rencana_kerja_4_biaya['biaya_alat'];
+			$total_4_biaya_bahan = $rencana_kerja_4_biaya_cash_flow['biaya_bahan'];
+			$total_4_biaya_alat = $rencana_kerja_4_biaya_cash_flow['biaya_alat'];
 			$total_4_biaya_bank = $rencana_kerja_4_biaya_cash_flow['biaya_bank'];
-			$total_4_biaya_overhead = $rencana_kerja_4_biaya_cash_flow['biaya_overhead'];
+			$total_4_biaya_overhead = $rencana_kerja_4_biaya_cash_flow['overhead'];
 			$total_4_biaya_termin = $rencana_kerja_4_biaya_cash_flow['termin'];
 			$total_4_biaya_persiapan = $rencana_kerja_4_biaya_cash_flow['biaya_persiapan'];
 
@@ -619,13 +570,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_5_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_5_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 
@@ -649,10 +595,10 @@
 			$volume_rencana_kerja_5_produk_c = $rencana_kerja_5['vol_produk_c'];
 			$volume_rencana_kerja_5_produk_d = $rencana_kerja_5['vol_produk_d'];
 
-			$total_5_biaya_bahan = $rencana_kerja_5_biaya['biaya_bahan'];
-			$total_5_biaya_alat = $rencana_kerja_5_biaya['biaya_alat'];
+			$total_5_biaya_bahan = $rencana_kerja_5_biaya_cash_flow['biaya_bahan'];
+			$total_5_biaya_alat = $rencana_kerja_5_biaya_cash_flow['biaya_alat'];
 			$total_5_biaya_bank = $rencana_kerja_5_biaya_cash_flow['biaya_bank'];
-			$total_5_biaya_overhead = $rencana_kerja_5_biaya_cash_flow['biaya_overhead'];
+			$total_5_biaya_overhead = $rencana_kerja_5_biaya_cash_flow['overhead'];
 			$total_5_biaya_termin = $rencana_kerja_5_biaya_cash_flow['termin'];
 			$total_5_biaya_persiapan = $rencana_kerja_5_biaya_cash_flow['biaya_persiapan'];
 
@@ -690,13 +636,8 @@
 			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 
-			$rencana_kerja_6_biaya = $this->db->select('r.*')
-			->from('rak_biaya r')
-			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
-			->get()->row_array();
-
 			$rencana_kerja_6_biaya_cash_flow = $this->db->select('r.*')
-			->from('rak_biaya_cash_flow r')
+			->from('rencana_cash_flow r')
 			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 
@@ -720,10 +661,10 @@
 			$volume_rencana_kerja_6_produk_c = $rencana_kerja_6['vol_produk_c'];
 			$volume_rencana_kerja_6_produk_d = $rencana_kerja_6['vol_produk_d'];
 
-			$total_6_biaya_bahan = $rencana_kerja_6_biaya['biaya_bahan'];
-			$total_6_biaya_alat = $rencana_kerja_6_biaya['biaya_alat'];
+			$total_6_biaya_bahan = $rencana_kerja_6_biaya_cash_flow['biaya_bahan'];
+			$total_6_biaya_alat = $rencana_kerja_6_biaya_cash_flow['biaya_alat'];
 			$total_6_biaya_bank = $rencana_kerja_6_biaya_cash_flow['biaya_bank'];
-			$total_6_biaya_overhead = $rencana_kerja_6_biaya_cash_flow['biaya_overhead'];
+			$total_6_biaya_overhead = $rencana_kerja_6_biaya_cash_flow['overhead'];
 			$total_6_biaya_termin = $rencana_kerja_6_biaya_cash_flow['termin'];
 			$total_6_biaya_persiapan = $rencana_kerja_6_biaya_cash_flow['biaya_persiapan'];
 
@@ -1106,30 +1047,30 @@
 			$total_piutang = $piutang_now + $piutang_1 + $piutang_2 + $piutang_3 + $piutang_4 + $piutang_5 + $piutang_6;
 
 			//AKUMULASI PIUTANG
-			$akumulasi_piutang_1 = ($akumulasi_piutang_1 + $total_1_nilai) - ($termin_1 + $ppn_keluaran_1);
-			$akumulasi_piutang_2 = ($akumulasi_piutang_2 + $total_2_nilai) - ($termin_2 + $ppn_keluaran_2);
-			$akumulasi_piutang_3 = ($akumulasi_piutang_3 + $total_3_nilai) - ($termin_3 + $ppn_keluaran_3);
-			$akumulasi_piutang_4 = ($akumulasi_piutang_4 + $total_4_nilai) - ($termin_4 + $ppn_keluaran_4);
-			$akumulasi_piutang_5 = ($akumulasi_piutang_5 + $total_5_nilai) - ($termin_5 + $ppn_keluaran_5);
-			$akumulasi_piutang_5 = ($akumulasi_piutang_6 + $total_6_nilai) - ($termin_6 + $ppn_keluaran_6);
+			$akumulasi_piutang_1 = ($piutang_now + $total_1_nilai) - $termin_1;
+			$akumulasi_piutang_2 = ($akumulasi_piutang_1 + $total_2_nilai) - $termin_2;
+			$akumulasi_piutang_3 = ($akumulasi_piutang_2 + $total_3_nilai) - $termin_3;
+			$akumulasi_piutang_4 = ($akumulasi_piutang_3 + $total_4_nilai) - $termin_4;
+			$akumulasi_piutang_5 = ($akumulasi_piutang_4 + $total_5_nilai) - $termin_5;
+			$akumulasi_piutang_6 = ($akumulasi_piutang_5 + $total_6_nilai) - $termin_6;
 
 			//HUTANG
 			$hutang_now = $hutang_now;
-			//$hutang_1 = $hutang_1;
-			//$hutang_2 = $hutang_2;
-			//$hutang_3 = $hutang_3;
-			//$hutang_4 = $hutang_4;
-			//$hutang_5 = $hutang_5;
-			//$hutang_6 = $hutang_6;
+			$hutang_1 = 0;
+			$hutang_2 = 0;
+			$hutang_3 = 0;
+			$hutang_4 = 0;
+			$hutang_5 = 0;
+			$hutang_6 = 0;
 			$total_hutang = $hutang_now + $hutang_1 + $hutang_2 + $hutang_3 + $hutang_4 + $hutang_5 + $hutang_6;
 
 			//AKUMULASI HUTANG
-			$akumulasi_hutang_1 = ($hutang_now - $biaya_bahan_1 - $biaya_alat_1) + $hutang_1;
-			$akumulasi_hutang_2 = ($akumulasi_hutang_1 - $biaya_bahan_2 - $biaya_alat_2) + $hutang_2;
-			$akumulasi_hutang_3 = ($akumulasi_hutang_2 - $biaya_bahan_3 - $biaya_alat_3) + $hutang_3;
-			$akumulasi_hutang_4 = ($akumulasi_hutang_3 - $biaya_bahan_4 - $biaya_alat_4) + $hutang_4;
-			$akumulasi_hutang_5 = ($akumulasi_hutang_4 - $biaya_bahan_5 - $biaya_alat_5) + $hutang_5;
-			$akumulasi_hutang_6 = ($akumulasi_hutang_5 - $biaya_bahan_6 - $biaya_alat_6) + $hutang_6;
+			$akumulasi_hutang_1 = ($hutang_now - $biaya_bahan_1 - $biaya_alat_1) + $biaya_bahan_1 + $biaya_alat_1;
+			$akumulasi_hutang_2 = ($akumulasi_hutang_1 - $biaya_bahan_2 - $biaya_alat_2) + $biaya_bahan_2 + $biaya_alat_2;
+			$akumulasi_hutang_3 = ($akumulasi_hutang_2 - $biaya_bahan_3 - $biaya_alat_3) + $biaya_bahan_3 + $biaya_alat_3;
+			$akumulasi_hutang_4 = ($akumulasi_hutang_3 - $biaya_bahan_4 - $biaya_alat_4) + $biaya_bahan_4 + $biaya_alat_4;
+			$akumulasi_hutang_5 = ($akumulasi_hutang_4 - $biaya_bahan_5 - $biaya_alat_5) + $biaya_bahan_5 + $biaya_alat_5;
+			$akumulasi_hutang_6 = ($akumulasi_hutang_5 - $biaya_bahan_6 - $biaya_alat_6) + $biaya_bahan_6 + $biaya_alat_6;
 
 			//POSISI DANA
 			$posisi_dana_rap = ($total_rap_nilai_2022 + $ppn_keluaran_rap) - $jumlah_pengeluaran - ($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan) - ($total_rap_2022_penerimaan_pinjaman - $total_rap_2022_pengembalian_pinjaman);
@@ -1143,12 +1084,12 @@
 			$total_posisi_dana = $posisi_dana_now + $posisi_dana_1 + $posisi_dana_2 + $posisi_dana_3 + $posisi_dana_4 + $posisi_dana_5 + $posisi_dana_6;
 			
 			//AKUMULASI POSISI DANA
-			$akumulasi_posisi_dana_1 = $akumulasi_penerimaan_pinjaman_1 + ($akumulasi_termin_1 + $akumulasi_ppn_keluaran_1) - $akumulasi_pengeluaran_1 - $akumulasi_pajak_keluaran_1 - $akumulasi_pengembalian_pinjaman_1 - ($akumulasi_penerimaan_pinjaman_1 - $akumulasi_pengembalian_pinjaman_1) - ($akumulasi_pinjaman_dana_1 - $akumulasi_pengembalian_pinjaman_dana_1) + $akumulasi_piutang_1 - $akumulasi_hutang_1;
-			$akumulasi_posisi_dana_2 = $akumulasi_penerimaan_pinjaman_2 + ($akumulasi_termin_2 + $akumulasi_ppn_keluaran_2) - $akumulasi_pengeluaran_2 - $akumulasi_pajak_keluaran_2 - $akumulasi_pengembalian_pinjaman_2 - ($akumulasi_penerimaan_pinjaman_2 - $akumulasi_pengembalian_pinjaman_2) - ($akumulasi_pinjaman_dana_2 - $akumulasi_pengembalian_pinjaman_dana_2) + $akumulasi_piutang_2 - $akumulasi_hutang_2;
-			$akumulasi_posisi_dana_3 = $akumulasi_penerimaan_pinjaman_3 + ($akumulasi_termin_3 + $akumulasi_ppn_keluaran_3) - $akumulasi_pengeluaran_3 - $akumulasi_pajak_keluaran_3 - $akumulasi_pengembalian_pinjaman_3 - ($akumulasi_penerimaan_pinjaman_3 - $akumulasi_pengembalian_pinjaman_3) - ($akumulasi_pinjaman_dana_3 - $akumulasi_pengembalian_pinjaman_dana_3) + $akumulasi_piutang_3 - $akumulasi_hutang_3;
-			$akumulasi_posisi_dana_4 = $akumulasi_penerimaan_pinjaman_4 + ($akumulasi_termin_4 + $akumulasi_ppn_keluaran_4) - $akumulasi_pengeluaran_4 - $akumulasi_pajak_keluaran_4 - $akumulasi_pengembalian_pinjaman_4 - ($akumulasi_penerimaan_pinjaman_4 - $akumulasi_pengembalian_pinjaman_4) - ($akumulasi_pinjaman_dana_4 - $akumulasi_pengembalian_pinjaman_dana_4) + $akumulasi_piutang_4 - $akumulasi_hutang_4;
-			$akumulasi_posisi_dana_5 = $akumulasi_penerimaan_pinjaman_5 + ($akumulasi_termin_5 + $akumulasi_ppn_keluaran_5) - $akumulasi_pengeluaran_5 - $akumulasi_pajak_keluaran_5 - $akumulasi_pengembalian_pinjaman_5 - ($akumulasi_penerimaan_pinjaman_5 - $akumulasi_pengembalian_pinjaman_5) - ($akumulasi_pinjaman_dana_5 - $akumulasi_pengembalian_pinjaman_dana_5) + $akumulasi_piutang_5 - $akumulasi_hutang_5;
-			$akumulasi_posisi_dana_6 = $akumulasi_penerimaan_pinjaman_6 + ($akumulasi_termin_6 + $akumulasi_ppn_keluaran_6) - $akumulasi_pengeluaran_6 - $akumulasi_pajak_keluaran_6 - $akumulasi_pengembalian_pinjaman_6 - ($akumulasi_penerimaan_pinjaman_6 - $akumulasi_pengembalian_pinjaman_6) - ($akumulasi_pinjaman_dana_6 - $akumulasi_pengembalian_pinjaman_dana_6) + $akumulasi_piutang_6 - $akumulasi_hutang_6;
+			$akumulasi_posisi_dana_1 = $akumulasi_penerimaan_pinjaman_1 + ($akumulasi_termin_1 + $akumulasi_ppn_keluaran_1) - $akumulasi_pengeluaran_1 - $akumulasi_pengembalian_pinjaman_1 - ($akumulasi_penerimaan_pinjaman_1 - $akumulasi_pengembalian_pinjaman_1) - ($akumulasi_pinjaman_dana_1 - $akumulasi_pengembalian_pinjaman_dana_1) + $akumulasi_piutang_1 - $akumulasi_hutang_1;
+			$akumulasi_posisi_dana_2 = $akumulasi_penerimaan_pinjaman_2 + ($akumulasi_termin_2 + $akumulasi_ppn_keluaran_2) - $akumulasi_pengeluaran_2 - $akumulasi_pengembalian_pinjaman_2 - ($akumulasi_penerimaan_pinjaman_2 - $akumulasi_pengembalian_pinjaman_2) - ($akumulasi_pinjaman_dana_2 - $akumulasi_pengembalian_pinjaman_dana_2) + $akumulasi_piutang_2 - $akumulasi_hutang_2;
+			$akumulasi_posisi_dana_3 = $akumulasi_penerimaan_pinjaman_3 + ($akumulasi_termin_3 + $akumulasi_ppn_keluaran_3) - $akumulasi_pengeluaran_3 - $akumulasi_pengembalian_pinjaman_3 - ($akumulasi_penerimaan_pinjaman_3 - $akumulasi_pengembalian_pinjaman_3) - ($akumulasi_pinjaman_dana_3 - $akumulasi_pengembalian_pinjaman_dana_3) + $akumulasi_piutang_3 - $akumulasi_hutang_3;
+			$akumulasi_posisi_dana_4 = $akumulasi_penerimaan_pinjaman_4 + ($akumulasi_termin_4 + $akumulasi_ppn_keluaran_4) - $akumulasi_pengeluaran_4 - $akumulasi_pengembalian_pinjaman_4 - ($akumulasi_penerimaan_pinjaman_4 - $akumulasi_pengembalian_pinjaman_4) - ($akumulasi_pinjaman_dana_4 - $akumulasi_pengembalian_pinjaman_dana_4) + $akumulasi_piutang_4 - $akumulasi_hutang_4;
+			$akumulasi_posisi_dana_5 = $akumulasi_penerimaan_pinjaman_5 + ($akumulasi_termin_5 + $akumulasi_ppn_keluaran_5) - $akumulasi_pengeluaran_5 - $akumulasi_pengembalian_pinjaman_5 - ($akumulasi_penerimaan_pinjaman_5 - $akumulasi_pengembalian_pinjaman_5) - ($akumulasi_pinjaman_dana_5 - $akumulasi_pengembalian_pinjaman_dana_5) + $akumulasi_piutang_5 - $akumulasi_hutang_5;
+			$akumulasi_posisi_dana_6 = $akumulasi_penerimaan_pinjaman_6 + ($akumulasi_termin_6 + $akumulasi_ppn_keluaran_6) - $akumulasi_pengeluaran_6 - $akumulasi_pengembalian_pinjaman_6 - ($akumulasi_penerimaan_pinjaman_6 - $akumulasi_pengembalian_pinjaman_6) - ($akumulasi_pinjaman_dana_6 - $akumulasi_pengembalian_pinjaman_dana_6) + $akumulasi_piutang_6 - $akumulasi_hutang_6;
 			?>
 			<tr class="table-baris1">
 				<th align="center" rowspan="3" style="vertical-align:middle">I</th>

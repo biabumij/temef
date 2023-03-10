@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Rencana Kerja (Volume)</h3>
+                                    <h3 class="">Rencana Kerja</h3>
                                     
                                 </div>
                             </div>
@@ -159,6 +159,50 @@
                                             </tfoot>
                                         </table>    
                                     </div>
+
+                                    <div class="table-responsive">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th width="5%">URAIAN</th>
+                                                    <th width="50%">URAIAN</th>
+                                                    <th width="45%">NILAI</th>                               
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center">1.</td>
+                                                    <td>Biaya Bahan</td>
+													<td>
+                                                    <input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">2.</td>
+                                                    <td>Biaya Alat</td>
+													<td>
+                                                    <input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td>BUA</td>
+													<td>
+                                                    <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td>BUA</td>
+													<td>
+                                                    <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                
+                                        </table>    
+                                    </div>
+
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>

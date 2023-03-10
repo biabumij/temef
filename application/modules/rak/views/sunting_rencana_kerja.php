@@ -185,6 +185,39 @@
                                             </tr> 
                                         </tfoot>
                                     </table>
+
+                                    <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" width="5%">NO.</th>
+                                                <th class="text-center" width="50%">URAIAN</th>
+                                                <th class="text-center" width="45%">NILAI</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">1.</td>
+                                                <td class="text-left">Biaya Bahan</td>
+                                                <td class="text-right"><input type="text" id="biaya_bahan" name="biaya_bahan" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bahan'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">2.</td>
+                                                <td class="text-left">Biaya Alat</td>
+                                                <td class="text-right"><input type="text" id="biaya_alat" name="biaya_alat" class="form-control rupiahformat text-right" value="<?= $rak['biaya_alat'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">3.</td>
+                                                <td class="text-left">BUA</td>
+                                                <td class="text-right"><input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="<?= $rak['overhead'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">4.</td>
+                                                <td class="text-left">Biaya Bank</td>
+                                                <td class="text-right"><input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="<?= $rak['biaya_bank'] ?>" required="" autocomplete="off"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
                                     <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                         <thead>
                                             <tr class="text-center">

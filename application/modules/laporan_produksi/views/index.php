@@ -71,11 +71,7 @@
 													<div class="col-sm-5">
 														<p><h5>Evaluasi Target Produksi</h5></p>
                                                         <a href="#evaluasi_target_produksi" aria-controls="evaluasi_target_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>
-													<div class="col-sm-5">
-														<p><h5>Evaluasi Laba Rugi <i>(Coming Soon)</i></h5></p>
-                                                        <a href="#evaluasi_laba_rugi" aria-controls="evaluasi_laba_rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>                                 													
+                                                    </div>                               													
                                                 </div>
                                             </div>
                                         </div>
