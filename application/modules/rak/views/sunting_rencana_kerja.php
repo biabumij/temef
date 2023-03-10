@@ -87,10 +87,11 @@
                                     <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <tr>
                                                 <th width="5%">NO.</th>
-                                                <th width="25%">URAIAN</th>
-                                                <th width="25%">VOLUME</th>
+                                                <th width="30%">URAIAN</th>
+                                                <th width="10%">VOLUME</th>
+                                                <th width="15%">HARGA JUAL</th>
                                                 <th width="10%">SATUAN</th>
-                                                <th width="40%">KOMPOSISI</th>     
+                                                <th width="40%">KOMPOSISI</th>  
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -98,6 +99,7 @@
                                                 <td class="text-center">1.</td>
                                                 <td class="text-left">Beton K 125 (10±2)</td>
                                                 <td class="text-right"><input type="text" id="vol_produk_a" name="vol_produk_a" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_a"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="<?= $rak['price_a'] ?>" required="" autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_125" name="komposisi_125" class="form-control input-sm">
@@ -118,6 +120,7 @@
                                                 <td class="text-center">2.</td>
                                                 <td class="text-left">Beton K 225 (10±2)</td>
                                                 <td class="text-right"><input type="text" id="vol_produk_b" name="vol_produk_b" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_b"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="<?= $rak['price_b'] ?>" required="" autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_225" name="komposisi_225" class="form-control input-sm">
@@ -138,6 +141,7 @@
                                                 <td class="text-center">3.</td>
                                                 <td class="text-left">Beton K 250 (10±2)</td>
                                                 <td class="text-right"><input type="text" id="vol_produk_c" name="vol_produk_c" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_c"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="<?= $rak['price_c'] ?>" required="" autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_250" name="komposisi_250" class="form-control input-sm">
@@ -158,6 +162,7 @@
                                                 <td class="text-center">4.</td>
                                                 <td class="text-left">Beton K 250 (18±2)</td>
                                                 <td class="text-right"><input type="text" id="vol_produk_d" name="vol_produk_d" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_d"],2,',','.');?>" onchange="changeData(1)"required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="<?= $rak['price_d'] ?>" required="" autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_250_2" name="komposisi_250_2" class="form-control input-sm">

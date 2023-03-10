@@ -55,6 +55,11 @@ class Rak extends Secure_Controller {
 		$komposisi_250 =  $this->input->post('komposisi_250');
 		$komposisi_250_2 =  $this->input->post('komposisi_250_2');
 
+		$price_a =  str_replace('.', '', $this->input->post('price_a'));
+		$price_b =  str_replace('.', '', $this->input->post('price_b'));
+		$price_c =  str_replace('.', '', $this->input->post('price_c'));
+		$price_d =  str_replace('.', '', $this->input->post('price_d'));
+
 		$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 		$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
@@ -96,9 +101,11 @@ class Rak extends Secure_Controller {
 		$arr_insert = array(
 			'tanggal_rencana_kerja' =>  date('Y-m-d', strtotime($tanggal_rencana_kerja)),
 
-			'vol_produk_a' => $vol_produk_a,
-			'vol_produk_b' => $vol_produk_b,
-			'vol_produk_c' => $vol_produk_c,
+			'price_a' => $price_a,
+			'price_b' => $price_b,
+			'price_c' => $price_c,
+			'price_d' => $price_d,
+
 			'vol_produk_d' => $vol_produk_d,
 
 			'komposisi_125' => $komposisi_125,
@@ -110,11 +117,6 @@ class Rak extends Secure_Controller {
 			'biaya_alat' => $biaya_alat,
 			'overhead' => $overhead,
 			'biaya_bank' => $biaya_bank,
-
-			'price_a' => 896600,
-			'price_b' => 1005000,
-			'price_c' => 1179200,
-			'price_d' => 1200000,
 
 			'penawaran_id_semen' => $penawaran_id_semen,
 			'penawaran_id_pasir' => $penawaran_id_pasir,
@@ -325,6 +327,11 @@ class Rak extends Secure_Controller {
 			$komposisi_250 =  $this->input->post('komposisi_250');
 			$komposisi_250_2 =  $this->input->post('komposisi_250_2');
 
+			$price_a =  str_replace('.', '', $this->input->post('price_a'));
+		$price_b =  str_replace('.', '', $this->input->post('price_b'));
+		$price_c =  str_replace('.', '', $this->input->post('price_c'));
+		$price_d =  str_replace('.', '', $this->input->post('price_d'));
+
 			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));
 			$overhead =  str_replace('.', '', $this->input->post('overhead'));
@@ -366,6 +373,11 @@ class Rak extends Secure_Controller {
 				'vol_produk_c' => $vol_produk_c,
 				'vol_produk_d' => $vol_produk_d,
 
+				'price_a' => $price_a,
+				'price_b' => $price_b,
+				'price_c' => $price_c,
+				'price_d' => $price_d,
+
 				'komposisi_125' => $komposisi_125,
 				'komposisi_225' => $komposisi_225,
 				'komposisi_250' => $komposisi_250,
@@ -375,11 +387,6 @@ class Rak extends Secure_Controller {
 				'biaya_alat' => $biaya_alat,
 				'overhead' => $overhead,
 				'biaya_bank' => $biaya_bank,
-
-				'price_a' => 896600,
-				'price_b' => 1005000,
-				'price_c' => 1179200,
-				'price_d' => 1200000,
 
 				'penawaran_id_semen' => $penawaran_id_semen,
 				'penawaran_id_pasir' => $penawaran_id_pasir,

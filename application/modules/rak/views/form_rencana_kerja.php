@@ -52,8 +52,9 @@
                                             <thead>
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>
-                                                    <th width="25%">URAIAN</th>
-                                                    <th width="25%">VOLUME</th>
+                                                    <th width="30%">URAIAN</th>
+                                                    <th width="10%">VOLUME</th>
+                                                    <th width="15%">HARGA JUAL</th>
                                                     <th width="10%">SATUAN</th>
                                                     <th width="40%">KOMPOSISI</th>                                  
                                                 </tr>
@@ -64,6 +65,9 @@
                                                     <td>Beton K 125 (10±2)</td>
 													<td>
                                                     <input type="text" id="vol_produk_a" name="vol_produk_a" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="896600" required="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
@@ -87,6 +91,9 @@
 													<td>
                                                     <input type="text" id="vol_produk_b" name="vol_produk_b" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td>
+                                                    <input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="1005000" required="" autocomplete="off">
+                                                    </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
                                                         <select id="komposisi_225" name="komposisi_225" class="form-control input-sm">
@@ -109,6 +116,9 @@
 													<td>
                                                     <input type="text" id="vol_produk_c" name="vol_produk_c" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
                                                     </td>
+                                                    <td>
+                                                    <input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="1179200" required="" autocomplete="off">
+                                                    </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
                                                         <select id="komposisi_250" name="komposisi_250" class="form-control input-sm">
@@ -130,6 +140,9 @@
                                                     <td>Beton K 250 (18±2)</td>
 													<td>
                                                     <input type="text" id="vol_produk_d" name="vol_produk_d" class="form-control numberformat text-right" value="" onchange="changeData(1)" required="" autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="1200000" required="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
