@@ -7,24 +7,24 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 9px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 7px;
+			font-size: 9px;
 		}
 
-		table tr.table-baris2{
+		table tr.table-baris1{
 			background-color: #E8E8E8;
-			font-size: 7px;
+			font-size: 9px;
 		}
 			
 		table tr.table-total{
-			background-color: #d6d6d6;
+			background-color: #CCCCCC;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 9px;
 			color: black;
 		}
 	  </style>
@@ -37,8 +37,8 @@
 			<tr>
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 12px;">RENCANA KERJA PRODUKSI</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+				    <div style="display: block;font-weight: bold;font-size: 12px;">PT. BIA BUMI JAYENDRA</div>
 					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
 				</td>
 			</tr>
@@ -708,7 +708,7 @@
 				<th align = "right"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris2">
+			<tr class="table-baris1">
 				<th align = "center">2</th>
 				<th align = "left">Beton K 225 (10±2)</th>
 				<th align = "center">M3</th>
@@ -730,7 +730,7 @@
 				<th align = "right"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris2">
+			<tr class="table-baris1">
 				<th align = "center">4</th>
 				<th align = "left">Beton K 250 (18±2)</th>
 				<th align = "center">M3</th>
@@ -781,7 +781,7 @@
 				<th align = "right"><?php echo number_format($total_volume_semen_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris2">
+			<tr class="table-baris1">
 				<th align = "center">2</th>
 				<th align = "left">Pasir</th>
 				<th align = "center">M3</th>
@@ -803,7 +803,7 @@
 				<th align = "right"><?php echo number_format($total_volume_batu1020_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris2">
+			<tr class="table-baris1">
 				<th align = "center">4</th>
 				<th align = "left">Batu Split 20-30</th>
 				<th align = "center">M3</th>

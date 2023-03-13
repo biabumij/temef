@@ -28,7 +28,7 @@
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #CCCCCC;
 			font-weight: bold;
 			font-size: 8px;
 			color: black;
