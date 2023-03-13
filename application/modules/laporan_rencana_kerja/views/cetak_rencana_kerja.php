@@ -7,30 +7,24 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
-		table tr.table-baris111{
+		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 		}
 
-		table tr.table-baris111-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris112{
-			font-size: 8px;
+		table tr.table-baris2{
 			background-color: #E8E8E8;
+			font-size: 7px;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #d6d6d6;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
@@ -703,7 +697,7 @@
 				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
 				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 	        </tr>
-			<tr class="table-baris111">
+			<tr class="table-baris1">
 				<th align = "center">1</th>
 				<th align = "left">Beton K 125 (10±2)</th>
 				<th align = "center">M3</th>
@@ -714,7 +708,7 @@
 				<th align = "right"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
+			<tr class="table-baris2">
 				<th align = "center">2</th>
 				<th align = "left">Beton K 225 (10±2)</th>
 				<th align = "center">M3</th>
@@ -725,7 +719,7 @@
 				<th align = "right"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
+			<tr class="table-baris1">
 				<th align = "center">3</th>
 				<th align = "left">Beton K 250 (10±2)</th>
 				<th align = "center">M3</th>
@@ -736,7 +730,7 @@
 				<th align = "right"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
+			<tr class="table-baris2">
 				<th align = "center">4</th>
 				<th align = "left">Beton K 250 (18±2)</th>
 				<th align = "center">M3</th>
@@ -748,7 +742,7 @@
 				<th align = "right"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
-				<th align = "center" colspan="3">TOTAL VOLUME</th>
+				<th align = "right" colspan="3">TOTAL VOLUME</th>
 				<th align = "right"><?php echo number_format($total_1_volume,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_2_volume,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_3_volume,2,',','.');?></th>
@@ -757,13 +751,13 @@
 				<th align = "right"><?php echo number_format($total_6_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
-				<th align = "center" colspan="3">PENDAPATAN USAHA</th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_6,2,',','.');?></th>
+				<th align = "right" colspan="3">PENDAPATAN USAHA</th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_1,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_2,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_3,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_4,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_5,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_jual_all_6,0,',','.');?></th>
 			</tr>
 			<tr class="table-judul">
 				<th width="5%" align = "center" style="vertical-align:middle">NO.</th>
@@ -776,8 +770,9 @@
 				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
 				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
 	        </tr>
-			<tr class="table-baris111">
-				<th align = "left" colspan="2">Semen</th>
+			<tr class="table-baris1">
+				<th align = "center">1</th>
+				<th align = "left">Semen</th>
 				<th align = "center">Ton</th>
 				<th align = "right"><?php echo number_format($total_volume_semen_1,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_2,2,',','.');?></th>
@@ -786,8 +781,9 @@
 				<th align = "right"><?php echo number_format($total_volume_semen_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_semen_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
-				<th align = "left" colspan="2">Pasir</th>
+			<tr class="table-baris2">
+				<th align = "center">2</th>
+				<th align = "left">Pasir</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_1,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_2,2,',','.');?></th>
@@ -796,8 +792,9 @@
 				<th align = "right"><?php echo number_format($total_volume_pasir_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_pasir_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
-				<th align = "left" colspan="2">Batu Split 10-20</th>
+			<tr class="table-baris1">
+				<th align = "center">3</th>
+				<th align = "left">Batu Split 10-20</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_2,2,',','.');?></th>
@@ -806,8 +803,9 @@
 				<th align = "right"><?php echo number_format($total_volume_batu1020_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu1020_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
-				<th align = "left" colspan="2">Batu Split 20-30</th>
+			<tr class="table-baris2">
+				<th align = "center">4</th>
+				<th align = "left">Batu Split 20-30</th>
 				<th align = "center">M3</th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_2,2,',','.');?></th>
@@ -816,8 +814,9 @@
 				<th align = "right"><?php echo number_format($total_volume_batu2030_5,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_batu2030_6,2,',','.');?></th>
 			</tr>
-			<tr class="table-baris111">
-				<th align = "left" colspan="2">Solar</th>
+			<tr class="table-baris1">
+				<th align = "center">5</th>
+				<th align = "left">Solar</th>
 				<th align = "center">Liter</th>
 				<th align = "right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>

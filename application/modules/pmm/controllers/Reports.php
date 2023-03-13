@@ -10064,12 +10064,12 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-total">
 				<th class="text-right" colspan="3">PENDAPATAN USAHA</th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_1,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_2,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_4,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_5,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_jual_all_6,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_jual_all_6,0,',','.');?></th>
 			</tr>
 			<tr class="table-judul">
 				<th width="5%" class="text-center" style="vertical-align:middle">NO.</th>
@@ -10083,7 +10083,8 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle">PENGADAAN</th>
 	        </tr>
 			<tr class="table-baris">
-				<th class="text-right" colspan="2">Semen</th>
+				<th class="text-center">1</th>
+				<th class="text-right">Semen</th>
 				<th class="text-center">Ton</th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_2,2,',','.');?></th>
@@ -10093,7 +10094,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_semen_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-right" colspan="2">Pasir</th>
+				<th class="text-center">2</th>
+				<th class="text-right">Pasir</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_2,2,',','.');?></th>
@@ -10103,7 +10105,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_pasir_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-right" colspan="2">Batu Split 10-20</th>
+				<th class="text-center">3</th>
+				<th class="text-right">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_2,2,',','.');?></th>
@@ -10113,7 +10116,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-right" colspan="2">Batu Split 20-30</th>
+				<th class="text-center">4</th>
+				<th class="text-right">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_2,2,',','.');?></th>
@@ -10123,7 +10127,8 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-right" colspan="2">Solar</th>
+				<th class="text-center">5</th>
+				<th class="text-right">Solar</th>
 				<th class="text-center">Liter</th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
