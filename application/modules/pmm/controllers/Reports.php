@@ -9358,20 +9358,20 @@ class Reports extends CI_Controller {
 			<style type="text/css">
 				table tr.table-judul{
 					background-color: #e69500;
-					font-size: 8px;
+					font-size: 10px;
 					font-weight: bold;
 					color: black;
 				}
 					
 				table tr.table-baris{
 					background-color: #F0F0F0;
-					font-size: 8px;
+					font-size: 10px;
 					font-weight: bold;
 				}
 
 				table tr.table-total{
 					background-color: #E8E8E8;
-					font-size: 8px;
+					font-size: 10px;
 					font-weight: bold;
 				}
 			</style>

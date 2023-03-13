@@ -15,12 +15,6 @@
 			background-color: #F0F0F0;
 			font-size: 8px;
 		}
-
-		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
-		}
 			
 		table tr.table-baris2{
 			font-size: 8px;

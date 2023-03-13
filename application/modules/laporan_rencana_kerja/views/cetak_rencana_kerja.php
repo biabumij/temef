@@ -16,7 +16,7 @@
 			font-size: 9px;
 		}
 
-		table tr.table-baris1{
+		table tr.table-baris2{
 			background-color: #E8E8E8;
 			font-size: 9px;
 		}
