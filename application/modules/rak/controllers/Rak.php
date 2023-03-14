@@ -328,9 +328,9 @@ class Rak extends Secure_Controller {
 			$komposisi_250_2 =  $this->input->post('komposisi_250_2');
 
 			$price_a =  str_replace('.', '', $this->input->post('price_a'));
-		$price_b =  str_replace('.', '', $this->input->post('price_b'));
-		$price_c =  str_replace('.', '', $this->input->post('price_c'));
-		$price_d =  str_replace('.', '', $this->input->post('price_d'));
+			$price_b =  str_replace('.', '', $this->input->post('price_b'));
+			$price_c =  str_replace('.', '', $this->input->post('price_c'));
+			$price_d =  str_replace('.', '', $this->input->post('price_d'));
 
 			$biaya_bahan =  str_replace('.', '', $this->input->post('biaya_bahan'));
 			$biaya_alat =  str_replace('.', '', $this->input->post('biaya_alat'));

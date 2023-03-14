@@ -277,6 +277,42 @@ class Pmm_model extends CI_Model {
             
     }
 
+    function GetNoPONew()
+    {
+        $output = false;
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+
+        $query = $this->db->select('no_po')->order_by('no_po','desc')->get('pmm_purchase_order');
+        if($query->num_rows() > 0){
+            $no = $query->row_array()['no_po'] + 1;
+        }else {
+            $no = 1;
+        }
+
+        $arr = explode('/', $no);
+        $output = '0'.$arr[0].'/PO/'.$code_prefix['code_prefix'].'/'.date('m').'/'.date('Y');
+        return $output;
+            
+    }
+
+    function GetNoRMNew()
+    {
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+        $output = false;
+
+
+        $query = $this->db->select('request_no')->order_by('request_no','desc')->get_where('pmm_request_materials');
+        if($query->num_rows() > 0){
+            $no = $query->row_array()['request_no'] + 1;
+        }else {
+            $no = 1;
+        }
+        $arr = explode('/', $no);
+        $output = '0'.$arr[0].'/RM/'.$code_prefix['code_prefix'].'/'.date('m').'/'.date('Y');
+        return $output;
+            
+    }
+
 
 
     function ConvertDateSchedule($date)

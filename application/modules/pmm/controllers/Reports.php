@@ -10086,7 +10086,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">1</th>
 				<th class="text-right">Semen</th>
 				<th class="text-center">Ton</th>
-				<th class="text-right"><?php echo number_format($total_volume_semen_1,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= site_url('laporan/pesanan_pembelian/'.$rencana_kerja_1['penawaran_id_semen'].'/'.$date_1_awal = date('Y-m-d',strtotime($date_1_awal)).'/'.$date_1_akhir = date('Y-m-d',strtotime($date_1_akhir)).'').'/'.$kebutuhan = $total_volume_semen_1.'/'.$material_id = 4 ?>"><?php echo number_format($total_volume_semen_1,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_2,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_3,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_semen_4,2,',','.');?></th>
@@ -10097,7 +10097,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">2</th>
 				<th class="text-right">Pasir</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_pasir_1,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= site_url('laporan/pesanan_pembelian/'.$rencana_kerja_1['penawaran_id_pasir'].'/'.$date_1_awal = date('Y-m-d',strtotime('-2 days -1 months', strtotime($date_1_akhir))).'/'.$date_1_akhir = date('Y-m-d',strtotime($date_1_akhir)).'').'/'.$kebutuhan = $total_volume_pasir_1.'/'.$material_id = 5 ?>"><?php echo number_format($total_volume_pasir_1,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_2,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_3,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_pasir_4,2,',','.');?></th>
@@ -10108,7 +10108,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">3</th>
 				<th class="text-right">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= site_url('laporan/pesanan_pembelian/'.$rencana_kerja_1['penawaran_id_batu1020'].'/'.$date_1_awal = date('Y-m-d',strtotime('-2 days -1 months', strtotime($date_1_akhir))).'/'.$date_1_akhir = date('Y-m-d',strtotime($date_1_akhir)).'').'/'.$kebutuhan = $total_volume_batu1020_1.'/'.$material_id = 6 ?>"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_2,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_3,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu1020_4,2,',','.');?></th>
@@ -10119,7 +10119,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">4</th>
 				<th class="text-right">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
-				<th class="text-right"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= site_url('laporan/pesanan_pembelian/'.$rencana_kerja_1['penawaran_id_batu2030'].'/'.$date_1_awal = date('Y-m-d',strtotime('-2 days -1 months', strtotime($date_1_akhir))).'/'.$date_1_akhir = date('Y-m-d',strtotime($date_1_akhir)).'').'/'.$kebutuhan = $total_volume_batu2030_1.'/'.$material_id = 7 ?>"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_2,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_3,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_batu2030_4,2,',','.');?></th>
@@ -10130,7 +10130,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">5</th>
 				<th class="text-right">Solar</th>
 				<th class="text-center">Liter</th>
-				<th class="text-right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= site_url('laporan/pesanan_pembelian/'.$rencana_kerja_1['penawaran_id_solar'].'/'.$date_1_awal = date('Y-m-d',strtotime('-2 days -1 months', strtotime($date_1_akhir))).'/'.$date_1_akhir = date('Y-m-d',strtotime($date_1_akhir)).'').'/'.$kebutuhan = $total_volume_solar_1.'/'.$material_id = 8 ?>"><?php echo number_format($total_volume_solar_1,2,',','.');?></a></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_3,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_volume_solar_4,2,',','.');?></th>

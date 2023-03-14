@@ -1617,4 +1617,115 @@ class Pembelian extends Secure_Controller
 		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
+
+    public function submit_pesanan_pembelian()
+    {
+
+        $request_no = $this->input->post('request_no');
+        $subject = $this->input->post('subject');
+        $supplier_id  = $this->input->post('supplier_id');
+        $kategori_id  = $this->input->post('kategori_id');
+        $memo = $this->input->post('memo');
+
+        $arr_insert_req = array(
+            'request_no' => $request_no,
+            'subject' => $subject,
+            'supplier_id' => $supplier_id,
+            'kategori_id' => $kategori_id,
+            'memo' => $memo,
+            'created_by' => $this->session->userdata('admin_id'),
+            'created_on' => date('Y-m-d H:i:s'),
+            'status' => 'APPROVED'
+        );
+
+        $this->db->insert('pmm_request_materials', $arr_insert_req);
+        $request_material_id = $this->db->insert_id();
+
+        $product_id = $this->input->post('produk');
+        $penawaran_pembelian_id = $this->input->post('penawaran_pembelian_id');
+        $volume =  str_replace('.', '', $this->input->post('volume'));
+        $volume =  str_replace(',', '.', $volume);
+        $satuan_id = $this->input->post('measure_id');
+
+        $harsat = $this->input->post('harsat');
+        $harsat = str_replace('.', '', $harsat);
+        $harsat = str_replace(',', '.', $harsat);
+
+        $nilai = $this->input->post('nilai');
+        $nilai = str_replace('.', '', $nilai);
+        $nilai = str_replace(',', '.', $nilai);
+
+        $tax_id = $this->input->post('tax_id');
+        $tax = $this->input->post('tax');
+        $tax = str_replace('.', '', $tax);
+        $tax = str_replace(',', '.', $tax);
+
+        $pajak_id = $this->input->post('pajak_id');
+        $pajak = $this->input->post('pajak');
+        $pajak = str_replace('.', '', $pajak);
+        $pajak = str_replace(',', '.', $pajak);
+
+        $arr_detail_req = array(
+            'request_material_id' => $request_material_id,
+            'supplier_id' => $supplier_id,
+            'material_id' => $product_id,
+            'penawaran_id' => $penawaran_pembelian_id,
+            'volume' => $volume,
+            'measure_id' => $satuan_id,
+            'price' => $harsat,
+            'tax_id' => $tax_id,
+            'tax' => $tax,
+            'pajak_id' => $pajak_id,
+            'pajak' => $pajak,
+            'created_by' => $this->session->userdata('admin_id'),
+            'created_on' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('pmm_request_material_details', $arr_detail_req);
+
+        $date_po = $this->input->post('date_po');
+        $date_pkp = $this->input->post('date_pkp');
+        $no_po = $this->input->post('no_po');
+        $total = $this->input->post('total');
+        $total = str_replace('.', '', $total);
+        $total = str_replace(',', '.', $total);
+        $memo = $this->input->post('memo');
+
+        $arr_insert = array(
+            'request_material_id' => $request_material_id,
+            'subject' => $subject,
+            'date_po' => $date_po,
+            'no_po' => $no_po,
+            'date_pkp' => $date_pkp,
+            'supplier_id' => $supplier_id,
+            'kategori_id' => $kategori_id,
+            'total' => $total,
+            'memo' => $memo,
+            'created_by' => $this->session->userdata('admin_id'),
+            'created_on' => date('Y-m-d H:i:s'),
+            'status' => 'WAITING'
+        );
+
+        $this->db->insert('pmm_purchase_order', $arr_insert);
+
+        $purchase_order_id = $this->db->insert_id();
+        $satuan = $this->input->post('satuan');
+
+        $arr_detail = array(
+            'purchase_order_id' => $purchase_order_id,
+            'material_id' => $product_id,
+            'penawaran_id' => $penawaran_pembelian_id,
+            'volume' => $volume,
+            'measure' => $satuan,
+            'price' => $harsat,
+            'tax_id' => $tax_id,
+            'tax' => $tax,
+            'pajak_id' => $pajak_id,
+            'pajak' => $pajak
+        );
+
+        $this->db->insert('pmm_purchase_order_detail', $arr_detail);
+        $this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Pesanan Pembelian');
+        redirect('admin/pembelian');
+        exit();
+    }
 }

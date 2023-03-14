@@ -176,7 +176,8 @@
 													}
 													
 													$total = $sub_total + ($tax_ppn - $tax_pph + $tax_ppn11) + ($pajak_ppn - $pajak_pph + $pajak_ppn11);
-                                                } ?>
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>    
                                     </div>

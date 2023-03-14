@@ -173,7 +173,6 @@
                                                     <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
                                                 </tr>
                                             <?php
-                                                $sub_total += $dt['total'];
                                                 if ($dt['tax_id'] == 4) {
                                                     $tax_0 = true;
                                                 }
