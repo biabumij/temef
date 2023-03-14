@@ -717,7 +717,7 @@
                                                 <th width="10%" style="background-color:#d63232; color:white;">KEBUTUHAN</th>
                                                 <th width="10%" style="background-color:#c1e266;">SISA STOK</th>
                                                 <th width="10%" style="background-color:#539ed6; color:white;">PROSES PO</th>
-                                                <th width="10%" style="background-color:#cbcbcb;">TOTAL KEBUTUHAN</th>
+                                                <th width="10%" style="background-color:#cbcbcb;">SISA KEBUTUHAN</th>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">
