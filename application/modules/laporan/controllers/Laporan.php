@@ -1651,7 +1651,6 @@ class Laporan extends Secure_Controller {
 			$data['no_po'] = $this->pmm_model->GetNoPONew();
 			$data['request_no'] = $this->pmm_model->GetNoRMNew();
 			$cat = $this->db->get_where('pmm_penawaran_pembelian_detail ppd', array('ppd.penawaran_pembelian_id' => $rencana_kerja_1, 'ppd.material_id' => $material_id))->row_array();
-			file_put_contents("D:\\test.txt", $this->db->last_query());
 			$cat_material_id = $cat['material_id'];
 			$data['stock_opname'] = $this->db->get_where('pmm_remaining_materials_cat cat', array('cat.material_id' => $cat_material_id))->row_array();
 			$total_po = $this->db->select('sum(pod.volume) as volume')
