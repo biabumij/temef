@@ -1536,20 +1536,20 @@
 			<tr class="table-baris1">
 				<th align="center">VIII</th>
 				<th align="left"><u>POSISI DANA</u></th>
-				<th align="right"><?php echo $posisi_dana_rap < 0 ? "(".number_format($posisi_dana_rap,0,',','.').")" : number_format($posisi_dana_rap,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_now < 0 ? "(".number_format($posisi_dana_now,0,',','.').")" : number_format($posisi_dana_now,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_1 < 0 ? "(".number_format($posisi_dana_1,0,',','.').")" : number_format($posisi_dana_1,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_1 < 0 ? "(".number_format($akumulasi_posisi_dana_1,0,',','.').")" : number_format($akumulasi_posisi_dana_1,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_2 < 0 ? "(".number_format($posisi_dana_2,0,',','.').")" : number_format($posisi_dana_2,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_2 < 0 ? "(".number_format($akumulasi_posisi_dana_2,0,',','.').")" : number_format($akumulasi_posisi_dana_2,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_3 < 0 ? "(".number_format($posisi_dana_3,0,',','.').")" : number_format($posisi_dana_3,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_3 < 0 ? "(".number_format($akumulasi_posisi_dana_3,0,',','.').")" : number_format($akumulasi_posisi_dana_3,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_4 < 0 ? "(".number_format($posisi_dana_4,0,',','.').")" : number_format($posisi_dana_4,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_4 < 0 ? "(".number_format($akumulasi_posisi_dana_4,0,',','.').")" : number_format($akumulasi_posisi_dana_4,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_5 < 0 ? "(".number_format($posisi_dana_5,0,',','.').")" : number_format($posisi_dana_5,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_5 < 0 ? "(".number_format($akumulasi_posisi_dana_5,0,',','.').")" : number_format($akumulasi_posisi_dana_5,0,',','.');?></th>
-				<th align="right"><?php echo $posisi_dana_6 < 0 ? "(".number_format($posisi_dana_6,0,',','.').")" : number_format($posisi_dana_6,0,',','.');?></th>
-				<th align="right"><?php echo $akumulasi_posisi_dana_6 < 0 ? "(".number_format($akumulasi_posisi_dana_6,0,',','.').")" : number_format($akumulasi_posisi_dana_6,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_rap < 0 ? "(".number_format(-$posisi_dana_rap,0,',','.').")" : number_format($posisi_dana_rap,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_now < 0 ? "(".number_format(-$posisi_dana_now,0,',','.').")" : number_format($posisi_dana_now,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_1 < 0 ? "(".number_format(-$posisi_dana_1,0,',','.').")" : number_format($posisi_dana_1,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_1 < 0 ? "(".number_format(-$akumulasi_posisi_dana_1,0,',','.').")" : number_format($akumulasi_posisi_dana_1,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_2 < 0 ? "(".number_format(-$posisi_dana_2,0,',','.').")" : number_format($posisi_dana_2,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_2 < 0 ? "(".number_format(-$akumulasi_posisi_dana_2,0,',','.').")" : number_format($akumulasi_posisi_dana_2,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_3 < 0 ? "(".number_format(-$posisi_dana_3,0,',','.').")" : number_format($posisi_dana_3,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_3 < 0 ? "(".number_format(-$akumulasi_posisi_dana_3,0,',','.').")" : number_format($akumulasi_posisi_dana_3,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_4 < 0 ? "(".number_format(-$posisi_dana_4,0,',','.').")" : number_format($posisi_dana_4,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_4 < 0 ? "(".number_format(-$akumulasi_posisi_dana_4,0,',','.').")" : number_format($akumulasi_posisi_dana_4,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_5 < 0 ? "(".number_format(-$posisi_dana_5,0,',','.').")" : number_format($posisi_dana_5,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_5 < 0 ? "(".number_format(-$akumulasi_posisi_dana_5,0,',','.').")" : number_format($akumulasi_posisi_dana_5,0,',','.');?></th>
+				<th align="right"><?php echo $posisi_dana_6 < 0 ? "(".number_format(-$posisi_dana_6,0,',','.').")" : number_format($posisi_dana_6,0,',','.');?></th>
+				<th align="right"><?php echo $akumulasi_posisi_dana_6 < 0 ? "(".number_format(-$akumulasi_posisi_dana_6,0,',','.').")" : number_format($akumulasi_posisi_dana_6,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 	    </table>
