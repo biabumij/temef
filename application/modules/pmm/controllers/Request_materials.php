@@ -63,8 +63,8 @@ class Request_materials extends CI_Controller {
 			$this->db->where('request_date <=',date('Y-m-d',strtotime($end_date)));	
 		}
 
-		$this->db->order_by('request_date','DESC');
 		$this->db->order_by('created_on','DESC');
+		$this->db->order_by('request_date','DESC');
 		$query = $this->db->get('pmm_request_materials prm');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
