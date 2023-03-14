@@ -69,11 +69,6 @@
 				<th width="10px">:</th>
 				<th align="left"><?php echo $row['supplier_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');;?></th>
 			</tr>
-			<tr>
-				<th>Memo</th>
-				<th width="10px">:</th>
-				<th align="left"><?php echo $row['memo'];?></th>
-			</tr>
 		</table>
 		<br />
 		<br />
@@ -106,6 +101,15 @@
 			?>
 
 		</table>
+		<br />
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="3">
+			<tr>
+				<th align="left"><?php echo $row['memo'];?></th>
+			</tr>
+		</table>
+		<br />
 		<br />
 		<br />
 		<table width="98%" border="0" cellpadding="30">
