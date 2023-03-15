@@ -1650,14 +1650,20 @@ class Laporan extends Secure_Controller {
 			$data['details'] = $this->db->get_where('pmm_penawaran_pembelian_detail ppd', array('ppd.penawaran_pembelian_id' => $rencana_kerja_1))->row_array();
 			$data['no_po'] = $this->pmm_model->GetNoPONew();
 			$data['request_no'] = $this->pmm_model->GetNoRMNew();
-			$cat = $this->db->get_where('pmm_penawaran_pembelian_detail ppd', array('ppd.penawaran_pembelian_id' => $rencana_kerja_1, 'ppd.material_id' => $material_id))->row_array();
-			$cat_material_id = $cat['material_id'];
-			$data['stock_opname'] = $this->db->get_where('pmm_remaining_materials_cat cat', array('cat.material_id' => $cat_material_id))->row_array();
+
+			$data['stock_opname'] = $this->db->select('(cat.display_volume) as display_volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date < '$date_1_awal')")
+			->where("cat.material_id = $material_id")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+
 			$total_po = $this->db->select('sum(pod.volume) as volume')
 			->from('pmm_purchase_order ppo')
 			->join('pmm_purchase_order_detail pod','ppo.id = pod.purchase_order_id','left')
 			->where("(ppo.date_po between '$date_1_awal' and '$date_1_akhir')")
-			->where("pod.material_id = $cat_material_id")
+			->where("pod.material_id = $material_id")
 			->get()->row_array();
 			
 			$data['purchase_order'] = $total_po['volume'];
