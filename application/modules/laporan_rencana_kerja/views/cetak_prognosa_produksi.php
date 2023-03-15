@@ -531,6 +531,7 @@
 			$total_laba_3 = $total_3_nilai - $total_biaya_3_biaya;
 			$total_laba_4 = $total_4_nilai - $total_biaya_4_biaya;
 			$total_laba_5 = $total_5_nilai - $total_biaya_5_biaya;
+			$total_laba_6 = $total_6_nilai - $total_biaya_6_biaya;
 			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
 			?>
 			
