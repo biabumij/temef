@@ -501,9 +501,9 @@
 			$volume_rencana_kerja_6_produk_d = $rencana_kerja_6['vol_produk_d'];
 
 			//BIAYA
-			$total_6_biaya_bahan = $rencana_kerja_biaya_6['biaya_bahan'];
-			$total_6_biaya_alat = $rencana_kerja_biaya_6['biaya_alat'];
-			$total_6_overhead = $rencana_kerja_biaya_6['overhead'];
+			$total_6_biaya_bahan = $rencana_kerja_6['biaya_bahan'];
+			$total_6_biaya_alat = $rencana_kerja_6['biaya_alat'];
+			$total_6_overhead = $rencana_kerja_6['overhead'];
 			$total_6_biaya_bank =  $rencana_kerja_6['biaya_bank'];
 			$total_biaya_6_biaya = $total_6_biaya_bahan + $total_6_biaya_alat + $total_6_overhead + $total_6_biaya_bank;
 			?>
