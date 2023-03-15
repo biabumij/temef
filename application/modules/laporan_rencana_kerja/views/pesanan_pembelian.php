@@ -774,7 +774,7 @@
                                                         <input name="satuan" class="form-control input-sm text-center" value="<?= $details['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$details['measure']),'measure_name');?>" readonly=""/>
                                                     </td>
                                                     <td class="text-center">
-                                                        <input name="harsat" class="form-control input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>"/>
+                                                        <input name="harsat" class="form-control input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>" readonly=""/>
                                                     </td>
                                                     <?php
                                                     $a = round($total_volume_semen_1,2);
@@ -782,7 +782,7 @@
                                                     $nilai = $a * $b
                                                     ?>
                                                     <td class="text-center">
-                                                        <input name="nilai" class="form-control input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>"/>
+                                                        <input name="nilai" class="form-control input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>" readonly=""/>
                                                     </td>
                                                 </tr>
                                                 <?php

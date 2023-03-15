@@ -206,7 +206,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="text-center">4.</td>
-                                                    <td>BUA</td>
+                                                    <td>Biaya Bank</td>
 													<td>
                                                     <input type="text" id="biaya_bank" name="biaya_bank" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
                                                     </td>
