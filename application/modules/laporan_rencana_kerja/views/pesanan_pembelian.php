@@ -676,7 +676,7 @@
                                                     <br />
                                                     <br />
                                                     <br />
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-3">
                                                         <label>Tanggal Pesanan Pembelian</label>
                                                         <input type="date" name="date_po" class="form-control text-left" required="">
                                                     </div>
@@ -768,7 +768,7 @@
                                                         <input class="form-control input-sm text-center" value="<?= $details['material_id'] = $this->crud_global->GetField('produk',array('id'=>$details['material_id']),'nama_produk');?>" readonly=""/>
                                                     </td>
                                                     <td class="text-center">
-                                                        <input name="volume" class="form-control input-sm text-center" value="<?php echo number_format($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2,',','.');?>"/>
+                                                        <input name="volume" class="form-control numberformat text-center" value="<?php echo number_format($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2,',','.');?>"/>
                                                     </td>
                                                     <td class="text-center">
                                                         <input name="satuan" class="form-control input-sm text-center" value="<?= $details['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$details['measure']),'measure_name');?>" readonly=""/>
@@ -877,6 +877,9 @@
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
 
     <script type="text/javascript">
+        
+    $('input.numberformat').number(true, 2,',','.' );
+    $('input.rupiahformat').number(true, 0,',','.' );
 
     tinymce.init({
     selector: 'textarea#about_text',
