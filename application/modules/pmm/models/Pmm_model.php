@@ -1547,7 +1547,7 @@ class Pmm_model extends CI_Model {
                 $no_po = "'".$row['no_po']."'";
                 if ($row['status'] == 'WAITING') { ?>
 					<?php
-					if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
+					if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16{
 					?>
 					<?php
 						$row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
