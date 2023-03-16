@@ -154,7 +154,7 @@
                                                         <input name="satuan" class="form-control input-sm text-center" value="<?= $details['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$details['measure']),'measure_name');?>" readonly=""/>
                                                     </td>
                                                     <td class="text-center">
-                                                        <input name="harsat" id="harsat" onchange="changeData(1)" class="form-control input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>" readonly=""/>
+                                                        <input name="harsat" id="harsat" onchange="changeData(1)" class="form-control rupiahformat input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>" readonly=""/>
                                                     </td>
                                                     <?php
                                                     $a = round($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2);
@@ -162,7 +162,7 @@
                                                     $nilai = $a * $b
                                                     ?>
                                                     <td class="text-center">
-                                                        <input name="nilai" id="nilai" class="form-control input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>" readonly=""/>
+                                                        <input name="nilai" id="nilai" class="form-control rupiahformat input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>" readonly=""/>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -294,13 +294,33 @@
 
     function changeData(id)
         {
+
             var volume = $('#volume').val();
             var harsat = $('#harsat').val();
+            var nilai = $('#nilai').val();
 
-            nilai = ( volume * harsat);
+            volume = (volume);
+            $('#nilai').text($.number(volume, 2,',','.' ));
+            harsat = (harsat);
+            $('#harsat').val(harsat);
+            nilai = (volume * harsat);
             $('#nilai').val(nilai);
+            $('#nilai').text($.number(nilai, 0,',','.' ));
 
         }
+    function getTotal()
+    {
+        var nilai = $('nilai').val();
+
+        nilai = parseFloat($('#volume').val()) * parseFloat($('#harsat').val());
+        
+        $('#nilai').val(nilai);
+        $('#nilai').text($.number( nilai, 0,',','.' ));
+
+        nilai = parseFloat(nilai);
+        $('#nilai').val(nilai);
+        $('#nilai').text($.number( nilai, 0,',','.' ));
+    }
     </script>
     
 </body>
