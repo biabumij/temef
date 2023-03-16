@@ -711,7 +711,7 @@
                                         </table>
                                         <table class="table-warning table-center" width="40%">
                                             <tr>
-                                                <th colspan="4" style="background-color:#404040;color:white;">VOLUME</th>
+                                                <th colspan="4" style="background-color:#404040;color:white;">VOLUME (M3)</th>
                                             </tr>
                                             <tr>
                                                 <th width="10%" style="background-color:#d63232; color:white;">KEBUTUHAN</th>
