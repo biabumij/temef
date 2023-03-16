@@ -1635,6 +1635,8 @@ class Pembelian extends Secure_Controller
             'memo' => $memo,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
+            'approved_by' => 16,
+            'approved_on' => date('Y-m-d H:i:s'),
             'status' => 'APPROVED'
         );
 
