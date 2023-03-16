@@ -157,12 +157,12 @@
                                                         <input name="harsat" id="harsat" onchange="changeData(1)" class="form-control input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>" readonly=""/>
                                                     </td>
                                                     <?php
-                                                    $a = round($total_volume_semen_1,2);
+                                                    $a = round($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2);
                                                     $b = $details['price'];
                                                     $nilai = $a * $b
                                                     ?>
                                                     <td class="text-center">
-                                                        <input name="nilai" id="nilai" class="form-control input-sm text-center" value="<?php echo number_format((($kebutuhan - $stock_opname['display_volume'] - $purchase_order) * $details['price']),0,',','.');?>" readonly=""/>
+                                                        <input name="nilai" id="nilai" class="form-control input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>" readonly=""/>
                                                     </td>
                                                 </tr>
                                                 <?php
