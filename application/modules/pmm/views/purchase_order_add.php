@@ -318,7 +318,7 @@
                                     <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/3');?>')" class="btn btn-warning check-btn" id="btn-po"><i class="fa fa-send"></i> Buat PO</a>
                                     <?php
                                 }else if($data['status'] == 'WAITING'){
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 16){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
                                         <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                         <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-check"></i> Setujui</a>
