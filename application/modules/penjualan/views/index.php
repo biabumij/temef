@@ -186,7 +186,7 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>No</th>
-                                                        <th class="text-center">Status Pembayaran</th>
+                                                        <th class="text-center">Tagihan</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">Nomor Produksi</th>
                                                         <th class="text-center">Nomor Sales Order</th>
