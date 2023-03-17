@@ -57,7 +57,7 @@
 		</table>
 		<br />
 		<br />
-		<table class="minimalistBlack" cellpadding="1" width="98%">
+		<table class="minimalistBlack" cellpadding="3" width="98%">
 			<tr>
                 <th align="center" width="3%">No</th>
                 <th align="center" width="7%">Tanggal</th>
