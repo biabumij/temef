@@ -495,11 +495,11 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3, 4, 5, 6, 8, 10, 11, 12],
+                    "targets": [1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 13],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [7],
+                    "targets": [8],
                     "className": 'text-right',
                 }
             ],
