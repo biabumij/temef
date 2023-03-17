@@ -186,6 +186,7 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Pembayaran</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">Nomor Produksi</th>
                                                         <th class="text-center">Nomor Sales Order</th>
@@ -194,7 +195,6 @@
                                                         <th class="text-center">Volume</th>
                                                         <th class="text-center">Satuan</th>
                                                         <th class="text-center">Surat Jalan</th>
-                                                        <th class="text-center">Status Pembayaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th class="text-center">Upload Surat Jalan</th>
@@ -443,6 +443,10 @@
             columns: [{
                     "data": "checkbox"
                 },
+                
+                {
+                    "data": "status_payment"
+                },
                 {
                     "data": "no"
                 },
@@ -469,9 +473,6 @@
                 },
                 {
                     "data": "surat_jalan"
-                },
-                {
-                    "data": "status_payment"
                 },
                 {
                     "data": "admin_name"
