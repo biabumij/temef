@@ -193,9 +193,11 @@
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Volume</th>
                                                         <th class="text-center">Satuan</th>
+                                                        <th class="text-center">Surat Jalan</th>
                                                         <th class="text-center">Status Pembayaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Upload Surat Jalan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -204,6 +206,34 @@
                                             </table>
                                         </div>
                                     </div>
+
+                                    <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Upload Surat Jalan</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_doc_surat_jalan">
+                                                    <div class="form-group">
+                                                        <label>Upload Surat Jalan</label>
+                                                        <input type="file" id="file" name="file" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                     <!-- Tagihan Penjualan -->
 
@@ -436,7 +466,10 @@
                 },
                 {
                     "data": "measure"
-                },		
+                },
+                {
+                    "data": "surat_jalan"
+                },
                 {
                     "data": "status_payment"
                 },
@@ -445,6 +478,9 @@
                 },
                 {
                     "data": "created_on"
+                },
+                {
+                    "data": "uploads_surat_jalan"
                 }
             ],
             select: {
@@ -459,7 +495,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 8, 9, 10, 11],
+                    "targets": [1, 2, 8, 10, 11, 12, 13],
                     "className": 'text-center',
                 },
                 {
@@ -649,6 +685,46 @@
 		$('#filter_date_tagihan').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
             table.ajax.reload();
+        });
+
+        function UploadDocSuratJalan(id) {
+
+        $('#modalDocSuratJalan').modal('show');
+        $('#id_doc_surat_jalan').val(id);
+        }
+
+        $('#modalDocSuratJalan form').submit(function(event) {
+            $('#btn-form-doc-surat-jalan').button('loading');
+
+            var form = $(this);
+            var formdata = false;
+            if (window.FormData) {
+                formdata = new FormData(form[0]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('penjualan/form_document'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: formdata ? formdata : form.serialize(),
+                success: function(result) {
+                    $('#btn-form-doc-surat-jalan').button('reset');
+                    if (result.output) {
+                        $("#modalDocSuratJalan form").trigger("reset");
+                        tableProduction.ajax.reload();
+
+                        $('#modalDocSuratJalan').modal('hide');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            event.preventDefault();
+
         });
 
     </script>

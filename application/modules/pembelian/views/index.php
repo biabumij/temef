@@ -285,6 +285,81 @@
                                     </div>
                                 </div>
 
+                                <div class="modal fade bd-example-modal-lg" id="modalDoc" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Upload Document PO</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_doc">
+                                                    <div class="form-group">
+                                                        <label>Upload Document</label>
+                                                        <input type="file" id="file" name="file" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Kirim</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade bd-example-modal-lg" id="modalEditPo" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Edit No. Pesanan Pembelian</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_po">
+                                                    <div class="form-group">
+                                                        <label>No. Pesanan Pembelian</label>
+                                                        <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
+                                                        <input type="hidden" name="status" id="change_status" value="WAITING">
+                                                    </div>
+                                                    
+                                                    <?php
+                                                        if($this->session->userdata('admin_group_id') == 1){
+                                                    ?>
+                                                            <div class="form-group">
+                                                                <label>Status Pesanan Pembelian</label>
+                                                                <select id="change_status" name="status" class="form-control">
+                                                                    <option value="WAITING">WAITING</option>
+                                                                    <option value="PUBLISH">PUBLISH</option>
+                                                                    <option value="UNPUBLISH">UNPUBLISH</option>
+                                                                    <option value="REJECTED">REJECTED</option>
+                                                                    <option value="DRAFT">DRAFT</option>
+                                                                    <option value="CLOSED">CLOSED</option>
+                                                                </select>
+                                                            </div>
+                                                        <?php
+                                                        }   
+                                                    ?>
+                                                    
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-send"></i> Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Pengiriman Pembelian -->
 
                                 <div role="tabpanel" class="tab-pane" id="messages">
@@ -341,26 +416,55 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>No</th>
+                                                    <th>No.</th>
+                                                    <th class="text-center">Status Pembayaran</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">No. Surat Jalan</th>
+                                                    <th class="text-center">Surat Jalan</th>
                                                     <th class="text-center">No. Kendaraan</th>
                                                     <th class="text-center">Nama Supir</th>
-                                                    <th class="text-center">Surat Jalan</th>
                                                     <th class="text-center">Produk</th>
                                                     <th class="text-center">Satuan</th>                                                   
                                                     <th class="text-center">Volume</th>
-                                                    <th class="text-center">Status Pembayaran</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
+                                                    <th class="text-center">Upload Surat Jalan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Upload Surat Jalan</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_doc_surat_jalan">
+                                                    <div class="form-group">
+                                                        <label>Upload Surat Jalan</label>
+                                                        <input type="file" id="file" name="file" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -801,84 +905,6 @@
         </div>
     </div>
 
-
-    <div class="modal fade bd-example-modal-lg" id="modalDoc" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="modal-title">Upload Document PO</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
-                        <input type="hidden" name="id" id="id_doc">
-                        <div class="form-group">
-                            <label>Upload Document</label>
-                            <input type="file" id="file" name="file" class="form-control" required="" />
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Kirim</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade bd-example-modal-lg" id="modalEditPo" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="modal-title">Edit No. Pesanan Pembelian</span>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" method="POST" style="padding: 0 10px 0 20px;">
-                        <input type="hidden" name="id" id="id_po">
-                        <div class="form-group">
-                            <label>No. Pesanan Pembelian</label>
-                            <input type="text" id="no_po_edit" name="no_po" class="form-control" required="" />
-							<input type="hidden" name="status" id="change_status" value="WAITING">
-                        </div>
-						
-						<?php
-                            if($this->session->userdata('admin_group_id') == 1){
-                        ?>
-                                <div class="form-group">
-                                    <label>Status Pesanan Pembelian</label>
-									<select id="change_status" name="status" class="form-control">
-										<option value="WAITING">WAITING</option>
-										<option value="PUBLISH">PUBLISH</option>
-										<option value="UNPUBLISH">UNPUBLISH</option>
-										<option value="REJECTED">REJECTED</option>
-										<option value="DRAFT">DRAFT</option>
-										<option value="CLOSED">CLOSED</option>
-									</select>
-								</div>
-                            <?php
-                            }   
-                        ?>
-                        
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-send"></i> Simpan</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     <script type="text/javascript">
         var form_control = '';
     </script>
@@ -1272,6 +1298,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "status_payment"
+                },
+                {
                     "data": "date_receipt"
                 },
                 {
@@ -1284,13 +1313,13 @@
                     "data": "surat_jalan"
                 },
                 {
+                    "data": "surat_jalan_file"
+                },
+                {
                     "data": "no_kendaraan"
                 },
                 {
                     "data": "driver"
-                },
-                {
-                    "data": "surat_jalan_file"
                 },
                 {
                     "data": "material_name"
@@ -1302,13 +1331,13 @@
                     "data": "display_volume"
                 },
                 {
-                    "data": "status_payment"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
                     "data": "created_on"
+                },
+                {
+                    "data": "uploads_surat_jalan"
                 }
             ],
             select: {
@@ -1322,7 +1351,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 6, 7, 8, 9, 10, 13, 14],
+                    "targets": [2, 3, 6, 7, 8, 9, 10, 13, 14, 15],
                     "className": 'text-center',
                 },
 				{
@@ -1786,6 +1815,46 @@
                 $(this).hide();
                 $(this).closest('.custom-file').find('.custom-file-select').show();
             });
+        });
+
+        function UploadDocSuratJalan(id) {
+
+        $('#modalDocSuratJalan').modal('show');
+        $('#id_doc_surat_jalan').val(id);
+        }
+
+        $('#modalDocSuratJalan form').submit(function(event) {
+            $('#btn-form-doc-surat-jalan').button('loading');
+
+            var form = $(this);
+            var formdata = false;
+            if (window.FormData) {
+                formdata = new FormData(form[0]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/receipt_material/form_document'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: formdata ? formdata : form.serialize(),
+                success: function(result) {
+                    $('#btn-form-doc-surat-jalan').button('reset');
+                    if (result.output) {
+                        $("#modalDocSuratJalan form").trigger("reset");
+                        table_receipt.ajax.reload();
+
+                        $('#modalDocSuratJalan').modal('hide');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            event.preventDefault();
+
         });
     </script>
 
