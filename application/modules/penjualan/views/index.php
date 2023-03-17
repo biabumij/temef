@@ -443,12 +443,11 @@
             columns: [{
                     "data": "checkbox"
                 },
-                
-                {
-                    "data": "status_payment"
-                },
                 {
                     "data": "no"
+                },
+                {
+                    "data": "status_payment"
                 },
                 {
                     "data": "date_production"
