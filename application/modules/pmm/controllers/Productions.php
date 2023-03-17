@@ -1094,7 +1094,6 @@ class Productions extends Secure_Controller {
 			$this->db->where('pp.date_production <=',date('Y-m-d',strtotime($end_date)));	
 			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
 		}
-		$this->db->join('pmm_product ppr','pp.product_id = ppr.id','left');
 		$this->db->join('penerima pc','pp.client_id = pc.id','left');
 		$this->db->join('produk p','pp.product_id = p.id','left');
 		$this->db->group_by('pp.id');
