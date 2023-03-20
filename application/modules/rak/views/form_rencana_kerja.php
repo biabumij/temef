@@ -25,7 +25,6 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Rencana Produksi</li>
                             <li><a>Rencana Kerja</a></li>
-                            <li><a>Rencana Kerja (Volume)</a></li>
                         </ul>
                     </div>
                 </div>
