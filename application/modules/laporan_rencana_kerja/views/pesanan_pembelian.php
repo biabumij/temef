@@ -89,15 +89,19 @@
                                                 </div>
                                             </tbody>
                                         </table>
-                                        <table class="table-warning table-center" width="40%">
+                                        <table class="table-warning table-center" width="50%">
                                             <tr>
-                                                <th colspan="4" style="background-color:#404040;color:white;">VOLUME (M3)</th>
+                                                <th colspan="5" style="background-color:#404040;color:white;">VOLUME (M3)</th>
                                             </tr>
                                             <tr>
-                                                <th width="10%" style="background-color:#d63232; color:white;">KEBUTUHAN</th>
-                                                <th width="10%" style="background-color:#c1e266;">SISA STOK</th>
-                                                <th width="10%" style="background-color:#539ed6; color:white;">PROSES PO</th>
-                                                <th width="10%" style="background-color:#cbcbcb;">SISA KEBUTUHAN</th>
+                                                <th width="10%" style="background-color:#d63232; color:white;" rowspan="2">KEBUTUHAN</th>
+                                                <th width="10%" style="background-color:#c1e266;" rowspan="2">SISA STOK</th>
+                                                <th width="20%" style="background-color:#539ed6; color:white;" colspan="2">PROSES PO</th>
+                                                <th width="10%" style="background-color:#cbcbcb;" rowspan="2">SISA KEBUTUHAN</th>
+                                            </tr>         
+                                            <tr>
+                                                <th style="background-color:#539ed6;color:white;">TOTAL PO</th>
+                                                <th style="background-color:#539ed6;color:white;">TERIMA PO</th>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">
@@ -108,6 +112,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <input style="background-color:#539ed6; color:white;" class="form-control input-sm text-center" value="<?php echo number_format($purchase_order,2,',','.');?>" readonly=""/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input style="background-color:#539ed6; color:white;" class="form-control input-sm text-center" value="<?php echo number_format($total_receipt,2,',','.');?>" readonly=""/>
                                                 </td>
                                                 <td class="text-center">
                                                     <input style="background-color:#cbcbcb;" class="form-control input-sm text-center" value="<?php echo number_format($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2,',','.');?>" readonly=""/>

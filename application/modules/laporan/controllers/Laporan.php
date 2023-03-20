@@ -1668,6 +1668,15 @@ class Laporan extends Secure_Controller {
 			
 			$data['purchase_order'] = $total_po['volume'];
 			$data['kebutuhan'] = $kebutuhan;
+
+			$total_penerimaan = $this->db->select('sum(prm.volume) as volume')
+			->from('pmm_receipt_material prm')
+			->where("(prm.date_receipt between '$date_1_awal' and '$date_1_akhir')")
+			->where("prm.material_id = $material_id")
+			->get()->row_array();
+
+			$data['total_receipt'] = $total_penerimaan['volume'];
+
 			$this->load->view('laporan_rencana_kerja/pesanan_pembelian', $data);
         } else {
             redirect('admin');
