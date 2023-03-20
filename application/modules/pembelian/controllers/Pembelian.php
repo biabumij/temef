@@ -1647,7 +1647,7 @@ class Pembelian extends Secure_Controller
         $penawaran_pembelian_id = $this->input->post('penawaran_pembelian_id');
         $volume =  str_replace('.', '', $this->input->post('volume'));
         $volume =  str_replace(',', '.', $volume);
-        $satuan_id = $this->input->post('measure_id');
+        $measure_id = $this->input->post('measure_id');
 
         $harsat = $this->input->post('harsat');
         $harsat = str_replace('.', '', $harsat);
@@ -1658,12 +1658,12 @@ class Pembelian extends Secure_Controller
         $nilai = str_replace(',', '.', $nilai);
 
         $tax_id = $this->input->post('tax_id');
-        $tax = $this->input->post('tax');
+        $tax = $this->input->post('total_tax');
         $tax = str_replace('.', '', $tax);
         $tax = str_replace(',', '.', $tax);
 
         $pajak_id = $this->input->post('pajak_id');
-        $pajak = $this->input->post('pajak');
+        $pajak = $this->input->post('total_pajak');
         $pajak = str_replace('.', '', $pajak);
         $pajak = str_replace(',', '.', $pajak);
 
@@ -1673,7 +1673,7 @@ class Pembelian extends Secure_Controller
             'material_id' => $product_id,
             'penawaran_id' => $penawaran_pembelian_id,
             'volume' => $volume,
-            'measure_id' => $satuan_id,
+            'measure_id' => $measure_id,
             'price' => $harsat,
             'tax_id' => $tax_id,
             'tax' => $tax,
@@ -1687,7 +1687,7 @@ class Pembelian extends Secure_Controller
         $date_po = $this->input->post('date_po');
         $date_pkp = $this->input->post('date_pkp');
         $no_po = $this->input->post('no_po');
-        $total = $this->input->post('total');
+        $total = $this->input->post('nilai');
         $total = str_replace('.', '', $total);
         $total = str_replace(',', '.', $total);
         $memo = $this->input->post('memo');
@@ -1710,14 +1710,14 @@ class Pembelian extends Secure_Controller
         $this->db->insert('pmm_purchase_order', $arr_insert);
 
         $purchase_order_id = $this->db->insert_id();
-        $satuan = $this->input->post('satuan');
+        $measure = $this->input->post('measure');
 
         $arr_detail = array(
             'purchase_order_id' => $purchase_order_id,
             'material_id' => $product_id,
             'penawaran_id' => $penawaran_pembelian_id,
             'volume' => $volume,
-            'measure' => $satuan,
+            'measure' => $measure,
             'price' => $harsat,
             'tax_id' => $tax_id,
             'tax' => $tax,

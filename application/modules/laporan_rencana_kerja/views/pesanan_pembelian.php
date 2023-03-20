@@ -126,8 +126,7 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%" rowspan="2">NO.</th>
-                                                    <th>REKANAN</th>
-                                                    <th>PRODUK</th>
+                                                    <th>PENAWARAN</th>
                                                     <th>VOLUME</th>
                                                     <th>SATUAN</th>
                                                     <th>HARGA</th>
@@ -136,74 +135,59 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <input type="hidden" name="request_no" class="form-control input-sm text-left" value="<?= $request_no;?>"/>
-                                                    <input type="hidden" name="measure_id" class="form-control input-sm text-left" value="<?= $details['measure'];?>"/>
-
-                                                    <input type="hidden" name="supplier_id" class="form-control input-sm text-left" value="<?= $row['supplier_id'];?>"/>
+                                                    <!--Tanggal PKP :-->
                                                     <input type="hidden" name="date_pkp" class="form-control input-sm text-left" value="2021-02-10"/>
-                                                    <input type="hidden" name="rekanan" class="form-control input-sm text-left" value="<?= $row['syarat_pembayaran'];?>"/>
-                                                    <input type="hidden" name="penawaran_pembelian_id" class="form-control input-sm text-left" value="<?= $row['id'];?>"/>
-                                                    <input type="hidden" name="produk" class="form-control input-sm text-left" value="<?= $details['material_id'];?>"/>
-                                                    <input type="hidden" name="tax_id" class="form-control input-sm text-left" value="<?= $details['tax_id'];?>"/>
-                                                    <input type="hidden" name="pajak_id" class="form-control input-sm text-left" value="<?= $details['pajak_id'];?>"/>
-                                                   
+                                                    <!--Request No :-->
+                                                    <input type="hidden" name="request_no" class="form-control input-sm text-left" value="<?= $request_no;?>"/>
+                                                    <!--Supplier ID :-->
+                                                    <input type="hidden" name="supplier_id" id="supplier_id" class="form-control input-sm text-left" value=""/>
+                                                    <!--Material ID :-->
+                                                    <input type="hidden" name="produk" id="material_id" class="form-control input-sm text-left" value=""/>
+                                                    <!--Measure ID :-->
+                                                    <input type="hidden" name="measure_id" id="measure_id" class="form-control input-sm text-left" value=""/>
+                                                    <!--Tax ID :-->
+                                                    <input type="hidden" name="tax_id" id="tax_id" class="form-control input-sm text-left" value=""/>
+                                                    <!--Pajak ID :-->
+                                                    <input type="hidden" name="pajak_id"  id="pajak_id" class="form-control input-sm text-left" value=""/>
+                                                    <!--Tax :-->
+                                                    <input type="hidden" name="tax" id="tax" class="form-control input-sm text-left" value=""/>
+                                                    <!--Pajak :-->
+                                                    <input type="hidden" name="pajak" id="pajak" class="form-control input-sm text-left" value=""/>
+                                                    <!--Total Tax :-->
+                                                    <input type="hidden" name="total_tax" id="total_tax" class="form-control input-sm text-left" value=""/>
+                                                    <!--Total Pajak :-->
+                                                    <input type="hidden" name="total_pajak" id="total_pajak" class="form-control input-sm text-left" value=""/>
+                                                    
+                                                    <br />
+                                                    <br />
+
                                                     <td class="text-center">1.</td>
                                                     <td class="text-left">
-                                                        <input class="form-control input-sm text-center" value="<?= $row['supplier'];?>" readonly=""/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input class="form-control input-sm text-center" value="<?= $details['material_id'] = $this->crud_global->GetField('produk',array('id'=>$details['material_id']),'nama_produk');?>" readonly=""/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input name="volume" id="volume" onchange="changeData(1)" class="form-control numberformat text-center" value="<?php echo number_format($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2,',','.');?>"/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input name="satuan" class="form-control input-sm text-center" value="<?= $details['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$details['measure']),'measure_name');?>" readonly=""/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input name="harsat" id="harsat" onchange="changeData(1)" class="form-control rupiahformat input-sm text-center" value="<?php echo number_format($details['price'],0,',','.');?>" readonly=""/>
-                                                    </td>
-                                                    <?php
-                                                    $a = round($kebutuhan - $stock_opname['display_volume'] - $purchase_order,2);
-                                                    $b = $details['price'];
-                                                    $nilai = $a * $b
-                                                    ?>
-                                                    <td class="text-center">
-                                                        <input name="nilai" id="nilai" class="form-control rupiahformat input-sm text-center" value="<?php echo number_format($nilai,0,',','.');?>" readonly=""/>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                                if ($details['tax_id'] == 4) {
-                                                    $tax_0_1 = true;
-                                                }
-                                                if ($details['tax_id'] == 3) {
-                                                    $tax_ppn_1 = ($nilai * 10) / 100;
-                                                }
-                                                if ($details['tax_id'] == 5) {
-                                                    $tax_pph_1 = ($nilai * 2) / 100;
-                                                }
-                                                if ($details['tax_id'] == 6) {
-                                                    $tax_ppn11_1 = ($nilai * 11) / 100;
-                                                }
-                                                if ($details['pajak_id'] == 4) {
-                                                    $tax_0_2 = true;
-                                                }
-                                                if ($details['pajak_id'] == 3) {
-                                                    $tax_ppn_2 = ($nilai * 10) / 100;
-                                                }
-                                                if ($details['pajak_id'] == 5) {
-                                                    $tax_pph_2 = ($nilai * 2) / 100;
-                                                }
-                                                if ($details['pajak_id'] == 6) {
-                                                    $tax_ppn11_2 = ($nilai * 11) / 100;
-                                                }
+                                                        <select name="penawaran_pembelian_id" id="penawaran_id" class="form-control">
+                                                        <option value="">Pilih Penawaran</option>
+                                                            <?php
 
-                                                $ppn_1 = ($tax_ppn_1 - $tax_pph_1 + $tax_ppn11_1);
-                                                $ppn_2 = ($tax_ppn_2 - $tax_pph_2 + $tax_ppn11_2);
-                                                ?>
-                                                <input type="hidden" name="tax" class="form-control input-sm text-left" value="<?= number_format($ppn_1,0,',','.');?>"/>
-                                                <input type="hidden" name="pajak" class="form-control input-sm text-left" value="<?= number_format($ppn_2,0,',','.');?>"/>
-                                                <input type="hidden" name="total" class="form-control input-sm text-left" value="<?= number_format($nilai,0,',','.');?>"/>
+                                                            foreach ($semen as $key => $sm) {
+                                                                ?>
+                                                                <option value="<?php echo $sm['penawaran_id'];?>" data-supplier_id="<?php echo $sm['supplier_id'];?>" data-material_id="<?php echo $sm['material_id'];?>" data-measure_id="<?php echo $sm['measure'];?>" data-measure="<?php echo $sm['measure_name'];?>" data-harsat="<?php echo $sm['price'];?>" data-tax_id="<?php echo $sm['tax_id'];?>" data-tax="<?php echo $sm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sm['penawaran_id'];?>"><?php echo $sm['nama'];?> - <?php echo $sm['nomor_penawaran'];?> - <?php echo $sm['material_name'];?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input name="volume" id="volume" onchange="changeData(1)" class="form-control numberformat text-center" value=""/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input name="measure" id="measure" class="form-control input-sm text-center" value="" readonly=""/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input name="harsat" id="harsat" onchange="changeData(1)" class="form-control rupiahformat input-sm text-center" value="" readonly=""/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input name="nilai" id="nilai" class="form-control rupiahformat input-sm text-center" value="" readonly=""/>
+                                                    </td>
+                                                    
                                             <div>
                                             </tbody>
                                         </table>
@@ -268,6 +252,10 @@
     $('input.numberformat').number(true, 2,',','.' );
     $('input.rupiahformat').number(true, 0,',','.' );
 
+    $(document).ready(function(){
+        $('#penawaran_id').val(<?= $row['id'];?>).trigger('change');
+    });
+        
     tinymce.init({
     selector: 'textarea#about_text',
     height: 200,
@@ -305,6 +293,7 @@
             var volume = $('#volume').val();
             var harsat = $('#harsat').val();
             var nilai = $('#nilai').val();
+            var tax = $('#tax').val();
 
             volume = (volume);
             $('#nilai').text($.number(volume, 2,',','.' ));
@@ -313,6 +302,18 @@
             nilai = (volume * harsat);
             $('#nilai').val(nilai);
             $('#nilai').text($.number(nilai, 0,',','.' ));
+
+            tax = (tax);
+            $('#tax').text($.number(tax, 2,',','.' ));
+            total_tax = (tax * volume);
+            $('#total_tax').val(total_tax);
+            $('#total_tax').text($.number(total_tax, 0,',','.' ));
+
+            pajak = (pajak);
+            $('#pajak').text($.number(pajak, 2,',','.' ));
+            total_pajak = (pajak * volume);
+            $('#total_pajak').val(total_pajak);
+            $('#total_pajak').text($.number(total_pajak, 0,',','.' ));
 
         }
     function getTotal()
@@ -328,6 +329,38 @@
         $('#nilai').val(nilai);
         $('#nilai').text($.number( nilai, 0,',','.' ));
     }
+
+    $('#penawaran_id').change(function(){
+        var penawaran_id = $(this).find(':selected').data('penawaran_id');
+        $('#penawaran_id').val(penawaran_id);
+
+        var supplier_id = $(this).find(':selected').data('supplier_id');
+        $('#supplier_id').val(supplier_id);
+
+        var material_id = $(this).find(':selected').data('material_id');
+        $('#material_id').val(material_id);
+
+        var measure_id = $(this).find(':selected').data('measure_id');
+        $('#measure_id').val(measure_id);
+
+        var measure = $(this).find(':selected').data('measure');
+        $('#measure').val(measure);
+
+        var harsat = $(this).find(':selected').data('harsat');
+        $('#harsat').val(harsat);
+
+        var tax_id = $(this).find(':selected').data('tax_id');
+        $('#tax_id').val(tax_id);
+
+        var tax = $(this).find(':selected').data('tax');
+        $('#tax').val(tax);
+
+        var pajak_id = $(this).find(':selected').data('pajak_id');
+        $('#pajak_id').val(pajak_id);
+
+        var pajak = $(this).find(':selected').data('pajak');
+        $('#pajak').val(pajak);
+    });
     </script>
     
 </body>

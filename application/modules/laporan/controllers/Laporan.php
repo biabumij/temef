@@ -1650,6 +1650,7 @@ class Laporan extends Secure_Controller {
 			$data['details'] = $this->db->get_where('pmm_penawaran_pembelian_detail ppd', array('ppd.penawaran_pembelian_id' => $rencana_kerja_1))->row_array();
 			$data['no_po'] = $this->pmm_model->GetNoPONew();
 			$data['request_no'] = $this->pmm_model->GetNoRMNew();
+			$data['semen'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
 
 			$data['stock_opname'] = $this->db->select('(cat.display_volume) as display_volume')
 			->from('pmm_remaining_materials_cat cat ')
