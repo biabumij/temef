@@ -128,7 +128,6 @@
                                                     <th width="5%" rowspan="2">NO.</th>
                                                     <th>PENAWARAN</th>
                                                     <th>VOLUME</th>
-                                                    <th>SATUAN</th>
                                                     <th>HARGA</th>
                                                     <th>NILAI</th>
                                                 </tr>
