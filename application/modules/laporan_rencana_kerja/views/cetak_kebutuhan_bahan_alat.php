@@ -746,7 +746,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_tr + $total_price_tr_2 + $total_price_tr_3,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="center" class="table-border-pojok-kiri">5.</th>
 				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
 				<th align="left" class="table-border-pojok-tengah"><?= $produk_solar['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar,2,',','.');?></th>
@@ -755,7 +755,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_solar * $rak['harga_solar'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="center" class="table-border-pojok-kiri">6.</th>
 				<th align="left" class="table-border-pojok-tengah">Insentif Operator</th>
 				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
