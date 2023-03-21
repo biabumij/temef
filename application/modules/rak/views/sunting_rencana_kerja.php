@@ -755,7 +755,7 @@
             $('#penawaran_id_wl_3').val(<?= $rak['penawaran_id_wl_3'];?>).trigger('change');
             $('#penawaran_id_tr').val(<?= $rak['penawaran_id_tr'];?>).trigger('change');
             $('#penawaran_id_tr_2').val(<?= $rak['penawaran_id_tr_2'];?>).trigger('change');
-            $('#penawaran_id_tr_2').val(<?= $rak['penawaran_id_tr_2'];?>).trigger('change');
+            $('#penawaran_id_tr_3').val(<?= $rak['penawaran_id_tr_3'];?>).trigger('change');
         });
 
         $('#penawaran_id_semen').change(function(){
