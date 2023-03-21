@@ -328,8 +328,10 @@
 			->get()->result_array();
 
 			$total_price_bp = 0;
+			$total_vol_bp = 0;
 			foreach ($produk_bp as $x){
 				$total_price_bp += $x['total_vol_produksi'] * $x['price'];
+				$total_vol_bp += $x['total_vol_produksi'];
 			}
 
 			$produk_bp_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
@@ -345,8 +347,10 @@
 			->get()->result_array();
 
 			$total_price_bp_2 = 0;
+			$total_vol_bp_2 = 0;
 			foreach ($produk_bp_2 as $x){
 				$total_price_bp_2 += $x['total_vol_produksi'] * $x['price'];
+				$total_vol_bp_2 += $x['total_vol_produksi'];
 			}
 
 			$produk_bp_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
@@ -362,8 +366,10 @@
 			->get()->result_array();
 
 			$total_price_bp_3 = 0;
+			$total_vol_bp_3 = 0;
 			foreach ($produk_bp_3 as $x){
 				$total_price_bp_3 += $x['total_vol_produksi'] * $x['price'];
+				$total_vol_bp_3 += $x['total_vol_produksi'];
 			}
 
 			$produk_tm = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -378,8 +384,10 @@
 			->get()->result_array();
 
 			$total_price_tm = 0;
+			$total_vol_tm = 0;
 			foreach ($produk_tm as $x){
 				$total_price_tm += $x['qty'] * $x['price'];
+				$total_vol_tm += $x['qty'];
 			}
 
 			$produk_tm_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -394,8 +402,10 @@
 			->get()->result_array();
 
 			$total_price_tm_2 = 0;
+			$total_vol_tm_2 = 0;
 			foreach ($produk_tm_2 as $x){
 				$total_price_tm_2 += $x['qty'] * $x['price'];
+				$total_vol_tm_2 += $x['qty'];
 			}
 
 			$produk_tm_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -410,8 +420,10 @@
 			->get()->result_array();
 
 			$total_price_tm_3 = 0;
+			$total_vol_tm_3 = 0;
 			foreach ($produk_tm_3 as $x){
 				$total_price_tm_3 += $x['qty'] * $x['price'];
+				$total_vol_tm_3 += $x['qty'];
 			}
 
 			$produk_wl = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -426,8 +438,10 @@
 			->get()->result_array();
 
 			$total_price_wl = 0;
+			$total_vol_wl = 0;
 			foreach ($produk_wl as $x){
 				$total_price_wl += $x['qty'] * $x['price'];
+				$total_vol_wl += $x['qty'];
 			}
 
 			$produk_wl_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -442,8 +456,10 @@
 			->get()->result_array();
 
 			$total_price_wl_2 = 0;
+			$total_vol_wl_2 = 0;
 			foreach ($produk_wl_2 as $x){
 				$total_price_wl_2 += $x['qty'] * $x['price'];
+				$total_vol_wl_2 += $x['qty'];
 			}
 
 			$produk_wl_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -458,8 +474,10 @@
 			->get()->result_array();
 
 			$total_price_wl_3 = 0;
+			$total_vol_wl_3 = 0;
 			foreach ($produk_wl_3 as $x){
 				$total_price_wl_3 += $x['qty'] * $x['price'];
+				$total_vol_wl_3 += $x['qty'];
 			}
 
 			$produk_tr = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -474,8 +492,10 @@
 			->get()->result_array();
 
 			$total_price_tr = 0;
+			$total_vol_tr = 0;
 			foreach ($produk_tr as $x){
 				$total_price_tr += $x['qty'] * $x['price'];
+				$total_price_tr += $x['qty'];
 			}
 
 			$produk_tr_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -490,8 +510,10 @@
 			->get()->result_array();
 
 			$total_price_tr_2 = 0;
+			$total_vol_tr_2 = 0;
 			foreach ($produk_tr_2 as $x){
 				$total_price_tr_2 += $x['qty'] * $x['price'];
+				$total_price_tr_2 += $x['qty'];
 			}
 
 			$produk_tr_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -506,8 +528,10 @@
 			->get()->result_array();
 
 			$total_price_tr_3 = 0;
+			$total_vol_tr_3 = 0;
 			foreach ($produk_tr_3 as $x){
 				$total_price_tr_3 += $x['qty'] * $x['price'];
+				$total_price_tr_3 += $x['qty'];
 			}
 
 			$rap_solar = $this->db->select('rap.*')
@@ -517,10 +541,19 @@
 			->get()->row_array();
 			$total_volume_solar = $total_produksi_volume * $rap_solar['vol_bbm_solar'];
 			?>
-			<?php $no=1; foreach ($produk_bp as $key => $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
+			<?php $no=1; foreach ($produk_bp as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -530,8 +563,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_bp_2 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -541,7 +574,7 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_bp_3 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
@@ -550,10 +583,28 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['total_vol_produksi'] * $x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Wheel Loader</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_bp + $total_vol_bp_2 + $total_vol_bp_3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_bp + $total_price_bp_2 + $total_price_bp_3,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">2.</th>	
+				<th align="left" class="table-border-pojok-tengah">Truck Mixer</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_tm as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -563,8 +614,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_tm_2 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -574,8 +625,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_tm_3 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -583,10 +634,28 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Truck Mixer</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_tm + $total_vol_tm_2 + $total_vol_tm_3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_tm + $total_price_tm_2 + $total_price_tm_3,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_wl as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -596,8 +665,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_wl_2 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -607,8 +676,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_wl_3 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -616,10 +685,28 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Wheel Loader</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_wl + $total_vol_wl_2 + $total_vol_wl_3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_wl + $total_price_wl_2 + $total_price_wl_3,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">4.</th>	
+				<th align="left" class="table-border-pojok-tengah">Transfer Semen</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_tr as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>\
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -629,8 +716,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_tr_2 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -640,8 +727,8 @@
 			<?php endforeach; ?>
 			<?php foreach ($produk_tr_3 as $x): ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
@@ -649,6 +736,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+			<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Transfer Semen</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_tr + $total_vol_tr_2 + $total_vol_tr_3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_tr + $total_price_tr_2 + $total_price_tr_3,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"><?php echo $no++;?></th>
 				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
