@@ -341,7 +341,7 @@
 			$rak_alat_tr_2 = $rak_alat['penawaran_id_tr_2'];
 			$rak_alat_tr_3 = $rak_alat['penawaran_id_tr_3'];
 
-			$produk_bp = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			$produk_bp = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, (vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
