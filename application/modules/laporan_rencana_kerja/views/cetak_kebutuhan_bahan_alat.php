@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <?= include 'lib.php'; ?>
-
+	  <title>KEBUTUHAN BAHAN BAKU</title>
+	  
 	  <style type="text/css">
 		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
 			border-top: 1px solid black;
@@ -74,7 +74,7 @@
 		$tanggal = date('F Y', strtotime($rak['tanggal_rencana_kerja']));
 		?>
 			
-		<div align="center" style="display: block;font-weight: bold;font-size: 12px;text-transform:uppercase;">RENCANA KERJA<br/>
+		<div align="center" style="display: block;font-weight: bold;font-size: 12px;text-transform:uppercase;">KEBUTUHAN BAHAN & ALAT<br/>
 		DIVISI BETON PROYEK BENDUNGAN TEMEF<br/>
 		PT. BIA BUMI JAYENDRA<br/>
 		BULAN <?php echo $tanggal;?></div>
@@ -82,97 +82,20 @@
 		<br />
 		<br />
 
-		<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">1. RENCANA PRODUKSI</div>
-		<br />
-		<table cellpadding="3" width="98%">
-			<tr class="table-judul">
-				<?php
-					$total = 0;
-					?>
-					<?php
-					$total = $rak['vol_produk_a'] + $rak['vol_produk_b'] + $rak['vol_produk_c'] + $rak['vol_produk_d'];
-				?>
-                <th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
-                <th width="20%" align="center" class="table-border-pojok-tengah">URAIAN</th>
-				<th width="20%" align="center" class="table-border-pojok-tengah">VOLUME</th>
-				<th width="15%" align="center" class="table-border-pojok-tengah">SATUAN</th>
-				<th width="20%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
-				<th width="20%" align="center" class="table-border-pojok-kanan">TOTAL</th>
-            </tr>
-			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">1.</td>
-				<td align="left" class="table-border-pojok-tengah">Beton K 125 (10±2)</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_a'],2,',','.'); ?></td>
-				<td align="center" class="table-border-pojok-tengah">M3</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['price_a'],2,',','.'); ?></td>
-				<?php
-				$a1 = round($rak['vol_produk_a'],2);
-				$a2 = round($rak['price_a'],0);
-				$a3 = $a1 * $a2;
-				?>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($a3,0,',','.'); ?></td>
-			</tr>
-			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">2.</td>
-				<td align="left" class="table-border-pojok-tengah">Beton K 225 (10±2)</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_b'],2,',','.'); ?></td>
-				<td align="center" class="table-border-pojok-tengah">M3</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['price_b'],2,',','.'); ?></td>
-				<?php
-				$b1 = round($rak['vol_produk_b'],2);
-				$b2 = round($rak['price_b'],0);
-				$b3 = $b1 * $b2;
-				?>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($b3,0,',','.'); ?></td>
-			</tr>
-			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">3.</td>
-				<td align="left" class="table-border-pojok-tengah">Beton K 250 (10±2)</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_c'],2,',','.'); ?></td>
-				<td align="center" class="table-border-pojok-tengah">M3</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['price_c'],2,',','.'); ?></td>
-				<?php
-				$c1 = round($rak['vol_produk_c'],2);
-				$c2 = round($rak['price_c'],0);
-				$c3 = $c1 * $c2;
-				?>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($c3,0,',','.'); ?></td>
-			</tr>
-			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">4.</td>
-				<td align="left" class="table-border-pojok-tengah">Beton K 250 (18±2)</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_d'],2,',','.'); ?></td>
-				<td align="center" class="table-border-pojok-tengah">M3</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['price_d'],2,',','.'); ?></td>
-				<?php
-				$d1 = round($rak['vol_produk_d'],2);
-				$d2 = round($rak['price_d'],0);
-				$d3 = $d1 * $d2;
-				$total_pendapatan = $a3 + $b3 + $c3 + $d3;
-				?>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($d3,0,',','.'); ?></td>
-			</tr>
-			<tr class="table-total">
-				<td align="right" colspan="2" class="table-border-pojok-kiri">RENCANA PRODUKSI</td>
-				<td align="right" class="table-border-pojok-tengah"><?= number_format($total,2,',','.'); ?></td>
-				<td align="center" class="table-border-pojok-tengah">M3</td>
-				<td align="center" class="table-border-pojok-tengah"></td>
-				<td align="right" class="table-border-pojok-kanan"><?= number_format($total_pendapatan,0,',','.'); ?></td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<br />
-		<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2. BIAYA</div>
-		<br />
+		<tr>
+			<th align="center" class="table-border-spesial" colspan="7">
+				<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">BAHAN</div>
+			</th>	
+		</tr>
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
-				<th width="25%" align="center" class="table-border-pojok-tengah">URAIAN</th>
-				<th width="15%" align="center" class="table-border-pojok-tengah">VOLUME</th>
-				<th width="15%" align="center" class="table-border-pojok-tengah">SATUAN</th>
-				<th width="20%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
-				<th width="20%" align="center" class="table-border-pojok-kanan">TOTAL</th>
+				<th width="25%" align="center" class="table-border-pojok-tengah">REKANAN</th>
+				<th width="27%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah">VOLUME</th>
+				<th width="8%" align="center" class="table-border-pojok-tengah">SATUAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
+				<th width="15%" align="center" class="table-border-pojok-kanan">TOTAL</th>
 			</tr>
 			<?php
 
@@ -274,14 +197,43 @@
 			->get()->row_array();
 			$total_volume_solar = $total_produksi_volume * $rap_solar['vol_bbm_solar'];
 
+			$penawaran_id_semen = $rak['penawaran_id_semen'];
+			$supplier_semen = $this->db->select('ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$penawaran_id_semen'")
+			->get()->row_array();
+
+			$penawaran_id_pasir = $rak['penawaran_id_pasir'];
+			$supplier_pasir = $this->db->select('ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$penawaran_id_pasir'")
+			->get()->row_array();
+
+			$penawaran_id_batu1020 = $rak['penawaran_id_batu1020'];
+			$supplier_batu1020 = $this->db->select('ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$penawaran_id_batu1020'")
+			->get()->row_array();
+
+			$penawaran_id_batu2030 = $rak['penawaran_id_batu2030'];
+			$supplier_batu2030 = $this->db->select('ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$penawaran_id_batu2030'")
+			->get()->row_array();
+
+
 			?>
-			<tr>
-				<th align="center" class="table-border-spesial" colspan="6">
-					<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.1. BAHAN</div>
-				</th>	
-			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="center" class="table-border-pojok-kiri">1.</th>
+				<th align="left" class="table-border-pojok-tengah"><?= $supplier_semen['nama'] ?></th>
 				<th align="left" class="table-border-pojok-tengah">Semen</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">Ton</th>
@@ -289,7 +241,8 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_semen * $rak['harga_semen'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2.</th>	
+				<th align="center" class="table-border-pojok-kiri">2.</th>
+				<th align="left" class="table-border-pojok-tengah"><?= $supplier_pasir['nama'] ?></th>
 				<th align="left" class="table-border-pojok-tengah">Pasir</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -297,7 +250,8 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_pasir * $rak['harga_pasir'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">3.</th>
+				<th align="left" class="table-border-pojok-tengah"><?= $supplier_batu1020['nama'] ?></th>
 				<th align="left" class="table-border-pojok-tengah">Batu Split 10-20</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -305,7 +259,8 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_batu1020 * $rak['harga_batu1020'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4.</th>	
+				<th align="center" class="table-border-pojok-kiri">4.</th>
+				<th align="left" class="table-border-pojok-tengah"><?= $supplier_batu2030['nama'] ?></th>	
 				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
@@ -316,9 +271,27 @@
 			$total = ($total_volume_semen * $rak['harga_semen']) + ($total_volume_pasir * $rak['harga_pasir']) + ($total_volume_batu1020 * $rak['harga_batu1020']) + ($total_volume_batu2030 * $rak['harga_batu2030']);
 			?>
 			<tr class="table-baris1-bold">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA BAHAN</th>
+				<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA BAHAN</th>
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total,0,',','.');?></th>
 	        </tr>
+		</table>
+		<br />
+		<br />
+		<tr>
+			<th align="center" class="table-border-spesial" colspan="7">
+				<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">ALAT</div>
+			</th>	
+		</tr>
+		<table cellpadding="3" width="98%">
+			<tr class="table-judul">
+				<th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
+				<th width="25%" align="center" class="table-border-pojok-tengah">REKANAN</th>
+				<th width="27%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah">VOLUME</th>
+				<th width="8%" align="center" class="table-border-pojok-tengah">SATUAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
+				<th width="15%" align="center" class="table-border-pojok-kanan">TOTAL</th>
+			</tr>
 			<?php
 			$rak_alat = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as total_produksi')
 			->from('rak r')
@@ -392,11 +365,12 @@
 				$total_price_bp_3 += $x['qty'] * $x['price'];
 			}
 
-			$produk_tm = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_tm = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_tm'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -407,11 +381,12 @@
 				$total_price_tm += $x['qty'] * $x['price'];
 			}
 
-			$produk_tm_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_tm_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_tm_2'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -422,11 +397,12 @@
 				$total_price_tm_2 += $x['qty'] * $x['price'];
 			}
 
-			$produk_tm_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_tm_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_tm_3'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -437,11 +413,12 @@
 				$total_price_tm_3 += $x['qty'] * $x['price'];
 			}
 
-			$produk_wl = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_wl = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_wl'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -452,11 +429,12 @@
 				$total_price_wl += $x['qty'] * $x['price'];
 			}
 
-			$produk_wl_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_wl_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_wl_2'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -467,11 +445,12 @@
 				$total_price_wl_2 += $x['qty'] * $x['price'];
 			}
 
-			$produk_wl_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			$produk_wl_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->where("ppp.id = '$rak_alat_wl_3'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -530,15 +509,10 @@
 				$total_price_tr_3 += $x['qty'] * $x['price'];
 			}
 			?>
-
-			<tr>
-				<th align="center" class="table-border-spesial" colspan="6">
-				<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.2. ALAT</div>
-				</th>	
-			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="center" class="table-border-pojok-kiri">1.</th>
 				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
@@ -547,36 +521,40 @@
 			<?php foreach ($produk_bp as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['total_vol_produksi'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<?php foreach ($produk_bp_2 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['total_vol_produksi'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<?php foreach ($produk_bp_3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['total_vol_produksi'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['total_vol_produksi'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">2.</th>	
 				<th align="left" class="table-border-pojok-tengah">Truck Mixer</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
@@ -585,7 +563,8 @@
 			<?php foreach ($produk_tm as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -595,7 +574,8 @@
 			<?php foreach ($produk_tm_2 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -605,7 +585,8 @@
 			<?php foreach ($produk_tm_3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -613,8 +594,9 @@
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">3.</th>
 				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
@@ -623,7 +605,8 @@
 			<?php foreach ($produk_wl as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -633,7 +616,8 @@
 			<?php foreach ($produk_wl_2 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -643,7 +627,8 @@
 			<?php foreach ($produk_wl_3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -651,8 +636,9 @@
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">4.</th>
 				<th align="left" class="table-border-pojok-tengah">Transfer Semen</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
@@ -661,35 +647,39 @@
 			<?php foreach ($produk_tr as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<?php foreach ($produk_tr_2 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<?php foreach ($produk_tr_3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
-	        </tr>
+			</tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">5.</th>	
+				<th align="center" class="table-border-pojok-kiri">5.</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">Liter</th>
@@ -697,7 +687,8 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_solar * $rak['harga_solar'],0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">6.</th>	
+				<th align="center" class="table-border-pojok-kiri">6.</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="left" class="table-border-pojok-tengah">Insentif Operator</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
@@ -705,34 +696,11 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($rak_alat['insentif'],0,',','.');?></th>
 	        </tr>
 			<?php
-			$total_rak_alat =  ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
+			$total_rak_alat = ($rak_alat['total_produksi'] * $rak_alat['harga_bp']) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
 			?>
 			<tr class="table-baris1-bold">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>
+				<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_rak_alat,0,',','.');?></th>
-	        </tr>
-			<tr>
-				<th align="center" class="table-border-spesial" colspan="6">
-					<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.3. BIAYA UMUM & ADMINISTRATIF</div>
-				</th>	
-			</tr>
-			<tr class="table-total">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL BIAYA UMUM & ADMINISTRATIF</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($rak_alat['overhead'],0,',','.');?></th>
-	        </tr>
-			<tr>
-				<th class="table-border-spesial" colspan="6"></th>
-			</tr>
-			<tr class="table-total">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">SUBTOTAL KEBUTUHAN BIAYA (2.1 + 2.2 + 2.3)</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total + $total_rak_alat + $rak_alat['overhead'],0,',','.');?></th>
-	        </tr>
-			<tr>
-				<th class="table-border-spesial" colspan="6"></th>
-			</tr>
-			<tr class="table-judul">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">LABA RUGI (1-2)</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_pendapatan - ($total + $total_rak_alat + $rak_alat['overhead']),0,',','.');?></th>
 	        </tr>
 		</table>
 	</body>
