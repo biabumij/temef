@@ -66,7 +66,7 @@
                                                     <input type="text" id="vol_produk_a" name="vol_produk_a" class="form-control numberformat text-right" value="" onchange="changeData(1)"  autocomplete="off">
                                                     </td>
                                                     <td>
-                                                    <input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="896600"  autocomplete="off">
+                                                    <input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="896600" readonly=""  autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
@@ -91,7 +91,7 @@
                                                     <input type="text" id="vol_produk_b" name="vol_produk_b" class="form-control numberformat text-right" value="" onchange="changeData(1)"  autocomplete="off">
                                                     </td>
                                                     <td>
-                                                    <input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="1005000"  autocomplete="off">
+                                                    <input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="1005000" readonly=""  autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
@@ -116,7 +116,7 @@
                                                     <input type="text" id="vol_produk_c" name="vol_produk_c" class="form-control numberformat text-right" value="" onchange="changeData(1)"  autocomplete="off">
                                                     </td>
                                                     <td>
-                                                    <input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="1179200"  autocomplete="off">
+                                                    <input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="1179200" readonly=""  autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
@@ -141,7 +141,7 @@
                                                     <input type="text" id="vol_produk_d" name="vol_produk_d" class="form-control numberformat text-right" value="" onchange="changeData(1)"  autocomplete="off">
                                                     </td>
                                                     <td>
-                                                    <input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="1200000"  autocomplete="off">
+                                                    <input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="1200000"  readonly="" autocomplete="off">
                                                     </td>
                                                     <td class="text-center">M3</td>
                                                     <td class="text-center">
@@ -596,7 +596,7 @@
                                             <thead>
                                                 <tr class="text-center">
                                                     <th width="5%">NO.</th>
-                                                    <th width="45%">BUA</th>
+                                                    <th width="45%">URAIAN</th>
                                                     <th width="50%">NILAI</th>                                 
                                                 </tr>
                                             </thead>

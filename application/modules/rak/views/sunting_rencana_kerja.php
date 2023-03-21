@@ -99,8 +99,8 @@
                                             <tr>
                                                 <td class="text-center">1.</td>
                                                 <td class="text-left">Beton K 125 (10±2)</td>
-                                                <td class="text-right"><input type="text" id="vol_produk_a" name="vol_produk_a" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_a"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
-                                                <td class="text-right"><input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="<?= $rak['price_a'] ?>" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="vol_produk_a" name="vol_produk_a" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_a"],2,',','.');?>" onchange="changeData(1)"  autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_a" name="price_a" class="form-control rupiahformat text-right" value="<?= $rak['price_a'] ?>"  autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_125" name="komposisi_125" class="form-control input-sm">
@@ -120,8 +120,8 @@
                                             <tr>
                                                 <td class="text-center">2.</td>
                                                 <td class="text-left">Beton K 225 (10±2)</td>
-                                                <td class="text-right"><input type="text" id="vol_produk_b" name="vol_produk_b" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_b"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
-                                                <td class="text-right"><input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="<?= $rak['price_b'] ?>" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="vol_produk_b" name="vol_produk_b" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_b"],2,',','.');?>" onchange="changeData(1)"  autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_b" name="price_b" class="form-control rupiahformat text-right" value="<?= $rak['price_b'] ?>"  autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_225" name="komposisi_225" class="form-control input-sm">
@@ -141,8 +141,8 @@
                                             <tr>
                                                 <td class="text-center">3.</td>
                                                 <td class="text-left">Beton K 250 (10±2)</td>
-                                                <td class="text-right"><input type="text" id="vol_produk_c" name="vol_produk_c" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_c"],2,',','.');?>" onchange="changeData(1)" required="" autocomplete="off"></td>
-                                                <td class="text-right"><input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="<?= $rak['price_c'] ?>" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="vol_produk_c" name="vol_produk_c" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_c"],2,',','.');?>" onchange="changeData(1)"  autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_c" name="price_c" class="form-control rupiahformat text-right" value="<?= $rak['price_c'] ?>"  autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_250" name="komposisi_250" class="form-control input-sm">
@@ -162,8 +162,8 @@
                                             <tr>
                                                 <td class="text-center">4.</td>
                                                 <td class="text-left">Beton K 250 (18±2)</td>
-                                                <td class="text-right"><input type="text" id="vol_produk_d" name="vol_produk_d" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_d"],2,',','.');?>" onchange="changeData(1)"required="" autocomplete="off"></td>
-                                                <td class="text-right"><input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="<?= $rak['price_d'] ?>" required="" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="vol_produk_d" name="vol_produk_d" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_d"],2,',','.');?>" onchange="changeData(1)" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_d" name="price_d" class="form-control rupiahformat text-right" value="<?= $rak['price_d'] ?>"  autocomplete="off"></td>
                                                 <td class="text-center">M3</td>
                                                 <td class="text-center">
                                                     <select id="komposisi_250_2" name="komposisi_250_2" class="form-control input-sm">
@@ -218,11 +218,11 @@
                                                 </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="price_semen" name="price_semen" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="measure_semen" name="measure_semen" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="tax_id_semen" name="tax_id_semen" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="pajak_id_semen" name="pajak_id_semen" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="supplier_id_semen" name="supplier_id_semen" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                    <input type="text" id="price_semen" name="price_semen" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="measure_semen" name="measure_semen" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="tax_id_semen" name="tax_id_semen" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="pajak_id_semen" name="pajak_id_semen" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="supplier_id_semen" name="supplier_id_semen" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                 </td>
                                             </tr>
 
@@ -242,11 +242,11 @@
                                                 </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="price_pasir" name="price_pasir" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="measure_pasir" name="measure_pasir" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="tax_id_pasir" name="tax_id_pasir" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="pajak_id_pasir" name="pajak_id_pasir" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="supplier_id_pasir" name="supplier_id_pasir" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                    <input type="text" id="price_pasir" name="price_pasir" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="measure_pasir" name="measure_pasir" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="tax_id_pasir" name="tax_id_pasir" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="pajak_id_pasir" name="pajak_id_pasir" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="supplier_id_pasir" name="supplier_id_pasir" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                 </td>
                                             </tr>
 
@@ -266,11 +266,11 @@
                                                 </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="price_batu1020" name="price_batu1020" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="measure_batu1020" name="measure_batu1020" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="tax_id_batu1020" name="tax_id_batu1020" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="pajak_id_batu1020" name="pajak_id_batu1020" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="supplier_id_batu1020" name="supplier_id_batu1020" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                    <input type="text" id="price_batu1020" name="price_batu1020" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="measure_batu1020" name="measure_batu1020" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="tax_id_batu1020" name="tax_id_batu1020" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="pajak_id_batu1020" name="pajak_id_batu1020" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="supplier_id_batu1020" name="supplier_id_batu1020" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                 </td>
                                             </tr>
 
@@ -290,11 +290,11 @@
                                                 </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="price_batu2030" name="price_batu2030" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="measure_batu2030" name="measure_batu2030" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="tax_id_batu2030" name="tax_id_batu2030" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="pajak_id_batu2030" name="pajak_id_batu2030" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="supplier_id_batu2030" name="supplier_id_batu2030" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                    <input type="text" id="price_batu2030" name="price_batu2030" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="measure_batu2030" name="measure_batu2030" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="tax_id_batu2030" name="tax_id_batu2030" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="pajak_id_batu2030" name="pajak_id_batu2030" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="supplier_id_batu2030" name="supplier_id_batu2030" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                 </td>
                                             </tr>
 
@@ -314,11 +314,11 @@
                                                 </select>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="price_solar" name="price_solar" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="measure_solar" name="measure_solar" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="tax_id_solar" name="tax_id_solar" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="pajak_id_solar" name="pajak_id_solar" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                    <input type="hidden" id="supplier_id_solar" name="supplier_id_solar" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                    <input type="text" id="price_solar" name="price_solar" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="measure_solar" name="measure_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="tax_id_solar" name="tax_id_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="pajak_id_solar" name="pajak_id_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    <input type="hidden" id="supplier_id_solar" name="supplier_id_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                 </td>
                                             </tr>
                                                
@@ -416,11 +416,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_tm" name="price_tm" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_tm" name="measure_tm" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_tm" name="tax_id_tm" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_tm" name="pajak_id_tm" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_tm" name="supplier_id_tm" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_tm" name="price_tm" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_tm" name="measure_tm" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_tm" name="tax_id_tm" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_tm" name="pajak_id_tm" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_tm" name="supplier_id_tm" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -437,11 +437,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_tm_2" name="price_tm_2" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_tm_2" name="measure_tm_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_tm_2" name="tax_id_tm_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_tm_2" name="pajak_id_tm_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_tm_2" name="supplier_id_tm_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_tm_2" name="price_tm_2" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_tm_2" name="measure_tm_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_tm_2" name="tax_id_tm_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_tm_2" name="pajak_id_tm_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_tm_2" name="supplier_id_tm_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -458,11 +458,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_tm_3" name="price_tm_3" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_tm_3" name="measure_tm_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_tm_3" name="tax_id_tm_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_tm_3" name="pajak_id_tm_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_tm_3" name="supplier_id_tm_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_tm_3" name="price_tm_3" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_tm_3" name="measure_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_tm_3" name="tax_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_tm_3" name="pajak_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_tm_3" name="supplier_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
 
@@ -482,11 +482,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_wl" name="price_wl" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_wl" name="measure_wl" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_wl" name="tax_id_wl" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_wl" name="pajak_id_wl" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_wl" name="supplier_id_wl" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_wl" name="price_wl" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_wl" name="measure_wl" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_wl" name="tax_id_wl" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_wl" name="pajak_id_wl" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_wl" name="supplier_id_wl" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -503,11 +503,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_wl_2" name="price_wl_2" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_wl_2" name="measure_wl_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_wl_2" name="tax_id_wl_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_wl_2" name="pajak_id_wl_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_wl_2" name="supplier_id_wl_2" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_wl_2" name="price_wl_2" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_wl_2" name="measure_wl_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_wl_2" name="tax_id_wl_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_wl_2" name="pajak_id_wl_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_wl_2" name="supplier_id_wl_2" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -524,11 +524,11 @@
                                                     </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="price_wl_3" name="price_wl_3" class="form-control rupiahformat text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="measure_wl_3" name="measure_wl_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="tax_id_wl_3" name="tax_id_wl_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="pajak_id_wl_3" name="pajak_id_wl_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
-                                                        <input type="hidden" id="supplier_id_wl_3" name="supplier_id_wl_3" class="form-control text-right" value="" required="" readonly="" autocomplete="off">
+                                                        <input type="text" id="price_wl_3" name="price_wl_3" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_wl_3" name="measure_wl_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_wl_3" name="tax_id_wl_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_wl_3" name="pajak_id_wl_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_wl_3" name="supplier_id_wl_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
 
@@ -602,7 +602,7 @@
                                                     <td class="text-center">5.</td>
                                                     <td>Insentif Operator</td>
                                                     <td colspan="2">
-                                                        <input type="text" id="insentif" name="insentif" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                        <input type="text" id="insentif" name="insentif" class="form-control rupiahformat text-right" value=""  autocomplete="off">
                                                     </td>
                                                 </tr>
         		
@@ -622,7 +622,7 @@
                                                     <td class="text-center">1.</td>
                                                     <td>BUA</td>
                                                     <td colspan="2">
-                                                        <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="" required="" autocomplete="off">
+                                                        <input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value=""  autocomplete="off">
                                                     </td>
                                                 </tr>		
                                             </tbody>
