@@ -318,7 +318,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                                <tr>
                                                     <td class="text-center" rowspan="3">1.</td>
                                                     <td rowspan="3">Batching Plant</td>
                                                     <td class="text-center"><select id="penawaran_id_bp" name="penawaran_id_bp" class="form-control">
