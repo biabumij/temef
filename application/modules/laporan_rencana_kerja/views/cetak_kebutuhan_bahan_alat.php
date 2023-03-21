@@ -585,7 +585,7 @@
 			<?php endforeach; ?>
 			<tr class="table-baris1-bold">
 				<th align="center" class="table-border-pojok-kiri"></th>
-				<th align="right" class="table-border-pojok-tengah">Total Wheel Loader</th>
+				<th align="right" class="table-border-pojok-tengah">Total Batching Plant</th>
 				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_bp + $total_vol_bp_2 + $total_vol_bp_3,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
