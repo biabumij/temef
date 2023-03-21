@@ -7,24 +7,24 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 9px;
+			font-size: 8px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 9px;
+			font-size: 8px;
 		}
 
 		table tr.table-baris2{
 			background-color: #E8E8E8;
-			font-size: 9px;
+			font-size: 8px;
 		}
 			
 		table tr.table-total{
 			background-color: #CCCCCC;
 			font-weight: bold;
-			font-size: 9px;
+			font-size: 8px;
 			color: black;
 		}
 	  </style>
