@@ -64,7 +64,7 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-		<?php
+			<?php
 			$date_now = date('Y-m-d');
 
 			//BULAN 1
