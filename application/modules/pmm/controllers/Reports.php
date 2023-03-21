@@ -9000,13 +9000,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_1_awal' and '$date_1_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_1 = $rak_alat_1['penawaran_id_bp'];
+			$rak_alat_bp_2_1 = $rak_alat_1['penawaran_id_bp_2'];
+			$rak_alat_bp_3_1 = $rak_alat_1['penawaran_id_bp_3'];
+
 			$rak_alat_tm_1 = $rak_alat_1['penawaran_id_tm'];
 			$rak_alat_tm_2_1 = $rak_alat_1['penawaran_id_tm_2'];
-			$rak_alat_tm_3_1 = $rak_alat['penawaran_id_tm_3'];
+			$rak_alat_tm_3_1 = $rak_alat_1['penawaran_id_tm_3'];
 
 			$rak_alat_wl_1 = $rak_alat_1['penawaran_id_wl'];
 			$rak_alat_wl_2_1 = $rak_alat_1['penawaran_id_wl_2'];
-			$rak_alat_wl_3_1 = $rak_alat_1['penawaran_id_wl_3'];
+			$rak_alat_wl_3_1 = $rakrak_alat_1_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_1 = $rak_alat_1['penawaran_id_tr'];
+			$rak_alat_tr_2_1 = $rak_alat_1['penawaran_id_tr_2'];
+			$rak_alat_tr_3_1 = $rak_alat_1['penawaran_id_tr_3'];
+
+			$produk_bp_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_1'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_1 = 0;
+			foreach ($produk_bp_1 as $x){
+				$total_price_bp_1 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_1'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_1 = 0;
+			foreach ($produk_bp_2_1 as $x){
+				$total_price_bp_2_1 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_1'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_1 = 0;
+			foreach ($produk_bp_3_1 as $x){
+				$total_price_bp_3_1 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -9098,6 +9157,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_1 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_1'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_1 = 0;
+			foreach ($produk_tr_1 as $x){
+				$total_price_tr_1 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_1 = 0;
+			foreach ($produk_tr_2_1 as $x){
+				$total_price_tr_2_1 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_1 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_1'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_1 = 0;
+			foreach ($produk_tr_3_1 as $x){
+				$total_price_tr_3_1 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_1 = $volume_rencana_kerja_1_produk_a + $volume_rencana_kerja_1_produk_b + $volume_rencana_kerja_1_produk_c + $volume_rencana_kerja_1_produk_d;
 
 			$rap_solar_1 = $this->db->select('rap.*')
@@ -9108,7 +9215,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_1 = $total_volume_produksi_1 * $rap_solar_1['vol_bbm_solar'];
 
 			$total_1_biaya_bahan = $nilai_semen_1 + $nilai_pasir_1 + $nilai_batu1020_1 + $nilai_batu2030_1;
-			$total_1_biaya_alat = ($rak_alat_1['total_produksi'] * $rak_alat_1['harga_bp']) + ($total_price_tm_1 + $total_price_tm_2_1 + $total_price_tm_3_1) + ($total_price_wl_1 + $total_price_wl_2_1 + $total_price_wl_3_1) + ($total_volume_solar_1 * $rak_alat_1['harga_solar']) + $rak_alat_1['insentif'];;
+			$total_1_biaya_alat = ($total_price_bp_1 + $total_price_bp_2_1 + $total_price_bp_3_1) + ($total_price_tm_1 + $total_price_tm_2_1 + $total_price_tm_3_1) + ($total_price_wl_1 + $total_price_wl_2_1 + $total_price_wl_3_1) + ($total_price_tr_1 + $total_price_tr_2_1 + $total_price_tr_3_1) + ($total_volume_solar_1 * $rak_alat_1['harga_solar']) + $rak_alat_1['insentif'];
 			$total_1_overhead = $rencana_kerja_1['overhead'];
 			$total_1_biaya_bank = $rencana_kerja_1['biaya_bank'];
 			$total_biaya_1_biaya = $total_1_biaya_bahan + $total_1_biaya_alat + $total_1_overhead + $total_1_biaya_bank;
@@ -9236,13 +9343,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_2_awal' and '$date_2_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_2 = $rak_alat_2['penawaran_id_bp'];
+			$rak_alat_bp_2_2 = $rak_alat_2['penawaran_id_bp_2'];
+			$rak_alat_bp_3_2 = $rak_alat_2['penawaran_id_bp_3'];
+
 			$rak_alat_tm_2 = $rak_alat_2['penawaran_id_tm'];
 			$rak_alat_tm_2_2 = $rak_alat_2['penawaran_id_tm_2'];
 			$rak_alat_tm_3_2 = $rak_alat_2['penawaran_id_tm_3'];
 
 			$rak_alat_wl_2 = $rak_alat_2['penawaran_id_wl'];
 			$rak_alat_wl_2_2 = $rak_alat_2['penawaran_id_wl_2'];
-			$rak_alat_wl_3_2 = $rak_alat_2['penawaran_id_wl_3'];
+			$rak_alat_wl_3_2 = $rakrak_alat_2_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_2 = $rak_alat_2['penawaran_id_tr'];
+			$rak_alat_tr_2_2 = $rak_alat_2['penawaran_id_tr_2'];
+			$rak_alat_tr_3_2 = $rak_alat_2['penawaran_id_tr_3'];
+
+			$produk_bp_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2 = 0;
+			foreach ($produk_bp_2 as $x){
+				$total_price_bp_2 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_2 = 0;
+			foreach ($produk_bp_2_2 as $x){
+				$total_price_bp_2_2 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_2 = 0;
+			foreach ($produk_bp_3_2 as $x){
+				$total_price_bp_3_2 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -9334,6 +9500,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_2 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2 = 0;
+			foreach ($produk_tr_2 as $x){
+				$total_price_tr_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_2 = 0;
+			foreach ($produk_tr_2_2 as $x){
+				$total_price_tr_2_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_2 = 0;
+			foreach ($produk_tr_3_2 as $x){
+				$total_price_tr_3_2 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_2 = $volume_rencana_kerja_2_produk_a + $volume_rencana_kerja_2_produk_b + $volume_rencana_kerja_2_produk_c + $volume_rencana_kerja_2_produk_d;
 
 			$rap_solar_2 = $this->db->select('rap.*')
@@ -9344,7 +9558,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_2 = $total_volume_produksi_2 * $rap_solar_2['vol_bbm_solar'];
 
 			$total_2_biaya_bahan = $nilai_semen_2 + $nilai_pasir_2 + $nilai_batu1020_2 + $nilai_batu2030_2;
-			$total_2_biaya_alat = ($rak_alat_2['total_produksi'] * $rak_alat_2['harga_bp']) + ($total_price_tm_2 + $total_price_tm_2_2 + $total_price_tm_3_2) + ($total_price_wl_2 + $total_price_wl_2_2 + $total_price_wl_3_2) + ($total_volume_solar_2 * $rak_alat_2['harga_solar']) + $rak_alat_2['insentif'];;
+			$total_2_biaya_alat = ($total_price_bp_2 + $total_price_bp_2_2 + $total_price_bp_3_2) + ($total_price_tm_2 + $total_price_tm_2_2 + $total_price_tm_3_2) + ($total_price_wl_2 + $total_price_wl_2_2 + $total_price_wl_3_2) + ($total_price_tr_2 + $total_price_tr_2_2 + $total_price_tr_3_2) + ($total_volume_solar_2 * $rak_alat_2['harga_solar']) + $rak_alat_2['insentif'];
 			$total_2_overhead = $rencana_kerja_2['overhead'];
 			$total_2_biaya_bank = $rencana_kerja_2['biaya_bank'];
 			$total_biaya_2_biaya = $total_2_biaya_bahan + $total_2_biaya_alat + $total_2_overhead + $total_2_biaya_bank;
@@ -9471,13 +9685,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_3_awal' and '$date_3_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_3 = $rak_alat_3['penawaran_id_bp'];
+			$rak_alat_bp_2_3 = $rak_alat_3['penawaran_id_bp_2'];
+			$rak_alat_bp_3_3 = $rak_alat_3['penawaran_id_bp_3'];
+
 			$rak_alat_tm_3 = $rak_alat_3['penawaran_id_tm'];
 			$rak_alat_tm_2_3 = $rak_alat_3['penawaran_id_tm_2'];
 			$rak_alat_tm_3_3 = $rak_alat_3['penawaran_id_tm_3'];
 
 			$rak_alat_wl_3 = $rak_alat_3['penawaran_id_wl'];
 			$rak_alat_wl_2_3 = $rak_alat_3['penawaran_id_wl_2'];
-			$rak_alat_wl_3_3 = $rak_alat_3['penawaran_id_wl_3'];
+			$rak_alat_wl_3_3 = $rakrak_alat_3_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_3 = $rak_alat_3['penawaran_id_tr'];
+			$rak_alat_tr_2_3 = $rak_alat_3['penawaran_id_tr_2'];
+			$rak_alat_tr_3_3 = $rak_alat_3['penawaran_id_tr_3'];
+
+			$produk_bp_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3 = 0;
+			foreach ($produk_bp_3 as $x){
+				$total_price_bp_3 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_3 = 0;
+			foreach ($produk_bp_2_3 as $x){
+				$total_price_bp_2_3 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_3 = 0;
+			foreach ($produk_bp_3_3 as $x){
+				$total_price_bp_3_3 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -9569,6 +9842,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_3 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3 = 0;
+			foreach ($produk_tr_3 as $x){
+				$total_price_tr_3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_3 = 0;
+			foreach ($produk_tr_2_3 as $x){
+				$total_price_tr_2_3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_3 = 0;
+			foreach ($produk_tr_3_3 as $x){
+				$total_price_tr_3_3 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_3 = $volume_rencana_kerja_3_produk_a + $volume_rencana_kerja_3_produk_b + $volume_rencana_kerja_3_produk_c + $volume_rencana_kerja_3_produk_d;
 
 			$rap_solar_3 = $this->db->select('rap.*')
@@ -9579,7 +9900,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_3 = $total_volume_produksi_3 * $rap_solar_3['vol_bbm_solar'];
 
 			$total_3_biaya_bahan = $nilai_semen_3 + $nilai_pasir_3 + $nilai_batu1020_3 + $nilai_batu2030_3;
-			$total_3_biaya_alat = ($rak_alat_3['total_produksi'] * $rak_alat_3['harga_bp']) + ($total_price_tm_3 + $total_price_tm_2_3 + $total_price_tm_3_3) + ($total_price_wl_3 + $total_price_wl_2_3 + $total_price_wl_3_3) + ($total_volume_solar_3 * $rak_alat_3['harga_solar']) + $rak_alat_3['insentif'];;
+			$total_3_biaya_alat = ($total_price_bp_3 + $total_price_bp_2_3 + $total_price_bp_3_3) + ($total_price_tm_3 + $total_price_tm_2_3 + $total_price_tm_3_3) + ($total_price_wl_3 + $total_price_wl_2_3 + $total_price_wl_3_3) + ($total_price_tr_3 + $total_price_tr_2_3 + $total_price_tr_3_3) + ($total_volume_solar_3 * $rak_alat_3['harga_solar']) + $rak_alat_3['insentif'];
 			$total_3_overhead = $rencana_kerja_3['overhead'];
 			$total_3_biaya_bank = $rencana_kerja_3['biaya_bank'];
 			$total_biaya_3_biaya = $total_3_biaya_bahan + $total_3_biaya_alat + $total_3_overhead + $total_3_biaya_bank;
@@ -9707,13 +10028,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_4_awal' and '$date_4_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_4 = $rak_alat_4['penawaran_id_bp'];
+			$rak_alat_bp_2_4 = $rak_alat_4['penawaran_id_bp_2'];
+			$rak_alat_bp_3_4 = $rak_alat_4['penawaran_id_bp_3'];
+
 			$rak_alat_tm_4 = $rak_alat_4['penawaran_id_tm'];
 			$rak_alat_tm_2_4 = $rak_alat_4['penawaran_id_tm_2'];
 			$rak_alat_tm_3_4 = $rak_alat_4['penawaran_id_tm_3'];
 
 			$rak_alat_wl_4 = $rak_alat_4['penawaran_id_wl'];
 			$rak_alat_wl_2_4 = $rak_alat_4['penawaran_id_wl_2'];
-			$rak_alat_wl_3_4 = $rak_alat_4['penawaran_id_wl_3'];
+			$rak_alat_wl_3_4 = $rakrak_alat_4_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_4 = $rak_alat_4['penawaran_id_tr'];
+			$rak_alat_tr_2_4 = $rak_alat_4['penawaran_id_tr_2'];
+			$rak_alat_tr_3_4 = $rak_alat_4['penawaran_id_tr_3'];
+
+			$produk_bp_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_4 = 0;
+			foreach ($produk_bp_4 as $x){
+				$total_price_bp_4 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_4 = 0;
+			foreach ($produk_bp_2_4 as $x){
+				$total_price_bp_2_4 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_4 = 0;
+			foreach ($produk_bp_3_4 as $x){
+				$total_price_bp_3_4 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -9805,6 +10185,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_4 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_4 = 0;
+			foreach ($produk_tr_4 as $x){
+				$total_price_tr_4 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_4 = 0;
+			foreach ($produk_tr_2_4 as $x){
+				$total_price_tr_2_4 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_4 = 0;
+			foreach ($produk_tr_3_4 as $x){
+				$total_price_tr_3_4 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_4 = $volume_rencana_kerja_4_produk_a + $volume_rencana_kerja_4_produk_b + $volume_rencana_kerja_4_produk_c + $volume_rencana_kerja_4_produk_d;
 
 			$rap_solar_4 = $this->db->select('rap.*')
@@ -9815,7 +10243,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_4 = $total_volume_produksi_4 * $rap_solar_4['vol_bbm_solar'];
 
 			$total_4_biaya_bahan = $nilai_semen_4 + $nilai_pasir_4 + $nilai_batu1020_4 + $nilai_batu2030_4;
-			$total_4_biaya_alat = ($rak_alat_4['total_produksi'] * $rak_alat_4['harga_bp']) + ($total_price_tm_4 + $total_price_tm_2_4 + $total_price_tm_3_4) + ($total_price_wl_4 + $total_price_wl_2_4 + $total_price_wl_3_4) + ($total_volume_solar_4 * $rak_alat_4['harga_solar']) + $rak_alat_4['insentif'];;
+			$total_4_biaya_alat = ($total_price_bp_4 + $total_price_bp_2_4 + $total_price_bp_3_4) + ($total_price_tm_4 + $total_price_tm_2_4 + $total_price_tm_3_4) + ($total_price_wl_4 + $total_price_wl_2_4 + $total_price_wl_3_4) + ($total_price_tr_4 + $total_price_tr_2_4 + $total_price_tr_3_4) + ($total_volume_solar_4 * $rak_alat_4['harga_solar']) + $rak_alat_4['insentif'];
 			$total_4_overhead = $rencana_kerja_4['overhead'];
 			$total_4_biaya_bank = $rencana_kerja_4['biaya_bank'];
 			$total_biaya_4_biaya = $total_4_biaya_bahan + $total_4_biaya_alat + $total_4_overhead + $total_4_biaya_bank;
@@ -9943,13 +10371,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_5_awal' and '$date_5_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_5 = $rak_alat_5['penawaran_id_bp'];
+			$rak_alat_bp_2_5 = $rak_alat_5['penawaran_id_bp_2'];
+			$rak_alat_bp_3_5 = $rak_alat_5['penawaran_id_bp_3'];
+
 			$rak_alat_tm_5 = $rak_alat_5['penawaran_id_tm'];
 			$rak_alat_tm_2_5 = $rak_alat_5['penawaran_id_tm_2'];
 			$rak_alat_tm_3_5 = $rak_alat_5['penawaran_id_tm_3'];
 
 			$rak_alat_wl_5 = $rak_alat_5['penawaran_id_wl'];
 			$rak_alat_wl_2_5 = $rak_alat_5['penawaran_id_wl_2'];
-			$rak_alat_wl_3_5 = $rak_alat_5['penawaran_id_wl_3'];
+			$rak_alat_wl_3_5 = $rakrak_alat_5_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_5 = $rak_alat_5['penawaran_id_tr'];
+			$rak_alat_tr_2_5 = $rak_alat_5['penawaran_id_tr_2'];
+			$rak_alat_tr_3_5 = $rak_alat_5['penawaran_id_tr_3'];
+
+			$produk_bp_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_5'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_5 = 0;
+			foreach ($produk_bp_5 as $x){
+				$total_price_bp_5 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_5'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_5 = 0;
+			foreach ($produk_bp_2_5 as $x){
+				$total_price_bp_2_5 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_5'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_5 = 0;
+			foreach ($produk_bp_3_5 as $x){
+				$total_price_bp_3_5 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -10041,6 +10528,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_5 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_5'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_5 = 0;
+			foreach ($produk_tr_5 as $x){
+				$total_price_tr_5 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_5 = 0;
+			foreach ($produk_tr_2_5 as $x){
+				$total_price_tr_2_5 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_5 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_5'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_5 = 0;
+			foreach ($produk_tr_3_5 as $x){
+				$total_price_tr_3_5 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_5 = $volume_rencana_kerja_5_produk_a + $volume_rencana_kerja_5_produk_b + $volume_rencana_kerja_5_produk_c + $volume_rencana_kerja_5_produk_d;
 
 			$rap_solar_5 = $this->db->select('rap.*')
@@ -10051,7 +10586,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_5 = $total_volume_produksi_5 * $rap_solar_5['vol_bbm_solar'];
 
 			$total_5_biaya_bahan = $nilai_semen_5 + $nilai_pasir_5 + $nilai_batu1020_5 + $nilai_batu2030_5;
-			$total_5_biaya_alat = ($rak_alat_5['total_produksi'] * $rak_alat_5['harga_bp']) + ($total_price_tm_5 + $total_price_tm_2_5 + $total_price_tm_3_5) + ($total_price_wl_5 + $total_price_wl_2_5 + $total_price_wl_3_5) + ($total_volume_solar_5 * $rak_alat_5['harga_solar']) + $rak_alat_5['insentif'];;
+			$total_5_biaya_alat = ($total_price_bp_5 + $total_price_bp_2_5 + $total_price_bp_3_5) + ($total_price_tm_5 + $total_price_tm_2_5 + $total_price_tm_3_5) + ($total_price_wl_5 + $total_price_wl_2_5 + $total_price_wl_3_5) + ($total_price_tr_5 + $total_price_tr_2_5 + $total_price_tr_3_5) + ($total_volume_solar_5 * $rak_alat_5['harga_solar']) + $rak_alat_5['insentif'];
 			$total_5_overhead = $rencana_kerja_5['overhead'];
 			$total_5_biaya_bank = $rencana_kerja_5['biaya_bank'];
 			$total_biaya_5_biaya = $total_5_biaya_bahan + $total_5_biaya_alat + $total_5_overhead + $total_5_biaya_bank;
@@ -10179,13 +10714,72 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja between '$date_6_awal' and '$date_6_akhir'")
 			->get()->row_array();
 
+			$rak_alat_bp_6 = $rak_alat_6['penawaran_id_bp'];
+			$rak_alat_bp_2_6 = $rak_alat_6['penawaran_id_bp_2'];
+			$rak_alat_bp_3_6 = $rak_alat_6['penawaran_id_bp_3'];
+
 			$rak_alat_tm_6 = $rak_alat_6['penawaran_id_tm'];
 			$rak_alat_tm_2_6 = $rak_alat_6['penawaran_id_tm_2'];
 			$rak_alat_tm_3_6 = $rak_alat_6['penawaran_id_tm_3'];
 
 			$rak_alat_wl_6 = $rak_alat_6['penawaran_id_wl'];
 			$rak_alat_wl_2_6 = $rak_alat_6['penawaran_id_wl_2'];
-			$rak_alat_wl_3_6 = $rak_alat_6['penawaran_id_wl_3'];
+			$rak_alat_wl_3_6 = $rakrak_alat_6_alat['penawaran_id_wl_3'];
+
+			$rak_alat_tr_6 = $rak_alat_6['penawaran_id_tr'];
+			$rak_alat_tr_2_6 = $rak_alat_6['penawaran_id_tr_2'];
+			$rak_alat_tr_3_6 = $rak_alat_6['penawaran_id_tr_3'];
+
+			$produk_bp_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_6'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_6 = 0;
+			foreach ($produk_bp_6 as $x){
+				$total_price_bp_6 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_2_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_2_6'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_2_6 = 0;
+			foreach ($produk_bp_2_6 as $x){
+				$total_price_bp_2_6 += $x['total_vol_produksi'] * $x['price'];
+			}
+
+			$produk_bp_3_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("ppp.id = '$rak_alat_bp_3_6'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_bp_3_6 = 0;
+			foreach ($produk_bp_3_6 as $x){
+				$total_price_bp_3_6 += $x['total_vol_produksi'] * $x['price'];
+			}
 
 			$produk_tm_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
 			->from('pmm_penawaran_pembelian ppp')
@@ -10277,6 +10871,54 @@ class Reports extends CI_Controller {
 				$total_price_wl_3_6 += $x['qty'] * $x['price'];
 			}
 
+			$produk_tr_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_6'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_6 = 0;
+			foreach ($produk_tr_6 as $x){
+				$total_price_tr_6 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_2_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_2'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_2_6 = 0;
+			foreach ($produk_tr_2_6 as $x){
+				$total_price_tr_2_6 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tr_3_6 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_tr_3_6'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tr_3_6 = 0;
+			foreach ($produk_tr_3_6 as $x){
+				$total_price_tr_3_6 += $x['qty'] * $x['price'];
+			}
+
 			$total_volume_produksi_6 = $volume_rencana_kerja_6_produk_a + $volume_rencana_kerja_6_produk_b + $volume_rencana_kerja_6_produk_c + $volume_rencana_kerja_6_produk_d;
 
 			$rap_solar_6 = $this->db->select('rap.*')
@@ -10287,7 +10929,7 @@ class Reports extends CI_Controller {
 			$total_volume_solar_6 = $total_volume_produksi_6 * $rap_solar_6['vol_bbm_solar'];
 
 			$total_6_biaya_bahan = $nilai_semen_6 + $nilai_pasir_6 + $nilai_batu1020_6 + $nilai_batu2030_6;
-			$total_6_biaya_alat = ($rak_alat_6['total_produksi'] * $rak_alat_6['harga_bp']) + ($total_price_tm_6 + $total_price_tm_2_6 + $total_price_tm_3_6) + ($total_price_wl_6 + $total_price_wl_2_6 + $total_price_wl_3_6) + ($total_volume_solar_6 * $rak_alat_6['harga_solar']) + $rak_alat_6['insentif'];;
+			$total_6_biaya_alat = ($total_price_bp_6 + $total_price_bp_2_6 + $total_price_bp_3_6) + ($total_price_tm_6 + $total_price_tm_2_6 + $total_price_tm_3_6) + ($total_price_wl_6 + $total_price_wl_2_6 + $total_price_wl_3_6) + ($total_price_tr_6 + $total_price_tr_2_6 + $total_price_tr_3_6) + ($total_volume_solar_6 * $rak_alat_6['harga_solar']) + $rak_alat_6['insentif'];
 			$total_6_overhead = $rencana_kerja_6['overhead'];
 			$total_6_biaya_bank = $rencana_kerja_6['biaya_bank'];
 			$total_biaya_6_biaya = $total_6_biaya_bahan + $total_6_biaya_alat + $total_6_overhead + $total_6_biaya_bank;

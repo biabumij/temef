@@ -328,7 +328,7 @@
 
 			$total_price_bp = 0;
 			foreach ($produk_bp as $x){
-				$total_price_bp += $x['qty'] * $x['price'];
+				$total_price_bp += $x['total_vol_produksi'] * $x['price'];
 			}
 
 			$produk_bp_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
@@ -345,7 +345,7 @@
 
 			$total_price_bp_2 = 0;
 			foreach ($produk_bp_2 as $x){
-				$total_price_bp_2 += $x['qty'] * $x['price'];
+				$total_price_bp_2 += $x['total_vol_produksi'] * $x['price'];
 			}
 
 			$produk_bp_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
@@ -362,7 +362,7 @@
 
 			$total_price_bp_3 = 0;
 			foreach ($produk_bp_3 as $x){
-				$total_price_bp_3 += $x['qty'] * $x['price'];
+				$total_price_bp_3 += $x['total_vol_produksi'] * $x['price'];
 			}
 
 			$produk_tm = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
