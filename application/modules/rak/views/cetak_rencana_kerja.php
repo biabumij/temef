@@ -353,6 +353,7 @@
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
+
 			$total_price_bp = 0;
 			foreach ($produk_bp as $x){
 				$total_price_bp += $x['total_vol_produksi'] * $x['price'];
@@ -382,6 +383,7 @@
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
 			->where("ppp.id = '$rak_alat_bp_3'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
