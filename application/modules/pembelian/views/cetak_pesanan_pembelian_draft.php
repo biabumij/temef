@@ -50,7 +50,7 @@
 			<tr>
 				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 16px;">ORDER PEMBELIAN</div>
-					<div style="display: block;font-weight: bold;font-size: 16px;">(DRAFT)</div>
+					<div style="display: block;font-weight: bold;font-size: 16px; color: red;">(DRAFT)</div>
 				</td>
 			</tr>
 		</table>
@@ -254,7 +254,7 @@
 								
 							</td>
 							<td align="center">
-								
+							<div style="display: block;font-weight: bold;font-size: 16px; color: red;">(DRAFT)</div>
 							</td>
 							<td align="center">
 								

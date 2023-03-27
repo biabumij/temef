@@ -232,8 +232,7 @@
 <p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.7 Faktur Pajak</p>
 <p style="font-size:6;">4. Lain-lain :</p>
 <p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.1 Barang harus dalam kondisi 100% baik</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
-                                                         </textarea>
+<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p></textarea>
 														
 													</div>
 													

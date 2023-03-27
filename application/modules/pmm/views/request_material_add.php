@@ -141,7 +141,7 @@
                                     <input type="hidden" name="penawaran_id" id="penawaran_id" value="">
 									
 									
-									<input type="hidden" name="memo" value="<?php echo $data['memo'];?>">
+									<input type="hidden" name="memo" value="">
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <select id="material_id" name="material_id" class="form-control" >

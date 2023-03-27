@@ -855,7 +855,7 @@ class Pmm_model extends CI_Model {
         $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
 
-        $arr_rm = $this->db->select('supplier_id,subject,memo,kategori_id')->get_where('pmm_request_materials',array('id'=>$id))->row_array();
+        $arr_rm = $this->db->select('supplier_id,subject,memo,kategori_id,created_by')->get_where('pmm_request_materials',array('id'=>$id))->row_array();
 
         $dt = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
         $data = array(
@@ -866,7 +866,7 @@ class Pmm_model extends CI_Model {
 			'memo' => $arr_rm['memo'],
             'kategori_id' => $arr_rm['kategori_id'],
             'subject' => $arr_rm['subject'],
-            'created_by' => $this->session->userdata('admin_id'),
+            'created_by' => $arr_rm['created_by'],
             'created_on' => date('Y-m-d H:i:s'),
             'status' => 'WAITING'
         );
@@ -1545,7 +1545,8 @@ class Pmm_model extends CI_Model {
             foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $no_po = "'".$row['no_po']."'";
-                if ($row['status'] == 'WAITING') { ?>
+                $row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
+                /*if ($row['status'] == 'WAITING') { ?>
 					<?php
 					if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
 					?>
@@ -1554,7 +1555,7 @@ class Pmm_model extends CI_Model {
 						?>
 					<?php
 					}
-				}
+				}*/
                 
 
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED' || $row['status'] == 'REJECTED'){
