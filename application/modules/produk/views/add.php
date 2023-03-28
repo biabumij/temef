@@ -120,21 +120,6 @@
                                             </div>
 										</div>
                                         <div class="form-group">
-                                             <label class="col-sm-2 control-label">Tipe Produk</label>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="bahanbaku" id="bahanbaku" value="1" <?= (isset($edit) && $edit['bahanbaku'] == 1) ? 'checked' : '' ;?> > Bahan Baku
-                                            </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="betonreadymix" id="betonreadymix" value="1" <?= (isset($edit) && $edit['betonreadymix'] == 1) ? 'checked' : '' ;?> > Beton Ready Mix
-                                            </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="jasa" id="jasa" value="1" <?= (isset($edit) && $edit['jasa'] == 1) ? 'checked' : '' ;?> > Jasa
-                                            </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="peralatan" id="peralatan" value="1" <?= (isset($edit) && $edit['peralatan'] == 1) ? 'checked' : '' ;?> > Peralatan
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Unit/Satuan</label>
                                             <div class="col-sm-4">
                                                 <select id="satuan" class="form-control form-select2" name="satuan">
