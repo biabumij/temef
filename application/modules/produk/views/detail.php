@@ -87,6 +87,16 @@
                                                 </td>
                                             </tr>
                                         <?php endif; ?>
+                                        <?php if($row["kategori_alat"] === "4") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Alat
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_alat',array('id'=>$row['kategori_alat']),'nama_kategori_alat');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
                                     </table>
                                 </div>
                                 <div class="col-sm-4">
