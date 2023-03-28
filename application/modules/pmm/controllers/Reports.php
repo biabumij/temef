@@ -1089,7 +1089,7 @@ class Reports extends CI_Controller {
     		$this->db->where('id',$filter_material);
     	}
     	$this->db->order_by('nama_produk','asc');
-    	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','bahanbaku'=>1))->result_array();
+    	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','kategori_produk'=>1))->result_array();
 
     	if(!empty($tags)){
     		?>
@@ -1202,7 +1202,7 @@ class Reports extends CI_Controller {
 			$no = 1;
 	    	$this->db->where(array(
 	    		'status'=>'PUBLISH',
-				'bahanbaku'=>1,
+				'kategori_produk'=>1,
 	    	));
 	    	if(!empty($filter_material)){
 	    		$this->db->where('id',$filter_material);
