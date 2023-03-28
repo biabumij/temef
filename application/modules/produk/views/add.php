@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Nama</label>
                                             <div class="col-sm-8">
-                                              <input type="text" class="form-control input-sm" name="nama_produk" value="<?= (isset($edit)) ? $edit['nama_produk'] : '' ;?>" />
+                                              <input type="text" class="form-control input-sm" name="nama_produk" value="<?= (isset($edit)) ? $edit['nama_produk'] : '' ;?>" required=""/>
                                             </div>
                                         </div>
                                         <!--<div class="form-group">
@@ -132,9 +132,6 @@
                                             </div>
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="peralatan" id="peralatan" value="1" <?= (isset($edit) && $edit['peralatan'] == 1) ? 'checked' : '' ;?> > Peralatan
-                                            </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="bahanbakar" id="bahanbakar" value="1" <?= (isset($edit) && $edit['bahanbakar'] == 1) ? 'checked' : '' ;?> > Bahan Bakar
                                             </div>
                                         </div>
                                         <div class="form-group">

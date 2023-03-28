@@ -59,7 +59,7 @@ class Produksi extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
 			$this->load->view('produksi/form_hpp_bahan_baku', $data);
 		} else {
 			redirect('admin');
@@ -165,7 +165,7 @@ class Produksi extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
 			$this->load->view('produksi/form_akumulasi_bahan_baku', $data);
 		} else {
 			redirect('admin');
@@ -259,7 +259,7 @@ class Produksi extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
 			$this->load->view('produksi/form_approval', $data);
 		} else {
 			redirect('admin');
@@ -354,7 +354,7 @@ class Produksi extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'bahanbaku' => 1))->result_array();
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
 			$this->load->view('produksi/form_approval_laporan', $data);
 		} else {
 			redirect('admin');

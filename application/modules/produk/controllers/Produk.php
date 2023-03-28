@@ -20,15 +20,15 @@ class Produk extends Secure_Controller {
 		$data = array();
 		$tipe = $this->input->post('tipe');;
 		if($tipe == 1){
-			$this->db->where('bahanbaku',1);
+			$this->db->where('kategori_produk',1);
 		}else if($tipe == 2){
-			$this->db->where('betonreadymix',1);
+			$this->db->where('kategori_produk',2);
+		}else if($tipe == 3){
+			$this->db->where('kategori_produk',3);
 		}else if($tipe == 4){
-			$this->db->where('jasa',1);
+			$this->db->where('kategori_produk',4);
 		}else if($tipe == 5){
-			$this->db->where('peralatan',1);
-		}else if($tipe == 6){
-			$this->db->where('bahanbakar',1);
+			$this->db->where('kategori_produk',5);
 		}
 		
 		$this->db->where('status','PUBLISH');
