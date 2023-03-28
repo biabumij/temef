@@ -142,7 +142,6 @@ class Produk extends Secure_Controller {
     		'harga_jual' => $harga_jual,
     		'akun_jual' => $akun_jual,
     		'pajak_jual' => $pajak_jual,
-    		'bahanbakar' => $bahanbakar,
     		'satuan' => $satuan,
     		'deskripsi' => $deskripsi,
 			'kategori_produk' => $kategori_produk,
