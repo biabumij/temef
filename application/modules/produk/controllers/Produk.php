@@ -106,11 +106,6 @@ class Produk extends Secure_Controller {
     	$id = $this->input->post('id');
     	$nama_produk = $this->input->post('nama_produk');
     	//$kode_produk = $this->input->post('kode_produk');
-        $bahanbaku = $this->input->post('bahanbaku');
-    	$betonreadymix = $this->input->post('betonreadymix');
-    	$jasa = $this->input->post('jasa');
-    	$peralatan = $this->input->post('peralatan');
-    	$bahanbakar = $this->input->post('bahanbakar');
     	$satuan = $this->input->post('satuan');
     	$deskripsi = $this->input->post('deskripsi');
 		$kategori_produk = $this->input->post('kategori_produk');
@@ -147,10 +142,6 @@ class Produk extends Secure_Controller {
     		'harga_jual' => $harga_jual,
     		'akun_jual' => $akun_jual,
     		'pajak_jual' => $pajak_jual,
-    		'bahanbaku' => $bahanbaku,
-    		'betonreadymix' => $betonreadymix,
-    		'jasa' => $jasa,
-    		'peralatan' => $peralatan,
     		'bahanbakar' => $bahanbakar,
     		'satuan' => $satuan,
     		'deskripsi' => $deskripsi,
