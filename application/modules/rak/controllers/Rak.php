@@ -42,9 +42,9 @@ class Rak extends Secure_Controller {
 			$data['wl'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
-			$data['tr'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
-			$data['tr_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
-			$data['tr_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
+			$data['tr'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
+			$data['tr_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
+			$data['tr_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
 			$this->load->view('rak/form_rencana_kerja', $data);
 		} else {
 			redirect('admin');
@@ -452,9 +452,9 @@ class Rak extends Secure_Controller {
 			$data['wl'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
-			$data['tr'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
-			$data['tr_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
-			$data['tr_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaSemen();
+			$data['tr'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
+			$data['tr_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
+			$data['tr_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTransferSemen();
 			$this->load->view('rak/sunting_rencana_kerja', $data);
 		} else {
 			redirect('admin');
