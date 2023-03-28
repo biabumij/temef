@@ -95,7 +95,7 @@
                                                         }
                                                     }
                                                     ?>
-                                                </select><p style='color:red;font-weight:bold;'> * KATEGORI ALAT (BP, TM, WHEELOADER) wajib di isi jika memilih kategori PERALATAN, jika bukan abaikan saja.</p>
+                                                </select><p style='color:red;font-weight:bold;'> * Kategori Alat wajib di isi jika memilih kategori Peralatan, jika bukan abaikan saja.</p>
                                             </div>
 										</div>
                                         <div class="form-group">
