@@ -332,6 +332,7 @@
 			$rak_alat_tm = $rak_alat['penawaran_id_tm'];
 			$rak_alat_tm_2 = $rak_alat['penawaran_id_tm_2'];
 			$rak_alat_tm_3 = $rak_alat['penawaran_id_tm_3'];
+			$rak_alat_tm_4 = $rak_alat['penawaran_id_tm_4'];
 
 			$rak_alat_wl = $rak_alat['penawaran_id_wl'];
 			$rak_alat_wl_2 = $rak_alat['penawaran_id_wl_2'];
@@ -439,6 +440,21 @@
 			$total_price_tm_3 = 0;
 			foreach ($produk_tm_3 as $x){
 				$total_price_tm_3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_tm_4 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->where("ppp.id = '$rak_alat_tm_4'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_tm_4 = 0;
+			foreach ($produk_tm_4 as $x){
+				$total_price_tm_4 += $x['qty'] * $x['price'];
 			}
 
 			$produk_wl = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name')
@@ -616,6 +632,16 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
+			<?php foreach ($produk_tm_4 as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah"><?= $x['nama_produk'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+	        </tr>
+			<?php endforeach; ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">3.</th>	
 				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
@@ -709,7 +735,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($rak_alat['insentif'],0,',','.');?></th>
 	        </tr>
 			<?php
-			$total_rak_alat =  ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
+			$total_rak_alat =  ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3 + $total_price_tm_4) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
 			?>
 			<tr class="table-baris1-bold">	
 				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>

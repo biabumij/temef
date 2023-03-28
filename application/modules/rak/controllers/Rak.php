@@ -38,6 +38,7 @@ class Rak extends Secure_Controller {
 			$data['tm'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['tm_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['tm_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
+			$data['tm_4'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['wl'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
@@ -85,6 +86,7 @@ class Rak extends Secure_Controller {
 		$penawaran_id_tm =  $this->input->post('penawaran_id_tm');
 		$penawaran_id_tm_2 =  $this->input->post('penawaran_id_tm_2');
 		$penawaran_id_tm_3 =  $this->input->post('penawaran_id_tm_3');
+		$penawaran_id_tm_4 =  $this->input->post('penawaran_id_tm_4');
 		$penawaran_id_wl =  $this->input->post('penawaran_id_wl');
 		$penawaran_id_wl_2 =  $this->input->post('penawaran_id_wl_2');
 		$penawaran_id_wl_3 =  $this->input->post('penawaran_id_wl_3');
@@ -103,6 +105,7 @@ class Rak extends Secure_Controller {
 		$harga_tm =  str_replace('.', '', $this->input->post('price_tm'));
 		$harga_tm_2 =  str_replace('.', '', $this->input->post('price_tm_2'));
 		$harga_tm_3 =  str_replace('.', '', $this->input->post('price_tm_3'));
+		$harga_tm_4 =  str_replace('.', '', $this->input->post('price_tm_4'));
 		$harga_wl =  str_replace('.', '', $this->input->post('price_wl'));
 		$harga_wl_2 =  str_replace('.', '', $this->input->post('price_wl_2'));
 		$harga_wl_3 =  str_replace('.', '', $this->input->post('price_wl_3'));
@@ -121,6 +124,7 @@ class Rak extends Secure_Controller {
 		$satuan_tm =  $this->input->post('measure_tm');
 		$satuan_tm_2 =  $this->input->post('measure_tm_2');
 		$satuan_tm_3 =  $this->input->post('measure_tm_3');
+		$satuan_tm_4 =  $this->input->post('measure_tm_4');
 		$satuan_wl =  $this->input->post('measure_wl');
 		$satuan_wl_2 =  $this->input->post('measure_wl_2');
 		$satuan_wl_3 =  $this->input->post('measure_wl_3');
@@ -139,6 +143,7 @@ class Rak extends Secure_Controller {
 		$tax_id_tm =  $this->input->post('tax_id_tm');
 		$tax_id_tm_2 =  $this->input->post('tax_id_tm_2');
 		$tax_id_tm_3 =  $this->input->post('tax_id_tm_3');
+		$tax_id_tm_4 =  $this->input->post('tax_id_tm_4');
 		$tax_id_wl =  $this->input->post('tax_id_wl');
 		$tax_id_wl_2 =  $this->input->post('tax_id_wl_2');
 		$tax_id_wl_3 =  $this->input->post('tax_id_wl_3');
@@ -157,6 +162,7 @@ class Rak extends Secure_Controller {
 		$supplier_id_tm =  $this->input->post('supplier_id_tm');
 		$supplier_id_tm_2 =  $this->input->post('supplier_id_tm_2');
 		$supplier_id_tm_3 =  $this->input->post('supplier_id_tm_3');
+		$supplier_id_tm_4 =  $this->input->post('supplier_id_tm_4');
 		$supplier_id_wl =  $this->input->post('supplier_id_wl');
 		$supplier_id_wl_2 =  $this->input->post('supplier_id_wl_2');
 		$supplier_id_wl_3 =  $this->input->post('supplier_id_wl_3');
@@ -198,6 +204,7 @@ class Rak extends Secure_Controller {
 			'penawaran_id_tm' => $penawaran_id_tm,
 			'penawaran_id_tm_2' => $penawaran_id_tm_2,
 			'penawaran_id_tm_3' => $penawaran_id_tm_3,
+			'penawaran_id_tm_4' => $penawaran_id_tm_4,
 			'penawaran_id_wl' => $penawaran_id_wl,
 			'penawaran_id_wl_2' => $penawaran_id_wl_2,
 			'penawaran_id_wl_3' => $penawaran_id_wl_3,
@@ -216,6 +223,7 @@ class Rak extends Secure_Controller {
 			'harga_tm' => $harga_tm,
 			'harga_tm_2' => $harga_tm_2,
 			'harga_tm_3' => $harga_tm_3,
+			'harga_tm_4' => $harga_tm_4,
 			'harga_wl' => $harga_wl,
 			'harga_wl_2' => $harga_wl_2,
 			'harga_wl_3' => $harga_wl_3,
@@ -234,6 +242,7 @@ class Rak extends Secure_Controller {
 			'satuan_tm' => $satuan_tm,
 			'satuan_tm_2' => $satuan_tm_2,
 			'satuan_tm_3' => $satuan_tm_3,
+			'satuan_tm_4' => $satuan_tm_4,
 			'satuan_wl' => $satuan_wl,
 			'satuan_wl_2' => $satuan_wl_2,
 			'satuan_wl_3' => $satuan_wl_3,
@@ -252,6 +261,7 @@ class Rak extends Secure_Controller {
 			'tax_id_tm' => $tax_id_tm,
 			'tax_id_tm_2' => $tax_id_tm_2,
 			'tax_id_tm_3' => $tax_id_tm_3,
+			'tax_id_tm_4' => $tax_id_tm_4,
 			'tax_id_wl' => $tax_id_wl,
 			'tax_id_wl_2' => $tax_id_wl_2,
 			'tax_id_wl_3' => $tax_id_wl_3,
@@ -270,6 +280,7 @@ class Rak extends Secure_Controller {
 			'supplier_id_tm' => $supplier_id_tm,
 			'supplier_id_tm_2' => $supplier_id_tm_2,
 			'supplier_id_tm_3' => $supplier_id_tm_3,
+			'supplier_id_tm_4' => $supplier_id_tm_4,
 			'supplier_id_wl' => $supplier_id_wl,
 			'supplier_id_wl_2' => $supplier_id_wl_2,
 			'supplier_id_wl_3' => $supplier_id_wl_3,
@@ -435,6 +446,7 @@ class Rak extends Secure_Controller {
 			$data['tm'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['tm_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['tm_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
+			$data['tm_4'] = $this->pmm_model->getMatByPenawaranRencanaKerjaTM();
 			$data['wl'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_2'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
 			$data['wl_3'] = $this->pmm_model->getMatByPenawaranRencanaKerjaWL();
@@ -486,6 +498,7 @@ class Rak extends Secure_Controller {
 			$penawaran_id_tm =  $this->input->post('penawaran_id_tm');
 			$penawaran_id_tm_2 =  $this->input->post('penawaran_id_tm_2');
 			$penawaran_id_tm_3 =  $this->input->post('penawaran_id_tm_3');
+			$penawaran_id_tm_4 =  $this->input->post('penawaran_id_tm_4');
 			$penawaran_id_wl =  $this->input->post('penawaran_id_wl');
 			$penawaran_id_wl_2 =  $this->input->post('penawaran_id_wl_2');
 			$penawaran_id_wl_3 =  $this->input->post('penawaran_id_wl_3');
@@ -504,6 +517,7 @@ class Rak extends Secure_Controller {
 			$harga_tm =  str_replace('.', '', $this->input->post('price_tm'));
 			$harga_tm_2 =  str_replace('.', '', $this->input->post('price_tm_2'));
 			$harga_tm_3 =  str_replace('.', '', $this->input->post('price_tm_3'));
+			$harga_tm_4 =  str_replace('.', '', $this->input->post('price_tm_4'));
 			$harga_wl =  str_replace('.', '', $this->input->post('price_wl'));
 			$harga_wl_2 =  str_replace('.', '', $this->input->post('price_wl_2'));
 			$harga_wl_3 =  str_replace('.', '', $this->input->post('price_wl_3'));
@@ -522,6 +536,7 @@ class Rak extends Secure_Controller {
 			$satuan_tm =  $this->input->post('measure_tm');
 			$satuan_tm_2 =  $this->input->post('measure_tm_2');
 			$satuan_tm_3 =  $this->input->post('measure_tm_3');
+			$satuan_tm_4 =  $this->input->post('measure_tm_4');
 			$satuan_wl =  $this->input->post('measure_wl');
 			$satuan_wl_2 =  $this->input->post('measure_wl_2');
 			$satuan_wl_3 =  $this->input->post('measure_wl_3');
@@ -540,6 +555,7 @@ class Rak extends Secure_Controller {
 			$tax_id_tm =  $this->input->post('tax_id_tm');
 			$tax_id_tm_2 =  $this->input->post('tax_id_tm_2');
 			$tax_id_tm_3 =  $this->input->post('tax_id_tm_3');
+			$tax_id_tm_4 =  $this->input->post('tax_id_tm_4');
 			$tax_id_wl =  $this->input->post('tax_id_wl');
 			$tax_id_wl_2 =  $this->input->post('tax_id_wl_2');
 			$tax_id_wl_3 =  $this->input->post('tax_id_wl_3');
@@ -558,6 +574,7 @@ class Rak extends Secure_Controller {
 			$supplier_id_tm =  $this->input->post('supplier_id_tm');
 			$supplier_id_tm_2 =  $this->input->post('supplier_id_tm_2');
 			$supplier_id_tm_3 =  $this->input->post('supplier_id_tm_3');
+			$supplier_id_tm_4 =  $this->input->post('supplier_id_tm_4');
 			$supplier_id_wl =  $this->input->post('supplier_id_wl');
 			$supplier_id_wl_2 =  $this->input->post('supplier_id_wl_2');
 			$supplier_id_wl_3 =  $this->input->post('supplier_id_wl_3');
@@ -595,6 +612,7 @@ class Rak extends Secure_Controller {
 			'penawaran_id_tm' => $penawaran_id_tm,
 			'penawaran_id_tm_2' => $penawaran_id_tm_2,
 			'penawaran_id_tm_3' => $penawaran_id_tm_3,
+			'penawaran_id_tm_4' => $penawaran_id_tm_4,
 			'penawaran_id_wl' => $penawaran_id_wl,
 			'penawaran_id_wl_2' => $penawaran_id_wl_2,
 			'penawaran_id_wl_3' => $penawaran_id_wl_3,
@@ -613,6 +631,7 @@ class Rak extends Secure_Controller {
 			'harga_tm' => $harga_tm,
 			'harga_tm_2' => $harga_tm_2,
 			'harga_tm_3' => $harga_tm_3,
+			'harga_tm_4' => $harga_tm_4,
 			'harga_wl' => $harga_wl,
 			'harga_wl_2' => $harga_wl_2,
 			'harga_wl_3' => $harga_wl_3,
@@ -631,6 +650,7 @@ class Rak extends Secure_Controller {
 			'satuan_tm' => $satuan_tm,
 			'satuan_tm_2' => $satuan_tm_2,
 			'satuan_tm_3' => $satuan_tm_3,
+			'satuan_tm_4' => $satuan_tm_4,
 			'satuan_wl' => $satuan_wl,
 			'satuan_wl_2' => $satuan_wl_2,
 			'satuan_wl_3' => $satuan_wl_3,
@@ -649,6 +669,7 @@ class Rak extends Secure_Controller {
 			'tax_id_tm' => $tax_id_tm,
 			'tax_id_tm_2' => $tax_id_tm_2,
 			'tax_id_tm_3' => $tax_id_tm_3,
+			'tax_id_tm_4' => $tax_id_tm_4,
 			'tax_id_wl' => $tax_id_wl,
 			'tax_id_wl_2' => $tax_id_wl_2,
 			'tax_id_wl_3' => $tax_id_wl_3,
@@ -667,6 +688,7 @@ class Rak extends Secure_Controller {
 			'supplier_id_tm' => $supplier_id_tm,
 			'supplier_id_tm_2' => $supplier_id_tm_2,
 			'supplier_id_tm_3' => $supplier_id_tm_3,
+			'supplier_id_tm_4' => $supplier_id_tm_4,
 			'supplier_id_wl' => $supplier_id_wl,
 			'supplier_id_wl_2' => $supplier_id_wl_2,
 			'supplier_id_wl_3' => $supplier_id_wl_3,

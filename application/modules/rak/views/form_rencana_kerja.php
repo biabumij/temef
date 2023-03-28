@@ -384,8 +384,8 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="text-center" rowspan="3">2.</td>
-                                                    <td rowspan="3">Truck Mixer</td>
+                                                    <td class="text-center" rowspan="4">2.</td>
+                                                    <td rowspan="4">Truck Mixer</td>
                                                     <td class="text-center"><select id="penawaran_id_tm" name="penawaran_id_tm" class="form-control">
                                                         <option value="">Pilih Penawaran</option>
                                                         <?php
@@ -446,6 +446,27 @@
                                                         <input type="hidden" id="tax_id_tm_3" name="tax_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                         <input type="hidden" id="pajak_id_tm_3" name="pajak_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                         <input type="hidden" id="supplier_id_tm_3" name="supplier_id_tm_3" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center"><select id="penawaran_id_tm_4" name="penawaran_id_tm_4" class="form-control">
+                                                        <option value="">Pilih Penawaran</option>
+                                                        <?php
+
+                                                        foreach ($tm_4 as $key => $tm_4) {
+                                                            ?>
+                                                            <option value="<?php echo $tm_4['penawaran_id'];?>" data-supplier_id="<?php echo $tm_4['supplier_id'];?>" data-measure="<?php echo $tm_4['measure'];?>" data-price="<?php echo $tm_4['price'];?>" data-tax_id="<?php echo $tm_4['tax_id'];?>" data-tax="<?php echo $tm_4['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tm_4['penawaran_id'];?>"><?php echo $tm_4['nama'];?> - <?php echo $tm_4['nomor_penawaran'];?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" id="price_tm_4" name="price_tm_4" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="measure_tm_4" name="measure_tm_4" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="tax_id_tm_4" name="tax_id_tm_4" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="pajak_id_tm_4" name="pajak_id_tm_4" class="form-control text-right" value=""  readonly="" autocomplete="off">
+                                                        <input type="hidden" id="supplier_id_tm_4" name="supplier_id_tm_4" class="form-control text-right" value=""  readonly="" autocomplete="off">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -911,6 +932,21 @@
             $('#tax_id_tm_3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tm_3').val(pajak_id);
+        });
+
+        $('#penawaran_id_tm_4').change(function(){
+            var penawaran_id = $(this).find(':selected').data('penawaran_id');
+            $('#penawaran_id_tm_4').val(penawaran_id);
+            var price = $(this).find(':selected').data('price');
+            $('#price_tm_4').val(price);
+            var supplier_id = $(this).find(':selected').data('supplier_id');
+            $('#supplier_id_tm_4').val(supplier_id);
+            var measure = $(this).find(':selected').data('measure');
+            $('#measure_tm_4').val(measure);
+            var tax_id = $(this).find(':selected').data('tax_id');
+            $('#tax_id_tm_4').val(tax_id);
+            var pajak_id = $(this).find(':selected').data('pajak_id');
+            $('#pajak_id_tm_4').val(pajak_id);
         });
         
 
