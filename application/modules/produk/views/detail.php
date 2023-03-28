@@ -97,6 +97,56 @@
                                                 </td>
                                             </tr>
                                         <?php endif; ?>
+                                        <?php if($row["kategori_bahan"] === "1") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Bahan
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_bahan',array('id'=>$row['kategori_bahan']),'nama_kategori_bahan');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_bahan"] === "2") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Bahan
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_bahan',array('id'=>$row['kategori_bahan']),'nama_kategori_bahan');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_bahan"] === "3") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Bahan
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_bahan',array('id'=>$row['kategori_bahan']),'nama_kategori_bahan');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_bahan"] === "4") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Bahan
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_bahan',array('id'=>$row['kategori_bahan']),'nama_kategori_bahan');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_bahan"] === "5") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Bahan
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_bahan',array('id'=>$row['kategori_bahan']),'nama_kategori_bahan');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
                                     </table>
                                 </div>
                                 <div class="col-sm-4">

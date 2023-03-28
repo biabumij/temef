@@ -3275,7 +3275,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-        $this->db->where("ppd.material_id in (4,19,20)");
+        $this->db->where("pm.kategori_bahan = '1' ");
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
@@ -3291,7 +3291,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-        $this->db->where("ppd.material_id in (5)");
+        $this->db->where("pm.kategori_bahan = '2' ");
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
@@ -3307,7 +3307,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-        $this->db->where("ppd.material_id in (6)");
+        $this->db->where("pm.kategori_bahan = '3' ");
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
@@ -3323,7 +3323,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-        $this->db->where("ppd.material_id in (7)");
+        $this->db->where("pm.kategori_bahan = '4' ");
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
@@ -3339,7 +3339,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-        $this->db->where("ppd.material_id in (8)");
+        $this->db->where("pm.kategori_bahan = '5' ");
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();

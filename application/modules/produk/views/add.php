@@ -41,24 +41,24 @@
                             <form class="form-horizontal form-new" action="<?= site_url('produk/form_produk');?>" method="POST">
                                 <input type="hidden" name="id" value="<?= (isset($edit)) ? $edit['id'] : '' ;?>">
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <h5>Info Produk</h5>
                                         <hr />
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Nama</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-8">
                                               <input type="text" class="form-control input-sm" name="nama_produk" value="<?= (isset($edit)) ? $edit['nama_produk'] : '' ;?>" />
                                             </div>
                                         </div>
                                         <!--<div class="form-group">
                                             <label class="col-sm-2 control-label">Code / SKU</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-8">
                                               <input type="text" class="form-control input-sm" name="kode_produk" value="<?= (isset($edit)) ? $edit['kode_produk'] : '' ;?>"/>
                                             </div>
                                         </div>-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Kategori</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-4">
                                                 <select id="kategori" class="form-control form-select2" name="kategori_produk">
                                                     <option>Pilih Kategori</option>
                                                     <?php
@@ -79,7 +79,7 @@
 										</div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Kategori Alat</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-4">
                                                 <select id="kategori_alat" class="form-control form-select2" name="kategori_alat">
                                                     <option>Pilih Kategori Alat</option>
                                                     <?php
@@ -95,7 +95,28 @@
                                                         }
                                                     }
                                                     ?>
-                                                </select><p style='color:red;font-weight:bold;'> * Kategori Alat wajib di isi jika memilih kategori Peralatan, jika bukan abaikan saja.</p>
+                                                </select><p style='color:red;font-weight:bold;'> * <i>Kategori Alat</i> wajib di isi jika memilih kategori <i>Peralatan</i>, jika bukan abaikan saja.</p>
+                                            </div>
+										</div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Kategori Bahan</label>
+                                            <div class="col-sm-4">
+                                                <select id="kategori_bahan" class="form-control form-select2" name="kategori_bahan">
+                                                    <option>Pilih Kategori Bahan</option>
+                                                    <?php
+                                                    if($kategori_bahan){
+                                                        foreach ($kategori_bahan as $key => $kal) {
+                                                            $selected = false;
+                                                            if(isset($edit) && $edit['kategori_bahan'] == $kal['id']){
+                                                                $selected = 'selected';
+                                                            }
+                                                            ?>
+                                                            <option value="<?= $kal['id'];?>" <?= $selected;?> ><?= $kal['nama_kategori_bahan'];?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select><p style='color:red;font-weight:bold;'> * <i>Kategori Bahan</i> wajib di isi jika memilih kategori <i>Bahan Baku</i>, jika bukan abaikan saja.</p>
                                             </div>
 										</div>
                                         <div class="form-group">
@@ -118,7 +139,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Unit/Satuan</label>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-4">
                                                 <select id="satuan" class="form-control form-select2" name="satuan">
                                                     <option>Pilih Satuan</option>
                                                     <?php

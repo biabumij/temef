@@ -58,6 +58,7 @@ class Produk extends Secure_Controller {
     	$id = $this->uri->segment(3);
     	$data['kategori'] = $this->m_produk->getKategori();
 		$data['kategori_alat'] = $this->m_produk->getKategoriAlat();
+		$data['kategori_bahan'] = $this->m_produk->getKategoriBahan();
     	$data['taxs'] = $this->m_produk->getTax();
     	$data['akun'] = $this->pmm_finance->getAkunCoa();
     	$data['satuan'] = $this->m_produk->getSatuan();
@@ -67,8 +68,6 @@ class Produk extends Secure_Controller {
     	}
 		$this->load->view('produk/add',$data);
     }
-
-
 
     public function tambah_kategori_produk()
     {
@@ -116,6 +115,7 @@ class Produk extends Secure_Controller {
     	$deskripsi = $this->input->post('deskripsi');
 		$kategori_produk = $this->input->post('kategori_produk');
 		$kategori_alat = $this->input->post('kategori_alat');
+		$kategori_bahan = $this->input->post('kategori_bahan');
     	$tipe_produk = $this->input->post('tipe_produk');
     	$harga_jual = false;
     	$akun_jual = false;
@@ -156,6 +156,7 @@ class Produk extends Secure_Controller {
     		'deskripsi' => $deskripsi,
 			'kategori_produk' => $kategori_produk,
 			'kategori_alat' => $kategori_alat,
+			'kategori_bahan' => $kategori_bahan,
     		'tipe_produk' => $tipe_produk,
     		'jual' => $jual,
     		'beli' => $beli
