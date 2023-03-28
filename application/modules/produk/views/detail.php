@@ -57,6 +57,36 @@
                                             <?= $this->crud_global->GetField('kategori_produk',array('id'=>$row['kategori_produk']),'nama_kategori_produk');?>
                                             </td>
                                         </tr>
+                                        <?php if($row["kategori_alat"] === "1") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Alat
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_alat',array('id'=>$row['kategori_alat']),'nama_kategori_alat');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_alat"] === "2") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Alat
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_alat',array('id'=>$row['kategori_alat']),'nama_kategori_alat');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if($row["kategori_alat"] === "3") : ?>                             
+                                            <tr>
+                                                <th>
+                                                    Kategori Alat
+                                                </th>        
+                                                <td>
+                                                <?= $this->crud_global->GetField('kategori_alat',array('id'=>$row['kategori_alat']),'nama_kategori_alat');?>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
                                     </table>
                                 </div>
                                 <div class="col-sm-4">
