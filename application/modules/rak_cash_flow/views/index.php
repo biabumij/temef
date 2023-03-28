@@ -69,6 +69,8 @@
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Diperbaharui Oleh</th>
+                                                        <th class="text-center">Diperbaharui Tanggal</th>
                                                         <th class="text-center">Cetak</th>
 														<th class="text-center">Edit</th>
                                                         <th class="text-center">Hapus</th>
@@ -151,10 +153,16 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
+					"data": "created_by"
 				},
 				{
 					"data": "created_on"
+				},
+                {
+					"data": "updated_by"
+				},
+				{
+					"data": "updated_on"
 				},
                 {
 					"data": "print"
@@ -167,7 +175,7 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 8, 9, 10, 11, 12],
+                    "targets": [0, 1, 8, 9, 10, 11, 12, 13, 14],
                     "className": 'text-center',
                 },
                 {

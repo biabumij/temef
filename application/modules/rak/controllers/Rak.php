@@ -844,8 +844,10 @@ class Rak extends Secure_Controller {
 				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
 				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rencana_cash_flow/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
-				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
+                $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
 				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_cash_flow/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
