@@ -90,8 +90,8 @@
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
-				<th width="27%" align="center" class="table-border-pojok-tengah">URAIAN</th>
-				<th width="25%" align="center" class="table-border-pojok-tengah">REKANAN</th>
+				<th width="20%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+				<th width="32%" align="center" class="table-border-pojok-tengah">REKANAN</th>
 				<th width="10%" align="center" class="table-border-pojok-tengah">VOLUME</th>
 				<th width="8%" align="center" class="table-border-pojok-tengah">SATUAN</th>
 				<th width="10%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
@@ -276,8 +276,8 @@
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
-				<th width="27%" align="center" class="table-border-pojok-tengah">URAIAN</th>
-				<th width="25%" align="center" class="table-border-pojok-tengah">REKANAN</th>
+				<th width="20%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+				<th width="32%" align="center" class="table-border-pojok-tengah">REKANAN</th>
 				<th width="10%" align="center" class="table-border-pojok-tengah">VOLUME</th>
 				<th width="8%" align="center" class="table-border-pojok-tengah">SATUAN</th>
 				<th width="10%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
