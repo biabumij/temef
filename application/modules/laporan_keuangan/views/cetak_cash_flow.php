@@ -139,8 +139,8 @@
 
 			<?php
 			//NOW
-			$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-			$last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
+			$last_opname_start = date('Y-m-01', (strtotime($date_now)));
+			$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
 
 			//PRODUKSI (PENJUALAN) NOW
 			$penjualan_now = $this->db->select('SUM(pp.display_price) as total')
