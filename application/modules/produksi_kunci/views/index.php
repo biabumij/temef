@@ -147,8 +147,6 @@
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
 														<th>Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -179,8 +177,6 @@
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
 														<th>Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
