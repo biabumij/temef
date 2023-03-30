@@ -734,8 +734,16 @@
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($rak_alat['insentif'],0,',','.');?></th>
 	        </tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">7.</th>	
+				<th align="left" class="table-border-pojok-tengah">Sewa Alat</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($rak_alat['sewa_alat'],0,',','.');?></th>
+	        </tr>
 			<?php
-			$total_rak_alat =  ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3 + $total_price_tm_4) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
+			$total_rak_alat =  ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3 + $total_price_tm_4) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'] + $rak_alat['sewa_alat'];
 			?>
 			<tr class="table-baris1-bold">	
 				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>
