@@ -60,12 +60,6 @@
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Biaya Bahan</th>
-                                                        <th class="text-center">Biaya Alat</th>
-                                                        <th class="text-center">Biaya Bank</th>
-														<th class="text-center">Overhead</th>
-                                                        <th class="text-center">Termin</th>
-                                                        <th class="text-center">Biaya Persiapan</th>
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
@@ -132,24 +126,6 @@
                     "data": "tanggal_rencana_kerja"
                 },
                 {
-                    "data": "biaya_bahan"
-                },
-                {
-                    "data": "biaya_alat"
-                },
-                {
-                    "data": "biaya_bank"
-                },
-				{
-                    "data": "overhead"
-                },
-                {
-                    "data": "termin"
-                },
-                {
-                    "data": "biaya_persiapan"
-                },
-                {
                     "data": "lampiran"
                 },
                 {
@@ -175,13 +151,9 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 8, 9, 10, 11, 12, 13, 14],
+                    "targets": [0, 1, 3, 4, 5, 6, 7, 8, 9],
                     "className": 'text-center',
-                },
-                {
-                "targets": [2, 3, 4, 5, 6, 7],
-                "className": 'text-right',
-                },
+                }
             ],
         });
 
