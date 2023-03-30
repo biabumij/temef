@@ -626,6 +626,14 @@
                                                         <input type="text" id="insentif" name="insentif" class="form-control rupiahformat text-right" value=""  autocomplete="off">
                                                     </td>
                                                 </tr>
+
+                                                <tr>
+                                                    <td class="text-center">6.</td>
+                                                    <td>Sewa Alat</td>
+                                                    <td colspan="2">
+                                                        <input type="text" id="sewa_alat" name="sewa_alat" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+                                                    </td>
+                                                </tr>
         		
                                             </tbody>
                                         </table>
@@ -1052,6 +1060,7 @@
 
         $(document).ready(function(){
             $('#insentif').val(<?= $rak['insentif'];?>).trigger('change');
+            $('#sewa_alat').val(<?= $rak['sewa_alat'];?>).trigger('change');
             $('#overhead').val(<?= $rak['overhead'];?>).trigger('change');
         });
 
