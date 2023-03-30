@@ -1303,7 +1303,7 @@
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
-			->where("ppp.id = '$rak_alat_tr_2'")
+			->where("ppp.id = '$rak_alat_tr_2_3'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
@@ -1664,7 +1664,7 @@
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
-			->where("ppp.id = '$rak_alat_tr_2'")
+			->where("ppp.id = '$rak_alat_tr_2_4'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
@@ -2025,7 +2025,7 @@
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
-			->where("ppp.id = '$rak_alat_tr_2'")
+			->where("ppp.id = '$rak_alat_tr_2_5'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
@@ -2386,7 +2386,7 @@
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
-			->where("ppp.id = '$rak_alat_tr_2'")
+			->where("ppp.id = '$rak_alat_tr_2_6'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
