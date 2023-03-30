@@ -21,7 +21,7 @@ class Rak extends Secure_Controller {
 			$data['products'] =  $this->db->select('*')
 			->from('produk p')
 			->where("p.status = 'PUBLISH'")
-			->where("p.betonreadymix = 1 ")
+			->where("p.kategori_produk = 1 ")
 			->order_by('nama_produk','asc')
 			->get()->result_array();
 
