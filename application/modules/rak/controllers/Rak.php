@@ -366,7 +366,6 @@ class Rak extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
 				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
-				$row['jumlah'] = number_format($row['vol_produk_a'] + $row['vol_produk_b'] + $row['vol_produk_c'] + $row['vol_produk_d'],2,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));

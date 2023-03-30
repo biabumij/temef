@@ -60,7 +60,6 @@
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
-														<th class="text-center">Jumlah Produksi</th>
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
@@ -126,9 +125,6 @@
 				{
                     "data": "tanggal_rencana_kerja"
                 },
-				{
-                    "data": "jumlah"
-                },
                 {
                     "data": "lampiran"
                 },
@@ -155,13 +151,9 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5, 6, 7, 8, 9, 10],
+                    "targets": [0, 1, 3, 4, 5, 6, 7, 8, 9],
                     "className": 'text-center',
-                },
-                {
-                "targets": [2],
-                "className": 'text-right',
-                },
+                }
             ],
         });
 	
