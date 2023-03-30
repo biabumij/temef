@@ -9547,7 +9547,7 @@ class Reports extends CI_Controller {
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
-			->where("ppp.id = '$rak_alat_tr_2'")
+			->where("ppp.id = '$rak_alat_tr_2_2'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
@@ -9572,8 +9572,6 @@ class Reports extends CI_Controller {
 			foreach ($produk_tr_3_2 as $x){
 				$total_price_tr_3_2 += $x['qty'] * $x['price'];
 			}
-
-
 
 			$total_volume_produksi_2 = $volume_rencana_kerja_2_produk_a + $volume_rencana_kerja_2_produk_b + $volume_rencana_kerja_2_produk_c + $volume_rencana_kerja_2_produk_d;
 
