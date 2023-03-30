@@ -837,12 +837,6 @@ class Rak extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
 				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
-				$row['biaya_bahan'] = number_format($row['biaya_bahan'],0,',','.');
-				$row['biaya_alat'] = number_format($row['biaya_alat'],0,',','.');
-				$row['biaya_bank'] = number_format($row['biaya_bank'],0,',','.');
-				$row['overhead'] = number_format($row['overhead'],0,',','.');
-				$row['biaya_persiapan'] = number_format($row['biaya_persiapan'],0,',','.');
-				$row['termin'] = number_format($row['termin'],0,',','.');
 				$row['lampiran'] = '<a href="' . base_url('uploads/rencana_cash_flow/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
