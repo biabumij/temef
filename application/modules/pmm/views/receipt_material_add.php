@@ -141,12 +141,12 @@
                                 </div>
                                 <div class="row">
 									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Kendaraan * </label>
-                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" required="" autocomplete="off" placeholder="No. Kendaraan"/>
+										<label for="inputEmail3" class="control-label">No. Kendaraan</label>
+                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" autocomplete="off" placeholder="No. Kendaraan"/>
                                     </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Supir * </label>
-                                        <input type="text" id="driver" name="driver" class="form-control" required="" autocomplete="off" placeholder="Supir" />
+										<label for="inputEmail3" class="control-label">Supir</label>
+                                        <input type="text" id="driver" name="driver" class="form-control" autocomplete="off" placeholder="Supir" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -639,6 +639,8 @@
         $('#material_id').change(function(){
             var measure = $(this).find(':selected').data('measure');
             $('#measure_id').val(measure);
+            var display_measure = $(this).find(':selected').data('display_measure');
+            $('#display_measure').val(measure);
             var tax_id = $(this).find(':selected').data('tax_id');
             $('#tax_id').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
