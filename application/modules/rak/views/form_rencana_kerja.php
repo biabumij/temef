@@ -607,7 +607,15 @@
                                                     <td colspan="2">
                                                         <input type="text" id="insentif" name="insentif" class="form-control rupiahformat text-right" value=""  autocomplete="off">
                                                     </td>
-                                                </tr>		
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="text-center">6.</td>
+                                                    <td>Sewa Alat</td>
+                                                    <td colspan="2">
+                                                        <input type="text" id="sewa_alat" name="sewa_alat" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+                                                    </td>
+                                                </tr>	
                                             </tbody>
                                         </table>    
                                     </div>
