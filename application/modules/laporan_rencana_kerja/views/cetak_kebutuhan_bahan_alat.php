@@ -251,8 +251,8 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">4.</th>
-				<th align="left" class="table-border-pojok-tengah"><?= $supplier_batu2030['nama'] ?></th>	
 				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
+				<th align="left" class="table-border-pojok-tengah"><?= $supplier_batu2030['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030,2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah">M3</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($rak['harga_batu2030'],0,',','.');?></th>
