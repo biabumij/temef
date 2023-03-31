@@ -154,6 +154,7 @@ class Produk extends Secure_Controller {
 
     	if(!empty($id)){
 			$data['updated_by'] = $this->session->userdata('admin_id');
+			$data['updated_on'] = date('Y-m-d H:i:s');
 			$this->db->update('produk',$data,array('id'=>$id));
 		}else{
 			$data['created_by'] = $this->session->userdata('admin_id');

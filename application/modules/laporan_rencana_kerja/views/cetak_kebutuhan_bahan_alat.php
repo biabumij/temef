@@ -307,6 +307,13 @@
 			$rak_alat_tr_2 = $rak_alat['penawaran_id_tr_2'];
 			$rak_alat_tr_3 = $rak_alat['penawaran_id_tr_3'];
 
+			$rak_alat_exc = $rak_alat['penawaran_id_exc'];
+			$rak_alat_dmp_4m3 = $rak_alat['penawaran_id_dmp_4m3'];
+			$rak_alat_dmp_10m3 = $rak_alat['penawaran_id_dmp_10m3'];
+			$rak_alat_sc = $rak_alat['penawaran_id_sc'];
+			$rak_alat_gns = $rak_alat['penawaran_id_gns'];
+			$rak_alat_wl_sc = $rak_alat['penawaran_id_wl_sc'];
+
 			$produk_solar = $this->db->select('ps.nama')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
@@ -495,7 +502,7 @@
 			$total_vol_tr = 0;
 			foreach ($produk_tr as $x){
 				$total_price_tr += $x['qty'] * $x['price'];
-				$total_price_tr += $x['qty'];
+				$total_vol_tr += $x['qty'];
 			}
 
 			$produk_tr_2 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -513,7 +520,7 @@
 			$total_vol_tr_2 = 0;
 			foreach ($produk_tr_2 as $x){
 				$total_price_tr_2 += $x['qty'] * $x['price'];
-				$total_price_tr_2 += $x['qty'];
+				$total_vol_tr_2 += $x['qty'];
 			}
 
 			$produk_tr_3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
@@ -531,15 +538,118 @@
 			$total_vol_tr_3 = 0;
 			foreach ($produk_tr_3 as $x){
 				$total_price_tr_3 += $x['qty'] * $x['price'];
-				$total_price_tr_3 += $x['qty'];
+				$total_vol_tr_3 += $x['qty'];
 			}
 
-			$rap_solar = $this->db->select('rap.*')
-			->from('rap_alat rap')
-			->where('rap.status','PUBLISH')
-			->order_by('rap.id','desc')->limit(1)
-			->get()->row_array();
-			$total_volume_solar = $total_produksi_volume * $rap_solar['vol_bbm_solar'];
+			$produk_exc = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_exc'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_exc = 0;
+			$total_vol_exc = 0;
+			foreach ($produk_exc as $x){
+				$total_price_exc += $x['qty'] * $x['price'];
+				$total_vol_exc += $x['qty'];
+			}
+
+			$produk_dmp_4m3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_dmp_4m3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_4m3 = 0;
+			$total_vol_dmp_4m3 = 0;
+			foreach ($produk_dmp_4m3 as $x){
+				$total_price_dmp_4m3 += $x['qty'] * $x['price'];
+				$total_vol_dmp_4m3 += $x['qty'];
+			}
+
+			$produk_dmp_10m3 = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_dmp_10m3'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_10m3 = 0;
+			$total_vol_dmp_10m3 = 0;
+			foreach ($produk_dmp_10m3 as $x){
+				$total_price_dmp_10m3 += $x['qty'] * $x['price'];
+				$total_vol_dmp_10m3 += $x['qty'];
+			}
+
+			$produk_sc = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_sc'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_sc = 0;
+			$total_vol_sc = 0;
+			foreach ($produk_sc as $x){
+				$total_price_sc += $x['qty'] * $x['price'];
+				$total_vol_sc += $x['qty'];
+			}
+
+			$produk_gns = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_gns'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_gns = 0;
+			$total_vol_gns = 0;
+			foreach ($produk_gns as $x){
+				$total_price_gns += $x['qty'] * $x['price'];
+				$total_vol_gns += $x['qty'];
+			}
+
+			$produk_wl_sc = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama')
+			->from('pmm_penawaran_pembelian ppp')
+			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
+			->join('produk p', 'ppd.material_id = p.id','left')
+			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
+			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
+			->where("ppp.id = '$rak_alat_wl_sc'")
+			->group_by('ppd.id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_wl_sc = 0;
+			$total_vol_wl_sc = 0;
+			foreach ($produk_wl_sc as $x){
+				$total_price_wl_sc += $x['qty'] * $x['price'];
+				$total_vol_wl_sc += $x['qty'];
+			}
+
+			$total_volume_solar = $rak['vol_bbm_solar'];
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1.</th>	
@@ -707,7 +817,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
 				<th align="left" class="table-border-pojok-tengah"></th>
-				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>\
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
 				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
@@ -737,7 +847,7 @@
 			</tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1-bold">
-			<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="center" class="table-border-pojok-kiri"></th>
 				<th align="right" class="table-border-pojok-tengah">Total Transfer Semen</th>
 				<th align="left" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_tr + $total_vol_tr_2 + $total_vol_tr_3,2,',','.');?></th>
@@ -763,8 +873,92 @@
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($rak_alat['insentif'],0,',','.');?></th>
 	        </tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">7.</th>	
+				<th align="left" class="table-border-pojok-tengah">Sewa Alat (SC)</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
+			<?php foreach ($produk_exc as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_dmp_4m3 as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_dmp_10m3 as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_sc as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_gns as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_wl_sc as $x): ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="left" class="table-border-pojok-tengah"><?= $x['nama'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['qty'],2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"><?= $x['measure_name'] ?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['qty'] * $x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Sewa Alat (SC)</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_exc + $total_vol_dmp_4m3 + $total_vol_dmp_10m3 + $total_vol_sc + $total_vol_gns + $total_vol_wl_sc,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc,0,',','.');?></th>
+			</tr>
 			<?php
-			$total_rak_alat = ($rak_alat['total_produksi'] * $rak_alat['harga_bp']) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'];
+			$total_rak_alat = ($rak_alat['total_produksi'] * $rak_alat['harga_bp']) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'] + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			<tr class="table-baris1-bold">	
 				<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>
