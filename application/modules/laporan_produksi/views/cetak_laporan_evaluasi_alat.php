@@ -597,9 +597,12 @@
 				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
+			<tr class="table-active3">
+				<th align="center" colspan="11">SC</th>
+	        </tr>
 			<tr class="table-baris1">
 				<th align="center">5.</th>			
-				<th align="left">Excavator (SC)</th>
+				<th align="left">Excavator</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -612,7 +615,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">6.</th>			
-				<th align="left">Dump Truck 4M3 (SC)</th>
+				<th align="left">Dump Truck 4M3</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -625,7 +628,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">7.</th>			
-				<th align="left">Dump Truck 10M3 (SC)</th>
+				<th align="left">Dump Truck 10M3</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -638,7 +641,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">8.</th>			
-				<th align="left">Stone Crusher (SC)</th>
+				<th align="left">Stone Crusher</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -651,7 +654,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">9.</th>			
-				<th align="left">Genset (SC)</th>
+				<th align="left">Genset</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -664,7 +667,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">10.</th>			
-				<th align="left">Wheel Loader (SC)</th>
+				<th align="left">Wheel Loader</th>
 				<th align="center">Unit</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>

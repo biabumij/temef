@@ -5494,8 +5494,11 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,2,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
+				<th class="text-center" colspan="11">SC</th>
+	        </tr>
+			<tr class="table-active3">
 				<th class="text-center">5.</th>			
-				<th class="text-left">Excavator (SC)</th>
+				<th class="text-left">Excavator</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -5508,7 +5511,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">6.</th>			
-				<th class="text-left">Dump Truck 4M3 (SC)</th>
+				<th class="text-left">Dump Truck 4M3</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -5521,7 +5524,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">7.</th>			
-				<th class="text-left">Dump Truck 10M3 (SC)</th>
+				<th class="text-left">Dump Truck 10M3</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -5534,7 +5537,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">8.</th>			
-				<th class="text-left">Stone Crusher (SC)</th>
+				<th class="text-left">Stone Crusher</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -5547,7 +5550,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">9.</th>			
-				<th class="text-left">Genset (SC)</th>
+				<th class="text-left">Genset</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -5560,7 +5563,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">10.</th>			
-				<th class="text-left">Wheel Loader (SC)</th>
+				<th class="text-left">Wheel Loader</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
