@@ -4,54 +4,95 @@
 	  <title>LAPORAN RENCANA KERJA PRODUKSI</title>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+		}
+
+		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+			border-left: 1px solid black;
+		}
+
+		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+		}
+
+		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial-kiri, th.table-border-spesial-kiri, td.table-border-spesial-kiri {
+			border-left: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-tengah, th.table-border-spesial-tengah, td.table-border-spesial-tengah {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-kanan, th.table-border-spesial-kanan, td.table-border-spesial-kanan {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 6px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 6px;
+			background-color: none;
+			font-size: 7px;
 		}
 
 		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 6px;
+			background-color: none;
+			font-size: 7px;
 			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 6px;
-			background-color: #E8E8E8;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 6px;
+			font-size: 7px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
 
 	</head>
 	<body>
-		<br />
-		<br />
-		<table width="98%" cellpadding="3">
-			<tr>
-				<td align="center"  width="100%">
-					<div style="display: block;font-weight: bold;font-size: 12px;">PROGNOSA PRODUKSI</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
-				</td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<br />
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROGNOSA PRODUKSI</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
+		<br /><br /><br />
 		<?php
 		$data = array();
 		
@@ -3031,177 +3072,177 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2">&nbsp; <br /><br />NO.</th>
-				<th width="14%" align="center" rowspan="2">&nbsp; <br /><br />URAIAN</th>
-				<th width="4%" align="center" rowspan="2">&nbsp; <br /><br />SATUAN</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />ADEDENDUM RAP</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
-				<th width="58%" align="center" colspan="6">&nbsp; <br />PROGNOSA</th>
-				<th width="7%" align="center" rowspan="2">&nbsp; <br /><br />TOTAL</th>
+				<th width="3%" align="center" rowspan="2" class="table-border-pojok-kiri">&nbsp; <br /><br />NO.</th>
+				<th width="14%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />URAIAN</th>
+				<th width="4%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />SATUAN</th>
+				<th width="7%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />ADEDENDUM RAP</th>
+				<th width="7%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
+				<th width="58%" align="center" colspan="6" class="table-border-pojok-tengah">&nbsp; <br />PROGNOSA</th>
+				<th width="7%" align="center" rowspan="2" class="table-border-pojok-kanan">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
-				<th align="center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-kiri"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></div></th>
+				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-kanan"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 			</tr>
-			<tr class="table-baris1-bold">
-				<th align="left" colspan="12">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align="center">1</th>
-				<th align="left">Beton K 125 (10±2)</th>
-				<th align="center">M3</th>
-				<th align="right"><?php echo number_format($volume_rap_2022_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_1_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_2_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_3_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_4_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
+			<tr class="table-total2">
+				<th align="left" colspan="12" class="table-border-spesial">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">2</th>
-				<th align="left">Beton K 225 (10±2)</th>
-				<th align="center">M3</th>
-				<th align="right"><?php echo number_format($volume_rap_2022_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_1_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_2_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_3_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_4_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 125 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_2022_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_akumulasi_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">3</th>
-				<th align="left">Beton K 250 (10±2)</th>
-				<th align="center">M3</th>
-				<th align="right"><?php echo number_format($volume_rap_2022_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_1_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_2_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_3_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_4_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
+				<th align="center" class="table-border-pojok-kiri">2.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 225 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_2022_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_akumulasi_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">4</th>
-				<th align="left">Beton K 250 (18±2)</th>
-				<th align="center">M3</th>
-				<th align="right"><?php echo number_format($volume_rap_2022_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_1_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_2_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_3_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_4_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_5_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_produk_d,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">3.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 250 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_2022_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_akumulasi_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_produk_c,2,',','.');?></th>	
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">4.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 250 (18±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_2022_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_akumulasi_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_produk_d,2,',','.');?></th>
+			</tr>
+			<tr class="table-total2">
+				<th align="right" colspan="2" class="table-border-spesial-kiri">TOTAL VOLUME</th>
+				<th align="center" class="table-border-spesial-tengah">M3</th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_rap_volume_2022,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_1_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_2_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_3_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_4_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_5_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_6_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_all_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
-				<th align="right" colspan="2">TOTAL VOLUME</th>
-				<th align="center">M3</th>
-				<th align="right"><?php echo number_format($total_rap_volume_2022,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_akumulasi_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_1_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_2_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_3_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_4_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_5_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_6_volume,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_volume,2,',','.');?></th>
+				<th align="right" colspan="2" class="table-border-spesial-kiri">PENDAPATAN USAHA</th>
+				<th align="center" class="table-border-spesial-tengah"></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_1_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_2_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_3_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_4_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_5_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_6_nilai,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 			</tr>
-			<tr class="table-total">
-				<th align="right" colspan="2">PENDAPATAN USAHA</th>
-				<th align="center"></th>
-				<th align="right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_akumulasi_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_1_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_2_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_3_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_4_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_5_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_6_nilai,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
-			</tr>
-			<tr class="table-baris1-bold">
-				<th align="left" colspan="12">BIAYA</th>
+			<tr class="table-total2">
+				<th align="left" colspan="12" class="table-border-spesial">BIAYA</th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">1</th>
-				<th align="left">Bahan</th>
-				<th align="center">LS</th>
-				<th align="right"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_1_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_2_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_3_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_4_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_5_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_6_biaya_bahan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>
+				<th align="left" class="table-border-pojok-tengah">Bahan</th>
+				<th align="center" class="table-border-pojok-tengah">LS</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_rap_2022_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_1_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_2_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_3_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_4_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_5_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_6_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">2</th>
-				<th align="left">Alat</th>
-				<th align="center">LS</th>
-				<th align="right"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_1_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_2_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_3_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_4_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_5_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_6_biaya_alat,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">2.</th>
+				<th align="left" class="table-border-pojok-tengah">Alat</th>
+				<th align="center" class="table-border-pojok-tengah">LS</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_rap_2022_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_alat_akumulasi,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_1_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_2_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_3_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_4_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_5_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_6_biaya_alat,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">3</th>
-				<th align="left">Overhead</th>
-				<th align="center">LS</th>
-				<th align="right"><?php echo number_format($total_rap_2022_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_1_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_2_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_3_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_4_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_5_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_6_overhead,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_all_overhead,0,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">3.</th>
+				<th align="left" class="table-border-pojok-tengah">Overhead</th>
+				<th align="center" class="table-border-pojok-tengah">LS</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_rap_2022_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_overhead_akumulasi,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_1_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_2_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_3_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_4_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_5_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_6_overhead,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_overhead,0,',','.');?></th>
 			</tr>
-			<tr class="table-total">
-				<th align="right" colspan="2">JUMLAH</th>
-				<th align="center"></th>
-				<th align="right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_1_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_2_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_3_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_4_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_5_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_6_biaya,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
+			<tr class="table-total2">
+				<th align="right" colspan="2" class="table-border-spesial-kiri">JUMLAH</th>
+				<th align="center" class="table-border-spesial-tengah"></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_akumulasi,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_1_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_2_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_3_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_4_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_5_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_biaya_6_biaya,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
 			</tr>
-			<tr class="table-total">
-				<th align="right" colspan="2">LABA</th>
-				<th align="center"></th>
-				<th align="right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_saat_ini,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_1,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_3,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_4,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_5,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_6,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_laba_all,0,',','.');?></th>
+			<tr class="table-judul">
+				<th align="right" colspan="2" class="table-border-spesial-kiri">LABA</th>
+				<th align="center" class="table-border-spesial-tengah"></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_saat_ini,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_1,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_2,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_3,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_4,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_5,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_6,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_laba_all,0,',','.');?></th>
 			</tr>
 	    </table>
 		

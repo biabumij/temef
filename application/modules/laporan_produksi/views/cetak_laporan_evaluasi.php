@@ -41,54 +41,95 @@
 	  ?>
 	  
 	  <style type="text/css">
+		 body {
+			font-family: helvetica;
+		}
+
+		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+			border-left: 1px solid black;
+		}
+
+		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+		}
+
+		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial-kiri, th.table-border-spesial-kiri, td.table-border-spesial-kiri {
+			border-left: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-tengah, th.table-border-spesial-tengah, td.table-border-spesial-tengah {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-kanan, th.table-border-spesial-kanan, td.table-border-spesial-kanan {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
+			background-color: none;
+			font-size: 7px;
 		}
 
 		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
+			background-color: none;
+			font-size: 7px;
 			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 8px;
-			background-color: #E8E8E8;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
 
 	</head>
 	<body>
-		<br />
-		<br />
-		<table width="98%" cellpadding="3">
-			<tr>
-				<td align="center"  width="100%">
-					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN EVALUASI PEMAKAIAN BAHAN BAKU</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
-				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
-				</td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<br />
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN EVALUASI PEMAKAIAN BAHAN BAKU</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
+		<br /><br /><br />
 		<?php
 		$data = array();
 		
@@ -105,7 +146,7 @@
 		
 		?>
 		
-		<table width="98%" border="0" cellpadding="3" border="0">
+		<table width="98%" cellpadding="5">
 		
 			<!-- TOTAL PEMAKAIAN KOMPOSISI -->
 
@@ -642,22 +683,22 @@
 	        ?>
 			
 			<tr class="table-judul">
-				<th width="5%" align = "center" rowspan="2">&nbsp;<br/>NO.</th>
-				<th width="12%" align = "center" rowspan="2">&nbsp;<br/>URAIAN</th>
-				<th width="10%" align = "center" rowspan="2">&nbsp;<br/>SATUAN</th>
-				<th width="28%" align = "center" colspan="3">KOMPOSISI</th>
-				<th width="28%" align = "center" colspan="3">REALISASI</th>
-				<th width="17%" align = "center" colspan="2">EVALUASI</th>
+				<th width="5%" align ="center" rowspan="2" class="table-border-pojok-kiri">&nbsp;<br/>NO.</th>
+				<th width="12%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>URAIAN</th>
+				<th width="8%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>SATUAN</th>
+				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">KOMPOSISI</th>
+				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">REALISASI</th>
+				<th width="18%" align ="center" colspan="2" class="table-border-pojok-kanan">EVALUASI</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align = "center">VOLUME</th>
-				<th align = "center">HARSAT</th>
-				<th align = "center">NILAI</th>
-				<th align = "center">VOLUME</th>
-				<th align = "center">HARSAT</th>
-				<th align = "center">NILAI</th>
-				<th align = "center">VOLUME</th>
-				<th align = "center">NILAI</th>
+				<th width="8%" align ="center" class="table-border-pojok-kiri">VOLUME</th>
+				<th width="9%" align ="center" class="table-border-pojok-tengah">HARSAT</th>
+				<th width="12%" align ="center" class="table-border-pojok-tengah">NILAI</th>
+				<th width="8%" align ="center" class="table-border-pojok-tengah">VOLUME</th>
+				<th width="9%" align ="center" class="table-border-pojok-tengah">HARSAT</th>
+				<th width="12%" align ="center" class="table-border-pojok-tengah">NILAI</th>
+				<th width="8%" align ="center" class="table-border-pojok-tengah">VOLUME</th>
+				<th width="10%" align ="center" class="table-border-pojok-kanan">NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'color:red' : 'color:black';
@@ -672,74 +713,72 @@
 				$styleColorEE = $total_nilai_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
-				<th align = "center"style="vertical-align:middle">1</th>			
-				<th align = "left">Semen</th>
-				<th align = "center">Ton</th>
-				<th align = "right"><?php echo number_format($volume_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($price_a,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_a,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
+				<th align ="center" class="table-border-pojok-kiri" style="vertical-align:middle">1.</th>			
+				<th align = "left" class="table-border-pojok-tengah">Semen</th>
+				<th align ="center" class="table-border-pojok-tengah">Ton</th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($volume_a,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($price_a,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($nilai_a,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_a,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-kanan" style="<?php echo $styleColorAA ?>"><?php echo number_format($evaluasi_nilai_a,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align = "center"style="vertical-align:middle">2</th>			
-				<th align = "left">Pasir</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($price_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_b,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
+				<th align ="center" class="table-border-pojok-kiri" style="vertical-align:middle">2.</th>			
+				<th align = "left" class="table-border-pojok-tengah">Pasir</th>
+				<th align ="center" class="table-border-pojok-tengah">M3</th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($volume_b,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($price_b,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($nilai_b,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_volume_b,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-kanan" style="<?php echo $styleColorBB ?>"><?php echo number_format($evaluasi_nilai_b,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align = "center"style="vertical-align:middle">3</th>			
-				<th align = "left">Batu Split 10-20</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($price_c,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_c,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
+				<th align ="center" class="table-border-pojok-kiri" style="vertical-align:middle">3.</th>			
+				<th align = "left" class="table-border-pojok-tengah">Batu Split 10-20</th>
+				<th align ="center" class="table-border-pojok-tengah">M3</th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($volume_c,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($price_c,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($nilai_c,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_c,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-kanan" style="<?php echo $styleColorCC ?>"><?php echo number_format($evaluasi_nilai_c,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align = "center"style="vertical-align:middle">4</th>			
-				<th align = "left">Batu Split 20-30</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($price_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_d,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
-				<th align = "right" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
+				<th align ="center" class="table-border-pojok-kiri" style="vertical-align:middle">4.</th>			
+				<th align = "left" class="table-border-pojok-tengah">Batu Split 20-30</th>
+				<th align ="center" class="table-border-pojok-tengah">M3</th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($volume_d,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($price_d,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($nilai_d,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
+				<th align = "right" class="table-border-pojok-tengah" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_volume_d,2,',','.');?></th>
+				<th align = "right" class="table-border-pojok-kanan" style="<?php echo $styleColorDD ?>"><?php echo number_format($evaluasi_nilai_d,0,',','.');?></th>
 	        </tr>
-			<tr class="table-total">		
-				<th align = "right" colspan="3">TOTAL</th>
-				<th align = "right"></th>
-				<th align = "right"></th>
-				<th align = "right"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
-				<th align = "right"></th>
-				<th align = "right"></th>
-				<th align = "right"><?php echo number_format($total_nilai_realisasi,0,',','.');?></th>
-				<th align = "right"></th>
-				<th align = "right" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
+			<tr class="table-total2">		
+				<th align = "right" class="table-border-spesial-kiri" colspan="3">TOTAL</th>
+				<th align = "right" class="table-border-spesial-tengah"></th>
+				<th align = "right" class="table-border-spesial-tengah"></th>
+				<th align = "right" class="table-border-spesial-tengah"><?php echo number_format($total_nilai_komposisi,0,',','.');?></th>
+				<th align = "right" class="table-border-spesial-tengah"></th>
+				<th align = "right" class="table-border-spesial-tengah"></th>
+				<th align = "right" class="table-border-spesial-tengah"><?php echo number_format($total_nilai_realisasi,0,',','.');?></th>
+				<th align = "right" class="table-border-spesial-tengah"></th>
+				<th align = "right" class="table-border-spesial-kanan" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
 	        </tr>
 
 	    </table>
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<table width="98%" cellpadding="3">
 			<tr >
 				<td width="10%"></td>
 				<td width="80%">

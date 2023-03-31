@@ -4,48 +4,95 @@
 	  <title>LAPORAN RENCANA KERJA PRODUKSI</title>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+		}
+
+		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+			border-left: 1px solid black;
+		}
+
+		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid #cccccc;
+		}
+
+		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+		}
+
+		table.table-border-spesial-kiri, th.table-border-spesial-kiri, td.table-border-spesial-kiri {
+			border-left: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-tengah, th.table-border-spesial-tengah, td.table-border-spesial-tengah {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid #cccccc;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
+		table.table-border-spesial-kanan, th.table-border-spesial-kanan, td.table-border-spesial-kanan {
+			border-left: 1px solid #cccccc;
+			border-right: 1px solid black;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
+			background-color: none;
+			font-size: 7px;
 		}
 
-		table tr.table-baris2{
-			background-color: #E8E8E8;
-			font-size: 8px;
+		table tr.table-baris1-bold{
+			background-color: none;
+			font-size: 7px;
+			font-weight: bold;
 		}
 			
 		table tr.table-total{
-			background-color: #CCCCCC;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
 
 	</head>
 	<body>
-		<br />
-		<br />
-		<table width="98%" cellpadding="3">
-			<tr>
-				<td align="center"  width="100%">
-					<div style="display: block;font-weight: bold;font-size: 12px;">RENCANA KERJA PRODUKSI</div>
-					<div style="display: block;font-weight: bold;font-size: 12px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
-				    <div style="display: block;font-weight: bold;font-size: 12px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
-				</td>
-			</tr>
-		</table>
-		<br />
-		<br />
-		<br />
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">RENCANA KERJA PRODUKSI</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo $date_1_awal = date('Y');?></div>
+		<br /><br /><br /><br />
 		<?php
 		$data = array();
 		
@@ -687,143 +734,143 @@
 			?>
 
 			<tr class="table-judul">
-				<th width="5%" align="center">NO.</th>
-				<th width="25%" align = "center">URAIAN</th>
-				<th width="10%" align = "center">SATUAN</th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></div></th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
-				<th width="10%" align = "center"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
+				<th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
+				<th width="25%" align="center" class="table-border-pojok-tengah">URAIAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah">SATUAN</th>
+				<th width="10%" align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F Y');?></div></th>
+				<th width="10%" align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_2_awal = date('F Y', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
+				<th width="10%" align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
+				<th width="10%" align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
+				<th width="10%" align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
+				<th width="10%" align="center" class="table-border-pojok-kanan"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align = "center">1</th>
-				<th align = "left">Beton K 125 (10±2)</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_1_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_2_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_3_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_4_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 125 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_a,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($volume_6_produk_a,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">2</th>
-				<th align = "left">Beton K 225 (10±2)</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_1_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_2_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_3_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_4_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">2.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 225 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_b,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($volume_6_produk_b,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">3</th>
-				<th align = "left">Beton K 250 (10±2)</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_1_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_2_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_3_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_4_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">3.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 250 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_c,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($volume_6_produk_c,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">4</th>
-				<th align = "left">Beton K 250 (18±2)</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($volume_1_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_2_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_3_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_4_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_5_produk_d,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">4.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 250 (18±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_1_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_2_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_3_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_4_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_5_produk_d,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
+			</tr>
+			<tr class="table-total2">
+				<th align="right" colspan="3" class="table-border-spesial-kiri">TOTAL VOLUME</th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_1_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_2_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_3_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_4_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_5_volume,2,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_6_volume,2,',','.');?></th>
 			</tr>
 			<tr class="table-total">
-				<th align = "right" colspan="3">TOTAL VOLUME</th>
-				<th align = "right"><?php echo number_format($total_1_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_2_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_3_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_4_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_5_volume,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_6_volume,2,',','.');?></th>
-			</tr>
-			<tr class="table-total">
-				<th align = "right" colspan="3">PENDAPATAN USAHA</th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_1,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_3,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_4,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_5,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_jual_all_6,0,',','.');?></th>
+				<th align="right" colspan="3" class="table-border-spesial-kiri">PENDAPATAN USAHA</th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($nilai_jual_all_1,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($nilai_jual_all_2,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($nilai_jual_all_3,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($nilai_jual_all_4,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($nilai_jual_all_5,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($nilai_jual_all_6,0,',','.');?></th>
 			</tr>
 			<tr class="table-judul">
-				<th width="5%" align = "center" style="vertical-align:middle">NO.</th>
-				<th align = "center" style="vertical-align:middle">KEBUTUHAN BAHAN</th>
-				<th align = "center" style="vertical-align:middle">SATUAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
-				<th align = "center" style="vertical-align:middle">PENGADAAN</th>
+				<th width="5%" align="center" style="vertical-align:middle" class="table-border-pojok-kiri">NO.</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">KEBUTUHAN BAHAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">SATUAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">PENGADAAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">PENGADAAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">PENGADAAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">PENGADAAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-tengah">PENGADAAN</th>
+				<th align="center" style="vertical-align:middle" class="table-border-pojok-kanan">PENGADAAN</th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align = "center">1</th>
-				<th align = "left">Semen</th>
-				<th align = "center">Ton</th>
-				<th align = "right"><?php echo number_format($total_volume_semen_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_semen_6,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>
+				<th align="left" class="table-border-pojok-tengah">Semen</th>
+				<th align="center" class="table-border-pojok-tengah">Ton</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen_1,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen_2,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen_3,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen_4,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_semen_5,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_semen_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">2</th>
-				<th align = "left">Pasir</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_pasir_6,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">2.</th>
+				<th align="left" class="table-border-pojok-tengah">Pasir</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir_1,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir_2,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir_3,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir_4,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pasir_5,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_pasir_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">3</th>
-				<th align = "left">Batu Split 10-20</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu1020_6,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">3</th>
+				<th align="left" class="table-border-pojok-tengah">Batu Split 10-20</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020_1,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020_2,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020_3,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020_4,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu1020_5,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_batu1020_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">4</th>
-				<th align = "left">Batu Split 20-30</th>
-				<th align = "center">M3</th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_batu2030_6,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">4.</th>
+				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030_1,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030_2,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030_3,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030_4,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_batu2030_5,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_batu2030_6,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align = "center">5</th>
-				<th align = "left">Solar</th>
-				<th align = "center">Liter</th>
-				<th align = "right"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_3,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_4,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_5,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($total_volume_solar_6,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-kiri">5.</th>
+				<th align="left" class="table-border-pojok-tengah">Solar</th>
+				<th align="center" class="table-border-pojok-tengah">Liter</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar_1,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar_2,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar_3,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar_4,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_solar_5,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_volume_solar_6,2,',','.');?></th>
 			</tr>
 		</table>
 		
