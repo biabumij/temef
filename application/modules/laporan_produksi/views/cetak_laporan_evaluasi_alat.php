@@ -597,7 +597,7 @@
 				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-total">
 				<th align="left" colspan="11"><u>SC</u></th>
 	        </tr>
 			<tr class="table-baris1">
