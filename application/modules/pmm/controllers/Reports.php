@@ -5494,7 +5494,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,2,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left" colspan="11">SC</th>
+				<th class="text-left" colspan="11"><u>SC</u></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
