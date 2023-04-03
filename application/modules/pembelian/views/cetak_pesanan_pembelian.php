@@ -256,8 +256,8 @@
 								
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_gery_kop.png" width="90px">
-								<img src="uploads/ttd_elyas.png" width="10px">
+								<!--<img src="uploads/ttd_gery_kop.png" width="90px">-->
+								<!--<img src="uploads/ttd_elyas.png" width="10px">-->
 							</td>
 						</tr>
 						<tr>
