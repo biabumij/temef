@@ -292,7 +292,20 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                            </div>                                                    
+                                                            </div> 
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_supplier_monitoring_hutang" name="supplier_id" class="form-control select2">
+                                                                    <option value="">Pilih Rekanan</option>
+                                                                    <?php
+                                                                    foreach ($suppliers as $key => $supplier) {
+                                                                    ?>
+                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <br /><br />                                           
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
                                                             </div>
@@ -614,6 +627,7 @@
                         filter_date: $('#filter_date_monitoring_hutang').val(),
                         filter_kategori: $('#filter_kategori_monitoring_hutang').val(),
                         filter_status: $('#filter_status_monitoring_hutang').val(),
+                        supplier_id: $('#filter_supplier_monitoring_hutang').val(),
                     },
                     success: function(result) {
                         if (result.data) {
@@ -675,6 +689,10 @@
             });
 
             $('#filter_status_monitoring_hutang').change(function() {
+                LaporanMonitoringHutang();
+            });
+
+            $('#filter_supplier_monitoring_hutang').change(function() {
                 LaporanMonitoringHutang();
             });
 
