@@ -270,7 +270,7 @@
 							</td>
 							<td align="center" >
 								<u><b>Elyas Nur Fridayana</b></u><br />
-								<b>Produksi & HSE</b>
+								<b>Kepala Unit Proyek</b>
 							</td>
 						</tr>
 					</table>
