@@ -173,6 +173,7 @@
                                                     <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
                                                 </tr>
                                             <?php
+                                                $subtotal += $dt['total'];
                                                 if ($dt['tax_id'] == 4) {
                                                     $tax_0 = true;
                                                 }
@@ -226,7 +227,7 @@
                                         <div class="row">
                                             <label class="col-sm-7 control-label">Sub Total</label>
                                             <div class="col-sm-5 text-right">
-                                                <h5 id="sub-total"><?= number_format($sub_total,0,',','.'); ?></h5>
+                                                <h5 id="sub-total"><?= number_format($subtotal,0,',','.'); ?></h5>
                                             </div>
                                         </div>
                                         <?php
