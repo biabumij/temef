@@ -269,8 +269,8 @@
 								
 							</td>
 							<td align="center" >
-								<u><b>Gervasius K. Limahekin</b></u><br />
-								<b>Ka. Plant</b>
+								<u><b>Elyas Nur Fridayana</b></u><br />
+								<b>Produksi & HSE</b>
 							</td>
 						</tr>
 					</table>
