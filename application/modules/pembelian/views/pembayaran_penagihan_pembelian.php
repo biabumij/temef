@@ -74,9 +74,8 @@
                                     <br />
                                     <br>
                                     <?php 
-                                    $sisa_tagihan = $pembayaran['total'] - $total_bayar['total'];
-                                    // echo $sisa_tagihan;
-
+                                    $total_invoice = $dpp['total'] + $tax['total'];
+                                    $sisa_tagihan = ($dpp['total'] + $tax['total']) - $total_bayar['total'] - $pembayaran['uang-muka'];
                                      ?>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-condensed table-center">
@@ -93,7 +92,7 @@
                                                 <tr>
                                                     <td><?= date('d/m/Y',strtotime($pembayaran["tanggal_invoice"])) ?></td>
                                                     <td><?= $pembayaran["nomor_invoice"] ?></td>
-                                                    <td style="text-align: right !important;"><?= number_format($pembayaran['total'],0,',','.'); ?></td>
+                                                    <td style="text-align: right !important;"><?= number_format($total_invoice,0,',','.'); ?></td>
                                                     <td style="text-align: right !important;"><?= number_format($sisa_tagihan,0,',','.'); ?></td>
                                                     <td style="text-align: right !important;"><input type="text" name="pembayaran" id="pembayaran" class="form-control numberformat text-center" ></td>
                                                 </tr>

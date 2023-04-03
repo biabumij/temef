@@ -1311,6 +1311,8 @@ class Pembelian extends Secure_Controller
             $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
             $data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian pp', ["pp.id" => $id])->row_array();
             $data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id))->row_array();
+            $data['dpp'] = $this->db->select("SUM(total) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $id])->row_array();
+            $data['tax'] = $this->db->select("SUM(tax) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $id])->row_array();
 
             // Setor Bank
             $data['setor_bank'] = $this->pmm_finance->BankCash();
