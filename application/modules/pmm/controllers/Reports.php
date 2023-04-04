@@ -8453,47 +8453,105 @@ class Reports extends CI_Controller {
 			</style>
 			
 			<?php
-			$pembelian = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			
+			$pembelian_bp = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
 			->join('penerima pn', 'po.supplier_id = pn.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("p.kategori_produk = '5'")
+			->where("p.kategori_alat = '1'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.harga_satuan')
-			->order_by('pn.nama','asc')
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
-			$total_nilai = 0;
+			$total_pembelian_bp = 0;
+			$total_vol_pembelian_bp = 0;
 
-			foreach ($pembelian as $x){
-				$total_nilai += $x['price'];
+			foreach ($pembelian_bp as $x){
+				$total_pembelian_bp += $x['price'];
+				$total_vol_pembelian_bp += $x['volume'];
 			}
 
-			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$pembelian_tm = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '2'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_pembelian_tm = 0;
+			$total_vol_pembelian_tm = 0;
+
+			foreach ($pembelian_tm as $x){
+				$total_pembelian_tm += $x['price'];
+				$total_vol_pembelian_tm += $x['volume'];
+			}
+
+			$pembelian_wl = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '3'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_pembelian_wl = 0;
+			$total_vol_pembelian_wl = 0;
+
+			foreach ($pembelian_wl as $x){
+				$total_pembelian_wl += $x['price'];
+				$total_vol_pembelian_wl += $x['volume'];
+			}
+
+			$pembelian_tf = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '4'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_pembelian_tf = 0;
+			$total_vol_pembelian_tf = 0;
+
+			foreach ($pembelian_tf as $x){
+				$total_pembelian_tf += $x['price'];
+				$total_vol_pembelian_tf += $x['volume'];
+			}
+
+			$akumulasi_bbm = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
-			->get()->result_array();
+			->get()->row_array();
 
-			$total_akumulasi_bbm = 0;
-
-			foreach ($akumulasi_bbm as $b){
-				$total_akumulasi_bbm += $b['total_nilai_keluar_2'];
-			}
-
-			$total_nilai_bbm = $total_akumulasi_bbm;
-
-			$total_nilai_all = 0;
-			$total_nilai_all = $total_nilai + $total_nilai_bbm;
+			$total_nilai_bbm = 0;
+			$total_nilai_bbm = $akumulasi_bbm['total_nilai_keluar_2'];
 
 			$insentif_tm = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 220")
-			->where("status = 'PAID'")
-			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
 
@@ -8506,41 +8564,338 @@ class Reports extends CI_Controller {
 			$total_insentif_tm_all = 0;
 			$total_insentif_tm_all = $total_insentif_tm;
 
-			$total_nilai = $total_nilai_all + $total_insentif_tm_all;
+			$produk_exc = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_exc = 0;
+			foreach ($produk_exc as $x){
+				$total_price_exc += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_4m3 = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '6'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_4m3 = 0;
+			foreach ($produk_dmp_4m3 as $x){
+				$total_price_dmp_4m3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_10m3 = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '7'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_10m3 = 0;
+			foreach ($produk_dmp_10m3 as $x){
+				$total_price_dmp_10m3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_sc = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '8'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_sc = 0;
+			foreach ($produk_sc as $x){
+				$total_price_sc += $x['qty'] * $x['price'];
+			}
+
+			$produk_gns = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '9'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_gns = 0;
+			foreach ($produk_gns as $x){
+				$total_price_gns += $x['qty'] * $x['price'];
+			}
+
+			$produk_wl_sc = $this->db->select('
+			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '10'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_wl_sc = 0;
+			foreach ($produk_wl_sc as $x){
+				$total_price_wl_sc += $x['qty'] * $x['price'];
+			}
+
+			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_tm_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			
 			<tr class="table-active4">
-				<th width="55%" class="text-center">URAIAN</th>
-				<th width="7%" class="text-center">SATUAN</th>
-				<th width="13%" class="text-center">VOLUME</th>
-				<th width="15%" class="text-center">HARGA SATUAN</th>
-				<th width="10%" class="text-center">NILAI</th>
+				<th class="text-center">NO.</th>
+				<th class="text-center">URAIAN</th>
+				<th class="text-center">REKANAN</th>
+				<th class="text-center">VOLUME</th>
+				<th class="text-center">SATUAN</th>
+				<th class="text-center">HARGA SATUAN</th>
+				<th class="text-center">TOTAL</th>
 	        </tr>
-			<?php foreach ($pembelian as $x): ?>
 			<tr>
-				<th class="text-left"><?= $x['subject'] ?></th>
-				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-center">1.</th>	
+				<th class="text-left">Batching Plant</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php foreach ($pembelian_bp as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
 				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
 			<tr>
-				<th class="text-left">&bull; BBM Solar</th>
+				<th class="text-center"></th>
+				<th class="text-right">Total Batching Plant</th>
+				<th class="text-left"></th>
+				<th class="text-right"><?php echo number_format($total_vol_pembelian_bp,2,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_pembelian_bp,0,',','.');?></th>
+			</tr>
+			<tr>
+				<th class="text-center">2.</th>	
+				<th class="text-left">Truck Mixer</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<?php foreach ($pembelian_tm as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-right">Total Truck Mixer</th>
+				<th class="text-left"></th>
+				<th class="text-right"><?php echo number_format($total_vol_pembelian_tm,2,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_pembelian_tm,0,',','.');?></th>
+			</tr>
+			<tr>
+				<th class="text-center">3.</th>	
+				<th class="text-left">Wheel Loader</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<?php foreach ($pembelian_wl as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-right">Total Wheel Loader</th>
+				<th class="text-left"></th>
+				<th class="text-right"><?php echo number_format($total_vol_pembelian_wl,2,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_pembelian_wl,0,',','.');?></th>
+			</tr>
+			<tr>
+				<th class="text-center">4.</th>	
+				<th class="text-left">Transfer Semen</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+			</tr>
+			<?php foreach ($pembelian_tf as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-right">Total Transfer Semen</th>
+				<th class="text-left"></th>
+				<th class="text-right"><?php echo number_format($total_vol_pembelian_tf,2,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_pembelian_tf,0,',','.');?></th>
+			</tr>
+			<tr>
+				<th class="text-center">5.</th>
+				<th class="text-left">BBM Solar</th>
+				<th class="text-center"></th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_bbm,0,',','.');?></th>
 			</tr>
-			<?php foreach ($insentif_tm as $y): ?>
 			<tr>
-				<th class="text-left" colspan="4">&bull; <?= $y['memo'] ?></th>
-				<th class="text-right"><?php echo number_format($y['total'],0,',','.');?></th>
+				<th class="text-center">6.</th>
+				<th class="text-left">Insentif Operator</th>
+				<th class="text-center"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_insentif_tm_all,0,',','.');?></th>
+			</tr>
+			<tr>
+				<th class="text-center">7.</th>	
+				<th class="text-left">Sewa Alat (SC)</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
+			<?php foreach ($produk_exc as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
-			<tr class="table-active2">
-				<th class="text-center" colspan="4">TOTAL</th>
-				<th class="text-right"><?php echo number_format($total_nilai,0,',','.');?></th>
+			<?php foreach ($produk_dmp_4m3 as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_dmp_10m3 as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_sc as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_gns as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<?php foreach ($produk_wl_sc as $x): ?>
+			<tr>
+				<th class="text-center"></th>
+				<th class="text-left"></th>
+				<th class="text-left"><?= $x['nama'] ?></th>
+				<th class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th class="text-center"><?= $x['measure'] ?></th>
+				<th class="text-right"><?php echo number_format($x['harga_satuan'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
+			</tr>
+			<?php endforeach; ?>
+			<tr class="table-active2">	
+				<th class="text-right" colspan="6">TOTAL BIAYA PEMAKAIAN ALAT</th>
+				<th class="text-right"><?php echo number_format($total_nilai_all,0,',','.');?></th>
 			</tr>
 	    </table>
 		<?php

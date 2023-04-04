@@ -1279,9 +1279,9 @@ class Laporan extends Secure_Controller {
         $html = $this->load->view('biaya_alat/cetak_biaya_alat',$data,TRUE);
 
         
-		$pdf->SetTitle('BBJ - Laporan Pemakaian Peralatan');
+		$pdf->SetTitle('BBJ - Biaya (Alat)');
         $pdf->nsi_html($html);
-        $pdf->Output('laporan-pemakaian-peralatan.pdf', 'I');
+        $pdf->Output('biaya-alat.pdf', 'I');
 	
 	}
 
