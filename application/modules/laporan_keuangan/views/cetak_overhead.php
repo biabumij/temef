@@ -160,8 +160,8 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u><br />
-								KA. Proyek</b>
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 							<td align="center" >
 								<b><u>Theresia Desiana L.</u><br />

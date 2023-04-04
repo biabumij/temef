@@ -269,8 +269,8 @@
 								
 							</td>
 							<td align="center" >
-								<u><b>Elyas Nur Fridayana</b></u><br />
-								<b>Kepala Unit Proyek</b>
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 						</tr>
 					</table>

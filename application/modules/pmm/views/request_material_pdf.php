@@ -143,8 +143,8 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u></b><br />
-								<b>Ka. Plant</b>
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">
 								<b><u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?></u></b><br />

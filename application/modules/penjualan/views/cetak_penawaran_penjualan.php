@@ -137,9 +137,9 @@
 				</th>
             </tr>
             <tr>
-            	<td>
-					<b><u>Gervasius K. Limahekin</u><br />
-					Ka. Plant</b>
+				<td align="center" >
+					<b><u>Elyas Nur Fridayana</u><br />
+					Kepala Unit Proyek</b>
 				</td>
             </tr>
 		</table>
