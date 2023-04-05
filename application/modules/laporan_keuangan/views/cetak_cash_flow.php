@@ -183,7 +183,16 @@
 			->get()->row_array();
 			$total_insentif_tm_now = $insentif_tm_now['total'];
 
-			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now;
+			$insentif_wl_now = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+			$total_insentif_wl_now = $insentif_wl_now['total'];
+
+			$alat_now = $pembayaran_alat_now + $total_insentif_tm_now + $total_insentif_wl_now;
 
 			//DISKONTO NOW
 			$diskonto_now = $this->db->select('sum(pdb.jumlah) as total')
