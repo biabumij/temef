@@ -5092,6 +5092,7 @@ class Reports extends CI_Controller {
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 221")
 			->where("pb.status = 'PAID'")
+			->where("pb.memo <> 'SC' ")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
@@ -5348,6 +5349,22 @@ class Reports extends CI_Controller {
 				$total_nilai_wl_sc += $x['price'];
 			}
 
+			$insentif_wl_sc = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("pb.status = 'SC'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl_sc = 0;
+
+			foreach ($insentif_wl_sc as $y){
+				$total_insentif_wl_sc += $y['total'];
+			}
+
 			$total_vol_batching_plant = $total_volume;
 			$total_vol_truck_mixer = $total_volume;
 			$total_vol_wheel_loader = $total_volume;
@@ -5367,7 +5384,7 @@ class Reports extends CI_Controller {
 			$total_pemakaian_dmp_10m3 = $total_nilai_dmp_10m3;
 			$total_pemakaian_sc = $total_nilai_sc;
 			$total_pemakaian_gns = $total_nilai_gns;
-			$total_pemakaian_wl_sc = $total_nilai_wl_sc;
+			$total_pemakaian_wl_sc = $total_nilai_wl_sc + $total_insentif_wl_sc;
 			?>
 
 			<!-- RAP Alat -->
