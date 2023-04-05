@@ -15,9 +15,9 @@
     <table class="table table-striped table-hover table-center text-center" id="on-site-table" width="100%">
         <thead>
             <tr>
-                <th class="text-center">No</th>
+                <th class="text-center" width="5%">No.</th>
                 <th class="text-center">Tanggal</th>
-                <th class="text-center" width="35%">Produk</th>
+                <th class="text-center">Produk</th>
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
                 <th class="text-center">Catatan</th>

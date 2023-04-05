@@ -78,12 +78,16 @@
         pageLength: 50,
         responsive: true,
         "columnDefs": [{
-            "targets": [0, 1, 3, 4, 6, 7, 8],
+            "targets": [0, 1, 3, 6, 7, 8],
             "className": 'text-center',
         },
 		{
 			"targets": [2],
 			"className": 'text-left',
+        },
+        {
+			"targets": [4, 5],
+			"className": 'text-right',
         }
 		]
     });
