@@ -256,8 +256,22 @@
 				$total_insentif_tm += $y['total'];
 			}
 
-			$total_insentif_tm_all = 0;
-			$total_insentif_tm_all = $total_insentif_tm;
+			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl = 0;
+
+			foreach ($insentif_wl as $y){
+				$total_insentif_wl += $y['total'];
+			}
+
+			$total_insentif_all = $total_insentif_tm + $total_insentif_wl;
 
 			$produk_exc = $this->db->select('
 			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
@@ -367,7 +381,7 @@
 				$total_price_wl_sc += $x['qty'] * $x['price'];
 			}
 
-			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_tm_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
+			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			
 			<tr class="table-judul">
@@ -511,7 +525,7 @@
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
-				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_insentif_tm_all,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_insentif_all,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">7.</th>	

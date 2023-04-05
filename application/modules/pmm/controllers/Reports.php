@@ -2099,7 +2099,17 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$total_insentif_tm = $insentif_tm['total'];
 
-			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+			$total_insentif_wl = 0;
+			$insentif_wl = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+			$total_insentif_wl = $insentif_wl['total'];
+
+			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $total_insentif_wl;
 			//END ALAT
 
 			//ALAT_2
@@ -2135,7 +2145,17 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$total_insentif_tm_2 = $insentif_tm_2['total'];
 
-			$alat_2 = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2;
+			$total_insentif_wl_2 = 0;
+			$insentif_wl_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 220")
+			->where("status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+			$total_insentif_wl_2 = $insentif_wl_2['total'];
+
+			$alat_2 = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2 + $total_insentif_wl_2;
 			//END_ALAT_2
 
 			//OVERHEAD
@@ -5058,6 +5078,20 @@ class Reports extends CI_Controller {
 				$total_insentif_tm += $y['total'];
 			}
 
+			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl = 0;
+			foreach ($insentif_wl as $y){
+				$total_insentif_wl += $y['total'];
+			}
+
 			//Wheel Loader
 			$pembelian_wheel_loader = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -5317,7 +5351,7 @@ class Reports extends CI_Controller {
 
 			$total_pemakaian_batching_plant = $total_nilai_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
-			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
+			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader + $total_insentif_wl;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
 			$total_pemakaian_exc = $total_nilai_exc;
 			$total_pemakaian_dmp_4m3 = $total_nilai_dmp_4m3;
@@ -5456,7 +5490,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">2.</th>			
-				<th class="text-left">Truck Mixer</th>
+				<th class="text-left">Truck Mixer + Insentif</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_truck_mixer,0,',','.');?></th>
@@ -5469,7 +5503,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">3.</th>			
-				<th class="text-left">Wheel Loader</th>
+				<th class="text-left">Wheel Loader + Insentif</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_wheel_loader,0,',','.');?></th>
@@ -8561,8 +8595,22 @@ class Reports extends CI_Controller {
 				$total_insentif_tm += $y['total'];
 			}
 
-			$total_insentif_tm_all = 0;
-			$total_insentif_tm_all = $total_insentif_tm;
+			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl = 0;
+
+			foreach ($insentif_wl as $y){
+				$total_insentif_wl += $y['total'];
+			}
+
+			$total_insentif_all = $total_insentif_tm + $total_insentif_wl;
 
 			$produk_exc = $this->db->select('
 			pn.nama, po.no_po, p.nama_produk, prm.measure, SUM(prm.volume) as volume, prm.harga_satuan, SUM(prm.price) as price')
@@ -8672,7 +8720,7 @@ class Reports extends CI_Controller {
 				$total_price_wl_sc += $x['qty'] * $x['price'];
 			}
 
-			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_tm_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
+			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			
 			<tr class="table-active4">
@@ -8816,7 +8864,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-right"><?php echo number_format($total_insentif_tm_all,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_insentif_all,0,',','.');?></th>
 			</tr>
 			<tr>
 				<th class="text-center">7.</th>	

@@ -203,6 +203,20 @@
 				$total_insentif_tm += $y['total'];
 			}
 
+			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl = 0;
+			foreach ($insentif_wl as $y){
+				$total_insentif_wl += $y['total'];
+			}
+
 			//Wheel Loader
 			$pembelian_wheel_loader = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -462,7 +476,7 @@
 
 			$total_pemakaian_batching_plant = $total_nilai_batching_plant;
 			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
-			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
+			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader + $total_insentif_wl;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
 			$total_pemakaian_exc = $total_nilai_exc;
 			$total_pemakaian_dmp_4m3 = $total_nilai_dmp_4m3;
