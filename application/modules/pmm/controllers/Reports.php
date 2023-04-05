@@ -6272,13 +6272,17 @@ class Reports extends CI_Controller {
 			$total_realisasi = $gaji_upah + $konsumsi + $biaya_sewa_mess + $listrik_internet + $pengujian_material_laboratorium + $keamanan_kebersihan + $pengobatan + $donasi + $bensin_tol_parkir + $perjalanan_dinas_penjualan + $pakaian_dinas + $alat_tulis_kantor + $perlengkapan_kantor + $beban_kirim + $beban_lain_lain + $biaya_sewa_kendaraan + $thr_bonus + $biaya_admin_bank;
 			$total_evaluasi = $total_rap - $total_realisasi;
 
-			$volume_rap = $this->db->select('rbd.qty as volume')
-			->from('rap_bua rap')
-			->from('rap_bua_detail rbd', 'rap.id = rbd.rap_bua_id','left')
-			->where("rap.tanggal_rap_bua < '$date2'")
+			$volume_rap_1 = $this->db->select('(r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as volume')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '2021-12-30' and '2021-12-30'")
+			->get()->row_array();
+
+			$volume_rap_2 = $this->db->select('(r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as volume')
+			->from('rak r')
+			->where("r.tanggal_rencana_kerja between '2021-12-31' and '2021-12-31'")
 			->get()->row_array();
 		
-			$volume_rap = round($volume_rap['volume'],2);
+			$volume_rap = $volume_rap_1['volume'] + $volume_rap_2['volume'];
 
 			$volume_realisasi = $this->db->select('SUM(pp.display_volume) as volume')
 			->from('pmm_productions pp')
