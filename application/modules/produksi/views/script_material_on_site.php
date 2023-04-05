@@ -161,7 +161,7 @@
                     $('#id').val(result.output.id);
                     $('#date').val(result.output.date);
                     $('#material_id').val(result.output.material_id);
-                    $('#measure_id').val(result.output.measure);
+                    $('#measure').val(result.output.measure);
                     $('#volume').val(result.output.volume);
                     $('#display_volume').val(result.output.display_volume);
                     $('#display_measure').val(result.output.display_measure);

@@ -46,7 +46,7 @@
                 <form class="form-horizontal" style="padding: 0 10px 0 20px;">
                     <input type="hidden" name="id" id="id">
                     <div class="form-group">
-                        <label>Tanggal Stock Opname</label>
+                        <label>Tanggal</label>
                         <input type="text" id="date" name="date" class="form-control dtpicker" value="<?php echo date('d-m-Y'); ?>" required="">
                     </div>
                     <div class="form-group">
