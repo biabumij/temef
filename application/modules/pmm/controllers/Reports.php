@@ -5623,7 +5623,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">10.</th>			
-				<th class="text-left">Wheel Loader</th>
+				<th class="text-left">Wheel Loader + Insentif</th>
 				<th class="text-center">Unit</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
