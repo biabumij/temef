@@ -40,7 +40,7 @@
                             <div class="panel-content">
                                 <form method="POST" action="<?php echo site_url('pmm/jurnal_umum/submit_jurnal');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <label>Tanggal Transaksi</label>
                                             <input type="text" class="form-control dtpicker" name="tanggal_transaksi" required="">
                                         </div>
@@ -164,12 +164,16 @@
 
         $('input.numberformat').number( true, 0,',','.' );
         $('.dtpicker').daterangepicker({
+            //minDate: moment().add('d', 0).toDate(),
             singleDatePicker: true,
-            showDropdowns : true,
+            showDropdowns : false,
             locale: {
               format: 'DD-MM-YYYY'
-            }
+            },
+            minDate: new Date()+0,
+			maxDate: new Date()+1,	
         });
+        
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY'));
               // table.ajax.reload();

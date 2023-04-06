@@ -65,20 +65,19 @@
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Tanggal Pembayaran</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" value="<?= date('d-m-Y', strtotime($bayar["tanggal_pembayaran"])) ?>" required="" />
+                                            <input type="text" class="form-control dtpicker text-center" name="tanggal_pembayaran" value="<?= date('d-m-Y', strtotime($bayar["tanggal_pembayaran"])) ?>" required="" />
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Nomor Transaksi</label>
-                                            <input type="text" class="form-control" name="nomor_transaksi" required="" value="<?= $bayar['nomor_transaksi'] ?>"/>
+                                            <input type="text" class="form-control text-right" name="nomor_transaksi" required="" value="<?= $bayar['nomor_transaksi'] ?>"/>
                                         </div>
                                     </div>
                                     <br />
-                                    <br>
+                                    <br />
                                     <?php 
-                                    $sisa_tagihan = $pembayaran['total'] - $total_bayar['total'];
-                                    // echo $sisa_tagihan;
-
-                                     ?>
+                                    $total_invoice = $dpp['total'] + $tax['total'];
+                                    $sisa_tagihan = ($dpp['total'] + $tax['total']) - $total_bayar_all['total'] - $pembayaran['uang-muka'];
+                                    ?>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
@@ -94,7 +93,7 @@
                                                 <tr>
                                                     <td><?= date('d/m/Y',strtotime($pembayaran["tanggal_invoice"])) ?></td>
                                                     <td><?= $pembayaran["nomor_invoice"] ?></td>
-                                                    <td style="text-align: right !important;"<?= number_format($pembayaran['total'],0,',','.'); ?></td>
+                                                    <td style="text-align: right !important;"><?= number_format($total_invoice,0,',','.'); ?></td>
                                                     <td style="text-align: right !important;"><?= number_format($sisa_tagihan,0,',','.'); ?></td>
                                                     <td><input type="text" name="pembayaran" id="pembayaran" class="form-control numberformat text-right" value="<?= intval($bayar['total']) ?>"></td>
                                                 </tr>
@@ -159,17 +158,15 @@
               format: 'DD-MM-YYYY'
             }
         });
+		
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY'));
-              // table.ajax.reload();
         });
 
         $('#pembayaran').keyup(function(){
             console.log($(this).val());
             $('#total-bayar').text($.number($(this).val(),0,',','.'));
         });
-
-        
 
         $('#form-po').submit(function(e){
             e.preventDefault();

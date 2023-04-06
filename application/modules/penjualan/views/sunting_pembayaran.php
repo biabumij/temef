@@ -49,11 +49,11 @@
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <label>Pelanggan</label>
-                                            <input type="text" class="form-control text-center" name="nama_pelanggan" required="" value="<?= $bayar['nama_pelanggan'] ?>" />
+                                            <input type="text" class="form-control" name="nama_pelanggan" required="" value="<?= $bayar['nama_pelanggan'] ?>" />
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Setor Ke</label>
-                                            <select class="form-control text-center" name="setor_ke" required="">
+                                            <select class="form-control" name="setor_ke" required="">
                                                 <option value="">Setor Ke</option>
                                                 <?php
                                                 if (!empty($setor_bank)) {
@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <label>Cara Pembayaran</label>
-                                            <select class="form-control text-center" name="cara_pembayaran" required="">
+                                            <select class="form-control" name="cara_pembayaran" required="">
                                             <option value="<?= $bayar['cara_pembayaran'] ?>"><?= $bayar['cara_pembayaran'] ?></option>
                                             <option value="Transfer">Transfer</option>
                                             <option value="Tunai">Tunai</option>
@@ -84,9 +84,9 @@
                                             <label>Tanggal Pembayaran</label>
                                             <input type="text" class="form-control dtpicker text-center" name="tanggal_pembayaran" required="" value="<?= date('d-m-Y', strtotime($bayar["tanggal_pembayaran"])) ?>" />
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <label>Nomor Transaksi</label>
-                                            <input type="text" class="form-control text-center" name="nomor_transaksi" required="" value="<?= $bayar['nomor_transaksi'] ?>" />
+                                            <input type="text" class="form-control text-right" name="nomor_transaksi" required="" value="<?= $bayar['nomor_transaksi'] ?>" />
                                         </div>
                                     </div>
                                     <br />
@@ -171,14 +171,14 @@
         $('input.numberformat').number(true, 0, ',', '.');
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
-            showDropdowns: true,
+            showDropdowns : true,
             locale: {
-                format: 'DD-MM-YYYY'
+              format: 'DD-MM-YYYY'
             }
         });
+		
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY'));
-            // table.ajax.reload();
+              $(this).val(picker.startDate.format('DD-MM-YYYY'));
         });
 
         $('#pembayaran').keyup(function() {

@@ -57,11 +57,11 @@
                                         <div class="col-sm-3">
                                             <label>Tanggal Penawaran</label>
 
-                                            <input type="date" class="form-control" name="tanggal_penawaran" required="">
+                                            <input type="text" class="form-control dtpicker" name="tanggal_penawaran" required="">
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Berlaku Hingga</label>
-                                            <input type="date" class="form-control" name="berlaku_hingga" required="">
+                                            <input type="text" class="form-control dtpicker" name="berlaku_hingga" required="">
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Rekanan</label>

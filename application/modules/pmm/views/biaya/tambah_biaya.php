@@ -253,12 +253,16 @@
 
         $('input.numberformat').number( true, 0,',','.' );
         $('.dtpicker').daterangepicker({
+            //minDate: moment().add('d', 0).toDate(),
             singleDatePicker: true,
-            showDropdowns : true,
+            showDropdowns : false,
             locale: {
               format: 'DD-MM-YYYY'
-            }
+            },
+            minDate: new Date()+0,
+			maxDate: new Date()+1,	
         });
+        
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY'));
               // table.ajax.reload();
