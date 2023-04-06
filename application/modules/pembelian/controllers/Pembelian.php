@@ -369,8 +369,8 @@ class Pembelian extends Secure_Controller
             $arr_date = explode(' - ', $w_date);
             $start_date = $arr_date[0];
             $end_date = $arr_date[1];
-            $this->db->where('tanggal_invoice  >=', date('Y-m-d', strtotime($start_date)));
-            $this->db->where('tanggal_invoice <=', date('Y-m-d', strtotime($end_date)));
+            $this->db->where('created_on  >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('created_on <=', date('Y-m-d', strtotime($end_date)));
         }
 
         $this->db->order_by('tanggal_invoice', 'DESC');
