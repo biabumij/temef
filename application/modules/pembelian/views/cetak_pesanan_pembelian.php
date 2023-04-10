@@ -256,8 +256,8 @@
 								
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_gery_kop.png" width="90px">
-								<img src="uploads/ttd_elyas.png" width="10px">
+								<!--<img src="uploads/ttd_gery_kop.png" width="90px">-->
+								<!--<img src="uploads/ttd_elyas.png" width="10px">-->
 							</td>
 						</tr>
 						<tr>
@@ -269,8 +269,8 @@
 								
 							</td>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u><br />
-								Ka. Plant</b>
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 						</tr>
 					</table>
