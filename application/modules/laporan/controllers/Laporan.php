@@ -1528,6 +1528,216 @@ class Laporan extends Secure_Controller {
             redirect('admin');
         }
     }
+
+	public function cetak_daftar_tagihan_pembelian()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetPrintHeader(false);
+		$pdf->SetPrintFooter(false);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->SetMargins(3, 0, 0, true);
+		$pdf->AddPage('L');
+		
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$jumlah_all = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+
+		$this->db->select('ppp.supplier_id, ps.nama');
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.created_on >=',$start_date);
+            $this->db->where('ppp.created_on <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppp.supplier_id',$supplier_id);
+        }
+		
+		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
+		$this->db->group_by('ppp.supplier_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_penagihan_pembelian ppp');
+		
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetReceiptTagihanPembelian($sups['supplier_id'],$start_date,$end_date);
+				
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
+						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['memo'] = $row['memo'];
+						$arr['volume'] =  number_format($row['volume'],2,',','.');
+						$arr['measure'] = $row['measure'];
+						$arr['total'] = number_format($row['total'],0,',','.');
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+						$arr['sisa'] = number_format($row['total'] - $row['pembayaran'],0,',','.');
+						
+						
+						$arr['nama'] = $sups['nama'];
+
+						$total_all += $row['total'];
+						$total_pembayaran += $row['pembayaran'];
+						$total_sisa += $row['total'] - $row['pembayaran'];
+
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$sups['no'] =$no;
+					$total = $total_all;
+					$total_2 = $total_pembayaran;
+					$total_3 = $total_sisa;
+
+					$arr_data[] = $sups;
+					$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+			$data['total_2'] = $total_2;
+			$data['total_3'] = $total_3;
+	        $html = $this->load->view('pembelian/cetak_daftar_tagihan_pembelian',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Daftar Tagihan Pembelian');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('daftar-tagihan-pembelian.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
+	public function cetak_daftar_tagihan_penjualan()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetPrintHeader(false);
+		$pdf->SetPrintFooter(false);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->SetMargins(3, 0, 0, true);
+		$pdf->AddPage('L');
+		
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$jumlah_all = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+
+		$this->db->select('ppp.client_id, ps.nama');
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.created_on >=',$start_date);
+            $this->db->where('ppp.created_on <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppp.client_id',$supplier_id);
+        }
+		
+		$this->db->join('penerima ps', 'ppp.client_id = ps.id');
+		$this->db->group_by('ppp.client_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_penagihan_penjualan ppp');
+		
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetReceiptTagihanPenjualan($sups['client_id'],$start_date,$end_date);
+				
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
+						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['memo'] = $row['memo'];
+						$arr['volume'] =  number_format($row['volume'],2,',','.');
+						$arr['measure'] = $row['measure'];
+						$arr['total'] = number_format($row['total'],0,',','.');
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+						$arr['sisa'] = number_format($row['total'] - $row['pembayaran'],0,',','.');
+						
+						
+						$arr['nama'] = $sups['nama'];
+
+						$total_all += $row['total'];
+						$total_pembayaran += $row['pembayaran'];
+						$total_sisa += $row['total'] - $row['pembayaran'];
+
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$sups['no'] =$no;
+					$total = $total_all;
+					$total_2 = $total_pembayaran;
+					$total_3 = $total_sisa;
+
+					$arr_data[] = $sups;
+					$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+			$data['total_2'] = $total_2;
+			$data['total_3'] = $total_3;
+	        $html = $this->load->view('penjualan/cetak_daftar_tagihan_penjualan',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Daftar Tagihan Penjualan');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('daftar-tagihan-penjualan.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
 	
 
 }

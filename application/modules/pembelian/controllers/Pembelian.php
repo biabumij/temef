@@ -364,6 +364,7 @@ class Pembelian extends Secure_Controller
         $data = array();
 		
 		$w_date = $this->input->post('filter_date');
+        $supplier_id = $this->input->post('supplier_id');
 
         if (!empty($w_date)) {
             $arr_date = explode(' - ', $w_date);
@@ -372,6 +373,10 @@ class Pembelian extends Secure_Controller
             $this->db->where('created_on  >=', date('Y-m-d', strtotime($start_date)));
             $this->db->where('created_on <=', date('Y-m-d', strtotime($end_date)));
         }
+
+        if(!empty($supplier_id)){
+			$this->db->where('supplier_id',$supplier_id);
+		}
 
         $this->db->order_by('tanggal_invoice', 'DESC');
         $query = $this->db->get('pmm_penagihan_pembelian');
