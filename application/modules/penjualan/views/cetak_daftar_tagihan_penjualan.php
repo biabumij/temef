@@ -137,8 +137,8 @@
 				<th align="center" width="20%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />NO. INVOICE</th>
 				<th align="center" width="10%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />VOLUME</th>
 				<th align="center" width="10%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />SATUAN</th>
-				<th align="center" width="15%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />TOTAL TAGIHAN</th>
-				<th align="center" width="15%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />TOTAL PEMBAYARAN</th>
+				<th align="center" width="15%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />TAGIHAN</th>
+				<th align="center" width="15%" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br />PEMBAYARAN</th>
 				<th align="center" width="15%" rowspan="2" class="table-border-pojok-kanan">&nbsp; <br />SISA TAGIHAN</th>
             </tr>
 			<tr class="table-judul">
