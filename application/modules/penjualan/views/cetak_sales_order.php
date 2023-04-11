@@ -198,14 +198,17 @@
             </tr>
            	
 		</table>
-		<br />
-	    <p><b>Memo</b></p>
-		<p><?= $row["memo"] ?></p>
-		<br />
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<br /><br /><br />
+		<table width="98%" cellpadding="3">
+			<tr>
+                <th align="left" colspan="7"><b>Memo</b></th>
+            </tr>
+			<tr>
+                <th align="left" colspan="7"><?= $row["memo"] ?></th>
+            </tr>
+		</table>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<table width="98%" cellpadding="3">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -226,12 +229,18 @@
 								PT BIA BUMI JAYENDRA
 							</td>
 						</tr>
+						<?php
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$row['unit_head']);
+							$created_group = $this->db->get('tbl_admin a')->row_array();
+						?>
 						<tr class="">
 							<td align="center" height="75px">
 								
 							</td>
 							<td align="center">
-								
+								<img src="<?= $created_group['admin_ttd']?>" width="90px">
 							</td>
 						</tr>
 						<?php
@@ -242,12 +251,6 @@
 							    <u><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?></u><br />
 								<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>
 							</td>
-							<?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$row['unit_head']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                            ?>
 							<td align="center">
 								<u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['unit_head']),'admin_name'); ?></u><br />
 								<?= $created_group['admin_group_name']?>
