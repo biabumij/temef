@@ -260,11 +260,11 @@
                                         <table class="table table-striped table-hover" id="table-po" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th>No.</th>
+                                                    <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">Subyek</th>
-                                                    <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Vol PO</th>
                                                     <th class="text-center">Presentase Penerimaan Terhadap Vol. PO</th>
                                                     <th class="text-center">Terima</th>
@@ -1225,6 +1225,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "date_po"
+                },
+                {
                     "data": "supplier"
                 },
                 {
@@ -1232,9 +1235,6 @@
                 },
                 {
                     "data": "subject"
-                },
-                {
-                    "data": "date_po"
                 },
                 {
                     "data": "volume"
@@ -1269,11 +1269,11 @@
             ],
             "columnDefs": [
                     {
-                        "targets": [0, 4, 6, 10, 12, 13, 14],
+                        "targets": [0, 1, 10, 11, 12, 13],
                         "className": 'text-center',
                     },
                     {
-                        "targets": [5, 7, 8, 9],
+                        "targets": [5, 6, 7, 8, 9],
                         "className": 'text-right',
                     }
                  ],
