@@ -348,6 +348,7 @@ class Pembelian extends Secure_Controller
 		$row['position'] = $sp['posisi'];
 		$row['date_pkp'] = $row['date_pkp'];
 		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+        $row['unit_head'] =  $row['unit_head'];
 		$data['row'] = $row;
 		$data['id'] = $id;
         $html = $this->load->view('pembelian/cetak_pesanan_pembelian',$data,TRUE);
@@ -1717,6 +1718,7 @@ class Pembelian extends Secure_Controller
             'memo' => $memo,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
+            'unit_head' => 43,
             'status' => 'WAITING'
         );
 
