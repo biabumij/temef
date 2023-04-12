@@ -128,7 +128,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-right"><?= number_format($total_invoice,0,',','.'); ?></td>
-                                                    <td class="text-center"><?= number_format($total_bayar_all['total'] - $bayar['total'],0,',','.'); ?></td>
+                                                    <td class="text-center"><?= number_format($total_bayar_all['total'],0,',','.'); ?></td>
                                                     <td class="text-right"><?= number_format($total_bayar['total'],0,',','.'); ?></td>
                                                     <td class="text-right"><?= number_format($total_bayar_all['total'],0,',','.'); ?></td>
                                                     <td class="text-right"><?= number_format($sisa_tagihan,0,',','.'); ?></td>
