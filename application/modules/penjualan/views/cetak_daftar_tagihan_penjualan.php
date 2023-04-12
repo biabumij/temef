@@ -108,6 +108,7 @@
 
 	</head>
 	<body>
+		<br /><br /><br />
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DAFTAR TAGIHAN PENJUALAN</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>

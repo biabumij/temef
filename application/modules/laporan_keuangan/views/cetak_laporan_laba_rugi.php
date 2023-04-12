@@ -723,8 +723,19 @@
 							<td align="center" height="55px">
 							
 							</td>
+							<?php
+								$approval = $this->db->select('unit_head')
+								->from('ttd_laporan')
+								->where("(date_approval between '$date1' and '$date2')")
+								->get()->row_array();
+
+                                $this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$approval['unit_head']);
+                                $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
 							<td align="center">
-							
+								
 							</td>
 						</tr>
 						<tr>
@@ -733,7 +744,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center" >
-								<b><u>Elyas Nur Fridayana</u><br />
+								<b><u>Rizki Aditya Dewandaru</u><br />
 								Kepala Unit Proyek</b>
 							</td>
 						</tr>

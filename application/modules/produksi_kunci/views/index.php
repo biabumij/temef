@@ -527,7 +527,7 @@
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_approval.ajax.reload();
+                            table_approval_laporan.ajax.reload();
                             bootbox.alert('Berhasil Menghapus !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);

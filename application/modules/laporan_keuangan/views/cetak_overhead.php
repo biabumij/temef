@@ -160,7 +160,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Elyas Nur Fridayana</u><br />
+								<b><u>Rizki Aditya Dewandaru</u><br />
 								Kepala Unit Proyek</b>
 							</td>
 							<td align="center" >

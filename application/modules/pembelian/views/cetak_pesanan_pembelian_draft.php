@@ -268,9 +268,15 @@
 							<td align="center">
 								
 							</td>
+							<?php
+                                $this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$row['unit_head']);
+                                $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
 							<td align="center" >
-								<b><u>Elyas Nur Fridayana</u><br />
-								Kepala Unit Proyek</b>
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['unit_head']),'admin_name');?></u><br />
+								<?= $created_group['admin_group_name']?></b>
 							</td>
 						</tr>
 					</table>

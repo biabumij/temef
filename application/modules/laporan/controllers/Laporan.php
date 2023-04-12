@@ -311,6 +311,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 			$this->db->select('ppo.supplier_id,prm.display_measure as measure,ps.nama as name, prm.display_harga_satuan as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
 			
@@ -508,7 +510,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
@@ -1531,12 +1532,13 @@ class Laporan extends Secure_Controller {
 
 	public function cetak_daftar_tagihan_pembelian()
 	{
+		
 		$this->load->library('pdf');
 	
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(10, 10, 5);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+		//$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 
@@ -1649,11 +1651,10 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(10, 10, 5);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+		//$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 
@@ -1662,7 +1663,7 @@ class Laporan extends Secure_Controller {
 		$pdf->setPrintFooter(false);
 		//$pdf->SetY(45);
 		//$pdf->SetX(6);
-		//$pdf->SetMargins(10, 10); 
+		//$pdf->SetMargins(10, 10);
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
