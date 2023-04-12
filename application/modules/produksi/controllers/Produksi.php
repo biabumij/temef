@@ -385,13 +385,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal Menyetujui Laporan !!');
-			redirect('/kunci_&_approval/table_approval_laporan');
+			redirect('admin/kunci_&_approval');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Laporan !!');
-			redirect('admin/kunci_&table_approval_laporan');
+			redirect('admin/kunci_&_approval');
 		}
 	}
 
