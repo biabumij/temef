@@ -126,20 +126,21 @@
 	</head>
 	<body>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DAFTAR TAGIHAN PEMBELIAN</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th align="center" width="5%" class="table-border-pojok-kiri">NO.</th>
-                <th align="center" width="25%" class="table-border-pojok-tengah">REKANAN / NOMOR INVOICE</th>
+                <th align="center" width="15%" class="table-border-pojok-tengah">REKANAN / NOMOR INVOICE</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">TGL. INVOICE</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">VOLUME</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">SATUAN</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">HARGA SATUAN</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">DPP</th>
 				<th align="center" width="10%" class="table-border-pojok-tengah">PPN</th>
+				<th align="center" width="10%" class="table-border-pojok-tengah">PPH</th>
 				<th align="center" width="10%" class="table-border-pojok-kanan">TOTAL</th>
             </tr>
             <?php   
@@ -148,11 +149,12 @@
             		?>
             		<tr class="table-baris1-bold">
 						<td align="center" class="table-border-pojok-kiri"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="8" class="table-border-pojok-kanan"><?php echo $row['nama'];?></td>
+            			<td align="left" colspan="9" class="table-border-pojok-kanan"><?php echo $row['nama'];?></td>
             		</tr>
             		<?php
 					$jumlah_dpp = 0;
 					$jumlah_ppn = 0;
+					$jumlah_pph = 0;
 					$jumlah_total = 0;
             		foreach ($row['mats'] as $mat) {
             			?>
@@ -164,12 +166,14 @@
 							<td align="center" class="table-border-pojok-tengah"><?php echo $mat['measure'];?></td>
 							<td align="right" class="table-border-pojok-tengah"><?php echo $mat['harsat'];?></td>
 							<td align="right" class="table-border-pojok-tengah"><?php echo $mat['dpp'];?></td>
-							<td align="right" class="table-border-pojok-tengah"><?php echo $mat['tax'];?></td>
+							<td align="right" class="table-border-pojok-tengah"><?php echo $mat['tax_ppn'];?></td>
+							<td align="right" class="table-border-pojok-tengah"><?php echo $mat['tax_pph'];?></td>
 							<td align="right" class="table-border-pojok-kanan"><?php echo $mat['total'];?></td>
 	            		</tr>
             			<?php
 						$jumlah_dpp += str_replace(['.', ','], ['', '.'], $mat['dpp']);
-						$jumlah_ppn += str_replace(['.', ','], ['', '.'], $mat['tax']);
+						$jumlah_ppn += str_replace(['.', ','], ['', '.'], $mat['tax_ppn']);
+						$jumlah_pph += str_replace(['.', ','], ['', '.'], $mat['tax_pph']);
 						$jumlah_total += str_replace(['.', ','], ['', '.'], $mat['total']);
 					}
 					?>
@@ -177,6 +181,7 @@
             			<td align="right" colspan="6" class="table-border-pojok-kiri">JUMLAH</td>
 						<td align="right" class="table-border-pojok-tengah"><?php echo number_format($jumlah_dpp,0,',','.');?></td>
 						<td align="right" class="table-border-pojok-tengah"><?php echo number_format($jumlah_ppn,0,',','.');?></td>
+						<td align="right" class="table-border-pojok-tengah"><?php echo number_format($jumlah_pph,0,',','.');?></td>
 						<td align="right" class="table-border-pojok-kanan"><?php echo number_format($jumlah_total,0,',','.');?></td>
             		</tr>
 					<?php
@@ -184,7 +189,7 @@
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="9" align="center"  class="table-border-spesial">NO DATA</td>
+            		<td width="100%" colspan="10" align="center"  class="table-border-spesial">NO DATA</td>
             	</tr>
             	<?php
             }
@@ -193,7 +198,8 @@
             	<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL</th>
             	<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_2,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_3,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_3,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_4,0,',','.');?></th>
             </tr>
 			
 		</table>

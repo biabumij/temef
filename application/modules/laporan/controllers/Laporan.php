@@ -1591,15 +1591,17 @@ class Laporan extends Secure_Controller {
 						$arr['measure'] = $row['measure'];
 						$arr['harsat'] = number_format($row['harsat'],0,',','.');
 						$arr['dpp'] = number_format($row['dpp'],0,',','.');
-						$arr['tax'] = number_format($row['tax'],0,',','.');
-						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax'],0,',','.');
+						$arr['tax_ppn'] = number_format($row['tax_ppn'],0,',','.');
+						$arr['tax_pph'] = number_format($row['tax_pph'],0,',','.');
+						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax_ppn'] - $row['tax_pph'],0,',','.');
 						
 						
 						$arr['nama'] = $sups['nama'];
 
 						$total_dpp += $row['dpp'];
-						$total_ppn += $row['tax'];
-						$total_total += $row['dpp'] + $row['tax'];
+						$total_ppn += $row['tax_ppn'];
+						$total_pph += $row['tax_pph'];
+						$total_total += ($row['dpp'] + $row['tax_ppn']) - $row['tax_pph'];
 
 						$mats[] = $arr;
 					}
@@ -1607,7 +1609,8 @@ class Laporan extends Secure_Controller {
 					$sups['no'] =$no;
 					$total = $total_dpp;
 					$total_2 = $total_ppn;
-					$total_3 = $total_total;
+					$total_3 = $total_pph;
+					$total_4 = $total_total;
 
 					$arr_data[] = $sups;
 					$no++;
@@ -1622,6 +1625,7 @@ class Laporan extends Secure_Controller {
 			$data['total'] = $total;
 			$data['total_2'] = $total_2;
 			$data['total_3'] = $total_3;
+			$data['total_4'] = $total_4;
 	        $html = $this->load->view('pembelian/cetak_daftar_tagihan_pembelian',$data,TRUE);
 
 	        
