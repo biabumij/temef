@@ -204,7 +204,7 @@
                                     <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak (Draft)</a>
                                     <br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
                                         <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
                                             <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
