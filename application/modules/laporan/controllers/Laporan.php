@@ -1589,24 +1589,25 @@ class Laporan extends Secure_Controller {
 						$arr['memo'] = $row['memo'];
 						$arr['volume'] =  number_format($row['volume'],2,',','.');
 						$arr['measure'] = $row['measure'];
-						$arr['total'] = number_format($row['total'],0,',','.');
-						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
-						$arr['sisa'] = number_format($row['total'] - $row['pembayaran'],0,',','.');
+						$arr['harsat'] = number_format($row['harsat'],0,',','.');
+						$arr['dpp'] = number_format($row['dpp'],0,',','.');
+						$arr['tax'] = number_format($row['tax'],0,',','.');
+						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax'],0,',','.');
 						
 						
 						$arr['nama'] = $sups['nama'];
 
-						$total_all += $row['total'];
-						$total_pembayaran += $row['pembayaran'];
-						$total_sisa += $row['total'] - $row['pembayaran'];
+						$total_dpp += $row['dpp'];
+						$total_ppn += $row['tax'];
+						$total_total += $row['dpp'] + $row['tax'];
 
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
 					$sups['no'] =$no;
-					$total = $total_all;
-					$total_2 = $total_pembayaran;
-					$total_3 = $total_sisa;
+					$total = $total_dpp;
+					$total_2 = $total_ppn;
+					$total_3 = $total_total;
 
 					$arr_data[] = $sups;
 					$no++;
@@ -1694,24 +1695,25 @@ class Laporan extends Secure_Controller {
 						$arr['memo'] = $row['memo'];
 						$arr['volume'] =  number_format($row['volume'],2,',','.');
 						$arr['measure'] = $row['measure'];
-						$arr['total'] = number_format($row['total'],0,',','.');
-						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
-						$arr['sisa'] = number_format($row['total'] - $row['pembayaran'],0,',','.');
+						$arr['harsat'] = number_format($row['harsat'],0,',','.');
+						$arr['dpp'] = number_format($row['dpp'],0,',','.');
+						$arr['tax'] = number_format($row['tax'],0,',','.');
+						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax'],0,',','.');
 						
 						
 						$arr['nama'] = $sups['nama'];
 
-						$total_all += $row['total'];
-						$total_pembayaran += $row['pembayaran'];
-						$total_sisa += $row['total'] - $row['pembayaran'];
+						$total_dpp += $row['dpp'];
+						$total_ppn += $row['tax'];
+						$total_total += $row['dpp'] + $row['tax'];
 
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
 					$sups['no'] =$no;
-					$total = $total_all;
-					$total_2 = $total_pembayaran;
-					$total_3 = $total_sisa;
+					$total = $total_dpp;
+					$total_2 = $total_ppn;
+					$total_3 = $total_total;
 
 					$arr_data[] = $sups;
 					$no++;
