@@ -139,8 +139,11 @@
 
 			<?php
 			//NOW
-			$last_opname_start = date('Y-m-01', (strtotime($date_now)));
-			$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
+			//$last_opname_start = date('Y-m-01', (strtotime($date_now)));
+			//$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
+
+			$date_epproval = $this->db->select('date_approval')->order_by('date_approval','desc')->limit(1)->get_where('ttd_laporan',array('status'=>'PUBLISH'))->row_array();
+			$last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_epproval['date_approval'])));
 
 			//PRODUKSI (PENJUALAN) NOW
 			$penjualan_now = $this->db->select('SUM(pp.display_price) as total')
@@ -706,8 +709,10 @@
 				<th width="10%" align="center" rowspan="2">&nbsp; <br />URAIAN</th>
 				<th width="6%" align="center">CURRENT</th>
 				<th width="6%" align="center" rowspan="2"><div style="text-transform:uppercase;">REALISASI SD. <?php echo $last_opname=date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
-				<th width="6%" align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal=date("F");?></div></th>
-				<th width="6%" align="center"><div style="text-transform:uppercase;">SD. <?php echo $date_1_awal=date("F");?></div></th>
+				<!--<th width="6%" align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal=date("F");?></div></th>
+				<th width="6%" align="center"><div style="text-transform:uppercase;">SD. <?php echo $date_1_awal=date("F");?></div></th>-->
+				<th width="6%" align="center"><div style="text-transform:uppercase;"><?php echo $date_1_awal = date('F', strtotime('+1 days +1 months', strtotime($last_opname)));?></div></th>
+				<th width="6%" align="center"><div style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date('F', strtotime('+1 days +1 months', strtotime($last_opname)));?></div></th>
 				<th width="6%" align="center"><div style="text-transform:uppercase;"><?php echo $date_2_awal=date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
 				<th width="6%" align="center"><div style="text-transform:uppercase;">SD. <?php echo $date_2_awal=date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></div></th>
 				<th width="6%" align="center"><div style="text-transform:uppercase;"><?php echo $date_3_awal=date('F', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>

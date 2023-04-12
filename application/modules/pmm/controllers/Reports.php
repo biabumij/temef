@@ -2849,8 +2849,11 @@ class Reports extends CI_Controller {
 
 			<?php
 			//NOW
-			$last_opname_start = date('Y-m-01', (strtotime($date_now)));
-			$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
+			//$last_opname_start = date('Y-m-01', (strtotime($date_now)));
+			//$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
+
+			$date_epproval = $this->db->select('date_approval')->order_by('date_approval','desc')->limit(1)->get_where('ttd_laporan',array('status'=>'PUBLISH'))->row_array();
+			$last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_epproval['date_approval'])));
 
 			//PRODUKSI (PENJUALAN) NOW
 			$penjualan_now = $this->db->select('SUM(pp.display_price) as total')
@@ -3016,7 +3019,10 @@ class Reports extends CI_Controller {
 
 			<?php
 			//BULAN 1
-			$date_1_awal = date('Y-m-01', (strtotime($date_now)));
+			//$date_1_awal = date('Y-m-01', (strtotime($last_opname)));
+			//$date_1_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_1_awal)));
+
+			$date_1_awal = date('Y-m-01', strtotime('+1 days +1 months', strtotime($last_opname)));
 			$date_1_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_1_awal)));
 
 			$rencana_kerja_1 = $this->db->select('r.*')
@@ -3416,8 +3422,10 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
 				<th class="text-center">CURRENT</th>
 				<th class="text-center" rowspan="2" style="text-transform:uppercase;vertical-align:middle;">REALISASI SD. <?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
-				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date("F");?></th>
-				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date("F");?></th>
+				<!--<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date("F");?></th>
+				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date("F");?></th>-->
+				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date('F', strtotime('+1 days +1 months', strtotime($last_opname)));?></th>
+				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date('F', strtotime('+1 days +1 months', strtotime($last_opname)));?></th>
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_2_awal = date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_2_awal = date('F', strtotime('+1 days', strtotime($date_1_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_3_awal = date('F', strtotime('+1 days', strtotime($date_2_akhir)));?></th>
