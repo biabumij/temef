@@ -868,7 +868,7 @@ class Pmm_model extends CI_Model {
             'subject' => $arr_rm['subject'],
             'created_by' => $arr_rm['created_by'],
             'created_on' => date('Y-m-d H:i:s'),
-            'unit_head' => 43,
+            'unit_head' => 44,
             'status' => 'WAITING'
         );
 
