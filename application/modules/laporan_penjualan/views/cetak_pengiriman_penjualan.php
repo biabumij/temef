@@ -166,8 +166,8 @@
             	</th>
             </tr>
 		</table>
-		<br /><br /><br />
-		<table width="98%" border="0" cellpadding="30">
+		<br /><br />
+		<table width="98%">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -201,16 +201,16 @@
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center" height="55px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="90px">
+								<img src="<?= $logistik['admin_ttd']?>" width="9070pxpx">
 							</td>
 						</tr>
 						<tr>
