@@ -213,16 +213,16 @@
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center" height="55px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="80px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="80px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="80px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="90px">
+								<img src="<?= $logistik['admin_ttd']?>" width="80px">
 							</td>
 						</tr>
 						<tr>
