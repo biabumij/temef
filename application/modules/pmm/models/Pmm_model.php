@@ -758,8 +758,6 @@ class Pmm_model extends CI_Model {
         return $output; 
     }
     
-
-
     function GetStatus($status)
     {
         if($status == 'WAITING'){
@@ -799,12 +797,31 @@ class Pmm_model extends CI_Model {
             return '<label class="label label-success">'.$status.'</label>';
         }
     }
+
 	function GetStatus4($status)
     {
         if($status == 'PUBLISH'){
             return '<label class="label label-primary">'.$status.'</label>';
         }else if($status == 'CLOSED'){
             return '<label class="label label-danger">'.$status.'</label>';
+        }
+    }
+
+    function GetStatusVerif($status)
+    {
+        if($status == 'SUDAH'){
+            return '<label class="label label-danger">'.$status.'</label>';
+        }else if($status == 'BELUM'){
+            return '<label class="label label-success">'.$status.'</label>';
+        }
+    }
+
+    function GetStatusKategoriPersetujuan($status)
+    {
+        if($status == 'VERIFIKASI PEMBELIAN'){
+            return '<label class="label label-info">'.$status.'</label>';
+        }else if($status == 'PESANAN PEMBELIAN'){
+            return '<label class="label label-success">'.$status.'</label>';
         }
     }
 	
@@ -869,6 +886,7 @@ class Pmm_model extends CI_Model {
             'created_by' => $arr_rm['created_by'],
             'created_on' => date('Y-m-d H:i:s'),
             'unit_head' => 44,
+            'kategori_persetujuan' => 'PESANAN PEMBELIAN',
             'status' => 'WAITING'
         );
 

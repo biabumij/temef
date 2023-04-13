@@ -35,6 +35,33 @@
         height: 0;
         visibility: hidden !important;
     }
+    blink {
+    -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+    animation: 2s linear infinite kedip;
+    }
+    /* for Safari 4.0 - 8.0 */
+    @-webkit-keyframes kedip { 
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
+    @keyframes kedip {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
 </style>
 
 <body>
@@ -83,6 +110,13 @@
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Pesanan Pembelian</a></li>
                                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Penerimaan Pembelian</a></li>
                                     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Pembelian</a></li>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16){
+                                    ?>
+                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab" style='background-color:#e69500; color:white;'><blink>Butuh Persetujuan</blink></a></li>			
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
 
                                 <div class="tab-content">
@@ -520,6 +554,64 @@
 
                                 </div>
 
+                                <!-- Verifikasi -->
+
+                                <div role="tabpanel" class="tab-pane" id="verifikasi">
+                                        <div class="table-responsive">
+                                            <div class="col-sm-3">
+                                                    <input type="text" id="filter_date_verifikasi" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <table class="table table-striped table-hover" id="table-verifikasi" style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">No.</th>
+                                                        <th class="text-center">Kategori Persetujuan</th>
+                                                        <th class="text-center">Nomor Dokumen</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>                                       
+                                                    </tr>
+                                                </thead>
+                                                <?php
+                                                $waiting_po = $this->db->select('prm.*')
+                                                ->from('pmm_purchase_order prm')
+                                                ->where("prm.status = 'WAITING'")
+                                                ->get()->result_array();
+
+                                                $verifikasi = $this->db->select('v.*, ppp.nomor_invoice')
+                                                ->from('pmm_verifikasi_penagihan_pembelian v')
+                                                ->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
+                                                ->where("v. approve_unit_head = 'TIDAK DISETUJUI'")
+                                                ->get()->result_array();
+                                                ?>
+                                                <tbody>
+                                                    <?php $no=1; foreach ($waiting_po as $x): ?>
+                                                    <tr>
+                                                        <th width="5%"><?php echo $no++;?></th>
+                                                        <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                        <th class="text-left"><?= $x['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$x['id']).'" target="_blank">'.$x['no_po'].'</a>';?></th>
+                                                        <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                        <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+
+                                                    <?php foreach ($verifikasi as $x): ?>
+                                                    <tr>
+                                                        <th width="5%"><?php echo $no++;?></th>
+                                                        <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                        <th class="text-left"><?= $x['nomor_invoice']?></th>
+                                                        <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                        <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
                             </div>
                         </div>
                     </div>
@@ -914,7 +1006,7 @@
                     <form method="GET" target="_blank" action="<?php echo site_url('pembelian/print_verifikasi_penagihan_pembelian'); ?>">
                         <input type="hidden" name="id" id="verifikasi_penagihan_pembelian_id">
                         <div class="text-right">
-                            <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                            <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak</button>
                         </div>
                     </form>
                 </div>
@@ -937,9 +1029,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 	
-    <!-- Script Penawaran -->
+        <!-- Script Penawaran -->
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 		
         $('input#contract').number(true, 2, ',', '.');
         $('input.numberformat').number(true, 2, ',', '.');

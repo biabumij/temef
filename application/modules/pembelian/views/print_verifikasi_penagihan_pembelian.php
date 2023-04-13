@@ -239,9 +239,6 @@
                             <td align="center" colspan="3">
                                 Proyek
                             </td>
-							<td align="center" colspan="2">
-                                Kantor Pusat
-                            </td>
                         </tr>
                         <tr>
                             <td align="center">
@@ -253,9 +250,6 @@
                             <td align="center">
                                 Disetujui
                             </td>
-							<td align="center" colspan="2">
-                                Diketahui
-                            </td>
                         </tr>
                         <tr>
                             <td align="center" height="75px">
@@ -263,10 +257,6 @@
                             <td align="center">
                             </td>
                             <td align="center">           
-                            </td>       
-                            <td align="center">   
-                            </td>
-							<td align="center">   
                             </td>
                         </tr>
                         <tr>
@@ -279,12 +269,6 @@
                             <td align="center">
 								
                             </td>
-                            <td align="center">
-								
-                            </td>
-							<td align="center">
-								
-                            </td>
                         </tr>
                         <tr>
                             <td align="center">
@@ -294,13 +278,7 @@
 								<b>M. Keu & SDM / M. Teknik</b> 
                             </td>
                             <td align="center">
-								<b>Kepala Proyek</b> 
-                            </td>
-                            <td align="center" > 
-								<b>Produksi & HSE</b>
-                            </td>
-							<td align="center" > 
-								<b>Keuangan & SDM</b>
+								<b>Kepala Unit Proyek</b> 
                             </td>
                         </tr>
                     </table>

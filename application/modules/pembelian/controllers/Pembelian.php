@@ -302,9 +302,6 @@ class Pembelian extends Secure_Controller
         echo json_encode(array('data' => $data));
     }
 
-
-
-
     public function table_pesanan_pembelian()
     {
         $w_date = $this->input->post('filter_date');
@@ -868,6 +865,8 @@ class Pembelian extends Secure_Controller
             'copy_po' => $this->input->post('copy_po'),
             'copy_po_keterangan' => $this->input->post('copy_po_keterangan'),
             'catatan' => $this->input->post('catatan'),
+            'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
+            'approve_unit_head' => 'TIDAK DIETUJUI',
             'created_by' => $this->session->userdata('admin_id')
         );
 
@@ -965,6 +964,10 @@ class Pembelian extends Secure_Controller
 
         $this->db->trans_start(); # Starting Transaction
         $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+        $this->email->from('ginanjar.bayubimantoro@biabumijayendra.com', 'Identification');
+        $this->email->to('ginanjar.bayubimantoro@biabumijayendra.com');
+        $this->email->subject('Send Email Codeigniter');
+        $this->email->message('The email send using codeigniter library');
 
 
 
@@ -1013,6 +1016,7 @@ class Pembelian extends Secure_Controller
                 }
             }
         }
+
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
@@ -1721,6 +1725,7 @@ class Pembelian extends Secure_Controller
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
             'unit_head' => 44,
+            'kategori_persetujuan' => 'PESANAN PEMBELIAN',
             'status' => 'WAITING'
         );
 
@@ -1747,4 +1752,5 @@ class Pembelian extends Secure_Controller
         redirect('admin/pembelian');
         exit();
     }
+    
 }
