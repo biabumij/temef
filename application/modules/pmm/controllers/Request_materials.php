@@ -146,6 +146,7 @@ class Request_materials extends CI_Controller {
 				'kategori_id' => $this->input->post('kategori_id'),
 				'subject' => $this->input->post('subject'),
 				'memo' => $this->input->post('memo'),
+				'kategori_persetujuan' => 'PERMINTAAN BAHAN & ALAT',
 				//'week'	=> $week
 	 		);
 

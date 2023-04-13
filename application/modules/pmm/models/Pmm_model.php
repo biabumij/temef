@@ -822,6 +822,8 @@ class Pmm_model extends CI_Model {
             return '<label class="label label-info">'.$status.'</label>';
         }else if($status == 'PESANAN PEMBELIAN'){
             return '<label class="label label-success">'.$status.'</label>';
+        }else if($status == 'PERMINTAAN BAHAN & ALAT'){
+            return '<label class="label label-warning">'.$status.'</label>';
         }
     }
 	

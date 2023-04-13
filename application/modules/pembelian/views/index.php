@@ -574,9 +574,14 @@
                                                     </tr>
                                                 </thead>
                                                 <?php
-                                                $waiting_po = $this->db->select('prm.*')
-                                                ->from('pmm_purchase_order prm')
-                                                ->where("prm.status = 'WAITING'")
+                                                $waiting_po = $this->db->select('*')
+                                                ->from('pmm_purchase_order')
+                                                ->where("status = 'WAITING'")
+                                                ->get()->result_array();
+
+                                                $permintaan = $this->db->select('*')
+                                                ->from('pmm_request_materials')
+                                                ->where("status = 'WAITING'")
                                                 ->get()->result_array();
 
                                                 $verifikasi = $this->db->select('v.*, ppp.nomor_invoice')
@@ -584,6 +589,7 @@
                                                 ->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
                                                 ->where("v. approve_unit_head = 'TIDAK DISETUJUI'")
                                                 ->get()->result_array();
+                                                
                                                 ?>
                                                 <tbody>
                                                     <?php $no=1; foreach ($waiting_po as $x): ?>
@@ -591,6 +597,16 @@
                                                         <th width="5%"><?php echo $no++;?></th>
                                                         <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
                                                         <th class="text-left"><?= $x['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$x['id']).'" target="_blank">'.$x['no_po'].'</a>';?></th>
+                                                        <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                        <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+
+                                                    <?php foreach ($permintaan as $x): ?>
+                                                    <tr>
+                                                        <th width="5%"><?php echo $no++;?></th>
+                                                        <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                        <th class="text-left"><?= $x['request_no'] = '<a href="'.site_url('pmm/request_materials/manage/'.$x['id']).'" target="_blank">'.$x['request_no'].'</a>';?></th>
                                                         <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
                                                         <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
                                                     </tr>

@@ -1653,6 +1653,7 @@ class Pembelian extends Secure_Controller
             'supplier_id' => $supplier_id,
             'kategori_id' => $kategori_id,
             'memo' => $memo,
+            'kategori_persetujuan' => 'PERMINTAAN BAHAN & ALAT',
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
             'approved_by' => 44,
