@@ -49,7 +49,7 @@ class Penjualan extends Secure_Controller
 			$data['products'] =  $this->db->select('*')
 			->from('produk p')
 			->where("p.status = 'PUBLISH'")
-			->where("p.betonreadymix = 1 ")
+			->where("p.kategori_produk = 2 ")
 			->order_by('nama_produk','asc')
 			->get()->result_array();
 			$data['materials'] = $this->db->get_where('pmm_materials', array('status' => 'PUBLISH'))->result_array();
@@ -295,6 +295,8 @@ class Penjualan extends Secure_Controller
 	{
 
 		$this->db->set("status", "OPEN");
+		$this->db->set("approved_by", $this->session->userdata('admin_id'));
+		$this->db->set("approved_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penawaran_penjualan");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Penawaran');
@@ -1461,7 +1463,7 @@ class Penjualan extends Secure_Controller
 				$row['status'] = ('Disetujui');
 
 				if ($row['status'] == 'Disetujui') {
-					$row['action'] = '<a href="' . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . '" target="_blank" class="btn btn-success">Cetak PDF</a>';
+					$row['action'] = '<a href="' . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . '" target="_blank" class="btn btn-success">Cetak</a>';
 				} else {
 					$url_approve = "'" . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . "'";
 					$row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $url_approve . ')" class="btn btn-warning">Approve</a>';

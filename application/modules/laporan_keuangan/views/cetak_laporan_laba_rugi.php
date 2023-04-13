@@ -724,18 +724,23 @@
 							
 							</td>
 							<?php
-								$approval = $this->db->select('unit_head')
-								->from('ttd_laporan')
-								->where("(date_approval between '$date1' and '$date2')")
+								$create = $this->db->select('unit_head, logistik')
+								->from('akumulasi')
+								->where("(date_akumulasi between '$start_date' and '$end_date')")
 								->get()->row_array();
 
                                 $this->db->select('g.admin_group_name, a.admin_ttd');
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$approval['unit_head']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
+                                $this->db->where('a.admin_id',$create['unit_head']);
+                                $unit_head = $this->db->get('tbl_admin a')->row_array();
+
+								$this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$create['logistik']);
+                                $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
-								
+								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
 							</td>
 						</tr>
 						<tr>
@@ -744,8 +749,8 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center" >
-								<b><u>Rizki Aditya Dewandaru</u><br />
-								Kepala Unit Proyek</b>
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<?= $unit_head['admin_group_name']?></b>
 							</td>
 						</tr>
 					</table>

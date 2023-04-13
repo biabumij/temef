@@ -165,7 +165,7 @@
 							<br />
                             <div class="text-right">
                                 <a href="<?= base_url("admin/rap/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                <a href="<?= base_url("rap/cetak_komposisi/".$agregat["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("rap/cetak_komposisi/".$agregat["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
                                 <?php
                                 if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
                                 ?>

@@ -179,13 +179,13 @@
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="15">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="center" colspan="2">
+							<td align="center">
 								Disetujui Oleh
 							</td>
 							<td align="center" colspan="2">
@@ -216,13 +216,10 @@
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
 							</td>
 							<td align="center">
-								
+								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
 							</td>
 							<td align="center">
-								
-							</td>
-							<td align="center">
-								
+								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
 							</td>
 							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="90px">
@@ -233,16 +230,12 @@
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								<?= $unit_head['admin_group_name']?></b>
 							</td>
-							<td align="center" >
-								<b><br />
-								Ass. Ka. Plant</b>
-							</td>
 							<td align="center">
-								<b><br />
+							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								M. Keu & SDM</b>
 							</td>
 							<td align="center">
-								<b><br />
+							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								M. Teknik</b>
 							</td>
 							<td align="center" >
@@ -254,6 +247,6 @@
 				</td>
 				<td width="5%"></td>
 			</tr>
-		</table>
+		</table>	
 	</body>
 </html>

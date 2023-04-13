@@ -33,7 +33,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Approval BUA, Diskonto, Persiapan</h3>
+                                    <h3 class="">Approval Keuangan</h3>
                                     
                                 </div>
                             </div>
@@ -58,7 +58,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td style="vertical-align:middle">Apakah Anda Menyetujui BUA, Diskonto & Persiapan ?</td>
+                                                    <td style="vertical-align:middle">Apakah Anda Menyetujui : <br />
+                                                    
+                                                    1. LAPORAN EVALUASI BUA <br />
+                                                    2. <br />
+
+                                                    </td>
 													<td>
                                                         <table width="100%">
                                                             <tr>

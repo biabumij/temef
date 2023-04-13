@@ -184,7 +184,7 @@
                                 </form>
                             <?php endif; ?>
                             <?php if($penawaran["status"] === "OPEN") : ?>
-                            <a href="<?= base_url("pmm/reports/cetakPenawaranPenjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info">Cetak PDF</a>
+                            <a href="<?= base_url("pmm/reports/cetakPenawaranPenjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info">Cetak</a>
                             <?php endif; ?>
                             <?php
                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5){

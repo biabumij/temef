@@ -256,14 +256,13 @@
 								
 							</td>
 							<?php
-                                $this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->select('g.admin_group_name, a.admin_ttd_cap');
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$row['unit_head']);
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
-								<img src="<?= $created_group['admin_ttd']?>" width="90px">
-								<!--<img src="uploads/ttd_elyas.png" width="10px">-->
+								<img src="<?= $created_group['admin_ttd_cap']?>" width="90px">
 							</td>
 						</tr>
 						<tr>

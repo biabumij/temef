@@ -183,7 +183,7 @@
                             
                             <?php endif; ?>
                             <?php if($sales_po["status"] === "OPEN") : ?>
-                            <a href="<?= base_url("pmm/reports/cetakSalesPo/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info">Cetak PDF</a>
+                            <a href="<?= base_url("pmm/reports/cetakSalesPo/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info">Cetak</a>
                             <?php endif; ?>
                             
                             

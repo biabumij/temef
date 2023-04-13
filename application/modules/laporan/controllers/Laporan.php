@@ -23,16 +23,20 @@ class Laporan extends Secure_Controller {
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_laporan_laba_rugi',$data,TRUE);
 
         
@@ -58,9 +62,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_bahan',$data,TRUE);
 
         
@@ -112,9 +120,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_alat',$data,TRUE);
 
         
@@ -139,9 +151,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
 		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
@@ -185,9 +201,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		$data['date1'] = date('Y-m-d',strtotime($arr_filter_date[0]));
 		$data['date2'] = date('Y-m-d',strtotime($arr_filter_date[1]));
 		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
@@ -766,6 +786,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 		
 			$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
@@ -1106,9 +1128,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+    		$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi',$data,TRUE);
 
         
@@ -1134,9 +1160,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+    		$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_alat',$data,TRUE);
 
         
@@ -1162,9 +1192,13 @@ class Laporan extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+    		$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_bua',$data,TRUE);
 
         

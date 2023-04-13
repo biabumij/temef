@@ -957,20 +957,47 @@
 							</td>
 						</tr>
 						<tr>
+							<?php
+								$create = $this->db->select('unit_head, logistik')
+								->from('akumulasi')
+								->where("(date_akumulasi between '$start_date' and '$end_date')")
+								->get()->row_array();
+
+                                $this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$create['unit_head']);
+                                $unit_head = $this->db->get('tbl_admin a')->row_array();
+
+								$this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$create['logistik']);
+                                $logistik = $this->db->get('tbl_admin a')->row_array();
+                            ?>
 							<td align="center" height="40px">
-								
+								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+							</td>
+							<?php
+								$this->db->select('ttd.*');
+								$this->db->where("(ttd.date_approval between '$date1' and '$date2')");
+								$this->db->where("ttd.approval = 1 ");
+								$this->db->order_by('ttd.date_approval','desc')->limit(1);
+								$created_group = $this->db->get('ttd_evaluasi_bua ttd')->row_array();
+							?>
+							<td align="center">
+								<?php
+									echo '<img src="'.$created_group['ttd_1'].'" width="70"/>';
+								?>
 							</td>
 							<td align="center">
-								
-							</td>
-							<td align="center">
-								
+							<?php
+								echo '<img src="'.$created_group['ttd_2'].'" width="70"/>';
+							?>
 							</td>
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Rizki Aditya Dewandaru</u><br />
-								Kepala Unit Proyek</b>
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<?= $unit_head['admin_group_name']?></b>
 							</td>
 							<td align="center" >
 								<b><u>Erika Sinaga</u><br />

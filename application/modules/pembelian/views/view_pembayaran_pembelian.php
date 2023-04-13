@@ -163,7 +163,7 @@
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
                                             <a href="<?= base_url('pembelian/penagihan_pembelian_detail/' . $bayar["penagihan_pembelian_id"]) ?>" class="btn btn-info" style="margin-bottom:0;"> Kembali</a>
-                                            <a href="<?= base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $bayar["id"]) ?>" target="_blank" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                            <a href="<?= base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $bayar["id"]) ?>" target="_blank" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
                                             ?>
