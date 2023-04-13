@@ -168,7 +168,7 @@
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="15">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
