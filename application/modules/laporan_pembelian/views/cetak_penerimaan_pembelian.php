@@ -246,6 +246,6 @@
 				</td>
 				<td width="5%"></td>
 			</tr>
-		</table>	
+		</table>
 	</body>
 </html>
