@@ -210,7 +210,7 @@
 								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="9070pxpx">
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
