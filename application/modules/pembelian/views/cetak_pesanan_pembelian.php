@@ -262,7 +262,7 @@
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
-								<img src="<?= $created_group['admin_ttd_cap']?>" width="90px">
+								<img src="<?= $created_group['admin_ttd_cap']?>" width="50px">
 							</td>
 						</tr>
 						<tr>

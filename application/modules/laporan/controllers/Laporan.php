@@ -240,17 +240,18 @@ class Laporan extends Secure_Controller {
 	
 
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
+        $pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 
-		// add a page
 		$pdf->AddPage('L');
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetY(45);
-		$pdf->SetX(6);
-		$pdf->SetMargins(10, 10);    
+		//$pdf->SetY(45);
+		//$pdf->SetX(6);
+		//$pdf->SetMargins(10, 10);    
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){

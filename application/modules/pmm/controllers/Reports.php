@@ -2976,6 +2976,20 @@ class Reports extends CI_Controller {
 			->where("r.tanggal_rencana_kerja < '$last_opname'")
 			->get()->row_array();
 
+			//PPN KELUARAN
+			$ppn_keluaran_now = $this->db->select('SUM(ppd.tax) as total')
+			->from('pmm_penagihan_penjualan ppp')
+			->join('pmm_penagihan_penjualan_detail ppd','ppp.id = ppd.penagihan_id','left')
+			->where("ppp.tanggal_invoice < '$last_opname'")
+			->get()->row_array();
+
+			//PPN MASUKAN
+			$ppn_masukan_now = $this->db->select('SUM(v.ppn) as total')
+			->from('pmm_verifikasi_penagihan_pembelian v')
+			->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
+			->where("ppp.tanggal_invoice < '$last_opname'")
+			->get()->row_array();
+
 			//PINJAMAN DANA NOW
 			$pinjaman_dana_now = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -3015,6 +3029,61 @@ class Reports extends CI_Controller {
 			->where("pm.tanggal_pembayaran <= '$last_opname'")
 			->get()->row_array();
 			$hutang_now = $penerimaan_hutang_now['total'] - $pembayaran_hutang_now['total'];
+
+			//MOS NOW
+			$harga_hpp_bahan_baku_now = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp <= '$last_opname')")
+			->order_by('pp.date_hpp','desc')->limit(1)
+			->get()->row_array();
+			
+			$stock_opname_semen_now = $this->db->select('cat.date, (cat.display_volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$last_opname')")
+			->where("cat.material_id = 4")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			$nilai_semen = $stock_opname_semen_now['volume'] * $harga_hpp_bahan_baku_now['semen'];
+
+			$stock_opname_pasir_now = $this->db->select('cat.date, (cat.display_volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$last_opname')")
+			->where("cat.material_id = 5")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			$nilai_pasir = $stock_opname_pasir_now['volume'] * $harga_hpp_bahan_baku_now['pasir'];
+
+			$stock_opname_batu1020_now = $this->db->select('cat.date, (cat.display_volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$last_opname')")
+			->where("cat.material_id = 6")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			$nilai_batu1020 = $stock_opname_batu1020_now['volume'] * $harga_hpp_bahan_baku_now['batu1020'];
+
+			$stock_opname_batu2030_now = $this->db->select('cat.date, (cat.display_volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$last_opname')")
+			->where("cat.material_id = 7")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			$nilai_batu2030 = $stock_opname_batu2030_now['volume'] * $harga_hpp_bahan_baku_now['batu2030'];
+
+			$stock_opname_solar_now = $this->db->select('cat.date, (cat.display_volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date <= '$last_opname')")
+			->where("cat.material_id = 8")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			$nilai_solar = $stock_opname_solar_now['volume'] * $harga_hpp_bahan_baku_now['solar'];
+
+			$mos_now = $nilai_semen + $nilai_pasir + $nilai_batu1020 + $nilai_batu2030 + $nilai_solar;
+
 			?>
 
 			<?php
@@ -3420,7 +3489,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active4-csf">
 				<th class="text-center" rowspan="2" style="vertical-align:middle" width="5%">NO.</th>
 				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th class="text-center">CURRENT</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle">RAP</th>
 				<th class="text-center" rowspan="2" style="text-transform:uppercase;vertical-align:middle;">REALISASI SD. <?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
 				<!--<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date("F");?></th>
 				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date("F");?></th>-->
@@ -3439,7 +3508,6 @@ class Reports extends CI_Controller {
 				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
 	        </tr>
 			<tr class="table-active4-csf">
-				<th class="text-center">CASH BUDGET</th>
 				<th class="text-center"><?php echo $date_1_awal = date('Y');?></th>
 				<th class="text-center"><?php echo $date_1_awal = date('Y');?></th>
 				<th class="text-center"><?php echo $date_2_awal = date('Y', strtotime('+1 days', strtotime($date_1_akhir)));?></th>
@@ -3656,7 +3724,7 @@ class Reports extends CI_Controller {
 			$akumulasi_pengeluaran_6 = $akumulasi_pengeluaran_5 + $jumlah_pengeluaran_6;
 
 			//PAJAK KELUARAN
-			$pajak_keluaran_now = 0;
+			$pajak_keluaran_now =  $ppn_keluaran_now['total'];
 			$pajak_keluaran_1 = 0;
 			$pajak_keluaran_2 = 0;
 			$pajak_keluaran_3 = 0;
@@ -3674,7 +3742,7 @@ class Reports extends CI_Controller {
 			$akumulasi_pajak_keluaran_6 = $akumulasi_pajak_keluaran_5 + $pajak_keluaran_6;
 
 			//PAJAK MASUKAN
-			$pajak_masukan_now = 0;
+			$pajak_masukan_now = $ppn_masukan_now['total'];
 			$pajak_masukan_1 = 0;
 			$pajak_masukan_2 = 0;
 			$pajak_masukan_3 = 0;
@@ -3763,6 +3831,24 @@ class Reports extends CI_Controller {
 			$akumulasi_pengembalian_pinjaman_dana_5 = $akumulasi_pengembalian_pinjaman_dana_4 + $pengembalian_pinjaman_dana_5;
 			$akumulasi_pengembalian_pinjaman_dana_6 = $akumulasi_pengembalian_pinjaman_dana_5 + $pengembalian_pinjaman_dana_6;
 
+			//MOS
+			$mos_now = $mos_now;
+			$mos_1 = 0;
+			$mos_2 = 0;
+			$mos_3 = 0;
+			$mos_4 = 0;
+			$mos_5 = 0;
+			$mos_6 = 0;
+			$total_mos = 0;
+
+			//AKUMULASI MOS
+			$akumulasi_mos_1 = 0;
+			$akumulasi_mos_2 = 0;
+			$akumulasi_mos_3 = 0;
+			$akumulasi_mos_4 = 0;
+			$akumulasi_mos_5 = 0;
+			$akumulasi_mos_6 = 0;
+
 			//PIUTANG
 			$piutang_now = $piutang_now;
 			$piutang_1 = 0;
@@ -3801,7 +3887,7 @@ class Reports extends CI_Controller {
 
 			//POSISI DANA
 			$posisi_dana_rap = ($total_rap_nilai_2022 + $ppn_keluaran_rap) - $jumlah_pengeluaran - ($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan) - ($total_rap_2022_penerimaan_pinjaman - $total_rap_2022_pengembalian_pinjaman);
-			$posisi_dana_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - $jumlah_pengeluaran_now - $pengembalian_pinjaman_now - ($penerimaan_pinjaman_now - $pengembalian_pinjaman_now) - ($pinjaman_dana_now - $pengembalian_pinjaman_dana_now) + $piutang_now - $hutang_now;
+			$posisi_dana_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - $jumlah_pengeluaran_now - $pengembalian_pinjaman_now - ($penerimaan_pinjaman_now - $pengembalian_pinjaman_now) - ($pinjaman_dana_now - $pengembalian_pinjaman_dana_now) + $piutang_now - $hutang_now + $mos_now;
 			$posisi_dana_1 = $jumlah_penerimaan_1 - $jumlah_pengeluaran_1 - ($pajak_keluaran_1 - $pajak_masukan_1) - ($penerimaan_pinjaman_1 - $pengembalian_pinjaman_1) - ($pinjaman_dana_1 - $pengembalian_pinjaman_dana_1);
 			$posisi_dana_2 = $jumlah_penerimaan_2 - $jumlah_pengeluaran_2 - ($pajak_keluaran_2 - $pajak_masukan_2) - ($penerimaan_pinjaman_2 - $pengembalian_pinjaman_2) - ($pinjaman_dana_2 - $pengembalian_pinjaman_dana_2);
 			$posisi_dana_3 = $jumlah_penerimaan_3 - $jumlah_pengeluaran_3 - ($pajak_keluaran_3 - $pajak_masukan_3) - ($penerimaan_pinjaman_3 - $pengembalian_pinjaman_3) - ($pinjaman_dana_3 - $pengembalian_pinjaman_dana_3);
@@ -3819,7 +3905,7 @@ class Reports extends CI_Controller {
 			$akumulasi_posisi_dana_6 = $akumulasi_penerimaan_pinjaman_6 + ($akumulasi_termin_6 + $akumulasi_ppn_keluaran_6) - $akumulasi_pengeluaran_6 - $akumulasi_pengembalian_pinjaman_6 - ($akumulasi_penerimaan_pinjaman_6 - $akumulasi_pengembalian_pinjaman_6) - ($akumulasi_pinjaman_dana_6 - $akumulasi_pengembalian_pinjaman_dana_6) + $akumulasi_piutang_6 - $akumulasi_hutang_6;
 			?>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="3" style="vertical-align:middle">I</th>
+				<th class="text-center" rowspan="3" style="vertical-align:middle">1</th>
 				<th class="text-left" colspan="16"><u>PRODUKSI (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3-csf">
@@ -3859,7 +3945,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022 - $total_produksi,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="4" style="vertical-align:middle">II</th>
+				<th class="text-center" rowspan="4" style="vertical-align:middle">2</th>
 				<th class="text-left" colspan="16"><u>PENERIMAAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3-csf">
@@ -3917,7 +4003,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(($total_rap_nilai_2022 - $jumlah_termin) + ($ppn_keluaran_rap - $jumlah_ppn_keluaran),0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="8" style="vertical-align:middle">III</th>
+				<th class="text-center" rowspan="8" style="vertical-align:middle">3</th>
 				<th class="text-left" colspan="16"><u>PENGELUARAN (EXCL. PPN)</u></th>
 			</tr>
 			<tr class="table-active3-csf">
@@ -4047,13 +4133,13 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($jumlah_pengeluaran - $total_pengeluaran,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="4" style="vertical-align:middle">IV</th>
+				<th class="text-center" rowspan="4" style="vertical-align:middle">4</th>
 				<th class="text-left" colspan="16"><u>PAJAK</u></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;1. Pajak Keluaran</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_pajak_keluaran,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pajak_keluaran_now['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_now,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_keluaran_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_pajak_keluaran_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_keluaran_2,0,',','.');?></th>
@@ -4071,7 +4157,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3-csf">
 				<th class="text-left">&nbsp;&nbsp;2. Pajak Masukan</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_pajak_masukan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pajak_masukan_now['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_masukan_now,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_masukan_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_pajak_masukan_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_masukan_2,0,',','.');?></th>
@@ -4089,7 +4175,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active2-csf">
 				<th class="text-left">KURANG BAYAR PPN</th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pajak_keluaran_now['total'] - $pajak_masukan_now['total'],0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pajak_keluaran_now - $pajak_masukan_now,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_keluaran_1 - $pajak_masukan_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($akumulasi_pajak_keluaran_1 - $akumulasi_pajak_masukan_1,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pajak_keluaran_2 - $pajak_masukan_2,0,',','.');?></th>
@@ -4105,7 +4191,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(($total_rap_2022_pajak_keluaran - $total_pajak_keluaran_6) - ($total_rap_2022_pajak_masukan - $total_pajak_masukan_6),0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="9" style="vertical-align:middle">V</th>
+				<th class="text-center" rowspan="9" style="vertical-align:middle">5</th>
 				<th class="text-left" colspan="16"><u>PINJAMAN</u></th>
 			</tr>
 			<tr class="table-active3-csf">
@@ -4223,7 +4309,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(($total_rap_2022_pinjaman_dana - $total_pinjaman_dana_6) - ($total_rap_2022_pengembalian_pinjaman_dana - $total_pengembalian_pinjaman_dana_6),0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center">VI</th>
+				<th class="text-center">6</th>
 				<th class="text-left"><u>PIUTANG</u></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_piutang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($piutang_now,0,',','.');?></th>
@@ -4242,7 +4328,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center">VII</th>
+				<th class="text-center">7</th>
 				<th class="text-left"><u>HUTANG</u></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_hutang,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($hutang_now,0,',','.');?></th>
@@ -4260,8 +4346,27 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_hutang_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
+			<tr class="table-active3-csf">
+				<th class="text-center">8</th>
+				<th class="text-left"><u>MOS</u></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_now,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($mos_6,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_mos_6,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_mos,0,',','.');?></th>
+			</tr>
 			<tr class="table-active4-csf">
-				<th class="text-center">VIII</th>
+				<th class="text-center">9</th>
 				<th class="text-left"><u>POSISI DANA</u></th>
 				<th class="text-right"><?php echo $posisi_dana_rap < 0 ? "(".number_format(-$posisi_dana_rap,0,',','.').")" : number_format($posisi_dana_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo $posisi_dana_now < 0 ? "(".number_format(-$posisi_dana_now,0,',','.').")" : number_format($posisi_dana_now,0,',','.');?></th>
