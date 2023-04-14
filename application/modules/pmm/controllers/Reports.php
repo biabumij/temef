@@ -3015,6 +3015,16 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$piutang_now = $penerimaan_piutang_now['total'] - $pembayaran_piutang_now['total'];
 
+			$pembayaran_piutang_ppn_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran pm')
+			->where("pm.memo = 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
+
+			$piutang_now_dpp = $piutang_now;
+			$piutang_now_ppn = $ppn_masukan_now['total'] - $pembayaran_piutang_ppn_now['total'];
+			$piutang_now = $piutang_now_dpp + $piutang_now_ppn;
+
 			//HUTANG NOW
 			$penerimaan_hutang_now = $this->db->select('SUM(prm.display_price) as total')
 			->from('pmm_receipt_material prm')
@@ -3029,6 +3039,16 @@ class Reports extends CI_Controller {
 			->where("pm.tanggal_pembayaran <= '$last_opname'")
 			->get()->row_array();
 			$hutang_now = $penerimaan_hutang_now['total'] - $pembayaran_hutang_now['total'];
+
+			$pembayaran_hutang_ppn_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->where("pm.memo = 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
+
+			$hutang_now_dpp = $hutang_now;
+			$hutang_now_ppn = $ppn_keluaran_now['total'] - $pembayaran_hutang_ppn_now['total'];
+			$hutang_now = $hutang_now_dpp + $hutang_now_ppn;
 
 			//MOS NOW
 			$harga_hpp_bahan_baku_now = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
@@ -3831,24 +3851,6 @@ class Reports extends CI_Controller {
 			$akumulasi_pengembalian_pinjaman_dana_5 = $akumulasi_pengembalian_pinjaman_dana_4 + $pengembalian_pinjaman_dana_5;
 			$akumulasi_pengembalian_pinjaman_dana_6 = $akumulasi_pengembalian_pinjaman_dana_5 + $pengembalian_pinjaman_dana_6;
 
-			//MOS
-			$mos_now = $mos_now;
-			$mos_1 = 0;
-			$mos_2 = 0;
-			$mos_3 = 0;
-			$mos_4 = 0;
-			$mos_5 = 0;
-			$mos_6 = 0;
-			$total_mos = 0;
-
-			//AKUMULASI MOS
-			$akumulasi_mos_1 = 0;
-			$akumulasi_mos_2 = 0;
-			$akumulasi_mos_3 = 0;
-			$akumulasi_mos_4 = 0;
-			$akumulasi_mos_5 = 0;
-			$akumulasi_mos_6 = 0;
-
 			//PIUTANG
 			$piutang_now = $piutang_now;
 			$piutang_1 = 0;
@@ -4328,6 +4330,44 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
+				<th class="text-center"></th>
+				<th class="text-left">&nbsp;&nbsp;DPP</th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($piutang_now_dpp,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-active3-csf">
+				<th class="text-center"></th>
+				<th class="text-left">&nbsp;&nbsp;PPN</th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($piutang_now_ppn,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-active3-csf">
 				<th class="text-center">7</th>
 				<th class="text-left"><u>HUTANG</u></th>
 				<th class="text-right"><?php echo number_format($total_rap_2022_hutang,0,',','.');?></th>
@@ -4347,23 +4387,61 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
+				<th class="text-center"></th>
+				<th class="text-left">&nbsp;&nbsp;DPP</th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_now_dpp,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-active3-csf">
+				<th class="text-center"></th>
+				<th class="text-left">&nbsp;&nbsp;PPN</th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($hutang_now_ppn,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-active3-csf">
 				<th class="text-center">8</th>
 				<th class="text-left"><u>MOS</u></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($mos_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($mos_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_mos_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_mos,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-active4-csf">
 				<th class="text-center">9</th>

@@ -4,39 +4,53 @@
 	  <title>MONITORING HUTANG</title>
 	  
 	  <style type="text/css">
+		 body {
+			font-family: helvetica;
+		}
+
+		table.table-border-atas-full, th.table-border-atas-full, td.table-border-atas-full {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		table.table-border-atas-only, th.table-border-atas-only, td.table-border-atas-only {
+			border-top: 1px solid black;
+		}
+
+		table.table-border-bawah-only, th.table-border-bawah-only, td.table-border-bawah-only {
+			border-bottom: 1px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 5px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 7px;
+			background-color: none;
+			font-size: 5px;
 		}
 
 		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 7px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 7px;
-			background-color: #E8E8E8;
-		}
-
-		table tr.table-baris2-bold{
-			font-size: 7px;
-			background-color: #E8E8E8;
+			background-color: none;
+			font-size: 5px;
 			font-weight: bold;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 5px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 5px;
 			color: black;
 		}
 	  </style>
@@ -80,34 +94,29 @@
 		</table>	
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="7%" align="center">REKANAN</th>
-				<th width="7%" align="center">NOMOR</th>
-				<th width="7%" align="center">TANGGAL</th>
-				<th width="7%" align="center">TANGGAL</th>
-				<th width="17%" align="center" colspan="3">TAGIHAN</th>
-				<th width="22%" align="center" colspan="4">PEMBAYARAN</th>
-				<th width="17%" align="center" colspan="3">SISA HUTANG</th>
-				<th width="14%" align="center" colspan="3">STATUS HUTANG</th>
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
+				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
+				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
 			</tr>
 			<tr class="table-judul">
-				<th align="center">KETERANGAN</th>
-				<th align="center">TAGIHAN</th>
-				<th align="center">TAGIHAN</th>
-				<th align="center">VERIFIKASI</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">JUMLAH</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">PPH</th>
-				<th align="center">JUMLAH</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">JUMLAH</th>
-				<th align="center">STATUS</th>
-				<th align="center">UMUR</th>
-				<th align="center">JATUH TEMPO</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">PPH</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
 			</tr>		
             <?php   
             if(!empty($data)){
@@ -132,10 +141,11 @@
             			?>
 					<tr class="table-baris1">
 						<td align="center"></td>
+						<td align="left"><?php echo $mat['nomor_invoice'];?></td>
+						<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
 						<td align="left"><?php echo $mat['subject'];?></td>
-						<td align="center"><?php echo $mat['nomor_invoice'];?></td>
-            			<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
             			<td align="left"><?php echo $mat['tanggal_lolos_verifikasi'];?></td>
+						<td align="center"><?php echo $mat['syarat_pembayaran'];?></td>
             			<td align="right"><?php echo $mat['dpp_tagihan'];?></td>
 						<td align="right"><?php echo $mat['ppn_tagihan'];?></td>
 						<td align="right"><?php echo $mat['jumlah_tagihan'];?></td>
@@ -147,7 +157,6 @@
 						<td align="right"><?php echo $mat['ppn_sisa_hutang'];?></td>
 						<td align="right"><?php echo $mat['jumlah_sisa_hutang'];?></td>
 						<td align="center"><?php echo $mat['status'];?></td>
-						<td align="center"><?php echo $mat['syarat_pembayaran'];?></td>
 						<td align="center"><?php echo $mat['jatuh_tempo'];?></td>
             		</tr>
 
@@ -164,21 +173,20 @@
 					$jumlah_jumlah_sisa_hutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_hutang']);
 					}	
 					?>
-					<tr class="table-baris2-bold">
-						<td align="right" colspan="5">JUMLAH</td>
-						<td align="right"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_dpp_pembayaran,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_ppn_pembayaran,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_pph_pembayaran,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_jumlah_pembayaran,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_dpp_sisa_hutang,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_ppn_sisa_hutang,0,',','.');?></td>
-						<td align="right"><?php echo number_format($jumlah_jumlah_sisa_hutang,0,',','.');?></td>
-						<td align="center"></td>
-						<td align="center"></td>
-						<td align="center"></td>
+					<tr class="table-baris1-bold">
+						<td align="right" colspan="6" class="table-border-atas-only">JUMLAH</td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_jumlah_tagihan,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_dpp_pembayaran,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_ppn_pembayaran,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_pph_pembayaran,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_jumlah_pembayaran,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_dpp_sisa_hutang,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_ppn_sisa_hutang,0,',','.');?></td>
+						<td align="right" class="table-border-atas-only"><?php echo number_format($jumlah_jumlah_sisa_hutang,0,',','.');?></td>
+						<td align="center" class="table-border-atas-only"></td>
+						<td align="center" class="table-border-atas-only"></td>
             		</tr>
 					<?php
             		}
@@ -190,21 +198,20 @@
             	<?php
             }
             ?>
-            <tr class="table-total">
-				<th align="right" colspan="5">TOTAL</th>
-				<th align="right"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_dpp_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_pph_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_dpp_sisa_hutang,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_sisa_hutang,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_sisa_hutang,0,',','.');?></th>
-				<td align="center"></td>
-				<td align="center"></td>
-				<td align="center"></td>
+            <tr class="table-judul">
+				<th align="right" colspan="6" class="table-border-atas-full">TOTAL</th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_pph_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_sisa_hutang,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_sisa_hutang,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_sisa_hutang,0,',','.');?></th>
+				<td align="center" class="table-border-atas-full"></td>
+				<td align="center" class="table-border-atas-full"></td>
             </tr>   
 		</table>
 		

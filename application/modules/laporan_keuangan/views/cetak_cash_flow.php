@@ -139,8 +139,6 @@
 
 	</head>
 	<body>
-		<br />
-		<br />
 		<?php
 		//NOW
 		$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
@@ -148,7 +146,7 @@
 		?>
 		<div align="center" style="display: block;font-weight: bold;font-size: 12px;">CASH FLOW</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">BENDUNGAN TEMEF PAKET 3</div>
-		<br /><br />
+		<br />
 		<?php
 		$data = array();
 		
@@ -167,7 +165,7 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-			<?php
+		<?php
 			//RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
@@ -397,6 +395,16 @@
 			->get()->row_array();
 			$piutang_now = $penerimaan_piutang_now['total'] - $pembayaran_piutang_now['total'];
 
+			$pembayaran_piutang_ppn_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran pm')
+			->where("pm.memo = 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
+
+			$piutang_now_dpp = $piutang_now;
+			$piutang_now_ppn = $ppn_masukan_now['total'] - $pembayaran_piutang_ppn_now['total'];
+			$piutang_now = $piutang_now_dpp + $piutang_now_ppn;
+
 			//HUTANG NOW
 			$penerimaan_hutang_now = $this->db->select('SUM(prm.display_price) as total')
 			->from('pmm_receipt_material prm')
@@ -412,8 +420,17 @@
 			->get()->row_array();
 			$hutang_now = $penerimaan_hutang_now['total'] - $pembayaran_hutang_now['total'];
 
-			//MOS NOW
+			$pembayaran_hutang_ppn_now = $this->db->select('SUM(pm.total) as total')
+			->from('pmm_pembayaran_penagihan_pembelian pm')
+			->where("pm.memo = 'PPN'")
+			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			->get()->row_array();
 
+			$hutang_now_dpp = $hutang_now;
+			$hutang_now_ppn = $ppn_keluaran_now['total'] - $pembayaran_hutang_ppn_now['total'];
+			$hutang_now = $hutang_now_dpp + $hutang_now_ppn;
+
+			//MOS NOW
 			$harga_hpp_bahan_baku_now = $this->db->select('pp.date_hpp, pp.semen, pp.pasir, pp.batu1020, pp.batu2030, pp.solar')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp <= '$last_opname')")
@@ -1215,24 +1232,6 @@
 			$akumulasi_pengembalian_pinjaman_dana_5 = $akumulasi_pengembalian_pinjaman_dana_4 + $pengembalian_pinjaman_dana_5;
 			$akumulasi_pengembalian_pinjaman_dana_6 = $akumulasi_pengembalian_pinjaman_dana_5 + $pengembalian_pinjaman_dana_6;
 
-			//MOS
-			$mos_now = $mos_now;
-			$mos_1 = 0;
-			$mos_2 = 0;
-			$mos_3 = 0;
-			$mos_4 = 0;
-			$mos_5 = 0;
-			$mos_6 = 0;
-			$total_mos = 0;
-
-			//AKUMULASI MOS
-			$akumulasi_mos_1 = 0;
-			$akumulasi_mos_2 = 0;
-			$akumulasi_mos_3 = 0;
-			$akumulasi_mos_4 = 0;
-			$akumulasi_mos_5 = 0;
-			$akumulasi_mos_6 = 0;
-
 			//PIUTANG
 			$piutang_now = $piutang_now;
 			$piutang_1 = 0;
@@ -1617,22 +1616,22 @@
 				<th align="right" class="table-border-noborder-kanan"><?php echo number_format($total_rap_2022_pajak_masukan - $total_pajak_masukan_6,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1-bold">
-				<th align="left" class="table-border-noborder-kiri">KURANG BAYAR PPN</th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_now - $pajak_masukan_now,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_1 - $pajak_masukan_1,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_1 - $akumulasi_pajak_masukan_1,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_2 - $pajak_masukan_2,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_2 - $akumulasi_pajak_masukan_2,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_3 - $pajak_masukan_3,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_3 - $akumulasi_pajak_masukan_3,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_4 - $pajak_masukan_4,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_4 - $akumulasi_pajak_masukan_4,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_5 - $pajak_masukan_5,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_5 - $akumulasi_pajak_masukan_5,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($pajak_keluaran_6 - $pajak_masukan_6,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_pajak_keluaran_6 - $akumulasi_pajak_masukan_6,0,',','.');?></th>
-				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(($total_rap_2022_pajak_keluaran - $total_pajak_keluaran_6) - ($total_rap_2022_pajak_masukan - $total_pajak_masukan_6),0,',','.');?></th>
+				<th align="left" class="table-border-atas-kiri">KURANG BAYAR PPN</th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_now - $pajak_masukan_now,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_1 - $pajak_masukan_1,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_1 - $akumulasi_pajak_masukan_1,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_2 - $pajak_masukan_2,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_2 - $akumulasi_pajak_masukan_2,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_3 - $pajak_masukan_3,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_3 - $akumulasi_pajak_masukan_3,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_4 - $pajak_masukan_4,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_4 - $akumulasi_pajak_masukan_4,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_5 - $pajak_masukan_5,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_5 - $akumulasi_pajak_masukan_5,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($pajak_keluaran_6 - $pajak_masukan_6,0,',','.');?></th>
+				<th align="right" class="table-border-atas-tengah"><?php echo number_format($akumulasi_pajak_keluaran_6 - $akumulasi_pajak_masukan_6,0,',','.');?></th>
+				<th align="right" class="table-border-atas-kanan"><?php echo number_format(($total_rap_2022_pajak_keluaran - $total_pajak_keluaran_6) - ($total_rap_2022_pajak_masukan - $total_pajak_masukan_6),0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" rowspan="9" style="vertical-align:middle" class="table-border-noborder-kiri"><b>5</b></th>
@@ -1817,6 +1816,44 @@
 				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
+				<th align="center" class="table-border-noborder-kiri"></th>
+				<th align="left" class="table-border-noborder-tengah">&nbsp;&nbsp;DPP</th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($piutang_now_dpp,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-noborder-kiri"></th>
+				<th align="left" class="table-border-noborder-tengah">&nbsp;&nbsp;PPN</th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($piutang_now_ppn,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
 				<th align="center" class="table-border-noborder-kiri"><b>7</b></th>
 				<th align="left" class="table-border-noborder-tengah"><b><u>HUTANG</u></b></th>
 				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($total_rap_2022_hutang,0,',','.');?></th>
@@ -1833,6 +1870,44 @@
 				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_hutang_5,0,',','.');?></th>
 				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($hutang_6,0,',','.');?></th>
 				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($akumulasi_hutang_6,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-noborder-kiri"></th>
+				<th align="left" class="table-border-noborder-tengah">&nbsp;&nbsp;DPP</th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($hutang_now_dpp,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-noborder-kiri"></th>
+				<th align="left" class="table-border-noborder-tengah">&nbsp;&nbsp;PPN</th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format($hutang_now_ppn,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" class="table-border-noborder-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-noborder-kanan"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
