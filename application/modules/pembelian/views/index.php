@@ -558,11 +558,6 @@
 
                                 <div role="tabpanel" class="tab-pane" id="verifikasi">
                                         <div class="table-responsive">
-                                            <div class="col-sm-3">
-                                                    <input type="text" id="filter_date_verifikasi" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
-                                            </div>
-                                            <br />
-                                            <br />
                                             <table class="table table-striped table-hover" id="table-verifikasi" style="width:100%;">
                                                 <thead>
                                                     <tr>
