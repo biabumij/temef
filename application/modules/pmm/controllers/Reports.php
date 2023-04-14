@@ -2842,7 +2842,6 @@ class Reports extends CI_Controller {
 			$total_rap_2022_penerimaan_pinjaman = 1300000000;
 			$total_rap_2022_pengembalian_pinjaman = 1300000000;
 			$total_rap_2022_pinjaman_dana = 0;
-			$total_rap_2022_pengembalian_pinjaman_dana = 0;
 			$total_rap_2022_piutang = 0;
 			$total_rap_2022_hutang = 0;
 			?>
@@ -3015,14 +3014,8 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$piutang_now = $penerimaan_piutang_now['total'] - $pembayaran_piutang_now['total'];
 
-			$pembayaran_piutang_ppn_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran pm')
-			->where("pm.memo = 'PPN'")
-			->where("pm.tanggal_pembayaran <= '$last_opname'")
-			->get()->row_array();
-
-			$piutang_now_dpp = $piutang_now;
-			$piutang_now_ppn = $ppn_masukan_now['total'] - $pembayaran_piutang_ppn_now['total'];
+			$piutang_now_dpp = $penjualan_now['total'] - $termin_now['total'];
+			$piutang_now_ppn = $ppn_keluaran_now['total'] - $ppn_keluar_now['total'];
 			$piutang_now = $piutang_now_dpp + $piutang_now_ppn;
 
 			//HUTANG NOW
@@ -3040,14 +3033,15 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$hutang_now = $penerimaan_hutang_now['total'] - $pembayaran_hutang_now['total'];
 
-			$pembayaran_hutang_ppn_now = $this->db->select('SUM(pm.total) as total')
-			->from('pmm_pembayaran_penagihan_pembelian pm')
-			->where("pm.memo = 'PPN'")
-			->where("pm.tanggal_pembayaran <= '$last_opname'")
+			$akumulasi_penerimaan_bahan = $this->db->select('SUM(prm.display_price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left')
+			->where("ppo.status in ('PUBLISH','CLOSED')")
+			->where("prm.date_receipt <= '$last_opname'")
 			->get()->row_array();
 
-			$hutang_now_dpp = $hutang_now;
-			$hutang_now_ppn = $ppn_keluaran_now['total'] - $pembayaran_hutang_ppn_now['total'];
+			$hutang_now_dpp = (($akumulasi_penerimaan_bahan['total'] + $total_insentif_tm_now + $total_insentif_wl_now) - ($pembayaran_bahan_now + $pembayaran_alat_now));
+			$hutang_now_ppn = $ppn_masukan_now['total'] - $ppn_keluar_now['total'];
 			$hutang_now = $hutang_now_dpp + $hutang_now_ppn;
 
 			//MOS NOW
@@ -3833,24 +3827,6 @@ class Reports extends CI_Controller {
 			$akumulasi_pinjaman_dana_5 = $akumulasi_pinjaman_dana_4 + $pinjaman_dana_5;
 			$akumulasi_pinjaman_dana_6 = $akumulasi_pinjaman_dana_5 + $pinjaman_dana_6;
 
-			//PENGEMBALIAN PINJAMAN DANA
-			$pengembalian_pinjaman_dana_now = $pengembalian_pinjaman_dana_now['total'];
-			$pengembalian_pinjaman_dana_1 = $pengembalian_pinjaman_dana_1['total'];
-			$pengembalian_pinjaman_dana_2 = $pengembalian_pinjaman_dana_2['total'];
-			$pengembalian_pinjaman_dana_3 = $pengembalian_pinjaman_dana_3['total'];
-			$pengembalian_pinjaman_dana_4 = $pengembalian_pinjaman_dana_4['total'];
-			$pengembalian_pinjaman_dana_5 = $pengembalian_pinjaman_dana_5['total'];
-			$pengembalian_pinjaman_dana_6 = $pengembalian_pinjaman_dana_6['total'];
-			$total_pengembalian_pinjaman_dana = $pengembalian_pinjaman_dana_now + $pengembalian_pinjaman_dana_1 + $pengembalian_pinjaman_dana_2 + $pengembalian_pinjaman_dana_3 + $pengembalian_pinjaman_dana_4 + $pengembalian_pinjaman_dana_5 + $pengembalian_pinjaman_dana_6;
-
-			//AKUMULASI PENGEMBALIAN PINJAMAN DANA
-			$akumulasi_pengembalian_pinjaman_dana_1 = $pengembalian_pinjaman_dana_now + $pengembalian_pinjaman_dana_1;
-			$akumulasi_pengembalian_pinjaman_dana_2 = $akumulasi_pengembalian_pinjaman_dana_1 + $pengembalian_pinjaman_dana_2;
-			$akumulasi_pengembalian_pinjaman_dana_3 = $akumulasi_pengembalian_pinjaman_dana_2 + $pengembalian_pinjaman_dana_3;
-			$akumulasi_pengembalian_pinjaman_dana_4 = $akumulasi_pengembalian_pinjaman_dana_3 + $pengembalian_pinjaman_dana_4;
-			$akumulasi_pengembalian_pinjaman_dana_5 = $akumulasi_pengembalian_pinjaman_dana_4 + $pengembalian_pinjaman_dana_5;
-			$akumulasi_pengembalian_pinjaman_dana_6 = $akumulasi_pengembalian_pinjaman_dana_5 + $pengembalian_pinjaman_dana_6;
-
 			//PIUTANG
 			$piutang_now = $piutang_now;
 			$piutang_1 = 0;
@@ -3889,7 +3865,7 @@ class Reports extends CI_Controller {
 
 			//POSISI DANA
 			$posisi_dana_rap = ($total_rap_nilai_2022 + $ppn_keluaran_rap) - $jumlah_pengeluaran - ($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan) - ($total_rap_2022_penerimaan_pinjaman - $total_rap_2022_pengembalian_pinjaman);
-			$posisi_dana_now = ($penerimaan_pinjaman_now + $jumlah_penerimaan_now) - $jumlah_pengeluaran_now - $pengembalian_pinjaman_now - ($penerimaan_pinjaman_now - $pengembalian_pinjaman_now) - ($pinjaman_dana_now - $pengembalian_pinjaman_dana_now) + $piutang_now - $hutang_now + $mos_now;
+			$posisi_dana_now = ($jumlah_penerimaan_now - $jumlah_pengeluaran_now - ($pajak_keluaran_now - $pajak_masukan_now) - $pengembalian_pinjaman_now - $pinjaman_dana_now - $hutang_now + ($mos_now + $piutang_now));
 			$posisi_dana_1 = $jumlah_penerimaan_1 - $jumlah_pengeluaran_1 - ($pajak_keluaran_1 - $pajak_masukan_1) - ($penerimaan_pinjaman_1 - $pengembalian_pinjaman_1) - ($pinjaman_dana_1 - $pengembalian_pinjaman_dana_1);
 			$posisi_dana_2 = $jumlah_penerimaan_2 - $jumlah_pengeluaran_2 - ($pajak_keluaran_2 - $pajak_masukan_2) - ($penerimaan_pinjaman_2 - $pengembalian_pinjaman_2) - ($pinjaman_dana_2 - $pengembalian_pinjaman_dana_2);
 			$posisi_dana_3 = $jumlah_penerimaan_3 - $jumlah_pengeluaran_3 - ($pajak_keluaran_3 - $pajak_masukan_3) - ($penerimaan_pinjaman_3 - $pengembalian_pinjaman_3) - ($pinjaman_dana_3 - $pengembalian_pinjaman_dana_3);
@@ -4193,7 +4169,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(($total_rap_2022_pajak_keluaran - $total_pajak_keluaran_6) - ($total_rap_2022_pajak_masukan - $total_pajak_masukan_6),0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
-				<th class="text-center" rowspan="9" style="vertical-align:middle">5</th>
+				<th class="text-center" rowspan="8" style="vertical-align:middle">5</th>
 				<th class="text-left" colspan="16"><u>PINJAMAN</u></th>
 			</tr>
 			<tr class="table-active3-csf">
@@ -4274,41 +4250,23 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_6,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 			</tr>
-			<tr class="table-active3-csf">
-				<th class="text-left">&nbsp;&nbsp;2. Pengembalian Pinjaman</th>
-				<th class="text-right"><?php echo number_format($total_rap_2022_pengembalian_pinjaman_dana,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pengembalian_pinjaman_dana_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pengembalian_pinjaman_dana_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
-			</tr>
 			<tr class="table-active2-csf">
 				<th class="text-left">JUMLAH PEMAKAIAN DANA</th>
-				<th class="text-right"><?php echo number_format($total_rap_2022_pinjaman_dana - $total_rap_2022_pengembalian_pinjaman_dana,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_now - $pengembalian_pinjaman_dana_now,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_1 - $pengembalian_pinjaman_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_1 - $akumulasi_pengembalian_pinjaman_dana_1,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_2 - $pengembalian_pinjaman_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_2 - $akumulasi_pengembalian_pinjaman_dana_2,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_3 - $pengembalian_pinjaman_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_3 - $akumulasi_pengembalian_pinjaman_dana_3,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_4 - $pengembalian_pinjaman_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_4 - $akumulasi_pengembalian_pinjaman_dana_4,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_5 - $pengembalian_pinjaman_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_5 - $akumulasi_pengembalian_pinjaman_dana_5,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($pinjaman_dana_6 - $pengembalian_pinjaman_dana_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_6 - $akumulasi_pengembalian_pinjaman_dana_6,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format(($total_rap_2022_pinjaman_dana - $total_pinjaman_dana_6) - ($total_rap_2022_pengembalian_pinjaman_dana - $total_pengembalian_pinjaman_dana_6),0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_now,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_1,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_3,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_4,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_5,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pinjaman_dana_6,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($akumulasi_pinjaman_dana_6,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format(($total_rap_2022_pinjaman_dana - $total_pinjaman_dana_6),0,',','.');?></th>
 			</tr>
 			<tr class="table-active3-csf">
 				<th class="text-center">6</th>
