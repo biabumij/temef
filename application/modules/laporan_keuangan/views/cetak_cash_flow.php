@@ -870,7 +870,7 @@
 			?>
 
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2" class="table-border-pojok-kiri" style="background-color:#55ffff;">&nbsp; <br />NO.</th>
+				<th width="2%" align="center" rowspan="2" class="table-border-pojok-kiri" style="background-color:#55ffff;">&nbsp; <br />NO.</th>
 				<th width="10%" align="center" rowspan="2" class="table-border-pojok-tengah" style="background-color:#55ffff;">&nbsp; <br />URAIAN</th>
 				<th width="6%" align="center" rowspan="2" class="table-border-pojok-tengah" style="background-color:#55ffff;">&nbsp; <br />RAP</th>
 				<th width="6%" align="center" rowspan="2" class="table-border-pojok-tengah" style="background-color:#8fce00;"><div style="text-transform:uppercase;">REALISASI SD. <?php echo $last_opname=date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
