@@ -140,6 +140,32 @@
 	</head>
 	<body>
 		<?php
+		//NOW
+		$stock_opname = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+		$last_opname =  date('Y-m-d', strtotime($stock_opname['date']));
+		?>
+		<div align="center" style="display: block;font-weight: bold;font-size: 12px;">CASH FLOW</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">BENDUNGAN TEMEF PAKET 3</div>
+		<br />
+		<?php
+		$data = array();
+		
+		$arr_date = $this->input->get('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date1 = '';
+		$date2 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		
+		?>
+		
+		<table width="98%" border="0" cellpadding="3" border="0">
+		
+			<?php
 			//RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
