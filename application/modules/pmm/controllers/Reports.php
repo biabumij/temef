@@ -3501,10 +3501,10 @@ class Reports extends CI_Controller {
 			?>
 
 			<tr class="table-active4-csf">
-				<th class="text-center" rowspan="2" style="vertical-align:middle" width="5%">NO.</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">RAP</th>
-				<th class="text-center" rowspan="2" style="text-transform:uppercase;vertical-align:middle;">REALISASI SD. <?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle; background-color:#55ffff;" width="5%">NO.</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle; background-color:#55ffff;">URAIAN</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle; background-color:#55ffff;">RAP</th>
+				<th class="text-center" rowspan="2" style="text-transform:uppercase;vertical-align:middle;; background-color:#8fce00;">REALISASI SD. <?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></th>
 				<!--<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date("F");?></th>
 				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_1_awal = date("F");?></th>-->
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_1_awal = date('F', strtotime('+1 days +1 months', strtotime($last_opname)));?></th>
@@ -3519,7 +3519,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_5_awal = date('F', strtotime('+1 days', strtotime($date_4_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_6_awal = date('F', strtotime('+1 days', strtotime($date_5_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;">SD. <?php echo $date_6_awal = date('F', strtotime('+1 days', strtotime($date_5_akhir)));?></th>
-				<th class="text-center" rowspan="2" style="vertical-align:middle">SISA</th>
+				<th class="text-center" rowspan="2" style="vertical-align:middle; background-color:#55ffff;">SISA</th>
 	        </tr>
 			<tr class="table-active4-csf">
 				<th class="text-center"><?php echo $date_1_awal = date('Y');?></th>
