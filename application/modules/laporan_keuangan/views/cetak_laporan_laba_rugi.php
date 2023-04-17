@@ -102,7 +102,7 @@
 		
 		<table width="98%" border="0" cellpadding="3">
 		
-			<?php
+		<?php
 			//PENJUALAN
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
@@ -235,7 +235,7 @@
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
-			$akumulasi_bbm_2 = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$akumulasi_bbm_2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar_2) as total_nilai_keluar_2')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date3' and '$date2')")
 			->get()->result_array();
@@ -262,7 +262,7 @@
 			$insentif_wl_2 = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 220")
+			->where("pdb.akun = 221")
 			->where("status = 'PAID'")
 			->where("(tanggal_transaksi between '$date3' and '$date2')")
 			->get()->row_array();
