@@ -1989,7 +1989,6 @@ class Reports extends CI_Controller {
 	        </tr>
 
 			<?php
-
 			//PENJUALAN
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
@@ -2273,7 +2272,6 @@ class Reports extends CI_Controller {
 			$laba_usaha_2 = $laba_kotor_2;
 
 			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_usaha_2 / $total_penjualan_all_2)  * 100:0;
-
 	        ?>
 
 			<tr class="table-active">
@@ -8806,7 +8804,7 @@ class Reports extends CI_Controller {
 
 			$total_price_exc = 0;
 			foreach ($produk_exc as $x){
-				$total_price_exc += $x['qty'] * $x['price'];
+				$total_price_exc += $x['price'];
 			}
 
 			$produk_dmp_4m3 = $this->db->select('
@@ -8824,7 +8822,7 @@ class Reports extends CI_Controller {
 
 			$total_price_dmp_4m3 = 0;
 			foreach ($produk_dmp_4m3 as $x){
-				$total_price_dmp_4m3 += $x['qty'] * $x['price'];
+				$total_price_dmp_4m3 += $x['price'];
 			}
 
 			$produk_dmp_10m3 = $this->db->select('
@@ -8842,7 +8840,7 @@ class Reports extends CI_Controller {
 
 			$total_price_dmp_10m3 = 0;
 			foreach ($produk_dmp_10m3 as $x){
-				$total_price_dmp_10m3 += $x['qty'] * $x['price'];
+				$total_price_dmp_10m3 += $x['price'];
 			}
 
 			$produk_sc = $this->db->select('
@@ -8860,7 +8858,7 @@ class Reports extends CI_Controller {
 
 			$total_price_sc = 0;
 			foreach ($produk_sc as $x){
-				$total_price_sc += $x['qty'] * $x['price'];
+				$total_price_sc += $x['price'];
 			}
 
 			$produk_gns = $this->db->select('
@@ -8878,7 +8876,7 @@ class Reports extends CI_Controller {
 
 			$total_price_gns = 0;
 			foreach ($produk_gns as $x){
-				$total_price_gns += $x['qty'] * $x['price'];
+				$total_price_gns += $x['price'];
 			}
 
 			$produk_wl_sc = $this->db->select('
@@ -8896,10 +8894,10 @@ class Reports extends CI_Controller {
 
 			$total_price_wl_sc = 0;
 			foreach ($produk_wl_sc as $x){
-				$total_price_wl_sc += $x['qty'] * $x['price'];
+				$total_price_wl_sc += $x['price'];
 			}
 
-			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_nilai_bbm + $total_insentif_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
+			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_pembelian_tf + $total_nilai_bbm + $total_insentif_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			
 			<tr class="table-active4">
