@@ -223,7 +223,109 @@
 			->get()->row_array();
 			$total_insentif_wl = $insentif_wl['total'];
 
-			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $total_insentif_wl;
+			$produk_exc = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_exc = 0;
+			foreach ($produk_exc as $x){
+				$total_price_exc += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_4m3 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '6'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_4m3 = 0;
+			foreach ($produk_dmp_4m3 as $x){
+				$total_price_dmp_4m3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_10m3 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '7'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_10m3 = 0;
+			foreach ($produk_dmp_10m3 as $x){
+				$total_price_dmp_10m3 += $x['qty'] * $x['price'];
+			}
+
+			$produk_sc = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '8'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_sc = 0;
+			foreach ($produk_sc as $x){
+				$total_price_sc += $x['qty'] * $x['price'];
+			}
+
+			$produk_gns = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '9'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_gns = 0;
+			foreach ($produk_gns as $x){
+				$total_price_gns += $x['qty'] * $x['price'];
+			}
+
+			$produk_wl_sc = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.kategori_alat = '10'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_wl_sc = 0;
+			foreach ($produk_wl_sc as $x){
+				$total_price_wl_sc += $x['qty'] * $x['price'];
+			}
+
+			$alat = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $total_insentif_wl + $total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc;
 			//END ALAT
 
 			//ALAT_2
@@ -269,7 +371,109 @@
 			->get()->row_array();
 			$total_insentif_wl_2 = $insentif_wl_2['total'];
 
-			$alat_2 = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2 + $total_insentif_wl_2;
+			$produk_exc_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '5'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_exc_2 = 0;
+			foreach ($produk_exc_2 as $x){
+				$total_price_exc_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_4m3_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '6'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_4m3_2 = 0;
+			foreach ($produk_dmp_4m3_2 as $x){
+				$total_price_dmp_4m3_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_dmp_10m3_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '7'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_dmp_10m3_2 = 0;
+			foreach ($produk_dmp_10m3_2 as $x){
+				$total_price_dmp_10m3_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_sc_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '8'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_sc_2 = 0;
+			foreach ($produk_sc_2 as $x){
+				$total_price_sc_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_gns_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '9'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_gns_2 = 0;
+			foreach ($produk_gns_2 as $x){
+				$total_price_gns_2 += $x['qty'] * $x['price'];
+			}
+
+			$produk_wl_sc_2 = $this->db->select('SUM(prm.price) as total')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date3' and '$date2'")
+			->where("p.kategori_alat = '10'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.material_id')
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+
+			$total_price_wl_sc_2 = 0;
+			foreach ($produk_wl_sc_2 as $x){
+				$total_price_wl_sc_2 += $x['qty'] * $x['price'];
+			}
+
+			$alat = $nilai_alat_2['nilai'] + $total_akumulasi_bbm_2 + $total_insentif_tm_2 + $total_insentif_wl_2 + $total_price_exc_2 + $total_price_dmp_4m3_2 + $total_price_dmp_10m3_2 + $total_price_sc_2 + $total_price_gns_2 + $total_price_wl_sc_2;
 			//END_ALAT_2
 
 			//OVERHEAD
