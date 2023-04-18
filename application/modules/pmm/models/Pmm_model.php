@@ -3291,7 +3291,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaSemen()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3307,7 +3307,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaPasir()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3323,7 +3323,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaBatu1020()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3339,7 +3339,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaBatu2030()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3355,7 +3355,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaSolar()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3371,7 +3371,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaTransferSemen()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3387,7 +3387,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaBP()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3403,7 +3403,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaTM()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3419,7 +3419,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaWL()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3435,7 +3435,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaEXC()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3451,7 +3451,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaDmp4M3()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3467,7 +3467,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaDmp10M3()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3483,7 +3483,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaSC()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3499,7 +3499,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaGNS()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
@@ -3515,7 +3515,7 @@ class Pmm_model extends CI_Model {
     function getMatByPenawaranRencanaKerjaWLSC()
     {
 
-        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, price, nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
+        $this->db->select('pp.id as penawaran_id, p.nama as nama, pp.supplier_id as supplier_id, pp.jenis_pembelian, pm.nama_produk as material_name, ppd.measure,ppd.material_id, ppd.id, pms.measure_name, ppd.price, pp.nomor_penawaran, pp.id, ppd.tax_id, ppd.tax, ppd.pajak_id, ppd.pajak');
         $this->db->join('pmm_penawaran_pembelian pp','ppd.penawaran_pembelian_id = pp.id','left');
         $this->db->join('produk pm','ppd.material_id = pm.id','left');
         $this->db->join('penerima p','pp.supplier_id = p.id','left');
