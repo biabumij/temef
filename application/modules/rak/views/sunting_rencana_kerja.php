@@ -350,7 +350,7 @@
 
                                                         foreach ($bp as $key => $bp) {
                                                             ?>
-                                                            <option value="<?php echo $bp['penawaran_id'];?>" data-supplier_id="<?php echo $bp['supplier_id'];?>" data-measure="<?php echo $bp['measure'];?>" data-price="<?php echo $bp['price'];?>" data-tax_id="<?php echo $bp['tax_id'];?>" data-tax="<?php echo $bp['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $bp['penawaran_id'];?>"><?php echo $bp['nama'];?> - <?php echo $bp['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $bp['penawaran_id'];?>" data-supplier_id="<?php echo $bp['supplier_id'];?>" data-measure="<?php echo $bp['measure'];?>" data-price="<?php echo $bp['price'];?>" data-tax_id="<?php echo $bp['tax_id'];?>" data-tax="<?php echo $bp['tax'];?>" data-pajak_id="<?php echo $bp['pajak_id'];?>" data-pajak="<?php echo $bp['pajak'];?>" data-penawaran_id="<?php echo $bp['penawaran_id'];?>"><?php echo $bp['nama'];?> - <?php echo $bp['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -371,7 +371,7 @@
 
                                                         foreach ($bp_2 as $key => $bp_2) {
                                                             ?>
-                                                            <option value="<?php echo $bp_2['penawaran_id'];?>" data-supplier_id="<?php echo $bp_2['supplier_id'];?>" data-measure="<?php echo $bp_2['measure'];?>" data-price="<?php echo $bp_2['price'];?>" data-tax_id="<?php echo $bp_2['tax_id'];?>" data-tax="<?php echo $bp_2['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $bp_2['penawaran_id'];?>"><?php echo $bp_2['nama'];?> - <?php echo $bp_2['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $bp_2['penawaran_id'];?>" data-supplier_id="<?php echo $bp_2['supplier_id'];?>" data-measure="<?php echo $bp_2['measure'];?>" data-price="<?php echo $bp_2['price'];?>" data-tax_id="<?php echo $bp_2['tax_id'];?>" data-tax="<?php echo $bp_2['tax'];?>" data-pajak_id="<?php echo $bp_2['pajak_id'];?>" data-pajak="<?php echo $bp_2['pajak'];?>" data-penawaran_id="<?php echo $bp_2['penawaran_id'];?>"><?php echo $bp_2['nama'];?> - <?php echo $bp_2['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -392,7 +392,7 @@
 
                                                         foreach ($bp_3 as $key => $bp_3) {
                                                             ?>
-                                                            <option value="<?php echo $bp_3['penawaran_id'];?>" data-supplier_id="<?php echo $bp_3['supplier_id'];?>" data-measure="<?php echo $bp_3['measure'];?>" data-price="<?php echo $bp_3['price'];?>" data-tax_id="<?php echo $bp_3['tax_id'];?>" data-tax="<?php echo $bp_3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $bp_3['penawaran_id'];?>"><?php echo $bp_3['nama'];?> - <?php echo $bp_3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $bp_3['penawaran_id'];?>" data-supplier_id="<?php echo $bp_3['supplier_id'];?>" data-measure="<?php echo $bp_3['measure'];?>" data-price="<?php echo $bp_3['price'];?>" data-tax_id="<?php echo $bp_3['tax_id'];?>" data-tax="<?php echo $bp_3['tax'];?>" data-pajak_id="<?php echo $bp_3['pajak_id'];?>" data-pajak="<?php echo $bp_3['pajak'];?>" data-penawaran_id="<?php echo $bp_3['penawaran_id'];?>"><?php echo $bp_3['nama'];?> - <?php echo $bp_3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -415,7 +415,7 @@
 
                                                         foreach ($tm as $key => $tm) {
                                                             ?>
-                                                            <option value="<?php echo $tm['penawaran_id'];?>" data-supplier_id="<?php echo $tm['supplier_id'];?>" data-measure="<?php echo $tm['measure'];?>" data-price="<?php echo $tm['price'];?>" data-tax_id="<?php echo $tm['tax_id'];?>" data-tax="<?php echo $tm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tm['penawaran_id'];?>"><?php echo $tm['nama'];?> - <?php echo $tm['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tm['penawaran_id'];?>" data-supplier_id="<?php echo $tm['supplier_id'];?>" data-measure="<?php echo $tm['measure'];?>" data-price="<?php echo $tm['price'];?>" data-tax_id="<?php echo $tm['tax_id'];?>" data-tax="<?php echo $tm['tax'];?>" data-pajak_id="<?php echo $tm['pajak_id'];?>" data-pajak="<?php echo $tm['pajak'];?>" data-penawaran_id="<?php echo $tm['penawaran_id'];?>"><?php echo $tm['nama'];?> - <?php echo $tm['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -436,7 +436,7 @@
 
                                                         foreach ($tm_2 as $key => $tm_2) {
                                                             ?>
-                                                            <option value="<?php echo $tm_2['penawaran_id'];?>" data-supplier_id="<?php echo $tm_2['supplier_id'];?>" data-measure="<?php echo $tm_2['measure'];?>" data-price="<?php echo $tm_2['price'];?>" data-tax_id="<?php echo $tm_2['tax_id'];?>" data-tax="<?php echo $tm_2['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tm_2['penawaran_id'];?>"><?php echo $tm_2['nama'];?> - <?php echo $tm_2['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tm_2['penawaran_id'];?>" data-supplier_id="<?php echo $tm_2['supplier_id'];?>" data-measure="<?php echo $tm_2['measure'];?>" data-price="<?php echo $tm_2['price'];?>" data-tax_id="<?php echo $tm_2['tax_id'];?>" data-tax="<?php echo $tm_2['tax'];?>" data-pajak_id="<?php echo $tm_2['pajak_id'];?>" data-pajak="<?php echo $tm_2['pajak'];?>" data-penawaran_id="<?php echo $tm_2['penawaran_id'];?>"><?php echo $tm_2['nama'];?> - <?php echo $tm_2['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -457,7 +457,7 @@
 
                                                         foreach ($tm_3 as $key => $tm_3) {
                                                             ?>
-                                                            <option value="<?php echo $tm_3['penawaran_id'];?>" data-supplier_id="<?php echo $tm_3['supplier_id'];?>" data-measure="<?php echo $tm_3['measure'];?>" data-price="<?php echo $tm_3['price'];?>" data-tax_id="<?php echo $tm_3['tax_id'];?>" data-tax="<?php echo $tm_3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tm_3['penawaran_id'];?>"><?php echo $tm_3['nama'];?> - <?php echo $tm_3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tm_3['penawaran_id'];?>" data-supplier_id="<?php echo $tm_3['supplier_id'];?>" data-measure="<?php echo $tm_3['measure'];?>" data-price="<?php echo $tm_3['price'];?>" data-tax_id="<?php echo $tm_3['tax_id'];?>" data-tax="<?php echo $tm_3['tax'];?>" data-pajak_id="<?php echo $tm_3['pajak_id'];?>" data-pajak="<?php echo $tm_3['pajak'];?>" data-penawaran_id="<?php echo $tm_3['penawaran_id'];?>"><?php echo $tm_3['nama'];?> - <?php echo $tm_3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -478,7 +478,7 @@
 
                                                         foreach ($tm_4 as $key => $tm_4) {
                                                             ?>
-                                                            <option value="<?php echo $tm_4['penawaran_id'];?>" data-supplier_id="<?php echo $tm_4['supplier_id'];?>" data-measure="<?php echo $tm_4['measure'];?>" data-price="<?php echo $tm_4['price'];?>" data-tax_id="<?php echo $tm_4['tax_id'];?>" data-tax="<?php echo $tm_4['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tm_4['penawaran_id'];?>"><?php echo $tm_4['nama'];?> - <?php echo $tm_4['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tm_4['penawaran_id'];?>" data-supplier_id="<?php echo $tm_4['supplier_id'];?>" data-measure="<?php echo $tm_4['measure'];?>" data-price="<?php echo $tm_4['price'];?>" data-tax_id="<?php echo $tm_4['tax_id'];?>" data-tax="<?php echo $tm_4['tax'];?>" data-pajak_id="<?php echo $tm_4['pajak_id'];?>" data-pajak="<?php echo $tm_4['pajak'];?>" data-penawaran_id="<?php echo $tm_4['penawaran_id'];?>"><?php echo $tm_4['nama'];?> - <?php echo $tm_4['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -502,7 +502,7 @@
 
                                                         foreach ($wl as $key => $wl) {
                                                             ?>
-                                                            <option value="<?php echo $wl['penawaran_id'];?>" data-supplier_id="<?php echo $wl['supplier_id'];?>" data-measure="<?php echo $wl['measure'];?>" data-price="<?php echo $wl['price'];?>" data-tax_id="<?php echo $wl['tax_id'];?>" data-tax="<?php echo $wl['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $wl['penawaran_id'];?>"><?php echo $wl['nama'];?> - <?php echo $wl['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $wl['penawaran_id'];?>" data-supplier_id="<?php echo $wl['supplier_id'];?>" data-measure="<?php echo $wl['measure'];?>" data-price="<?php echo $wl['price'];?>" data-tax_id="<?php echo $wl['tax_id'];?>" data-tax="<?php echo $wl['tax'];?>" data-pajak_id="<?php echo $wl['pajak_id'];?>" data-pajak="<?php echo $wl['pajak'];?>" data-penawaran_id="<?php echo $wl['penawaran_id'];?>"><?php echo $wl['nama'];?> - <?php echo $wl['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -523,7 +523,7 @@
 
                                                         foreach ($wl_2 as $key => $wl_2) {
                                                             ?>
-                                                            <option value="<?php echo $wl_2['penawaran_id'];?>" data-supplier_id="<?php echo $wl_2['supplier_id'];?>" data-measure="<?php echo $wl_2['measure'];?>" data-price="<?php echo $wl_2['price'];?>" data-tax_id="<?php echo $wl_2['tax_id'];?>" data-tax="<?php echo $wl_2['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $wl_2['penawaran_id'];?>"><?php echo $wl_2['nama'];?> - <?php echo $wl_2['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $wl_2['penawaran_id'];?>" data-supplier_id="<?php echo $wl_2['supplier_id'];?>" data-measure="<?php echo $wl_2['measure'];?>" data-price="<?php echo $wl_2['price'];?>" data-tax_id="<?php echo $wl_2['tax_id'];?>" data-tax="<?php echo $wl_2['tax'];?>" data-pajak_id="<?php echo $wl_2['pajak_id'];?>" data-pajak="<?php echo $wl_2['pajak'];?>" data-penawaran_id="<?php echo $wl_2['penawaran_id'];?>"><?php echo $wl_2['nama'];?> - <?php echo $wl_2['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -544,7 +544,7 @@
 
                                                         foreach ($wl_3 as $key => $wl_3) {
                                                             ?>
-                                                            <option value="<?php echo $wl_3['penawaran_id'];?>" data-supplier_id="<?php echo $wl_3['supplier_id'];?>" data-measure="<?php echo $wl_3['measure'];?>" data-price="<?php echo $wl_3['price'];?>" data-tax_id="<?php echo $wl_3['tax_id'];?>" data-tax="<?php echo $wl_3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $wl_3['penawaran_id'];?>"><?php echo $wl_3['nama'];?> - <?php echo $wl_3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $wl_3['penawaran_id'];?>" data-supplier_id="<?php echo $wl_3['supplier_id'];?>" data-measure="<?php echo $wl_3['measure'];?>" data-price="<?php echo $wl_3['price'];?>" data-tax_id="<?php echo $wl_3['tax_id'];?>" data-tax="<?php echo $wl_3['tax'];?>" data-pajak_id="<?php echo $wl_3['pajak_id'];?>" data-pajak="<?php echo $wl_3['pajak'];?>" data-penawaran_id="<?php echo $wl_3['penawaran_id'];?>"><?php echo $wl_3['nama'];?> - <?php echo $wl_3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -568,7 +568,7 @@
 
                                                         foreach ($tr as $key => $tr) {
                                                             ?>
-                                                            <option value="<?php echo $tr['penawaran_id'];?>" data-supplier_id="<?php echo $tr['supplier_id'];?>" data-measure="<?php echo $tr['measure'];?>" data-price="<?php echo $tr['price'];?>" data-tax_id="<?php echo $tr['tax_id'];?>" data-tax="<?php echo $tr['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tr['penawaran_id'];?>"><?php echo $tr['nama'];?> - <?php echo $tr['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tr['penawaran_id'];?>" data-supplier_id="<?php echo $tr['supplier_id'];?>" data-measure="<?php echo $tr['measure'];?>" data-price="<?php echo $tr['price'];?>" data-tax_id="<?php echo $tr['tax_id'];?>" data-tax="<?php echo $tr['tax'];?>" data-pajak_id="<?php echo $tr['pajak_id'];?>" data-pajak="<?php echo $tr['pajak'];?>" data-penawaran_id="<?php echo $tr['penawaran_id'];?>"><?php echo $tr['nama'];?> - <?php echo $tr['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -589,7 +589,7 @@
 
                                                         foreach ($tr_2 as $key => $tr_2) {
                                                             ?>
-                                                            <option value="<?php echo $tr_2['penawaran_id'];?>" data-supplier_id="<?php echo $tr_2['supplier_id'];?>" data-measure="<?php echo $tr_2['measure'];?>" data-price="<?php echo $tr_2['price'];?>" data-tax_id="<?php echo $tr_2['tax_id'];?>" data-tax="<?php echo $tr_2['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tr_2['penawaran_id'];?>"><?php echo $tr_2['nama'];?> - <?php echo $tr_2['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tr_2['penawaran_id'];?>" data-supplier_id="<?php echo $tr_2['supplier_id'];?>" data-measure="<?php echo $tr_2['measure'];?>" data-price="<?php echo $tr_2['price'];?>" data-tax_id="<?php echo $tr_2['tax_id'];?>" data-tax="<?php echo $tr_2['tax'];?>" data-pajak_id="<?php echo $tr_2['pajak_id'];?>" data-pajak="<?php echo $tr_2['pajak'];?>" data-penawaran_id="<?php echo $tr_2['penawaran_id'];?>"><?php echo $tr_2['nama'];?> - <?php echo $tr_2['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -610,7 +610,7 @@
 
                                                         foreach ($tr_3 as $key => $tr_3) {
                                                             ?>
-                                                            <option value="<?php echo $tr_3['penawaran_id'];?>" data-supplier_id="<?php echo $tr_3['supplier_id'];?>" data-measure="<?php echo $tr_3['measure'];?>" data-price="<?php echo $tr_3['price'];?>" data-tax_id="<?php echo $tr_3['tax_id'];?>" data-tax="<?php echo $tr_3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $tr_3['penawaran_id'];?>"><?php echo $tr_3['nama'];?> - <?php echo $tr_3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $tr_3['penawaran_id'];?>" data-supplier_id="<?php echo $tr_3['supplier_id'];?>" data-measure="<?php echo $tr_3['measure'];?>" data-price="<?php echo $tr_3['price'];?>" data-tax_id="<?php echo $tr_3['tax_id'];?>" data-tax="<?php echo $tr_3['tax'];?>" data-pajak_id="<?php echo $tr_3['pajak_id'];?>" data-pajak="<?php echo $tr_3['pajak'];?>" data-penawaran_id="<?php echo $tr_3['penawaran_id'];?>"><?php echo $tr_3['nama'];?> - <?php echo $tr_3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -637,7 +637,7 @@
 
                                                         foreach ($exc as $key => $exc) {
                                                             ?>
-                                                            <option value="<?php echo $exc['penawaran_id'];?>" data-supplier_id="<?php echo $exc['supplier_id'];?>" data-measure="<?php echo $exc['measure'];?>" data-price="<?php echo $exc['price'];?>" data-tax_id="<?php echo $exc['tax_id'];?>" data-tax="<?php echo $exc['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $exc['penawaran_id'];?>"><?php echo $exc['nama'];?> - <?php echo $exc['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $exc['penawaran_id'];?>" data-supplier_id="<?php echo $exc['supplier_id'];?>" data-measure="<?php echo $exc['measure'];?>" data-price="<?php echo $exc['price'];?>" data-tax_id="<?php echo $exc['tax_id'];?>" data-tax="<?php echo $exc['tax'];?>" data-pajak_id="<?php echo $exc['pajak_id'];?>" data-pajak="<?php echo $exc['pajak'];?>" data-penawaran_id="<?php echo $exc['penawaran_id'];?>"><?php echo $exc['nama'];?> - <?php echo $exc['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -660,7 +660,7 @@
 
                                                         foreach ($dmp_4m3 as $key => $dmp_4m3) {
                                                             ?>
-                                                            <option value="<?php echo $dmp_4m3['penawaran_id'];?>" data-supplier_id="<?php echo $dmp_4m3['supplier_id'];?>" data-measure="<?php echo $dmp_4m3['measure'];?>" data-price="<?php echo $dmp_4m3['price'];?>" data-tax_id="<?php echo $dmp_4m3['tax_id'];?>" data-tax="<?php echo $dmp_4m3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $dmp_4m3['penawaran_id'];?>"><?php echo $dmp_4m3['nama'];?> - <?php echo $dmp_4m3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $dmp_4m3['penawaran_id'];?>" data-supplier_id="<?php echo $dmp_4m3['supplier_id'];?>" data-measure="<?php echo $dmp_4m3['measure'];?>" data-price="<?php echo $dmp_4m3['price'];?>" data-tax_id="<?php echo $dmp_4m3['tax_id'];?>" data-tax="<?php echo $dmp_4m3['tax'];?>" data-pajak_id="<?php echo $dmp_4m3['pajak_id'];?>" data-pajak="<?php echo $dmp_4m3['pajak'];?>" data-penawaran_id="<?php echo $dmp_4m3['penawaran_id'];?>"><?php echo $dmp_4m3['nama'];?> - <?php echo $dmp_4m3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -683,7 +683,7 @@
 
                                                         foreach ($dmp_10m3 as $key => $dmp_10m3) {
                                                             ?>
-                                                            <option value="<?php echo $dmp_10m3['penawaran_id'];?>" data-supplier_id="<?php echo $dmp_10m3['supplier_id'];?>" data-measure="<?php echo $dmp_10m3['measure'];?>" data-price="<?php echo $dmp_10m3['price'];?>" data-tax_id="<?php echo $dmp_10m3['tax_id'];?>" data-tax="<?php echo $dmp_10m3['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $dmp_10m3['penawaran_id'];?>"><?php echo $dmp_10m3['nama'];?> - <?php echo $dmp_10m3['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $dmp_10m3['penawaran_id'];?>" data-supplier_id="<?php echo $dmp_10m3['supplier_id'];?>" data-measure="<?php echo $dmp_10m3['measure'];?>" data-price="<?php echo $dmp_10m3['price'];?>" data-tax_id="<?php echo $dmp_10m3['tax_id'];?>" data-tax="<?php echo $dmp_10m3['tax'];?>" data-pajak_id="<?php echo $dmp_10m3['pajak_id'];?>" data-pajak="<?php echo $dmp_10m3['pajak'];?>" data-penawaran_id="<?php echo $dmp_10m3['penawaran_id'];?>"><?php echo $dmp_10m3['nama'];?> - <?php echo $dmp_10m3['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -706,7 +706,7 @@
 
                                                         foreach ($sc as $key => $sc) {
                                                             ?>
-                                                            <option value="<?php echo $sc['penawaran_id'];?>" data-supplier_id="<?php echo $sc['supplier_id'];?>" data-measure="<?php echo $sc['measure'];?>" data-price="<?php echo $sc['price'];?>" data-tax_id="<?php echo $sc['tax_id'];?>" data-tax="<?php echo $sc['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sc['penawaran_id'];?>"><?php echo $sc['nama'];?> - <?php echo $sc['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $sc['penawaran_id'];?>" data-supplier_id="<?php echo $sc['supplier_id'];?>" data-measure="<?php echo $sc['measure'];?>" data-price="<?php echo $sc['price'];?>" data-tax_id="<?php echo $sc['tax_id'];?>" data-tax="<?php echo $sc['tax'];?>" data-pajak_id="<?php echo $sc['pajak_id'];?>" data-pajak="<?php echo $sc['pajak'];?>" data-penawaran_id="<?php echo $sc['penawaran_id'];?>"><?php echo $sc['nama'];?> - <?php echo $sc['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -729,7 +729,7 @@
 
                                                         foreach ($gns as $key => $gns) {
                                                             ?>
-                                                            <option value="<?php echo $gns['penawaran_id'];?>" data-supplier_id="<?php echo $gns['supplier_id'];?>" data-measure="<?php echo $gns['measure'];?>" data-price="<?php echo $gns['price'];?>" data-tax_id="<?php echo $gns['tax_id'];?>" data-tax="<?php echo $gns['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $gns['penawaran_id'];?>"><?php echo $gns['nama'];?> - <?php echo $gns['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $gns['penawaran_id'];?>" data-supplier_id="<?php echo $gns['supplier_id'];?>" data-measure="<?php echo $gns['measure'];?>" data-price="<?php echo $gns['price'];?>" data-tax_id="<?php echo $gns['tax_id'];?>" data-tax="<?php echo $gns['tax'];?>" data-pajak_id="<?php echo $gns['pajak_id'];?>" data-pajak="<?php echo $gns['pajak'];?>" data-penawaran_id="<?php echo $gns['penawaran_id'];?>"><?php echo $gns['nama'];?> - <?php echo $gns['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -752,7 +752,7 @@
 
                                                         foreach ($wl_sc as $key => $wl_sc) {
                                                             ?>
-                                                            <option value="<?php echo $wl_sc['penawaran_id'];?>" data-supplier_id="<?php echo $wl_sc['supplier_id'];?>" data-measure="<?php echo $wl_sc['measure'];?>" data-price="<?php echo $wl_sc['price'];?>" data-tax_id="<?php echo $wl_sc['tax_id'];?>" data-tax="<?php echo $wl_sc['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $wl_sc['penawaran_id'];?>"><?php echo $wl_sc['nama'];?> - <?php echo $wl_sc['nomor_penawaran'];?></option>
+                                                            <option value="<?php echo $wl_sc['penawaran_id'];?>" data-supplier_id="<?php echo $wl_sc['supplier_id'];?>" data-measure="<?php echo $wl_sc['measure'];?>" data-price="<?php echo $wl_sc['price'];?>" data-tax_id="<?php echo $wl_sc['tax_id'];?>" data-tax="<?php echo $wl_sc['tax'];?>" data-pajak_id="<?php echo $wl_sc['pajak_id'];?>" data-pajak="<?php echo $wl_sc['pajak'];?>" data-penawaran_id="<?php echo $wl_sc['penawaran_id'];?>"><?php echo $wl_sc['nama'];?> - <?php echo $wl_sc['nomor_penawaran'];?></option>
                                                             <?php
                                                         }
                                                         ?>
