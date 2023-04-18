@@ -276,6 +276,7 @@
 			->where("c.id <> 168 ") //Biaya Diskonto Bank
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 221 ") //Biaya Alat Wheel Loader
 			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
@@ -290,6 +291,7 @@
 			->where("c.id <> 168 ") //Biaya Diskonto Bank
 			->where("c.id <> 219 ") //Biaya Alat Batching Plant 
 			->where("c.id <> 220 ") //Biaya Alat Truck Mixer
+			->where("c.id <> 221 ") //Biaya Alat Wheel Loader
 			->where("c.id <> 228 ") //Biaya Persiapan
 			->where("c.id <> 505 ") //Biaya Oli
 			->where("pb.status = 'PAID'")
