@@ -25,6 +25,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -51,6 +52,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -77,6 +79,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -103,6 +106,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -128,6 +132,7 @@ class M_laporan extends CI_Model {
 		$this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -153,6 +158,7 @@ class M_laporan extends CI_Model {
 		$this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -219,6 +225,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -244,6 +251,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -269,6 +277,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -294,6 +303,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -319,6 +329,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -344,6 +355,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -369,6 +381,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -394,6 +407,7 @@ class M_laporan extends CI_Model {
         $this->db->where("c.id <> 168 "); //Biaya Diskonto Bank
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -418,6 +432,7 @@ class M_laporan extends CI_Model {
         $this->db->where('c.coa_category',17);
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -441,6 +456,7 @@ class M_laporan extends CI_Model {
         $this->db->where('c.coa_category',17);
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -465,6 +481,7 @@ class M_laporan extends CI_Model {
         $this->db->where('c.coa_category',17);
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
@@ -489,6 +506,7 @@ class M_laporan extends CI_Model {
         $this->db->where('c.coa_category',17);
 		$this->db->where("c.id <> 219 "); //Biaya Alat Batching Plant 
         $this->db->where("c.id <> 220 "); //Biaya Alat Truck Mixer
+        $this->db->where("c.id <> 221 "); //Biaya Alat Wheel Loader
         $this->db->where("c.id <> 228 "); //Biaya Persiapan
         $this->db->where("c.id <> 505 "); //Biaya Oli
         $this->db->where('b.status','PAID');
