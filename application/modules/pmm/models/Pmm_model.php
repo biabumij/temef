@@ -3298,6 +3298,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_bahan = '1' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3314,6 +3315,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_bahan = '2' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3330,6 +3332,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_bahan = '3' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3346,6 +3349,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_bahan = '4' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3362,6 +3366,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_bahan = '5' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3378,6 +3383,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '4' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3394,6 +3400,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '1' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3410,6 +3417,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '2' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3426,6 +3434,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '3' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3442,6 +3451,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '5' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3458,6 +3468,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '6' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3474,6 +3485,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '7' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3490,6 +3502,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '8' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3506,6 +3519,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '9' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
@@ -3522,6 +3536,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
         $this->db->where("pm.kategori_alat = '10' ");
         $this->db->where('pp.status','OPEN');
+        $this->db->group_by('ppd.penawaran_pembelian_id');
 		$this->db->order_by('p.nama','asc');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
 
