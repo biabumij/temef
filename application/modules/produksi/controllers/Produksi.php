@@ -319,7 +319,7 @@ class Produksi extends Secure_Controller {
         $this->db->select('ttd.id, ttd.date_approval, a.admin_name, ttd.created_on, ttd.status');
 		$this->db->join('tbl_admin a','ttd.created_by = a.admin_id','left');
 		$this->db->order_by('ttd.date_approval','desc');
-		$query = $this->db->get('ttd_laba_rugi ttd');
+		$query = $this->db->get('ttd_evaluasi_bua ttd');
 		
 		
        if($query->num_rows() > 0){
