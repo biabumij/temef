@@ -3191,7 +3191,7 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_4_biaya_bahan,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_5_biaya_bahan,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_6_biaya_bahan,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_all_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">2.</th>
