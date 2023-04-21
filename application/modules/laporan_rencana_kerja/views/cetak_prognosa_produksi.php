@@ -25,6 +25,7 @@
 			border-top: 1px solid black;
 			border-bottom: 1px solid black;
 			border-right: 1px solid black;
+			border-left: 1px solid #cccccc;
 		}
 
 		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
