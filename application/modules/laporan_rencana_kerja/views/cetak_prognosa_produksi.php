@@ -3088,7 +3088,7 @@
 				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_3_awal = date('F Y', strtotime('+1 days', strtotime($date_2_akhir)));?></div></th>
 				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_4_awal = date('F Y', strtotime('+1 days', strtotime($date_3_akhir)));?></div></th>
 				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_5_awal = date('F Y', strtotime('+1 days', strtotime($date_4_akhir)));?></div></th>
-				<th align="center" class="table-border-pojok-kanan"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
+				<th align="center" class="table-border-pojok-tengah"><div style="text-transform:uppercase;"><?php echo $date_6_awal = date('F Y', strtotime('+1 days', strtotime($date_5_akhir)));?></div></th>
 			</tr>
 			<tr class="table-total2">
 				<th align="left" colspan="12" class="table-border-spesial">RENCANA PRODUKSI & PENDAPATAN USAHA</th>

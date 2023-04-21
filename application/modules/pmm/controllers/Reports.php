@@ -9473,7 +9473,7 @@ class Reports extends CI_Controller {
 				}
 			</style>
 
-			<?php
+<?php
 			//VOLUME RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
