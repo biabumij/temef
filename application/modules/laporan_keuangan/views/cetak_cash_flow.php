@@ -1221,12 +1221,12 @@
 			$total_piutang = $piutang_now + $piutang_1 + $piutang_2 + $piutang_3 + $piutang_4 + $piutang_5 + $piutang_6;
 
 			//AKUMULASI PIUTANG
-			$akumulasi_piutang_1 = ($piutang_now + $total_1_nilai) - $termin_1;
-			$akumulasi_piutang_2 = ($akumulasi_piutang_1 + $total_2_nilai) - $termin_2;
-			$akumulasi_piutang_3 = ($akumulasi_piutang_2 + $total_3_nilai) - $termin_3;
-			$akumulasi_piutang_4 = ($akumulasi_piutang_3 + $total_4_nilai) - $termin_4;
-			$akumulasi_piutang_5 = ($akumulasi_piutang_4 + $total_5_nilai) - $termin_5;
-			$akumulasi_piutang_6 = ($akumulasi_piutang_5 + $total_6_nilai) - $termin_6;
+			$akumulasi_piutang_1 = $akumulasi_penjualan_1 - $akumulasi_termin_1;
+			$akumulasi_piutang_2 = $akumulasi_penjualan_2 - $akumulasi_termin_2;
+			$akumulasi_piutang_3 = $akumulasi_penjualan_3 - $akumulasi_termin_3;
+			$akumulasi_piutang_4 = $akumulasi_penjualan_4 - $akumulasi_termin_4;
+			$akumulasi_piutang_5 = $akumulasi_penjualan_5 - $akumulasi_termin_5;
+			$akumulasi_piutang_6 = $akumulasi_penjualan_6 - $akumulasi_termin_6;
 
 			//HUTANG
 			$hutang_now = $hutang_now;
@@ -1239,12 +1239,12 @@
 			$total_hutang = $hutang_now + $hutang_1 + $hutang_2 + $hutang_3 + $hutang_4 + $hutang_5 + $hutang_6;
 
 			//AKUMULASI HUTANG
-			$akumulasi_hutang_1 = ($hutang_now - $biaya_bahan_1 - $biaya_alat_1) + $biaya_bahan_1 + $biaya_alat_1;
-			$akumulasi_hutang_2 = ($akumulasi_hutang_1 - $biaya_bahan_2 - $biaya_alat_2) + $biaya_bahan_2 + $biaya_alat_2;
-			$akumulasi_hutang_3 = ($akumulasi_hutang_2 - $biaya_bahan_3 - $biaya_alat_3) + $biaya_bahan_3 + $biaya_alat_3;
-			$akumulasi_hutang_4 = ($akumulasi_hutang_3 - $biaya_bahan_4 - $biaya_alat_4) + $biaya_bahan_4 + $biaya_alat_4;
-			$akumulasi_hutang_5 = ($akumulasi_hutang_4 - $biaya_bahan_5 - $biaya_alat_5) + $biaya_bahan_5 + $biaya_alat_5;
-			$akumulasi_hutang_6 = ($akumulasi_hutang_5 - $biaya_bahan_6 - $biaya_alat_6) + $biaya_bahan_6 + $biaya_alat_6;
+			$akumulasi_hutang_1 = $akumulasi_termin_1 - ($biaya_bahan_1 + $akumulasi_biaya_alat_1);
+			$akumulasi_hutang_2 = $akumulasi_termin_2 - ($biaya_bahan_2 + $akumulasi_biaya_alat_2);
+			$akumulasi_hutang_3 = $akumulasi_termin_3 - ($biaya_bahan_3 + $akumulasi_biaya_alat_3);
+			$akumulasi_hutang_4 = $akumulasi_termin_4 - ($biaya_bahan_4 + $akumulasi_biaya_alat_4);
+			$akumulasi_hutang_5 = $akumulasi_termin_5 - ($biaya_bahan_5 + $akumulasi_biaya_alat_5);
+			$akumulasi_hutang_6 = $akumulasi_termin_6 - ($biaya_bahan_6 + $akumulasi_biaya_alat_6);
 
 			//POSISI DANA
 			$posisi_dana_rap = ($total_rap_nilai_2022 + $ppn_keluaran_rap) - $jumlah_pengeluaran - ($total_rap_2022_pajak_keluaran - $total_rap_2022_pajak_masukan) - ($total_rap_2022_penerimaan_pinjaman - $total_rap_2022_pengembalian_pinjaman);
