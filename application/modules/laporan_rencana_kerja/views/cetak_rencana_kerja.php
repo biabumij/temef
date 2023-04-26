@@ -247,7 +247,6 @@
 			$nilai_jual_all_6 = $nilai_jual_125_6 + $nilai_jual_225_6 + $nilai_jual_250_6 + $nilai_jual_250_18_6;
 			?>
 
-			
 			<?php
 			
 			//BULAN 1
