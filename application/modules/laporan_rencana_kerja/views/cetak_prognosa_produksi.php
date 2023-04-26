@@ -307,7 +307,7 @@
 			->join('pmm_coa c','pdb.akun = c.id','left')
 			->where("pdb.akun = 168")
 			->where("pb.status = 'PAID'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
 
 			$total_overhead_akumulasi =  $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'];
