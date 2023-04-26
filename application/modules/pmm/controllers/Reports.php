@@ -3842,12 +3842,12 @@ class Reports extends CI_Controller {
 			$total_piutang = $piutang_now + $piutang_1 + $piutang_2 + $piutang_3 + $piutang_4 + $piutang_5 + $piutang_6;
 
 			//AKUMULASI PIUTANG
-			$akumulasi_piutang_1 = ($piutang_now + $total_1_nilai) - $termin_1;
-			$akumulasi_piutang_2 = ($akumulasi_piutang_1 + $total_2_nilai) - $termin_2;
-			$akumulasi_piutang_3 = ($akumulasi_piutang_2 + $total_3_nilai) - $termin_3;
-			$akumulasi_piutang_4 = ($akumulasi_piutang_3 + $total_4_nilai) - $termin_4;
-			$akumulasi_piutang_5 = ($akumulasi_piutang_4 + $total_5_nilai) - $termin_5;
-			$akumulasi_piutang_6 = ($akumulasi_piutang_5 + $total_6_nilai) - $termin_6;
+			$akumulasi_piutang_1 = $akumulasi_penjualan_1 - $akumulasi_termin_1;
+			$akumulasi_piutang_2 = $akumulasi_penjualan_2 - $akumulasi_termin_2;
+			$akumulasi_piutang_3 = $akumulasi_penjualan_3 - $akumulasi_termin_3;
+			$akumulasi_piutang_4 = $akumulasi_penjualan_4 - $akumulasi_termin_4;
+			$akumulasi_piutang_5 = $akumulasi_penjualan_5 - $akumulasi_termin_5;
+			$akumulasi_piutang_6 = $akumulasi_penjualan_6 - $akumulasi_termin_6;
 
 			//HUTANG
 			$hutang_now = $hutang_now;
@@ -9473,7 +9473,7 @@ class Reports extends CI_Controller {
 				}
 			</style>
 
-<?php
+			<?php
 			//VOLUME RAP
 			$date_now = date('Y-m-d');
 			$date_end = date('2022-12-31');
@@ -10205,7 +10205,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu1020_250_2 = 0;
 			$total_volume_batu2030_250_2 = 0;
 
-			foreach ($komposisi_250_2_2 as $x){
+			foreach ($komposisi_250_2 as $x){
 				$total_volume_semen_250_2 = $x['komposisi_semen_250'];
 				$total_volume_pasir_250_2 = $x['komposisi_pasir_250'];
 				$total_volume_batu1020_250_2 = $x['komposisi_batu1020_250'];

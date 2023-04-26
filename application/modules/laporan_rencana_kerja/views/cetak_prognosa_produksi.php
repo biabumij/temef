@@ -844,7 +844,7 @@
 			$total_volume_batu1020_250_2 = 0;
 			$total_volume_batu2030_250_2 = 0;
 
-			foreach ($komposisi_250_2_2 as $x){
+			foreach ($komposisi_250_2 as $x){
 				$total_volume_semen_250_2 = $x['komposisi_semen_250'];
 				$total_volume_pasir_250_2 = $x['komposisi_pasir_250'];
 				$total_volume_batu1020_250_2 = $x['komposisi_batu1020_250'];
