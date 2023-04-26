@@ -9661,8 +9661,18 @@ class Reports extends CI_Controller {
 			->where("(pb.tanggal_transaksi <= '$last_opname')")
 			->get()->row_array();
 
+			//DISKONTO
+			$diskonto_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where("pdb.akun = 168")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
 			$total_overhead_akumulasi =  $overhead_15_akumulasi['total'] + $overhead_jurnal_15_akumulasi['total'];
-			$total_diskonto_akumulasi =  ($total_akumulasi_nilai * 3) /100;
+			$total_diskonto_akumulasi =  $diskonto_akumulasi['total'];
 			$total_biaya_akumulasi = $total_bahan_akumulasi + $total_alat_akumulasi + $total_overhead_akumulasi + $total_diskonto_akumulasi;
 			?>
 			<!-- AKUMULASI BULAN TERAKHIR -->
