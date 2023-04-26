@@ -125,8 +125,8 @@
 
 	</head>
 	<body>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN EVALUASI PEMAKAIAN BAHAN BAKU</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">EVALUASI PEMAKAIAN BAHAN BAKU</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
@@ -775,26 +775,24 @@
 				<th align = "right" class="table-border-spesial-tengah"></th>
 				<th align = "right" class="table-border-spesial-kanan" style="<?php echo $styleColorEE ?>"><?php echo number_format($total_nilai_evaluasi,0,',','.');?></th>
 	        </tr>
-
 	    </table>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<table width="98%">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="center">
+							<td align="center" >
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
-								Diperiksa Oleh
-							</td>
-							<td align="center" >
+							<td align="center">
 								Dibuat Oleh
-							</td>	
+							</td>
 						</tr>
 						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
 							<?php
 								$create = $this->db->select('unit_head, logistik')
 								->from('akumulasi')
@@ -811,35 +809,18 @@
                                 $this->db->where('a.admin_id',$create['logistik']);
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
-							<td align="center" height="55px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-							</td>
 							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-							</td>
-							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-							</td>
-							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="90px">
 							</td>
 						</tr>
 						<tr>
+							<td align="center">
+								<b><u>Deddy Sarwobiso</u><br />
+								Direktur Utama</b>
+							</td>
 							<td align="center" >
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								<?= $unit_head['admin_group_name']?></b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Teknik</b>
-							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
-								<?= $logistik['admin_group_name']?></b>
 							</td>
 						</tr>
 					</table>

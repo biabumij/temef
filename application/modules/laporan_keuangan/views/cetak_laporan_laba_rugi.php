@@ -72,7 +72,7 @@
 			<tr>
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN LABA RUGI<br/>
-					DIVISI BETON PROYEK BENDUNGAN TEMEF<br/>
+					PROYEK BENDUNGAN TEMEF<br/>
 					PT. BIA BUMI JAYENDRA<br/>
 					<div style="text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div></div>
 				</td>
@@ -707,7 +707,6 @@
 				</th>
 	        </tr>
 	    </table>
-		
 		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
@@ -760,6 +759,5 @@
 				<td width="5%"></td>
 			</tr>
 		</table>
-		
 	</body>
 </html>

@@ -48,7 +48,7 @@
 			<tr>
 				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 12px;">PERMINTAAN BAHAN & ALAT <br />
-					DIVISI BETON PROYEK LANJUTAN BENDUNGAN TEMEF (PAKET 3) (MYC) <br />PT BIA BUMI JAYENDRA</div>
+					PROYEK BENDUNGAN TEMEF<br />PT BIA BUMI JAYENDRA</div>
 				</td>
 			</tr>
 		</table>

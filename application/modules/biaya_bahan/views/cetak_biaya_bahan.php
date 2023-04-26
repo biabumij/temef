@@ -126,8 +126,8 @@
 
 	</head>
 	<body>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">BIAYA (BAHAN)</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN BIAYA BAHAN</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
@@ -666,7 +666,7 @@
 							<td align="center">
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
+							<td align="center">
 								Diperiksa Oleh
 							</td>
 							<td align="center" >
@@ -697,9 +697,6 @@
 								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
-							</td>
-							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
@@ -707,10 +704,6 @@
 							<td align="center" >
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								<?= $unit_head['admin_group_name']?></b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Keu & SDM</b>
 							</td>
 							<td align="center">
 							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />

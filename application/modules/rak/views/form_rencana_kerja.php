@@ -971,29 +971,6 @@
             $('#pajak_id_solar').val(pajak_id);
         });
 
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#komposisi_125').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#komposisi_225').prop('selectedIndex', 2).trigger('change');
-            }, 1000);
-        });
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#komposisi_250').prop('selectedIndex', 3).trigger('change');
-            }, 1000);
-        });
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#komposisi_250_2').prop('selectedIndex', 4).trigger('change');
-            }, 1000);
-        });
-
         $('#penawaran_id_bp').change(function(){
             var penawaran_id = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_bp').val(penawaran_id);
@@ -1278,6 +1255,29 @@
             $('#tax_id_wl_sc').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_wl_sc').val(pajak_id);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#komposisi_125').prop('selectedIndex', 1).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#komposisi_225').prop('selectedIndex', 2).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#komposisi_250').prop('selectedIndex', 3).trigger('change');
+            }, 1000);
+        });
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#komposisi_250_2').prop('selectedIndex', 4).trigger('change');
+            }, 1000);
         });
 
     </script>

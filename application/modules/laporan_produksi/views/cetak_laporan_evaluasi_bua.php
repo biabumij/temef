@@ -125,8 +125,8 @@
 
 	</head>
 	<body>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN EVALUASI BUA</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">EVALUASI BUA</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>	
 		<br /><br /><br />
@@ -937,10 +937,8 @@
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($evaluasi_2,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-kanan"></th>
 	        </tr>
-			
 	    </table>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<table width="98%">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -949,14 +947,14 @@
 							<td align="center" >
 								Disetujui Oleh
 							</td>
-							<td align="center" >
-								Diperiksa Oleh
-							</td>
-							<td align="center" >
+							<td align="center">
 								Dibuat Oleh
 							</td>
 						</tr>
-						<tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
 							<?php
 								$create = $this->db->select('unit_head, logistik')
 								->from('akumulasi')
@@ -973,39 +971,18 @@
                                 $this->db->where('a.admin_id',$create['logistik']);
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
-							<td align="center" height="40px">
+							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-							</td>
-							<?php
-								$this->db->select('ttd.*');
-								$this->db->where("(ttd.date_approval between '$date1' and '$date2')");
-								$this->db->where("ttd.approval = 1 ");
-								$this->db->order_by('ttd.date_approval','desc')->limit(1);
-								$created_group = $this->db->get('ttd_evaluasi_bua ttd')->row_array();
-							?>
-							<td align="center">
-								<?php
-									echo '<img src="'.$created_group['ttd_1'].'" width="70"/>';
-								?>
-							</td>
-							<td align="center">
-							<?php
-								echo '<img src="'.$created_group['ttd_2'].'" width="70"/>';
-							?>
 							</td>
 						</tr>
 						<tr>
+							<td align="center">
+								<b><u>Deddy Sarwobiso</u><br />
+								Direktur Utama</b>
+							</td>
 							<td align="center" >
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								<?= $unit_head['admin_group_name']?></b>
-							</td>
-							<td align="center" >
-								<b><u>Erika Sinaga</u><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Kasir</b>
 							</td>
 						</tr>
 					</table>
@@ -1013,6 +990,5 @@
 				<td width="5%"></td>
 			</tr>
 		</table>
-		
 	</body>
 </html>

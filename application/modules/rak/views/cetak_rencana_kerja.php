@@ -93,7 +93,7 @@
 		?>
 			
 		<div align="center" style="display: block;font-weight: bold;font-size: 12px;text-transform:uppercase;">RENCANA KERJA<br/>
-		DIVISI BETON PROYEK BENDUNGAN TEMEF<br/>
+		PROYEK BENDUNGAN TEMEF<br/>
 		PT. BIA BUMI JAYENDRA<br/>
 		BULAN <?php echo $tanggal;?></div>
 				

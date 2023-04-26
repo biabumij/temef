@@ -127,7 +127,7 @@
 	</head>
 	<body>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN PERGERAKAN BAHAN BAKU</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
@@ -697,74 +697,23 @@
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-		<table width="98%">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center">
-								Disetujui Oleh
-							</td>
-							<td align="center" colspan="2">
-								Diperiksa Oleh
-							</td>
-							<td align="center" >
-								Dibuat Oleh
-							</td>	
-						</tr>
+		<table width="98%" border="0" cellpadding="3">
+			<tr>
+                <th width="70%">
+				</th>
+				<th width="30%" align="right" style="margin-top:40px;">
+					<table width="98%" border="1" cellpadding="2">
 						<tr class="">
-							<?php
-								$create = $this->db->select('unit_head, logistik')
-								->from('akumulasi')
-								->where("(date_akumulasi between '$start_date' and '$end_date')")
-								->get()->row_array();
-
-                                $this->db->select('g.admin_group_name, a.admin_ttd');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$create['unit_head']);
-                                $unit_head = $this->db->get('tbl_admin a')->row_array();
-
-								$this->db->select('g.admin_group_name, a.admin_ttd');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$create['logistik']);
-                                $logistik = $this->db->get('tbl_admin a')->row_array();
-                            ?>
-							<td align="center" height="55px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
+							<td align="right" height="50px">
 							</td>
-							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
+							<td align="right">
 							</td>
-							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
-							</td>
-							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="70px">
-							</td>
-						</tr>
-						<tr>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Teknik</b>
-							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
-								<?= $logistik['admin_group_name']?></b>
+							<td align="right">
 							</td>
 						</tr>
 					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>	
+				</th>
+            </tr>
+		</table>
 	</body>
 </html>

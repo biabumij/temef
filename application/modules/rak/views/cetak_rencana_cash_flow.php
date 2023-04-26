@@ -89,7 +89,7 @@
 	</head>
 	<body>
 		<div align="center" style="display: block;font-weight: bold;font-size: 12px;">RENCANA CASH FLOW<br/>
-		DIVISI BETON PROYEK BENDUNGAN TEMEF<br/>
+		PROYEK BENDUNGAN TEMEF<br/>
 		PT. BIA BUMI JAYENDRA<br/></div>
 		<br /><br /><br />
 		<table width="100%" border="0">

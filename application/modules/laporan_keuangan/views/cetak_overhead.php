@@ -48,7 +48,9 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">OVERHEAD</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN BIAYA UMUM & ADMINISTRATIF</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">PROYEK BENDUNGAN TEMEF</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">PT. BIA BUMI JAYENDRA</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
 					<div style="display: block;font-weight: bold;font-size: 12px;text-transform: uppercase;">PERIODE : <?php echo $filter_date;?></div>
 				</td>

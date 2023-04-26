@@ -125,8 +125,9 @@
 
 	</head>
 	<body>
-		<div align="center" style="display: block;font-weight: bold;font-size: 12px;">BIAYA PEMAKAIAN ALAT</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 12px;">BIAYA ALAT</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
+		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 		<div align="center" style="display: block;font-weight: bold;font-size: 12px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
 		<?php
@@ -617,7 +618,7 @@
 							<td align="center">
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
+							<td align="center">
 								Diperiksa Oleh
 							</td>
 							<td align="center" >
@@ -642,26 +643,19 @@
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center" height="55px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-							</td>
-							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="90px">
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
 							<td align="center" >
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								<?= $unit_head['admin_group_name']?></b>
-							</td>
-							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								M. Keu & SDM</b>
 							</td>
 							<td align="center">
 							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
