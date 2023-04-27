@@ -933,31 +933,24 @@
 				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL BIAYA UMUM & ADMINISTRATIF</th>
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($rak_alat['overhead'],0,',','.');?></th>
 	        </tr>
-			<?php
-			$total_biaya_diskonto = ($total_pendapatan * 3) /100;
-			?>
 			<tr>
 				<th align="center" class="table-border-spesial" colspan="6">
 					<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.4. BIAYA DISKONTO</div>
 				</th>	
 			</tr>
-			<tr class="table-total">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL BIAYA DISKONTO</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_biaya_diskonto,0,',','.');?></th>
-	        </tr>
 			<tr>
 				<th class="table-border-spesial" colspan="6"></th>
 			</tr>
 			<tr class="table-total">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">SUBTOTAL KEBUTUHAN BIAYA (2.1 + 2.2 + 2.3 + 2.4)</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total + $total_rak_alat + $rak_alat['overhead'] + $total_biaya_diskonto,0,',','.');?></th>
+				<th align="right" colspan="5" class="table-border-spesial-kiri">SUBTOTAL KEBUTUHAN BIAYA (2.1 + 2.2 + 2.3)</th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total + $total_rak_alat + $rak_alat['overhead'],0,',','.');?></th>
 	        </tr>
 			<tr>
 				<th class="table-border-spesial" colspan="6"></th>
 			</tr>
 			<tr class="table-judul">	
 				<th align="right" colspan="5" class="table-border-spesial-kiri">LABA RUGI (1-2)</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_pendapatan - ($total + $total_rak_alat + $rak_alat['overhead']) + $total_biaya_diskonto,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_pendapatan - ($total + $total_rak_alat + $rak_alat['overhead']),0,',','.');?></th>
 	        </tr>
 		</table>
 	</body>
