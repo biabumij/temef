@@ -973,6 +973,7 @@
                             ?>
 							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $logistik['admin_ttd']?>" width="20px">
 							</td>
 						</tr>
 						<tr>
