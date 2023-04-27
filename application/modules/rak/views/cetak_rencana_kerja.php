@@ -934,11 +934,6 @@
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($rak_alat['overhead'],0,',','.');?></th>
 	        </tr>
 			<tr>
-				<th align="center" class="table-border-spesial" colspan="6">
-					<div align="left" style="display: block;font-weight: bold;font-size: 9px;text-transform:uppercase;">2.4. BIAYA DISKONTO</div>
-				</th>	
-			</tr>
-			<tr>
 				<th class="table-border-spesial" colspan="6"></th>
 			</tr>
 			<tr class="table-total">	
