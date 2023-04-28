@@ -2333,7 +2333,7 @@
                     <div class="col-sm-8">
                     <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Ketercapaian Prognosa Terhadap RAP</h3>
+                                <h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3>
                             </div>
                             <div style="margin: 20px">
                                 <div id="wait" style=" text-align: center; align-content: center; display: none;">	

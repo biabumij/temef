@@ -6329,7 +6329,7 @@ class Reports extends CI_Controller {
 
 			<tr class="table-active">
 				<th class="text-center" colspan="6" style="text-transform:uppercase">
-				<marquee>Peresntase Prognosa Terhadap RAP</marquee>
+				<marquee>Presentase Prognosa Terhadap RAP</marquee>
 				</th>
 			</tr>
 			<tr>
