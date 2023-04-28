@@ -18293,7 +18293,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo $date_4_awal = date('Y', strtotime('+1 days', strtotime($date_3_akhir)));?></th>
 				<th class="text-center"><?php echo $date_5_awal = date('Y', strtotime('+1 days', strtotime($date_4_akhir)));?></th>
 				<th class="text-center"><?php echo $date_6_awal = date('Y', strtotime('+1 days', strtotime($date_5_akhir)));?></th>
-				<th class="text-center"><?php echo $date_7_awal = date('F', strtotime('+1 days', strtotime($date_6_akhir)));?></th>
+				<th class="text-center"><?php echo $date_7_awal = date('Y', strtotime('+1 days', strtotime($date_6_akhir)));?></th>
 	        </tr>
 			<tr class="table-active2-rak">
 				<th class="text-left" colspan="13">RENCANA PRODUKSI & PENDAPATAN USAHA</th>
