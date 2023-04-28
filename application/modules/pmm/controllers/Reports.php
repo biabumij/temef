@@ -6348,7 +6348,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle">1</th>			
 				<th class="text-left">Pendapatan Usaha</th>
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
-				<th class="text-center">100%</th>
+				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format(($total_all_nilai / $total_rap_nilai_2022) * 100,0,',','.');?> %</th>
 	        </tr>
@@ -6356,17 +6356,17 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle">2</th>			
 				<th class="text-left">Biaya</th>
 				<th class="text-right"><?php echo number_format($total_biaya_rap_2022_biaya,0,',','.');?></th>
-				<th class="text-center">100%</th>
+				<th class="text-center"><?php echo number_format(($total_biaya_rap_2022_biaya / $total_rap_nilai_2022) * 100,2,',','.');?> %</th>
 				<th class="text-right"><?php echo number_format($total_biaya_all_biaya,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format(($total_biaya_all_biaya / $total_biaya_rap_2022_biaya) * 100,0,',','.');?> %</th>
+				<th class="text-center"><?php echo number_format(($total_biaya_all_biaya / $total_all_nilai) * 100,2,',','.');?> %</th>
 	        </tr>
 			<tr>
 				<th class="text-center" style="vertical-align:middle">3</th>			
 				<th class="text-left">Laba / Rugi</th>
 				<th class="text-right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
-				<th class="text-center">100%</th>
+				<th class="text-center"><?php echo number_format(($total_laba_rap_2022 / $total_rap_nilai_2022) * 100,2,',','.');?> %</th>
 				<th class="text-right"><?php echo number_format($total_laba_all,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format(($total_laba_all / $total_laba_rap_2022) * 100,0,',','.');?> %</th>
+				<th class="text-center"><?php echo number_format(($total_laba_all / $total_all_nilai) * 100,2,',','.');?> %</th>
 	        </tr>
 	    </table>
 		<?php
