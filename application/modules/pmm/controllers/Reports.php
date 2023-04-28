@@ -6350,7 +6350,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_rap_nilai_2022,0,',','.');?></th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_all_nilai,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format(($total_all_nilai / $total_rap_nilai_2022) * 100,0,',','.');?> %</th>
+				<th class="text-center"></th>
 	        </tr>
 			<tr>
 				<th class="text-center" style="vertical-align:middle">2</th>			
