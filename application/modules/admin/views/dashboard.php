@@ -2328,6 +2328,30 @@
                     </div>
                 </div>-->
 
+                <!-- RAP x Prognosa -->               
+                <div role="tabpanel" class="tab-pane" id="laporan_rap">
+                    <div class="col-sm-8">
+                    <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Ketercapaian Prognosa Terhadap RAP</h3>
+                            </div>
+                            <div style="margin: 20px">
+                                <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                    <div>Please Wait</div>
+                                    <div class="fa-3x">
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                    </div>
+                                </div>				
+                                <div class="table-responsive" id="box-rap">													
+                                
+
+                                </div>
+                            </div>
+                    </div>
+                    
+                    </div>
+                </div>
+
                 <!-- Laporan Evaluasi -->               
                 <div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
                     <div class="col-sm-8">
@@ -2523,6 +2547,29 @@
     }
 
     TableEvaluasi();
+</script>
+
+<!-- Script RAP x Prognosa -->
+<script type="text/javascript">
+
+    function TableRAP()
+    {
+        $('#wait').fadeIn('fast');   
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
+            dataType : 'html',
+            data: {
+                filter_date : $('#filter_date_rap').val(),
+            },
+            success : function(result){
+                $('#box-rap').html(result);
+                $('#wait').fadeOut('fast');
+            }
+        });
+    }
+
+    TableRAP();
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
