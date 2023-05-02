@@ -6363,9 +6363,9 @@ class Reports extends CI_Controller {
 			<tr>
 				<th class="text-center" style="vertical-align:middle">3</th>			
 				<th class="text-left">Laba / Rugi</th>
-				<th class="text-right"><?php echo number_format($total_laba_rap_2022,0,',','.');?></th>
+				<th class="text-right"><?php echo $total_laba_rap_2022 < 0 ? "(".number_format(-$total_laba_rap_2022,0,',','.').")" : number_format($total_laba_rap_2022,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format(($total_laba_rap_2022 / $total_rap_nilai_2022) * 100,2,',','.');?> %</th>
-				<th class="text-right"><?php echo number_format($total_laba_all,0,',','.');?></th>
+				<th class="text-right"><?php echo $total_laba_all < 0 ? "(".number_format(-$total_laba_all,0,',','.').")" : number_format($total_laba_all,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format(($total_laba_all / $total_all_nilai) * 100,2,',','.');?> %</th>
 	        </tr>
 	    </table>
