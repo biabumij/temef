@@ -34,8 +34,8 @@
                         <div class="panel-content">
                             <div class="tabs">
                                 <ul class="nav nav-tabs ">
-                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true">Table</a></li>
-                                    <li class=""><a href="#add" data-toggle="tab" aria-expanded="false">Add New</a></li>
+                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true">Table User</a></li>
+                                    <li class=""><a href="#add" data-toggle="tab" aria-expanded="false">Tambah User</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     
@@ -108,7 +108,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-9">
-                                                    <button type="submit" name="submit" class="btn btn-primary" id="btn-submit" data-loading-text="please wait..">Submit</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary" id="btn-submit" data-loading-text="please wait..">Kirim</button>
                                                 </div>
                                             </div>
                                         </form>
