@@ -190,7 +190,7 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_keluar_2' => $total_nilai_keluar_2,
 			'status' => 'PUBLISH',
-			'unit_head' => 44,
+			'unit_head' => 43,
 			'logistik' => 39,
 			'admin' => 42,
 			'created_by' => $this->session->userdata('admin_id'),
@@ -382,7 +382,7 @@ class Produksi extends Secure_Controller {
 			'ttd_1' => 'uploads/ttd_erika.png',
 			'ttd_2' => 'uploads/ttd_debby.png',
 			'status' => 'PUBLISH',
-			'unit_head' => 44,
+			'unit_head' => 43,
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
 		);

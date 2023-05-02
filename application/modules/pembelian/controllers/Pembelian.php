@@ -1656,7 +1656,7 @@ class Pembelian extends Secure_Controller
             'kategori_persetujuan' => 'PERMINTAAN BAHAN & ALAT',
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
-            'approved_by' => 44,
+            'approved_by' => 43,
             'approved_on' => date('Y-m-d H:i:s'),
             'status' => 'APPROVED'
         );
@@ -1725,7 +1725,7 @@ class Pembelian extends Secure_Controller
             'memo' => $memo,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
-            'unit_head' => 44,
+            'unit_head' => 43,
             'kategori_persetujuan' => 'PESANAN PEMBELIAN',
             'status' => 'WAITING'
         );
