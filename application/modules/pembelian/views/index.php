@@ -207,7 +207,7 @@
 									<div class="modal-dialog" role="document" >
 										<div class="modal-content">
 											<div class="modal-header">
-												<span class="modal-title">Permintaan Bahan & Alat<span class="required" aria-required="true">*</span></span>
+												<span class="modal-title">Permintaan Bahan & Alat</span>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
