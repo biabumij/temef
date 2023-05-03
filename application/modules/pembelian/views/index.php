@@ -207,7 +207,7 @@
 									<div class="modal-dialog" role="document" >
 										<div class="modal-content">
 											<div class="modal-header">
-												<span class="modal-title">Permintaan Bahan & Alat</span>
+												<span class="modal-title">Permintaan Bahan & Alat<span class="required" aria-required="true">*</span></span>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
@@ -216,15 +216,15 @@
 												<form class="form-horizontal" style="padding: 0 10px 0 20px;" >
 													<input type="hidden" name="id" id="id_Request">
 													<div class="form-group">
-														<label>Tanggal Permintaan</label>
+														<label>Tanggal Permintaan<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="request_date" name="request_date" class="form-control dtpicker-single" required="" autocomplete="off" value="<?php echo date('d-m-Y');?>" />
 													</div>
 													<div class="form-group">
-														<label>Subyek</label>
+														<label>Subyek<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"/>
 													</div>
 													<div class="form-group">
-														<label>Rekanan</label>
+														<label>Rekanan<span class="required" aria-required="true">*</span></label>
 														<select id="supplier_id" name="supplier_id" class="form-control select2" required="" autocomplete="off">
 															<option value="">Pilih Rekanan</option>
 															<?php
@@ -237,7 +237,7 @@
 														</select>
 													</div>
                                                     <div class="form-group">
-														<label>Kategori</label>
+														<label>Kategori<span class="required" aria-required="true">*</span></label>
 														<select id="kategori_id" name="kategori_id" class="form-control select2" required="" autocomplete="off">
 															<option value="">Pilih Kategori</option>
 															<?php
@@ -250,7 +250,7 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label>Memo</label>
+														<label>Memo<span class="required" aria-required="true">*</span></label>
                                                         <textarea id="memo" name="memo" class="form-control" data-required="false" rows="20">
 <p style="font-size:6;"><b>Syarat &amp; Ketentuan :</b></p>
 <p style="font-size:6;">1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
