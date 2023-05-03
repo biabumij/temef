@@ -97,7 +97,7 @@
                                     </div>
                                     </br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Pembayaran</label></div>
+                                        <div class="col-sm-2"><label>Nomor Invoice</label></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" value="<?= $pembayaran["nomor_invoice"] ?>" readonly=""/>
                                         </div>
