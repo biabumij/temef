@@ -236,7 +236,7 @@
         <div class="modal-dialog" role="document" >
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title">Ubah Penerimaan</span>
+                    <span class="modal-title">Edit Surat Jalan Penerimaan</span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -253,54 +253,54 @@
                         </div>
                        <div class="form-group">
                             <label>Pesanan Pembelian</label>
-                            <input type="text" id="edit_no_po" name="edit_no_po" class="form-control" required="" autocomplete="off" readonly="" />
+                            <input type="text" id="edit_no_po" name="edit_no_po" class="form-control" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Tanggal</label>
-                            <input type="text" id="edit_date" name="edit_date" class="form-control" required="" autocomplete="off" />
+                            <input type="text" id="edit_date" name="edit_date" class="form-control dtpicker" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label>No. Surat Jalan</label>
-                            <input type="text" id="edit_surat_jalan" name="edit_surat_jalan" class="form-control" autocomplete="off" />
+                            <input type="text" id="edit_surat_jalan" name="edit_surat_jalan" class="form-control" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Produk</label>
-                            <input type="text" id="edit_material" name="edit_material" class="form-control" required="" autocomplete="off"/>
+                            <input type="text" id="edit_material" name="edit_material" class="form-control" required="" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Volume</label>
-                            <input type="text" id="edit_volume" name="edit_volume" class="form-control numberformat" required="" autocomplete="off" />
+                            <input type="text" id="edit_volume" name="edit_volume" class="form-control numberformat" required="" autocomplete="off" readonly="" />
                         </div>
 						<div class="form-group">
                             <label>Satuan</label>
-                            <input type="text" id="edit_measure" name="edit_measure" class="form-control" required="" autocomplete="off" />
+                            <input type="text" id="edit_measure" name="edit_measure" class="form-control" required="" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Konversi</label>
-                            <input type="text" id="edit_convert_value" name="edit_convert_value" class="form-control" required="" autocomplete="off"/>
+                            <input type="text" id="edit_convert_value" name="edit_convert_value" class="form-control numberformat" required="" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Volume Konversi</label>
-                            <input type="text" id="edit_display_volume" name="edit_display_volume" class="form-control numberformat" required="" autocomplete="off" />
+                            <input type="text" id="edit_display_volume" name="edit_display_volume" class="form-control numberformat" required="" autocomplete="off" readonly="" />
                         </div>
 						<div class="form-group">
                             <label>Satuan Konversi</label>
-                            <input type="text" id="edit_display_measure" name="edit_display_measure" class="form-control" required="" autocomplete="off"/>
+                            <input type="text" id="edit_display_measure" name="edit_display_measure" class="form-control" required="" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>No. Kendaraan</label>
-                            <input type="text" id="edit_no_kendaraan" name="edit_no_kendaraan" class="form-control" autocomplete="off" />
+                            <input type="text" id="edit_no_kendaraan" name="edit_no_kendaraan" class="form-control" autocomplete="off" readonly="" />
                         </div>
                         <div class="form-group">
                             <label>Supir</label>
-                            <input type="text" id="edit_driver" name="edit_driver" class="form-control" autocomplete="off" />
+                            <input type="text" id="edit_driver" name="edit_driver" class="form-control" autocomplete="off" readonly="" />
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label>Upload Jalan File</label>
-                            <input type="file" id="edit_surat_jalan_file" name="edit_surat_jalan_file" class="form-control"  />
+                            <input type="file" id="edit_surat_jalan_file" name="edit_surat_jalan_file" class="form-control"/>
                             <input type="hidden" name="edit_surat_jalan_file_val" id="edit_surat_jalan_file_val">
                             <a href="" id="edit-surat-jalan-text"></a>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label>Memo</label>
                             <input type="text" id="edit_memo" name="edit_memo" class="form-control" autocomplete="off" />
@@ -379,7 +379,8 @@
             locale: {
                 format: 'DD-MM-YYYY'
             },
-            minDate: new Date()+0, 
+            //minDate: new Date()+0, 
+            minDate: new Date()-1,
 			maxDate: new Date()+1
         });
 

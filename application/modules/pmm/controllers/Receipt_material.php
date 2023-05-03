@@ -234,8 +234,10 @@ class Receipt_material extends CI_Controller {
 		$supplier_id = $this->input->post('supplier_id');
 		$material_id = $this->input->post('material_id');
 		$date_now = date('Y-m-d');
-		$awal_bulan = date('Y-m-01', strtotime($date_now));
-		$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
+		//$awal_bulan = date('Y-m-01', strtotime($date_now));
+		//$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
+		$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
+		$akhir_bulan = date('Y-m-d', strtotime($date_now));
 
 		$this->db->select('prm.*,ppo.no_po,ps.nama as supplier_name');
 		if(!empty($supplier_id)){
@@ -282,7 +284,7 @@ class Receipt_material extends CI_Controller {
 				}
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11  || $this->session->userdata('admin_group_id') == 15){
-					$row['actions'] = ' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = $edit. ' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -852,6 +854,7 @@ class Receipt_material extends CI_Controller {
 		$surat_jalan = $this->input->post('edit_surat_jalan');
 		$no_kendaraan = $this->input->post('edit_no_kendaraan');
 		$driver = $this->input->post('edit_driver');
+		$memo = $this->input->post('edit_memo');
 
 		$get_po = $this->db->select('measure,price,volume')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$purchase_order_id,'material_id'=>$material_id))->row_array();
 		$price = $get_po['price'];
@@ -871,7 +874,7 @@ class Receipt_material extends CI_Controller {
 			'volume' => $volume,
 			'price'	=> $volume * $price,
 			'surat_jalan' => $surat_jalan,
-			'surat_jalan_file' => $file,
+			//'surat_jalan_file' => $file,
 			'no_kendaraan' => $no_kendaraan,
 			'driver' => $driver,
 			'display_measure' => $display_measure,
@@ -880,6 +883,7 @@ class Receipt_material extends CI_Controller {
 			'display_price' => $volume * $price,
 			'harga_satuan' => $price,
 			'display_harga_satuan' => ($volume * $price) / $display_volume,
+			'memo' => $memo,
 		);
 
 		$data_p['updated_on'] = date('Y-m-d H:i:s');
