@@ -432,9 +432,65 @@
                 ->group_by("pp.client_id")
                 ->get()->row_array();
 
-                $total_penjualan_agustus23 = $total_penjualan_juni23 + $penjualan_agustus23['total'];
+                $total_penjualan_agustus23 = $total_penjualan_juli23 + $penjualan_agustus23['total'];
                 $presentase_penjualan_agustus23 = ($total_penjualan_agustus23 / $total_kontrak_all) * 100;
                 $net_agustus23 = round($presentase_penjualan_agustus23,2);
+
+                //SEPTEMBER23
+                $penjualan_september23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_september23_awal' and '$date_september23_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $total_penjualan_september23 = $total_penjualan_agustus23 + $penjualan_september23['total'];
+                $presentase_penjualan_september23 = ($total_penjualan_september23 / $total_kontrak_all) * 100;
+                $net_september23 = round($presentase_penjualan_september23,2);
+
+                //OKTOBER23
+                $penjualan_oktober23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_oktober23_awal' and '$date_oktober23_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $total_penjualan_oktober23 = $total_penjualan_september23 + $penjualan_oktober23['total'];
+                $presentase_penjualan_oktober23 = ($total_penjualan_oktober23 / $total_kontrak_all) * 100;
+                $net_oktober23 = round($presentase_penjualan_oktober23,2);
+
+                //NOVEMBER23
+                $penjualan_november23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_november23_awal' and '$date_november23_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $total_penjualan_november23 = $total_penjualan_oktober23 + $penjualan_november23['total'];
+                $presentase_penjualan_november23 = ($total_penjualan_november23 / $total_kontrak_all) * 100;
+                $net_november23 = round($presentase_penjualan_november23,2);
+
+                //DESEMBER23
+                $penjualan_desember23 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_desember23_awal' and '$date_desember23_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $total_penjualan_desember23 = $total_penjualan_november23 + $penjualan_desember23['total'];
+                $presentase_penjualan_desember23 = ($total_penjualan_desember23 / $total_kontrak_all) * 100;
+                $net_desember23 = round($presentase_penjualan_desember23,2);
 
                 //AKUMULASI
                 $penjualan_akumulasi = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
@@ -2424,7 +2480,7 @@
                     </div>
                 </div>-->
 
-                <!-- RAP x Prognosa -->               
+                <!-- RAP x Prognosa -->              
                 <div role="tabpanel" class="tab-pane" id="laporan_rap">
                     <div class="col-sm-8">
                     <div class="panel panel-default">
@@ -2440,7 +2496,6 @@
                                 </div>				
                                 <div class="table-responsive" id="box-rap">													
                                 
-
                                 </div>
                             </div>
                     </div>
@@ -2722,7 +2777,7 @@
                             color: '#ffffff'
                         }
                     },
-                    categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sisa']
+                    categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Sisa']
                 },
                 yAxis: {
                     //title: {  //label yAxis
@@ -2750,7 +2805,7 @@
                         format: '{value} %'
                     },
                     min: 0,
-                    max: 100,
+                    max: 110,
                     tickInterval: 10,
                 },
                 tooltip: { 
@@ -2792,14 +2847,14 @@
                 series: [{  
                     name: 'Rencana %',  
                     
-                    data: [<?php echo json_encode($net_februari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_sisa_rap, JSON_NUMERIC_CHECK); ?>],
+                    data: [<?php echo json_encode($net_februari_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember23_rap, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_sisa_rap, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#000000',
                 },
                 {  
                     name: 'Realisasi %',  
                     
-                    data: [<?php echo json_encode($net_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_sisa, JSON_NUMERIC_CHECK); ?>],
+                    data: [<?php echo json_encode($net_februari, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_januari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_februari23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_maret23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_april23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_mei23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juni23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_juli23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_agustus23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_september23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_oktober23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_november23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_desember23, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($net_sisa, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#FF0000',
 

@@ -128,6 +128,7 @@
                                                     <th width="5%" rowspan="2">NO.</th>
                                                     <th>PENAWARAN</th>
                                                     <th>VOLUME</th>
+                                                    <th>SATUAN</th>
                                                     <th>HARGA</th>
                                                     <th>NILAI</th>
                                                 </tr>
@@ -162,13 +163,13 @@
 
                                                     <td class="text-center">1.</td>
                                                     <td class="text-left">
-                                                        <select name="penawaran_pembelian_id" id="penawaran_id" class="form-control">
+                                                        <select id="penawaran_id" class="form-control">
                                                         <option value="">Pilih Penawaran</option>
                                                             <?php
 
-                                                            foreach ($semen as $key => $sm) {
+                                                            foreach ($produk as $key => $sm) {
                                                                 ?>
-                                                                <option value="<?php echo $sm['penawaran_id'];?>" data-supplier_id="<?php echo $sm['supplier_id'];?>" data-material_id="<?php echo $sm['material_id'];?>" data-measure_id="<?php echo $sm['measure'];?>" data-measure="<?php echo $sm['measure_name'];?>" data-harsat="<?php echo $sm['price'];?>" data-tax_id="<?php echo $sm['tax_id'];?>" data-tax="<?php echo $sm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sm['penawaran_id'];?>"><?php echo $sm['nama'];?> - <?php echo $sm['nomor_penawaran'];?> - <?php echo $sm['material_name'];?></option>
+                                                                <option value="<?php echo $sm['penawaran_id'];?>" data-supplier_id="<?php echo $sm['supplier_id'];?>" data-material_id="<?php echo $sm['material_id'];?>" data-measure_id="<?php echo $sm['measure'];?>" data-measure="<?php echo $sm['measure_name'];?>" data-harsat="<?php echo $sm['price'];?>" data-tax_id="<?php echo $sm['tax_id'];?>" data-tax="<?php echo $sm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sm['penawaran_id'];?>" data-penawaran="<?php echo $sm['penawaran'];?>"><?php echo $sm['nama'];?> - <?php echo $sm['nomor_penawaran'];?> - <?php echo $sm['material_name'];?></option>
                                                                 <?php
                                                             }
                                                             ?>
@@ -186,6 +187,7 @@
                                                     <td class="text-center">
                                                         <input name="nilai" id="nilai" class="form-control rupiahformat input-sm text-center" value="" readonly=""/>
                                                     </td>
+                                                        <input type="hidden" name="penawaran_pembelian_id" id="penawaran" class="form-control rupiahformat input-sm text-center" value="" readonly=""/>
                                                     
                                             <div>
                                             </tbody>
@@ -359,6 +361,9 @@
 
         var pajak = $(this).find(':selected').data('pajak');
         $('#pajak').val(pajak);
+
+        var penawaran = $(this).find(':selected').data('penawaran');
+        $('#penawaran').val(penawaran);
     });
     </script>
     
