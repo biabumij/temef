@@ -2805,7 +2805,7 @@
                         format: '{value} %'
                     },
                     min: 0,
-                    max: 150,
+                    max: 120,
                     tickInterval: 10,
                 },
                 tooltip: { 
