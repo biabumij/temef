@@ -340,13 +340,14 @@
 			->where("ppp.id = '$rak_alat_solar'")
 			->get()->row_array();
 
-			$produk_bp = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, sum(vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
+			$produk_bp = $this->db->select('p.nama_produk, ppd.price, ppd.qty, pm.measure_name, ps.nama, (vol_produk_a + vol_produk_b + vol_produk_c + vol_produk_d) as total_vol_produksi')
 			->from('pmm_penawaran_pembelian ppp')
 			->join('pmm_penawaran_pembelian_detail ppd', 'ppp.id = ppd.penawaran_pembelian_id','left')
 			->join('produk p', 'ppd.material_id = p.id','left')
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
 			->where("ppp.id = '$rak_alat_bp'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -366,6 +367,7 @@
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
 			->where("ppp.id = '$rak_alat_bp_2'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -385,6 +387,7 @@
 			->join('pmm_measures pm', 'ppd.measure = pm.id','left')
 			->join('penerima ps', 'ppp.supplier_id = ps.id','left')
 			->join('rak r', 'ppp.id = r.penawaran_id_bp','left')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
 			->where("ppp.id = '$rak_alat_bp_3'")
 			->group_by('ppd.id')
 			->order_by('p.nama_produk','asc')
@@ -976,7 +979,7 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc,0,',','.');?></th>
 			</tr>
 			<?php
-			$total_rak_alat = ($rak_alat['total_produksi'] * $rak_alat['harga_bp']) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'] + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
+			$total_rak_alat = ($total_price_bp + $total_price_bp_2 + $total_price_bp_3) + ($total_price_tm + $total_price_tm_2 + $total_price_tm_3) + ($total_price_wl + $total_price_wl_2 + $total_price_wl_3) + ($total_price_tr + $total_price_tr_2 + $total_price_tr_3) + ($total_volume_solar * $rak['harga_solar']) + $rak_alat['insentif'] + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			<tr class="table-total2">	
 				<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL KEBUTUHAN BIAYA ALAT</th>

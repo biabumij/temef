@@ -92,6 +92,10 @@
 														<p><h5>Monitoring Hutang</h5></p>
                                                         <a href="#monitoring_hutang" aria-controls="monitoring_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
+                                                    <div class="col-sm-5">
+														<p><h5>Monitoring Hutang Bahan & Alat</h5></p>
+                                                        <a href="#monitoring_hutang_bahan_alat" aria-controls="monitoring_hutang_bahan_alat" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,6 +324,113 @@
                                                             </div>
                                                         </div>
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="monitoring-hutang" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">REKANAN</th>
+                                                                <th class="text-center">TANGGAL</th>
+                                                                <th class="text-center">JENIS</th>
+																<th class="text-center">TANGGAL</th>
+                                                                <th class="text-center">SYARAT</th>
+                                                                <th class="text-center" colspan="3">TAGIHAN</th>
+                                                                <th class="text-center" colspan="4">PEMBAYARAN</th>
+                                                                <th class="text-center" colspan="3">SISA HUTANG</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">STATUS</th>
+                                                                <th class="text-center">TANGGAL</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">NO. TAGIHAN</th>
+                                                                <th class="text-center">TAGIHAN</th>
+                                                                <th class="text-center">PEMBELIAN</th>
+                                                                <th class="text-center">VERIFIKASI</th>
+                                                                <th class="text-center">PEMBAYARAN</th>
+                                                                <th class="text-center">DPP</th>
+                                                                <th class="text-center">PPN</th>
+                                                                <th class="text-center">JUMLAH</th>
+                                                                <th class="text-center">DPP</th>
+                                                                <th class="text-center">PPN</th>
+                                                                <th class="text-center">PPH</th>
+                                                                <th class="text-center">JUMLAH</th>
+                                                                <th class="text-center">DPP</th>
+                                                                <th class="text-center">PPN</th>
+                                                                <th class="text-center">JUMLAH</th>
+                                                                <th class="text-center">JATUH TEMPO</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+
+                                    <!-- Laporan Monitoring Hutang Bahan & Alat-->
+                                    <div role="tabpanel" class="tab-pane" id="monitoring_hutang_bahan_alat">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">  
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Monitoring Hutang Bahan & Alat</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_monitoring_hutang_bahan_alat'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_monitoring_hutang_bahan_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_monitoring_hutang_bahan_alat" name="filter_kategori" class="form-control select2">
+                                                                    <option value="">Pilih Kategori</option>
+                                                                    <?php
+                                                                    foreach ($kategori as $key => $kat) {
+                                                                    ?>
+                                                                        <option value="<?php echo $kat['id']; ?>"><?php echo $kat['nama_kategori_produk']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_status_monitoring_hutang_bahan_alat" name="filter_status" class="form-control select2">
+                                                                    <option value="">Pilih Status</option>
+                                                                    <?php
+                                                                    foreach ($status as $key => $st) {
+                                                                    ?>
+                                                                        <option value="<?php echo $st['status']; ?>"><?php echo $st['status']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div> 
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_supplier_monitoring_hutang_bahan_alat" name="supplier_id" class="form-control select2">
+                                                                    <option value="">Pilih Rekanan</option>
+                                                                    <?php
+                                                                    foreach ($suppliers as $key => $supplier) {
+                                                                    ?>
+                                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <br /><br />                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="monitoring-hutang-bahan-alat" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -695,6 +806,176 @@
 
             $('#filter_supplier_monitoring_hutang').change(function() {
                 LaporanMonitoringHutang();
+            });
+
+            window.formatter2 = new Intl.NumberFormat('id-ID', {
+                style: 'decimal',
+                currency: 'IDR',
+                symbol: 'none',
+				minimumFractionDigits : '0'
+            });
+
+        </script>
+
+        <!-- Script Monitoring Hutang Bahan & Alat-->
+		<script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_monitoring_hutang_bahan_alat').daterangepicker({
+                autoUpdateInput: false,
+				showDropdowns : true,
+                singleDatePicker: true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_monitoring_hutang_bahan_alat').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                LaporanMonitoringHutangBahanAlat();
+            });
+
+            function LaporanMonitoringHutangBahanAlat() {
+                $('#monitoring-hutang-bahan-alat').show();
+                $('#loader-table').fadeIn('fast');
+                $('#monitoring-hutang-bahan-alat tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/monitoring_hutang_bahan_alat'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        filter_date: $('#filter_date_monitoring_hutang_bahan_alat').val(),
+                        filter_kategori: $('#filter_kategori_monitoring_hutang_bahan_alat').val(),
+                        filter_status: $('#filter_status_monitoring_hutang_bahan_alat').val(),
+                        supplier_id: $('#filter_supplier_monitoring_hutang_bahan_alat').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#monitoring-hutang-bahan-alat tbody').html('');
+
+                            window.jumlah_dpp_bahan = 0;
+                            window.jumlah_dpp_alat = 0;
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    
+                                    //awal bahan
+                                    window.jumlah_dpp_tagihan1 = 0;
+                                    window.jumlah_ppn_tagihan1 = 0;
+                                    window.jumlah_jumlah_tagihan1 = 0;
+                                    window.jumlah_dpp_pembayaran1 = 0;
+                                    window.jumlah_ppn_pembayaran1 = 0;
+                                    window.jumlah_pph_pembayaran1 = 0;
+                                    window.jumlah_jumlah_pembayaran1 = 0;
+                                    window.jumlah_dpp_sisa_hutang1 = 0;
+                                    window.jumlah_ppn_sisa_hutang1 = 0;
+                                    window.jumlah_jumlah_sisa_hutang1 = 0;
+                                    //akhir bahan
+
+                                    //awal alat
+                                    window.jumlah_dpp_tagihan2 = 0;
+                                    window.jumlah_ppn_tagihan2 = 0;
+                                    window.jumlah_jumlah_tagihan2 = 0;
+                                    window.jumlah_dpp_pembayaran2 = 0;
+                                    window.jumlah_ppn_pembayaran2 = 0;
+                                    window.jumlah_pph_pembayaran2 = 0;
+                                    window.jumlah_jumlah_pembayaran2 = 0;
+                                    window.jumlah_dpp_sisa_hutang2 = 0;
+                                    window.jumlah_ppn_sisa_hutang2 = 0;
+                                    window.jumlah_jumlah_sisa_hutang2 = 0;
+                                    //akhir alat
+
+                                    $.each(val.mats, function(a, row) {
+                                        if (row.kategori_id == '1'){
+                                            window.jumlah_dpp_tagihan1 += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_tagihan1 += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_tagihan1 += parseFloat(row.jumlah_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_pembayaran1 += parseFloat(row.dpp_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_pembayaran1 += parseFloat(row.ppn_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pph_pembayaran1 += parseFloat(row.pph_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_pembayaran1 += parseFloat(row.jumlah_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_sisa_hutang1 += parseFloat(row.dpp_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_sisa_hutang1 += parseFloat(row.ppn_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_sisa_hutang1 += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                        
+                                            window.jumlah_dpp_bahan += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                        } else if (row.kategori_id == '5'){
+                                            window.jumlah_dpp_tagihan2 += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_tagihan2 += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_tagihan2 += parseFloat(row.jumlah_tagihan.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_pembayaran2 += parseFloat(row.dpp_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_pembayaran2 += parseFloat(row.ppn_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_pph_pembayaran2 += parseFloat(row.pph_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_pembayaran2 += parseFloat(row.jumlah_pembayaran.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_dpp_sisa_hutang2 += parseFloat(row.dpp_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_ppn_sisa_hutang2 += parseFloat(row.ppn_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                            window.jumlah_jumlah_sisa_hutang2 += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
+                                        
+                                            window.jumlah_dpp_alat += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
+                                        }
+                                    });
+
+                                    $('#monitoring-hutang-bahan-alat tbody').append('<tr onclick="NextShowMonitoringHutangBahanAlat(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.name + '</td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan1+window.jumlah_dpp_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan1+window.jumlah_ppn_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan1+window.jumlah_jumlah_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran1+window.jumlah_dpp_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran1+window.jumlah_ppn_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran1+window.jumlah_pph_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran1+window.jumlah_jumlah_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang1+window.jumlah_dpp_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang1+window.jumlah_ppn_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang1+window.jumlah_jumlah_sisa_hutang2) + '</b></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                                    
+                                    //awal bahan
+                                    $.each(val.mats, function(a, row) {
+                                        if (row.kategori_id == '1'){
+                                            var a_no = a + 1;
+                                            $('#monitoring-hutang-bahan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.tanggal_invoice + '</td><td class="text-right">' + row.subject + '</td><td class="text-right">' + row.tanggal_lolos_verifikasi + '</td><td class="text-right">' + row.syarat_pembayaran + '</td><td class="text-right">' + row.dpp_tagihan + '</td><td class="text-right">' + row.ppn_tagihan + '</td><td class="text-right">' + row.jumlah_tagihan + '</td><td class="text-right">' + row.dpp_pembayaran + '</td><td class="text-right">' + row.ppn_pembayaran + '</td><td class="text-right">' + row.pph_pembayaran + '</td><td class="text-right">' + row.jumlah_pembayaran + '</td><td class="text-right">' + row.dpp_sisa_hutang + '</td><td class="text-right">' + row.ppn_sisa_hutang + '</td><td class="text-right">' + row.jumlah_sisa_hutang + '</td><td class="text-right">' + row.status + '</td><td class="text-center">' + row.jatuh_tempo + '</td></tr>');   
+                                        }
+                                    });
+                                    $('#monitoring-hutang-bahan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="6"><b>BAHAN</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang1) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang1) + '</b></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
+                                    //akhir bahan
+
+                                    //awal alat
+                                    $.each(val.mats, function(a, row) {
+                                        if (row.kategori_id == '5'){
+                                            var a_no = a + 1;
+                                            $('#monitoring-hutang-bahan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.tanggal_invoice + '</td><td class="text-right">' + row.subject + '</td><td class="text-right">' + row.tanggal_lolos_verifikasi + '</td><td class="text-right">' + row.syarat_pembayaran + '</td><td class="text-right">' + row.dpp_tagihan + '</td><td class="text-right">' + row.ppn_tagihan + '</td><td class="text-right">' + row.jumlah_tagihan + '</td><td class="text-right">' + row.dpp_pembayaran + '</td><td class="text-right">' + row.ppn_pembayaran + '</td><td class="text-right">' + row.pph_pembayaran + '</td><td class="text-right">' + row.jumlah_pembayaran + '</td><td class="text-right">' + row.dpp_sisa_hutang + '</td><td class="text-right">' + row.ppn_sisa_hutang + '</td><td class="text-right">' + row.jumlah_sisa_hutang + '</td><td class="text-right">' + row.status + '</td><td class="text-center">' + row.jatuh_tempo + '</td></tr>');   
+                                        }
+                                    });
+                                    $('#monitoring-hutang-bahan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="6"><b>ALAT</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang2) + '</b></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
+                                    //akhir alat
+
+                                    $('#monitoring-hutang-bahan-alat tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="6"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan1+window.jumlah_dpp_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan1+window.jumlah_ppn_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan1+window.jumlah_jumlah_tagihan2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran1+window.jumlah_dpp_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran1+window.jumlah_ppn_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran1+window.jumlah_pph_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran1+window.jumlah_jumlah_pembayaran2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang1+window.jumlah_dpp_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang1+window.jumlah_ppn_sisa_hutang2) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang1+window.jumlah_jumlah_sisa_hutang2) + '</b></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
+                                
+                                });
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL BAHAN</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_bahan) + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL ALAT</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_alat) + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
+                            } else {
+                                $('#monitoring-hutang-bahan-alat tbody').append('<tr><td class="text-center" colspan="18"><b>Tidak Ada Data</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowMonitoringHutangBahanAlat(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
+
+            $('#filter_kategori_monitoring_hutang_bahan_alat').change(function() {
+                LaporanMonitoringHutangBahanAlat();
+            });
+
+            $('#filter_status_monitoring_hutang_bahan_alat').change(function() {
+                LaporanMonitoringHutangBahanAlat();
+            });
+
+            $('#filter_supplier_monitoring_hutang_bahan_alat').change(function() {
+                LaporanMonitoringHutangBahanAlat();
             });
 
             window.formatter2 = new Intl.NumberFormat('id-ID', {

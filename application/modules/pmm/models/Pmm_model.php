@@ -3986,6 +3986,49 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function GetLaporanMonitoringHutangBahanAlat($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false,$filter_status=false)
+    {
+        $output = array();
+
+        $this->db->select('ppp.*, pvp.tanggal_lolos_verifikasi, pvp.status_umur_hutang, ps.nama, ppo.subject, ppo.kategori_id,
+        (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as dpp_tagihan,
+        (select COALESCE(sum(ppn),0) from pmm_verifikasi_penagihan_pembelian ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as ppn_tagihan,
+        (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") +  (select COALESCE(sum(ppn),0) from pmm_verifikasi_penagihan_pembelian ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as jumlah_tagihan,
+
+        (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo <> "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as dpp_pembayaran,
+        (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo = "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as ppn_pembayaran,
+        (select COALESCE(sum(pph),0) from pmm_verifikasi_penagihan_pembelian ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") as pph_pembayaran,
+        (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo <> "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") + (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo = "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as jumlah_pembayaran,
+
+        (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo <> "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as dpp_sisa_hutang,
+        (select COALESCE(sum(tax),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo = "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as ppn_sisa_hutang,
+        (select COALESCE(sum(total),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo <> "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") + (select COALESCE(sum(tax),0) from pmm_penagihan_pembelian_detail ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'") - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pppp where pppp.penagihan_pembelian_id = ppp.id and pppp.memo = "PPN" and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'") as jumlah_sisa_hutang
+        ');
+        $this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
+        $this->db->join('pmm_verifikasi_penagihan_pembelian pvp','ppp.id = pvp.penagihan_pembelian_id','left');
+        $this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+        $this->db->where("ppo.kategori_id in (1,5)");
+        if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.tanggal_invoice >=',$start_date);
+            $this->db->where('ppp.tanggal_invoice <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppp.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
+        if(!empty($filter_status)){
+            $this->db->where_in('ppp.status',$filter_status);
+        }
+        $this->db->order_by('ppp.tanggal_invoice','asc');
+        $this->db->group_by('ppp.id');
+        $query = $this->db->get('pmm_penagihan_pembelian ppp');
+        $output = $query->result_array();
+		
+        return $output;
+    }
+
     function GetPengirimanPenjualan($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
     {
         $output = array();

@@ -807,6 +807,270 @@ class Laporan extends Secure_Controller {
 	
 	}
 
+	public function cetak_monitoring_hutang_bahan_alat()
+	{
+		$this->load->library('pdf');
+	
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+
+		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$html =
+		'<style type="text/css">
+		 body {
+			font-family: helvetica;
+		}
+
+		table.table-border-atas-full, th.table-border-atas-full, td.table-border-atas-full {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		table.table-border-atas-only, th.table-border-atas-only, td.table-border-atas-only {
+			border-top: 1px solid black;
+		}
+
+		table.table-border-bawah-only, th.table-border-bawah-only, td.table-border-bawah-only {
+			border-bottom: 1px solid black;
+		}
+
+		table tr.table-judul{
+			border: 1px solid;
+			background-color: #e69500;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+			
+		table tr.table-baris1{
+			background-color: none;
+			font-size: 5px;
+		}
+
+		table tr.table-baris1-bold{
+			background-color: none;
+			font-size: 5px;
+			font-weight: bold;
+		}
+			
+		table tr.table-total{
+			background-color: #FFFF00;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+	  	</style>
+		<table width="98%" border="0" cellpadding="2">
+			<tr class="table-judul">
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
+				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
+				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
+			</tr>
+			<tr class="table-judul">
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">PPH</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+			</tr>	
+		</table>';
+		$pdf->writeHTML($html, true, false, true, false, '');
+
+		//Page3
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page4
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page5
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$filter_kategori = $this->input->get('filter_kategori');
+		$filter_status = $this->input->get('filter_status');
+		$start_date = false;
+		$end_date = false;
+		$total_dpp_tagihan = 0;
+		$total_ppn_tagihan = 0;
+		$total_jumlah_tagihan = 0;
+		$total_dpp_pembayaran = 0;
+		$total_ppn_pembayaran = 0;
+		$total_pph_pembayaran = 0;
+		$total_jumlah_pembayaran = 0;
+		$total_dpp_sisa_hutang = 0;
+		$total_ppn_sisa_hutang = 0;
+		$total_jumlah_sisa_hutang = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
+
+			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
+			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
+			$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+			$this->db->where("ppo.kategori_id in (1,5)");
+			
+			if(!empty($start_date) && !empty($end_date)){
+				$this->db->where('ppp.tanggal_invoice >=',$start_date);
+				$this->db->where('ppp.tanggal_invoice <=',$end_date);
+			}
+			if(!empty($supplier_id)){
+				$this->db->where('ppo.supplier_id',$supplier_id);
+			}
+			if(!empty($filter_kategori)){
+				$this->db->where('ppo.kategori_id',$filter_kategori);
+			}
+			if(!empty($filter_status)){
+				$this->db->where('ppp.status',$filter_status);
+			}
+
+			$this->db->group_by('ppp.supplier_id');
+			$this->db->order_by('ps.nama','asc');
+			$query = $this->db->get('pmm_penagihan_pembelian ppp');
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+					$mats = array();
+					$materials = $this->pmm_model->GetLaporanMonitoringHutangBahanAlat($sups['supplier_id'],$start_date,$end_date,$filter_kategori,$filter_status);
+					if(!empty($materials)){
+						foreach ($materials as $key => $row) {
+							$awal  = date_create($row['status_umur_hutang']);
+							$akhir = date_create($end_date);
+							$diff  = date_diff( $awal, $akhir );
+
+							$tanggal_tempo = date('Y-m-d', strtotime(+$row['syarat_pembayaran'].'days', strtotime($row['tanggal_lolos_verifikasi'])));
+
+							$awal_tempo =date_create($tanggal_tempo);
+							$akhir_tempo =date_create($end_date);
+							$diff_tempo =date_diff($awal_tempo,$akhir_tempo);
+
+							$arr['no'] = $key + 1;
+							$arr['nama'] = $row['nama'];
+							$arr['subject'] = $row['subject'];
+							$arr['kategori_id'] = $row['kategori_id'];
+							$arr['status'] = $row['status'];
+							$arr['syarat_pembayaran'] = $row['syarat_pembayaran'];
+							//$arr['syarat_pembayaran'] = $diff->days . ' Hari';
+							//$arr['syarat_pembayaran'] = $diff->days . ' ';
+							//$arr['jatuh_tempo'] =  $diff_tempo->format("%R%a");
+							$arr['jatuh_tempo'] =  date('d-m-Y',strtotime($tanggal_tempo));
+							$arr['nomor_invoice'] = $row['nomor_invoice'];
+							$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
+							$arr['tanggal_lolos_verifikasi'] = date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
+							$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
+							$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
+							$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
+							$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
+							$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
+							$arr['pph_pembayaran'] = number_format($row['pph_pembayaran'],0,',','.');
+							$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
+							$arr['dpp_sisa_hutang'] = number_format($row['dpp_sisa_hutang'],0,',','.');
+							$arr['ppn_sisa_hutang'] = number_format($row['ppn_sisa_hutang'],0,',','.');
+							$arr['jumlah_sisa_hutang'] = number_format($row['jumlah_sisa_hutang'],0,',','.');
+
+							$total_dpp_tagihan += $row['dpp_tagihan'];
+							$total_ppn_tagihan += $row['ppn_tagihan'];
+							$total_jumlah_tagihan += $row['jumlah_tagihan'];
+							$total_dpp_pembayaran += $row['dpp_pembayaran'];
+							$total_ppn_pembayaran += $row['ppn_pembayaran'];
+							$total_pph_pembayaran += $row['pph_pembayaran'];
+							$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
+							$total_dpp_sisa_hutang += $row['dpp_sisa_hutang'];
+							$total_ppn_sisa_hutang += $row['ppn_sisa_hutang'];
+							$total_jumlah_sisa_hutang += $row['jumlah_sisa_hutang'];
+							
+							
+							$arr['name'] = $sups['name'];
+							$mats[] = $arr;
+						}
+						$sups['mats'] = $mats;
+						$sups['no'] =$no;
+
+						$arr_data[] = $sups;
+						$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
+			$data['total_ppn_tagihan'] = $total_ppn_tagihan;
+			$data['total_jumlah_tagihan'] = $total_jumlah_tagihan;
+			$data['total_dpp_pembayaran'] = $total_dpp_pembayaran;
+			$data['total_ppn_pembayaran'] = $total_ppn_pembayaran;
+			$data['total_pph_pembayaran'] = $total_pph_pembayaran;
+			$data['total_jumlah_pembayaran'] = $total_jumlah_pembayaran;
+			$data['total_dpp_sisa_hutang'] = $total_dpp_sisa_hutang;
+			$data['total_ppn_sisa_hutang'] = $total_ppn_sisa_hutang;
+			$data['total_jumlah_sisa_hutang'] = $total_jumlah_sisa_hutang;
+	        $html = $this->load->view('laporan_pembelian/cetak_monitoring_hutang_bahan_alat',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Laporan Monitoring Hutang');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('monitoring-hutang.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');

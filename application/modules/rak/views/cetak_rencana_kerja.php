@@ -796,7 +796,7 @@
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="center" class="table-border-pojok-kiri">4.</th>	
 				<th align="left" class="table-border-pojok-tengah">Transfer Semen</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
