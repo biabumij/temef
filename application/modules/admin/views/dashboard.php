@@ -2735,6 +2735,85 @@
                     </figure>
                     <br />
                 </div>
+                <?php
+                $rencana_kerja_now = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as total_produksi')
+                ->from('rak r')
+                ->where("r.tanggal_rencana_kerja <= '$date_now'")
+                ->order_by('r.id','desc')->limit(1)
+                ->get()->row_array();
+
+                $rencana_kerja_perminggu = $rencana_kerja_now['total_produksi'] / 4;
+                $rencana_kerja_perminggu_fix = round($rencana_kerja_perminggu,2);
+
+                $date_minggu_1_awal = date('Y-m-01', strtotime($date_now));
+                $date_minggu_1_akhir = date('Y-m-d', strtotime('+6 days', strtotime($date_minggu_1_awal)));
+
+                $penjualan_minggu_1 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_minggu_1_awal' and '$date_minggu_1_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $penjualan_minggu_1 = $penjualan_minggu_1['volume'];
+                $penjualan_minggu_1_fix = round($penjualan_minggu_1,2);
+
+                $date_minggu_2_awal = date('Y-m-d', strtotime($date_minggu_1_akhir));
+                $date_minggu_2_akhir = date('Y-m-d', strtotime('+7 days', strtotime($date_minggu_2_awal)));
+
+                $penjualan_minggu_2 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_minggu_2_awal' and '$date_minggu_2_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $penjualan_minggu_3 = $penjualan_minggu_3['volume'];
+                $penjualan_minggu_3_fix = round($penjualan_minggu_3,2);
+
+                $date_minggu_3_awal = date('Y-m-d', strtotime($date_minggu_2_akhir));
+                $date_minggu_3_akhir = date('Y-m-d', strtotime('+7 days', strtotime($date_minggu_3_awal)));
+
+                $penjualan_minggu_3 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_minggu_3_awal' and '$date_minggu_3_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $penjualan_minggu_3 = $penjualan_minggu_3['volume'];
+                $penjualan_minggu_3_fix = round($penjualan_minggu_3,2);
+
+                $date_minggu_4_awal = date('Y-m-d', strtotime($date_minggu_3_akhir));
+                $date_minggu_4_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_minggu_1_awal)));
+
+                $penjualan_minggu_4 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
+                ->from('pmm_productions pp')
+                ->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+                ->where("pp.date_production between '$date_minggu_4_awal' and '$date_minggu_4_akhir'")
+                ->where("pp.status = 'PUBLISH'")
+                ->where("ppo.status in ('OPEN','CLOSED')")
+                ->group_by("pp.client_id")
+                ->get()->row_array();
+
+                $penjualan_minggu_4 = $penjualan_minggu_4['volume'];
+                $penjualan_minggu_4_fix = round($penjualan_minggu_4,2);
+                
+
+                ?>
+                <div class="col-sm-12">
+                    <figure class="highcharts-figure">
+                        <div id="container_rencana_kerja_perminggu"></div>
+                        
+                    </figure>
+                    <br />
+                </div>
                 <!--<div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -3021,7 +3100,7 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [0, 0, 500, 500],
+                        linearGradient: [0, 0, 300, 500],
                         stops: [
                             [0, 'rgb(255,255,255)'],
                             [1, 'rgb(91,91,91)']
@@ -3189,7 +3268,8 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [0, 0, 500, 500],
+                        linearGradient: [0, 0, 300, 500],
+                        color:'#000000',
                         stops: [
                             [0, 'rgb(255,255,255)'],
                             [1, 'rgb(230,149,0)']
@@ -3258,7 +3338,6 @@
                     },
                     min: -50,
                     max: 100,
-                    color: '#000000',
                     tickInterval: 20,
                 },
                 tooltip: { 
@@ -3314,6 +3393,156 @@
                     data: [ <?php echo json_encode($presentase_laba_rugi_januari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_februari23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_maret23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_april23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_mei23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juni23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_juli23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_agustus23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_september23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_oktober23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_november23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_desember23_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($presentase_laba_rugi_akumulasi_fix, JSON_NUMERIC_CHECK); ?>],
 
                     color: '#FF0000',
+                    fontWeight: 'bold',
+                    fontSize: '10px',
+                    fontFamily: 'arial',
+
+                    zones: [{
+                        
+                    }, {
+                        dashStyle: 'dot'
+                    }]
+                }
+                ]
+            });
+        });
+        
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        var chart;
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'container_rencana_kerja_perminggu',
+                    type: 'column',
+                    marginRight: 130,
+                    marginBottom: 75,
+                    backgroundColor: {
+                        linearGradient: [0, 0, 300, 500],
+                        color:'#000000',
+                        stops: [
+                            [0, 'rgb(255,255,255)'],
+                            [1, 'rgb(255,255,255)']
+                        ]
+                    },
+                },
+                title: {
+                    style: {
+                        color: '#000000',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'arial'
+                    },
+                    text: 'REALISASI RENCANA KERJA PERMINGGU',
+                    x: -20 //center            
+                },
+                subtitle: {
+                    style: {
+                        color: '#000000',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'arial'
+                    },
+                    text: 'PT. BIA BUMI JAYENDRA - TEMEF',
+                    x: -20
+                },
+                xAxis: { //X axis menampilkan data bulan
+                    labels: {
+                        style: {
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '10px',
+                            fontFamily: 'arial'
+                        }
+                    },
+                    categories: ['Minggu 1','Minggu 2','Minggu 3','Minggu 4']
+                },
+                yAxis: {
+                    //title: {  //label yAxis
+                        //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
+                        //text: 'Presentase'
+                    //},
+                    title: {
+                        style: {
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '10px',
+                            fontFamily: 'arial'
+                        },
+                        text: 'Volume Produksi'           
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080' //warna dari grafik line
+                    }],
+                    labels: {
+                        style: {
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '10px',
+                            fontFamily: 'arial'
+                        },
+                        format: '{value}'
+                    },
+                    min: 0,
+                    max: 2000,
+                    tickInterval: 250,
+                },
+                tooltip: { 
+                //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
+                //akan menampikan data di titik tertentu di grafik saat mouseover
+                    formatter: function() {
+                            return '<b>'+ this.series.name +'</b><br/>'+ 
+                            ''+ 'Volume Produksi' +': '+ this.y + 'M3<br/>';
+                            //''+ 'Vol' +': '+ this.x + '';
+
+                            //'<b>'+ 'Presentase' +': '+ this.y +'%'</b><br/>'+ 
+                            //'<b>'+ 'Penjualan' +': '+ this.y +'</b><br/>';
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -10,
+                    y: 100,
+                    borderWidth: 0
+                },
+
+                plotOptions: {
+                    spline: {
+                        lineWidth: 4,
+                        states: {
+                            hover: {
+                                lineWidth: 5
+                            }
+                        },
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                },
+        
+                series: [{  
+                    name: 'Rencana Kerja',  
+                
+                    data: [<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>],
+
+                    color: '#BCBCBC',
+                    fontWeight: 'bold',
+                    fontSize: '10px',
+                    fontFamily: 'arial'
+                },
+                {  
+                    name: 'Realisasi',  
+                    
+                    data: [ <?php echo json_encode($penjualan_minggu_1_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($penjualan_minggu_2_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($penjualan_minggu_3_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($penjualan_minggu_4_fix, JSON_NUMERIC_CHECK); ?>],
+
+                    color: '#2986CC',
                     fontWeight: 'bold',
                     fontSize: '10px',
                     fontFamily: 'arial',

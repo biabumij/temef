@@ -7290,8 +7290,8 @@ class Reports extends CI_Controller {
 			//$last_opname_start = date('Y-m-01', (strtotime($date_now)));
 			//$last_opname = date('Y-m-d', strtotime('-1 days', strtotime($last_opname_start)));
 
-			$date_epproval = $this->db->select('date_approval')->order_by('date_approval','desc')->limit(1)->get_where('ttd_laporan',array('status'=>'PUBLISH'))->row_array();
-			$last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_epproval['date_approval'])));
+			$date_approval = $this->db->select('date_approval')->order_by('date_approval','desc')->limit(1)->get_where('ttd_laporan',array('status'=>'PUBLISH'))->row_array();
+			$last_opname = date('Y-m-d', strtotime('0 days', strtotime($date_approval['date_approval'])));
 
 			//PRODUKSI (PENJUALAN) NOW
 			$penjualan_now = $this->db->select('SUM(pp.display_price) as total')

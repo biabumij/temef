@@ -7,6 +7,7 @@
 	  <style type="text/css">
 	  	body{
 	  		font-family: "Open Sans", Arial, sans-serif;
+			font-size: 7px;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
@@ -262,7 +263,7 @@
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
-								<img src="<?= $created_group['admin_ttd_cap']?>" width="50px">
+								<img src="<?= $created_group['admin_ttd_cap']?>" width="30px">
 							</td>
 						</tr>
 						<tr>
