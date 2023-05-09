@@ -7,7 +7,7 @@
 	  <style type="text/css">
 	  	body{
 	  		font-family: "Open Sans", Arial, sans-serif;
-			font-size: 7px;
+			font-size: 7.5px;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
@@ -57,7 +57,7 @@
 		<br /><br />
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
-				<th width="25%">Nomor PO</th>
+				<th width="30%">Nomor PO</th>
 				<th width="2%">:</th>
 				<th width="45%" align="left"><?php echo $row['no_po'];?></th>
 				<td align="left" width="28%">
