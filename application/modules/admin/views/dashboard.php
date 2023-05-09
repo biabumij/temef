@@ -3497,7 +3497,7 @@
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
                             return '<b>'+ this.series.name +'</b><br/>'+ 
-                            ''+ 'Volume Produksi' +': '+ this.y + 'M3 <br/>';
+                            ''+ 'Volume Produksi' +': '+ this.y + 'M3<br/>';
                             //''+ 'Vol' +': '+ this.x + '';
 
                             //'<b>'+ 'Presentase' +': '+ this.y +'%'</b><br/>'+ 
