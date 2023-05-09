@@ -380,7 +380,7 @@
                                                             <div class="col-sm-3">
                                                                 <input type="text" id="filter_date_monitoring_hutang_bahan_alat" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>
-                                                            <div class="col-sm-3">
+                                                            <!--<div class="col-sm-3">
                                                                 <select id="filter_kategori_monitoring_hutang_bahan_alat" name="filter_kategori" class="form-control select2">
                                                                     <option value="">Pilih Kategori</option>
                                                                     <?php
@@ -415,7 +415,7 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                            </div>
+                                                            </div>-->
                                                             <br /><br />                                           
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
