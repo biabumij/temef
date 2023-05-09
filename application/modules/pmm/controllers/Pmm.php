@@ -1389,7 +1389,7 @@ class Pmm extends CI_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Lampiran" ><i class="fa fa-upload"></i> </a>';
 				$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				$row['lampiran'] = '<a href="'.base_url().'uploads/stock_opname/'.$row['surat_jalan_file'].'" target="_blank">'.$row['lampiran'].'</a>';
+				$row['lampiran'] = '<a href="'.base_url().'uploads/stock_opname/'.$row['lampiran'].'" target="_blank">'.$row['lampiran'].'</a>';
 
 				$data[] = $row;
 			}
