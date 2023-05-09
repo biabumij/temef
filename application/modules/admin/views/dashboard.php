@@ -3100,10 +3100,10 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [0, 0, 300, 500],
+                        linearGradient: [0, 0, 700, 500],
                         stops: [
                             [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(91,91,91)']
+                            [1, 'rgb(188,188,188)']
                         ]
                     },
                 },
@@ -3268,11 +3268,10 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [0, 0, 300, 500],
-                        color:'#000000',
+                        linearGradient: [500, 0, 0, 700],
                         stops: [
                             [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(230,149,0)']
+                            [1, 'rgb(188,188,188)']
                         ]
                     },
                 },
@@ -3421,11 +3420,10 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [0, 0, 300, 500],
-                        color:'#000000',
+                        linearGradient: [0, 0, 700, 500],
                         stops: [
                             [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(255,255,255)']
+                            [1, 'rgb(188,188,188)']
                         ]
                     },
                 },
@@ -3446,7 +3444,7 @@
                         fontSize: '14px',
                         fontFamily: 'arial'
                     },
-                    text: 'PT. BIA BUMI JAYENDRA - TEMEF',
+                    text: '(<?php echo $date_minggu_1_awal = date('F', strtotime($date_now));?>)'.toUpperCase(),
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
@@ -3458,7 +3456,7 @@
                             fontFamily: 'arial'
                         }
                     },
-                    categories: ['Minggu 1','Minggu 2','Minggu 3','Minggu 4']
+                    categories: ['Minggu 1 <br /><?php echo $date_minggu_1_awal = date('01 F Y', strtotime($date_now));?> - <?php echo $date_minggu_1_akhir = date('d F Y', strtotime('+6 days', strtotime($date_minggu_1_awal)));?>','Minggu 2 <br /><?php echo $date_minggu_2_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_2_awal)));?> - <?php echo $date_minggu_2_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_2_akhir)));?>','Minggu 3 <br /><?php echo $date_minggu_3_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_3_awal)));?> - <?php echo $date_minggu_3_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_3_akhir)));?>','Minggu 4 <br /><?php echo $date_minggu_4_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_4_awal)));?> - <?php echo $date_minggu_4_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_4_akhir)));?>']
                 },
                 yAxis: {
                     //title: {  //label yAxis
@@ -3497,7 +3495,7 @@
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
                             return '<b>'+ this.series.name +'</b><br/>'+ 
-                            ''+ 'Volume Produksi' +': '+ this.y + 'M3<br/>';
+                            ''+ 'Volume Produksi' +': '+ this.y + ' M3<br/>';
                             //''+ 'Vol' +': '+ this.x + '';
 
                             //'<b>'+ 'Presentase' +': '+ this.y +'%'</b><br/>'+ 
@@ -3532,7 +3530,7 @@
                 
                     data: [<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($rencana_kerja_perminggu_fix, JSON_NUMERIC_CHECK); ?>],
 
-                    color: '#BCBCBC',
+                    color: '#e69500 ',
                     fontWeight: 'bold',
                     fontSize: '10px',
                     fontFamily: 'arial'

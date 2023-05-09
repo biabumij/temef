@@ -21,6 +21,7 @@
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
                 <th class="text-center">Catatan</th>
+                <th class="text-center">Lampiran</th>
                 <th class="text-center">Dibuat Oleh</th>
                 <th class="text-center">Dibuat Tanggal</th>
                 <th class="text-center">Tindakan</th>
@@ -34,7 +35,7 @@
 
 
 <div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="Dokumen">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="modal-title">Stock Opname</span>
@@ -112,6 +113,10 @@
                         <textarea id="notes" name="notes" class="form-control" autocomplete="off" rows="5" data-required="false"></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Uploads Document</label>
+                        <input type="file" id="file" name="file" class="form-control" />
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
                     </div>
                 </form>
@@ -134,6 +139,34 @@
             </div>
             <div class="modal-body">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Upload Lampiran</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                    <input type="hidden" name="id" id="id_doc_surat_jalan">
+                    <div class="form-group">
+                        <label>Upload Lampiran</label>
+                        <input type="file" id="file" name="file" class="form-control" required="" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
