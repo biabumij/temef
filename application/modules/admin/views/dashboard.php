@@ -103,31 +103,6 @@
                         </figure>
                         <br />
                     </div>
-
-                    <!--<div class="col-sm-10">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Laba Rugi</h3>
-                            </div>
-                            <div style="margin: 20px">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
-                                    </div>
-                                </div>
-                                <br />
-                                <div id="wait" style=" text-align: center; align-content: center; display: none;">	
-                                    <div>Please Wait</div>
-                                        <div class="fa-3x">
-                                            <i class="fa fa-spinner fa-spin"></i>
-                                        </div>
-                                </div>		
-                                <div id="parent-lost-profit" class="chart-container">
-                                    <canvas id="canvas"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
             
                     <div role="tabpanel" class="tab-pane" id="laporan_rap">
                         <div class="col-sm-8">
@@ -178,6 +153,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--<div class="col-sm-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Laba Rugi</h3>
+                            </div>
+                            <div style="margin: 20px">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                    <div>Please Wait</div>
+                                        <div class="fa-3x">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </div>
+                                </div>		
+                                <div id="parent-lost-profit" class="chart-container">
+                                    <canvas id="canvas"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
                 </div>  
             </div>
         </div>
@@ -679,6 +680,74 @@
     });
 </script>
 
+<!-- Script Evaluasi -->
+<script type="text/javascript">
+    $('#filter_date_evaluasi').daterangepicker({
+    autoUpdateInput : false,
+    showDropdowns: true,
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
+    });
+
+    $('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableEvaluasi();
+    });
+
+
+    function TableEvaluasi()
+    {
+        $('#wait').fadeIn('fast');   
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/reports/dashboard_evaluasi_bahan'); ?>/"+Math.random(),
+            dataType : 'html',
+            data: {
+                filter_date : $('#filter_date_evaluasi').val(),
+            },
+            success : function(result){
+                $('#box-ajax-evaluasi').html(result);
+                $('#wait').fadeOut('fast');
+            }
+        });
+    }
+
+    TableEvaluasi();
+</script>
+
+<!-- Script RAP x Prognosa -->
+<script type="text/javascript">
+
+    function TableRAP()
+    {
+        $('#wait').fadeIn('fast');   
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
+            dataType : 'html',
+            data: {
+                filter_date : $('#filter_date_rap').val(),
+            },
+            success : function(result){
+                $('#box-rap').html(result);
+                $('#wait').fadeOut('fast');
+            }
+        });
+    }
+
+    TableRAP();
+</script>
+
+<!-- Script Laba Rugi -->
 <script type="text/javascript">
     $('.dtpicker').daterangepicker({
         autoUpdateInput : false,
@@ -774,73 +843,6 @@
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
             getLostProfit();
     });
-</script>
-
-<!-- Script Evaluasi -->
-<script type="text/javascript">
-    $('#filter_date_evaluasi').daterangepicker({
-    autoUpdateInput : false,
-    showDropdowns: true,
-    locale: {
-        format: 'DD-MM-YYYY'
-    },
-    ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    }
-    });
-
-    $('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            TableEvaluasi();
-    });
-
-
-    function TableEvaluasi()
-    {
-        $('#wait').fadeIn('fast');   
-        $.ajax({
-            type    : "POST",
-            url     : "<?php echo site_url('pmm/reports/dashboard_evaluasi_bahan'); ?>/"+Math.random(),
-            dataType : 'html',
-            data: {
-                filter_date : $('#filter_date_evaluasi').val(),
-            },
-            success : function(result){
-                $('#box-ajax-evaluasi').html(result);
-                $('#wait').fadeOut('fast');
-            }
-        });
-    }
-
-    TableEvaluasi();
-</script>
-
-<!-- Script RAP x Prognosa -->
-<script type="text/javascript">
-
-    function TableRAP()
-    {
-        $('#wait').fadeIn('fast');   
-        $.ajax({
-            type    : "POST",
-            url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
-            dataType : 'html',
-            data: {
-                filter_date : $('#filter_date_rap').val(),
-            },
-            success : function(result){
-                $('#box-rap').html(result);
-                $('#wait').fadeOut('fast');
-            }
-        });
-    }
-
-    TableRAP();
 </script>
 
 </body>
