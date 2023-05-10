@@ -2772,8 +2772,8 @@
                 ->group_by("pp.client_id")
                 ->get()->row_array();
 
-                $penjualan_minggu_3 = $penjualan_minggu_3['volume'];
-                $penjualan_minggu_3_fix = round($penjualan_minggu_3,2);
+                $penjualan_minggu_2 = $penjualan_minggu_2['volume'];
+                $penjualan_minggu_2_fix = round($penjualan_minggu_2,2);
 
                 $date_minggu_3_awal = date('Y-m-d', strtotime($date_minggu_2_akhir));
                 $date_minggu_3_akhir = date('Y-m-d', strtotime('+7 days', strtotime($date_minggu_3_awal)));
