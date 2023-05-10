@@ -2735,6 +2735,8 @@
                     </figure>
                     <br />
                 </div>
+
+                <!-- DASHBOARD REALISASI RENCANA KERJA -->
                 <?php
                 $rencana_kerja_now = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as total_produksi')
                 ->from('rak r')
@@ -2742,11 +2744,35 @@
                 ->order_by('r.id','desc')->limit(1)
                 ->get()->row_array();
 
+                $date_dashboard_1 = $this->db->select('d.*')
+                ->from('date_dashboard d')
+                ->where("d.date >= '$date_now'")
+                ->order_by('d.id','asc')->limit(1)
+                ->get()->row_array();
+
+                $date_dashboard_2 = $this->db->select('d.*')
+                ->from('date_dashboard d')
+                ->where("d.date >= '$date_now'")
+                ->order_by('d.id','asc')->limit(1,1)
+                ->get()->row_array();
+
+                $date_dashboard_3 = $this->db->select('d.*')
+                ->from('date_dashboard d')
+                ->where("d.date >= '$date_now'")
+                ->order_by('d.id','asc')->limit(1,2)
+                ->get()->row_array();
+
+                $date_dashboard_4 = $this->db->select('d.*')
+                ->from('date_dashboard d')
+                ->where("d.date >= '$date_now'")
+                ->order_by('d.id','asc')->limit(1,3)
+                ->get()->row_array();
+
                 $rencana_kerja_perminggu = $rencana_kerja_now['total_produksi'] / 4;
                 $rencana_kerja_perminggu_fix = round($rencana_kerja_perminggu,2);
 
                 $date_minggu_1_awal = date('Y-m-01', strtotime($date_now));
-                $date_minggu_1_akhir = date('Y-m-d', strtotime('+6 days', strtotime($date_minggu_1_awal)));
+                $date_minggu_1_akhir = date('Y-m-d', strtotime($date_dashboard_1['date']));
 
                 $penjualan_minggu_1 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
                 ->from('pmm_productions pp')
@@ -2756,12 +2782,12 @@
                 ->where("ppo.status in ('OPEN','CLOSED')")
                 ->group_by("pp.client_id")
                 ->get()->row_array();
-
+                
                 $penjualan_minggu_1 = $penjualan_minggu_1['volume'];
                 $penjualan_minggu_1_fix = round($penjualan_minggu_1,2);
 
-                $date_minggu_2_awal = date('Y-m-d', strtotime($date_minggu_1_akhir));
-                $date_minggu_2_akhir = date('Y-m-d', strtotime('+7 days', strtotime($date_minggu_2_awal)));
+                $date_minggu_2_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_minggu_1_akhir)));
+                $date_minggu_2_akhir = date('Y-m-d', strtotime($date_dashboard_2['date']));
 
                 $penjualan_minggu_2 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
                 ->from('pmm_productions pp')
@@ -2775,8 +2801,8 @@
                 $penjualan_minggu_2 = $penjualan_minggu_2['volume'];
                 $penjualan_minggu_2_fix = round($penjualan_minggu_2,2);
 
-                $date_minggu_3_awal = date('Y-m-d', strtotime($date_minggu_2_akhir));
-                $date_minggu_3_akhir = date('Y-m-d', strtotime('+7 days', strtotime($date_minggu_3_awal)));
+                $date_minggu_3_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_minggu_2_akhir)));
+                $date_minggu_3_akhir = date('Y-m-d', strtotime($date_dashboard_3['date']));
 
                 $penjualan_minggu_3 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
                 ->from('pmm_productions pp')
@@ -2790,8 +2816,8 @@
                 $penjualan_minggu_3 = $penjualan_minggu_3['volume'];
                 $penjualan_minggu_3_fix = round($penjualan_minggu_3,2);
 
-                $date_minggu_4_awal = date('Y-m-d', strtotime($date_minggu_3_akhir));
-                $date_minggu_4_akhir = date('Y-m-d', strtotime('-1 days +1 months', strtotime($date_minggu_1_awal)));
+                $date_minggu_4_awal = date('Y-m-d', strtotime('+1 days', strtotime($date_minggu_3_akhir)));
+                $date_minggu_4_akhir = date('Y-m-d', strtotime($date_dashboard_4['date']));
 
                 $penjualan_minggu_4 = $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume')
                 ->from('pmm_productions pp')
@@ -3456,7 +3482,7 @@
                             fontFamily: 'arial'
                         }
                     },
-                    categories: ['Minggu 1 <br /><?php echo $date_minggu_1_awal = date('01 F Y', strtotime($date_now));?> - <?php echo $date_minggu_1_akhir = date('d F Y', strtotime('+6 days', strtotime($date_minggu_1_awal)));?>','Minggu 2 <br /><?php echo $date_minggu_2_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_2_awal)));?> - <?php echo $date_minggu_2_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_2_akhir)));?>','Minggu 3 <br /><?php echo $date_minggu_3_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_3_awal)));?> - <?php echo $date_minggu_3_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_3_akhir)));?>','Minggu 4 <br /><?php echo $date_minggu_4_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_4_awal)));?> - <?php echo $date_minggu_4_akhir = date('d F Y', strtotime('+0 days', strtotime($date_minggu_4_akhir)));?>']
+                    categories: ['Minggu 1 <br /><?php echo $date_minggu_1_awal = date('01 F Y', strtotime($date_now));?> - <?php echo $date_minggu_1_akhir = date('d F Y', strtotime($date_minggu_1_akhir));?>','Minggu 2 <br /><?php echo $date_minggu_2_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_1_akhir)));?> - <?php echo $date_minggu_2_akhir = date('d F Y', strtotime($date_minggu_2_akhir));?>','Minggu 3 <br /><?php echo $date_minggu_3_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_2_akhir)));?> - <?php echo $date_minggu_3_akhir = date('d F Y', strtotime($date_minggu_3_akhir));?>','Minggu 4 <br /><?php echo $date_minggu_4_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_3_akhir)));?> - <?php echo $date_minggu_4_akhir = date('d F Y', strtotime($date_minggu_4_akhir));?>']
                 },
                 yAxis: {
                     //title: {  //label yAxis
