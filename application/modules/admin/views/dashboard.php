@@ -3470,7 +3470,7 @@
                             fontSize: '10px',
                             fontFamily: 'arial'
                         },
-                        text: 'Volume Produksi'           
+                        text: 'Volume Produksi (M3)'           
                     },
                     plotLines: [{
                         value: 0,
