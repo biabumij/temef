@@ -450,8 +450,8 @@
                         },
                         format: '{value} %'
                     },
-                    min: -500,
-                    max: 100,
+                    min: -480,
+                    max: 480,
                     tickInterval: 20,
                 },
                 tooltip: { 
