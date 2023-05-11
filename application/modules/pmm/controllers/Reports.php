@@ -1964,7 +1964,7 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-active{
-				background-color: #5B5B5B;
+				background-color: #e69500 ;
 				color: white;
 			}
 			</style>

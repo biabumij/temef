@@ -85,7 +85,7 @@
             <div class="content-body">
                 <div class="row animated fadeInUp">
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <figure class="highcharts-figure">
                             <div id="container"></div>
                         
@@ -93,7 +93,7 @@
                         <br />
                     </div>
             
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <figure class="highcharts-figure">
                             <div id="container_laba_rugi"></div>
                             
