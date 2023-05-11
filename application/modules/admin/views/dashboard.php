@@ -2,6 +2,11 @@
 <html lang="en" class="fixed">
 <head>
 <?php echo $this->Templates->Header();?>
+<script type = "text/JavaScript">
+    function AutoRefresh( t ) {
+        setTimeout("location.reload(true);", t);
+    }
+</script>
 </head>
 <style type="text/css">
     .chart-container{
@@ -49,7 +54,7 @@
     background: #f1f7ff;
     }
 </style>
-<body>
+<body onload = "JavaScript:AutoRefresh(60000);">
 <div class="wrap">
     
     <?php echo $this->Templates->PageHeader();?>
