@@ -59,16 +59,6 @@
     
     <?php echo $this->Templates->PageHeader();?>
     
-    <?php
-        $get_date = $this->input->get('dt');
-        if(!empty($get_date)){
-            $arr_date = $get_date;
-        }else {
-            // gmdate('F j, Y', strtotime('first day of january this year'));
-            $arr_date = date("d-m-Y", strtotime('first day of january this year')).' - '.date("d-m-Y", strtotime('last day of december this year'));
-        }
-    ?>
-    
     <div class="page-body">
         <?php echo $this->Templates->LeftBar();?>
         <div class="content">
