@@ -1881,23 +1881,23 @@ class Reports extends CI_Controller {
 				</th>
 			</tr>
 			<tr>
-				<th width="5%" class="text-center" style='background-color:rgb(153,153,153); color:white'>NO.</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>URAIAN</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>SATUAN</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>VOLUME</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>NILAI</th>
+				<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>SATUAN</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>VOLUME</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>NILAI</th>
 	        </tr>
 			<?php
-				$styleColorA = $evaluasi_volume_a < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorB = $evaluasi_volume_b < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorC = $evaluasi_volume_c < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorD = $evaluasi_volume_d < 0 ? 'background-color:red' : 'background-color:none';
+				$styleColorA = $evaluasi_volume_a < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $evaluasi_volume_b < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $evaluasi_volume_c < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $evaluasi_volume_d < 0 ? 'color:red' : 'color:black';
 
-				$styleColorAA = $evaluasi_nilai_a < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorBB = $evaluasi_nilai_b < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorCC = $evaluasi_nilai_c < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorDD = $evaluasi_nilai_d < 0 ? 'background-color:red' : 'background-color:none';
-				$styleColorEE = $total_nilai_evaluasi < 0 ? 'background-color:red' : 'background-color:none';
+				$styleColorAA = $evaluasi_nilai_a < 0 ? 'color:red' : 'color:black';
+				$styleColorBB = $evaluasi_nilai_b < 0 ? 'color:red' : 'color:black';
+				$styleColorCC = $evaluasi_nilai_c < 0 ? 'color:red' : 'color:black';
+				$styleColorDD = $evaluasi_nilai_d < 0 ? 'color:red' : 'color:black';
+				$styleColorEE = $total_nilai_evaluasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr>
 				<th class="text-center" style="vertical-align:middle">1</th>			
@@ -1964,7 +1964,7 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-active{
-				background-color: #e69500 ;
+				background-color: #5B5B5B;
 				color: white;
 			}
 			</style>
@@ -6333,16 +6333,16 @@ class Reports extends CI_Controller {
 				</th>
 			</tr>
 			<tr>
-				<th width="5%" class="text-center" rowspan="2" style='background-color:rgb(153,153,153); color:white; vertical-align:middle;'>NO.</th>
-				<th class="text-center" rowspan="2" style='background-color:rgb(153,153,153); color:white; vertical-align:middle;'>URAIAN</th>
-				<th class="text-center" colspan="2" style='background-color:rgb(153,153,153); color:white'>RAP</th>
-				<th class="text-center" colspan="2" style='background-color:rgb(153,153,153); color:white'>PROGNOSA</th>
+				<th width="5%" class="text-center" rowspan="2" style='background-color:rgb(188,188,188); color:black; vertical-align:middle;'>NO.</th>
+				<th class="text-center" rowspan="2" style='background-color:rgb(188,188,188); color:black; vertical-align:middle;'>URAIAN</th>
+				<th class="text-center" colspan="2" style='background-color:rgb(188,188,188); color:black'>RAP</th>
+				<th class="text-center" colspan="2" style='background-color:rgb(188,188,188); color:black'>PROGNOSA</th>
 	        </tr>
 			<tr>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>NILAI</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>PRESENTASE</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>NILAI</th>
-				<th class="text-center" style='background-color:rgb(153,153,153); color:white'>PRESENTASE</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>NILAI</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>PRESENTASE</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>NILAI</th>
+				<th class="text-center" style='background-color:rgb(188,188,188); color:black'>PRESENTASE</th>
 	        </tr>
 			<tr>
 				<th class="text-center" style="vertical-align:middle">1</th>			

@@ -111,23 +111,22 @@
             
                     <div role="tabpanel" class="tab-pane" id="laporan_rap">
                         <div class="col-sm-8">
-                        <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3>
-                                </div>
-                                <div style="margin: 20px">
-                                    <div id="wait" style=" text-align: center; align-content: center; display: none;">	
-                                        <div>Please Wait</div>
-                                        <div class="fa-3x">
-                                            <i class="fa fa-spinner fa-spin"></i>
-                                        </div>
-                                    </div>				
-                                    <div class="table-responsive" id="box-rap">													
-                                    
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3>
                                     </div>
-                                </div>
-                        </div>
-                        
+                                    <div style="margin: 20px">
+                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                            <div>Please Wait</div>
+                                            <div class="fa-3x">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>				
+                                        <div class="table-responsive" id="box-rap">													
+                                        
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
         
@@ -194,7 +193,6 @@
 <script src="<?php echo base_url();?>assets/back/theme/vendor/toastr/toastr.min.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/chart-js/chart.min.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<!-- <script src="<?php echo base_url();?>assets/back/theme/javascripts/examples/dashboard.js"></script> -->
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
@@ -209,7 +207,7 @@
 <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/back/theme/vendor/chart-js/chart.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -685,6 +683,29 @@
     });
 </script>
 
+<!-- Script RAP x Prognosa -->
+<script type="text/javascript">
+
+    function TableRAP()
+    {
+        $('#wait').fadeIn('fast');   
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
+            dataType : 'html',
+            data: {
+                filter_date : $('#filter_date_rap').val(),
+            },
+            success : function(result){
+                $('#box-rap').html(result);
+                $('#wait').fadeOut('fast');
+            }
+        });
+    }
+
+    TableRAP();
+</script>
+
 <!-- Script Evaluasi -->
 <script type="text/javascript">
     $('#filter_date_evaluasi').daterangepicker({
@@ -727,29 +748,6 @@
     }
 
     TableEvaluasi();
-</script>
-
-<!-- Script RAP x Prognosa -->
-<script type="text/javascript">
-
-    function TableRAP()
-    {
-        $('#wait').fadeIn('fast');   
-        $.ajax({
-            type    : "POST",
-            url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
-            dataType : 'html',
-            data: {
-                filter_date : $('#filter_date_rap').val(),
-            },
-            success : function(result){
-                $('#box-rap').html(result);
-                $('#wait').fadeOut('fast');
-            }
-        });
-    }
-
-    TableRAP();
 </script>
 
 <!-- Script Laba Rugi -->
