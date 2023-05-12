@@ -43,7 +43,7 @@
                                             ?> 
                                             <tr>
                                                 <th width = "50%"><a href="<?= site_url('pembelian/closed_verifikasi/' . $x['id']); ?>" class="btn btn-warning"><i class="fa fa-envelope-open-o"></i> Tandai Sudah Dibaca - (<?= $x['nomor_invoice'];?>)</a></th>
-                                                <th width = "50%"><a href="<?= site_url('pembelian/print_verifikasi_penagihan_pembelian/?id=' . $x['id']); ?>" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a></th>
+                                                <th width = "50%"><a target="_blank" a href="<?= site_url('pembelian/print_verifikasi_penagihan_pembelian/?id='.$x['id']); ?>" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a></th>
                                             </tr>
                                             <?php
                                             }
