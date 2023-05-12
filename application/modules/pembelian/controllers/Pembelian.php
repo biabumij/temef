@@ -1757,5 +1757,32 @@ class Pembelian extends Secure_Controller
         redirect('admin/pembelian');
         exit();
     }
+
+    public function read_notification($id)
+    {
+        $check = $this->m_admin->check_login();
+        if($check == true){
+
+            $this->db->select('pvp.*, ppp.nomor_invoice');
+            $this->db->join('pmm_penagihan_pembelian ppp', 'pvp.penagihan_pembelian_id = ppp.id','left');
+            $this->db->where('pvp.id',$id);
+			$this->db->order_by('pvp.created_on', 'DESC');
+            $query = $this->db->get('pmm_verifikasi_penagihan_pembelian pvp');
+            $data['row'] = $query->result_array();
+            $this->load->view('pembelian/read_notification',$data);
+            
+        }else {
+            redirect('admin');
+        }
+    }
+
+    public function closed_verifikasi($id)
+	{
+		$this->db->set("approve_unit_head", "SETUJUI");
+		$this->db->where("id", $id);
+		$this->db->update("pmm_verifikasi_penagihan_pembelian");
+		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');
+		redirect("admin/pembelian");
+	}
     
 }
