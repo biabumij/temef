@@ -34,6 +34,7 @@ class Pembelian extends Secure_Controller
             $data['supplier'] = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
             $data['products'] = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
             $data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
+            $data['taxs_2'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
             $data['measures'] = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
             $this->load->view('pembelian/penawaran_pembelian', $data);
         } else {
@@ -93,11 +94,11 @@ class Pembelian extends Secure_Controller
         $sub_total = $this->input->post('sub_total');
         $total = $this->input->post('total');
 
-        $supplier = $this->crud_global->GetField('penerima', array('id' => $supplier_id), 'nama');
+        //$supplier = $this->crud_global->GetField('penerima', array('id' => $supplier_id), 'nama');
 
         $arr_insert = array(
+            //'supplier' => $supplier,
             'supplier_id' => $supplier_id,
-            'supplier' => $supplier,
             'tanggal_penawaran' => date('Y-m-d', strtotime($tanggal_penawaran)),
             'berlaku_hingga' => date('Y-m-d', strtotime($berlaku_hingga)),
             'jenis_pembelian' => $jenis_pembelian,
@@ -204,6 +205,7 @@ class Pembelian extends Secure_Controller
                     if ($pajak_id == 6) {
 						$pajak = ($total_pro * 11) / 100;
 					}
+
                     $arr_detail = array(
                         'penawaran_pembelian_id' => $penawaran_pembelian_id,
                         'material_id' => $product_id,
@@ -288,7 +290,8 @@ class Pembelian extends Secure_Controller
                 $row['no'] = $key + 1;
                 $row['tanggal_penawaran'] = date('d/m/Y', strtotime($row['tanggal_penawaran']));
                 $row['berlaku_hingga'] = date('d/m/Y', strtotime($row['berlaku_hingga']));
-
+                $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
+                
                 $url_detail = site_url('pembelian/penawaran_pembelian_detail/' . $row['id']);
                 $row['nomor_penawaran'] = '<a href="' . $url_detail . '">' . $row['nomor_penawaran'] . '</a>';
 				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
@@ -1106,6 +1109,7 @@ class Pembelian extends Secure_Controller
         $nama = $this->input->post('nama');
         $products = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
         $taxs = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
+        $taxs_2 = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
 		$measures= $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 	?>
         <tr>
@@ -1163,8 +1167,8 @@ class Pembelian extends Secure_Controller
 				<select id="pajak-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="pajak_<?php echo $no; ?>" required="">
 					<option value="">Pilih Pajak (2)</option>
 					<?php
-					if (!empty($taxs)) {
-						foreach ($taxs as $row) {
+					if (!empty($taxs_2)) {
+						foreach ($taxs_2 as $row) {
 					?>
 							<option value="<?php echo $row['id']; ?>"><?php echo $row['tax_name']; ?></option>
 					<?php

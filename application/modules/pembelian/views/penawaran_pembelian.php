@@ -163,8 +163,8 @@
                                                         <select id="pajak-1" class="form-control form-select2" name="pajak_1" onchange="changeData(1)" required="">
                                                             <option value="">Pilih Pajak (2)</option>
                                                             <?php
-                                                            if(!empty($taxs)){
-                                                                foreach ($taxs as $row) {
+                                                            if(!empty($taxs_2)){
+                                                                foreach ($taxs_2 as $row) {
                                                                     ?>
                                                                     <option value="<?php echo $row['id'];?>"><?php echo $row['tax_name'];?></option>
                                                                     <?php

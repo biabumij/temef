@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label>Rekanan</label>
-                                            <input type="text" class="form-control" value="<?= $row['supplier'];?>" readonly>
+                                            <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');?>" readonly>
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Tanggal Penawaran</label>
