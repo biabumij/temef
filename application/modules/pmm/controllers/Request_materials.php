@@ -235,7 +235,6 @@ class Request_materials extends CI_Controller {
 	{
 		$output['output'] = false;
 
-		
 		$request_material_detail_id = $this->input->post('request_material_detail_id');
 		$request_material_id = $this->input->post('request_material_id');
 		$material_id = $this->input->post('material_id');
