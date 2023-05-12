@@ -869,7 +869,7 @@ class Pembelian extends Secure_Controller
             'copy_po_keterangan' => $this->input->post('copy_po_keterangan'),
             'catatan' => $this->input->post('catatan'),
             'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
-            'approve_unit_head' => 'TIDAK DIETUJUI',
+            'approve_unit_head' => 'TIDAK DISETUJUI',
             'created_by' => $this->session->userdata('admin_id')
         );
 
