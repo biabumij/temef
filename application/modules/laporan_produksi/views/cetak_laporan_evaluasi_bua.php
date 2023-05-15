@@ -956,7 +956,7 @@
 							
 							</td>
 							<?php
-								$create = $this->db->select('unit_head, logistik')
+								$create = $this->db->select('unit_head, logistik, keu')
 								->from('akumulasi')
 								->where("(date_akumulasi between '$start_date' and '$end_date')")
 								->get()->row_array();
@@ -970,10 +970,15 @@
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$create['logistik']);
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
+
+								$this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$create['keu']);
+                                $keu = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-								<img src="<?= $logistik['admin_ttd']?>" width="20px">
+								<img src="<?= $keu['admin_ttd']?>" width="20px">
 							</td>
 						</tr>
 						<tr>
