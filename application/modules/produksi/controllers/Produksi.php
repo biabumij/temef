@@ -191,8 +191,8 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar_2' => $total_nilai_keluar_2,
 			'status' => 'PUBLISH',
 			'unit_head' => 47,
-			'logistik' => 46,
-			'admin' => 46,
+			'logistik' => 39,
+			'admin' => 39,
 			'keu' => 42,
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
