@@ -173,7 +173,7 @@
 								
 							</td>
 							<td align="center" >
-								<u><b>Agustinus Pakaenoni</b></u><br />
+								<u><b>Roswita</b></u><br />
 								<b>Logistik</b>
 							</td>
 						</tr>

@@ -1729,7 +1729,7 @@ class Pembelian extends Secure_Controller
             'memo' => $memo,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
-            'unit_head' => 43,
+            'unit_head' => 47,
             'kategori_persetujuan' => 'PESANAN PEMBELIAN',
             'status' => 'WAITING'
         );
