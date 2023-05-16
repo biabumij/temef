@@ -2656,28 +2656,30 @@
     ->order_by('r.id','desc')->limit(1)
     ->get()->row_array();
 
+    $date_01_month = date('Y-m-01', strtotime($date_now));
+
     $date_dashboard_1 = $this->db->select('d.*')
     ->from('date_dashboard d')
-    ->where("d.date >= '$date_now'")
-    ->order_by('d.id','asc')->limit(1)
+    ->where("d.date >= '$date_01_month'")
+    ->order_by('d.id','asc')->limit(1,1)
     ->get()->row_array();
 
     $date_dashboard_2 = $this->db->select('d.*')
     ->from('date_dashboard d')
-    ->where("d.date >= '$date_now'")
-    ->order_by('d.id','asc')->limit(1,1)
+    ->where("d.date >= '$date_01_month'")
+    ->order_by('d.id','asc')->limit(1,2)
     ->get()->row_array();
 
     $date_dashboard_3 = $this->db->select('d.*')
     ->from('date_dashboard d')
-    ->where("d.date >= '$date_now'")
-    ->order_by('d.id','asc')->limit(1,2)
+    ->where("d.date >= '$date_01_month'")
+    ->order_by('d.id','asc')->limit(1,3)
     ->get()->row_array();
 
     $date_dashboard_4 = $this->db->select('d.*')
     ->from('date_dashboard d')
-    ->where("d.date >= '$date_now'")
-    ->order_by('d.id','asc')->limit(1,3)
+    ->where("d.date >= '$date_01_month'")
+    ->order_by('d.id','asc')->limit(1,4)
     ->get()->row_array();
 
     $rencana_kerja_perminggu = $rencana_kerja_now['total_produksi'] / 4;
