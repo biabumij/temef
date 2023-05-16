@@ -275,7 +275,7 @@
 								<b><?= $admin['admin_group_name']?></b> 
                             </td>
                             <td align="center">
-								<b>M. Keu & SDM / M. Teknik</b> 
+								<b>M. Keu & SDM</b> 
                             </td>
                             <td align="center">
 								<b>Kepala Unit Proyek</b> 

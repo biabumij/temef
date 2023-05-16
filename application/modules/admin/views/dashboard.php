@@ -256,7 +256,7 @@
                 },
                 yAxis: {
                     //title: {  //label yAxis
-                        //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
+                        //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
                         //text: 'Presentase'
                     //},
                     title: {
@@ -424,7 +424,7 @@
                 },
                 yAxis: {
                     //title: {  //label yAxis
-                        //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
+                        //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
                         //text: 'Presentase'
                     //},
                     title: {
@@ -575,7 +575,7 @@
                 },
                 yAxis: {
                     //title: {  //label yAxis
-                        //text: 'RAP <br /><?php echo number_format($total_kontrak_all,0,',','.'); ?>'
+                        //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
                         //text: 'Presentase'
                     //},
                     title: {
