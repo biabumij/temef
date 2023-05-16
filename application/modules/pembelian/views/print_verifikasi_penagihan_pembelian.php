@@ -235,11 +235,6 @@
             <tr border="1">
                 <td width="100%">
 				<table width="100%" border="1" cellpadding="2">
-						<tr>
-                            <td align="center" colspan="3">
-                                Proyek
-                            </td>
-                        </tr>
                         <tr>
                             <td align="center">
                                 Diterima
@@ -261,18 +256,18 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <!--<?= $row['verifikator'];?>-->
+								Theresia Desitaliana L.<!--<?= $row['verifikator'];?>-->
                             </td>
                             <td align="center">
-								
+								Erika Sinaga
                             </td>
                             <td align="center">
-								
+								Agustinus P 
                             </td>
                         </tr>
                         <tr>
                             <td align="center">
-								<b><?= $admin['admin_group_name']?></b> 
+								<b><?= $admin['admin_group_name']?> Keu & SDM</b> 
                             </td>
                             <td align="center">
 								<b>M. Keu & SDM</b> 
