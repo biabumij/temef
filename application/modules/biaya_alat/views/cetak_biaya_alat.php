@@ -554,6 +554,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Excavator</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_exc,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_exc,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">2.</th>	
 				<th align="left" class="table-border-pojok-tengah">Dump Truck 4m3</th>
@@ -574,6 +583,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Dump Truck 4m3</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_dmp_4m3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_dmp_4m3,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">3.</th>	
 				<th align="left" class="table-border-pojok-tengah">Dump Truck 10m3</th>
@@ -594,6 +612,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Dump Truck 10m3</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_dmp_10m3,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_dmp_10m3,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">4.</th>	
 				<th align="left" class="table-border-pojok-tengah">Stone Crusher</th>
@@ -614,6 +641,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Stone Crusher</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_sc,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_sc,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">5.</th>	
 				<th align="left" class="table-border-pojok-tengah">Genset</th>
@@ -634,6 +670,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Genset</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_gns,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_gns,0,',','.');?></th>
+			</tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">6.</th>	
 				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
@@ -654,6 +699,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1-bold">
+				<th align="center" class="table-border-pojok-kiri"></th>
+				<th align="right" class="table-border-pojok-tengah">Total Wheel Loader</th>
+				<th align="left" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_wl_sc,2,',','.');?></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_price_wl_sc,0,',','.');?></th>
+			</tr>
 			<tr class="table-total2">	
 				<th align="right" colspan="6" class="table-border-spesial-kiri">TOTAL BIAYA PEMAKAIAN ALAT</th>
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_nilai_all,0,',','.');?></th>
