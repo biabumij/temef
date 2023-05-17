@@ -14065,7 +14065,16 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 			$total_insentif_tm = $insentif_tm['total'];
 
-			$total_alat_akumulasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm;
+			$insentif_wl = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("(pb.tanggal_transaksi <= '$last_opname')")
+			->get()->row_array();
+			$total_insentif_wl = $insentif_wl['total'];
+
+			$total_alat_akumulasi = $nilai_alat['nilai'] + $total_akumulasi_bbm + $total_insentif_tm + $total_insentif_wl;
 
 			//OVERHEAD
 			$overhead_15_akumulasi = $this->db->select('sum(pdb.jumlah) as total')
@@ -14197,7 +14206,7 @@ class Reports extends CI_Controller {
 			$total_volume_batu1020_250_1 = 0;
 			$total_volume_batu2030_250_1 = 0;
 
-			foreach ($komposisi_250_1_1 as $x){
+			foreach ($komposisi_250_1 as $x){
 				$total_volume_semen_250_1 = $x['komposisi_semen_250'];
 				$total_volume_pasir_250_1 = $x['komposisi_pasir_250'];
 				$total_volume_batu1020_250_1 = $x['komposisi_batu1020_250'];

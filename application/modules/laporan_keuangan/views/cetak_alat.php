@@ -523,7 +523,7 @@
 				<th align="right" class="table-border-judul4" colspan="3" style="background-color:#FFFF00;">TRANSFER SEMEN</th>
 				<th align="right" class="table-border-judul4" style="background-color:#FFFF00;"><?php echo number_format($total_vol_pembelian_tf,2,',','.');?></th>
 				<th align="center" class="table-border-judul4" style="background-color:#FFFF00;"></th>
-				<th align="right" class="table-border-judul5" style="background-color:#FFFF00;"><?php echo number_format($total_vol_pembelian_tf,2,',','.');?></th>
+				<th align="right" class="table-border-judul5" style="background-color:#FFFF00;"><?php echo number_format($total_pembelian_tf,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris1-bold">
 				<th align="left" class="table-border-judul4" colspan="3" style="background-color:#ffffff;">&nbsp;&nbsp;5. BBM SOLAR</th>
