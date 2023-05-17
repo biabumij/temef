@@ -13396,6 +13396,9 @@ class Reports extends CI_Controller {
 				<th class="text-center">TOTAL</th>
 	        </tr>
 			<tr>
+				<th class="text-left" colspan="7">A. GROUP BP</th>
+	        </tr>
+			<tr>
 				<th class="text-center">1.</th>	
 				<th class="text-left">Batching Plant</th>
 				<th class="text-right"></th>
@@ -13530,8 +13533,11 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_insentif_all,0,',','.');?></th>
 			</tr>
 			<tr>
-				<th class="text-center">7.</th>	
-				<th class="text-left">Sewa Alat (SC)</th>
+				<th class="text-left" colspan="7">B. GROUP SC</th>
+	        </tr>
+			<tr>
+				<th class="text-center">1.</th>	
+				<th class="text-left">Excavator</th>
 				<th class="text-right"></th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
@@ -13549,6 +13555,15 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-center">2.</th>	
+				<th class="text-left">Dump Truck 4m3</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
 			<?php foreach ($produk_dmp_4m3 as $x): ?>
 			<tr>
 				<th class="text-center"></th>
@@ -13560,6 +13575,15 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-center">3.</th>	
+				<th class="text-left">Dump Truck 10m3</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
 			<?php foreach ($produk_dmp_10m3 as $x): ?>
 			<tr>
 				<th class="text-center"></th>
@@ -13571,6 +13595,15 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-center">4.</th>	
+				<th class="text-left">Stone Crusher</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
 			<?php foreach ($produk_sc as $x): ?>
 			<tr>
 				<th class="text-center"></th>
@@ -13582,6 +13615,15 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-center">5.</th>	
+				<th class="text-left">Genset</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
 			<?php foreach ($produk_gns as $x): ?>
 			<tr>
 				<th class="text-center"></th>
@@ -13593,6 +13635,15 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr>
+				<th class="text-center">6.</th>	
+				<th class="text-left">Wheel Loader</th>
+				<th class="text-right"></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+	        </tr>
 			<?php foreach ($produk_wl_sc as $x): ?>
 			<tr>
 				<th class="text-center"></th>

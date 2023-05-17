@@ -394,6 +394,9 @@
 				<th width="10%" align="center" class="table-border-pojok-tengah">HARGA SATUAN</th>
 				<th width="15%" align="center" class="table-border-pojok-kanan">TOTAL</th>
 	        </tr>
+			<tr class="table-baris1-bold">
+				<th align="left" class="table-border-spesial" colspan="7">A. GROUP BP</th>
+	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1.</th>	
 				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
@@ -528,9 +531,12 @@
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_insentif_all,0,',','.');?></th>
 			</tr>
+			<tr class="table-baris1-bold">
+				<th align="left" class="table-border-spesial" colspan="7">B. GROUP SC</th>
+	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">7.</th>	
-				<th align="left" class="table-border-pojok-tengah">Sewa Alat (SC)</th>
+				<th align="center" class="table-border-pojok-kiri">1.</th>	
+				<th align="left" class="table-border-pojok-tengah">Excavator</th>
 				<th align="right" class="table-border-pojok-tengah"></th>
 				<th align="center" class="table-border-pojok-tengah"></th>
 				<th align="right" class="table-border-pojok-tengah"></th>
@@ -548,6 +554,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">2.</th>	
+				<th align="left" class="table-border-pojok-tengah">Dump Truck 4m3</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_dmp_4m3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
@@ -559,6 +574,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">3.</th>	
+				<th align="left" class="table-border-pojok-tengah">Dump Truck 10m3</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_dmp_10m3 as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
@@ -570,6 +594,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">4.</th>	
+				<th align="left" class="table-border-pojok-tengah">Stone Crusher</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_sc as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
@@ -581,6 +614,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">5.</th>	
+				<th align="left" class="table-border-pojok-tengah">Genset</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_gns as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
@@ -592,6 +634,15 @@
 				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($x['price'],0,',','.');?></th>
 			</tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">6.</th>	
+				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="center" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-tengah"></th>
+				<th align="right" class="table-border-pojok-kanan"></th>
+	        </tr>
 			<?php foreach ($produk_wl_sc as $x): ?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri"></th>
