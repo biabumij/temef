@@ -1557,7 +1557,7 @@ class Pembelian extends Secure_Controller
 
 
 							$data[$i] = array(
-								'id' => $id,
+								'pembayaran_penagihan_pembelian_id' => $id,
 								'lampiran'  => $data['totalFiles'][$i]
 							);
 
@@ -1787,6 +1787,5 @@ class Pembelian extends Secure_Controller
 		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');
 		redirect("admin/pembelian");
 	}
-    
     
 }
