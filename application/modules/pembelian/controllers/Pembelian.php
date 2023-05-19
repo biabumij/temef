@@ -1788,4 +1788,5 @@ class Pembelian extends Secure_Controller
 		redirect("admin/pembelian");
 	}
     
+    
 }
