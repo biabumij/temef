@@ -18385,7 +18385,7 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_4_awal = date('F', strtotime('+1 days', strtotime($date_3_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_5_awal = date('F', strtotime('+1 days', strtotime($date_4_akhir)));?></th>
 				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_6_awal = date('F', strtotime('+1 days', strtotime($date_5_akhir)));?></th>
-				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_7_awal = date('F', strtotime('+1 days', strtotime($date_6_akhir)));?> - <?php echo $date_9_awal = date('F', strtotime('+1 days', strtotime($date_8_akhir)));?></th>
+				<th class="text-center" style="text-transform:uppercase;"><?php echo $date_7_awal = date('F', strtotime('+1 days', strtotime($date_6_akhir)));?> - <?php echo $date_8_awal = date('F', strtotime('+1 days', strtotime($date_7_akhir)));?></th>
 	        </tr>
 			<tr class="table-active4-rak">
 				<th class="text-center"><?php echo $date_1_awal = date('Y');?></th>
