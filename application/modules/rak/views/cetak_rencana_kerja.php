@@ -943,10 +943,6 @@
 			<tr>
 				<th class="table-border-spesial" colspan="6"></th>
 			</tr>
-			<tr class="table-judul">	
-				<th align="right" colspan="5" class="table-border-spesial-kiri">LABA RUGI (1-2)</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_pendapatan - ($total + $total_rak_alat + $rak_alat['overhead']),0,',','.');?></th>
-	        </tr>
 		</table>
 	</body>
 </html>
