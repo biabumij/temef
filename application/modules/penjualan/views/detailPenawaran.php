@@ -194,7 +194,7 @@
 
                                     <?php if($penawaran["status"] === "DRAFT") : ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
                                             <form class="form-check" action="<?= base_url("penjualan/approvalPenawaran/".$penawaran["id"]) ?>">
                                                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
