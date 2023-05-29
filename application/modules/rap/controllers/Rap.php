@@ -19,7 +19,7 @@ class Rap extends Secure_Controller {
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
 			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
-			$data['mutu_beton'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
+			$data['mutu_beton'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 2))->result_array();
 			$data['measures'] = $this->db->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 			$data['slump'] = $this->db->select('*')->get_where('pmm_slump', array('status' => 'PUBLISH'))->result_array();
 			$this->load->view('rap/form_bahan', $data);
@@ -331,7 +331,7 @@ class Rap extends Secure_Controller {
 			$data['products'] =  $this->db->select('*')
 			->from('produk p')
 			->where("p.status = 'PUBLISH'")
-			->where("p.peralatan = 1 ")
+			->where("p.kategori_produk = 5 ")
 			->order_by('nama_produk','asc')
 			->get()->result_array();
 			$this->load->view('rap/form_alat', $data);
