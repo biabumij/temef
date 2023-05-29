@@ -933,7 +933,7 @@
             $('#tax_id_semen').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_semen').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_semen').val(id_penawaran);
         });
 
@@ -950,7 +950,7 @@
             $('#tax_id_pasir').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_pasir').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_pasir').val(id_penawaran);
         });
 
@@ -967,7 +967,7 @@
             $('#tax_id_batu1020').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_batu1020').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_batu1020').val(id_penawaran);
         });
 
@@ -984,7 +984,7 @@
             $('#tax_id_batu2030').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_batu2030').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_batu2030').val(id_penawaran);
         });
 
@@ -1001,7 +1001,7 @@
             $('#tax_id_solar').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_solar').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_solar').val(id_penawaran);
         });
 
@@ -1018,7 +1018,7 @@
             $('#tax_id_bp').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_bp').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_bp').val(id_penawaran);
         });
 
@@ -1035,7 +1035,7 @@
             $('#tax_id_bp_2').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_bp_2').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_bp_2').val(id_penawaran);
         });
 
@@ -1052,7 +1052,7 @@
             $('#tax_id_bp_3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_bp_3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_bp_3').val(id_penawaran);
         });
 
@@ -1069,7 +1069,7 @@
             $('#tax_id_tm').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tm').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tm').val(id_penawaran);
         });
 
@@ -1086,7 +1086,7 @@
             $('#tax_id_tm_2').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tm_2').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tm_2').val(id_penawaran);
         });
 
@@ -1103,7 +1103,7 @@
             $('#tax_id_tm_3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tm_3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tm_3').val(id_penawaran);
         });
 
@@ -1120,7 +1120,7 @@
             $('#tax_id_tm_4').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tm_4').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tm_4').val(id_penawaran);
         });
         
@@ -1138,7 +1138,7 @@
             $('#tax_id_wl').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_wl').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_wl').val(id_penawaran);
         });
 
@@ -1155,7 +1155,7 @@
             $('#tax_id_wl_2').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_wl_2').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_wl_2').val(id_penawaran);
         });
 
@@ -1172,7 +1172,7 @@
             $('#tax_id_wl_3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_wl_3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_wl_3').val(id_penawaran);
         });
 
@@ -1189,7 +1189,7 @@
             $('#tax_id_tr').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tr').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tr').val(id_penawaran);
         });
 
@@ -1206,7 +1206,7 @@
             $('#tax_id_tr_2').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tr_2').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tr_2').val(id_penawaran);
         });
 
@@ -1223,7 +1223,7 @@
             $('#tax_id_tr_3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_tr_3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_tr_3').val(id_penawaran);
         });
 
@@ -1240,7 +1240,7 @@
             $('#tax_id_exc').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_exc').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_exc').val(id_penawaran);
         });
 
@@ -1257,7 +1257,7 @@
             $('#tax_id_dmp_4m3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_dmp_4m3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_dmp_4m3').val(id_penawaran);
         });
 
@@ -1274,7 +1274,7 @@
             $('#tax_id_dmp_10m3').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_dmp_10m3').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_dmp_10m3').val(id_penawaran);
         });
 
@@ -1291,7 +1291,7 @@
             $('#tax_id_sc').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_sc').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_sc').val(id_penawaran);
         });
 
@@ -1308,7 +1308,7 @@
             $('#tax_id_gns').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_gns').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_gns').val(id_penawaran);
         });
 
@@ -1325,7 +1325,7 @@
             $('#tax_id_wl_sc').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id_wl_sc').val(pajak_id);
-            var id_penawaran = $(this).find(':selected').data('id_penawaran');
+            var id_penawaran = $(this).find(':selected').data('penawaran_id');
             $('#penawaran_id_wl_sc').val(id_penawaran);
         });
 
