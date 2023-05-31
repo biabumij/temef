@@ -734,9 +734,9 @@
 						</tr>
 						<tr class="">
 							<?php
-								$create = $this->db->select('id, unit_head, logistik, admin')
+								$create = $this->db->select('*')
 								->from('akumulasi')
-								->where("(date_akumulasi between '$start_date' and '$end_date')")
+								->where("(date_akumulasi = '$end_date')")
 								->order_by('id','desc')->limit(1)
 								->get()->row_array();
 
@@ -767,17 +767,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">
-							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<b><u>Elyas Nur Fridayana</u><br />
 								M. Teknik</b>
 							</td>
 							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
-								<?= $logistik['admin_group_name']?></b>
+								<b><u>Agustinus P</u><br />
+								Pj. Logistik</b>
 							</td>
 						</tr>
 					</table>

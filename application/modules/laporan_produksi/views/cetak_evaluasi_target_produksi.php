@@ -571,9 +571,9 @@
 							
 							</td>
 							<?php
-								$create = $this->db->select('unit_head, logistik')
+								$create = $this->db->select('*')
 								->from('akumulasi')
-								->where("(date_akumulasi between '$start_date' and '$end_date')")
+								->where("(date_akumulasi = '$end_date')")
 								->get()->row_array();
 
                                 $this->db->select('g.admin_group_name, a.admin_ttd');
@@ -596,9 +596,9 @@
 								<b><u>Deddy Sarwobiso</u><br />
 								Direktur Utama</b>
 							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 						</tr>
 					</table>

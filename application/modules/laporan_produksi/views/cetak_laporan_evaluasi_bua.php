@@ -956,9 +956,9 @@
 							
 							</td>
 							<?php
-								$create = $this->db->select('unit_head, logistik, keu')
+								$create = $this->db->select('*')
 								->from('akumulasi')
-								->where("(date_akumulasi between '$start_date' and '$end_date')")
+								->where("(date_akumulasi = '$end_date')")
 								->get()->row_array();
 
                                 $this->db->select('g.admin_group_name, a.admin_ttd');
@@ -970,15 +970,10 @@
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$create['logistik']);
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
-
-								$this->db->select('g.admin_group_name, a.admin_ttd');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$create['keu']);
-                                $keu = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-								<img src="<?= $keu['admin_ttd']?>" width="20px">
+								<img src="<?= $logistik['admin_ttd']?>" width="20px">
 							</td>
 						</tr>
 						<tr>
@@ -986,9 +981,9 @@
 								<b><u>Deddy Sarwobiso</u><br />
 								Direktur Utama</b>
 							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Elyas Nur Fridayana</u><br />
+								Kepala Unit Proyek</b>
 							</td>
 						</tr>
 					</table>
