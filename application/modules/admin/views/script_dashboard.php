@@ -2661,25 +2661,25 @@
     $date_dashboard_1 = $this->db->select('d.*')
     ->from('date_dashboard d')
     ->where("d.date >= '$date_01_month'")
-    ->order_by('d.id','asc')->limit(1,1)
+    ->order_by('d.id','asc')->limit(1)
     ->get()->row_array();
 
     $date_dashboard_2 = $this->db->select('d.*')
     ->from('date_dashboard d')
     ->where("d.date >= '$date_01_month'")
-    ->order_by('d.id','asc')->limit(1,2)
+    ->order_by('d.id','asc')->limit(1,1)
     ->get()->row_array();
 
     $date_dashboard_3 = $this->db->select('d.*')
     ->from('date_dashboard d')
     ->where("d.date >= '$date_01_month'")
-    ->order_by('d.id','asc')->limit(1,3)
+    ->order_by('d.id','asc')->limit(1,2)
     ->get()->row_array();
 
     $date_dashboard_4 = $this->db->select('d.*')
     ->from('date_dashboard d')
     ->where("d.date >= '$date_01_month'")
-    ->order_by('d.id','asc')->limit(1,4)
+    ->order_by('d.id','asc')->limit(1,3)
     ->get()->row_array();
 
     $rencana_kerja_perminggu = $rencana_kerja_now['total_produksi'] / 4;
