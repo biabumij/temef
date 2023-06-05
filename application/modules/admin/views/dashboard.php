@@ -54,7 +54,7 @@
     background: #f1f7ff;
     }
 </style>
-<body onload = "JavaScript:AutoRefresh(120000);">
+<body onload = "JavaScript:AutoRefresh(360000);">
 <div class="wrap">
     
     <?php echo $this->Templates->PageHeader();?>
