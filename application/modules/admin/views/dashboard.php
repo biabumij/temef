@@ -602,7 +602,7 @@
                         format: '{value}'
                     },
                     min: 0,
-                    max: 2000,
+                    max: 2500,
                     tickInterval: 250,
                 },
                 tooltip: { 
