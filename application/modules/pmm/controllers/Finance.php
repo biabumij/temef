@@ -1422,7 +1422,7 @@ class Finance extends CI_Controller {
 
             $detail = $this->db->get_where('pmm_terima_uang',array('id'=>$id))->row_array();
             $deskripsi = 'Nomor Transaksi '.$detail['nomor_transaksi'];
-            $this->pmm_finance->InsertLogs('DELETE','pmm_terima_uang',$id,$deskripsi);
+            //$this->pmm_finance->InsertLogs('DELETE','pmm_terima_uang',$id,$deskripsi);
 
             $this->db->delete('transactions',array('terima_id'=>$id));
             $this->db->delete('pmm_lampiran_terima',array('terima_id'=>$id));
@@ -1454,7 +1454,7 @@ class Finance extends CI_Controller {
 
             $detail = $this->db->get_where('pmm_transfer',array('id'=>$id))->row_array();
             $deskripsi = 'Nomor Transaksi '.$detail['nomor_transaksi'];
-            $this->pmm_finance->InsertLogs('DELETE','pmm_transfer',$id,$deskripsi);
+            //$this->pmm_finance->InsertLogs('DELETE','pmm_transfer',$id,$deskripsi);
 
             $this->db->delete('transactions',array('transfer_id'=>$id));
             $this->db->delete('pmm_lampiran_transfer',array('transfer_id'=>$id));
