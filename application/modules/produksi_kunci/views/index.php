@@ -40,7 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?= site_url('produksi/form_hpp_bahan_baku'); ?>">HPP Bahan Baku</a>
+                                            <li><a href="<?= site_url('produksi/form_hpp_bahan_baku'); ?>">HPP Pergerakan Bahan Baku</a>
                                             <li><a href="<?= site_url('produksi/form_akumulasi'); ?>">Akumulasi Pergerakan Bahan Baku</a></li>
                                             <li><a href="<?= site_url('produksi/form_approval'); ?>">Approval BUA, Diskonto, Persiapan</a></li>
                                             <li><a href="<?= site_url('produksi/form_approval_laporan'); ?>">Approval Laporan</a></li>
