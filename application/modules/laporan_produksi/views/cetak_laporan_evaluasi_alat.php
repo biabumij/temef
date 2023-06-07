@@ -639,7 +639,7 @@
 				$styleColorK = $total_nilai_evaluasi_dmp_4m3 < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $total_nilai_evaluasi_dmp_10m3 < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
-				$styleColorN = $total_nilai_evaluasi_gens< 0 ? 'color:red' : 'color:black';
+				$styleColorN = $total_nilai_evaluasi_gns< 0 ? 'color:red' : 'color:black';
 				$styleColorO = $total_nilai_evaluasi_wl_sc < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-total2">
