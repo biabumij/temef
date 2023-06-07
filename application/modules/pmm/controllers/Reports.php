@@ -10130,7 +10130,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_pemakaian_batching_plant / $total_pemakaian_vol_batching_plant,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($total_vol_evaluasi_batching_plant,2,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">2.</th>			
@@ -10143,7 +10143,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_pemakaian_truck_mixer / $total_pemakaian_vol_truck_mixer,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorC ?>"><?php echo number_format($total_vol_evaluasi_truck_mixer,2,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">3.</th>			
@@ -10156,7 +10156,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_pemakaian_wheel_loader / $total_pemakaian_vol_wheel_loader,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_vol_evaluasi_wheel_loader,2,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">4.</th>			
@@ -10169,7 +10169,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_transfer_semen,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorP ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorP ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
@@ -10182,7 +10182,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_pemakaian_bbm_solar,0,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,2,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,2,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-left" colspan="11"><u>B. GROUP SC</u></th>

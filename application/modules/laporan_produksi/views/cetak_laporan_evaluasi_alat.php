@@ -697,7 +697,7 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_transfer_semen,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorP ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorP ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">5.</th>			
