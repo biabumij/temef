@@ -217,12 +217,12 @@
 							</td>
 							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
-								<img src="<?= $admin['admin_ttd']?>" width="20px">
+								<!--<img src="<?= $admin['admin_ttd']?>" width="20px">-->
 							</td>
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Elyas Nur Fridayana</u><br />
+								<b><u>Agustinus P</u><br />
 								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">
@@ -230,7 +230,7 @@
 								M. Keu & SDM</b>
 							</td>
 							<td align="center">
-								<b><u>Elyas Nur Fridayana</u><br />
+								<b><u>Agustinus P</u><br />
 								M. Teknik</b>
 							</td>
 							<td align="center">

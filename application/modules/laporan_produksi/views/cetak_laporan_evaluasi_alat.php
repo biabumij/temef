@@ -842,7 +842,7 @@
                             ?>
 							<td align="center">
 								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
-								<img src="<?= $logistik['admin_ttd']?>" width="20px">
+								<!--<img src="<?= $logistik['admin_ttd']?>" width="20px">-->
 							</td>
 						</tr>
 						<tr>
@@ -851,7 +851,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center">
-								<b><u>Elyas Nur Fridayana</u><br />
+								<b><u>Agustinus P</u><br />
 								Kepala Unit Proyek</b>
 							</td>
 						</tr>
