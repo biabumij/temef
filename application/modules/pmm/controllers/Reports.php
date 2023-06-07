@@ -10216,7 +10216,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">3.</th>			
 				<th class="text-left">Dump Truck 10M3</th>
-				<th class="text-center">Unit</th>
+				<th class="text-center">Unit / Hari</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>

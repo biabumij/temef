@@ -746,7 +746,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">3.</th>			
 				<th align="left" class="table-border-pojok-tengah">Dump Truck 10M3</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Unit / Hari</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
