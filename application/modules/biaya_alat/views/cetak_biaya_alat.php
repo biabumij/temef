@@ -283,13 +283,15 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_exc = 0;
+			$total_vol_pembelian_produk_exc = 0;
 			foreach ($produk_exc as $x){
 				$total_price_exc += $x['price'];
+				$total_vol_pembelian_produk_exc += $x['volume'];
 			}
 
 			$produk_dmp_4m3 = $this->db->select('
@@ -301,13 +303,15 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '6'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_dmp_4m3 = 0;
+			$total_vol_pembelian_produk_dmp_4m3 = 0;
 			foreach ($produk_dmp_4m3 as $x){
 				$total_price_dmp_4m3 += $x['price'];
+				$total_vol_pembelian_produk_dmp_4m3 += $x['volume'];
 			}
 
 			$produk_dmp_10m3 = $this->db->select('
@@ -319,13 +323,15 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '7'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_dmp_10m3 = 0;
+			$total_vol_pembelian_produk_dmp_10m3 = 0;
 			foreach ($produk_dmp_10m3 as $x){
 				$total_price_dmp_10m3 += $x['price'];
+				$total_vol_pembelian_produk_dmp_10m3 += $x['volume'];
 			}
 
 			$produk_sc = $this->db->select('
@@ -337,13 +343,15 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '8'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_sc = 0;
+			$total_vol_pembelian_produk_sc = 0;
 			foreach ($produk_sc as $x){
 				$total_price_sc += $x['price'];
+				$total_vol_pembelian_produk_sc += $x['volume'];
 			}
 
 			$produk_gns = $this->db->select('
@@ -355,13 +363,15 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '9'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_gns = 0;
+			$total_vol_pembelian_produk_gns = 0;
 			foreach ($produk_gns as $x){
 				$total_price_gns += $x['price'];
+				$total_vol_pembelian_produk_gns += $x['volume'];
 			}
 
 			$produk_wl_sc = $this->db->select('
@@ -373,15 +383,18 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '10'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
 			$total_price_wl_sc = 0;
+			$total_vol_pembelian_produk_wl_sc = 0;
 			foreach ($produk_wl_sc as $x){
 				$total_price_wl_sc += $x['price'];
+				$total_vol_pembelian_produk_wl_sc += $x['volume'];
 			}
 
+			$total_volume_all = $total_vol_pembelian_bp + $total_vol_pembelian_tm + $total_vol_pembelian_wl + $total_vol_pembelian_tf + ($total_vol_pembelian_produk_exc + $total_vol_pembelian_produk_dmp_4m3 + $total_vol_pembelian_produk_dmp_10m3 + $total_vol_pembelian_produk_sc + $total_vol_pembelian_produk_gns + $total_vol_pembelian_produk_wl_sc);
 			$total_nilai_all = $total_pembelian_bp + $total_pembelian_tm + $total_pembelian_wl + $total_pembelian_tf + $total_nilai_bbm + $total_insentif_all + ($total_price_exc + $total_price_dmp_4m3 + $total_price_dmp_10m3 + $total_price_sc + $total_price_gns + $total_price_wl_sc);
 			?>
 			
