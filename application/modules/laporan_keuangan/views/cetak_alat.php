@@ -303,7 +303,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
@@ -323,7 +323,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '6'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
@@ -343,7 +343,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '7'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
@@ -363,7 +363,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '8'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
@@ -383,7 +383,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '9'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
@@ -403,7 +403,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("p.kategori_alat = '10'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.material_id')
+			->group_by('prm.purchase_order_id')
 			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 
