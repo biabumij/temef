@@ -211,7 +211,7 @@
             chart = new Highcharts.Chart({
                 chart: {
                     renderTo: 'container',
-                    type: 'line',
+                    type: 'areaspline',
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
@@ -379,7 +379,7 @@
             chart = new Highcharts.Chart({
                 chart: {
                     renderTo: 'container_laba_rugi',
-                    type: 'line',
+                    type: 'areaspline',
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
