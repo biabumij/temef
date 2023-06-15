@@ -879,6 +879,8 @@ class Pembelian extends Secure_Controller
             'catatan' => $this->input->post('catatan'),
             'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
             'approve_unit_head' => 'TIDAK DISETUJUI',
+            'unit_head' => 47,
+            'keu' => 42,
             'created_by' => $this->session->userdata('admin_id')
         );
 
@@ -1791,6 +1793,7 @@ class Pembelian extends Secure_Controller
     public function closed_verifikasi($id)
 	{
 		$this->db->set("approve_unit_head", "SETUJUI");
+        $this->db->set("m_keu", 37);
 		$this->db->where("id", $id);
 		$this->db->update("pmm_verifikasi_penagihan_pembelian");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');

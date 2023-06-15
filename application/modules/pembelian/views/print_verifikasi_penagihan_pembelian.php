@@ -226,11 +226,7 @@
 				</th>
 			</tr>
 		</table>
-		<br />
-		<br />
-		<?php
-		$admin = $this->pmm_model->GetNameGroup(20);
-        ?>  
+		<br /><br />
         <table width="98%" border="0" cellpadding="0">
             <tr border="1">
                 <td width="100%">
@@ -246,12 +242,36 @@
                                 Disetujui
                             </td>
                         </tr>
+						<?php
+							$create = $this->db->select('*')
+							->from('pmm_verifikasi_penagihan_pembelian')
+							->where('id',$row['id'])
+							->get()->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['unit_head']);
+							$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['unit_head']);
+							$keu = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['m_keu']);
+							$m_keu = $this->db->get('tbl_admin a')->row_array();
+						?>
                         <tr>
                             <td align="center" height="75px">
+								<img src="<?= $keu['admin_ttd']?>" width="90px">	
                             </td>
                             <td align="center">
+								<img src="<?= $m_keu['admin_ttd']?>" width="90px">	
                             </td>
-                            <td align="center">           
+                            <td align="center">    
+							<img src="<?= $unit_head['admin_ttd']?>" width="90px">	       
                             </td>
                         </tr>
                         <tr>
@@ -267,7 +287,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-								<b><?= $admin['admin_group_name']?> Keu & SDM</b> 
+								<b> Keu & SDM</b> 
                             </td>
                             <td align="center">
 								<b>M. Keu & SDM</b> 
