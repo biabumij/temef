@@ -276,7 +276,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-								Theresia Desitaliana L.<!--<?= $row['verifikator'];?>-->
+								Theresia Desitaliana L.
                             </td>
                             <td align="center">
 								Erika Sinaga
