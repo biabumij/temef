@@ -276,13 +276,13 @@
                         </tr>
                         <tr>
                             <td align="center">
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['keu']),'admin_name');?></u></b>
+								Theresia Desitaliana L.<!--<?= $row['verifikator'];?>-->
                             </td>
                             <td align="center">
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['m_keu']),'admin_name');?></u></b>
+								Erika Sinaga
                             </td>
                             <td align="center">
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u></b> 
+								Agustinus P 
                             </td>
                         </tr>
                         <tr>
