@@ -1334,8 +1334,8 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppo.kategori_id in (1,5)");
 
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.tanggal_invoice >=',$start_date);
-            $this->db->where('ppp.tanggal_invoice <=',$end_date);
+            $this->db->where('ppp.created_on >=',$start_date);
+            $this->db->where('ppp.created_on <=',$end_date);
         }
         if(!empty($supplier_id)){
             $this->db->where('ppp.supplier_id',$supplier_id);
