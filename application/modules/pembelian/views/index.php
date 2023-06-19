@@ -1622,11 +1622,11 @@
             ],
             "columnDefs": [
                 {
-                "targets": [0],
+                "targets": [0, 1, 2, 3],
                 "className": 'text-center',
                 },
                 {
-                "targets": [7, 8, 9],
+                "targets": [8, 9],
                 "className": 'text-right',
                 },
             ],
