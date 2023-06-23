@@ -173,7 +173,7 @@
 								<!--<a class="btn btn-danger" onclick="DeleteData('<?= site_url('rap/hapus_komposisi_agregat/'.$agregat['id']);?>')"><i class="fa fa-close"></i> Hapus</a>-->
                                 <br />
                                 <form class="form-approval" action="<?= base_url("rap/closed_komposisi/".$agregat["id"]) ?>">
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-window-close"></i> Closed</button>
+                                    <button type="submit" class="btn btn-danger"> <b>CLOSED</b></button>
                                 <?php
                                 }
                                 ?>
