@@ -287,7 +287,7 @@
 													</tbody>
 													<tfoot>
 														<tr>
-															<td colspan="5" class="text-right"><b>GRAND TOTAL</b></td>
+															<td colspan="5" class="text-right"><div style="vertical-align:middle; font-weight:bold;">GRAND TOTAL</div></td>
 															<td>
 															<input type="text" id="sub-total-val" name="sub_total" value="" class="form-control rupiahformat tex-left text-right" readonly="">
 															</td>
