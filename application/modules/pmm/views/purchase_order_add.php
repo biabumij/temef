@@ -252,14 +252,6 @@
                                 </tfoot>
                             </div>
                             </table>
-                            <table class="table table-striped table-bordered"> 
-                                <tr>
-                                    <th class="text-left" colspan="6">Memo :</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-left" colspan="6"><?php echo $data['memo'];?></th>
-                                </tr>
-                            </table>
                                 
                             <div class="text-right">
 
