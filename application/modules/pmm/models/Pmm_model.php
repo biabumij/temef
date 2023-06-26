@@ -768,8 +768,8 @@ class Pmm_model extends CI_Model {
             return '<label class="label label-danger">'.$status.'</label>';
         }else if($status == 'CLOSED'){
             return '<label class="label label-danger">'.$status.'</label>';
-        }else {
-            return '<label class="label label-primary">'.$status.'</label>';
+        }else if($status == 'PUBLISH'){
+            return '<label class="label label-success">'.$status.'</label>';
         }
     }
 
@@ -778,7 +778,7 @@ class Pmm_model extends CI_Model {
         if($status == 'DRAFT'){
             return '<label class="label label-warning">'.$status.'</label>';
         }else if($status == 'OPEN'){
-            return '<label class="label label-primary">'.$status.'</label>';
+            return '<label class="label label-success">'.$status.'</label>';
         }else if($status == 'REJECT'){
             return '<label class="label label-danger">'.$status.'</label>';
         }else if($status == 'CLOSED'){
@@ -797,7 +797,6 @@ class Pmm_model extends CI_Model {
             return '<label class="label label-success">'.$status.'</label>';
         }
     }
-
 	function GetStatus4($status)
     {
         if($status == 'PUBLISH'){
