@@ -1352,7 +1352,7 @@ class Receipt_material extends CI_Controller {
             $this->db->where('ppp.status',$filter_status);
         }
 		
-		$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')")
+		$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
@@ -1480,7 +1480,7 @@ class Receipt_material extends CI_Controller {
             $this->db->where('ppp.status',$filter_status);
         }
 		
-		$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')")
+		$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
