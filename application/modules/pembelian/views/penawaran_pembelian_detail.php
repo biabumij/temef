@@ -175,28 +175,6 @@
                                     </tbody>
 								</table>
                                 <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>Memo :</label>
-                                            <td><?= $row["memo"]; ?></td>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Lampiran</label>
-                                            <?php
-                                            $dataLampiran = $this->db->get_where('pmm_lampiran_penawaran_pembelian',array('penawaran_pembelian_id'=>$row['id']))->result_array();
-                                            if(!empty($dataLampiran)){
-                                                foreach ($dataLampiran as $key => $lampiran) {
-                                                    ?>
-                                                    <div><a href="<?= base_url().'uploads/penawaran_pembelian/'.$lampiran['lampiran'];?>" target="_blank"><?= $lampiran['lampiran'];?></a></div>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="row">
                                     <div class="col-sm-12 text-right">
                                         <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
                                         <?php if($row["status"] === "DRAFT") : ?>
