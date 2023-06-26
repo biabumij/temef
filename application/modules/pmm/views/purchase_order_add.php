@@ -43,7 +43,7 @@
                         </div>
                         <div class="panel-content">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <form id="form-po" class="form-horizontal">
                                     <table class="table table-striped table-bordered" width="100%">
                                             <tr>
