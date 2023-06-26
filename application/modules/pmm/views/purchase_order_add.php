@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <form id="form-po" class="form-horizontal">
-                                        <table class="table table-striped table-bordered" width="100%">
+                                    <table class="table table-striped table-bordered" width="100%">
                                             <tr>
                                                 <th width="20%" align="left">Rekanan</th>
                                                 <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?php echo $supplier_name;?></label></th>
