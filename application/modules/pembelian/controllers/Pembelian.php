@@ -1778,6 +1778,70 @@ class Pembelian extends Secure_Controller
 		}
 	}
 
+    public function main_table()
+	{	
+		$data = $this->pmm_model->TableMainTagihan($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function get_tagihan_main()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+            $data = $this->db->select('ppp.*')
+            ->from('pmm_penagihan_pembelian ppp')
+            ->where('ppp.id',$id)
+            ->get()->row_array();
+
+            $data['nama']= $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');
+            $data['tanggal_invoice'] = date('d-m-Y',strtotime($data['tanggal_invoice']));
+			$output['output'] = $data;
+            
+		}
+		echo json_encode($output);
+	}
+
+    public function update_tagihan_main()
+	{
+		$output['output'] = false;
+
+		$penagihan_id = $this->input->post('penagihan_id');
+        $supplier_id = $this->input->post('nama');
+		$tanggal_invoice = date('Y-m-d',strtotime($this->input->post('tanggal_invoice')));
+        $nomor_invoice = $this->input->post('nomor_invoice');
+
+		$data = array(
+            'id' => $penagihan_id,
+		    'tanggal_invoice' => $tanggal_invoice,
+		);
+
+		if(!empty($id)){
+			if($this->db->update('pmm_penagihan_pembelian',$data,array('id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+            $data['updated_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_penagihan_pembelian',$data,array('id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}
+
+        $data_verif = array(
+            'penagihan_pembelian_id' => $penagihan_id,
+		    'tanggal_invoice' => $tanggal_invoice,
+		);
+
+        if(!empty($penagihan_id)){
+			if($this->db->update('pmm_verifikasi_penagihan_pembelian',$data_verif,array('penagihan_pembelian_id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
+	}
+
     public function submit_pesanan_pembelian()
     {
 
