@@ -57,7 +57,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a>Detail Tagihan Pembelian</a></li>
+                            <li><a>Edit Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,10 +66,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">
-                                        Detail Tagihan Pembelian
-                                        <small>(<i><?= $row['status']; ?></i>)</small>
-                                    </h3>
+                                    <h3 class="">Edit Tagihan Pembelian</h3>
                                 </div>
                             </div>
                             <div class="panel-content">
