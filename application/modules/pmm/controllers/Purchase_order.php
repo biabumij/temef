@@ -451,16 +451,50 @@ class Purchase_order extends CI_Controller {
 
 	public function delete($id)
     {
-    	$this->db->trans_start(); # Starting Transaction
+    	$file = $this->db->select('po.document_po')
+		->from('pmm_purchase_order po')
+		->where("po.id = $id")
+		->get()->row_array();
+
+		$path = './uploads/purchase_order/'.$file['document_po'];
+		chmod($path, 0777);
+		unlink($path);
 
 		$this->db->delete('pmm_purchase_order_detail', array('purchase_order_id'=>$id));
 
 		$penagihan = $this->db->get_where('pmm_penagihan_pembelian', array('purchase_order_id' => $id))->row_array();
+		$penagihan_id = $penagihan['id'];
+
+		$file = $this->db->select('lk.lampiran')
+		->from('pmm_lampiran_penagihan_pembelian lk')
+		->where("lk.penagihan_pembelian_id = $penagihan_id")
+		->get()->row_array();
+
+		$path = './uploads/penagihan_pembelian/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
 
 		$this->db->delete('pmm_penagihan_pembelian_detail',array('penagihan_pembelian_id'=>$penagihan['id']));
 
 		$this->db->delete('pmm_lampiran_penagihan_pembelian',array('penagihan_pembelian_id'=>$penagihan['id']));
+		
+		$pembayaran_pembelian = $this->db->select('pp.id')
+		->from('pmm_pembayaran_penagihan_pembelian pp')
+		->where("pp.penagihan_pembelian_id = $penagihan_id")
+		->get()->row_array();
 
+		$pembayaran_pembelian_id = $pembayaran_pembelian['id'];
+
+		$file = $this->db->select('pp.lampiran')
+		->from('pmm_lampiran_pembayaran_penagihan_pembelian pp')
+		->where("pp.pembayaran_penagihan_pembelian_id = $pembayaran_pembelian_id")
+		->get()->row_array();
+
+		$path = './uploads/pembayaran_penagihan_pembelian/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
+
+		$this->db->delete('pmm_lampiran_pembayaran_penagihan_pembelian', array('pembayaran_penagihan_pembelian_id' => $pembayaran_pembelian_id));
 		$this->db->delete('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $penagihan['id']));
 
 		$this->db->delete('pmm_receipt_material', array('purchase_order_id'=>$id));
