@@ -80,11 +80,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Perihal</th>
-                                                <th><?php echo $data['subject'];?></th>
+                                                <th><input type="text" class="form-control" id="subject" value="<?php echo $data['subject'];?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>Tanggal Pesanan Pembelian</th>
-                                                <th><?php echo date('d/m/Y',strtotime($data['date_po']));?></th>
+                                                <th><input type="text" id="date_po" class="form-control dtpicker" value="<?php echo date('d-m-Y',strtotime($data['date_po']));?>" ></th>
                                             </tr>
                                             <tr>
                                                 <th>Memo</th>
@@ -295,7 +295,7 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
-                                        <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-check" style="width:200px; font-weight:bold;"></i> Setujui</a>
+                                        <a onclick="CreatePO()" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</a>
                                         <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/2');?>')" class="btn btn-danger check-btn" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</a>
                                         <?php
                                     }
