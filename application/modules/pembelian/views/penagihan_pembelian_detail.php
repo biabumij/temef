@@ -228,7 +228,7 @@
                                     </div>
                                     <div class="col-sm-8 form-horizontal">
                                         <div class="row">
-                                            <label class="col-sm-7 control-label">Sub Total</label>
+                                            <label class="col-sm-7 control-label">SUB TOTAL</label>
                                             <div class="col-sm-5 text-right">
                                                 <h5 id="sub-total"><?= number_format($sub_total,0,',','.'); ?></h5>
                                             </div>
@@ -237,7 +237,7 @@
                                         if ($tax_ppn > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 10%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($tax_ppn,0,',','.'); ?></h5>
                                                 </div>
@@ -249,7 +249,7 @@
                                         if ($tax_0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 0%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
                                                 </div>
@@ -261,7 +261,7 @@
                                         if ($tax_pph > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPh 23)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($tax_pph,0,',','.'); ?></h5>
                                                 </div>
@@ -273,7 +273,7 @@
                                         if ($tax_ppn11 > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 11%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($tax_ppn11,0,',','.'); ?></h5>
                                                 </div>
@@ -285,7 +285,7 @@
                                         if ($pajak_ppn > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 10%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_ppn,0,',','.'); ?></h5>
                                                 </div>
@@ -297,7 +297,7 @@
                                         if ($pajak_0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 0%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
                                                 </div>
@@ -309,7 +309,7 @@
                                         if ($pajak_pph > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPh 23)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_pph,0,',','.'); ?></h5>
                                                 </div>
@@ -321,7 +321,7 @@
                                         if ($pajak_ppn11 > 0) {
                                         ?>
                                             <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                                <label class="col-sm-7 control-label">PAJAK (PPN 11%)</label>
                                                 <div class="col-sm-5 text-right">
                                                     <h5 id="sub-total"><?= number_format($pajak_ppn11,0,',','.'); ?></h5>
                                                 </div>
@@ -332,22 +332,27 @@
                                         $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPembelian($row['id']);
                                         ?>
                                         <div class="row">
-                                            <h4 class="col-sm-7 control-label">Total</h4>
+                                        <label class="col-sm-7 control-label">TOTAL</label>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total,0,',','.'); ?></h4>
+                                                <h5 id="total"><?= number_format($total,0,',','.'); ?></h5>
                                             </div>
                                         </div>
-                                        <br />
                                         <div class="row">
-                                            <label class="col-sm-7 control-label">Uang Muka</label>
+                                            <label class="col-sm-7 control-label">UANG MUKA</label>
                                             <div class="col-sm-5 text-right">
                                                 <h5 id="sub-total"><?= number_format($row['uang_muka'],0,',','.'); ?></h5>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <h4 class="col-sm-7 control-label">Sisa Tagihan</h4>
+                                            <label class="col-sm-7 control-label">PEMBAYARAN</label>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total - $row['uang_muka']); ?></h4>
+                                                <h5 id="sub-total"><?= number_format($row['pembayaran'],0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        <label class="col-sm-7 control-label">SISA TAGIHAN</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="total"><?= number_format($total - $row['uang_muka'] - $row['pembayaran']); ?></h5>
                                             </div>
                                         </div>
                                     </div>
