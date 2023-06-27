@@ -1765,6 +1765,19 @@ class Pembelian extends Secure_Controller
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 
+    public function sunting_tagihan($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+
+			$this->db->select('ppp.*');
+            $data['row'] = $this->db->get_where('pmm_penagihan_pembelian ppp', array('ppp.id' => $id))->row_array();
+			$this->load->view('pembelian/sunting_tagihan', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
     public function submit_pesanan_pembelian()
     {
 
