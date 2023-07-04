@@ -185,7 +185,7 @@
                                 </table>
                                         
                                 <div class="text-right">  
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
 
                                     <?php if($penawaran["status"] === "DRAFT") : ?>
                                         <?php

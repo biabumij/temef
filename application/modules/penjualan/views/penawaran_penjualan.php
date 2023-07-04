@@ -25,7 +25,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan');?>"> Penawaran Penjualan</a></li>
-                            <li><a>Penawaran Penjualan Baru</a></li>
+                            <li><a href=""> Buat Penawaran Penjualan Baru</a></li>
                         </ul>
                     </div>
                 </div>

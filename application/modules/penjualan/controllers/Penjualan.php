@@ -549,6 +549,7 @@ class Penjualan extends Secure_Controller
 		if ($check == true) {
 			$data['tes'] = '';
 			$data['sales_po'] = $this->db->get_where("pmm_sales_po", ["id" => $id])->row_array();
+			$data['sales_po_detail'] = $this->db->get_where("pmm_sales_po_detail", ["sales_po_id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_sales_po", ["sales_po_id" => $id])->result_array();
 			$data['client']  = $this->db->get_where("penerima", ["id" => $data['sales_po']['client_id']])->row_array();
 			$data['details'] = $this->db->query("SELECT * FROM `pmm_sales_po_detail` INNER JOIN produk ON pmm_sales_po_detail.product_id = produk.id WHERE sales_po_id = '$id'")->result_array();
