@@ -1701,19 +1701,6 @@ class Penjualan extends Secure_Controller
 		redirect("penjualan/detailPenagihan/$id");
 	}
 
-	public function sunting_tagihan($id)
-	{
-		$check = $this->m_admin->check_login();
-		if ($check == true) {
-
-			$this->db->select('ppp.*');
-            $data['row'] = $this->db->get_where('pmm_penagihan_penjualan ppp', array('ppp.id' => $id))->row_array();
-			$this->load->view('penjualan/sunting_tagihan', $data);
-		} else {
-			redirect('admin');
-		}
-	}
-
 	public function main_table()
 	{	
 		$data = $this->pmm_model->TableMainKomposisi($this->input->post('id'));
