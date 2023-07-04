@@ -41,8 +41,7 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            back
-            ground-color: #eee;
+            background-color: #eeeeee;
         }
         hr{
             margin-top:0;
@@ -138,7 +137,7 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr>
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
@@ -160,7 +159,7 @@
                                 
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="">
                             <?php
                             $admin = $this->pmm_model->GetNameGroup(20);
                             $ka_plant = $this->pmm_model->GetNameGroup(15);
@@ -175,7 +174,7 @@
                                 <?= $biaya["penerima"] ?>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="">
                             <td align="center">
                                 <?= $admin['admin_group_name']?>
                             </td>
