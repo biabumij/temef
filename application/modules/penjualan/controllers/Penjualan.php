@@ -538,7 +538,7 @@ class Penjualan extends Secure_Controller
 			$('.form-select2').select2();
 			$('input.numberformat').number(true, 2, ',', '.');
 		</script>
-<?php
+	<?php
 	}
 
 
@@ -1159,7 +1159,9 @@ class Penjualan extends Secure_Controller
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['penagihan'] = $this->db->get_where('pmm_penagihan_penjualan', ["id" => $id])->row_array();
+			$this->db->select('pp.*, SUM(ppp.total) as pembayaran');
+            $this->db->join('pmm_pembayaran ppp', 'pp.id = ppp.penagihan_id', 'left');
+			$data['penagihan'] = $this->db->get_where('pmm_penagihan_penjualan pp', array('pp.id' => $id))->row_array();
 			$data['cekHarga'] = $this->db->get_where('pmm_penagihan_penjualan_detail', ["penagihan_id" => $id])->result_array();
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 			$data['dataLampiran'] = $this->db->get_where('pmm_lampiran_penagihan', ["penagihan_id" => $id])->result_array();
@@ -1697,6 +1699,19 @@ class Penjualan extends Secure_Controller
 		$this->db->update("pmm_penagihan_penjualan");
 		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
 		redirect("penjualan/detailPenagihan/$id");
+	}
+
+	public function sunting_tagihan($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+
+			$this->db->select('ppp.*');
+            $data['row'] = $this->db->get_where('pmm_penagihan_penjualan ppp', array('ppp.id' => $id))->row_array();
+			$this->load->view('penjualan/sunting_tagihan', $data);
+		} else {
+			redirect('admin');
+		}
 	}
 
 	public function main_table()
