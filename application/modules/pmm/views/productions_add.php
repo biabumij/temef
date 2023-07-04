@@ -193,7 +193,7 @@
                                 </form>
                                 <br />
                                 <div class="text-right">
-                                    <button class="btn btn-danger" id="btn-view"><i class="fa fa-search" style="width:100px; font-weight:bold;"></i> Lihat Data</button>
+                                    <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold;"><i class="fa fa-search"></i> Lihat Data</button>
                                 </div>
                                 <div id="box-view" style="display:none;">
                                     <div class="row">
