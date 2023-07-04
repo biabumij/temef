@@ -6,7 +6,6 @@
 <head>
     <?php echo $this->Templates->Header();?>
     
-
     <style type="text/css">
         .form-check {
             display: inline-block;
@@ -20,9 +19,6 @@
 
         <?php echo $this->Templates->PageHeader();?>
         
-        
-
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
             <div class="content">
@@ -45,53 +41,52 @@
                                     </div>
                             </div>
                             <div class="panel-content">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-striped table-bordered" width="100%">
                                     <tr>
-                                        <th width="200px">Nomor</th>
-                                        <td>: <?= $penawaran["nomor"] ?></td>
+                                        <th width="15%" align="left">Rekanan</th>
+                                        <th width="85%" align="left"><label class="label label-default" style="font-size:14px;"><?= $penawaran["nama"] ?></label></th>
                                     </tr>
                                     <tr>
-                                        <th >Perihal</th>
-                                        <td>: <?= $penawaran["perihal"]; ?></td>
+                                        <th>Alamat Rekanan</th>
+                                        <th><textarea class="form-control" rows="5" readonly=""><?= $penawaran["client_address"] ?></textarea></th>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="15%" align="left">Nomor Penawaran</th>
+                                        <th width="85%" align="left"><label class="label label-info" style="font-size:14px;"><?= $penawaran["nomor"] ?></label></th>
                                     </tr>
                                     <tr>
-                                        <th >Tanggal</th>
-                                        <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
+                                        <th>Perihal</th>
+                                        <th><?= $penawaran["perihal"]; ?></th>
                                     </tr>
                                     <tr>
-                                        <th width="200px">Nama Pelanggan </th>
-                                        <td>: <?= $penawaran["nama"] ?></td>
+                                        <th>Tanggal Penawaran</th>
+                                        <th><?= date('d/m/Y',strtotime($penawaran["tanggal"]));?></th>
                                     </tr>
                                     <tr>
-                                        <th >Alamat </th>
-                                        <td>: <?= $penawaran["client_address"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th >Syarat Pembayaran</th>
-                                        <td>: <?= $penawaran["syarat_pembayaran"]; ?> Hari</td>
-                                    </tr>
-                                    <tr>
-                                        <th >Total</th>
-                                        <td>: <?= $this->filter->Rupiah($penawaran["sub_total"]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th width="100px">Lampiran</th>
-                                        <td>:
-                                            <?php foreach($lampiran as $l) : ?>
-                                            <a href="<?= base_url("uploads/penawaran_penjualan/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
-                                        <?php endforeach; ?>
+                                        <th>Syarat Pembayaran</th>
+                                        <th><?= $penawaran['syarat_pembayaran'];?> Hari</th>
                                     </tr>
                                     <tr>
                                         <th>Persyaratan Harga</th>
-                                        <td>: <?= $penawaran["persyaratan_harga"] ?></td>
+                                        <th><?= $penawaran["persyaratan_harga"];?></th>
                                     </tr>
                                     <tr>
-                                        <th >Dibuat Oleh</th>
-                                        <td>: <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penawaran['created_by']),'admin_name');?></td>
+                                        <th>Lampiran</th>
+                                        <th>
+                                            <?php foreach($lampiran as $l) : ?>
+                                            <a href="<?= base_url("uploads/penawaran_penjualan/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
+                                            <?php endforeach; ?>
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <th >Dibuat Tanggal</th>
-                                        <td>: <?= date('d/m/Y H:i:s',strtotime($penawaran['created_on']));?></td>
+                                        <th>Dibuat Oleh</th>
+                                        <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penawaran['created_by']),'admin_name');?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dibuat Tanggal</th>
+                                        <th><?= date('d/m/Y H:i:s',strtotime($penawaran['created_on']));?></th>
                                     </tr>
                                 </table>
 
@@ -101,8 +96,8 @@
                                             <th class="text-center" width="5%">No</th>
                                             <th class="text-center" width="20%">Produk</th>
                                             <th class="text-center" width="15%">Volume</th>
-                                            <th class="text-center" width="15%">Satuan</th>
-                                            <th class="text-center" width="15%">Harga Satuan</th>
+                                            <th class="text-center" width="10%">Satuan</th>
+                                            <th class="text-center" width="20%">Harga Satuan</th>
                                             <th class="text-center" width="20%">Nilai</th>
                                             <th class="text-center" width="10%">Pajak</th>
                                         </tr>
@@ -240,7 +235,7 @@
                                         }
                                         ?>
                                     <?php endif; ?>
-                                </div>                         
+                                </div>                     
                             </div>
                         </div>
                     </div>
@@ -257,6 +252,7 @@
     </script>
 
 	<?php echo $this->Templates->Footer();?>
+
 	<script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/jquery.number.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
