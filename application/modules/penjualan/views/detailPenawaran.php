@@ -185,29 +185,29 @@
                                 </table>
                                         
                                 <div class="text-right">  
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
 
                                     <?php if($penawaran["status"] === "DRAFT") : ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
                                             <form class="form-check" action="<?= base_url("penjualan/approvalPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                                <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>        
                                             </form>
                                             <form class="form-check" action="<?= base_url("penjualan/rejectedPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                                <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>        
                                             </form>
-                                        <?php
-                                    }
-                                    ?>
+                                            <?php
+                                        }
+                                        ?>
                                     <?php endif; ?>
 
                                     <?php if($penawaran["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-print"></i> Cetak</a>
+                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
-                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top: 10px;"><i class="fa fa-close"></i> Closed</a>			
+                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed</a>			
                                             <?php
                                         }
                                         ?>
@@ -217,15 +217,14 @@
 
                                     <?php if($penawaran["status"] === "CLOSED") : ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
+                                        if($this->session->userdata('admin_group_id') == 1){
                                             ?>
-                                            <a class="btn btn-danger" style="margin-top: 10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
-                                            <a href="<?= base_url("penjualan/open_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-success" style="margin-top: 10px;"><i class="fa fa-folder-open-o"></i> Open</a>	
+                                            <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
                                         ?>
                                     <?php endif; ?>
-                                    
+
                                     <?php if($penawaran["status"] === "REJECT") : ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
@@ -235,7 +234,7 @@
                                         }
                                         ?>
                                     <?php endif; ?>
-                                </div>                     
+                                </div>                    
                             </div>
                         </div>
                     </div>
