@@ -34,7 +34,6 @@
                             <div class="panel-header"> 
                                 <div class="text-right">
                                     <h3 class="pull-left">Penerimaan Penjualan</h3>
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Back</a>
                                 </div>
                             </div>
                             <div class="panel-content">
