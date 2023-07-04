@@ -1772,7 +1772,7 @@ class Penjualan extends Secure_Controller
 		}
 	}
 
-	public function main_table()
+	public function main_table_tagihan_penjualan()
 	{	
 		$data = $this->pmm_model->TableMainTagihanPenjualan($this->input->post('id'));
 		echo json_encode(array('data'=>$data));

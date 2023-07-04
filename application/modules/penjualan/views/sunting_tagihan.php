@@ -181,7 +181,7 @@
         ajax: {
             processing: true,
             serverSide: true,
-            url: '<?php echo site_url('penjualan/main_table');?>',
+            url: '<?php echo site_url('penjualan/main_table_tagihan_penjualan');?>',
             type : 'POST',
             data: function ( d ) {
                 d.id = $('#id').val();
