@@ -203,7 +203,7 @@
                                     <?php endif; ?>
 
                                     <?php if($penawaran["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
