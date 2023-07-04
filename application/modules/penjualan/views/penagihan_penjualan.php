@@ -34,7 +34,6 @@
                             <div class="panel-header">
                                 <div class="text-right">
                                     <h3 class="pull-left">Penagihan Penjualan</h3>
-                                    <a href="<?php echo site_url('admin/penjualan'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Back</a>
                                 </div>
                             </div>
                             <form id="form-po" action="<?= base_url('penjualan/submit_penagihan_penjualan') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
