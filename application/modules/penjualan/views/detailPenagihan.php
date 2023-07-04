@@ -268,7 +268,7 @@
                                         <?php if ($penagihan["status"] === "DRAFT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
-                                                ?>
+                                            ?>
                                                 <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
                                                     <button type="submit" class="btn btn-success btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
                                                 </form>
