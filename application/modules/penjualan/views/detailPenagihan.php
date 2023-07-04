@@ -38,7 +38,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">Detail Tagihan Penjualan <?php echo $this->pmm_model->GetStatus3($penagihan['status']);?></h3>
+                                    <h3 class="">Detail Tagihan Penjualan <?php echo $this->pmm_model->GetStatus2($penagihan['status']);?></h3>
                                 </div>
                             </div>
                             <div class="panel-content">
