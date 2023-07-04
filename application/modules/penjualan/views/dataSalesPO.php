@@ -216,7 +216,7 @@
 
                                 <?php if($sales_po["status"] === "OPEN") : ?>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a>
-                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
+                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Kirim Produk</a>
                                 <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
