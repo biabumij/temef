@@ -196,6 +196,9 @@
                             </table>
                             
                             <div class="text-right">
+                                <form>
+                                    <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </form>
                                 <?php if($sales_po["status"] === "DRAFT") : ?>
                                     <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak (Draft)</a>
                                     <br />
@@ -253,10 +256,6 @@
                                     }
                                     ?>
                                 <?php endif; ?>
-
-                                <form>
-                                    <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                </form>
                             </div>
                             
                         </div>
