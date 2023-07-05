@@ -76,8 +76,10 @@
 														<th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Lihat Data</th>
+                                                        <th class="text-center">Closed</th>
+                                                        <th class="text-center">Edit</th>
                                                         <th class="text-center">Cetak</th>
+                                                        <th class="text-center">Hapus</th>
                                                         <th class="text-center">Status</th>
 														
                                                     </tr>
@@ -225,17 +227,23 @@
 					"data": "created_on"
 				},
                 {
-					"data": "view"
+					"data": "closed"
+				},
+                {
+					"data": "edit"
 				},
                 {
 					"data": "print"
+				},
+                {
+					"data": "actions"
 				},
                 {
                     "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9],
+                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9, 10],
                     "className": 'text-center',
                 }
             ],
@@ -245,6 +253,32 @@
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_agregat.ajax.reload();
 		});
+
+        function DeleteDataBahan(id) {
+        bootbox.confirm("Are you sure to delete this data ?", function(result) {
+                // console.log('This was logged in the callback: ' + result); 
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('rap/delete_rap_bahan'); ?>",
+                        dataType: 'json',
+                        data: {
+                            id: id
+                        },
+                        success: function(result) {
+                            if (result.output) {
+                                table_agregat.ajax.reload();
+                                bootbox.alert('Berhasil menghapus data !!');
+                            } else if (result.err) {
+                                bootbox.alert(result.err);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        
 	
     </script>
 
@@ -305,29 +339,29 @@
             ],
         });
 	
-		function DeleteData(id) {
+		function DeleteDataAlat(id) {
         bootbox.confirm("Are you sure to delete this data ?", function(result) {
-            // console.log('This was logged in the callback: ' + result); 
-            if (result) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('rap/delete_rap_alat'); ?>",
-                    dataType: 'json',
-                    data: {
-                        id: id
-                    },
-                    success: function(result) {
-                        if (result.output) {
-                            table_rap_alat.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus !!');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
+                // console.log('This was logged in the callback: ' + result); 
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('rap/delete_rap_alat'); ?>",
+                        dataType: 'json',
+                        data: {
+                            id: id
+                        },
+                        success: function(result) {
+                            if (result.output) {
+                                table_rap_alat.ajax.reload();
+                                bootbox.alert('Berhasil menghapus data !!');
+                            } else if (result.err) {
+                                bootbox.alert(result.err);
+                            }
                         }
-                    }
-                });
-            }
-        });
-    }
+                    });
+                }
+            });
+        }
     </script>
 
     <script type="text/javascript">
@@ -385,27 +419,27 @@
 	
 		function DeleteDataBUA(id) {
         bootbox.confirm("Are you sure to delete this data ?", function(result) {
-            // console.log('This was logged in the callback: ' + result); 
-            if (result) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('rap/delete_rap_bua'); ?>",
-                    dataType: 'json',
-                    data: {
-                        id: id
-                    },
-                    success: function(result) {
-                        if (result.output) {
-                            table_rap_bua.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus !!');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
+                // console.log('This was logged in the callback: ' + result); 
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('rap/delete_rap_bua'); ?>",
+                        dataType: 'json',
+                        data: {
+                            id: id
+                        },
+                        success: function(result) {
+                            if (result.output) {
+                                table_rap_bua.ajax.reload();
+                                bootbox.alert('Berhasil menghapus data !!');
+                            } else if (result.err) {
+                                bootbox.alert(result.err);
+                            }
                         }
-                    }
-                });
-            }
-        });
-    }
+                    });
+                }
+            });
+        }
     </script>
 
 </body>

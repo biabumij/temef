@@ -23,9 +23,8 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
-                            
-                            <li><a>RAP Alat</a></li>
+                            <li><a href="<?php echo site_url('admin/rap#alat');?>">RAP</a></li>
+                            <li><a>Buat RAP Alat</a></li>
                         </ul>
                     </div>
                 </div>
@@ -143,12 +142,23 @@
                                             </div>
                                         </div>
                                     </div>
-									<br />
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/rap');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?= site_url('admin/rap#alat');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </form>
                             </div>

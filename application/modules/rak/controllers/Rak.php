@@ -430,7 +430,6 @@ class Rak extends Secure_Controller {
 			    mkdir('uploads/rak', 0777, true);
 			}
 
-
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -495,7 +494,7 @@ class Rak extends Secure_Controller {
        	if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['tanggal_rencana_kerja'] = "<a href=" . base_url('rak/cetak_rencana_kerja/' . $row["id"]) .'" target="_blank">' .  date('d F Y',strtotime($row['tanggal_rencana_kerja'])) . "</a>";
+				$row['tanggal_rencana_kerja'] = date('d F Y',strtotime($row['tanggal_rencana_kerja']));
 				$row['lampiran'] = '<a href="' . base_url('uploads/rak/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';  
 				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
@@ -527,8 +526,18 @@ class Rak extends Secure_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$this->db->delete('rak',array('id'=>$id));
+
+			$file = $this->db->select('ag.lampiran')
+			->from('lampiran_rak ag')
+			->where("ag.rak_id = $id")
+			->get()->row_array();
+
+			$path = './uploads/rak/'.$file['lampiran'];
+			chmod($path, 0777);
+			unlink($path);
+
 			$this->db->delete('lampiran_rak',array('rak_id'=>$id));
+			$this->db->delete('rak',array('id'=>$id));
 			{
 				$output['output'] = true;
 			}
@@ -1103,14 +1112,14 @@ class Rak extends Secure_Controller {
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
 				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_cash_flow/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 15){
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
 				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_cash_flow/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '-';
 				}
 
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
-				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData3('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteDataRencanaCashFlow('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '-';
 				}
@@ -1127,8 +1136,18 @@ class Rak extends Secure_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$this->db->delete('rencana_cash_flow',array('id'=>$id));
+
+			$file = $this->db->select('ag.lampiran')
+			->from('lampiran_rencana_cash_flow ag')
+			->where("ag.rencana_cash_flow_id = $id")
+			->get()->row_array();
+
+			$path = './uploads/rencana_cash_flow/'.$file['lampiran'];
+			chmod($path, 0777);
+			unlink($path);
+
 			$this->db->delete('lampiran_rencana_cash_flow',array('rencana_cash_flow_id'=>$id));
+			$this->db->delete('rencana_cash_flow',array('id'=>$id));
 			{
 				$output['output'] = true;
 			}

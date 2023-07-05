@@ -60,11 +60,11 @@
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
 														<th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th class="text-center">Diperbaharui Oleh</th>
                                                         <th class="text-center">Diperbaharui Tanggal</th>
+                                                        <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Cetak</th>
 														<th class="text-center">Edit</th>
                                                         <th class="text-center">Hapus</th>
@@ -126,9 +126,6 @@
                     "data": "tanggal_rencana_kerja"
                 },
                 {
-                    "data": "lampiran"
-                },
-                {
 					"data": "created_by"
 				},
 				{
@@ -141,6 +138,9 @@
 					"data": "updated_on"
 				},
                 {
+                    "data": "lampiran"
+                },
+                {
 					"data": "print"
 				},
                 {
@@ -151,13 +151,13 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5, 6, 7, 8, 9],
+                    "targets": [0, 1, 2, 3, 4, 5, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
         });
 
-        function DeleteData3(id) {
+        function DeleteDataRencanaCashFlow(id) {
         bootbox.confirm("Are you sure to delete this data ?", function(result) {
             // console.log('This was logged in the callback: ' + result); 
             if (result) {

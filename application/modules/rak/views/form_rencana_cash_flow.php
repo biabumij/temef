@@ -24,8 +24,8 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Rencana Produksi</li>
-                            <li><a>Rencana Cash Flow</a></li>
-                            <li><a>Rencana Kerja (Cash Flow)</a></li>
+                            <li><a href="<?php echo site_url('admin/rencana_cash_flow#rencana_cash_flow');?>">Rencana Cash Flow</a></li>
+                            <li><a>Buat Rencana Cash Flow</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Rencana Kerja (Cash Flow)</h3>
+                                    <h3 class="">Rencana Cash Flow</h3>
                                     
                                 </div>
                             </div>
@@ -111,12 +111,24 @@
                                             </div>
                                         </div>
                                     </div>
-									<br />
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/rencana_cash_flow');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?= site_url('admin/rencana_cash_flow#rencana_cash_flow');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     </div>
                                 </form>
                             </div>

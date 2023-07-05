@@ -99,6 +99,10 @@ class Rap extends Secure_Controller {
 		if ($this->db->insert('pmm_agregat', $arr_insert)) {
 			$agregat_id = $this->db->insert_id();
 
+			if (!file_exists('uploads/agregat')) {
+			    mkdir('uploads/agregat', 0777, true);
+			}
+
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -175,11 +179,19 @@ class Rap extends Secure_Controller {
 				$row['lampiran'] = '<a href="' . base_url('uploads/agregat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';           
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['closed'] = '<a href="'.site_url().'rap/closed_komposisi/'.$row['id'].'" class="btn btn-danger"><i class="fa fa-briefcase"></i> </a>';
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'rap/data_komposisi/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
+				$row['edit'] = '<a href="'.site_url().'rap/sunting_komposisi/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				}else {
+					$row['edit'] = '-';
+				}
 				$row['print'] = '<a href="'.site_url().'rap/cetak_komposisi/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
-			
+				if($this->session->userdata('admin_group_id') == 1){
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
 				$data[] = $row;
             }
 
@@ -187,26 +199,29 @@ class Rap extends Secure_Controller {
         echo json_encode(array('data'=>$data));
     }
 	
-	public function hapus_komposisi_agregat($id)
-    {
-        $this->db->trans_start(); # Starting Transaction
+	public function delete_rap_bahan()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
 
+			$file = $this->db->select('ag.lampiran')
+			->from('pmm_lampiran_agregat ag')
+			->where("ag.agregat_id = $id")
+			->get()->row_array();
 
-        $this->db->delete('pmm_agregat', array('id' => $id));
+			$path = './uploads/agregat/'.$file['lampiran'];
+			chmod($path, 0777);
+			unlink($path);
 
-        if ($this->db->trans_status() === FALSE) {
-            # Something went wrong.
-            $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error', 'Gagal Menghapus RAP Bahan');
-            redirect('rap/data_komposisi_agregat');
-        } else {
-            # Everything is Perfect. 
-            # Committing data to the database.
-            $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', 'Berhasil Menghapus RAP Bahan');
-            redirect("admin/rap");
-        }
-    }
+			$this->db->delete('pmm_lampiran_agregat', array('agregat_id' => $id));
+			$this->db->delete('pmm_agregat', array('id' => $id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
 	
 	public function data_komposisi($id)
 	{
@@ -390,7 +405,6 @@ class Rap extends Secure_Controller {
 			    mkdir('uploads/rap_alat', 0777, true);
 			}
 
-
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -462,8 +476,8 @@ class Rap extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['print'] = '<a href="'.site_url().'rap/cetak_rap_alat/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1){
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAlat('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -480,8 +494,18 @@ class Rap extends Secure_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$this->db->delete('rap_alat',array('id'=>$id));
+
+			$file = $this->db->select('ag.lampiran')
+			->from('lampiran_rap_alat ag')
+			->where("ag.rap_alat_id = $id")
+			->get()->row_array();
+
+			$path = './uploads/rap_alat/'.$file['lampiran'];
+			chmod($path, 0777);
+			unlink($path);
+
 			$this->db->delete('lampiran_rap_alat',array('rap_alat_id'=>$id));
+			$this->db->delete('rap_alat',array('id'=>$id));
 			{
 				$output['output'] = true;
 			}
@@ -763,7 +787,6 @@ class Rap extends Secure_Controller {
 			    mkdir('uploads/rap_bua', 0777, true);
 			}
 
-
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -857,6 +880,16 @@ class Rap extends Secure_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
+
+			$file = $this->db->select('ag.lampiran')
+			->from('lampiran_rap_bua ag')
+			->where("ag.rap_bua_id = $id")
+			->get()->row_array();
+
+			$path = './uploads/rap_bua/'.$file['lampiran'];
+			chmod($path, 0777);
+			unlink($path);
+
 			$this->db->delete('rap_bua',array('id'=>$id));
 			$this->db->delete('rap_bua_detail',array('rap_bua_id'=>$id));
 			$this->db->delete('lampiran_rap_bua',array('rap_bua_id'=>$id));
