@@ -58,7 +58,7 @@
                                             <th><input type="text" class="form-control dtpicker" name="tanggal_kontrak" required="" value="<?= date("d-m-Y", strtotime($sales['contract_date'])) ?>" readonly=""/></th>
                                         </tr>
                                         <tr>
-                                            <th>Nomor Sales Order</th>
+                                            <th>No. Sales Order</th>
                                             <th>
                                                 <a target="_blank" href="<?= base_url("penjualan/dataSalesPO/".$sales['id']) ?>"><?= $sales['contract_number']; ?></a>
                                                 <input type="hidden" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
