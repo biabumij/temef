@@ -275,9 +275,10 @@ class Receipt_material extends CI_Controller {
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['display_price'] = number_format($row['display_price'],0,',','.');
 				$row['surat_jalan_file'] = '<a href="'.base_url().'uploads/surat_jalan_penerimaan/'.$row['surat_jalan_file'].'" target="_blank">'.$row['surat_jalan_file'].'</a>';
-
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
-				
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
 				$edit = false;
 				if($this->session->userdata('admin_group_id') == 1){
 					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';			
@@ -287,11 +288,6 @@ class Receipt_material extends CI_Controller {
 				}else {
 					$row['actions'] = '-';
 				}
-				
-				//$row['actions'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				
-				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
-                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				
 				$data[] = $row;
 			}
