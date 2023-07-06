@@ -65,8 +65,8 @@
                                     </table>
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="20%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
-                                            <th width="80%" align="left"> <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/></th>
+                                            <th width="30%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
+                                            <th width="70%" align="left"> <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/></th>
                                         </tr>
                                         <tr>
                                             <th>Nomor Invoice<span class="required" aria-required="true">*</span></th>
