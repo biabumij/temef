@@ -42,8 +42,8 @@
                                 <div class="panel-content">
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="30%" align="left">Pelanggan</th>
-                                            <th width="70%" align="left"><label class="label label-default" style="font-size:14px;"><?= $clients['nama'] ?></label>
+                                            <th width="35%" align="left">Pelanggan</th>
+                                            <th width="65%" align="left"><label class="label label-default" style="font-size:14px;"><?= $clients['nama'] ?></label>
                                             <input type="hidden" name="client_id" value="<?= $query['client_id']; ?>">
                                             <input type="hidden" name="pelanggan" value="<?= $clients['nama'] ?>">
                                             <input type="hidden" name="jenis_pekerjaan" value="<?= $sales['jobs_type']; ?>">
@@ -67,8 +67,8 @@
                                     </table>
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="30%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
-                                            <th width="70%" align="left"> <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/></th>
+                                            <th width="35%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
+                                            <th width="65%" align="left"> <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/></th>
                                         </tr>
                                         <tr>
                                             <th>Nomor Invoice<span class="required" aria-required="true">*</span></th>
@@ -165,7 +165,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-8 form-horizontal">
-                                            <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-7 control-label">Sub Total</label>
 													<div class="col-sm-5 text-right">
 														<label><?= number_format($sub_total,0,',','.'); ?></label>													
@@ -175,7 +175,7 @@
                                             <?php
 												if($tax_ppn > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format($tax_ppn,0,',','.'); ?></label>
@@ -188,7 +188,7 @@
 											<?php
 												if($tax_0 > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format($tax_0,0,',','.'); ?></label>
@@ -201,7 +201,7 @@
 											<?php
 												if($tax_pph > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_pph,0,',','.'); ?></label>
@@ -214,7 +214,7 @@
                                             <?php
 												if($tax_ppn11 > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_ppn11,0,',','.'); ?></label>
@@ -224,7 +224,7 @@
                                                     <?php
 												}
 											?>
-                                            <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-7 control-label">Total</label>
 													<div class="col-sm-5 text-right">
 														<label id="total" ><?= number_format($total,0,',','.'); ?></label>
