@@ -42,8 +42,8 @@
                                 <div class="panel-content">
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="20%" align="left">Pelanggan</th>
-                                            <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $clients['nama'] ?></label>
+                                            <th width="30%" align="left">Pelanggan</th>
+                                            <th width="70%" align="left"><label class="label label-default" style="font-size:14px;"><?= $clients['nama'] ?></label>
                                             <input type="hidden" name="client_id" value="<?= $query['client_id']; ?>">
                                             <input type="hidden" name="pelanggan" value="<?= $clients['nama'] ?>">
                                             <input type="hidden" name="jenis_pekerjaan" value="<?= $sales['jobs_type']; ?>">
