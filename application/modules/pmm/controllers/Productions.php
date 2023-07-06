@@ -83,6 +83,7 @@ class Productions extends Secure_Controller {
 				$row['komposisi_id'] = $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
 				$row['edit_komposisi'] = '<a href="'.site_url().'pmm/productions/sunting_komposisi/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				
 				$edit = false;
 				if($this->session->userdata('admin_group_id') == 1){
 					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';			
@@ -92,7 +93,7 @@ class Productions extends Secure_Controller {
 				}else {
 					$row['delete'] = '-';
 				}
-				//$row['actions'] = '';
+				
 				$data[] = $row;
 			}
 
