@@ -192,7 +192,7 @@ class Produksi extends Secure_Controller {
 			'status' => 'PUBLISH',
 			'unit_head' => 47,
 			'logistik' => 39,
-			'admin' => 39,
+			'admin' => 42,
 			'keu' => 42,
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
