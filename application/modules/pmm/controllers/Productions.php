@@ -731,7 +731,6 @@ class Productions extends Secure_Controller {
 		$salesPo_id = $this->input->get('salesPo_id');
 		$filter_date = false;
 
-
 		$this->db->select('pp.*,pc.nama');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
@@ -756,7 +755,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('pp.created_on','asc');
 		$this->db->group_by('pp.id');
 		$query = $this->db->get('pmm_productions pp');
-		
 
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;
@@ -1090,7 +1088,7 @@ class Productions extends Secure_Controller {
 		$filter_date = false;
 
 
-		$this->db->select('pp.*,pc.nama, p.nama_produk');
+		$this->db->select('pp.id, pp.client_id, pp.date_production, pp.volume, pp.measure, pp.product_id, pp.nopol_truck, pc.nama, p.nama_produk');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
 		}
@@ -1114,12 +1112,11 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
-		
 
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('pmm/productions_print',$data,TRUE);
-
+		$data['salesPo_id'] = $salesPo_id;
+        $html = $this->load->view('pmm/cetak_surat_jalan',$data,TRUE);
         
         $pdf->SetTitle('Pengiriman');
         $pdf->nsi_html($html);
