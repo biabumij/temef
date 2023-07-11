@@ -888,7 +888,7 @@ class Pembelian extends Secure_Controller
             'catatan' => $this->input->post('catatan'),
             'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
             'approve_unit_head' => 'TIDAK DISETUJUI',
-            'unit_head' => 47,
+            'unit_head' => 48,
             'keu' => 42,
             'created_by' => $this->session->userdata('admin_id')
         );
@@ -1932,7 +1932,7 @@ class Pembelian extends Secure_Controller
             'memo' => $memo,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
-            'unit_head' => 47,
+            'unit_head' => 48,
             'kategori_persetujuan' => 'PESANAN PEMBELIAN',
             'status' => 'WAITING'
         );

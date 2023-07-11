@@ -619,7 +619,7 @@ class Penjualan extends Secure_Controller
 			'status' => 'DRAFT',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s'),
-			'unit_head' => 43
+			'unit_head' => 48,
 		);
 
 		if ($this->db->insert('pmm_sales_po', $arr_insert)) {

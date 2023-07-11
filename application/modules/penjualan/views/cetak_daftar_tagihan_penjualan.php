@@ -210,7 +210,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Agustinus P</u><br />
+								<b><u>Farid F. Fanggi Ello</u><br />
 								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">
