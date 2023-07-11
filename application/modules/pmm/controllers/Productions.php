@@ -1087,8 +1087,7 @@ class Productions extends Secure_Controller {
 		$salesPo_id = $this->input->get('sales_po_id');
 		$filter_date = false;
 
-
-		$this->db->select('pp.id, pp.client_id, pp.date_production, pp.volume, pp.measure, pp.product_id, pp.nopol_truck, pc.nama, p.nama_produk');
+		$this->db->select('pp.*, pc.nama, p.nama_produk');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
 		}
