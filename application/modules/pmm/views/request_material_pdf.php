@@ -137,19 +137,19 @@
 						?>
 						<tr class="">
 							<td align="center" height="55px">
-								<?= $unit_head['admin_ttd'];?>
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							
 							<td align="center">
 							<?php
-								echo '<img src="'.$created_group['admin_ttd'].'" width="100px"/>';
+								echo '<img src="'.$created_group['admin_ttd'].'" width="70px"/>';
 							?>
 							</td>
 						</tr>
 						<tr>
 							<td align="center" >
 								<b><u><?= $unit_head['admin_name'];?></u><br />
-								Kepala Unit Proyek</b>
+								<?= $unit_head['admin_group_name'];?></b>
 							</td>
 							<td align="center">
 								<b><u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?></u></b><br />
