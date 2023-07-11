@@ -124,16 +124,22 @@
 								Dibuat Oleh
 							</td>	
 						</tr>
+						<?php
+						$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+						$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+						$this->db->where('a.admin_id',$row['approved_by']);
+						$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+						$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+						$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+						$this->db->where('a.admin_id',$row['created_by']);
+						$created_group = $this->db->get('tbl_admin a')->row_array();
+						?>
 						<tr class="">
 							<td align="center" height="55px">
-								<img src="uploads/ttd_gery_kop.png" width="100px">
+								<?= $unit_head['admin_ttd'];?>
 							</td>
-							<?php
-                                $this->db->select('g.admin_group_name, a.admin_ttd');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$row['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                            ?>
+							
 							<td align="center">
 							<?php
 								echo '<img src="'.$created_group['admin_ttd'].'" width="100px"/>';
@@ -142,7 +148,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Farid F. Fanggi Ello</u><br />
+								<b><u><?= $unit_head['admin_name'];?></u><br />
 								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">
