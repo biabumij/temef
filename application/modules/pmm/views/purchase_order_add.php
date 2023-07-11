@@ -310,12 +310,18 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
-                                        <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>        
-                                        </form>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/open_pesanan_pembelian/".$id);?>">
                                             <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Open</button>        
                                         </form>	
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1){
+                                        ?>
+                                        <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>        
+                                        </form>
                                         <?php
                                     }
                                     ?>
