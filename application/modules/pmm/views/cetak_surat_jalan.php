@@ -137,10 +137,10 @@
 				<td>
 					<table border="0">
 						<tr>
-							<td align="center" width="30%">
+							<td align="center" width="45%">
 								
 							</td>
-							<td align="center" width="40%">
+							<td align="center" width="25%">
 								
 							</td>
 							<td align="left" width="30%">
