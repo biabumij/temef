@@ -507,6 +507,7 @@
             },
             responsive: true,
             //paging : false,
+            "pageLength": 5,
             "columnDefs": [
 				{
                     "targets": [0],
