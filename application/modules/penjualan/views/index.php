@@ -73,12 +73,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Penawaran</th>
 														<th class="text-center">Tanggal Penawaran</th>
 														<th class="text-center">No. Penawaran</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Perihal</th>        
                                                         <th class="text-center">Total</th>
-                                                        <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -103,6 +103,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Sales Order</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Pelanggan</th>
@@ -112,7 +113,6 @@
                                                         <th class="text-center">Kirim</th>
 														<th class="text-center">Total Sales Order</th>
 														<th class="text-center">Total Kirim</th>
-                                                        <th class="text-center">Status Sales Order</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -186,7 +186,7 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>No</th>
-                                                        <th class="text-center">Tagihan</th>
+                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">No. Surat Jalan</th>
                                                         <th class="text-center">No. Sales Order</th>
@@ -208,32 +208,32 @@
                                     </div>
 
                                     <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <span class="modal-title">Upload Surat Jalan</span>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
-                                                    <input type="hidden" name="id" id="id_doc_surat_jalan">
-                                                    <div class="form-group">
-                                                        <label>Upload Surat Jalan</label>
-                                                        <input type="file" id="file" name="file" class="form-control" required="" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <span class="modal-title">Upload Surat Jalan</span>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                        <input type="hidden" name="id" id="id_doc_surat_jalan">
+                                                        <div class="form-group">
+                                                            <label>Upload Surat Jalan</label>
+                                                            <input type="file" id="file" name="file" class="form-control" required="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
                                     <!-- Tagihan Penjualan -->
 
@@ -266,6 +266,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Pembayaran</th>
+                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tgl. Invoice</th>
                                                         <th class="text-center">No. Invoice</th>
                                                         <th class="text-center">Pelanggan</th>
@@ -275,8 +277,6 @@
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Pembayaran</th>
                                                         <th class="text-center">Sisa Tagihan</th>
-                                                        <th class="text-center">Status Pembayaran</th>
-                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -313,6 +313,7 @@
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
     <script type="text/javascript">
         $('input#contract').number(true, 2, ',', '.');
 
@@ -328,6 +329,9 @@
             },
             columns: [{
                     "data": "no"
+                },
+                {
+                    "data": "status"
                 },
 				{
                     "data": "tanggal"
@@ -345,9 +349,6 @@
                     "data": "total"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -356,11 +357,11 @@
             ],
             "columnDefs": [
 				{
-                "targets": [0, 1, 6, 7, 8],
+                "targets": [0, 1, 2, 7, 8],
                 "className": 'text-center',
 				},
 				{
-                "targets": [5],
+                "targets": [6],
                 "className": 'text-right',
 				}
 			],
@@ -385,6 +386,9 @@
             },
             columns: [{
                     "data": "no"
+                },
+                {
+                    "data": "status"
                 },
                 {
                     "data": "contract_date"
@@ -414,9 +418,6 @@
                     "data": "total_receipt"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -425,11 +426,11 @@
             ],
             "columnDefs": [
 				{
-                    "targets": [0, 1, 6, 10, 11, 12],
+                    "targets": [0, 1, 2, 11, 12],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [5, 7, 8, 9],
+                    "targets": [6, 7, 8, 9, 10],
                     "className": 'text-right',
                 }
             ],
@@ -633,6 +634,12 @@
                     "data": "no"
                 },
                 {
+                    "data": "status"
+                },
+                {
+                    "data": "status_tagihan"
+                },
+                {
                     "data": "tanggal_invoice"
                 },
                 {
@@ -660,12 +667,6 @@
                     "data": "sisa_tagihan"
                 },
                 {
-                    "data": "status"
-                },
-                {
-                    "data": "status_tagihan"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -674,11 +675,11 @@
 
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 6, 9, 10, 11, 12, 13],
+                    "targets": [0, 1, 2, 3, 6, 12, 13],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [ 7, 8, 9],
+                    "targets": [ 9, 10, 11],
                     "className": 'text-right',
                 },
             ],

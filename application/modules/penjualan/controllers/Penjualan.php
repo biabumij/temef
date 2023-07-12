@@ -389,7 +389,6 @@ class Penjualan extends Secure_Controller
 
 		$this->db->select('ps.*, p.nama as client_name');
 		$this->db->join('penerima p', 'ps.client_id = p.id', 'left');
-		$this->db->order_by('contract_date', 'DESC');
 		$this->db->order_by('created_on', 'DESC');
 		$query = $this->db->get('pmm_sales_po ps');
 		if ($query->num_rows() > 0) {
@@ -806,7 +805,7 @@ class Penjualan extends Secure_Controller
 			$this->db->where('date_production <=', $end_date);
 		}
 
-		$this->db->order_by('updated_on', 'DESC');
+		$this->db->order_by('created_on', 'DESC');
 		$query = $this->db->get('pmm_productions');
 		
 		if ($query->num_rows() > 0) {
@@ -829,7 +828,6 @@ class Penjualan extends Secure_Controller
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
 				$row['uploads_surat_jalan'] = $uploads_surat_jalan.' ';
-				$row['unit_head'] = $row['unit_head'];
 				$data[] = $row;
 			}
 		}
@@ -902,7 +900,6 @@ class Penjualan extends Secure_Controller
 			$this->db->where('client_id',$supplier_id);
 		}
 				
-		$this->db->order_by('tanggal_invoice', 'DESC');
 		$this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penagihan_penjualan');
 		if ($query->num_rows() > 0) {
