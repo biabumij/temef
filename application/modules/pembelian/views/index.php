@@ -139,13 +139,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Tanggal Penawaran</th>
                                                         <th class="text-center">No. Penawaran</th>
                                                         <th class="text-center">Rekanan</th>
                                                         <th class="text-center">Jenis Pembelian</th>
                                                         <th class="text-center">Berlaku Hingga</th>
 														<th class="text-center">Jumlah</th>
-                                                        <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>                                                   
                                                     </tr>
@@ -187,12 +187,12 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">No</th>
+                                                    <th class="text-center">Status Permintaan</th>
 													<th class="text-center">Tanggal Permintaan</th>
                                                     <th class="text-center">No. Permintaan</th>
                                                     <th class="text-center">Subyek</th>
                                                     <th class="text-center">Rekanan</th>                               
                                                     <th class="text-center">Volume</th>
-                                                    <th class="text-center">Status Permintaan</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Hapus</th>
                                                     <th class="text-center">Dibuat Oleh</th>
@@ -256,7 +256,7 @@
 													</div>
 													<div class="form-group">
 														<label>Memo<span class="required" aria-required="true">*</span></label>
-                                                        <textarea id="memo" name="memo" class="form-control" data-required="false" rows="20">
+                                                        <textarea id="about_text" name="memo" class="form-control" data-required="false" rows="20">
 <p style="font-size:6;"><b>Syarat &amp; Ketentuan :</b></p>
 <p style="font-size:6;">1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
 <p style="font-size:6;">2.&nbsp;Tempat Penyerahan : Proyek Bendungan Temef, Desa Konbaki, Kecamatan Polen, KAB. TTS</p>
@@ -276,7 +276,7 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
+														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>
@@ -300,6 +300,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
+                                                    <th class="text-center">Status Pesanan Pembelian</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
@@ -309,7 +310,6 @@
                                                     <th class="text-center">Terima</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
-                                                    <th class="text-center">Status Pesanan Pembelian</th>
                                                     <th class="text-center">Lampiran</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Dibuat Oleh</th>
@@ -455,7 +455,7 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>No.</th>
-                                                    <th class="text-center">Tagihan</th>
+                                                    <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
@@ -537,6 +537,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th class="text-center">Status Tagihan</th>
+                                                    <th class="text-center">Verifikasi Dok</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Tgl. Invoice</th>
@@ -547,8 +549,6 @@
                                                     <th class="text-center">Total</th>
                                                     <th class="text-center">Pembayaran</th>
                                                     <th class="text-center">Sisa Tagihan</th>
-                                                    <th class="text-center">Status Tagihan</th>
-                                                    <th class="text-center">Verifikasi Dok</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1048,11 +1048,13 @@
 		
         $('input#contract').number(true, 2, ',', '.');
         $('input.numberformat').number(true, 2, ',', '.');
+        
         tinymce.init({
-          selector: 'textarea#about_text',
-          height: 200,
-          menubar: false,
-         });
+        selector: 'textarea#about_text',
+        height: 200,
+        menubar: false,
+        });
+
         $('.dtpicker-single').daterangepicker({
             autoUpdateInput: false,
             singleDatePicker: true,
@@ -1098,6 +1100,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "tanggal_penawaran"
                 },
                 {
@@ -1116,9 +1121,6 @@
                     "data": "total"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -1127,11 +1129,11 @@
             ],
             "columnDefs": [
                 {
-                "targets": [0, 1, 5, 7, 8, 9],
+                "targets": [0, 1, 2, 6, 8, 9],
                 "className": 'text-center',
                 },
                 {
-                "targets": [6],
+                "targets": [7],
                 "className": 'text-right',
                 }
             ],
@@ -1186,12 +1188,12 @@
             },
             columns: [
                 { "data": "no" },
+                { "data": "status" },
 				{ "data": "request_date" },
                 { "data": "request_no" },
                 { "data": "subject" },
                 { "data": "supplier_name" }, 
                 { "data": "volume" },
-                { "data": "status" },
                 { "data": "actions" },
                 { "data": "delete" },
                 { "data": "admin_name" },
@@ -1200,11 +1202,11 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 6, 7, 8, 9, 10],
+                    "targets": [0, 1, 2, 7, 8, 9, 10],
                     "className": 'text-center',
                 },
 				{
-                    "targets": [5],
+                    "targets": [6],
                     "className": 'text-right',
                 }
             ],
@@ -1300,7 +1302,7 @@
                         success : function(result){
                             if(result.output){
                                 table_request.ajax.reload();
-                                bootbox.alert('Berhasil Menghapus!!');
+                                bootbox.alert('Berhasil Menghapus !!');
                             }else if(result.err){
                                 bootbox.alert(result.err);
                             }
@@ -1330,6 +1332,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "date_po"
                 },
                 {
@@ -1357,9 +1362,6 @@
                     "data": "total_receipt"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "document_po"
                 },
                 {
@@ -1373,17 +1375,17 @@
                 }
             ],
             "columnDefs": [
-                    {
-                        "targets": [0, 1, 10, 11, 12, 13],
-                        "className": 'text-center',
-                    },
-                    {
-                        "targets": [5, 6, 7, 8, 9],
-                        "className": 'text-right',
-                    }
-                 ],
-                responsive: true,
-                //paging : false,
+                {
+                    "targets": [0, 1, 2, 12, 13, 14],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [6, 7, 8, 9, 10],
+                    "className": 'text-right',
+                }
+                ],
+            responsive: true,
+            //paging : false,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1582,7 +1584,12 @@
                 {
                     "data": "no"
                 },
-                
+                {
+                    "data": "status"
+                },
+                {
+                    "data": "verifikasi_dok"
+                },
                 {
                     "data": "admin_name"
                 },
@@ -1613,20 +1620,14 @@
                 {
                     "data": "sisa_tagihan"
                 },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "verifikasi_dok"
-                }
             ],
             "columnDefs": [
                 {
-                "targets": [0, 1, 2, 3, 6],
+                "targets": [0, 1, 2, 3, 4, 5, 8],
                 "className": 'text-center',
                 },
                 {
-                "targets": [8, 9],
+                "targets": [10, 11, 12],
                 "className": 'text-right',
                 },
             ],
