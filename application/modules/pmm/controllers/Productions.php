@@ -1074,7 +1074,7 @@ class Productions extends Secure_Controller {
 		$pdf->setHtmlVSpace($tagvs);
 		
 		// add a page
-		$pdf->AddPage('L');
+		$pdf->AddPage('P');
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
 		$pdf->SetY(45);

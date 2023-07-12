@@ -7,7 +7,7 @@
 	  <style type="text/css">
 	  	body{
 	  		font-family: "Open Sans", Arial, sans-serif;
-			font-size: 7px;
+			font-size: 9px;
 			color: #000000;
 	  	}
 	  	table.minimalistBlack {
@@ -40,7 +40,7 @@
 		<table width="98%" border="0" cellpadding="1">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 16px;">PENGIRIMAN</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">REKAPAN PRODUKSI BETON READY MIX</div>
 				</td>
 			</tr>
 			<?php
@@ -55,8 +55,8 @@
 				?>
 				<tr>
 					<td align="center">
-						<div style="display: block;font-weight: bold;font-size: 10px;">Periode : <?php echo tglIndonesia($filter_date);?></div>
-						<div style="display: block;font-weight: bold;font-size: 10px;">No. Sales Order : <?php echo $salesPo_id = $this->crud_global->GetField('pmm_sales_po',array('id'=>$salesPo_id),'contract_number');?></div>
+						<div style="display:block; font-weight:bold; font-size:12px; text-transform: uppercase">Periode : <?php echo tglIndonesia($filter_date);?></div>
+						<!--<div style="display:block; font-weight:bold; font-size:12px; text-transform: uppercase">No. Sales Order : <?php echo $salesPo_id = $this->crud_global->GetField('pmm_sales_po',array('id'=>$salesPo_id),'contract_number');?></div>-->
 					</td>
 				</tr>
 				<?php
@@ -67,10 +67,10 @@
 		<br />
 		<table class="minimalistBlack" cellpadding="1" width="98%">
 			<tr>
-                <th align="center" width="3%">No</th>
+                <th align="center" width="5%">No</th>
 				<th align="center" width="15%">Hari</th>
                 <th align="center" width="15%">Tanggal</th>
-				<th align="center" width="23%">Produk</th>
+				<th align="center" width="21%">Produk</th>
 				<th align="center" width="15%">No. Kendaraan</th>
 				<th align="center" width="15%">Volume</th>
 				<th align="center" width="15%">Satuan</th>
@@ -86,7 +86,7 @@
             		if($date !== false && $row['date_production'] != $date){
             			?>
 	            		<tr>
-	            			<th colspan="5" style="text-align:right;"><div style="text-transform:uppercase;">TOTAL (<?php echo date('d-m-Y',strtotime($date));?>)</div></th>
+	            			<th colspan="5" style="text-align:right;">Jumlah</th>
               				<th style="text-align:center;"><?php echo number_format($total_by_date,2,',','.');?></th>
 							<th style="text-align:center;">M3</th>
 	            		</tr>
@@ -110,7 +110,7 @@
             		if($key == count($data) - 1){
             			?>
 	            		<tr>
-	            			<th colspan="5" style="text-align:right;"><div style="text-transform:uppercase;">TOTAL (<?php echo date('d-m-Y',strtotime($date));?>)</div></th>
+						<th colspan="5" style="text-align:right;">Jumlah</th>
               				<th style="text-align:center;"><?php echo number_format($total_by_date,2,',','.');?></th>
 							<th style="text-align:center;">M3</th>
 	            		</tr>
@@ -126,10 +126,143 @@
             }
             ?>	
            	<tr>
-               <th colspan="5" style="text-align:right;">TOTAL</th>
+               <th colspan="5" style="text-align:right;">Total</th>
                <th style="text-align:center;"><?php echo number_format($total,2,',','.');?></th>
 			   <th style="text-align:center;">M3</th>
            </tr>
+		</table>
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<table width="100%" border="0" cellpadding="0">
+			<tr>
+				<td>
+					<table border="0">
+						<tr>
+							<td align="center" width="30%">
+								
+							</td>
+							<td align="center" width="40%">
+								
+							</td>
+							<td align="left" width="30%">
+								Kupang, <?php echo $date_now = tglIndonesia(date('d F Y'));?>
+							</td>
+						</tr>
+						<tr>
+							<td align="left" >
+								Diperiksa Oleh,
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="left">
+								Dibuat Oleh,
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<b>NINDYA - BINA NUSA LESTARI, KSO<br />
+								Proyek Lanjutan Bendungan Temef (Paket 3) (MYC)</b>
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="left">
+								<b>PT. BIA BUMI JAYENDRA</b>
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+								<b><u>Nuning Sri Harti Said</u></b><br />
+								Logistik
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="left">
+								<b><u>Agustinus Pakaenoni</u></b><br />
+								Logistik
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br /><br /><br /><br /><br />
+		<table width="100%" border="0" cellpadding="0">
+			<tr>
+				<td>
+					<table border="0">
+						<tr>
+							<td align="center" width="20%">
+								
+							</td>
+							<td align="center" width="60%">
+								
+							</td>
+							<td align="center" width="20%">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								
+							</td>
+							<td align="center">
+								Diperiksa Oleh,
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								<b>NINDYA - BINA NUSA LESTARI, KSO<br />
+								Proyek Lanjutan Bendungan Temef (Paket 3) (MYC)</b>
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								<b><u>Hermawan Suryo</u></b><br />
+								Office Engineering
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 		</table>
 	</body>
 </html>
