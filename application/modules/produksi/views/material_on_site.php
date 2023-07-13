@@ -5,7 +5,9 @@
     <div class="col-sm-2">
         <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Stock Opname</a>
     </div>
-    &nbsp;
+    <div class="col-sm-1">
+        
+    </div>
     <div class="col-sm-2">
         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</button>
     </div>
