@@ -85,7 +85,7 @@
 						<td width="20%" align="center"><?= $bl['coa_number'];?></td>
 						<td width="2%"></td>
 						<td width="48%"><?= $bl['coa'];?></td>
-						<td width="30%" align="right"><?= $this->filter->Rupiah($bl['total']);?></td>
+						<td width="30%" align="right"><?php echo number_format($bl['total'],0,',','.');?></td>
 					</tr>
 					<?php
 					$total_biaya_langsung += $bl['total'];	
@@ -113,7 +113,7 @@
 							<td width="20%" align="center"><?= $blj['coa_number'];?></td>
 							<td width="2%"></td>
 							<td width="48%"><?= $blj['coa'];?></td>
-							<td width="30%" align="right"><?= $this->filter->Rupiah($blj['total']);?></td>
+							<td width="30%" align="right"><?php echo number_format($blj['total'],0,',','.');?></td>
 						</tr>
 						<?php
 						$total_biaya_langsung_jurnal += $blj['total'];					

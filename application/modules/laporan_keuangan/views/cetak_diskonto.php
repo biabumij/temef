@@ -115,7 +115,7 @@
 						<td width="10%" align="center"><?= $row2['coa_number'];?></td>
 						<td width="2%"></td>
 						<td width="48%"><?= $row2['coa'];?></td>
-						<td width="30%" align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+						<td width="30%" align="right"><?php echo number_format($row2['total'],0,',','.');?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya_jurnal += $row2['total'];					
@@ -125,7 +125,7 @@
 			?>
 			<tr class="table-active2">
 				<td width="80%" style="padding-left:20px;"><b>Total Diskonto</b></td>
-				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
+				<td width="20%" align="right"><b><?php echo number_format($total_c,0,',','.');?></b></td>
 			</tr>
 		</table>
 		<br />
