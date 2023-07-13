@@ -131,7 +131,7 @@
 			   <th style="text-align:center;">M3</th>
            </tr>
 		</table>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<br /><br /><br /><br /><br />
 		<table width="100%" border="0" cellpadding="0">
 			<tr>
 				<td>
