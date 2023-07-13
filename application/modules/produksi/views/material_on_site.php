@@ -1,11 +1,12 @@
 <form action="<?php echo site_url('produksi/cetak_stock_opname'); ?>" target="_blank">
-    <div class="col-sm-4" align="left">
+    <div class="col-sm-4">
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>
-    <div class="col-sm-3" align="left">
+    <div class="col-sm-3">
         <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Stock Opname</a>
     </div>
-    <div class="col-sm-3" align="left">
+    &nbsp;
+    <div class="col-sm-3">
         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</button>
     </div>
 </form>
