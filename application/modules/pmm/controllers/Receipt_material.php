@@ -1004,7 +1004,7 @@ class Receipt_material extends CI_Controller {
 
         
         $pdf->SetTitle($this->input->get('filter_date'));
-        $pdf->SetTitle('rekap_surat_jalan_pembelian');
+        $pdf->SetTitle('Rekap Penerimaan');
         $pdf->nsi_html($html);
         $pdf->Output('rekap_surat_jalan_pembelian.pdf', 'I');
 	
@@ -1621,7 +1621,7 @@ class Receipt_material extends CI_Controller {
 
         
         $pdf->SetTitle($this->input->get('filter_date'));
-        $pdf->SetTitle('Penerimaan');
+        $pdf->SetTitle('Rekap Penerimaan');
         $pdf->nsi_html($html);
         $pdf->Output('rekap_surat_jalan_penerimaan.pdf', 'I');
 	

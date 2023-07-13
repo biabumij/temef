@@ -760,7 +760,7 @@ class Productions extends Secure_Controller {
         $html = $this->load->view('pmm/productions_print',$data,TRUE);
 
         
-        $pdf->SetTitle('rekap_surat_jalan_penjualan');
+        $pdf->SetTitle('Rekap Pengiriman');
         $pdf->nsi_html($html);
         $pdf->Output('rekap_surat_jalan_penjualan.pdf', 'I');
 	
@@ -1116,7 +1116,7 @@ class Productions extends Secure_Controller {
 		$data['salesPo_id'] = $salesPo_id;
         $html = $this->load->view('penjualan/cetak_surat_jalan',$data,TRUE);
         
-        $pdf->SetTitle('Pengiriman');
+        $pdf->SetTitle('Rekap Pengiriman');
         $pdf->nsi_html($html);
         $pdf->Output('rekap_surat_jalan_pengiriman.pdf', 'I');
 	
