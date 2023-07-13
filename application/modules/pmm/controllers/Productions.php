@@ -1110,7 +1110,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
-		file_put_contents("D:\\test.txt", $this->db->last_query());
 
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;
