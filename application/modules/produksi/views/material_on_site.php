@@ -2,7 +2,7 @@
     <div class="col-sm-4">
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
         <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Stock Opname</a>
     </div>
     <div class="col-sm-2">
