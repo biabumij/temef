@@ -86,7 +86,7 @@
 						<td width="20%" align="center"><?= $row['coa_number'];?></td>
 						<td width="2%"></td>
 						<td width="48%"><?= $row['coa'];?></td>
-						<td width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+						<td width="30%" align="right"><?php echo number_format($row['total'],0,',','.');?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya += $row['total'];					

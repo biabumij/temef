@@ -123,7 +123,7 @@
 			?>
 			<tr class="table-active2">
 				<td width="80%" style="padding-left:20px;"><b>Total Biaya Operasional Produksi</b></td>
-				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
+				<td width="20%" align="right"><b><?php echo number_format($total_a,0,',','.');?></b></td>
 			</tr>
 		</table>
 		<br />
