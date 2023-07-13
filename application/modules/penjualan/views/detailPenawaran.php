@@ -138,50 +138,9 @@
                                             }
                                             ?>
                                             <?php endforeach; ?>
-                                        </tbody>
-                                    <!--<tfoot>
-                                        <tr>
-                                            <th colspan="6" class="text-right">SUBTOTAL</th>
-                                            <th  class="text-right"><?= $this->filter->Rupiah($subtotal);?></th>
-                                        </tr>
-                                        <?php
-                                        if($tax_ppn > 0){
-                                            ?>
-                                            <tr>
-                                                <th colspan="6" class="text-right">PPN</th>
-                                                <th  class="text-right"><?= $this->filter->Rupiah($tax_ppn);?></th>
-                                            </tr>
-                                            <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if($tax_0){
-                                            ?>
-                                            <tr>
-                                                <th colspan="6" class="text-right">Pajak 0%</th>
-                                                <th  class="text-right"><?= $this->filter->Rupiah(0);?></th>
-                                            </tr>
-                                            <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if($tax_pph > 0){
-                                            ?>
-                                            <tr>
-                                                <th colspan="6" class="text-right">PPh 23</th>
-                                                <th  class="text-right"><?= $this->filter->Rupiah($tax_pph);?></th>
-                                            </tr>
-                                            <?php
-                                        }
-
-                                        $total = $subtotal + $tax_ppn - $tax_pph;
-                                        ?>
-
-                                        <tr>
-                                            <th colspan="6" class="text-right">TOTAL</th>
-                                            <th  class="text-right"><?= $this->filter->Rupiah($total);?></th>
-                                        </tr>
-                                    </tfoot>-->
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
                                 </table>
                                         
                                 <div class="text-right">  
@@ -205,20 +164,19 @@
                                     <?php if($penawaran["status"] === "OPEN") : ?>
                                         <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
                                             <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</a>			
                                             <?php
                                         }
                                         ?>
                                     <?php endif; ?>
-                            
-                                    <!--<a href="<?php echo site_url('penjualan/sunting_penawaran/' . $penawaran["id"] );?>" class="btn btn-success" style="margin-top: 10px;"><i class="fa fa-success"></i> Edit</a>-->
 
                                     <?php if($penawaran["status"] === "CLOSED") : ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                             ?>
+                                            <a href="<?= base_url("penjualan/open_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-success" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Open</a>
                                             <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
@@ -229,7 +187,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                             ?>
-                                            <a class="btn btn-danger" style="margin-top: 10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
+                                            <a class="btn btn-danger" style="margin-top:10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
                                         ?>

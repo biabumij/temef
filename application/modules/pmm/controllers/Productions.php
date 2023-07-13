@@ -1115,7 +1115,7 @@ class Productions extends Secure_Controller {
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;
 		$data['salesPo_id'] = $salesPo_id;
-        $html = $this->load->view('pmm/cetak_surat_jalan',$data,TRUE);
+        $html = $this->load->view('penjualan/cetak_surat_jalan',$data,TRUE);
         
         $pdf->SetTitle('Pengiriman');
         $pdf->nsi_html($html);

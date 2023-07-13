@@ -1602,7 +1602,7 @@ class Penjualan extends Secure_Controller
         $this->db->update("pmm_penawaran_penjualan");
 
         $this->db->update('pmm_penawaran_penjualan', array('status' => 'CLOSED'), array('id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Penawaran Penjualan');
+        $this->session->set_flashdata('notif_success', 'Penawaran CLOSED');
         redirect("admin/penjualan");
     }
 
@@ -1613,7 +1613,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_penawaran_penjualan");
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Penawaran Penjualan');
+        $this->session->set_flashdata('notif_success', 'Penawaran OPEN');
         redirect("admin/penjualan");
     }
 	
@@ -1652,14 +1652,14 @@ class Penjualan extends Secure_Controller
 		if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Gagal Menghapus Sales Order');
+            $this->session->set_flashdata('notif_error','Sales Order DELETE');
             redirect('penjualan/dataSalesPO/'.$id);
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Berhasil Menghapus Sales Order');
+            $this->session->set_flashdata('notif_success','Sales Order DELETE');
             redirect('admin/penjualan');
         }
     }
@@ -1698,7 +1698,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Sales Order');
+        $this->session->set_flashdata('notif_success', 'Sales Order CLOSED');
         redirect("admin/penjualan");
     }
 
@@ -1709,7 +1709,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Sales Order');
+        $this->session->set_flashdata('notif_success', 'Sales Order OPEN');
         redirect("admin/penjualan");
     }
 

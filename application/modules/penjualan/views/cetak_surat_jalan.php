@@ -7,7 +7,7 @@
 	  <style type="text/css">
 	  	body{
 	  		font-family: "Open Sans", Arial, sans-serif;
-			font-size: 9px;
+			font-size: 8px;
 			color: #000000;
 	  	}
 	  	table.minimalistBlack {
@@ -238,7 +238,7 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="55px">
+							<td align="center" height="45px">
 							
 							</td>
 							<td align="center">
