@@ -750,7 +750,6 @@ class Productions extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
 		}
 		$this->db->join('penerima pc','pp.client_id = pc.id','left');
-		$this->db->where('status_payment','UNCREATED');
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('pp.created_on','asc');
 		$this->db->group_by('pp.id');
@@ -1088,7 +1087,7 @@ class Productions extends Secure_Controller {
 		$filter_date = false;
 
 		$this->db->select('pp.*, pc.nama, p.nama_produk');
-		if(!empty($client_id)){
+		if(!empty($client_id) || $client_id != 0){
 			$this->db->where('pp.client_id',$client_id);
 		}
 		if(!empty($product_id) || $product_id != 0){
@@ -1111,6 +1110,7 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
+		file_put_contents("D:\\test.txt", $this->db->last_query());
 
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;

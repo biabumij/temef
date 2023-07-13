@@ -975,7 +975,7 @@ class Receipt_material extends CI_Controller {
 		$material_id = $this->input->get('filter_material');
 		$this->db->select('prm.*,ppo.no_po, (prm.price  * prm.volume) as biaya, ppo.supplier_id');
 		$this->db->where('ppo.supplier_id',$supplier_id);
-		if(!empty($purchase_order_id)){
+		if(!empty($purchase_order_id || $purchase_order_id != 0)){
 			$this->db->where('prm.purchase_order_id',$purchase_order_id);
 		}
 		if(!empty($material_id) || $material_id != 0){
@@ -1582,14 +1582,16 @@ class Receipt_material extends CI_Controller {
 		$pdf->SetX(6);
 		$pdf->SetMargins(10, 10);        
 
-
 		$w_date = $this->input->get('filter_date');
 		$purchase_order_id = $this->input->get('purchase_order_id');
 		$supplier_id = $this->input->get('supplier_id');
 		$material_id = $this->input->get('material_id');
 		$this->db->select('prm.*,ppo.no_po, (prm.price  * prm.volume) as biaya, ppo.supplier_id');
-		$this->db->where('ppo.supplier_id',$supplier_id);
-		if(!empty($purchase_order_id)){
+
+		if(!empty($supplier_id || $supplier_id != 0)){
+			$this->db->where('ppo.supplier_id',$supplier_id);
+		}
+		if(!empty($purchase_order_id || $purchase_order_id != 0)){
 			$this->db->where('prm.purchase_order_id',$purchase_order_id);
 		}
 		if(!empty($material_id) || $material_id != 0){

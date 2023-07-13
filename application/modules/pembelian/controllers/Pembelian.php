@@ -705,7 +705,7 @@ class Pembelian extends Secure_Controller
         $this->db->update("pmm_penawaran_pembelian");
 
         $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'CLOSED'), array('penawaran_pembelian_id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Penawaran Pembelian');
+        $this->session->set_flashdata('notif_success', 'Penawaran Pembelian CLOSED');
         redirect("admin/pembelian");
     }
 
@@ -718,7 +718,7 @@ class Pembelian extends Secure_Controller
         $this->db->update("pmm_penawaran_pembelian");
 
         $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'OPEN'), array('penawaran_pembelian_id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Penawaran Pembelian');
+        $this->session->set_flashdata('notif_success', 'Penawaran Pembelian OPEN');
         redirect("admin/pembelian");
     }
 
@@ -1698,7 +1698,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_purchase_order");
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed PO');
+        $this->session->set_flashdata('notif_success', 'Peseanan Pembelian CLOSED');
 
         redirect("admin/pembelian");
     }
