@@ -128,7 +128,7 @@
                                 <img src="uploads/ttd_theresia.png" width="100px">
                             </td>
                             <td align="center">
-                                <img src="uploads/ttd_gery.png" width="100px">
+                                <img src="uploads/ttd_yarid.png" width="100px">
                             </td>
                             <td align="center">
                                 
@@ -137,7 +137,7 @@
                         <tr class="table-active3">
                             <?php
                             $admin = $this->pmm_model->GetNameGroup(20);
-                            $ka_plant = $this->pmm_model->GetNameGroup(15);
+                            $ka_plant = $this->pmm_model->GetNameGroup(16);
                             ?>  
                             <td align="center">
                                 <?=  $admin['admin_name'];?>
@@ -154,7 +154,7 @@
                                 <?= $admin['admin_group_name']?>
                             </td>
                             <td align="center">
-                                KA. Proyek
+                                Kepala Unit Proyek
                             </td>
                             <td align="center">
                                 Penerima
