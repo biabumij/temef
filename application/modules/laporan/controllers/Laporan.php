@@ -597,17 +597,17 @@ class Laporan extends Secure_Controller {
 	  	</style>
 		<table width="98%" border="0" cellpadding="2">
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
-				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
-				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />REKANAN / NO. TAGIHAN</th>
+				<th width="6%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. TAGIHAN</th>
+				<th width="9%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">SYARAT PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
 				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
 				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. JATUH TEMPO</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center" class="table-border-bawah-only">DPP</th>
@@ -620,7 +620,7 @@ class Laporan extends Secure_Controller {
 				<th align="center" class="table-border-bawah-only">DPP</th>
 				<th align="center" class="table-border-bawah-only">PPN</th>
 				<th align="center" class="table-border-bawah-only">JUMLAH</th>
-			</tr>	
+			</tr>		
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
 
@@ -866,17 +866,17 @@ class Laporan extends Secure_Controller {
 	  	</style>
 		<table width="98%" border="0" cellpadding="2">
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
-				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
-				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />REKANAN / NO. TAGIHAN</th>
+				<th width="6%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. TAGIHAN</th>
+				<th width="9%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">SYARAT PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
 				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
 				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. JATUH TEMPO</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center" class="table-border-bawah-only">DPP</th>
@@ -906,6 +906,12 @@ class Laporan extends Secure_Controller {
 		$pdf->WriteHTML($html);
 
 		//Page5
+		$pdf->AddPage();
+		$pdf->SetY(23);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page6
 		$pdf->AddPage();
 		$pdf->SetY(23);
 		$pdf->SetX(6);
