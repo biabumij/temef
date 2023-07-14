@@ -1109,6 +1109,7 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pp.id');
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
+		$this->db->order_by('pp.created_on','asc');
 		$query = $this->db->get('pmm_productions pp');
 
 		$data['data'] = $query->result_array();
