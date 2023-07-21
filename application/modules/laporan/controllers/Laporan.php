@@ -2210,4 +2210,5 @@ class Laporan extends Secure_Controller {
 	
 	}
 	
+	
 }
