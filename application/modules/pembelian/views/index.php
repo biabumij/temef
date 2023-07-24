@@ -577,11 +577,13 @@
                                             $waiting_po = $this->db->select('*')
                                             ->from('pmm_purchase_order')
                                             ->where("status = 'WAITING'")
+                                            ->order_by('created_on','desc')
                                             ->get()->result_array();
 
                                             $permintaan = $this->db->select('*')
                                             ->from('pmm_request_materials')
                                             ->where("status = 'WAITING'")
+                                            ->order_by('created_on','desc')
                                             ->get()->result_array();
 
                                             $verifikasi = $this->db->select('v.*, ppp.nomor_invoice')
