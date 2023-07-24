@@ -537,8 +537,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Verifikasi Dok</th>
+                                                    <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Tgl. Invoice</th>
@@ -1586,10 +1586,10 @@
                     "data": "no"
                 },
                 {
-                    "data": "status"
+                    "data": "verifikasi_dok"
                 },
                 {
-                    "data": "verifikasi_dok"
+                    "data": "status"
                 },
                 {
                     "data": "admin_name"
