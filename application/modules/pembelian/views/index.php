@@ -588,6 +588,7 @@
                                             ->from('pmm_verifikasi_penagihan_pembelian v')
                                             ->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
                                             ->where("v.approve_unit_head = 'TIDAK DISETUJUI'")
+                                            ->order_by('v.created_on','desc')
                                             ->get()->result_array();
                                             ?>
                                             <tbody>
