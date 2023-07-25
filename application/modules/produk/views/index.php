@@ -31,7 +31,7 @@
                                         <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo site_url('produk/buat_baru'); ?>">Produk Baru</a></li>
+                                        <li><a href="<?php echo site_url('produk/buat_baru'); ?>">Produk</a></li>
                                       </ul>
                             	</div>
                         	</h3>
@@ -51,10 +51,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th>Nama</th>
-                                                    <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
+                                                    <th width="35%">Nama</th>
+                                                    <th width="10%">Satuan</th>
+                                                    <th width="25%">Dibuat Oleh</th>
+                                                    <th width="25%">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -72,10 +72,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th>Nama</th>
-                                                    <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
+                                                    <th width="35%">Nama</th>
+                                                    <th width="10%">Satuan</th>
+                                                    <th width="25%">Dibuat Oleh</th>
+                                                    <th width="25%">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -92,10 +92,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th>Nama</th>
-                                                    <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
+                                                    <th width="35%">Nama</th>
+                                                    <th width="10%">Satuan</th>
+                                                    <th width="25%">Dibuat Oleh</th>
+                                                    <th width="25%">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -112,10 +112,10 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th>Nama</th>
-                                                    <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
+                                                    <th width="35%">Nama</th>
+                                                    <th width="10%">Satuan</th>
+                                                    <th width="25%">Dibuat Oleh</th>
+                                                    <th width="25%">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

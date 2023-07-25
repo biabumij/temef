@@ -30,7 +30,7 @@ class Kontak extends Secure_Controller {
 		}
 
 		$this->db->where('status','PUBLISH');
-		$this->db->order_by('nama','asc');
+		$this->db->order_by('created_on','desc');
 		$query = $this->db->get('penerima');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
