@@ -32,7 +32,7 @@
                                 $sp = $this->db->get_where('pmm_setting_production',array('id'=>1))->row_array();
                                 ?>
                                 <input type="hidden" name="id" value="1"></input>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label class="col-sm-2 control-label">Nama Perusahaan</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="nama_pt" value="<?php echo $sp['nama_pt'];?>"></input>
@@ -43,9 +43,9 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="code_prefix" value="<?php echo $sp['code_prefix'];?>"></input>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Jenis Usaha</label>
+                                    <label class="col-sm-2 control-label">Unit Bisnis</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="jenis_usaha" value="<?php echo $sp['jenis_usaha'];?>"></input>
                                     </div>
