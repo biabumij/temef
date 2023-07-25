@@ -54,7 +54,7 @@
                                     <label class="col-sm-2 control-label">Kop Surat</label>
                                     <div class="col-sm-10">
                                         <input type="file" name="kop_surat" class="form-control" data-required="false" />
-                                        <small><a href="<?= base_url();?>uploads/pmm_kop.png" target="_blank">Liat contoh</a></small>
+                                        <small><a href="<?= base_url();?>uploads/kop_surat/kop_temef.png" target="_blank">Liat contoh</a></small>
                                     </div>
                                     <div class="col-sm-10 col-sm-offset-2">
                                         <?php
