@@ -33,25 +33,6 @@
                                 ?>
                                 <input type="hidden" name="id" value="1"></input>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Factor Lost</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control numberformat" name="factor_lost" value="<?php echo number_format($sp['factor_lost'],2,',','.');?>"></input>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Content Weight</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control numberformat" name="content_weight" value="<?php echo number_format($sp['content_weight'],2,',','.');?>"></input>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Overhead %</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="overhead" value="<?php echo $sp['overhead'];?>"></input>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="form-group">
                                     <label class="col-sm-2 control-label">Nama Perusahaan</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="nama_pt" value="<?php echo $sp['nama_pt'];?>"></input>
