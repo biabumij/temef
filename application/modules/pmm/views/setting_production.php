@@ -24,7 +24,7 @@
                 <div class="col-sm-12 col-lg-12">
                    <div class="panel">
                         <div class="panel-header">
-                            <h3 class="section-subtitle">Setting Your Production</h3>
+                            <h3 class="section-subtitle">Perusahaan</h3>
                         </div>
                         <div class="panel-content">
                             <form id="inline-validation" method="POST" class="form-horizontal form-stripe form-submit" novalidate="novalidate" data-button="#btn-submit" action="<?php echo site_url('pmm/setting_production');?>" data-redirect="<?php echo site_url('admin/perusahaan');?>" enctype="multipart/form-data">
