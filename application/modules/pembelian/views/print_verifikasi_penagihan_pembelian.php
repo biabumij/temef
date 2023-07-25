@@ -236,10 +236,7 @@
                                 Diterima
                             </td>
                             <td align="center">
-                                Diperiksa
-                            </td>
-                            <td align="center">
-                                Disetujui
+                                Diperiksa & Disetujui
                             </td>
                         </tr>
 						<?php
@@ -266,9 +263,6 @@
                             <td align="center" height="75px">
 								<img src="<?= $keu['admin_ttd']?>" width="90px">	
                             </td>
-                            <td align="center">
-								<img src="<?= $m_keu['admin_ttd']?>" width="90px">	
-                            </td>
                             <td align="center">    
 							<img src="<?= $unit_head['admin_ttd']?>" width="90px">	       
                             </td>
@@ -278,18 +272,12 @@
 								Theresia Desitaliana L.
                             </td>
                             <td align="center">
-								Erika Sinaga
-                            </td>
-                            <td align="center">
 								<?= $unit_head['admin_name']?> 
                             </td>
                         </tr>
                         <tr>
                             <td align="center">
 								<b> Keu & SDM</b> 
-                            </td>
-                            <td align="center">
-								<b>M. Keu & SDM</b> 
                             </td>
                             <td align="center">
 								<b>Kepala Unit Proyek</b> 
