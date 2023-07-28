@@ -715,8 +715,8 @@
     });
 
     $('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            TableEvaluasi();
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        TableEvaluasi();
     });
 
 
