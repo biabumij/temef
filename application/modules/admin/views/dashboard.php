@@ -127,12 +127,12 @@
                                     <h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3>
                                 </div>
                                 <div style="margin: 20px">
-                                    <div class="row"> 
+                                    <!--<div class="row"> 
                                         <div class="col-sm-4">
                                             <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
                                         </div>   
                                     </div>
-                                    <br />
+                                    <br />-->
                                     <div id="wait" style=" text-align: center; align-content: center; display: none;">	
                                         <div>Please Wait</div>
                                         <div class="fa-3x">
