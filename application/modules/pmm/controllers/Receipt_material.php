@@ -48,6 +48,7 @@ class Receipt_material extends CI_Controller {
 			$arr['tax'] = $row['tax'];
 			$arr['pajak_id'] = $row['pajak_id'];
 			$arr['pajak'] = $row['pajak'];
+			$arr['harsat'] = $row['harsat'];
 			$arr['display_measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['display_measure']),'measure_name');
 			$arr['total_po'] = number_format($row['volume'],2,',','.');
 			$receipt_material = $this->db->select('SUM(volume) as volume')->get_where('pmm_receipt_material',array('purchase_order_id'=>$purchase_order_id,'material_id'=>$row['material_id']))->row_array();
@@ -419,9 +420,11 @@ class Receipt_material extends CI_Controller {
 		$measure = $this->input->post('measure_id');
 		$display_measure = $this->input->post('display_measure');
 		$supplier_id = $this->input->post('supplier_id');
+		$price = $this->input->post('harsat');
+		$new_price = $this->input->post('new_price');
 
 		$get_po = $this->db->select('measure,price,volume')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$purchase_order_id,'material_id'=>$material_id))->row_array();
-		$price = $get_po['price'];
+		//$price = $get_po['price'];
 
 		$select_operation = $this->input->post('edit_select_operation');
 
@@ -490,10 +493,10 @@ class Receipt_material extends CI_Controller {
 			'convert_value' => $convert_value,
 			'display_measure' => $display_measure,
 			'display_volume' => $volume * $convert_value,
-			'harga_satuan' => $price,
-			'display_harga_satuan' => ($volume * $price) / $display_volume,
-			'price'	=> ($volume * $price),
-			'display_price' => ($volume * $price),
+			'harga_satuan' => $new_price,
+			'display_harga_satuan' => ($volume * $new_price) / $display_volume,
+			'price'	=> ($volume * $new_price),
+			'display_price' => ($volume * $new_price),
 			'surat_jalan' => $surat_jalan,
 			'surat_jalan_file' => $file,
 			'no_kendaraan' => $no_kendaraan,

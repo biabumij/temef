@@ -70,6 +70,9 @@
                                 <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">
                                 <input type="hidden" name="supplier_id" id="form_supplier_id" value="">
                                 <input type="hidden" name="select_operation" id="select_operation" value="*">
+                                <input type="hidden" name="jumlah_hari" id="jumlah_hari" value="25">
+                                <input type="hidden" name="harsat" id="harsat" value="">
+                                <input type="hidden" name="new_price" id="new_price" value="">
                                 <div class="row">
 									<div class="col-sm-4">
 										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
@@ -99,7 +102,7 @@
 										<input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
                                         </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan<span class="required" aria-required="true">*</span></label>
+										<label for="inputEmail3" class="control-label">Satuan (Otomatis dari PO)<span class="required" aria-required="true">*</span></label>
                                         <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
                                             <option value="">Pilih Satuan</option>
                                             <?php
@@ -114,9 +117,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
+                                    </div>
+                                    
+                                        
+                                    <p align="center">Apakah Satuan akan dikonversi?</p>
+                                    <div class="col-sm-3">
+										<label for="inputEmail3" class="control-label">Tidak<span class="required" aria-required="true">*</span></label>
+                                        <input type="checkbox" id="konversi_hari_1" name="konversi_hari_1" class="form-control" value="1">
+                                    </div>
+                                    <div class="col-sm-3">
+										<label for="inputEmail3" class="control-label">Konversi ke Hari<span class="required" aria-required="true">*</span></label>
+                                        <input type="checkbox" id="konversi_hari_2" name="konversi_hari_2" class="form-control" value="2">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -427,6 +441,17 @@
             
             getTotalDisplay();
         });
+
+        $("#harsat, #konversi_hari_1, #jumlah_hari, #display_measure").change(function(){
+            
+            getTotalDisplayMeasure1();
+        });
+
+        $("#harsat, #konversi_hari_2, #jumlah_hari, #display_measure").change(function(){
+            
+            getTotalDisplayMeasure2();
+        });
+
 		$("#edit_convert_value, #edit_volume, #select_operation").change(function(){
             
             getTotalDisplayEdit();
@@ -449,6 +474,49 @@
                 $('#display_volume').val(display_volume);
                 // console.log(volume+'='+jumlah_berat_isi);
             }
+        }
+
+        function getTotalDisplayMeasure1()
+        {
+            var harsat = $('#harsat').val();
+            var konversi_hari_1 = $('#konversi_hari_1').val();
+            var jumlah_hari = $('#jumlah_hari').val();
+            var measure_id = $('#measure_id').val();
+
+            if(konversi_hari_1 === '' && harsat === ''){
+                alert('Check Operation First or Volume');
+            }else {
+                
+                if(konversi_hari_1 == '1'){
+                    var new_price = harsat;
+                }else {
+                    var new_price = harsat;
+                }
+                $('#new_price').val(new_price);
+                $('#display_measure').val(measure_id);
+            }
+            
+        }
+
+        function getTotalDisplayMeasure2()
+        {
+            var harsat = $('#harsat').val();
+            var konversi_hari_2 = $('#konversi_hari_2').val();
+            var jumlah_hari = $('#jumlah_hari').val();
+
+            if(konversi_hari_2 === '' && harsat === ''){
+                alert('Check Operation First or Volume');
+            }else {
+                
+                if(konversi_hari_2 == '2'){
+                    var new_price = harsat / jumlah_hari;
+                }else {
+                    var new_price = harsat / jumlah_hari;
+                }
+                $('#new_price').val(new_price);
+                $('#display_measure').val('Hari');
+            }
+            
         }
 		
 		function getTotalDisplayEdit()
@@ -585,7 +653,7 @@
                         $('#alert-receipt-material').html('');
                         var no_alert = 1;
                         $.each(result.data,function(key,val){
-                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'" data-pajak_id="'+val.pajak_id+'">'+val.text+'</option>');
+                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'" data-pajak_id="'+val.pajak_id+'" data-harsat="'+val.harsat+'">'+val.text+'</option>');
                             $('#filter_material').append('<option value="'+val.id+'" >'+val.text+'</option>');
 
                             if(key > 0){
@@ -644,6 +712,8 @@
             $('#tax_id').val(tax_id);
             var pajak_id = $(this).find(':selected').data('pajak_id');
             $('#pajak_id').val(pajak_id);
+            var harsat = $(this).find(':selected').data('harsat');
+            $('#harsat').val(harsat);
         });
 
         $('#form-product').submit(function(event){

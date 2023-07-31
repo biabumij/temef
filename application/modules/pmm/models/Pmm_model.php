@@ -1077,7 +1077,7 @@ class Pmm_model extends CI_Model {
     function GetPOMaterials($supplier_id,$id=false)
     {
         $data = array();
-        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax, pod.tax_id as tax_id, pod.pajak as pajak, pod.pajak_id as pajak_id');
+        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax, pod.tax_id as tax_id, pod.pajak as pajak, pod.pajak_id as pajak_id, pod.price as harsat');
         if(!empty($supplier_id)){
             $this->db->where('po.supplier_id',$supplier_id);
         }
