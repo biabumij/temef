@@ -720,7 +720,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1.</th>			
 				<th align="left" class="table-border-pojok-tengah">Excavator</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
@@ -733,7 +733,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">2.</th>			
 				<th align="left" class="table-border-pojok-tengah">Dump Truck 4M3</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
@@ -746,7 +746,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">3.</th>			
 				<th align="left" class="table-border-pojok-tengah">Dump Truck 10M3</th>
-				<th align="center" class="table-border-pojok-tengah">Unit / Hari</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
@@ -759,7 +759,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">4.</th>			
 				<th align="left" class="table-border-pojok-tengah">Stone Crusher</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
@@ -772,7 +772,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">5.</th>			
 				<th align="left" class="table-border-pojok-tengah">Genset</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
@@ -785,7 +785,7 @@
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">6.</th>			
 				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
-				<th align="center" class="table-border-pojok-tengah">Unit</th>
+				<th align="center" class="table-border-pojok-tengah">Bulan</th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
