@@ -1059,7 +1059,7 @@ class Pmm_model extends CI_Model {
         $this->db->where('request_material_id',$request_material_id);
         $this->db->join('produk pm','psm.material_id = pm.id','left');
         $this->db->join('pmm_measures pms','psm.measure_id = pms.id','left');
-        $this->db->order_by('pm.material_name','asc');
+        $this->db->order_by('pm.nama_produk','asc');
         $query = $this->db->get('pmm_request_material_details psm');
 		
         if($query->num_rows() > 0){
