@@ -52,8 +52,8 @@ class Pembelian extends Secure_Controller
 
             $data['row'] = $this->db->select('pp.*,pp.nama_produk')
             ->get_where('pmm_penawaran_pembelian pp')
-            ->join('pmm_penawaran_pembelian_detail ppd','pp.id = ppd.penawaran_pembelian_id','left');
-            ->join('produk p','ppd.material_id = p.id','left');
+            ->join('pmm_penawaran_pembelian_detail ppd','pp.id = ppd.penawaran_pembelian_id','left')
+            ->join('produk p','ppd.material_id = p.id','left')
             ->where('pp.id',$id)
             ->order_by('p.nama_produk','asc')
             ->get()->row_array();
