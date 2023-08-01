@@ -356,7 +356,7 @@
                                     });
 
                                 });
-                                $('#pengiriman-penjualan tbody').append('<tr><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
+                                $('#pengiriman-penjualan tbody').append('<tr style="background-color:#bcbcbc;"><td class="text-right" colspan="3"><b>Total</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
                                 $('#pengiriman-penjualan tbody').append('<tr><td class="text-center" colspan="6"><b>Tidak Ada Data</b></td></tr>');
                             }
