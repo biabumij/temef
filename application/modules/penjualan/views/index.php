@@ -188,13 +188,16 @@
                                                         <th>No</th>
                                                         <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">No. Surat Jalan</th>
-                                                        <th class="text-center">No. Sales Order</th>
-                                                        <th class="text-center">Produk</th>
                                                         <th class="text-center">Pelanggan</th>
-                                                        <th class="text-center">Volume</th>
-                                                        <th class="text-center">Satuan</th>
+                                                        <th class="text-center">No. Sales Order</th>
+                                                        <th class="text-center">No. Surat Jalan</th>
                                                         <th class="text-center">Surat Jalan</th>
+                                                        <th class="text-center">No. Kendaraan</th>
+                                                        <th class="text-center">Supir</th>
+                                                        <th class="text-center">Produk</th>
+                                                        <th class="text-center">Satuan</th>
+                                                        <th class="text-center">Volume</th>
+                                                        <th class="text-center">Memo</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th class="text-center">Upload Surat Jalan</th>
@@ -472,25 +475,34 @@
                     "data": "date_production"
                 },
                 {
-                    "data": "no_production"
+                    "data": "client"
                 },
                 {
                     "data": "contract_number"
                 },
                 {
+                    "data": "no_production"
+                },
+                {
+                    "data": "surat_jalan"
+                },
+                {
+                    "data": "nopol_truck"
+                },
+                {
+                    "data": "driver"
+                },
+                {
                     "data": "product"
                 },
                 {
-                    "data": "client"
+                    "data": "measure"
                 },
 				{
                     "data": "volume"
                 },
                 {
-                    "data": "measure"
-                },
-                {
-                    "data": "surat_jalan"
+                    "data": "memo"
                 },
                 {
                     "data": "admin_name"
@@ -515,11 +527,11 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3, 4, 5, 6, 7, 9, 11, 12, 13],
+                    "targets": [0],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [8],
+                    "targets": [0],
                     "className": 'text-right',
                 }
             ],
