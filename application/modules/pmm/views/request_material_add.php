@@ -197,7 +197,7 @@
                                 <table class="table table-striped table-hover table-bordered" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">No</th>
+                                            <th class="text-center" width="5%">No</th>
                                             <th class="text-center">Produk</th>
                                             <th class="text-center">Satuan</th>
 											<th class="text-center">Harga Satuan</th>
@@ -282,10 +282,6 @@
                 {
                     "targets": [0, 2, 3, 4, 5],
                     "className": 'text-center',
-                },
-                {
-                    "targets": [1],
-                    "className": 'text-left',
                 }
             ],
             "footerCallback": function ( row, data, start, end, display ) {
