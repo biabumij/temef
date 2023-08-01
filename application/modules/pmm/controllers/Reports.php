@@ -10208,12 +10208,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">1.</th>			
 				<th class="text-left">Excavator</th>
-				<th class="text-center"><?php echo $pembelian_exc_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_exc_measure)) {
+					echo $pembelian_exc_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_exc,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_exc / $total_vol_exc,0,',','.');?></th>
+				<?php
+				$harsat_exc = ($total_vol_exc!=0)?$total_nilai_exc / $total_vol_exc * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_exc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_exc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($total_nilai_evaluasi_exc,0,',','.');?></th>
@@ -10221,12 +10231,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">2.</th>			
 				<th class="text-left">Dump Truck 4M3</th>
-				<th class="text-center"><?php echo $pembelian_dmp_4m3_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_dmp_4m3_measure)) {
+					echo $pembelian_dmp_4m3_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_dmp_4m3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_dmp_4m3 / $total_vol_dmp_4m3,0,',','.');?></th>
+				<?php
+				$harsat_dmp_4m3 = ($total_vol_dmp_4m3!=0)?$total_nilai_dmp_4m3 / $total_vol_dmp_4m3 * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_dmp_4m3,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_dmp_4m3,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorK ?>"><?php echo number_format($total_nilai_evaluasi_dmp_4m3,0,',','.');?></th>
@@ -10234,12 +10254,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">3.</th>			
 				<th class="text-left">Dump Truck 10M3</th>
-				<th class="text-center"><?php echo $pembelian_dmp_10m3_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_dmp_10m3_measure)) {
+					echo $pembelian_dmp_10m3_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_dmp_10m3,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_dmp_10m3 / $total_vol_dmp_10m3,0,',','.');?></th>
+				<?php
+				$harsat_dmp_10m3 = ($total_vol_dmp_10m3!=0)?$total_nilai_dmp_10m3 / $total_vol_dmp_10m3 * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_dmp_10m3,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_dmp_10m3,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorL ?>"><?php echo number_format($total_nilai_evaluasi_dmp_10m3,0,',','.');?></th>
@@ -10247,12 +10277,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">4.</th>			
 				<th class="text-left">Stone Crusher</th>
-				<th class="text-center"><?php echo $pembelian_sc_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_sc_measure)) {
+					echo $pembelian_sc_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_sc,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_sc / $total_vol_sc,0,',','.');?></th>
+				<?php
+				$harsat_sc = ($total_vol_sc!=0)?$total_nilai_sc / $total_vol_sc * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_sc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_sc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorM ?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
@@ -10260,12 +10300,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
 				<th class="text-left">Genset</th>
-				<th class="text-center"><?php echo $pembelian_gns_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_gns_measure)) {
+					echo $pembelian_gns_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_gns,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_gns / $total_vol_gns,0,',','.');?></th>
+				<?php
+				$harsat_gns = ($total_vol_gns!=0)?$total_nilai_gns / $total_vol_gns * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_gns,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_gns,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorN ?>"><?php echo number_format($total_nilai_evaluasi_gns,0,',','.');?></th>
@@ -10273,12 +10323,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">6.</th>			
 				<th class="text-left">Wheel Loader + Insentif</th>
-				<th class="text-center"><?php echo $pembelian_wl_sc_measure;?></th>
+				<th class="text-center"><?php
+				$null = '-';
+				if (!empty($pembelian_wl_sc_measure)) {
+					echo $pembelian_wl_sc_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_vol_wl_sc,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_wl_sc / $total_vol_wl_sc,0,',','.');?></th>
+				<?php
+				$harsat_wl_sc = ($total_vol_wl_sc!=0)?$total_nilai_wl_sc / $total_vol_wl_sc * 1:0;
+				?>
+				<th class="text-right"><?php echo number_format($harsat_wl_sc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_wl_sc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right" style="<?php echo $styleColorO ?>"><?php echo number_format($total_nilai_evaluasi_wl_sc,0,',','.');?></th>
