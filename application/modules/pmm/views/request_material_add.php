@@ -280,8 +280,12 @@
             responsive: true,
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 3, 4, 5],
+                    "targets": [0, 2, 3, 4, 5],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [1],
+                    "className": 'text-left',
                 }
             ],
             "footerCallback": function ( row, data, start, end, display ) {
