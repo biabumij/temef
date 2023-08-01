@@ -527,7 +527,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3],
+                    "targets": [1, 2, 3, 6, 8, 9],
                     "className": 'text-center',
                 },
                 {
