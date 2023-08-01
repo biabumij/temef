@@ -50,7 +50,13 @@ class Pembelian extends Secure_Controller
         $check = $this->m_admin->check_login();
         if ($check == true) {
 
-            $data['row'] = $this->db->get_where('pmm_penawaran_pembelian pp', array('pp.id' => $id))->row_array();
+            $data['row'] = $this->db->select('pp.*,pp.nama_produk')
+            ->get_where('pmm_penawaran_pembelian pp')
+            ->join('pmm_penawaran_pembelian_detail ppd','pp.id = ppd.penawaran_pembelian_id','left');
+            ->join('produk p','ppd.material_id = p.id','left');
+            ->where('pp.id',$id)
+            ->order_by('p.nama_produk','asc')
+            ->row_array();
             if (!empty($data['row'])) {
                 $this->load->view('pembelian/penawaran_pembelian_detail', $data);
             } else {
