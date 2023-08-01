@@ -10242,7 +10242,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center">5.</th>			
 				<th class="text-left">Genset</th>
-				<th class="text-center">Unit</th>
+				<th class="text-center">Bulan</th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
