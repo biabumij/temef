@@ -56,7 +56,7 @@ class Pembelian extends Secure_Controller
             ->join('produk p','ppd.material_id = p.id','left');
             ->where('pp.id',$id)
             ->order_by('p.nama_produk','asc')
-            ->row_array();
+            ->get()->row_array();
             if (!empty($data['row'])) {
                 $this->load->view('pembelian/penawaran_pembelian_detail', $data);
             } else {
