@@ -527,11 +527,11 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3, 6, 8, 9],
+                    "targets": [1, 2, 3, 6, 8, 9, 10, 11, 14, 15, 16],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [0],
+                    "targets": [12],
                     "className": 'text-right',
                 }
             ],
