@@ -447,7 +447,7 @@
             getTotalDisplayMeasure1();
         });
 
-        $("#harsat, #konversi_hari_2, #jumlah_hari, #display_measure").change(function(){
+        $("#harsat, #konversi_hari_2, #jumlah_hari, #display_measure, #measure_id").change(function(){
             
             getTotalDisplayMeasure2();
         });
@@ -515,6 +515,7 @@
                 }
                 $('#new_price').val(new_price);
                 $('#display_measure').val('Hari');
+                $('#measure_id').val('Hari');
             }
             
         }
