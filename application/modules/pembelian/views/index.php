@@ -474,6 +474,7 @@
                                                     <th class="text-center">Produk</th>
                                                     <th class="text-center">Satuan</th>                                                   
                                                     <th class="text-center">Volume</th>
+                                                    <th class="text-center">Memo</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Upload Surat Jalan</th>
@@ -1466,6 +1467,9 @@
                     "data": "display_volume"
                 },
                 {
+                    "data": "memo"
+                },
+                {
                     "data": "admin_name"
                 },
                 {
@@ -1487,7 +1491,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14],
+                    "targets": [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 14, 15],
                     "className": 'text-center',
                 },
 				{
