@@ -150,7 +150,7 @@
                                         <?php if($row["status"] === "PAID") : ?>
                                             <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10){
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
                                             <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('pmm/biaya/delete/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <a  href="<?= base_url('pmm/biaya/form/'.$row['id']) ?>" class="btn btn-primary" style="width:200px; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
