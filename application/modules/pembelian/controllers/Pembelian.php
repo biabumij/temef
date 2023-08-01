@@ -50,7 +50,7 @@ class Pembelian extends Secure_Controller
         $check = $this->m_admin->check_login();
         if ($check == true) {
 
-            $data['row'] = $this->db->select('pp.*,pp.nama_produk')
+            $data['row'] = $this->db->select('pp.*,p.nama_produk')
             ->get_where('pmm_penawaran_pembelian pp')
             ->join('pmm_penawaran_pembelian_detail ppd','pp.id = ppd.penawaran_pembelian_id','left')
             ->join('produk p','ppd.material_id = p.id','left')
