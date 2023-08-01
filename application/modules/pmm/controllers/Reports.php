@@ -11629,44 +11629,44 @@ class Reports extends CI_Controller {
 			<style type="text/css">
 				table tr.table-active{
 					background-color: #F0F0F0;
-					font-size: 12px;
+					font-size: 10px;
 					font-weight: bold;
 					color: black;
 				}
 					
 				table tr.table-active2{
 					background-color: #E8E8E8;
-					font-size: 12px;
+					font-size: 10px;
 					font-weight: bold;
 				}
 					
 				table tr.table-active3{
-					font-size: 12px;
+					font-size: 10px;
 					background-color: #F0F0F0;
 				}
 					
 				table tr.table-active4{
 					background-color: #e69500;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 10px;
 					color: black;
 				}
 				table tr.table-active5{
 					background-color: #cccccc;
-					font-size: 12px;
+					font-size: 10px;
 					font-weight: bold;
 					color: black;
 				}
 				table tr.table-activeago1{
 					background-color: #ffd966;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 10px;
 					color: black;
 				}
 				table tr.table-activeopening{
 					background-color: #2986cc;
 					font-weight: bold;
-					font-size: 12px;
+					font-size: 10px;
 					color: black;
 				}
 				blink {
@@ -12174,7 +12174,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1</th>
-				<th class="text-left"><i>Semen</i></th>
+				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
@@ -12182,7 +12182,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">2</th>
-				<th class="text-left"><i>Pasir</i></th>
+				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
@@ -12190,7 +12190,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">3</th>
-				<th class="text-left"><i>Batu Split 10-20</i></th>
+				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
@@ -12198,7 +12198,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">4</th>
-				<th class="text-left"><i>Batu Split 20-30</i></th>
+				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
 				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
