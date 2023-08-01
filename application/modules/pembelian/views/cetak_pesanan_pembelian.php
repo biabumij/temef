@@ -80,7 +80,12 @@
 				<th width="10px">:</th>
 				<th align="left"><?php echo $row['npwp_supplier'];?></th>
 			</tr>
-			<?php
+			<tr>
+				<th>No. Penawaran</th>
+				<th width="10px">:</th>
+				<th align="left">001/GRC/I/2023</th>
+			</tr>
+			<!--<?php
 			foreach ($details as $dt) {
             ?>  
 			<tr>
@@ -90,7 +95,7 @@
 			</tr>
 			<?php
 			}
-			?>
+			?>-->
 			<tr>
 				<td width="72%"></td>
 				<th width="28%" align="left"><b>Kepada Yth :</b></th>

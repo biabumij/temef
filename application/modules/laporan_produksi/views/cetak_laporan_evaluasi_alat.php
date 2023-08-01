@@ -203,21 +203,6 @@
 				$total_insentif_tm += $y['total'];
 			}
 
-			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 221")
-			->where("pb.status = 'PAID'")
-			->where("pb.memo <> 'SC' ")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-
-			$total_insentif_wl = 0;
-			foreach ($insentif_wl as $y){
-				$total_insentif_wl += $y['total'];
-			}
-
 			//Wheel Loader
 			$pembelian_wheel_loader = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -235,6 +220,21 @@
 			$total_nilai_wheel_loader = 0;
 			foreach ($pembelian_wheel_loader as $x){
 				$total_nilai_wheel_loader += $x['price'];
+			}
+
+			$insentif_wl = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->where("pdb.akun = 221")
+			->where("pb.status = 'PAID'")
+			->where("pb.memo <> 'SC' ")
+			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
+			->group_by('pdb.id')
+			->get()->result_array();
+
+			$total_insentif_wl = 0;
+			foreach ($insentif_wl as $y){
+				$total_insentif_wl += $y['total'];
 			}
 
 			//Transfer Semen
