@@ -10337,7 +10337,7 @@ class Reports extends CI_Controller {
 				<th class="text-right" style="<?php echo $styleColorO ?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left" colspan="11"><u>C. GROUP QUARRRY</u></th>
+				<th class="text-left" colspan="11"><u>C. GROUP QUARRY</u></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1.</th>			
@@ -10388,7 +10388,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-active5">		
-				<th class="text-right" colspan="3">TOTAL GROUP QUARRRY</th>
+				<th class="text-right" colspan="3">TOTAL GROUP QUARRY</th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_rap_q,0,',','.');?></th>

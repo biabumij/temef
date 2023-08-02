@@ -880,7 +880,7 @@
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-total">		
-				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP QUARRRY</th>
+				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP QUARRY</th>
 				<th align="right" class="table-border-total"></th>
 				<th align="right" class="table-border-total"></th>
 				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_q,0,',','.');?></th>
