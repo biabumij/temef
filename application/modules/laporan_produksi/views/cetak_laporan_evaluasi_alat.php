@@ -45,48 +45,9 @@
 			font-family: helvetica;
 		}
 
-		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
+		table.table-border-total, th.table-border-total, td.table-border-total {
 			border-top: 1px solid black;
 			border-bottom: 1px solid black;
-			border-right: 1px solid #cccccc;
-			border-left: 1px solid black;
-		}
-
-		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			border-right: 1px solid #cccccc;
-		}
-
-		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			border-right: 1px solid black;
-		}
-
-		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
-			border-left: 1px solid black;
-			border-right: 1px solid black;
-		}
-
-		table.table-border-spesial-kiri, th.table-border-spesial-kiri, td.table-border-spesial-kiri {
-			border-left: 1px solid black;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
-		}
-
-		table.table-border-spesial-tengah, th.table-border-spesial-tengah, td.table-border-spesial-tengah {
-			border-left: 1px solid #cccccc;
-			border-right: 1px solid #cccccc;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
-		}
-
-		table.table-border-spesial-kanan, th.table-border-spesial-kanan, td.table-border-spesial-kanan {
-			border-left: 1px solid #cccccc;
-			border-right: 1px solid black;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
 		}
 
 		table tr.table-judul{
@@ -109,14 +70,13 @@
 		}
 			
 		table tr.table-total{
-			background-color: #FFFF00;
 			font-weight: bold;
 			font-size: 7px;
 			color: black;
 		}
 
 		table tr.table-total2{
-			background-color: #eeeeee;
+			background-color: #cccccc;
 			font-weight: bold;
 			font-size: 7px;
 			color: black;
@@ -372,7 +332,7 @@
 
 			//Excavator
 			$pembelian_exc = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			p.nama_produk, pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
@@ -380,7 +340,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("kategori_alat = '5'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.harga_satuan')
+			->group_by('prm.material_id')
 			->order_by('pn.nama','asc')
 			->get()->result_array();
 
@@ -394,7 +354,7 @@
 
 			//Dump Truck 4M3
 			$pembelian_dmp_4m3 = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			p.nama_produk, pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
@@ -402,7 +362,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("kategori_alat = '6'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.harga_satuan')
+			->group_by('prm.material_id')
 			->order_by('pn.nama','asc')
 			->get()->result_array();
 
@@ -416,7 +376,7 @@
 
 			//Dump Truck 10M3
 			$pembelian_dmp_10m3 = $this->db->select('
-			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			p.nama_produk, pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
 			->from('pmm_receipt_material prm')
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
@@ -424,7 +384,7 @@
 			->where("prm.date_receipt between '$date1' and '$date2'")
 			->where("kategori_alat = '7'")
 			->where("po.status in ('PUBLISH','CLOSED')")
-			->group_by('prm.harga_satuan')
+			->group_by('prm.material_id')
 			->order_by('pn.nama','asc')
 			->get()->result_array();
 
@@ -617,29 +577,44 @@
 			$total_nilai_evaluasi_sc = (0-$total_pemakaian_sc);
 			$total_nilai_evaluasi_gns = (0-$total_pemakaian_gns);
 			$total_nilai_evaluasi_wl_sc = (0-$total_pemakaian_wl_sc);
-			
+			?>
+
+			<!-- TOTAL -->
+			<?php
+			$total_nilai_rap_bp = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
+			$total_nilai_realisasi_bp = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_nilai_transfer_semen + $total_pemakaian_bbm_solar;
+			$total_nilai_evaluasi_bp = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar;
+
+			$total_nilai_rap_sc = 0;
+			$total_nilai_realisasi_sc = $total_pemakaian_dmp_10m3 + $total_pemakaian_sc + $total_pemakaian_gns + $total_pemakaian_wl_sc;
+			$total_nilai_evaluasi_sc = $total_nilai_evaluasi_dmp_10m3 + $total_nilai_evaluasi_sc + $total_nilai_evaluasi_gns + $total_nilai_evaluasi_wl_sc;
+
+			$total_nilai_rap_q = 0;
+			$total_nilai_realisasi_q  = $total_pemakaian_exc + $total_pemakaian_dmp_4m3;
+			$total_nilai_evaluasi_q = $total_nilai_evaluasi_exc + $total_nilai_evaluasi_dmp_4m3;
+
 			$total_nilai_rap_all = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
 			$total_nilai_realisasi_all = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_transfer_semen + $total_pemakaian_bbm_solar + $total_pemakaian_exc + $total_pemakaian_dmp_4m3 + $total_pemakaian_dmp_10m3 + $total_pemakaian_sc + $total_pemakaian_gns + $total_pemakaian_wl_sc;
 			$total_nilai_evaluasi_all = $total_nilai_rap_all - $total_nilai_realisasi_all;
 			?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" class="table-border-pojok-kiri">&nbsp;<br>NO.</th>
-				<th width="12%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br>URAIAN</th>
-				<th width="8%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br>SATUAN</th>
-				<th width="29%" align="center" colspan="3" class="table-border-pojok-tengah">RAP</th>
-				<th width="29%" align="center" colspan="3" class="table-border-pojok-tengah">REALISASI</th>
-				<th width="18%" align="center" colspan="2" class="table-border-pojok-kanan">EVALUASI</th>
+				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
+				<th width="22%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
+				<th width="8%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
+				<th width="24%" align="center" colspan="3">RAP</th>
+				<th width="24%" align="center" colspan="3">REALISASI</th>
+				<th width="17%" align="center" colspan="2">EVALUASI</th>
 	        </tr>
 			<tr class="table-judul">
-				<th width="8%" align="center" class="table-border-pojok-kiri">VOLUME</th>
-				<th width="9%" align="center" class="table-border-pojok-tengah">HARSAT</th>
-				<th width="12%" align="center" class="table-border-pojok-tengah">NILAI</th>
-				<th width="8%" align="center" class="table-border-pojok-tengah">VOLUME</th>
-				<th width="9%" align="center" class="table-border-pojok-tengah">HARSAT</th>
-				<th width="12%" align="center" class="table-border-pojok-tengah">NILAI</th>
-				<th width="8%" align="center" class="table-border-pojok-tengah">VOLUME</th>
-				<th width="10%" align="center" class="table-border-pojok-kanan">NILAI</th>
+				<th width="7%" align="center">VOLUME</th>
+				<th width="7%" align="center">HARSAT</th>
+				<th width="10%" align="center">NILAI</th>
+				<th width="7%" align="center">VOLUME</th>
+				<th width="7%" align="center">HARSAT</th>
+				<th width="10%" align="center">NILAI</th>
+				<th width="7%" align="center">VOLUME</th>
+				<th width="10%" align="center">NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $total_vol_evaluasi_batching_plant < 0 ? 'color:red' : 'color:black';
@@ -648,166 +623,133 @@
 				$styleColorD = $total_nilai_evaluasi_truck_mixer < 0 ? 'color:red' : 'color:black';
 				$styleColorE = $total_vol_evaluasi_wheel_loader < 0 ? 'color:red' : 'color:black';
 				$styleColorF = $total_nilai_evaluasi_wheel_loader < 0 ? 'color:red' : 'color:black';
-				$styleColorG = $total_vol_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
-				$styleColorP = $total_nilai_evaluasi_transfer_semen < 0 ? 'color:red' : 'color:black';
-				$styleColorH = $total_nilai_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
-				$styleColorI = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $total_nilai_evaluasi_transfer_semen < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $total_vol_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $total_nilai_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $total_nilai_evaluasi_bp < 0 ? 'color:red' : 'color:black';
 
-				$styleColorJ = $total_nilai_evaluasi_exc < 0 ? 'color:red' : 'color:black';
-				$styleColorK = $total_nilai_evaluasi_dmp_4m3 < 0 ? 'color:red' : 'color:black';
-				$styleColorL = $total_nilai_evaluasi_dmp_10m3 < 0 ? 'color:red' : 'color:black';
-				$styleColorM = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
-				$styleColorN = $total_nilai_evaluasi_gns< 0 ? 'color:red' : 'color:black';
-				$styleColorO = $total_nilai_evaluasi_wl_sc < 0 ? 'color:red' : 'color:black';
+				$styleColorL = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
+				$styleColorM = $total_nilai_evaluasi_gns< 0 ? 'color:red' : 'color:black';
+				$styleColorN = $total_nilai_evaluasi_wl_sc < 0 ? 'color:red' : 'color:black';
+				$styleColorO = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
+
+				$styleColorR = $total_nilai_evaluasi_q < 0 ? 'color:red' : 'color:black';
+				$styleColorS = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
 			?>
-			<tr class="table-total2">
+			<tr class="table-total">
 				<th align="center" class="table-border-spesial" colspan="11">
 				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">A. GROUP BP</div>
 				</th>	
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>			
-				<th align="left" class="table-border-pojok-tengah">Batching Plant</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_batching_plant,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($batching_plant,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_vol_batching_plant,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_batching_plant / $total_pemakaian_vol_batching_plant,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah" style="<?php echo $styleColorA ?>"><?php echo number_format($total_vol_evaluasi_batching_plant,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
+				<th align="center">1.</th>			
+				<th align="left">Batching Plant</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_batching_plant,0,',','.');?></th>
+				<th align="right"><?php echo number_format($batching_plant,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_vol_batching_plant,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_batching_plant / $total_pemakaian_vol_batching_plant,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorA ?>"><?php echo number_format($total_vol_evaluasi_batching_plant,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2.</th>			
-				<th align="left" class="table-border-pojok-tengah">Truck Mixer</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_truck_mixer,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($truck_mixer,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_vol_truck_mixer,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_truck_mixer / $total_pemakaian_vol_truck_mixer,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah" style="<?php echo $styleColorC ?>"><?php echo number_format($total_vol_evaluasi_truck_mixer,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,0,',','.');?></th>
+				<th align="center">2.</th>			
+				<th align="left">Truck Mixer</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_truck_mixer,0,',','.');?></th>
+				<th align="right"><?php echo number_format($truck_mixer,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_vol_truck_mixer,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_truck_mixer / $total_pemakaian_vol_truck_mixer,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorC ?>"><?php echo number_format($total_vol_evaluasi_truck_mixer,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>			
-				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_wheel_loader,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($wheel_loader,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_wheel_loader / $total_pemakaian_vol_wheel_loader,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah" style="<?php echo $styleColorE ?>"><?php echo number_format($total_vol_evaluasi_wheel_loader,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
+				<th align="center">3.</th>			
+				<th align="left">Wheel Loader</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_wheel_loader,0,',','.');?></th>
+				<th align="right"><?php echo number_format($wheel_loader,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_wheel_loader / $total_pemakaian_vol_wheel_loader,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_vol_evaluasi_wheel_loader,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4.</th>			
-				<th align="left" class="table-border-pojok-tengah">Transfer Semen</th>
-				<th align="center" class="table-border-pojok-tengah">Unit / Bulan</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_transfer_semen,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorP ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
+				<th align="center">4.</th>			
+				<th align="left">Transfer Semen</th>
+				<th align="center">Unit / Bulan</th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_transfer_semen,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">5.</th>			
-				<th align="left" class="table-border-pojok-tengah">BBM Solar</th>
-				<th align="center" class="table-border-pojok-tengah">Liter</th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_bbm_solar,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($bbm_solar,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_pemakaian_bbm_solar,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah" style="<?php echo $styleColorG ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorH ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
+				<th align="center">5.</th>			
+				<th align="left">BBM Solar</th>
+				<th align="center">Liter</th>
+				<th align="right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_bbm_solar,0,',','.');?></th>
+				<th align="right"><?php echo number_format($bbm_solar,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorI ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
-			<tr class="table-total2">
+			<tr class="table-total">		
+				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP BP</th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_bp,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_bp,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total" style="<?php echo $styleColorJ ?>"><?php echo number_format($total_nilai_evaluasi_bp,0,',','.');?></th>
+	        </tr>
+			<tr class="table-total">
 				<th align="center" class="table-border-spesial" colspan="11">
 				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">B. GROUP SC</div>
 				</th>	
 			</tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1.</th>			
-				<th align="left" class="table-border-pojok-tengah">Excavator</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
-				$null = '-';
-				if (!empty($pembelian_exc_measure)) {
-					echo $pembelian_exc_measure;
-				} else {    
-					echo $null;
-				}
-				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_exc,2,',','.');?></th>
-				<?php
-				$harsat_exc = ($total_vol_exc!=0)?$total_nilai_exc / $total_vol_exc * 1:0;
-				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_exc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_exc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorJ ?>"><?php echo number_format($total_nilai_evaluasi_exc,0,',','.');?></th>
+				<th align="center">1.</th>			
+				<th align="left" colspan="10">Dump Truck 10M3</th>
 	        </tr>
+			<?php
+			$ev_dmp_10m3_price = 0;
+			foreach ($pembelian_dmp_10m3 as $x):
+			$ev_dmp_10m3_price = 0 - $x['price'];
+			$styleColorK = $ev_dmp_10m3_price < 0 ? 'color:red' : 'color:black';
+			?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2.</th>			
-				<th align="left" class="table-border-pojok-tengah">Dump Truck 4M3</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
-				$null = '-';
-				if (!empty($pembelian_dmp_4m3_measure)) {
-					echo $pembelian_dmp_4m3_measure;
-				} else {    
-					echo $null;
-				}
-				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_dmp_4m3,2,',','.');?></th>
-				<?php
-				$harsat_dmp_4m3 = ($total_vol_dmp_4m3!=0)?$total_nilai_dmp_4m3 / $total_vol_dmp_4m3 * 1:0;
-				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_dmp_4m3,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_dmp_4m3,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorK ?>"><?php echo number_format($total_nilai_evaluasi_dmp_4m3,0,',','.');?></th>
+				<th align="center"></th>			
+				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="center"><?= $x['measure'] ?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($ev_dmp_10m3_price,0,',','.');?></th>
 	        </tr>
+			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3.</th>			
-				<th align="left" class="table-border-pojok-tengah">Dump Truck 10M3</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
-				$null = '-';
-				if (!empty($pembelian_dmp_10m3_measure)) {
-					echo $pembelian_dmp_10m3_measure;
-				} else {    
-					echo $null;
-				}
-				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<?php
-				$harsat_dmp_10m3 = ($total_vol_dmp_10m3!=0)?$total_nilai_dmp_10m3 / $total_vol_dmp_10m3 * 1:0;
-				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_dmp_10m3,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_dmp_10m3,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_dmp_10m3,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorL ?>"><?php echo number_format($total_nilai_evaluasi_dmp_10m3,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4.</th>			
-				<th align="left" class="table-border-pojok-tengah">Stone Crusher</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
+				<th align="center">2.</th>			
+				<th align="left">Stone Crusher</th>
+				<th align="center"><?php
 				$null = '-';
 				if (!empty($pembelian_sc_measure)) {
 					echo $pembelian_sc_measure;
@@ -815,22 +757,22 @@
 					echo $null;
 				}
 				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_sc,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_vol_sc,2,',','.');?></th>
 				<?php
 				$harsat_sc = ($total_vol_sc!=0)?$total_nilai_sc / $total_vol_sc * 1:0;
 				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_sc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_sc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorM ?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format($harsat_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorML?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">5.</th>			
-				<th align="left" class="table-border-pojok-tengah">Genset</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
+				<th align="center">3.</th>			
+				<th align="left">Genset</th>
+				<th align="center"><?php
 				$null = '-';
 				if (!empty($pembelian_gns_measure)) {
 					echo $pembelian_gns_measure;
@@ -838,22 +780,22 @@
 					echo $null;
 				}
 				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_gns,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_vol_gns,2,',','.');?></th>
 				<?php
 				$harsat_gns = ($total_vol_gns!=0)?$total_nilai_gns / $total_vol_gns * 1:0;
 				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_gns,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_gns,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo number_format($total_nilai_evaluasi_gns,0,',','.');?></th>
+				<th align="right"><?php echo number_format($harsat_gns,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_gns,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorM ?>"><?php echo number_format($total_nilai_evaluasi_gns,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">6.</th>			
-				<th align="left" class="table-border-pojok-tengah">Wheel Loader</th>
-				<th align="center" class="table-border-pojok-tengah"><?php
+				<th align="center">4.</th>			
+				<th align="left">Wheel Loader</th>
+				<th align="center"><?php
 				$null = '-';
 				if (!empty($pembelian_wl_sc_measure)) {
 					echo $pembelian_wl_sc_measure;
@@ -861,31 +803,106 @@
 					echo $null;
 				}
 				?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_vol_wl_sc,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_vol_wl_sc,2,',','.');?></th>
 				<?php
 				$harsat_wl_sc = ($total_vol_wl_sc!=0)?$total_nilai_wl_sc / $total_vol_wl_sc * 1:0;
 				?>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($harsat_wl_sc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_nilai_wl_sc,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorO ?>"><?php echo number_format($total_nilai_evaluasi_wl_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format($harsat_wl_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_wl_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorN ?>"><?php echo number_format($total_nilai_evaluasi_wl_sc,0,',','.');?></th>
+	        </tr>
+			<tr class="table-total">		
+				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP SC</th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_sc,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_sc,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total" style="<?php echo $styleColorO ?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
+	        </tr>
+			<tr class="table-total">
+				<th align="center" class="table-border-spesial" colspan="11">
+				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">B. GROUP QUARRY</div>
+				</th>	
+			</tr>
+			<tr class="table-baris1">
+				<th align="center">1.</th>
+				<th align="left" colspan="10">Excavator</th>
+	        </tr>
+			<?php
+			$ev_exc_price = 0;
+			foreach ($pembelian_exc as $x):
+			$ev_exc_price = 0 - $x['price'];
+			$styleColorP = $ev_exc_price < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-baris1">
+				<th align="center"></th>			
+				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="center"><?= $x['measure'] ?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorP ?>"><?php echo number_format($ev_exc_price,0,',','.');?></th>
+	        </tr>
+			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center">2.</th>
+				<th align="left" colspan="10">Dump Truck 4M3</th>
+	        </tr>
+			<?php
+			$ev_dmp_4m3_price = 0;
+			foreach ($pembelian_dmp_4m3 as $x):
+			$ev_dmp_4m3_price = 0 - $x['price'];
+			$styleColorQ = $ev_dmp_4m3_price < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-baris1">
+				<th align="center"></th>			
+				<th align="left"><?= $x['nama_produk'] ?></th>
+				<th align="center"><?= $x['measure'] ?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
+				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorQ ?>"><?php echo number_format($ev_dmp_4m3_price,0,',','.');?></th>
+	        </tr>
+			<?php endforeach; ?>
+			<tr class="table-total">		
+				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP QUARRRY</th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_q,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_q,0,',','.');?></th>
+				<th align="right" class="table-border-total"></th>
+				<th align="right" class="table-border-total" style="<?php echo $styleColorR ?>"><?php echo number_format($total_nilai_evaluasi_q,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total2">		
-				<th align="right" colspan="3" class="table-border-spesial-kiri">TOTAL</th>
-				<th align="right" class="table-border-spesial-tengah"></th>
-				<th align="right" class="table-border-spesial-tengah"></th>
-				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_nilai_rap_all,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-tengah"></th>
-				<th align="right" class="table-border-spesial-tengah"></th>
-				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-tengah"></th>
-				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorI ?>"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
+				<th align="right" colspan="3">TOTAL GROUP A + B + C</th>
+				<th align="right"></th>
+				<th align="right"></th>
+				<th align="right"><?php echo number_format($total_nilai_rap_all,0,',','.');?></th>
+				<th align="right"></th>
+				<th align="right"></th>
+				<th align="right"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
+				<th align="right"></th>
+				<th align="right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
 	        </tr>
 	    </table>
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="10">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -899,7 +916,7 @@
 							</td>
 						</tr>
 						<tr class="">
-							<td align="center" height="55px">
+							<td align="center">
 							
 							</td>
 							<?php
@@ -919,7 +936,7 @@
                                 $logistik = $this->db->get('tbl_admin a')->row_array();
                             ?>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="90px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 								<!--<img src="<?= $logistik['admin_ttd']?>" width="20px">-->
 							</td>
 						</tr>
