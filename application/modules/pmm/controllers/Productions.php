@@ -28,7 +28,7 @@ class Productions extends Secure_Controller {
 			->from('pmm_agregat ag')
 			->join('produk p', 'ag.mutu_beton = p.id','left')
 			->where("ag.status = 'PUBLISH'")
-			->order_by('p.nama_produk','desc')
+			->order_by('p.nama_produk','asc')
 			->get()->result_array();
 			
 			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status'=>'OPEN'))->row_array();
