@@ -688,7 +688,7 @@
 				<th width="7%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>SATUAN</th>
 				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">KOMPOSISI</th>
 				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">REALISASI</th>
-				<th width="18%" align ="center" colspan="2" class="table-border-pojok-kanan">EVALUASI</th>
+				<th width="19%" align ="center" colspan="2" class="table-border-pojok-kanan">EVALUASI</th>
 	        </tr>
 			<tr class="table-judul">
 				<th width="8%" align ="center" class="table-border-pojok-kiri">VOLUME</th>
