@@ -169,7 +169,7 @@
 							<br />
                             <div class="row">
                                 <div class="col-sm-12 text-right">
-                                    <a href="<?= base_url('rap/data_komposisi/' . $agregat["id"]) ?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                    <a href="<?= base_url('admin/rap/') ?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-mail-reply"></i> Kembali</a>
                                     <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
                                 </div>
                             </div>
