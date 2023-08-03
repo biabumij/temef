@@ -1247,10 +1247,10 @@ class Receipt_material extends CI_Controller {
             $this->db->where('prm.date_receipt >=',$start_date);
             $this->db->where('prm.date_receipt <=',$end_date);
         }
-        if(!empty($supplier_id)){
+        if(!empty($supplier_id) || $supplier_id != 0){
             $this->db->where('ppo.supplier_id',$supplier_id);
         }
-		if(!empty($filter_kategori)){
+		if(!empty($filter_kategori) || $filter_kategori != 0){
             $this->db->where('ppo.kategori_id',$filter_kategori);
         }
 		
