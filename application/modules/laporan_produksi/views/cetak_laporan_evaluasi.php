@@ -685,7 +685,7 @@
 			<tr class="table-judul">
 				<th width="5%" align ="center" rowspan="2" class="table-border-pojok-kiri">&nbsp;<br/>NO.</th>
 				<th width="12%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>URAIAN</th>
-				<th width="8%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>SATUAN</th>
+				<th width="7%" align ="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br/>SATUAN</th>
 				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">KOMPOSISI</th>
 				<th width="29%" align ="center" colspan="3" class="table-border-pojok-tengah">REALISASI</th>
 				<th width="18%" align ="center" colspan="2" class="table-border-pojok-kanan">EVALUASI</th>
@@ -698,7 +698,7 @@
 				<th width="9%" align ="center" class="table-border-pojok-tengah">HARSAT</th>
 				<th width="12%" align ="center" class="table-border-pojok-tengah">NILAI</th>
 				<th width="8%" align ="center" class="table-border-pojok-tengah">VOLUME</th>
-				<th width="10%" align ="center" class="table-border-pojok-kanan">NILAI</th>
+				<th width="11%" align ="center" class="table-border-pojok-kanan">NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $evaluasi_volume_a < 0 ? 'color:red' : 'color:black';
