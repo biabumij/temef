@@ -429,7 +429,7 @@
 			->where("kategori_alat = '9'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('prm.harga_satuan')
-			->order_by('pn.nama','agns')
+			->order_by('pn.nama','asc')
 			->get()->result_array();
 
 			$total_nilai_gns = 0;
@@ -451,7 +451,7 @@
 			->where("kategori_alat = '10'")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->group_by('prm.harga_satuan')
-			->order_by('pn.nama','awl_sc')
+			->order_by('pn.nama','asc')
 			->get()->result_array();
 
 			$total_nilai_wl_sc = 0;
@@ -478,6 +478,50 @@
 				$total_insentif_wl_sc += $y['total'];
 			}
 
+			//BBM Solar SC
+			$pembelian_bbm_sc = $this->db->select('
+			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.id = '59'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.harga_satuan')
+			->order_by('pn.nama','asc')
+			->get()->result_array();
+
+			$total_nilai_bbm_sc = 0;
+			$total_vol_bbm_sc = 0;
+			foreach ($pembelian_bbm_sc as $x){
+				$total_nilai_bbm_sc += $x['price'];
+				$total_vol_bbm_sc += $x['volume'];
+				$pembelian_bbm_sc_measure = $x['measure'];
+			}
+
+			//BBM Solar QUARRY
+			$pembelian_bbm_q = $this->db->select('
+			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->join('penerima pn', 'po.supplier_id = pn.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("p.id = '60'")
+			->where("po.status in ('PUBLISH','CLOSED')")
+			->group_by('prm.harga_satuan')
+			->order_by('pn.nama','asc')
+			->get()->result_array();
+
+			$total_nilai_bbm_q = 0;
+			$total_vol_bbm_q = 0;
+			foreach ($pembelian_bbm_q as $x){
+				$total_nilai_bbm_q += $x['price'];
+				$total_vol_bbm_q += $x['volume'];
+				$pembelian_bbm_q_measure = $x['measure'];
+			}
+
 			$total_vol_batching_plant = $total_volume;
 			$total_vol_truck_mixer = $total_volume;
 			$total_vol_wheel_loader = $total_volume;
@@ -500,6 +544,13 @@
 			$total_pemakaian_sc = $total_nilai_sc;
 			$total_pemakaian_gns = $total_nilai_gns;
 			$total_pemakaian_wl_sc = $total_nilai_wl_sc + $total_insentif_wl_sc;
+			
+			//Rumus BBM SC & QUARRY
+			$harsat_bbm_sc = ($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar);
+			$total_nilai_bbm_sc = $total_vol_bbm_sc * $harsat_bbm_sc;
+
+			$harsat_bbm_q = ($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar);
+			$total_nilai_bbm_q = $total_vol_bbm_q * $harsat_bbm_q;
 			?>
 
 			<!-- RAP Alat -->
@@ -550,7 +601,6 @@
 			$harsat_wheel_loader = ($wheel_loader!=0)?$wheel_loader / $wheel_loader * 1:0;
 			$harsat_bbm_solar = ($vol_bbm_solar!=0)?$bbm_solar / $vol_bbm_solar * 1:0;
 
-
 			$total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
 			
 			?>
@@ -577,25 +627,27 @@
 			$total_nilai_evaluasi_sc = (0-$total_pemakaian_sc);
 			$total_nilai_evaluasi_gns = (0-$total_pemakaian_gns);
 			$total_nilai_evaluasi_wl_sc = (0-$total_pemakaian_wl_sc);
+			$total_nilai_evaluasi_bbm_sc = (0-$total_pemakaian_bbm_sc);
+			$total_nilai_evaluasi_bbm_q = (0-$total_pemakaian_bbm_q);
 			?>
 
 			<!-- TOTAL -->
 			<?php
 			$total_nilai_rap_bp = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
-			$total_nilai_realisasi_bp = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_nilai_transfer_semen + $total_pemakaian_bbm_solar;
+			$total_nilai_realisasi_bp = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_nilai_transfer_semen + $total_pemakaian_bbm_solar - $total_nilai_bbm_sc - $total_nilai_bbm_q;
 			$total_nilai_evaluasi_bp = $total_nilai_evaluasi_batching_plant + $total_nilai_evaluasi_truck_mixer + $total_nilai_evaluasi_wheel_loader + $total_nilai_evaluasi_transfer_semen + $total_nilai_evaluasi_bbm_solar;
 
 			$total_nilai_rap_sc = 0;
-			$total_nilai_realisasi_sc = $total_pemakaian_dmp_10m3 + $total_pemakaian_sc + $total_pemakaian_gns + $total_pemakaian_wl_sc;
-			$total_nilai_evaluasi_sc = $total_nilai_evaluasi_dmp_10m3 + $total_nilai_evaluasi_sc + $total_nilai_evaluasi_gns + $total_nilai_evaluasi_wl_sc;
+			$total_nilai_realisasi_sc = $total_pemakaian_dmp_10m3 + $total_pemakaian_sc + $total_pemakaian_gns + $total_pemakaian_wl_sc + $total_nilai_bbm_sc;
+			$total_nilai_evaluasi_sc = 0;
 
 			$total_nilai_rap_q = 0;
-			$total_nilai_realisasi_q  = $total_pemakaian_exc + $total_pemakaian_dmp_4m3;
-			$total_nilai_evaluasi_q = $total_nilai_evaluasi_exc + $total_nilai_evaluasi_dmp_4m3;
+			$total_nilai_realisasi_q  = $total_pemakaian_exc + $total_pemakaian_dmp_4m3 + $total_nilai_bbm_q;
+			$total_nilai_evaluasi_q = 0;
 
-			$total_nilai_rap_all = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
-			$total_nilai_realisasi_all = $total_pemakaian_batching_plant + $total_pemakaian_truck_mixer + $total_pemakaian_wheel_loader + $total_pemakaian_transfer_semen + $total_pemakaian_bbm_solar + $total_pemakaian_exc + $total_pemakaian_dmp_4m3 + $total_pemakaian_dmp_10m3 + $total_pemakaian_sc + $total_pemakaian_gns + $total_pemakaian_wl_sc;
-			$total_nilai_evaluasi_all = $total_nilai_rap_all - $total_nilai_realisasi_all;
+			$total_nilai_rap_all = $total_nilai_rap_bp;
+			$total_nilai_realisasi_all = $total_nilai_realisasi_bp + $total_nilai_realisasi_sc + $total_nilai_realisasi_q;
+			$total_nilai_evaluasi_all = $total_nilai_evaluasi_bp;
 			?>
 			
 			<tr class="table-judul">
@@ -627,14 +679,7 @@
 				$styleColorH = $total_vol_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
 				$styleColorI = $total_nilai_evaluasi_bbm_solar < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $total_nilai_evaluasi_bp < 0 ? 'color:red' : 'color:black';
-
-				$styleColorL = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
-				$styleColorM = $total_nilai_evaluasi_gns< 0 ? 'color:red' : 'color:black';
-				$styleColorN = $total_nilai_evaluasi_wl_sc < 0 ? 'color:red' : 'color:black';
-				$styleColorO = $total_nilai_evaluasi_sc < 0 ? 'color:red' : 'color:black';
-
-				$styleColorR = $total_nilai_evaluasi_q < 0 ? 'color:red' : 'color:black';
-				$styleColorS = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
+				$styleColorK = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-total">
 				<th align="center" class="table-border-spesial" colspan="11">
@@ -700,9 +745,9 @@
 				<th align="right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bbm_solar,0,',','.');?></th>
 				<th align="right"><?php echo number_format($bbm_solar,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_solar - $total_vol_bbm_sc - $total_vol_bbm_q,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar - $total_nilai_bbm_sc - $total_nilai_bbm_q,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorI ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
@@ -743,7 +788,7 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($ev_dmp_10m3_price,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
@@ -767,7 +812,7 @@
 				<th align="right"><?php echo number_format($harsat_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorML?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3.</th>			
@@ -790,7 +835,7 @@
 				<th align="right"><?php echo number_format($harsat_gns,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_gns,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorM ?>"><?php echo number_format($total_nilai_evaluasi_gns,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4.</th>			
@@ -813,7 +858,27 @@
 				<th align="right"><?php echo number_format($harsat_wl_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_wl_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorN ?>"><?php echo number_format($total_nilai_evaluasi_wl_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+	        </tr>
+			<tr class="table-baris1">
+				<th align="center">5.</th>			
+				<th align="left">BBM Solar (SC)</th>
+				<th align="center"><?php
+				$null = '-';
+				if (!empty($pembelian_bbm_sc_measure)) {
+					echo $pembelian_bbm_sc_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_vol_bbm_sc,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harsat_bbm_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_bbm_sc,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
 				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP SC</th>
@@ -824,7 +889,7 @@
 				<th align="right" class="table-border-total"></th>
 				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_sc,0,',','.');?></th>
 				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total" style="<?php echo $styleColorO ?>"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
 				<th align="center" class="table-border-spesial" colspan="11">
@@ -852,7 +917,7 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorP ?>"><?php echo number_format($ev_exc_price,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
@@ -876,9 +941,29 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorQ ?>"><?php echo number_format($ev_dmp_4m3_price,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
+			<tr class="table-baris1">
+				<th align="center">3.</th>			
+				<th align="left">BBM Solar (QUARRY)</th>
+				<th align="center"><?php
+				$null = '-';
+				if (!empty($pembelian_bbm_q_measure)) {
+					echo $pembelian_bbm_q_measure;
+				} else {    
+					echo $null;
+				}
+				?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_vol_bbm_q,2,',','.');?></th>
+				<th align="right"><?php echo number_format($harsat_bbm_q,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_bbm_q,0,',','.');?></th>
+				<th align="right"><?php echo number_format(0,2,',','.');?></th>
+				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+	        </tr>
 			<tr class="table-total">		
 				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP QUARRY</th>
 				<th align="right" class="table-border-total"></th>
@@ -888,9 +973,9 @@
 				<th align="right" class="table-border-total"></th>
 				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_q,0,',','.');?></th>
 				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total" style="<?php echo $styleColorR ?>"><?php echo number_format($total_nilai_evaluasi_q,0,',','.');?></th>
+				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_evaluasi_q,0,',','.');?></th>
 	        </tr>
-			<tr class="table-total2">		
+			<tr class="table-total">		
 				<th align="right" colspan="3">TOTAL GROUP A + B + C</th>
 				<th align="right"></th>
 				<th align="right"></th>
@@ -899,7 +984,7 @@
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
 				<th align="right"></th>
-				<th align="right" style="<?php echo $styleColorS ?>"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<table width="98%" border="0" cellpadding="10">
