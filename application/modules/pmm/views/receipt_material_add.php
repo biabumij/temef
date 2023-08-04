@@ -71,38 +71,48 @@
                                 <input type="hidden" name="supplier_id" id="form_supplier_id" value="">
                                 <input type="hidden" name="select_operation" id="select_operation" value="*">
                                 <input type="hidden" name="jumlah_hari" id="jumlah_hari" value="25">
+                                <input type="hidden" id="tax_id" name="tax_id" value="">
+                                <input type="hidden" id="pajak_id" name="pajak_id" value="">
                                 <input type="hidden" name="harsat" id="harsat" value="">
                                 <input type="hidden" name="new_price" id="new_price" value="">
+                                
                                 <div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
+									<div class="col-sm-6">
+										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
+                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" autocomplete="off" placeholder="No. Kendaraan"/>
+                                    </div>
+                                    <div class="col-sm-6">
+										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
+                                        <input type="text" id="driver" name="driver" class="form-control" autocomplete="off" placeholder="Supir" />
+                                    </div>
+                                </div>
+                                <br /><br /> 
+                                <div class="row">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Pilih Produk<span class="required" aria-required="true">*</span></label>
                                         <select id="material_id" name="material_id" class="form-control" required="" >
                                             <option value="">Pilih Produk</option>
                                             
                                         </select>
                                     </div>
-                                    
-									<input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
-                                    <input type="hidden" id="pajak_id" name="pajak_id" class="form-control" value="" required="" readonly="">
-    
                                 </div>    
                                 <div class="row">
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Volume<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
-                                        </div>
+                                    </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan (Otomatis dari PO)<span class="required" aria-required="true">*</span></label>
+										<label for="inputEmail3" class="control-label">Satuan (Satuan berdasarkan PO)<span class="required" aria-required="true">*</span></label>
                                         <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
                                             <option value="">Pilih Satuan</option>
                                             <?php
@@ -121,16 +131,13 @@
 										<label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
                                     </div>
-                                    
-                                        
-                                    <p align="center">Apakah Satuan akan dikonversi?</p>
-                                    <div class="col-sm-3">
-										<label for="inputEmail3" class="control-label">Tidak<span class="required" aria-required="true">*</span></label>
-                                        <input type="checkbox" id="konversi_hari_1" name="konversi_hari_1" class="form-control" value="1">
-                                    </div>
-                                    <div class="col-sm-3">
-										<label for="inputEmail3" class="control-label">Konversi ke Hari<span class="required" aria-required="true">*</span></label>
-                                        <input type="checkbox" id="konversi_hari_2" name="konversi_hari_2" class="form-control" value="2">
+                                    <div class="col-sm-6">
+                                    <label for="inputEmail3" class="control-label">Konversi Satuan<span class="required" aria-required="true">*</span></label>
+                                        <select class="form-control" id="konversi_hari" name="konversi_hari" required="">
+                                                <option value="">Pilih Konversi</option>
+                                                <option value="1">Tidak di Konversi</option>
+                                                <option value="2">Konversi ke Hari</option>
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -151,16 +158,6 @@
                                             }
                                             ?>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" autocomplete="off" placeholder="No. Kendaraan"/>
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="driver" name="driver" class="form-control" autocomplete="off" placeholder="Supir" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -442,19 +439,20 @@
             getTotalDisplay();
         });
 
-        $("#harsat, #konversi_hari_1, #jumlah_hari, #display_measure").change(function(){
+        $("#harsat, #konversi_hari, #jumlah_hari, #display_measure, #measure_id").change(function(){
             
-            getTotalDisplayMeasure1();
-        });
-
-        $("#harsat, #konversi_hari_2, #jumlah_hari, #display_measure, #measure_id").change(function(){
-            
-            getTotalDisplayMeasure2();
+            getTotalDisplayMeasure();
         });
 
 		$("#edit_convert_value, #edit_volume, #select_operation").change(function(){
             
             getTotalDisplayEdit();
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#konversi_hari').prop('selectedIndex', 1).trigger('change');
+            }, 1000);
         });
 
         function getTotalDisplay()
@@ -476,48 +474,29 @@
             }
         }
 
-        function getTotalDisplayMeasure1()
+        function getTotalDisplayMeasure()
         {
             var harsat = $('#harsat').val();
-            var konversi_hari_1 = $('#konversi_hari_1').val();
+            var konversi_hari = $('#konversi_hari').val();
             var jumlah_hari = $('#jumlah_hari').val();
             var measure_id = $('#measure_id').val();
+            var display_measure = $('#display_measure').val();
 
-            if(konversi_hari_1 === '' && harsat === ''){
-                alert('Check Operation First or Volume');
-            }else {
-                
-                if(konversi_hari_1 == '1'){
-                    var new_price = harsat;
-                }else {
-                    var new_price = harsat;
-                }
-                $('#new_price').val(new_price);
-                $('#display_measure').val(measure_id);
+            if(konversi_hari == '1'){
+                var new_price = harsat;
+                var measure_id = $('#measure_id').val();
+                var display_measure = $('#display_measure').val();;
             }
-            
-        }
 
-        function getTotalDisplayMeasure2()
-        {
-            var harsat = $('#harsat').val();
-            var konversi_hari_2 = $('#konversi_hari_2').val();
-            var jumlah_hari = $('#jumlah_hari').val();
-
-            if(konversi_hari_2 === '' && harsat === ''){
-                alert('Check Operation First or Volume');
-            }else {
-                
-                if(konversi_hari_2 == '2'){
-                    var new_price = harsat / jumlah_hari;
-                }else {
-                    var new_price = harsat / jumlah_hari;
-                }
-                $('#new_price').val(new_price);
-                $('#display_measure').val('Hari');
-                $('#measure_id').val('Hari');
+            if(konversi_hari == '2'){
+                var new_price = harsat / jumlah_hari;
+                var measure_id = 'Hari';
+                var display_measure = 'Hari';
             }
-            
+
+            $('#new_price').val(new_price);
+            $('#measure_id').val(measure_id);
+            $('#display_measure').val(display_measure);
         }
 		
 		function getTotalDisplayEdit()
@@ -715,6 +694,8 @@
             $('#pajak_id').val(pajak_id);
             var harsat = $(this).find(':selected').data('harsat');
             $('#harsat').val(harsat);
+            var new_price = $(this).find(':selected').data('harsat');
+            $('#new_price').val(new_price);
         });
 
         $('#form-product').submit(function(event){

@@ -167,7 +167,7 @@ class Rap extends Secure_Controller {
         $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, p.nama_produk as mutu_beton, lk.agregat_id, lk.lampiran, ag.status, ag.created_by, ag.created_on');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');
 		$this->db->join('produk p', 'ag.mutu_beton = p.id','left');
-		$this->db->order_by('ag.date_agregat','desc');	
+		$this->db->order_by('ag.id','desc');	
 		$query = $this->db->get('pmm_agregat ag');
 		
        if($query->num_rows() > 0){
