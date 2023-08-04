@@ -160,6 +160,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <br /><br /> 
                                 <div class="row">
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Upload Surat Jalan </label>
