@@ -6726,7 +6726,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 	            <th width="10%"></th>
 				<th width="30%"><?= $x['nama'] ?></th>
-				<th width="10%" class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
+				<th width="10%" class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_pengiriman_penjualan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($x['volume'],2,',','.');?></a></th>
 				<th width="10%" class="text-center"><?= $x['measure'];?></th>
 	            <th width="20%" class="text-right">
 					<table width="100%" border="0" cellpadding="0">
@@ -6758,7 +6758,7 @@ class Reports extends CI_Controller {
 			<?php endforeach; ?>
 			<tr class="table-active3">
 				<th class="text-left" colspan="2">Total Pendapatan</th>
-				<th class="text-right"><?php echo number_format($total_volume,2,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_pengiriman_penjualan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_volume,2,',','.');?></a></th>
 				<th class="text-center">M3</th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
