@@ -389,8 +389,8 @@
             locale: {
                 format: 'DD-MM-YYYY'
             },
-            //minDate: new Date()+0, 
-            minDate: new Date()-1,
+            minDate: new Date()+0, 
+            //minDate: new Date()-1,
 			maxDate: new Date()+1
         });
 
