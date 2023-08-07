@@ -1841,7 +1841,7 @@ class Reports extends CI_Controller {
 
 			<tr class="table-active">
 				<th class="text-center" colspan="5" style="text-transform:uppercase">
-				<marquee>Evaluasi Pemakaian Bahan Baku
+				Evaluasi Pemakaian Bahan Baku
 				(<?php
 				$search = array(
 				'January',
@@ -1877,7 +1877,7 @@ class Reports extends CI_Controller {
 
 				echo str_replace($search, $replace, $subject);
 
-				?>)</marquee>
+				?>)
 				</th>
 			</tr>
 			<tr>
@@ -6328,9 +6328,7 @@ class Reports extends CI_Controller {
 			?>
 
 			<tr class="table-active">
-				<th class="text-center" colspan="6" style="text-transform:uppercase">
-				<marquee>Presentase Prognosa Terhadap RAP</marquee>
-				</th>
+				<th class="text-center" colspan="6" style="text-transform:uppercase">Presentase Prognosa Terhadap RAP</th>
 			</tr>
 			<tr>
 				<th width="5%" class="text-center" rowspan="2" style='background-color:rgb(188,188,188); color:black; vertical-align:middle;'>NO.</th>
