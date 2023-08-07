@@ -165,15 +165,15 @@
                 { "data": "jumlah_total" },
                 { "data": "status"},
                 { "data": "admin_name"},
-                { "data": "created_on"},
+                { "data": "created_on"}
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 5],
+                    "targets": [0, 1, 5, 6, 7],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [4, 7],
+                    "targets": [4],
                     "className": 'text-right',
                 }
             ],
