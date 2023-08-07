@@ -58,6 +58,8 @@
                                                         <th class="text-center">Penerima</th>
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Status</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -162,6 +164,8 @@
                 { "data": "penerima" },
                 { "data": "jumlah_total" },
                 { "data": "status"},
+                { "data": "admin_name"},
+                { "data": "created_on"},
             ],
             "columnDefs": [
                 {
@@ -169,7 +173,7 @@
                     "className": 'text-center',
                 },
                 {
-                    "targets": [4],
+                    "targets": [4, 7],
                     "className": 'text-right',
                 }
             ],
