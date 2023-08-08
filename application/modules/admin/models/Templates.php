@@ -52,10 +52,10 @@ class Templates extends CI_Model {
 	            <div class="logo">
 	                <a href="" class="on-click" style="color: #fff;font-weight: bold;display: block;text-align: center;font-size: 24px;padding-top: 15px;">
 	                    <!-- <img alt="logo" src="<?php echo base_url().$this->m_themes->GetThemes('site_logo');?>" class="img-responsive" /> -->
-	                    <marquee behavior="scroll" direction="left" scrollamount="6" width="350px"><i>SELAMAT DATANG DI PT BIA BUMI JAYENDRA
+	                    <marquee behavior="scroll" direction="left" scrollamount="6" width="350px">SELAMAT DATANG DI PT BIA BUMI JAYENDRA
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROYEK BENDUNGAN TEMEF
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DO SOMETHING BIG TODAY</i></marquee></marquee>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DO SOMETHING BIG TODAY</marquee></marquee>
 	                </a>
 	            </div>
 	            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
