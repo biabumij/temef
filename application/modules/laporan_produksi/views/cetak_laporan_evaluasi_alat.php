@@ -45,13 +45,7 @@
 			font-family: helvetica;
 		}
 
-		table.table-border-total, th.table-border-total, td.table-border-total {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-
 		table tr.table-judul{
-			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
 			font-size: 7px;
@@ -651,22 +645,22 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
-				<th width="22%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
-				<th width="8%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th width="24%" align="center" colspan="3">RAP</th>
-				<th width="24%" align="center" colspan="3">REALISASI</th>
-				<th width="17%" align="center" colspan="2">EVALUASI</th>
+				<th width="5%" align="center" rowspan="2" style="border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">&nbsp;<br>NO.</th>
+				<th width="22%" align="center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>URAIAN</th>
+				<th width="8%" align="center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>SATUAN</th>
+				<th width="24%" align="center" colspan="3" style="border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">RAP</th>
+				<th width="24%" align="center" colspan="3" style="border-top:1px solid black; border-bottom:1px solid black;">REALISASI</th>
+				<th width="17%" align="center" colspan="2" style="border-top:1px solid black; border-right:1px solid black; border-bottom:1px solid black;">EVALUASI</th>
 	        </tr>
 			<tr class="table-judul">
-				<th width="7%" align="center">VOLUME</th>
-				<th width="7%" align="center">HARSAT</th>
-				<th width="10%" align="center">NILAI</th>
-				<th width="7%" align="center">VOLUME</th>
-				<th width="7%" align="center">HARSAT</th>
-				<th width="10%" align="center">NILAI</th>
-				<th width="7%" align="center">VOLUME</th>
-				<th width="10%" align="center">NILAI</th>
+				<th width="7%" align="center" style="border-left:1px solid black; border-bottom:1px solid black;">VOLUME</th>
+				<th width="7%" align="center" style="border-bottom:1px solid black;">HARSAT</th>
+				<th width="10%" align="center" style="border-bottom:1px solid black;">NILAI</th>
+				<th width="7%" align="center" style="border-bottom:1px solid black;">VOLUME</th>
+				<th width="7%" align="center" style="border-bottom:1px solid black;">HARSAT</th>
+				<th width="10%" align="center" style="border-bottom:1px solid black;">NILAI</th>
+				<th width="7%" align="center" style="border-bottom:1px solid black;">VOLUME</th>
+				<th width="10%" align="center" style="border-bottom:1px solid black; border-right:1px solid black;">NILAI</th>
 	        </tr>
 			<?php
 				$styleColorA = $total_vol_evaluasi_batching_plant < 0 ? 'color:red' : 'color:black';
@@ -682,14 +676,15 @@
 				$styleColorK = $total_nilai_evaluasi_all < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-total">
-				<th align="center" class="table-border-spesial" colspan="11">
-				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">A. GROUP BP</div>
-				</th>	
+				<th align="center" colspan="3" style="border-left:1px solid black;">
+				<div align="left" style="display:block; font-weight: bold;text-transform:uppercase;">A. GROUP BP</div>
+				</th>
+				<th align="center" colspan="8" style="border-left:1px solid black; border-right:1px solid black;"></th>	
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">1.</th>			
+				<th align="center" style="border-left:1px solid black;">1.</th>			
 				<th align="left">Batching Plant</th>
-				<th align="center">M3</th>
+				<th align="center" style="border-right:1px solid black;">M3</th>
 				<th align="right"><?php echo number_format($vol_batching_plant,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_batching_plant,0,',','.');?></th>
 				<th align="right"><?php echo number_format($batching_plant,0,',','.');?></th>
@@ -697,12 +692,12 @@
 				<th align="right"><?php echo number_format($total_pemakaian_batching_plant / $total_pemakaian_vol_batching_plant,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_batching_plant,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorA ?>"><?php echo number_format($total_vol_evaluasi_batching_plant,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorB ?>; border-right:1px solid black;"><?php echo number_format($total_nilai_evaluasi_batching_plant,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">2.</th>			
-				<th align="left">Truck Mixer</th>
-				<th align="center">M3</th>
+				<th align="center" style="border-left:1px solid black;">2.</th>			
+				<th align="left">Truck Mixer + Insentif</th>
+				<th align="center" style="border-right:1px solid black;">M3</th>
 				<th align="right"><?php echo number_format($vol_truck_mixer,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_truck_mixer,0,',','.');?></th>
 				<th align="right"><?php echo number_format($truck_mixer,0,',','.');?></th>
@@ -710,12 +705,12 @@
 				<th align="right"><?php echo number_format($total_pemakaian_truck_mixer / $total_pemakaian_vol_truck_mixer,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_truck_mixer,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorC ?>"><?php echo number_format($total_vol_evaluasi_truck_mixer,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($total_nilai_evaluasi_truck_mixer,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorD ?>; border-right:1px solid black;"><?php echo number_format($total_nilai_evaluasi_truck_mixer,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">3.</th>			
-				<th align="left">Wheel Loader</th>
-				<th align="center">M3</th>
+				<th align="center" style="border-left:1px solid black;">3.</th>			
+				<th align="left">Wheel Loader + Insentif</th>
+				<th align="center" style="border-right:1px solid black;">M3</th>
 				<th align="right"><?php echo number_format($vol_wheel_loader,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_wheel_loader,0,',','.');?></th>
 				<th align="right"><?php echo number_format($wheel_loader,0,',','.');?></th>
@@ -723,12 +718,12 @@
 				<th align="right"><?php echo number_format($total_pemakaian_wheel_loader / $total_pemakaian_vol_wheel_loader,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_wheel_loader,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorE ?>"><?php echo number_format($total_vol_evaluasi_wheel_loader,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorF ?>; border-right:1px solid black;"><?php echo number_format($total_nilai_evaluasi_wheel_loader,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">4.</th>			
+				<th align="center" style="border-left:1px solid black;">4.</th>			
 				<th align="left">Transfer Semen</th>
-				<th align="center">Unit / Bulan</th>
+				<th align="center" style="border-right:1px solid black;">Unit / Bulan</th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -736,12 +731,12 @@
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_transfer_semen,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorG ?>"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorG ?>; border-right:1px solid black;"><?php echo number_format($total_nilai_evaluasi_transfer_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">5.</th>			
+				<th align="center" style="border-left:1px solid black;">5.</th>			
 				<th align="left">BBM Solar</th>
-				<th align="center">Liter</th>
+				<th align="center" style="border-right:1px solid black;">Liter</th>
 				<th align="right"><?php echo number_format($vol_bbm_solar,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_bbm_solar,0,',','.');?></th>
 				<th align="right"><?php echo number_format($bbm_solar,0,',','.');?></th>
@@ -749,38 +744,41 @@
 				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_bbm_solar - $total_nilai_bbm_sc - $total_nilai_bbm_q,0,',','.');?></th>
 				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($total_vol_evaluasi_bbm_solar,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorI ?>"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
+				<th align="right" style="<?php echo $styleColorI ?>; border-right:1px solid black;"><?php echo number_format($total_nilai_evaluasi_bbm_solar,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
-				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP BP</th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_bp,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_bp,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total" style="<?php echo $styleColorJ ?>"><?php echo number_format($total_nilai_evaluasi_bp,0,',','.');?></th>
+				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL GROUP BP</th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_rap_bp,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_realisasi_bp,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="<?php echo $styleColorJ ?>;background-color:#FFFF00; border-right:1px solid black; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_evaluasi_bp,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" class="table-border-spesial" colspan="11">
+				<th align="center" colspan="3" style="border-left:1px solid black;">
 				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">B. GROUP SC</div>
-				</th>	
+				</th>
+				<th align="center" colspan="8" style="border-left:1px solid black; border-right:1px solid black;"></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">1.</th>			
-				<th align="left" colspan="10">Dump Truck 10M3</th>
+				<th align="center" style="border-left:1px solid black;">1.</th>			
+				<th align="left" colspan="2" style="border-right:1px solid black;">Dump Truck 10 M3</th>
+				<th align="left" colspan="8" style="border-right:1px solid black;"></th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_dmp_10m3_price = 0;
-			foreach ($pembelian_dmp_10m3 as $x):
+			foreach ($pembelian_dmp_10m3 as $key => $x):
 			$ev_dmp_10m3_price = 0 - $x['price'];
 			$styleColorK = $ev_dmp_10m3_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
-				<th align="center"></th>			
-				<th align="left"><?= $x['nama_produk'] ?></th>
-				<th align="center"><?= $x['measure'] ?></th>
+				<th align="center" style="border-left:1px solid black;"></th>			
+				<th align="left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
+				<th align="center" style="border-right:1px solid black;"><?= $x['measure'] ?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -788,13 +786,13 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center">2.</th>			
+				<th align="center" style="border-left:1px solid black;">2.</th>			
 				<th align="left">Stone Crusher</th>
-				<th align="center"><?php
+				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_sc_measure)) {
 					echo $pembelian_sc_measure;
@@ -812,12 +810,12 @@
 				<th align="right"><?php echo number_format($harsat_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">3.</th>			
+				<th align="center" style="border-left:1px solid black;">3.</th>			
 				<th align="left">Genset</th>
-				<th align="center"><?php
+				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_gns_measure)) {
 					echo $pembelian_gns_measure;
@@ -835,12 +833,12 @@
 				<th align="right"><?php echo number_format($harsat_gns,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_gns,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">4.</th>			
+				<th align="center" style="border-left:1px solid black;">4.</th>			
 				<th align="left">Wheel Loader + Insentif</th>
-				<th align="center"><?php
+				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_wl_sc_measure)) {
 					echo $pembelian_wl_sc_measure;
@@ -858,12 +856,12 @@
 				<th align="right"><?php echo number_format($harsat_wl_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_wl_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center">5.</th>			
+				<th align="center" style="border-left:1px solid black;">5.</th>			
 				<th align="left">BBM Solar (SC)</th>
-				<th align="center"><?php
+				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_bbm_sc_measure)) {
 					echo $pembelian_bbm_sc_measure;
@@ -878,38 +876,41 @@
 				<th align="right"><?php echo number_format($harsat_bbm_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_bbm_sc,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
-				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP SC</th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_sc,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_sc,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
+				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL GROUP SC</th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_rap_sc,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_realisasi_sc,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-right:1px solid black; border-top:1px solid black; border-bottom:1px solid black;"><?php echo number_format($total_nilai_evaluasi_sc,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" class="table-border-spesial" colspan="11">
+				<th align="center" colspan="3" style="border-left:1px solid black;">
 				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">B. GROUP QUARRY</div>
-				</th>	
+				</th>
+				<th align="center" colspan="8" style="border-left:1px solid black; border-right:1px solid black;"></th>
 			</tr>
 			<tr class="table-baris1">
-				<th align="center">1.</th>
-				<th align="left" colspan="10">Excavator</th>
+				<th align="center" style="border-left:1px solid black;">1.</th>
+				<th align="left" colspan="2" style="border-right:1px solid black;">Excavator</th>
+				<th align="left" colspan="8" style="border-right:1px solid black;"></th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_exc_price = 0;
-			foreach ($pembelian_exc as $x):
+			foreach ($pembelian_exc as $key => $x):
 			$ev_exc_price = 0 - $x['price'];
 			$styleColorP = $ev_exc_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
-				<th align="center"></th>			
-				<th align="left"><?= $x['nama_produk'] ?></th>
-				<th align="center"><?= $x['measure'] ?></th>
+				<th align="center" style="border-left:1px solid black;"></th>			
+				<th align="left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
+				<th align="center" style="border-right:1px solid black;"><?= $x['measure'] ?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -917,23 +918,25 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center">2.</th>
-				<th align="left" colspan="10">Dump Truck 4M3</th>
+				<th align="center" style="border-left:1px solid black;">2.</th>
+				<th align="left" colspan="2" style="border-right:1px solid black;">Dump Truck 4M3</th>
+				<th align="left" colspan="8" style="border-right:1px solid black;"></th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_dmp_4m3_price = 0;
-			foreach ($pembelian_dmp_4m3 as $x):
+			foreach ($pembelian_dmp_4m3 as $key => $x):
 			$ev_dmp_4m3_price = 0 - $x['price'];
 			$styleColorQ = $ev_dmp_4m3_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
-				<th align="center"></th>			
-				<th align="left"><?= $x['nama_produk'] ?></th>
-				<th align="center"><?= $x['measure'] ?></th>
+				<th align="center" style="border-left:1px solid black;"></th>			
+				<th align="left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
+				<th align="center" style="border-right:1px solid black;"><?= $x['measure'] ?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,0,',','.');?></th>
@@ -941,13 +944,13 @@
 				<th align="right"><?php echo number_format($x['price'] / $x['volume'],0,',','.');?></th>
 				<th align="right"><?php echo number_format($x['price'],0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<?php endforeach; ?>
 			<tr class="table-baris1">
-				<th align="center">3.</th>			
+				<th align="center" style="border-left:1px solid black;">3.</th>			
 				<th align="left">BBM Solar (QUARRY)</th>
-				<th align="center"><?php
+				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_bbm_q_measure)) {
 					echo $pembelian_bbm_q_measure;
@@ -962,29 +965,29 @@
 				<th align="right"><?php echo number_format($harsat_bbm_q,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_bbm_q,0,',','.');?></th>
 				<th align="right"><?php echo number_format(0,2,',','.');?></th>
-				<th align="right"><?php echo number_format(0,0,',','.');?></th>
+				<th align="right" style="border-right:1px solid black;"><?php echo number_format(0,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
-				<th align="right" class="table-border-total" colspan="3">TOTAL GROUP QUARRY</th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_rap_q,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_realisasi_q,0,',','.');?></th>
-				<th align="right" class="table-border-total"></th>
-				<th align="right" class="table-border-total"><?php echo number_format($total_nilai_evaluasi_q,0,',','.');?></th>
+				<th align="right" colspan="3" style="background-color:#FFFF00; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black;">TOTAL GROUP QUARRY</th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"><?php echo number_format($total_nilai_rap_q,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"><?php echo number_format($total_nilai_realisasi_q,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-right:1px solid black; border-top:1px solid black;"><?php echo number_format($total_nilai_evaluasi_q,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">		
-				<th align="right" colspan="3">TOTAL GROUP A + B + C</th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"><?php echo number_format($total_nilai_rap_all,0,',','.');?></th>
-				<th align="right"></th>
-				<th align="right"></th>
-				<th align="right"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
-				<th align="right"></th>
-				<th align="right" style="<?php echo $styleColorK ?>"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
+				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL GROUP A + B + C</th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"><?php echo number_format($total_nilai_rap_all,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
+				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
+				<th align="right" style="<?php echo $styleColorK ?>; background-color:#FFFF00; border-bottom:1px solid black; border-right:1px solid black; border-top:1px solid black;"><?php echo number_format($total_nilai_evaluasi_all,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<table width="98%" border="0" cellpadding="10">

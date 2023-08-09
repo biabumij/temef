@@ -10277,7 +10277,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th class="text-center">1.</th>
-				<th class="text-left" colspan="10">Dump Truck 10M3</th>
+				<th class="text-left" colspan="10">Dump Truck 10 M3</th>
 	        </tr>
 			<?php
 			$ev_dmp_10m3_price = 0;
