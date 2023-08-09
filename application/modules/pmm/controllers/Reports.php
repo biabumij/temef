@@ -14038,7 +14038,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr>
 				<th class="text-center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
-				<div class="text-left" style="display: block;font-weight:bold; text-transform:uppercase;">B. GROUP QUARRY</div>
+				<div class="text-left" style="display: block;font-weight:bold; text-transform:uppercase;">C. GROUP QUARRY</div>
 				</th>
 				<th class="text-center" colspan="3" style="border-right:1px solid black;"></th>
 			</tr>

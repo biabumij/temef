@@ -891,7 +891,7 @@
 	        </tr>
 			<tr class="table-total">
 				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
-				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">B. GROUP QUARRY</div>
+				<div align="left" style="display: block;font-weight: bold;text-transform:uppercase;">C. GROUP QUARRY</div>
 				</th>
 				<th align="center" colspan="8" style="border-right:1px solid black;"></th>
 			</tr>
