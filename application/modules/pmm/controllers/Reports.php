@@ -10280,14 +10280,16 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="10">Dump Truck 10 M3</th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_dmp_10m3_price = 0;
-			foreach ($pembelian_dmp_10m3 as $x):
+			$ev_dmp_10m3_price = 0;
+			foreach ($pembelian_dmp_10m3 as $key => $x):
 			$ev_dmp_10m3_price = 0 - $x['price'];
 			$styleColorK = $ev_dmp_10m3_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left"><?= $x['nama_produk'] ?></th>
+				<th class="text-left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
 				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -10407,14 +10409,15 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="10">Excavator</th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_exc_price = 0;
-			foreach ($pembelian_exc as $x):
+			foreach ($pembelian_exc as $key => $x):
 			$ev_exc_price = 0 - $x['price'];
 			$styleColorP = $ev_exc_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left"><?= $x['nama_produk'] ?></th>
+				<th class="text-left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
 				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
@@ -10431,14 +10434,15 @@ class Reports extends CI_Controller {
 				<th class="text-left" colspan="10">Dump Truck 4M3</th>
 	        </tr>
 			<?php
+			$alpha = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 			$ev_dmp_4m3_price = 0;
-			foreach ($pembelian_dmp_4m3 as $x):
+			foreach ($pembelian_dmp_4m3 as $key => $x):
 			$ev_dmp_4m3_price = 0 - $x['price'];
 			$styleColorQ = $ev_dmp_4m3_price < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center"></th>			
-				<th class="text-left"><?= $x['nama_produk'] ?></th>
+				<th class="text-left"><?php echo $alpha[$key++];?>. <?= $x['nama_produk'] ?></th>
 				<th class="text-center"><?= $x['measure'] ?></th>
 				<th class="text-right"><?php echo number_format(0,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format(0,0,',','.');?></th>
