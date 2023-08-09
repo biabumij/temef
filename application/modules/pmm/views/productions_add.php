@@ -338,7 +338,7 @@
             },
             //minDate: new Date()+0,
 			//maxDate: new Date()+1,
-            minDate: moment().add(-7, 'd').toDate(),
+            minDate: moment().add(-10, 'd').toDate(),
 			maxDate: moment().add(+0, 'd').toDate(),
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
