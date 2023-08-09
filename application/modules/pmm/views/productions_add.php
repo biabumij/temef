@@ -336,10 +336,10 @@
             locale: {
                 format: 'DD-MM-YYYY'
             },
-           //minDate: new Date()+0,
+            //minDate: new Date()+0,
 			//maxDate: new Date()+1,
-            minDate: moment().add(-1, 'M').toDate(),
-			maxDate: moment().add(+1, 'M').toDate(),
+            minDate: moment().add(-7, 'd').toDate(),
+			maxDate: moment().add(+0, 'd').toDate(),
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY'));
