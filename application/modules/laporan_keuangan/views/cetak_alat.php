@@ -612,8 +612,8 @@
 
 			$total_nilai_evaluasi_transfer_semen = ($total_pemakaian_transfer_semen!=0)?$transfer_semen - $total_pemakaian_transfer_semen * 1:0;
 
-			$total_vol_evaluasi_bbm_solar = ($total_pemakaian_vol_bbm_solar!=0)?$vol_bbm_solar - $total_pemakaian_vol_bbm_solar * 1:0;
-			$total_nilai_evaluasi_bbm_solar = ($total_pemakaian_bbm_solar!=0)?$bbm_solar - $total_pemakaian_bbm_solar * 1:0;
+			$total_vol_evaluasi_bbm_solar = ($total_pemakaian_vol_bbm_solar!=0)?$vol_bbm_solar - ($total_pemakaian_vol_bbm_solar  - $total_vol_bbm_sc - $total_vol_bbm_q) * 1:0;
+			$total_nilai_evaluasi_bbm_solar = ($total_pemakaian_bbm_solar!=0)?$bbm_solar - ($total_pemakaian_bbm_solar - $total_nilai_bbm_sc - $total_nilai_bbm_q) * 1:0;
 
 			$total_nilai_evaluasi_exc = (0-$total_pemakaian_exc);
 			$total_nilai_evaluasi_dmp_4m3 = (0-$total_pemakaian_dmp_4m3);
@@ -645,10 +645,10 @@
 			?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" style="border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">&nbsp;<br>NO.</th>
-				<th width="30%" align="center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>URAIAN</th>
-				<th width="10%" align="center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>SATUAN</th>
-				<th width="55%" align="center" colspan="3" style="border:1px solid black;">REALISASI</th>
+				<th width="5%" align="center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">&nbsp;<br>NO.</th>
+				<th width="30%" align="center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>URAIAN</th>
+				<th width="10%" align="center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>SATUAN</th>
+				<th width="55%" align="center" colspan="3" style="background-color:#e69500; border:1px solid black;">REALISASI</th>
 	        </tr>
 			<tr class="table-judul">
 				<th width="15%" align="right" style="border-left:1px solid black; border-bottom:1px solid black;">VOLUME</th>
@@ -656,10 +656,10 @@
 				<th width="25%" align="right" style="border-bottom:1px solid black; border-right:1px solid black;">NILAI</th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3" style="border-left:1px solid black;">
+				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
 				<div align="left" style="display:block; font-weight:bold; text-transform:uppercase;">A. GROUP BP</div>
 				</th>
-				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;"></th>	
+				<th align="center" colspan="3" style="border-right:1px solid black;"></th>	
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">1.</th>			
@@ -708,10 +708,10 @@
 				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_bp,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3" style="border-left:1px solid black;">
+				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
 				<div align="left" style="display: block;font-weight:bold; text-transform:uppercase;">B. GROUP SC</div>
 				</th>
-				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;"></th>
+				<th align="center" colspan="3" style="border-right:1px solid black;"></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">1.</th>			
@@ -810,10 +810,10 @@
 				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-bottom:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_sc,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-				<th align="center" colspan="3" style="border-left:1px solid black;">
+				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
 				<div align="left" style="display: block;font-weight:bold; text-transform:uppercase;">B. GROUP QUARRY</div>
 				</th>
-				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;"></th>
+				<th align="center" colspan="3" style="border-right:1px solid black;"></th>
 			</tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">1.</th>
