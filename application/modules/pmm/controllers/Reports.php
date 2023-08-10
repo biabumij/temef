@@ -1840,9 +1840,8 @@ class Reports extends CI_Controller {
 	        ?>
 
 			<tr class="table-active">
-				<th class="text-center" colspan="5" style="text-transform:uppercase">
-				Evaluasi Pemakaian Bahan Baku
-				(<?php
+				<th class="text-left" colspan="5" style="text-transform:uppercase">
+				PERIODE : <?php
 				$search = array(
 				'January',
 				'February',
@@ -1877,7 +1876,7 @@ class Reports extends CI_Controller {
 
 				echo str_replace($search, $replace, $subject);
 
-				?>)
+				?>
 				</th>
 			</tr>
 			<tr>
@@ -6326,10 +6325,7 @@ class Reports extends CI_Controller {
 			$total_laba_9 = $total_9_nilai - $total_biaya_9_biaya;
 			$total_laba_all = $total_all_nilai - $total_biaya_all_biaya;
 			?>
-
-			<tr class="table-active">
-				<th class="text-center" colspan="6" style="text-transform:uppercase">Presentase Prognosa Terhadap RAP</th>
-			</tr>
+			
 			<tr>
 				<th width="5%" class="text-center" rowspan="2" style='background-color:rgb(188,188,188); color:black; vertical-align:middle;'>NO.</th>
 				<th class="text-center" rowspan="2" style='background-color:rgb(188,188,188); color:black; vertical-align:middle;'>URAIAN</th>

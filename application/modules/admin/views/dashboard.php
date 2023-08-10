@@ -217,8 +217,8 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 700, 500],
                         stops: [
-                            [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(188,188,188)']
+                            [0, 'rgb(238,238,238)'],
+                            [1, 'rgb(153,153,153)']
                         ]
                     },
                 },
@@ -383,10 +383,11 @@
                     marginRight: 130,
                     marginBottom: 75,
                     backgroundColor: {
-                        linearGradient: [500, 0, 0, 700],
+                        //linearGradient: [500, 0, 0, 700],
+                        linearGradient: [0, 0, 700, 500],
                         stops: [
-                            [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(188,188,188)']
+                            [0, 'rgb(238,238,238)'],
+                            [1, 'rgb(153,153,153)']
                         ]
                     },
                 },
@@ -537,8 +538,8 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 700, 500],
                         stops: [
-                            [0, 'rgb(255,255,255)'],
-                            [1, 'rgb(188,188,188)']
+                            [0, 'rgb(238,238,238)'],
+                            [1, 'rgb(153,153,153)']
                         ]
                     },
                 },
