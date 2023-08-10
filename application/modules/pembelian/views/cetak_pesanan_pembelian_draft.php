@@ -82,12 +82,17 @@
 			</tr>
 			<?php
 			foreach ($details as $dt) {
-            ?>  
+            ?>
 			<tr>
-				<th>No. Penawaran <?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></th>
+				<th>No. Penawaran</th>
 				<th width="10px">:</th>
 				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
 			</tr>
+			<!--<tr>
+				<th>No. Penawaran <?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></th>
+				<th width="10px">:</th>
+				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
+			</tr>-->
 			<?php
 			}
 			?>
