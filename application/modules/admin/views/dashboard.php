@@ -560,7 +560,7 @@
                         fontSize: '14px',
                         fontFamily: 'arial'
                     },
-                    text: '(<?php echo $date_minggu_1_awal = date('F', strtotime($date_now));?>)'.toUpperCase(),
+                    text: '(<?php echo tgl_indo(date('-m-'));?>)'.toUpperCase(),
                     x: -20
                 },
                 xAxis: { //X axis menampilkan data bulan
