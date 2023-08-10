@@ -10517,18 +10517,18 @@ class Reports extends CI_Controller {
 			<style type="text/css">
 				table tr.table-active{
 					background-color: #e69500;
-					font-size: 11px;
+					font-size: 12px;
 					font-weight: bold;
 				}
 					
 				table tr.table-baris1{
-					font-size: 11px;
-					
+					font-size: 12px;
+					background-color: #F0F0F0;
 				}
 
 				table tr.table-total{
-					font-size: 11px;
-					background-color: #eeeeee;
+					font-size: 12px;
+					background-color: #cccccc;
 					font-weight: bold;
 				}
 			</style>
