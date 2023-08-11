@@ -54,7 +54,13 @@
                                     <label class="col-sm-2 control-label">Kop Surat</label>
                                     <div class="col-sm-10">
                                         <input type="file" name="kop_surat" class="form-control" data-required="false" />
-                                        <small><a href="<?= base_url();?>uploads/kop_surat/kop_temef.png" target="_blank">Lihat</a></small>
+                                        <?php
+                                        if(!empty($sp['kop_surat'])){
+                                            ?>
+                                        <small><a href="<?= base_url();?>uploads/kop_surat/<?= $sp['kop_surat'];?>" target="_blank">Lihat</a></small>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                     <div class="col-sm-10 col-sm-offset-2">
                                         <?php
@@ -68,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" name="submit" class="btn btn-primary" id="btn-submit">Submit</button>
+                                      <button type="submit" name="submit" class="btn btn-success" style="width:15%; font-weight:bold;" id="btn-submit"><i class="fa fa-send"></i> Kirim</button>
                                     </div>
                                 </div>
                             </form>
