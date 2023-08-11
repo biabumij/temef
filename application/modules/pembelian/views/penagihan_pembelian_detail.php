@@ -385,7 +385,7 @@
                                 <?php
                                 if ($row['verifikasi_dok'] == 'SUDAH') { ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
                                     ?>
                                         <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
                                         <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
