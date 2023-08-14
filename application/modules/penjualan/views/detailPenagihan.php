@@ -259,16 +259,16 @@
                                 </div>
                                 <br /><br />
                                 <div class="text-center">
-                                    <div class="col-sm-12 text-right">
+                                    <div class="col-sm-12 text-center">
                                         <?php if ($penagihan["status"] === "DRAFT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success btn-sm" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
+                                                    <button type="submit" class="btn btn-success btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
                                                 </form>
                                                 <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
                                                 </form>
                                             <?php
                                             }
@@ -279,11 +279,18 @@
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "OPEN") : ?>
                                         <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a>
-                                        <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
                                             ?>
                                             <a class="btn btn-warning" style="width:15%; font-weight:bold;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
                                             <a class="btn btn-success" style="width:15%; font-weight:bold;" href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
+                                            ?>
+                                            
                                             <a class="btn btn-default" style="width:15%; font-weight:bold;" href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>"><i class="fa fa-edit"></i> Edit</a>
                                             <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
                                             <?php
@@ -534,7 +541,7 @@
 
         function DeleteData(href) {
             bootbox.confirm({
-                message: "Apakah anda yakin untuk proses data ini ?",
+                message: "Apakah anda yakin untuk menghapus tagihan ini ? <br /> * Jika ada data pembayaran, maka akan terhapus.<br /> * Status surat jalan akan kembali 'UNCREATED'.",
                 buttons: {
                     confirm: {
                         label: 'Yes',
