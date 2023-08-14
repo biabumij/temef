@@ -1383,8 +1383,14 @@ class Pmm extends CI_Controller {
 				$row['total'] = number_format($row['total'],2,',','.');
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-success" title="Upload Lampiran" ><i class="fa fa-upload"></i> </a>';
-				$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
+					$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-success" title="Upload Lampiran" ><i class="fa fa-upload"></i> </a>';
+					$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
+
 				$row['lampiran'] = '<a href="'.base_url().'uploads/stock_opname/'.$row['lampiran'].'" target="_blank">'.$row['lampiran'].'</a>';
 
 				$data[] = $row;
