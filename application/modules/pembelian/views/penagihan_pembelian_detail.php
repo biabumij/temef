@@ -358,23 +358,12 @@
                                     </div>
                                 </div>
                                 <br />
-                                <div class="text-center">
-                                <div class="col-sm-12 text-right">
-                                    <?php if ($row["status"] === "DRAFT") : ?>
-                                        <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button></blink>
-                                        </form>
-                                        <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/" . $row["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>
-                                        </form>
-
-                                    <?php endif; ?>
-                                </div>
+                            <div class="text-center">
                                 <?php
                                 if ($row['verifikasi_dok'] == 'BELUM') { ?>
                                     <blink><p style='color:red; font-weight:bold;'>VERIFIKASI DOKUMEN TERLEBIH DAHULU !!</p></blink>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
                                     ?>
                                     <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                     <?php
@@ -382,32 +371,45 @@
                                 }
                                 ?>
                                 <br />
-                                <?php
-                                if ($row['verifikasi_dok'] == 'SUDAH') { ?>
+                                <?php if ($row["verifikasi_dok"] === "SUDAH") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
                                     ?>
-                                        <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
-                                        <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
-                                        <a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"  style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
+                                    <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                    <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                     <?php
                                     }
-                                }
+                                    ?>
+
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16){
+                                    ?>
+                                    <a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"  style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php endif;
                                 ?>
 
-                                <?php
-                                if ($row['verifikasi_dok'] == 'LENGKAP') { ?>
+                                <?php if ($row["verifikasi_dok"] === "LENGKAP") : ?>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                    ?>
+                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
+                                    <?php
+                                    }
+                                    ?>
+
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
                                     <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
-                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning" style="width:20%; font-weight:bold;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
                                     <?php
                                     }
-                                }
+                                    ?>
+                                    <?php endif;
                                 ?>
-
                             </div>
                             <div class="text-center">
                                 <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
@@ -607,7 +609,7 @@
 
         function DeleteData(href) {
             bootbox.confirm({
-                message: "Apakah anda yakin untuk proses data ini ?",
+                message: "Apakah anda yakin untuk menghapus tagihan ini ? <br /> * Jika ada data pembayaran, maka akan terhapus.<br /> * Status surat jalan akan kembali 'UNCREATED'.",
                 buttons: {
                     confirm: {
                         label: 'Yes',
