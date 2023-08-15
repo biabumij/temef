@@ -167,7 +167,7 @@
 						<tr>
 							<td align="center">
 								<u><b><?php echo $row['pic'];?></b></u><br />
-								<b>PjLogistik</b>
+								<b>Logistik</b>
 							</td>
 							<td align="center">
 								
