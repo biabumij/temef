@@ -124,8 +124,8 @@
            </tr>
 		</table>
 		<?php
-        $ka_plant = $this->pmm_model->GetNameGroup(15);
-        ?>
+			$ka_logistik = $this->pmm_model->GetNameGroup(11);
+		?>
 		<table width="98%" border="0" cellpadding="50">
 			<tr >
 				<td width="5%"></td>
@@ -133,13 +133,13 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
-								Penerima
+								Pengirim
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center" >
-								Pengirim
+								Penerima
 							</td>	
 						</tr>
 						<tr>
@@ -161,20 +161,20 @@
 								
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_agustinus.png" width="100px">
 							</td>
 						</tr>
 						<tr>
 							<td align="center">
 								<u><b><?php echo $row['pic'];?></b></u><br />
-								<b>Pj. Logistik</b>
+								<b>Logistik</b>
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center" >
-								<u><b>Agustinus P</b></u><br />
-								<b>Pj. Logistik</b>
+								<u><b><?= $ka_logistik['admin_name'];?></b></u><br />
+								<b><?= $ka_logistik['admin_group_name'];?></b>
 							</td>
 						</tr>
 					</table>
