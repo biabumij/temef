@@ -124,8 +124,8 @@
            </tr>
 		</table>
 		<?php
-			$ka_logistik = $this->pmm_model->GetNameGroup(11);
-		?>
+        $ka_logistik = $this->pmm_model->GetNameGroup(11);
+        ?>
 		<table width="98%" border="0" cellpadding="50">
 			<tr >
 				<td width="5%"></td>
@@ -133,13 +133,13 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
-								Pengirim
+								Penerima
 							</td>
 							<td align="center">
 								
 							</td>
 							<td align="center" >
-								Penerima
+								Pengirim
 							</td>	
 						</tr>
 						<tr>
@@ -167,7 +167,7 @@
 						<tr>
 							<td align="center">
 								<u><b><?php echo $row['pic'];?></b></u><br />
-								<b>Logistik</b>
+								<b>PjLogistik</b>
 							</td>
 							<td align="center">
 								

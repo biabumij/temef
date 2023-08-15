@@ -123,5 +123,64 @@
                <input type="hidden" id="total" value="<?php echo $total + $ppn;?>">
            </tr>
 		</table>
+		<?php
+			$ka_logistik = $this->pmm_model->GetNameGroup(11);
+		?>
+		<table width="98%" border="0" cellpadding="50">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center">
+								Pengirim
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center" >
+								Penerima
+							</td>	
+						</tr>
+						<tr>
+							<td align="center">
+								<b><?php echo $row['supplier_name'];?></b>
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center" >
+								<b>PT. Bia Bumi Jayendra</b>
+							</td>	
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_agustinus.png" width="100px">
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<u><b><?php echo $row['pic'];?></b></u><br />
+								<b>Logistik</b>
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center" >
+								<u><b><?= $ka_logistik['admin_name'];?></b></u><br />
+								<b><?= $ka_logistik['admin_group_name'];?></b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 	</body>
 </html>
