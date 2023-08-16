@@ -1391,7 +1391,7 @@ class Pmm extends CI_Controller {
 					$row['actions'] = '-';
 				}
 
-				if($this->session->userdata('admin_group_id') == 1){
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
 					$row['edit'] = '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '-';
