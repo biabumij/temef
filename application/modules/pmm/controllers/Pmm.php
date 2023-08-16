@@ -1386,21 +1386,9 @@ class Pmm extends CI_Controller {
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
 					$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-success" title="Upload Lampiran" ><i class="fa fa-upload"></i> </a>';
-					$row['actions'] = $uploads_surat_jalan;
+					$row['actions'] = $uploads_surat_jalan. '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
-				}
-
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
-					$row['edit'] = '&nbsp;<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
-				}else {
-					$row['edit'] = '-';
-				}
-
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
-					$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				}else {
-					$row['delete'] = '-';
 				}
 
 				$row['lampiran'] = '<a href="'.base_url().'uploads/stock_opname/'.$row['lampiran'].'" target="_blank">'.$row['lampiran'].'</a>';

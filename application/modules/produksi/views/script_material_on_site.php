@@ -76,18 +76,12 @@
             },
             {
                 "data": "actions"
-            },
-            {
-                "data": "edit"
-            },
-            {
-                "data": "delete"
             }
         ],
         pageLength: 50,
         responsive: true,
         "columnDefs": [{
-            "targets": [0, 1, 3, 6, 7, 8, 9, 10, 11],
+            "targets": [0, 1, 3, 6, 7, 8, 9],
             "className": 'text-center',
         },
 		{

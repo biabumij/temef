@@ -20,13 +20,11 @@
                 <th class="text-center">Produk</th>
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
-                <th class="text-center">Catatan</th>
+                <th class="text-center" width="20%">Catatan</th>
                 <th class="text-center">Lampiran</th>
                 <th class="text-center">Dibuat Oleh</th>
                 <th class="text-center">Dibuat Tanggal</th>
-                <th class="text-center">Uploads</th>
-                <th class="text-center">Edit</th>
-                <th class="text-center">Hapus</th>
+                <th class="text-center">Tindakan</th>
             </tr>
         </thead>
         <tbody>
