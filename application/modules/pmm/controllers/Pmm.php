@@ -1521,7 +1521,7 @@ class Pmm extends CI_Controller {
 						'status' => 'PUBLISH'
 					);
 					$arr_mats['created_by'] = $this->session->userdata('admin_id');
-					$arr_mats['updated_by'] = $this->session->userdata('admin_id');
+					$arr_mats['updated_on'] = date('Y-m-d H:i:s');
 					$this->db->insert('pmm_remaining_materials',$arr_mats);
 				}
 			}
