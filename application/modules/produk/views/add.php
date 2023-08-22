@@ -38,7 +38,7 @@
                                 <form class="form-horizontal form-new" action="<?= site_url('produk/form_produk');?>" method="POST">
                                     <input type="hidden" name="id" value="<?= (isset($edit)) ? $edit['id'] : '' ;?>">
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-10">
                                             <h5>Info Produk</h5>
                                             <hr />
                                             <div class="form-group">
