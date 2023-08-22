@@ -101,13 +101,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Membuat HPP Bahan Baku !!');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			redirect('/kunci_&_approval/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Membuat HPP Bahan Baku !!');
+			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 			redirect('admin/kunci_&_approval');
 		}
 	}
@@ -203,13 +203,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Membuat Akumulasi Pergerakan Bahan Baku !!');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			redirect('/kunci_&_approval/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Akumulasi Pergerakan Bahan Baku !!');
+			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 			redirect('admin/kunci_&_approval');
 		}
 	}
@@ -393,13 +393,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Menyetujui Laporan !!');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			redirect('admin/kunci_&_approval');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Laporan !!');
+			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 			redirect('admin/kunci_&_approval');
 		}
 	}

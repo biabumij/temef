@@ -50,7 +50,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbaku" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -71,7 +71,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-betonreadymix" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -91,7 +91,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-jasa" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -111,7 +111,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-peralatan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -167,13 +167,12 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
         var table_betonreadymix = $('#table-betonreadymix').DataTable( {
@@ -193,13 +192,12 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
         var table_jasa = $('#table-jasa').DataTable( {
@@ -219,13 +217,12 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
         
@@ -246,13 +243,12 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
 
     </script>
