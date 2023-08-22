@@ -470,13 +470,13 @@ class Rak extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Membuat Rencana Kerja !!');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			redirect('admin/rencana_kerja');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Rencana Kerja !!');
+			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 			redirect('admin/rencana_kerja');
 		}
 	}
@@ -1080,13 +1080,13 @@ class Rak extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Membuat Rencana Cash FLow !!');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			redirect('admin/rencana_cash_flow');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Membuat Rencana Cash Flow !!');
+			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 			redirect('admin/rencana_cash_flow');
 		}
 	}
