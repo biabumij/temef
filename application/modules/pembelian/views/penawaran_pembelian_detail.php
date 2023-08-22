@@ -16,9 +16,7 @@
 
 <body>
     <div class="wrap">
-
         <?php echo $this->Templates->PageHeader();?>
-        
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
             <div class="content">
