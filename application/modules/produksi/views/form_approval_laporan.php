@@ -38,7 +38,7 @@
                             <div class="panel-content">
                                 <form method="POST" action="<?php echo site_url('produksi/submit_approval_laporan');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-3">
                                             <label>Tanggal Periode Laporan</label>
                                         </div>
 										 <div class="col-sm-2">
