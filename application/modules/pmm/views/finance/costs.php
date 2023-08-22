@@ -27,16 +27,16 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="panel">
                         <div class="panel-header">
-                            <h3 class="section-subtitle">Biaya</h3>
+                            <h3 class="section-subtitle">Biaya BUA</h3>
                         </div>
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="<?= base_url("pmm/biaya/tambah_biaya") ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Biaya</a>
+                                    <a href="<?= base_url("pmm/biaya/tambah_biaya") ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Biaya BUA</a>
                                 </div>
                             </div>
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Biaya</a></li>
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Biaya BUA</a></li>
                             </ul>
                          
                             <div class="tab-content">
