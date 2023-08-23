@@ -300,9 +300,9 @@ class Request_materials extends CI_Controller {
 				
 			}else if($type == 2){
 				$arr = array('status'=>'REJECTED');
-				$this->session->set_flashdata('notif_success','Berhasil Menolak Permintaan !!');
+				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 			}else {
-				$this->session->set_flashdata('notif_success','Berhasil Menambahkan Permintaan !!');
+				$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 				$arr = array('status'=>'WAITING');
 			}
 
