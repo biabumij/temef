@@ -77,7 +77,7 @@
 
                     <div class="col-sm-12">
                         <figure class="highcharts-figure">
-                            <div id="container"></div>
+                            <div id="container" style="border-radius:10px;"></div>
                         
                         </figure>
                         <br />
@@ -85,7 +85,7 @@
             
                     <div class="col-sm-12">
                         <figure class="highcharts-figure">
-                            <div id="container_laba_rugi"></div>
+                            <div id="container_laba_rugi" style="border-radius:10px;"></div>
                             
                         </figure>
                         <br />
@@ -93,7 +93,7 @@
                     
                     <div class="col-sm-12">
                         <figure class="highcharts-figure">
-                            <div id="container_rencana_kerja_perminggu"></div>
+                            <div id="container_rencana_kerja_perminggu" style="border-radius:10px;"></div>
                             
                         </figure>
                         <br />
@@ -101,12 +101,12 @@
             
                     <div role="tabpanel" class="tab-pane" id="laporan_rap">
                         <div class="col-sm-8">
-                            <div class="panel panel-default">
+                            <div class="panel" style="border-radius:10px;">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3>
+                                        <center><h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3></center>
                                     </div>
                                     <div style="margin: 20px">
-                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                        <div id="wait-rap" style=" text-align: center; align-content: center; display: none;">	
                                             <div>Please Wait</div>
                                             <div class="fa-3x">
                                                 <i class="fa fa-spinner fa-spin"></i>
@@ -122,9 +122,9 @@
         
                     <div role="tabpanel" class="tab-pane" id="laporan_evaluasi">
                         <div class="col-sm-8">
-                            <div class="panel panel-default">
+                            <div class="panel" style="border-radius:10px;">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3>
+                                    <center><h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3></center>
                                 </div>
                                 <div style="margin: 20px">
                                     <!--<div class="row"> 
@@ -133,7 +133,7 @@
                                         </div>   
                                     </div>
                                     <br />-->
-                                    <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                    <div id="wait-evaluasi" style=" text-align: center; align-content: center; display: none;">	
                                         <div>Please Wait</div>
                                         <div class="fa-3x">
                                             <i class="fa fa-spinner fa-spin"></i>
@@ -217,14 +217,14 @@
                     backgroundColor: {
                         linearGradient: [0, 0, 700, 500],
                         stops: [
-                            [0, 'rgb(238,238,238)'],
-                            [1, 'rgb(153,153,153)']
+                            [0, 'rgb(91,91,91)'],
+                            [1, 'rgb(140,140,140)']
                         ]
                     },
                 },
                 title: {
                     style: {
-                        color: '#000000',
+                        color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
                         fontFamily: 'arial'
@@ -234,7 +234,7 @@
                 },
                 subtitle: {
                     style: {
-                        color: '#000000',
+                        color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
                         fontFamily: 'arial'
@@ -245,7 +245,7 @@
                 xAxis: { //data bulan
                     labels: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -261,7 +261,7 @@
                     //},
                     title: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -275,7 +275,7 @@
                     }],
                     labels: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -286,7 +286,7 @@
                     max: 110,
                     tickInterval: 10,
                 },
-                tooltip: { 
+                tooltip: {
                 //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
                 //akan menampikan data di titik tertentu di grafik saat mouseover
                     formatter: function() {
@@ -386,14 +386,14 @@
                         //linearGradient: [500, 0, 0, 700],
                         linearGradient: [0, 0, 700, 500],
                         stops: [
-                            [0, 'rgb(238,238,238)'],
-                            [1, 'rgb(153,153,153)']
+                            [0, 'rgb(106,168,79)'],
+                            [1, 'rgb(150,194,131)']
                         ]
                     },
                 },
                 title: {
                     style: {
-                        color: '#000000',
+                        color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
                         fontFamily: 'arial'
@@ -403,7 +403,7 @@
                 },
                 subtitle: {
                     style: {
-                        color: '#000000',
+                        color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
                         fontFamily: 'arial'
@@ -414,7 +414,7 @@
                 xAxis: { //X axis menampilkan data bulan
                     labels: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -430,7 +430,7 @@
                     //},
                     title: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -444,7 +444,7 @@
                     }],
                     labels: {
                         style: {
-                            color: '#000000',
+                            color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
                             fontFamily: 'arial'
@@ -679,7 +679,7 @@
 
     function TableRAP()
     {
-        $('#wait').fadeIn('fast');   
+        $('#wait-rap').fadeIn('fast');   
         $.ajax({
             type    : "POST",
             url     : "<?php echo site_url('pmm/reports/dashboard_rap'); ?>/"+Math.random(),
@@ -689,7 +689,7 @@
             },
             success : function(result){
                 $('#box-rap').html(result);
-                $('#wait').fadeOut('fast');
+                $('#wait-rap').fadeOut('fast');
             }
         });
     }
@@ -723,7 +723,7 @@
 
     function TableEvaluasi()
     {
-        $('#wait').fadeIn('fast');   
+        $('#wait-evaluasi').fadeIn('fast');   
         $.ajax({
             type    : "POST",
             url     : "<?php echo site_url('pmm/reports/dashboard_evaluasi_bahan'); ?>/"+Math.random(),
@@ -733,7 +733,7 @@
             },
             success : function(result){
                 $('#box-ajax-evaluasi').html(result);
-                $('#wait').fadeOut('fast');
+                $('#wait-evaluasi').fadeOut('fast');
             }
         });
     }
