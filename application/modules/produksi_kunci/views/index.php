@@ -43,7 +43,13 @@
                                             <li><a href="<?= site_url('produksi/form_hpp_bahan_baku'); ?>">HPP Pergerakan Bahan Baku</a>
                                             <li><a href="<?= site_url('produksi/form_akumulasi'); ?>">Akumulasi Pergerakan Bahan Baku</a></li>
                                             <!--<li><a href="<?= site_url('produksi/form_approval'); ?>">Approval BUA, Diskonto, Persiapan</a></li>-->
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
+                                            ?>
                                             <li><a href="<?= site_url('produksi/form_approval_laporan'); ?>">Approval Laporan</a></li>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
                                     </div>
                                 </h3>
@@ -54,7 +60,13 @@
                                     <li role="presentation" class="active"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab">HPP Pergerakan Bahan Baku</a>
                                     <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>
                                     <!--<li role="presentation"><a href="#approval" aria-controls="approval" role="tab" data-toggle="tab">Approval BUA, Diskonto, Persiapan</a>-->
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
+                                    ?>
                                     <li role="presentation"><a href="#approval_laporan" aria-controls="approval_laporan" role="tab" data-toggle="tab">Approval Laporan</a>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
 
                                 <div class="tab-content">
