@@ -1840,7 +1840,7 @@ class Reports extends CI_Controller {
 	        ?>
 
 			<tr class="table-active">
-				<th class="text-left" colspan="5" style="text-transform:uppercase">
+				<th class="text-center" colspan="5" style="text-transform:uppercase">
 				PERIODE : <?php
 				$search = array(
 				'January',
