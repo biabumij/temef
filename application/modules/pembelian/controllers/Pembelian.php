@@ -646,7 +646,7 @@ class Pembelian extends Secure_Controller
                         'nomor_transaksi' => $this->input->post('nomor_transaksi_dp'),
                         'total' => $uang_muka,
                         'tanggal_pembayaran' => $tanggal_invoice,
-                        'status' => 'Belum Disetujui',
+                        'status' => 'DISETUJUI',
                         'created_by' => $this->session->userdata('admin_id'),
                         'created_on' => date('Y-m-d H:i:s')
                     );
