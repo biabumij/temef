@@ -304,8 +304,6 @@
             var value = $(this).find(':selected').attr('data-address')
             var idSupplier = $(this).find(':selected').attr('data-idSupplier')
             $("#alamat_supplier").val(value);
-
-
         });
 
         function tambahData()
