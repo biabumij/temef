@@ -179,7 +179,7 @@
 		});
 
         function DeleteEvaluasiSupplier(id) {
-        bootbox.confirm("Are you sure to delete this data ?", function(result) {
+        bootbox.confirm("Apakah anda yakin untuk menghapus data ini ? ?", function(result) {
                 // console.log('This was logged in the callback: ' + result); 
                 if (result) {
                     $.ajax({

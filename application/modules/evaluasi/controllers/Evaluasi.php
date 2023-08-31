@@ -233,7 +233,7 @@ class Evaluasi extends Secure_Controller {
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
 				$row['print'] = '<a href="'.site_url().'evaluasi/cetak_evaluasi_supplier/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteEvaluasiBahan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteEvaluasiSupplier('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -263,6 +263,19 @@ class Evaluasi extends Secure_Controller {
         $pdf->SetTitle('Evaluasi Supplier');
         $pdf->nsi_html($html);
 		$pdf->Output('evaluasi_sipplier.pdf', 'I');
+	}
+
+	public function delete_evaluasi_supplier()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$this->db->delete('evaluasi_supplier',array('id'=>$id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
 	}
 
 }
