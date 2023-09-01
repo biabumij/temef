@@ -16,13 +16,9 @@
 	<br />
 		<table width="98%" border="1" cellpadding="3">
 			<tr>
-				<td align="center" rowspan="4" width="70%" style="font-weight:bold; font-size:14px;">&nbsp; <br />EVELUASI SUPPLIER</td>
+				<td align="center" rowspan="3" width="70%" style="font-weight:bold; font-size:14px;">&nbsp; <br />EVELUASI SUPPLIER</td>
 				<td align="left" width="15%">Nama Dok.</td>
 				<td align="left" width="15%">FM-ES</td>
-			</tr>
-			<tr>
-				<td align="left">No. Dokumen</td>
-				<td align="left">-</td>
 			</tr>
 			<tr>
 				<td align="left">No. Revisi</td>
@@ -219,7 +215,7 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td align="center" style="border:1px solid black;" width="3%"><?= $this->pmm_finance->CheckorNoNew3(($total * 100) / 50);?></td>
-				<td width="97%">> 56 - 65 Memenuhi syarat dengan catatan perbaikan:<?php echo number_format($total,0,',','.');?></td>
+				<td width="97%">> 56 - 65 Memenuhi syarat dengan catatan perbaikan:</td>
 			</tr>
 			<tr>
 				<td align="left" width="3%"></td>
@@ -242,10 +238,10 @@
 		<table width="98%" border="1" cellpadding="3">	
 			<tr>
 				<td align="left" width="25%">Lokasi <br /><br /> Menara Bidakara 1 Lt.2, Jl. Jend. Gatot Subrot0 Kav 71-73, Tebet, Jakarta Selatan</td>
-				<td align="left" width="25%">Disetujui: <br /><br /><br />
+				<td align="left" width="25%">Disetujui: <br /><br /><br /><br /><br />
 				Nama:<br />
 				Jabatan:</td>
-				<td align="left" width="25%">Diperiksa: <br /><br /><br />
+				<td align="left" width="25%">Diperiksa: <br /><br /><br /><br /><br />
 				Nama:<br />
 				Jabatan:</td>
 				<td align="left" width="25%">Dibuat: <br />
