@@ -58,11 +58,11 @@
 													<div class="panel panel-default">                                            
 														<div class="col-sm-5">
                                                             <p><h5>Biaya (Bahan)</h5></p>
-                                                            <a href="#biaya_bahan" aria-controls="biaya_bahan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                            <a href="#biaya_bahan" aria-controls="biaya_bahan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 														</div>
 														<div class="col-sm-5">
 															<p><h5>Pergerakan Bahan Baku</h5></p>
-															<a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+															<a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 														</div>											
 													</div>
 												</div>
@@ -85,7 +85,7 @@
 																<input type="text" id="filter_date_biaya_bahan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -121,7 +121,7 @@
 																<input type="text" id="filter_date_pergerakan_bahan_baku" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														

@@ -36,7 +36,7 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -50,9 +50,9 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#bahan" aria-controls="bahan" role="tab" data-toggle="tab">Bahan</a></li>
-                                    <li role="presentation"><a href="#alat" aria-controls="alat" role="tab" data-toggle="tab">Alat</a></li>
-                                    <li role="presentation"><a href="#bua" aria-controls="bua" role="tab" data-toggle="tab">BUA</a></li>
+                                    <li role="presentation" class="active"><a href="#bahan" aria-controls="bahan" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Bahan</a></li>
+                                    <li role="presentation"><a href="#alat" aria-controls="alat" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Alat</a></li>
+                                    <li role="presentation"><a href="#bua" aria-controls="bua" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">BUA</a></li>
                                 </ul>
 
                                 <div class="tab-content">

@@ -36,11 +36,11 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="javascript:void(0);" onclick="OpenForm()" class="active">Stock Opname</a></li>
+                                            <li><a href="javascript:void(0);" onclick="OpenForm()" class="active" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Stock Opname</a></li>
                                         </ul>
                                     </div>
                                 </h3>
