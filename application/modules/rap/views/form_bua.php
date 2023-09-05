@@ -118,7 +118,7 @@
                                         </table>    
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" onclick="tambahData()">
+                                        <button type="button" class="btn btn-primary" onclick="tambahData()" style="font-weight:bold; border-radius:10px;">
                                             <i class="fa fa-plus"></i> Tambah Data
                                         </button>
                                     </div>
@@ -139,22 +139,9 @@
                                         </div>
                                     </div>
                                     <br /><br />
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td width="30%"></td>
-                                                    <td width="10%"></td>
-                                                    <td width="10%"><a href="<?= site_url('admin/rap#bua');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
-                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
-                                                    <td width="10%"></td>
-                                                    <td width="30%"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="text-center">
+                                        <a href="<?= site_url('admin/rap#bua');?>" class="btn btn-danger" style="margin-bottom:0; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
+                                        <button type="submit" class="btn btn-success" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                                     </div>
                                 </form>
                             </div>
@@ -270,7 +257,7 @@
 
         $(document).ready(function() {
             setTimeout(function(){
-                $('#satuan-1').prop('selectedIndex', 6).trigger('change');
+                $('#satuan-1').prop('selectedIndex', 8).trigger('change');
             }, 1000);
         });
 

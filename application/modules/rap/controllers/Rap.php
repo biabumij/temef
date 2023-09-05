@@ -615,115 +615,115 @@ class Rap extends Secure_Controller {
 
 			$(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-2').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-2').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-3').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-3').prop('selectedIndex', 8).trigger('change');
         }, 1000);
          });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-4').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-4').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-5').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-5').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
         
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-6').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-6').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-7').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-7').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-8').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-8').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-9').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-9').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-10').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-10').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-11').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-11').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-12').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-12').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-13').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-13').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-14').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-14').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-15').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-15').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-16').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-16').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
         $(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-17').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-17').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
 		$(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-18').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-18').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
 		$(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-19').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-19').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
 
 		$(document).ready(function() {
         setTimeout(function(){
-            $('#satuan-20').prop('selectedIndex', 6).trigger('change');
+            $('#satuan-20').prop('selectedIndex', 8).trigger('change');
         }, 1000);
         });
         </script>
