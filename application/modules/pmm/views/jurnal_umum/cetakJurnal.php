@@ -115,6 +115,11 @@
                     $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                     $this->db->where('a.admin_id',$biaya['unit_head']);
                     $unit_head = $this->db->get('tbl_admin a')->row_array();
+
+                    $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+                    $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                    $this->db->where('a.admin_id',$biaya['admin']);
+                    $admin = $this->db->get('tbl_admin a')->row_array();
                 ?>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
@@ -131,7 +136,7 @@
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                <img src="uploads/ttd_theresia.png" width="100px">
+                                <img src="<?= $admin['admin_ttd']?>" width="100px">  
                             </td>
                             <td align="center">
                                 <img src="<?= $unit_head['admin_ttd']?>" width="100px">   
@@ -141,9 +146,6 @@
                             </td>
                         </tr>
                         <tr class="table-active3">
-                            <?php
-                            $admin = $this->pmm_model->GetNameGroup(20);
-                            ?>  
                             <td align="center">
                                 <?=  $admin['admin_name'];?>
                             </td>
