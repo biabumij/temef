@@ -243,7 +243,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9, 10],
+                    "targets": [0, 7, 8, 9, 10, 11],
                     "className": 'text-center',
                 }
             ],
