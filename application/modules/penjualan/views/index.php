@@ -695,6 +695,10 @@
                     "targets": [ 9, 10, 11],
                     "className": 'text-right',
                 },
+                {
+                    "targets": [12],
+                    "className": 'text-right',
+                },
             ],
             responsive: true,
             //paging : false,

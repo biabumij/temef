@@ -199,7 +199,7 @@
                                 <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
 
                                 <?php if($sales_po["status"] === "DRAFT") : ?>
-                                    <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF (Draft)</a>
+                                    <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print (Draft)</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
@@ -217,7 +217,7 @@
                                 ?>
 
                                 <?php if($sales_po["status"] === "OPEN") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                 
                                 <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Kirim Produk</a>
                                 
@@ -235,7 +235,7 @@
                                 ?>
                             
                                 <?php if($sales_po["status"] === "CLOSED") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-bottom:0px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-bottom:0px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                     ?>

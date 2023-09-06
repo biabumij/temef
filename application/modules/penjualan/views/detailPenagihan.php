@@ -277,11 +277,11 @@
                                 </div>
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak</a>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
                                             ?>
-                                            <a class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
+                                            <a class="btn btn-warning" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
                                             <a class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                             <?php
                                             }
@@ -394,6 +394,7 @@
                                                         <th>Setor Ke</th>
                                                         <th class="text-center">Jumlah</th>
                                                         <th>Status</th>
+                                                        <th>Tindakan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -501,11 +502,14 @@
                 {
                     "data": "status"
                 },
+                {
+                    "data": "action"
+                }
             ],
             "pageLength": 5,
             "columnDefs": [
                 {
-                "targets": [0, 1, 2, 4],
+                "targets": [0, 1, 2, 4, 5],
                 "className": 'text-center',
                 },
                 {

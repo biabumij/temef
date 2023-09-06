@@ -1493,7 +1493,11 @@
                 {
                     "targets": [1, 13],
                     "className": 'text-center',
-                }
+                },
+                {
+                    "targets": [12],
+                    "className": 'text-right',
+                },
             ],
         });
 
