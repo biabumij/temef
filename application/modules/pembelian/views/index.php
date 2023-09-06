@@ -1150,7 +1150,7 @@
                 }
             ],
             responsive: true,
-            //paging : false,
+            pageLength: 25,
         });
 
         $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
@@ -1223,7 +1223,7 @@
                 }
             ],
             responsive: true,
-            //paging : false,
+            pageLength: 25,
         });
 
         $('#filter_status').change(function(){
@@ -1397,7 +1397,7 @@
                 }
                 ],
             responsive: true,
-            //paging : false,
+            pageLength: 25,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1648,7 +1648,7 @@
                 },
             ],
             responsive: true,
-            //paging : false,
+            pageLength: 25,
         });
 
 
