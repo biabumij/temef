@@ -135,6 +135,12 @@
         <br />
         <table width="98%" border="0" cellpadding="50">
             <tr>
+                <?php
+                    $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+                    $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                    $this->db->where('a.admin_id',$biaya['unit_head']);
+                    $unit_head = $this->db->get('tbl_admin a')->row_array();
+                ?>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
                         <tr class="">
@@ -153,7 +159,7 @@
                                 <img src="uploads/ttd_theresia.png" width="100px">
                             </td>
                             <td align="center">
-                                <img src="uploads/ttd_yarid.png" width="100px">   
+                             <img src="<?= $unit_head['admin_ttd']?>" width="100px">   
                             </td>
                             <td align="center">
                                 
@@ -162,13 +168,12 @@
                         <tr class="">
                             <?php
                             $admin = $this->pmm_model->GetNameGroup(20);
-                            $ka_plant = $this->pmm_model->GetNameGroup(16);
                             ?>  
                             <td align="center">
                                 <?=  $admin['admin_name'];?>
                             </td>
                             <td align="center">
-                                <?=  $ka_plant['admin_name'];?>
+                                <?=  $unit_head['admin_name'];?>
                             </td>
                             <td align="center">
                                 <?= $biaya["penerima"] ?>
