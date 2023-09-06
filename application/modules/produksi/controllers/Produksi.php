@@ -139,7 +139,7 @@ class Produksi extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHppBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHppBahanBaku('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -238,7 +238,7 @@ class Produksi extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -428,7 +428,7 @@ class Produksi extends Secure_Controller {
 				$row['status'] = $row['status'];
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApprovalLaporan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataApprovalLaporan('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
