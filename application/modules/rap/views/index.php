@@ -329,13 +329,9 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 5, 6, 7, 8],
+                    "targets": [0, 7, 8],
                     "className": 'text-center',
                 },
-                {
-                    "targets": [4],
-                    "className": 'text-right',
-                }
             ],
         });
 	
@@ -411,7 +407,7 @@
                 },
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 5, 6, 7, 8],
+                    "targets": [0, 7, 8],
                     "className": 'text-center',
                 }
             ],
