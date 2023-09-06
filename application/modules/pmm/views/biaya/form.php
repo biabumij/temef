@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="<?= base_url('admin/biaya_bua') ?>" class="btn btn-info" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?= base_url('admin/biaya_bua') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -231,7 +231,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>

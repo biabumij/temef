@@ -360,7 +360,7 @@
             ],
             "columnDefs": [
 				{
-                "targets": [0, 1, 2, 7, 8],
+                "targets": [0, 1],
                 "className": 'text-center',
 				},
 				{
@@ -429,7 +429,7 @@
             ],
             "columnDefs": [
 				{
-                    "targets": [0, 1, 2, 11, 12],
+                    "targets": [0, 1],
                     "className": 'text-center',
                 },
                 {
@@ -527,7 +527,7 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 3, 6, 8, 9, 10, 11, 14, 15, 16],
+                    "targets": [1, 2],
                     "className": 'text-center',
                 },
                 {
@@ -688,7 +688,7 @@
 
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 6, 12, 13],
+                    "targets": [0, 1, 2],
                     "className": 'text-center',
                 },
                 {

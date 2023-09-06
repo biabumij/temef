@@ -500,16 +500,16 @@ class Rak extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
-				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_kerja/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
-				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_kerja/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '-';
 				}
 
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
 				}
@@ -1110,16 +1110,16 @@ class Rak extends Secure_Controller {
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
-				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_cash_flow/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rak/cetak_rencana_cash_flow/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 16){
-				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_cash_flow/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
+				$row['edit'] = '<a href="'.site_url().'rak/sunting_rencana_cash_flow/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '-';
 				}
 
 				if($this->session->userdata('admin_group_id') == 1){
-				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteDataRencanaCashFlow('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteDataRencanaCashFlow('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '-';
 				}

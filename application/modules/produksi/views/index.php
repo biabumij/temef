@@ -48,7 +48,7 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab">Stock Opname</a></li>
+                                    <li role="presentation" class="active"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Stock Opname</a></li>
                                 </ul>
 
                                 <div class="tab-content">

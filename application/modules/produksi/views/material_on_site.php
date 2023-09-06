@@ -3,7 +3,7 @@
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>
     <div class="col-sm-2">
-        <button type="submit" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+        <button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
     </div>
     <div class="col-sm-2">
         <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="border-radius:10px; font-weight:bold;"><i class="fa fa-plus"></i> Buat Stock Opname</a>
@@ -117,12 +117,12 @@
                         <input type="file" id="file" name="file" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
+                        <button type="submit" class="btn btn-success" id="btn-form" style="border-radius:10px; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:10px; font-weight:bold;">Close</button>
             </div>
         </div>
     </div>

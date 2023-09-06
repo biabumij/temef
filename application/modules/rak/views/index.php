@@ -62,8 +62,6 @@
 														<th class="text-center">Tanggal</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Diperbaharui Oleh</th>
-                                                        <th class="text-center">Diperbaharui Tanggal</th>
                                                         <th class="text-center">Lampiran</th>
                                                         <th class="text-center">Cetak</th>
                                                         <th class="text-center">Edit</th>
@@ -132,12 +130,6 @@
 					"data": "created_on"
 				},
                 {
-					"data": "updated_by"
-				},
-				{
-					"data": "updated_on"
-				},
-                {
                     "data": "lampiran"
                 },
                 {
@@ -151,7 +143,7 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4, 5, 7, 8, 9],
+                    "targets": [0, 5, 6, 7],
                     "className": 'text-center',
                 }
             ],

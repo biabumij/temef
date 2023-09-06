@@ -178,6 +178,7 @@
                 }
             ],
             responsive: true,
+            pageLength: 25,
         });
 		
 		$('#filter_date_biaya').on('apply.daterangepicker', function(ev, picker) {
