@@ -1485,7 +1485,7 @@
             responsive: true,
             //paging : false,
             pageLength: 5,
-            "columnDefs": [{
+                "columnDefs": [{
                     "targets": [0],
                     "orderable": false,
                     "className": 'select-checkbox',
