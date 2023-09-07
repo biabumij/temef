@@ -531,7 +531,7 @@
                     "className": 'text-center',
                 },
                 {
-                    "targets": [12],
+                    "targets": [9, 10, 11],
                     "className": 'text-right',
                 }
             ],
