@@ -122,8 +122,8 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Total Nilai Keluar (Bahan Baku)</th>
-                                                        <th>Total Nilai Keluar (Solar)</th>
+														<th class="text-right">Total Nilai Keluar (Bahan Baku)</th>
+                                                        <th class="text-right">Total Nilai Keluar (Solar)</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -386,8 +386,12 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5, 6, 7],
+                    "targets": [0, 7],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3],
+                    "className": 'text-right',
                 }
             ],
         });
@@ -458,7 +462,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4, 5],
+                    "targets": [0, 5],
                     "className": 'text-center',
                 }
             ],
@@ -530,7 +534,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4, 5],
+                    "targets": [0, 5],
                     "className": 'text-center',
                 }
             ],
