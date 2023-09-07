@@ -63,9 +63,9 @@
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
                                                         <th>Lampiran</th>
-                                                        <th>Cetak</th>
-                                                        <th>Edit</th>
-														<th>Hapus</th>
+                                                        <th width="5%">Cetak</th>
+                                                        <th width="5%">Edit</th>
+														<th width="5%">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>

@@ -77,9 +77,9 @@
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
                                                         <th>Closed</th>
-                                                        <th>Edit</th>
-                                                        <th>Cetak</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%">Edit</th>
+                                                        <th width="5%">Cetak</th>
+                                                        <th width="5%">Hapus</th>
                                                         <th>Status</th>
 														
                                                     </tr>
@@ -108,8 +108,8 @@
                                                         <th>Lampiran</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Cetak</th>
-														<th>Hapus</th>
+                                                        <th width="5%">Cetak</th>
+														<th width="5%">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -136,8 +136,8 @@
                                                         <th>Lampiran</th>
 														<th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Cetak</th>
-														<th>Hapus</th>
+                                                        <th width="5%">Cetak</th>
+														<th width="5%">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
