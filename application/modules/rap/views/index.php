@@ -70,17 +70,17 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center">No</th>
-														<th class="text-center">Tanggal</th>
-														<th class="text-center">Mutu Beton</th>
-                                                        <th class="text-center">Judul</th>
-														<th class="text-center">Lampiran</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Closed</th>
-                                                        <th class="text-center">Edit</th>
-                                                        <th class="text-center">Cetak</th>
-                                                        <th class="text-center">Hapus</th>
-                                                        <th class="text-center">Status</th>
+														<th>Tanggal</th>
+														<th>Mutu Beton</th>
+                                                        <th>Judul</th>
+														<th>Lampiran</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Closed</th>
+                                                        <th>Edit</th>
+                                                        <th>Cetak</th>
+                                                        <th>Hapus</th>
+                                                        <th>Status</th>
 														
                                                     </tr>
                                                 </thead>
@@ -102,14 +102,14 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
-														<th class="text-center">Tanggal</th>
-														<th class="text-center">Nomor</th>
-                                                        <th class="text-center">Masa Kontrak</th>
-                                                        <th class="text-center">Lampiran</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Cetak</th>
-														<th class="text-center">Hapus</th>
+														<th>Tanggal</th>
+														<th>Nomor</th>
+                                                        <th>Masa Kontrak</th>
+                                                        <th>Lampiran</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Cetak</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -130,14 +130,14 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
-														<th class="text-center">Tanggal</th>
-														<th class="text-center">Nomor</th>
-                                                        <th class="text-center">Masa Kontrak</th>
-                                                        <th class="text-center">Lampiran</th>
-														<th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Cetak</th>
-														<th class="text-center">Hapus</th>
+														<th>Tanggal</th>
+														<th>Nomor</th>
+                                                        <th>Masa Kontrak</th>
+                                                        <th>Lampiran</th>
+														<th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Cetak</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
