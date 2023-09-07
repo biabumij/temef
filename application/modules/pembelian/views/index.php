@@ -139,16 +139,16 @@
                                             <table class="table table-striped table-hover" id="guest-table" style="width:100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
-                                                        <th class="text-center">Status Penawaran</th>
-                                                        <th class="text-center">Tanggal Penawaran</th>
-                                                        <th class="text-center">No. Penawaran</th>
-                                                        <th class="text-center">Rekanan</th>
-                                                        <th class="text-center">Jenis Pembelian</th>
-                                                        <th class="text-center">Berlaku Hingga</th>
-														<th class="text-center">Jumlah</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>                                                   
+                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>Status Penawaran</th>
+                                                        <th>Tanggal Penawaran</th>
+                                                        <th>No. Penawaran</th>
+                                                        <th>Rekanan</th>
+                                                        <th>Jenis Pembelian</th>
+                                                        <th>Berlaku Hingga</th>
+														<th>Jumlah</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>                                                   
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -187,17 +187,17 @@
                                         <table class="table table-striped table-hover" id="table-request" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th class="text-center">Status Permintaan</th>
-													<th class="text-center">Tanggal Permintaan</th>
-                                                    <th class="text-center">No. Permintaan</th>
-                                                    <th class="text-center">Subyek</th>
-                                                    <th class="text-center">Rekanan</th>                               
-                                                    <th class="text-center">Volume</th>
-                                                    <th class="text-center">Tindakan</th>
-                                                    <th class="text-center">Hapus</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>     
+                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>Status Permintaan</th>
+													<th>Tanggal Permintaan</th>
+                                                    <th>No. Permintaan</th>
+                                                    <th>Subyek</th>
+                                                    <th>Rekanan</th>                               
+                                                    <th>Volume</th>
+                                                    <th>Tindakan</th>
+                                                    <th>Hapus</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>     
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -300,21 +300,21 @@
                                         <table class="table table-striped table-hover" id="table-po" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No.</th>
-                                                    <th class="text-center">Status Pesanan Pembelian</th>
-                                                    <th class="text-center">Tanggal</th>
-                                                    <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">No. Pesanan Pembelian</th>
-                                                    <th class="text-center">Subyek</th>
-                                                    <th class="text-center">Vol PO</th>
-                                                    <th class="text-center">Presentase Penerimaan Terhadap Vol. PO</th>
-                                                    <th class="text-center">Terima</th>
-                                                    <th class="text-center">Total Pesanan Pembelian</th>
-                                                    <th class="text-center">Total Terima</th>
-                                                    <th class="text-center">Lampiran</th>
-                                                    <th class="text-center">Tindakan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th>Status Pesanan Pembelian</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Rekanan</th>
+                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>Subyek</th>
+                                                    <th>Vol PO</th>
+                                                    <th>Presentase Penerimaan Terhadap Vol. PO</th>
+                                                    <th>Terima</th>
+                                                    <th>Total Pesanan Pembelian</th>
+                                                    <th>Total Terima</th>
+                                                    <th>Lampiran</th>
+                                                    <th>Tindakan</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -462,22 +462,22 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>No.</th>
-                                                    <th class="text-center">Status Tagihan</th>
-                                                    <th class="text-center">Tanggal</th>
-                                                    <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">No. Pesanan Pembelian</th>
-                                                    <th class="text-center">No. Surat Jalan</th>
-                                                    <th class="text-center">Surat Jalan</th>
-                                                    <th class="text-center">No. Kendaraan</th>
-                                                    <th class="text-center">Nama Supir</th>
-                                                    <th class="text-center">Produk</th>
-                                                    <th class="text-center">Satuan</th>                                                   
-                                                    <th class="text-center">Volume</th>
-                                                    <th class="text-center">Memo</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
-                                                    <th class="text-center">Upload Surat Jalan</th>
+                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th>Status Tagihan</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Rekanan</th>
+                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>No. Surat Jalan</th>
+                                                    <th>Surat Jalan</th>
+                                                    <th>No. Kendaraan</th>
+                                                    <th>Nama Supir</th>
+                                                    <th>Produk</th>
+                                                    <th>Satuan</th>                                                   
+                                                    <th>Volume</th>
+                                                    <th>Memo</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
+                                                    <th>Upload Surat Jalan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -545,19 +545,19 @@
                                         <table class="table table-striped table-hover" id="table-tagihan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th class="text-center">Verifikasi Dok</th>
-                                                    <th class="text-center">Status Tagihan</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
-                                                    <th class="text-center">Tgl. Invoice</th>
-                                                    <th class="text-center">No. Invoice</th>
-                                                    <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">Tgl. Pesanan Pembelian</th>
-                                                    <th class="text-center">No. Pesanan Pembelian</th>
-                                                    <th class="text-center">Total</th>
-                                                    <th class="text-center">Pembayaran</th>
-                                                    <th class="text-center">Sisa Tagihan</th>
+                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>Verifikasi Dok</th>
+                                                    <th>Status Tagihan</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
+                                                    <th>Tgl. Invoice</th>
+                                                    <th>No. Invoice</th>
+                                                    <th>Rekanan</th>
+                                                    <th>Tgl. Pesanan Pembelian</th>
+                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>Total</th>
+                                                    <th>Pembayaran</th>
+                                                    <th>Sisa Tagihan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -575,11 +575,11 @@
                                         <table class="table table-striped table-hover" id="table-verifikasi" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No.</th>
-                                                    <th class="text-center">Kategori Persetujuan</th>
-                                                    <th class="text-center">Nomor Dokumen</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>                                       
+                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th>Kategori Persetujuan</th>
+                                                    <th>Nomor Dokumen</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>                                       
                                                 </tr>
                                             </thead>
                                             <?php
