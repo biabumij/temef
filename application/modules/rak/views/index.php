@@ -59,13 +59,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center" width="5%">No.</th>
-														<th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th class="text-center">Lampiran</th>
-                                                        <th class="text-center">Cetak</th>
-                                                        <th class="text-center">Edit</th>
-														<th class="text-center">Hapus</th>
+														<th>Tanggal</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lampiran</th>
+                                                        <th>Cetak</th>
+                                                        <th>Edit</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
