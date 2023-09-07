@@ -85,11 +85,11 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Semen</th>
-                                                        <th>Pasir</th>
-                                                        <th>Batu Split 1-2</th>
-                                                        <th>Batu Split 2-3</th>
-                                                        <th>Solar</th>
+														<th class="text-right">Semen</th>
+                                                        <th class="text-right">Pasir</th>
+                                                        <th class="text-right">Batu Split 1-2</th>
+                                                        <th class="text-right">Batu Split 2-3</th>
+                                                        <th class="text-right">Solar</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -304,8 +304,12 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    "targets": [0, 10],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3, 4, 5, 6],
+                    "className": 'text-right',
                 }
             ],
         });
