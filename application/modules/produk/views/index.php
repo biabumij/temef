@@ -150,7 +150,7 @@
         $('input.numberformat').number( true, 4,',','.' );
         $('input#contract_price, input#price_value, .total').number( true, 2,',','.' );
       
-        var table_bahanbaku = $('#table-bahanbaku').DataTable( {
+        var table_bahanbaku = $('#table-bahanbaku').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -175,7 +175,7 @@
             responsive: true,
         });
         
-        var table_betonreadymix = $('#table-betonreadymix').DataTable( {
+        var table_betonreadymix = $('#table-betonreadymix').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -200,7 +200,7 @@
             responsive: true,
         });
         
-        var table_jasa = $('#table-jasa').DataTable( {
+        var table_jasa = $('#table-jasa').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -226,7 +226,7 @@
         });
         
         
-        var table_peralatan = $('#table-peralatan').DataTable( {
+        var table_peralatan = $('#table-peralatan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
