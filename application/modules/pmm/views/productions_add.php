@@ -452,8 +452,6 @@
             getPoAlertTotal();
         });
 
-
-
         $('#form-pro').submit(function(event) {
             $('#btn-form').button('loading');
             var form = $(this);
