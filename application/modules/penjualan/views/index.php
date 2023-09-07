@@ -531,7 +531,7 @@
                     "className": 'text-center',
                 },
                 {
-                    "targets": [9, 10, 11],
+                    "targets": [12],
                     "className": 'text-right',
                 }
             ],
@@ -693,10 +693,6 @@
                 },
                 {
                     "targets": [ 9, 10, 11],
-                    "className": 'text-right',
-                },
-                {
-                    "targets": [12],
                     "className": 'text-right',
                 },
             ],
