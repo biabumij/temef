@@ -81,7 +81,7 @@
 				<th align="left"><?php echo $row['npwp_supplier'];?></th>
 			</tr>
 			<?php
-			foreach ($details as $dt) {
+			foreach ($details_no_pnw as $dt) {
             ?>
 			<tr>
 				<th>No. Penawaran</th>
