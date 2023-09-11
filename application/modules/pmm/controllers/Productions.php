@@ -90,7 +90,7 @@ class Productions extends Secure_Controller {
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['komposisi_id'] = $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
-				$row['edit_komposisi'] = '<a href="'.site_url().'pmm/productions/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+				$row['edits'] = '<a href="'.site_url().'pmm/productions/sunting_komposisi/'.$row['id'].'" class="btn btn-warning" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
 				
 				$edit = false;
 				if($this->session->userdata('admin_group_id') == 1){

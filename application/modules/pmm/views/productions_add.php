@@ -244,7 +244,7 @@
                                         <table class="table table-striped table-hover table-bordered" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No.</th>
+                                                    <th width="5%" class="text-center">No.</th>
                                                     <th>Pelanggan</th>
                                                     <th>Sales Order</th>
                                                     <th>Tanggal</th>
@@ -252,10 +252,10 @@
                                                     <th>Surat Jalan</th>
                                                     <th>Produk</th>
                                                     <th>Komposisi</th>
-                                                    <th>Volume</th>
+                                                    <th class="text-right">Volume</th>
                                                     <th>Satuan</th>
-                                                    <th>Edit Komposisi</th>
-                                                    <th>Hapus</th>
+                                                    <th class="text-center">Edit Komposisi</th>
+                                                    <th class="text-center">Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -428,7 +428,7 @@
                     "data": "measure"
                 },
                 {
-                    "data": "edit_komposisi"
+                    "data": "edits"
                 },
                 {
                     "data": "delete"
@@ -437,7 +437,12 @@
             "columnDefs": [{
                 "targets": [0, 10, 11],
                 "className": 'text-center',
-            }],
+            },
+            {
+                "targets": [8],
+                "className": 'text-right',
+            },
+            ],
         });
 
 
