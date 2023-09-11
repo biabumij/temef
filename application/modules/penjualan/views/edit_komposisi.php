@@ -74,10 +74,10 @@
                             </div>
                             <div class="panel-content">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered table-center" id="main-table" width="100%">
+                                    <table class="table table-striped table-hover table-bordered" id="main-table" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Rekanan</th>
+                                                <th width="5%">Rekanan</th>
                                                 <th>Sales Order</th>
                                                 <th>Tanggal</th>
                                                 <th>Surat Jalan</th>
@@ -96,8 +96,8 @@
                                 <?php
                                 $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
                                 ?>
-                                <div class="text-right">
-                                    <a href="<?=$url?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <div class="text-center">
+                                    <a href="<?=$url?>" class="btn btn-info" style="font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
 
 
@@ -159,12 +159,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Komposisi</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Update Komposisi</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -216,7 +216,7 @@
         lengthChange: false,
         "columnDefs": [
             {
-                "targets": [0],
+                "targets": [6],
                 "className": 'text-center',
             }
         ],

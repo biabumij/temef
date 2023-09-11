@@ -4298,7 +4298,7 @@ class Pmm_model extends CI_Model {
                 $row['surat_jalan']= $row['no_production'];
                 $row['produk'] = $this->crud_global->GetField('produk',array('id'=>$row['product_id']),'nama_produk');
                 $row['komposisi']= $this->crud_global->GetField('pmm_agregat',array('id'=>$row['komposisi_id']),'jobs_type');
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Komposisi </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Komposisi </a>';
                 
                 $data[] = $row;
             }

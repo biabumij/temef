@@ -241,10 +241,10 @@
                                     </div>
                                     <br />
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover table-bordered table-condensed table-center" id="guest-table" style="width: 100%;">
+                                        <table class="table table-striped table-hover table-bordered" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No.</th>
+                                                    <th width="5%">No.</th>
                                                     <th>Pelanggan</th>
                                                     <th>Sales Order</th>
                                                     <th>Tanggal</th>
@@ -435,7 +435,7 @@
                 }
             ],
             "columnDefs": [{
-                "targets": [0],
+                "targets": [0, 10, 11],
                 "className": 'text-center',
             }],
         });
