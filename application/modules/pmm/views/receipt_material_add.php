@@ -221,7 +221,7 @@
                                                 <th>Satuan</th>
 												<th class="text-center">Harga Satuan</th>
 												<th class="text-center">Nilai</th>
-                                                <th class="text-center">Edit Tanggal</th>
+                                                <th class="text-center">Edit</th>
                                                 <th class="text-center">Hapus</th>
                                             </tr>
                                         </thead>
