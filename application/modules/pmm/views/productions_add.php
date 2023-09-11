@@ -255,7 +255,7 @@
                                                     <th>Volume</th>
                                                     <th>Satuan</th>
                                                     <th>Edit Komposisi</th>
-                                                    <th>Hapus</th>
+                                                    <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
