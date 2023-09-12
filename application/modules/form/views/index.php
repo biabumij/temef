@@ -244,14 +244,14 @@
             if (result) {
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('rak/delete_rencana_kerja'); ?>",
+                    url: "<?php echo site_url('form/delete_perubahan_sistem'); ?>",
                     dataType: 'json',
                     data: {
                         id: id
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_rak.ajax.reload();
+                            table_perubahan_sistem.ajax.reload();
                             bootbox.alert('Berhasil menghapus data !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);

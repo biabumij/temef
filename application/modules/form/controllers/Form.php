@@ -244,23 +244,22 @@ class Form extends Secure_Controller {
 		echo json_encode($output);
 	}
 
-	public function delete_rencana_kerja()
+	public function delete_perubahan_sistem()
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
 
-			$file = $this->db->select('ag.lampiran')
-			->from('lampiran_rak ag')
-			->where("ag.rak_id = $id")
+			$file = $this->db->select('s.document_perubahan_sistem as lampiran')
+			->from('perubahan_sistem s')
+			->where("s.id = $id")
 			->get()->row_array();
 
-			$path = './uploads/rak/'.$file['lampiran'];
+			$path = './uploads/perubahan_sistem/'.$file['lampiran'];
 			chmod($path, 0777);
 			unlink($path);
 
-			$this->db->delete('lampiran_rak',array('rak_id'=>$id));
-			$this->db->delete('rak',array('id'=>$id));
+			$this->db->delete('perubahan_sistem',array('id'=>$id));
 			{
 				$output['output'] = true;
 			}
