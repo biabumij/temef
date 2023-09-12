@@ -213,7 +213,7 @@ class Pmm_model extends CI_Model {
         }else {
             $id = 1;
         }
-        $output = sprintf('%04d', $id).'/PPS/'.'BBJ'.'/'.date('m').'/'.date('Y');
+        $output = sprintf('%04d', $id).'/PPS/'.'BBJ-TEMEF'.'/'.date('m').'/'.date('Y');
         return $output;
             
     }
