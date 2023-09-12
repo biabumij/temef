@@ -516,7 +516,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-daftar-pembayaran" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="table-daftar-pembayaran" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
 																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
