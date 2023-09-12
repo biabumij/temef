@@ -64,11 +64,11 @@
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
                                                         <th>Lampiran</th>
-                                                        <th width="5%">Status Permintaan</th>
-                                                        <th width="5%">Status Approval</th>
-                                                        <th width="5%">Cetak</th>
-                                                        <th width="5%">Upload</th>
-														<th width="5%">Hapus</th>
+                                                        <th>Status Permintaan</th>
+                                                        <th>Status Approval</th>
+                                                        <th class="text-center" width="5%">Cetak</th>
+                                                        <th class="text-center" width="5%">Upload</th>
+														<th class="text-center" width="5%">Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -184,7 +184,7 @@
 				},
             ],
             "columnDefs": [{
-                    "targets": [0],
+                    "targets": [0, 8, 9, 10],
                     "className": 'text-center',
                 }
             ],
