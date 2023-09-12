@@ -32,6 +32,7 @@
 				<th>https://temef.biabumijayendra.com</th>
 			</tr>
 		</table>
+		<br /><br />
 		<table width="98%" border="0" cellpadding="4">
 			<tr>
 				<th width="18%">4. Sifat Permintaan</th>
