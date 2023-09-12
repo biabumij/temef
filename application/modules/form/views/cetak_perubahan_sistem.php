@@ -77,7 +77,7 @@
 				<th></th>
 			</tr>
 		</table>
-		<br />
+		<br /><br />
 		<table width="98%" border="0" cellpadding="4">
 			<tr>
 				<th width="100%">6. Deskripsi Permintaan : <i>(Wajib diisi oleh pemohon)</i></th>
@@ -86,7 +86,7 @@
 				<th width="100%" style="border:1px solid black;"><?= $row['deskripsi'];?></th>
 			</tr>
 		</table>
-		<br />
+		<br /><br />
 		<table width="98%" border="0" cellpadding="4">
 			<tr>
 				<th width="100%">7. Catatan</th>
