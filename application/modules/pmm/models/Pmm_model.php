@@ -4401,7 +4401,7 @@ class Pmm_model extends CI_Model {
         return $data;   
     }
 
-    function GetReceiptMat7($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetDaftarPembayaran($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
         $output = array();
 		

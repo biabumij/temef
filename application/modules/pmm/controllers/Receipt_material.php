@@ -1642,7 +1642,7 @@ class Receipt_material extends CI_Controller {
 	
 	}
 
-	function table_date7()
+	function table_daftar_pembayaran()
 	{
 		$data = array();
 		$supplier_id = $this->input->post('supplier_name');
@@ -1687,7 +1687,7 @@ class Receipt_material extends CI_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat7($sups['supplier_name'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetDaftarPembayaran($sups['supplier_name'],$purchase_order_no,$start_date,$end_date,$filter_material);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
