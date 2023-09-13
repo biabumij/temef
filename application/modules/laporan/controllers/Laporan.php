@@ -18,7 +18,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -38,7 +37,6 @@ class Laporan extends Secure_Controller {
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_laporan_laba_rugi',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Laporan Laba Rugi');
         $pdf->nsi_html($html);
@@ -50,12 +48,11 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -70,7 +67,6 @@ class Laporan extends Secure_Controller {
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_bahan',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Bahan');
         $pdf->nsi_html($html);
@@ -86,7 +82,7 @@ class Laporan extends Secure_Controller {
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -98,7 +94,6 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('laporan_keuangan/cetak_bahan_akumulasi',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Bahan');
         $pdf->nsi_html($html);
         $pdf->Output('bahan.pdf', 'I');
@@ -108,12 +103,11 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -129,7 +123,6 @@ class Laporan extends Secure_Controller {
 		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_keuangan/cetak_alat',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Alat');
         $pdf->nsi_html($html);
         $pdf->Output('alat.pdf', 'I');
@@ -138,13 +131,12 @@ class Laporan extends Secure_Controller {
 	public function cetak_overhead()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -178,7 +170,6 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
         $html = $this->load->view('laporan_keuangan/cetak_overhead',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Overhead');
         $pdf->nsi_html($html);
@@ -188,7 +179,6 @@ class Laporan extends Secure_Controller {
 	public function cetak_diskonto()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
@@ -205,6 +195,7 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
+
 		$data['filter_date'] = $filter_date;
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
@@ -228,7 +219,6 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
         $html = $this->load->view('laporan_keuangan/cetak_diskonto',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Diskonto');
         $pdf->nsi_html($html);
         $pdf->Output('diskonto.pdf', 'I');
@@ -237,7 +227,6 @@ class Laporan extends Secure_Controller {
 	public function cetak_cash_flow()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(false);
@@ -262,7 +251,6 @@ class Laporan extends Secure_Controller {
 		}
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('laporan_keuangan/cetak_cash_flow',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Cash Flow');
         $pdf->nsi_html($html);
@@ -274,7 +262,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -330,7 +317,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 			$data['start_date'] = $start_date;
 			$data['end_date'] = $end_date;
@@ -395,12 +381,10 @@ class Laporan extends Secure_Controller {
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_pembelian/cetak_penerimaan_pembelian',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Pembelian');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('laporan-pembelian.pdf', 'I');
@@ -414,7 +398,6 @@ class Laporan extends Secure_Controller {
 	public function cetak_laporan_hutang()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
@@ -491,7 +474,6 @@ class Laporan extends Secure_Controller {
 							$total_sisa_hutang_penerimaan += $row['sisa_hutang_penerimaan'];
 							$total_sisa_hutang_tagihan += $row['sisa_hutang_tagihan'];
 							
-							
 							$arr['name'] = $sups['name'];
 							$mats[] = $arr;
 						}
@@ -506,7 +488,6 @@ class Laporan extends Secure_Controller {
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total_penerimaan'] = $total_penerimaan;
 			$data['total_tagihan'] = $total_tagihan;
@@ -516,7 +497,6 @@ class Laporan extends Secure_Controller {
 			$data['total_sisa_hutang_tagihan'] = $total_sisa_hutang_tagihan;
 	        $html = $this->load->view('laporan_pembelian/cetak_laporan_hutang',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Hutang');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('laporan-hutang.pdf', 'I');
@@ -676,7 +656,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
 
@@ -766,11 +745,8 @@ class Laporan extends Secure_Controller {
 						$arr_data[] = $sups;
 						$no++;
 					}
-					
-					
 				}
 			}
-
 			
 			$data['data'] = $arr_data;
 			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
@@ -785,7 +761,6 @@ class Laporan extends Secure_Controller {
 			$data['total_jumlah_sisa_hutang'] = $total_jumlah_sisa_hutang;
 	        $html = $this->load->view('laporan_pembelian/cetak_monitoring_hutang',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Monitoring Hutang');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('monitoring-hutang.pdf', 'I');
@@ -944,7 +919,6 @@ class Laporan extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
 			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
@@ -1036,12 +1010,9 @@ class Laporan extends Secure_Controller {
 
 						$arr_data[] = $sups;
 						$no++;
-					}
-					
-					
+					}				
 				}
 			}
-
 			
 			$data['data'] = $arr_data;
 			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
@@ -1056,7 +1027,6 @@ class Laporan extends Secure_Controller {
 			$data['total_jumlah_sisa_hutang'] = $total_jumlah_sisa_hutang;
 	        $html = $this->load->view('laporan_pembelian/cetak_monitoring_hutang_bahan_alat',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Monitoring Hutang');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('monitoring-hutang.pdf', 'I');
@@ -1070,7 +1040,6 @@ class Laporan extends Secure_Controller {
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
@@ -1093,7 +1062,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 			$data['start_date'] = $start_date;
 			$data['end_date'] = $end_date;
@@ -1151,20 +1119,16 @@ class Laporan extends Secure_Controller {
 					$arr_data[] = $sups;
 					$no++;
 				}
-				
-				
 			}
 		}
 
-			$data['data'] = $arr_data;
-			$data['total'] = $total;
-	        $html = $this->load->view('laporan_penjualan/cetak_pengiriman_penjualan',$data,TRUE);
-
-	        
-	        
-	        $pdf->SetTitle('BBJ - Laporan Penjualan');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('laporan-penjualan.pdf', 'I');
+		$data['data'] = $arr_data;
+		$data['total'] = $total;
+		$html = $this->load->view('laporan_penjualan/cetak_pengiriman_penjualan',$data,TRUE);
+		
+		$pdf->SetTitle('BBJ - Laporan Penjualan');
+		$pdf->nsi_html($html);
+		$pdf->Output('laporan-penjualan.pdf', 'I');
 	        
 		}else {
 			echo 'Please Filter Date First';
@@ -1176,7 +1140,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
@@ -1201,7 +1164,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
 
@@ -1248,7 +1210,6 @@ class Laporan extends Secure_Controller {
                             $total_sisa_piutang_penerimaan += $row['sisa_piutang_penerimaan'];
                             $total_sisa_piutang_tagihan += $row['sisa_piutang_tagihan'];
 							
-							
 							$arr['name'] = $sups['name'];
 							$mats[] = $arr;
 						}
@@ -1258,11 +1219,8 @@ class Laporan extends Secure_Controller {
 						$arr_data[] = $sups;
 						$no++;
 					}
-					
-					
 				}
 			}
-
 			
 			$data['data'] = $arr_data;
 			$data['total_penerimaan'] = $total_penerimaan;
@@ -1273,7 +1231,6 @@ class Laporan extends Secure_Controller {
 			$data['total_sisa_piutang_tagihan'] = $total_sisa_piutang_tagihan;
 	        $html = $this->load->view('laporan_penjualan/cetak_laporan_piutang',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Piutang');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('laporan-piutang.pdf', 'I');
@@ -1288,7 +1245,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
@@ -1318,7 +1274,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
 
@@ -1392,11 +1347,8 @@ class Laporan extends Secure_Controller {
 						$arr_data[] = $sups;
 						$no++;
 					}
-					
-					
 				}
 			}
-
 			
 			$data['data'] = $arr_data;
 			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
@@ -1409,7 +1361,6 @@ class Laporan extends Secure_Controller {
 			$data['total_ppn_sisa_piutang'] = $total_ppn_sisa_piutang;
 			$data['total_jumlah_sisa_piutang'] = $total_jumlah_sisa_piutang;
 	        $html = $this->load->view('laporan_penjualan/cetak_monitoring_piutang',$data,TRUE);
-
 	        
 	        $pdf->SetTitle('BBJ - Laporan Monitoring Piutang');
 	        $pdf->nsi_html($html);
@@ -1425,7 +1376,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -1446,7 +1396,6 @@ class Laporan extends Secure_Controller {
 		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Laporan Evaluasi Pemakaian Bahan Baku');
         $pdf->nsi_html($html);
         $pdf->Output('laporan_evaluasi_pemakaian_bahan_baku.pdf', 'I');
@@ -1456,7 +1405,6 @@ class Laporan extends Secure_Controller {
 	public function cetak_laporan_evaluasi_alat()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
@@ -1477,7 +1425,6 @@ class Laporan extends Secure_Controller {
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
         $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_alat',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Laporan Evaluasi Pemakaian Bahan Baku');
         $pdf->nsi_html($html);
@@ -1489,7 +1436,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -1521,9 +1467,40 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+
+		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+        $html = $this->load->view('laporan_produksi/cetak_evaluasi_target_produksi',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Evaluasi Target Produksi');
+        $pdf->nsi_html($html);
+        $pdf->Output('evaluasi-target-produksi.pdf', 'I');
+	
+	}
+
+	public function cetak_biaya_bahan()
+	{
+		$this->load->library('pdf');
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 		$pdf->AddPage('P');
@@ -1540,40 +1517,7 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
-        $html = $this->load->view('laporan_produksi/cetak_evaluasi_target_produksi',$data,TRUE);
-
-        
-        $pdf->SetTitle('BBJ - Evaluasi Target Produksi');
-        $pdf->nsi_html($html);
-        $pdf->Output('evaluasi-target-produksi.pdf', 'I');
-	
-	}
-
-	public function cetak_biaya_bahan()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-		$data['start_date'] = $start_date;
-		$data['end_date'] = $end_date;
         $html = $this->load->view('biaya_bahan/cetak_biaya_bahan',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Biaya (Bahan)');
         $pdf->nsi_html($html);
@@ -1584,13 +1528,12 @@ class Laporan extends Secure_Controller {
 	public function cetak_pergerakan_bahan_baku()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -1617,12 +1560,11 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -1637,7 +1579,6 @@ class Laporan extends Secure_Controller {
 		$data['start_date'] = $start_date;
 		$data['end_date'] = $end_date;
         $html = $this->load->view('biaya_alat/cetak_biaya_alat',$data,TRUE);
-
         
 		$pdf->SetTitle('BBJ - Biaya (Alat)');
         $pdf->nsi_html($html);
@@ -1648,13 +1589,12 @@ class Laporan extends Secure_Controller {
 	public function cetak_pergerakan_bahan_baku_solar()
 	{
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -1704,7 +1644,6 @@ class Laporan extends Secure_Controller {
 	public function print_biaya()
     {
         $this->load->library('pdf');
-    
 
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
@@ -1739,7 +1678,6 @@ class Laporan extends Secure_Controller {
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
         $html = $this->load->view('laporan_biaya/print_biaya',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Laporan Biaya');
         $pdf->nsi_html($html);
@@ -1751,7 +1689,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
@@ -1768,7 +1705,6 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('laporan_rencana_kerja/cetak_prognosa_produksi',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Prognosa Produksi');
         $pdf->nsi_html($html);
         $pdf->Output('prognosa_produksi.pdf', 'I');
@@ -1784,7 +1720,7 @@ class Laporan extends Secure_Controller {
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -1795,7 +1731,6 @@ class Laporan extends Secure_Controller {
 		}
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('laporan_rencana_kerja/cetak_bahan_rap_2022',$data,TRUE);
-
         
         $pdf->SetTitle('BBJ - Kebutuhan Bahan RAP 2022');
         $pdf->nsi_html($html);
@@ -1806,7 +1741,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
@@ -1833,7 +1767,7 @@ class Laporan extends Secure_Controller {
         $pdf->setPrintHeader(true); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('L');
+		$pdf->AddPage('L');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
@@ -2014,7 +1948,6 @@ class Laporan extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
 			
 			$data['filter_date'] = $filter_date;
 
@@ -2055,7 +1988,6 @@ class Laporan extends Secure_Controller {
 						//$arr['tax_pph'] = number_format($row['tax_pph'],0,',','.');
 						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax_ppn'],0,',','.');
 						
-						
 						$arr['nama'] = $sups['nama'];
 
 						$total_dpp += $row['dpp'];
@@ -2065,6 +1997,7 @@ class Laporan extends Secure_Controller {
 
 						$mats[] = $arr;
 					}
+
 					$sups['mats'] = $mats;
 					$sups['no'] =$no;
 					$total = $total_dpp;
@@ -2074,13 +2007,10 @@ class Laporan extends Secure_Controller {
 
 					$arr_data[] = $sups;
 					$no++;
-					}
-					
-					
+					}				
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 			$data['total_2'] = $total_2;
@@ -2088,7 +2018,6 @@ class Laporan extends Secure_Controller {
 			$data['total_4'] = $total_4;
 	        $html = $this->load->view('pembelian/cetak_daftar_tagihan_pembelian',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Daftar Tagihan Pembelian');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('daftar-tagihan-pembelian.pdf', 'I');
@@ -2096,7 +2025,6 @@ class Laporan extends Secure_Controller {
 		}else {
 			echo 'Please Filter Date First';
 		}
-	
 	}
 
 	public function cetak_daftar_tagihan_penjualan()
@@ -2130,7 +2058,6 @@ class Laporan extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
-			
 			$data['filter_date'] = $filter_date;
 
 		$this->db->select('ppp.client_id, ps.nama');
@@ -2169,7 +2096,6 @@ class Laporan extends Secure_Controller {
 						$arr['tax'] = number_format($row['tax'],0,',','.');
 						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax'],0,',','.');
 						
-						
 						$arr['nama'] = $sups['nama'];
 
 						$total_dpp += $row['dpp'];
@@ -2186,20 +2112,16 @@ class Laporan extends Secure_Controller {
 
 					$arr_data[] = $sups;
 					$no++;
-					}
-					
-					
+					}				
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 			$data['total_2'] = $total_2;
 			$data['total_3'] = $total_3;
 	        $html = $this->load->view('penjualan/cetak_daftar_tagihan_penjualan',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Daftar Tagihan Penjualan');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('daftar-tagihan-penjualan.pdf', 'I');
@@ -2207,7 +2129,6 @@ class Laporan extends Secure_Controller {
 		}else {
 			echo 'Please Filter Date First';
 		}
-	
 	}
 
 	public function cetak_daftar_pembayaran()
@@ -2235,10 +2156,8 @@ class Laporan extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
 			
 			$data['filter_date'] = $filter_date;
-		
 		
 		$this->db->select('pmp.supplier_name, SUM(pmp.total) AS total_bayar');
 		if(!empty($start_date) && !empty($end_date)){
@@ -2297,11 +2216,9 @@ class Laporan extends Secure_Controller {
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_pembelian/cetak_daftar_pembayaran',$data,TRUE);
-
 	        
 	        $pdf->SetTitle('BBJ - Laporan Daftar Pembayaran');
 	        $pdf->nsi_html($html);
