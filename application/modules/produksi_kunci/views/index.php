@@ -90,7 +90,7 @@
                                                         <th class="text-right">Batu Split 1-2</th>
                                                         <th class="text-right">Batu Split 2-3</th>
                                                         <th class="text-right">Solar</th>
-														<th width="5%" class="text-center">Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Hapus</th>
@@ -120,11 +120,11 @@
                                             <table class="table table-striped table-hover" id="table_akumulasi" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal</th>
 														<th class="text-right">Total Nilai Keluar (Bahan Baku)</th>
                                                         <th class="text-right">Total Nilai Keluar (Solar)</th>
-														<th>Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Hapus</th>
@@ -154,11 +154,11 @@
                                             <table class="table table-striped table-hover" id="table_approval" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
-														<th width="5%" class="text-center">Status</th>
+														<th class="text-center">Status</th>
                                                         <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -188,7 +188,7 @@
 														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
-														<th width="5%" class="text-center">Status</th>
+														<th class="text-center">Status</th>
                                                         <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -386,7 +386,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 7],
+                    "targets": [0, 4, 7],
                     "className": 'text-center',
                 },
                 {
