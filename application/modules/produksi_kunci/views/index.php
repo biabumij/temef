@@ -83,17 +83,17 @@
                                             <table class="table table-striped table-hover" id="table_hpp_bahan_baku" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal</th>
 														<th class="text-right">Semen</th>
                                                         <th class="text-right">Pasir</th>
                                                         <th class="text-right">Batu Split 1-2</th>
                                                         <th class="text-right">Batu Split 2-3</th>
                                                         <th class="text-right">Solar</th>
-														<th>Status</th>
+														<th width="5%" class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -127,7 +127,7 @@
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -158,8 +158,8 @@
 														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
-														<th>Status</th>
-                                                        <th>Hapus</th>
+														<th width="5%" class="text-center">Status</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -184,12 +184,12 @@
                                             <table class="table table-striped table-hover" id="table_approval_laporan" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal Periode Laporan</th>
 														<th>Menyetujui</th>
                                                         <th>Tanggal Approve</th>
-														<th>Status</th>
-                                                        <th>Hapus</th>
+														<th width="5%" class="text-center">Status</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -304,7 +304,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 10],
+                    "targets": [0, 7, 10],
                     "className": 'text-center',
                 },
                 {
@@ -462,7 +462,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 5],
+                    "targets": [0, 4, 5],
                     "className": 'text-center',
                 }
             ],
@@ -534,7 +534,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 5],
+                    "targets": [0, 4, 5],
                     "className": 'text-center',
                 }
             ],
