@@ -252,7 +252,7 @@
             showDropdowns: true,
         });
 
-        var table_hpp_bahan_baku = $('#table_hpp_bahan_baku').DataTable({
+        var table_hpp_bahan_baku = $('#table_hpp_bahan_baku').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -343,7 +343,7 @@
             });
         }
 
-        var table_akumulasi = $('#table_akumulasi').DataTable({
+        var table_akumulasi = $('#table_akumulasi').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -425,7 +425,7 @@
             });
         }
 
-        var table_approval = $('#table_approval').DataTable({
+        var table_approval = $('#table_approval').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -497,7 +497,7 @@
             });
         }
 
-        var table_approval_laporan = $('#table_approval_laporan').DataTable({
+        var table_approval_laporan = $('#table_approval_laporan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
