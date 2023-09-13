@@ -1658,7 +1658,7 @@ class Receipt_material extends CI_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 		
-		$this->db->select('pmp.supplier_name, SUM(pmp.total) AS total_bayar');
+		$this->db->select('pmp.supplier_name, SUM(pmp.total) as total_bayar');
 		
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
@@ -1693,7 +1693,7 @@ class Receipt_material extends CI_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_pembayaran'] = date('d-m-Y',strtotime($row['tanggal_pembayaran']));
-						$arr['nomor_transaksi'] = $row['nomor_transaksi'];
+						$arr['nomor_transaksi'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
 						$arr['nomor_invoice'] = $row['nomor_invoice'];
 						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');								
