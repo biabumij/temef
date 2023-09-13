@@ -4049,7 +4049,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_verifikasi_penagihan_pembelian pvp','ppp.id = pvp.penagihan_pembelian_id','left');
         $this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
         if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
+            $this->db->where('ppp.created_on >=',$start_date.' 00:00:00');
             $this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
         }
         if(!empty($supplier_id) || $supplier_id != 0){
@@ -4094,7 +4094,7 @@ class Pmm_model extends CI_Model {
         $this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
         $this->db->where("ppo.kategori_id in (1,5)");
         if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
+            $this->db->where('ppp.created_on >=',$start_date.' 00:00:00');
             $this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
         }
         if(!empty($supplier_id) || $supplier_id != 0){
@@ -4277,8 +4277,8 @@ class Pmm_model extends CI_Model {
         $this->db->join('penerima ps','ppp.client_id = ps.id','left');
         $this->db->join('pmm_sales_po po','ppp.sales_po_id = po.id','left');
         if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.tanggal_invoice >=',$start_date);
-            $this->db->where('ppp.tanggal_invoice <=',$end_date);
+            $this->db->where('ppp.tanggal_invoice >=',$start_date.' 00:00:00');
+            $this->db->where('ppp.tanggal_invoice <=',$end_date.' 23:59:59');
         }
         if(!empty($client_id) || $client_id != 0){
             $this->db->where('ppp.client_id',$client_id);
@@ -4411,8 +4411,8 @@ class Pmm_model extends CI_Model {
 		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id');
         
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
-            $this->db->where('pmp.tanggal_pembayaran <=',$end_date);
+            $this->db->where('pmp.tanggal_pembayaran >=',$start_date.' 00:00:00');
+            $this->db->where('pmp.tanggal_pembayaran <=',$end_date.' 23:59:59');
         }
 		
 		if(!empty($supplier_id)){
