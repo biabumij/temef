@@ -11443,8 +11443,116 @@ class Reports extends CI_Controller {
 			$total_rap_nilai = $nilai_jual_all;
 
 			//BIAYA
-			$total_rap_biaya_bahan = $rencana_kerja['biaya_bahan'];
-			$total_rap_biaya_alat = $rencana_kerja['biaya_alat'];
+			$komposisi = $this->db->select('pp.date_production, (pp.display_volume) * pk.presentase_a as volume_a, (pp.display_volume) * pk.presentase_b as volume_b, (pp.display_volume) * pk.presentase_c as volume_c, (pp.display_volume) * pk.presentase_d as volume_d, (pp.display_volume * pk.presentase_a) * pk.price_a as nilai_a, (pp.display_volume * pk.presentase_b) * pk.price_b as nilai_b, (pp.display_volume * pk.presentase_c) * pk.price_c as nilai_c, (pp.display_volume * pk.presentase_d) * pk.price_d as nilai_d')
+			->from('pmm_productions pp')
+			->join('pmm_agregat pk', 'pp.komposisi_id = pk.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->get()->result_array();
+
+			$total_volume_a = 0;
+			$total_volume_b = 0;
+			$total_volume_c = 0;
+			$total_volume_d = 0;
+
+			$total_nilai_a = 0;
+			$total_nilai_b = 0;
+			$total_nilai_c = 0;
+			$total_nilai_d = 0;
+
+			foreach ($komposisi as $x){
+				$total_volume_a += $x['volume_a'];
+				$total_volume_b += $x['volume_b'];
+				$total_volume_c += $x['volume_c'];
+				$total_volume_d += $x['volume_d'];
+				$total_nilai_a += $x['nilai_a'];
+				$total_nilai_b += $x['nilai_b'];
+				$total_nilai_c += $x['nilai_c'];
+				$total_nilai_d += $x['nilai_d'];
+				
+			}
+
+			$volume_a = $total_volume_a;
+			$volume_b = $total_volume_b;
+			$volume_c = $total_volume_c;
+			$volume_d = $total_volume_d;
+
+			$nilai_a = $total_nilai_a;
+			$nilai_b = $total_nilai_b;
+			$nilai_c = $total_nilai_c;
+			$nilai_d = $total_nilai_d;
+
+			$price_a = ($total_volume_a!=0)?$total_nilai_a / $total_volume_a * 1:0;
+			$price_b = ($total_volume_b!=0)?$total_nilai_b / $total_volume_b * 1:0;
+			$price_c = ($total_volume_c!=0)?$total_nilai_c / $total_volume_c * 1:0;
+			$price_d = ($total_volume_d!=0)?$total_nilai_d / $total_volume_d * 1:0;
+
+			$total_volume_komposisi = $volume_a + $volume_b + $volume_c + $volume_d;
+			$total_nilai_komposisi = $nilai_a + $nilai_b + $nilai_c + $nilai_d;
+			
+			//BAHAN
+			$total_rap_biaya_bahan = $total_nilai_komposisi;
+
+			$total_volume = $this->db->select(' SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production between '$date1' and '$date2')")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+
+			$total_volume_produksi = 0;
+			$total_volume_produksi = $total_volume['volume'];
+
+			$rap_alat = $this->db->select('rap.*')
+			->from('rap_alat rap')
+			->where("rap.tanggal_rap_alat <= '$date2'")
+			->where('rap.status','PUBLISH')
+			->get()->result_array();
+
+			$total_vol_rap_batching_plant = 0;
+			$total_vol_rap_truck_mixer = 0;
+			$total_vol_rap_wheel_loader = 0;
+			$total_vol_rap_bbm_solar = 0;
+
+			$total_batching_plant = 0;
+			$total_truck_mixer = 0;
+			$total_wheel_loader = 0;
+			$total_bbm_solar = 0;
+
+			foreach ($rap_alat as $x){
+				$total_vol_rap_batching_plant += $x['vol_batching_plant'];
+				$total_vol_rap_truck_mixer += $x['vol_truck_mixer'];
+				$total_vol_rap_wheel_loader += $x['vol_wheel_loader'];
+				$total_vol_rap_bbm_solar += $x['vol_bbm_solar'];
+				$total_batching_plant = $x['harsat_batching_plant'];
+				$total_truck_mixer = $x['harsat_truck_mixer'];
+				$total_wheel_loader = $x['harsat_wheel_loader'];
+				$total_bbm_solar = $x['harsat_bbm_solar'];
+				
+			}
+
+			$vol_batching_plant = $total_vol_rap_batching_plant * $total_volume_produksi;
+			$vol_truck_mixer = $total_vol_rap_truck_mixer * $total_volume_produksi;
+			$vol_wheel_loader = $total_vol_rap_wheel_loader * $total_volume_produksi;
+			$vol_bbm_solar = $total_vol_rap_bbm_solar * $total_volume_produksi;
+
+			$batching_plant = $total_batching_plant * $vol_batching_plant;
+			$truck_mixer = $total_truck_mixer * $vol_truck_mixer;
+			$wheel_loader = $total_wheel_loader * $vol_wheel_loader;
+			$transfer_semen = 0;
+			$bbm_solar = $total_bbm_solar * $vol_bbm_solar;
+
+			$harsat_batching_plant = ($vol_batching_plant!=0)?$batching_plant / $vol_batching_plant * 1:0;
+			$harsat_truck_mixer = ($vol_truck_mixer!=0)?$truck_mixer / $vol_truck_mixer * 1:0;
+			$harsat_wheel_loader = ($wheel_loader!=0)?$wheel_loader / $wheel_loader * 1:0;
+			$harsat_bbm_solar = ($vol_bbm_solar!=0)?$bbm_solar / $vol_bbm_solar * 1:0;
+
+			$total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
+
+
+			$total_rap_biaya_alat = $total_nilai_rap_alat;
 			$total_rap_overhead = $rencana_kerja['overhead'];
 			$total_rap_biaya_bank = $rencana_kerja['biaya_bank'];
 
