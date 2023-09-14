@@ -11782,19 +11782,19 @@ class Reports extends CI_Controller {
 
 			<!-- SISA -->
 			<?php
-			$sisa_volume_produk_a = $volume_realisasi_produk_a - $volume_rap_produk_a;
-			$sisa_volume_produk_b = $volume_realisasi_produk_b - $volume_rap_produk_b;
-			$sisa_volume_produk_c = $volume_realisasi_produk_c - $volume_rap_produk_c;
-			$sisa_volume_produk_d = $volume_realisasi_produk_d  - $volume_rap_produk_d;
-			$sisa_volume_produk_e = $volume_realisasi_produk_e  - $volume_rap_produk_e;
+			$sisa_volume_produk_a = $volume_rap_produk_a - $volume_realisasi_produk_a;
+			$sisa_volume_produk_b = $volume_rap_produk_b - $volume_realisasi_produk_b;
+			$sisa_volume_produk_c = $volume_rap_produk_c - $volume_realisasi_produk_c;
+			$sisa_volume_produk_d = $volume_rap_produk_d - $volume_realisasi_produk_d;
+			$sisa_volume_produk_e = $volume_rap_produk_e - $volume_realisasi_produk_e;
 
 			$total_sisa_volume_all_produk = $sisa_volume_produk_a + $sisa_volume_produk_b + $sisa_volume_produk_c + $sisa_volume_produk_d + $sisa_volume_produk_e;
-			$total_sisa_nilai_all_produk = $total_realisasi_nilai - $total_rap_nilai;
+			$total_sisa_nilai_all_produk = $total_rap_nilai - $total_realisasi_nilai;
 
-			$sisa_biaya_bahan = $total_bahan_akumulasi - $total_rap_biaya_bahan;
-			$sisa_biaya_alat = $total_alat_realisasi - $total_rap_biaya_alat;
-			$sisa_overhead = $total_overhead_realisasi - $total_rap_overhead;
-			$sisa_biaya_bank = $total_diskonto_realisasi - $total_rap_biaya_bank;
+			$sisa_biaya_bahan = $total_rap_biaya_bahan - $total_bahan_akumulasi;
+			$sisa_biaya_alat = $total_rap_biaya_alat - $total_alat_realisasi;
+			$sisa_overhead = $total_rap_overhead - $total_overhead_realisasi;
+			$sisa_biaya_bank = $total_rap_biaya_bank - $total_diskonto_realisasi;
 			?>
 			<!-- SISA -->
 
