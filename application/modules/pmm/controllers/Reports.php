@@ -11803,8 +11803,8 @@ class Reports extends CI_Controller {
 			$total_laba_rap = $total_rap_nilai - $total_biaya_rap_biaya;
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
-			$sisa_biaya_realisasi = $total_biaya_realisasi - $total_biaya_rap_biaya;
-			$sisa_laba = $total_laba_realisasi - $total_laba_rap;
+			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
+			$sisa_laba = $total_laba_rap - $total_laba_realisasi;
 
 			?>
 			<!-- TOTAL -->
