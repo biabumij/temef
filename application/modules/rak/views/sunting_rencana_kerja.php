@@ -180,6 +180,27 @@
                                                     </select>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td class="text-center">5.</td>
+                                                <td class="text-left">Beton K 300 (10±2)</td>
+                                                <td class="text-right"><input type="text" id="vol_produk_e" name="vol_produk_e" class="form-control numberformat text-right" value="<?php echo number_format($rak["vol_produk_e"],2,',','.');?>" onchange="changeData(1)" autocomplete="off"></td>
+                                                <td class="text-right"><input type="text" id="price_e" name="price_e" class="form-control rupiahformat text-right" value="<?= $rak['price_e'] ?>" readonly="" autocomplete="off"></td>
+                                                <td class="text-center">M3</td>
+                                                <td class="text-center">
+                                                    <select id="komposisi_300" name="komposisi_300" class="form-control input-sm">
+                                                        <option value="">Pilih Komposisi</option>
+                                                        <?php
+                                                        if (!empty($komposisi)) {
+                                                            foreach ($komposisi as $kom) {
+                                                        ?>
+                                                                <option value="<?php echo $kom['id']; ?>"><?php echo $kom['jobs_type']; ?> - (<?= date('d/F/Y',strtotime($kom['date_agregat']));?>)</option>
+                                                            <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -876,7 +897,8 @@
             var vol_produk_b = $('#vol_produk_b').val();
             var vol_produk_c = $('#vol_produk_c').val();
             var vol_produk_d = $('#vol_produk_d').val();
-            				
+            var vol_produk_e = $('#vol_produk_e').val();
+
 			vol_produk_a = ( vol_produk_a);
             $('#vol_produk_a').val(vol_produk_a);
             vol_produk_b = ( vol_produk_b);
@@ -885,6 +907,8 @@
             $('#vol_produk_c').val(vol_produk_c);
             vol_produk_d = ( vol_produk_d);
             $('#vol_produk_d').val(vol_produk_d);
+            vol_produk_e = ( vol_produk_e);
+            $('#vol_produk_e').val(vol_produk_e);
             getTotal();
         }
 
@@ -892,7 +916,7 @@
         {
             var sub_total = $('#sub-total-val').val();
 
-            sub_total = parseFloat($('#vol_produk_a').val()) + parseFloat($('#vol_produk_b').val()) + parseFloat($('#vol_produk_c').val()) + parseFloat($('#vol_produk_d').val());
+            sub_total = parseFloat($('#vol_produk_a').val()) + parseFloat($('#vol_produk_b').val()) + parseFloat($('#vol_produk_c').val()) + parseFloat($('#vol_produk_d').val()) + parseFloat($('#vol_produk_e').val());
             
             $('#sub-total-val').val(sub_total);
             $('#sub-total').text($.number( sub_total, 2,',','.' ));
@@ -907,6 +931,7 @@
             $('#komposisi_225').val(<?= $rak['komposisi_225'];?>).trigger('change');
             $('#komposisi_250').val(<?= $rak['komposisi_250'];?>).trigger('change');
             $('#komposisi_250_2').val(<?= $rak['komposisi_250_2'];?>).trigger('change');
+            $('#komposisi_300').val(<?= $rak['komposisi_300'];?>).trigger('change');
 
             $('#penawaran_id_semen').val(<?= $rak['penawaran_id_semen'];?>).trigger('change');
             $('#penawaran_id_pasir').val(<?= $rak['penawaran_id_pasir'];?>).trigger('change');

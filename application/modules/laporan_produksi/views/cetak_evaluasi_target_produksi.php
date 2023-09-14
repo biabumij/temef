@@ -162,41 +162,48 @@
 			$total_vol_b = 0;
 			$total_vol_c = 0;
 			$total_vol_d = 0;
+			$total_vol_e = 0;
 
 			$total_price_a = 0;
 			$total_price_b = 0;
 			$total_price_c = 0;
 			$total_price_d = 0;
+			$total_price_e = 0;
 
 			foreach ($rencana_kerja as $x){
 				$total_price_a += $x['vol_produk_a'] * $x['price_a'];
 				$total_price_b += $x['vol_produk_b'] * $x['price_b'];
 				$total_price_c += $x['vol_produk_c'] * $x['price_c'];
 				$total_price_d += $x['vol_produk_d'] * $x['price_d'];
+				$total_price_e += $x['vol_produk_e'] * $x['price_e'];
 
 				$total_vol_a += $x['vol_produk_a'];
 				$total_vol_b += $x['vol_produk_b'];
 				$total_vol_c += $x['vol_produk_c'];
 				$total_vol_d += $x['vol_produk_d'];
+				$total_vol_e += $x['vol_produk_e'];
 			}
 
 			$volume_rap_produk_a = $total_vol_a;
 			$volume_rap_produk_b = $total_vol_b;
 			$volume_rap_produk_c = $total_vol_c;
 			$volume_rap_produk_d = $total_vol_d;
+			$volume_rap_produk_e = $total_vol_e;
 
-			$total_rap_volume = $volume_rap_produk_a + $volume_rap_produk_b + $volume_rap_produk_c + $volume_rap_produk_d;
+			$total_rap_volume = $volume_rap_produk_a + $volume_rap_produk_b + $volume_rap_produk_c + $volume_rap_produk_d + $volume_rap_produk_e;
 			
 			$harga_jual_125_rap = $total_price_a;
 			$harga_jual_225_rap = $total_price_b;
 			$harga_jual_250_rap = $total_price_c;
 			$harga_jual_250_18_rap = $total_price_d;
+			$harga_jual_300_rap = $total_price_e;
 
 			$nilai_jual_125 = $harga_jual_125_rap;
 			$nilai_jual_225 = $harga_jual_225_rap;
 			$nilai_jual_250 = $harga_jual_250_rap;
 			$nilai_jual_250_18 = $harga_jual_250_18_rap;
-			$nilai_jual_all = $nilai_jual_125 + $nilai_jual_225 + $nilai_jual_250 + $nilai_jual_250_18;
+			$nilai_jual_300 = $harga_jual_300_rap;
+			$nilai_jual_all = $nilai_jual_125 + $nilai_jual_225 + $nilai_jual_250 + $nilai_jual_250_18 + $nilai_jual_300;
 			
 			$total_rap_nilai = $nilai_jual_all;
 
@@ -376,8 +383,22 @@
 			$volume_realisasi_produk_d = $penjualan_realisasi_produk_d['volume'];
 			$nilai_realisasi_produk_d = $penjualan_realisasi_produk_d['price'];
 
-			$total_realisasi_volume = $volume_realisasi_produk_a + $volume_realisasi_produk_b + $volume_realisasi_produk_c + $volume_realisasi_produk_d;
-			$total_realisasi_nilai = $nilai_realisasi_produk_a + $nilai_realisasi_produk_b + $nilai_realisasi_produk_c + $nilai_realisasi_produk_d;
+			$penjualan_realisasi_produk_e = $this->db->select('p.nama_produk, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume')
+			->from('pmm_productions pp')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("(pp.date_production between '$date1' and '$date2')")
+			->where("pp.status = 'PUBLISH'")
+			->where("pp.product_id = 41")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.product_id")
+			->order_by('p.nama_produk','asc')
+			->get()->row_array();
+			$volume_realisasi_produk_e = $penjualan_realisasi_produk_e['volume'];
+			$nilai_realisasi_produk_e = $penjualan_realisasi_produk_e['price'];
+
+			$total_realisasi_volume = $volume_realisasi_produk_a + $volume_realisasi_produk_b + $volume_realisasi_produk_c + $volume_realisasi_produk_d + $volume_realisasi_produk_e;
+			$total_realisasi_nilai = $nilai_realisasi_produk_a + $nilai_realisasi_produk_b + $nilai_realisasi_produk_c + $nilai_realisasi_produk_d + $nilai_realisasi_produk_e;
 			?>
 			<!-- REALISASI SD. SAAT INI -->
 
@@ -518,8 +539,9 @@
 			$sisa_volume_produk_b = $volume_realisasi_produk_b - $volume_rap_produk_b;
 			$sisa_volume_produk_c = $volume_realisasi_produk_c - $volume_rap_produk_c;
 			$sisa_volume_produk_d = $volume_realisasi_produk_d  - $volume_rap_produk_d;
+			$sisa_volume_produk_e = $volume_realisasi_produk_e  - $volume_rap_produk_e;
 
-			$total_sisa_volume_all_produk = $sisa_volume_produk_a + $sisa_volume_produk_b + $sisa_volume_produk_c + $sisa_volume_produk_d;
+			$total_sisa_volume_all_produk = $sisa_volume_produk_a + $sisa_volume_produk_b + $sisa_volume_produk_c + $sisa_volume_produk_d + $sisa_volume_produk_e;
 			$total_sisa_nilai_all_produk = $total_realisasi_nilai - $total_rap_nilai;
 
 			$sisa_biaya_bahan = $total_bahan_akumulasi - $total_rap_biaya_bahan;
@@ -564,6 +586,7 @@
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
 				$styleColorM = $sisa_laba < 0 ? 'color:red' : 'color:black';
+				$styleColorN = $sisa_volume_produk_e < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1.</th>
@@ -596,6 +619,14 @@
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_produk_d,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_realisasi_produk_d,2,',','.');?></th>
 				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorD ?>"><?php echo number_format($sisa_volume_produk_d,2,',','.');?></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" class="table-border-pojok-kiri">5.</th>
+				<th align="left" class="table-border-pojok-tengah">Beton K 300 (10±2)</th>
+				<th align="center" class="table-border-pojok-tengah">M3</th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_rap_produk_e,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($volume_realisasi_produk_e,2,',','.');?></th>
+				<th align="right" class="table-border-pojok-kanan" style="<?php echo $styleColorN ?>"><?php echo number_format($sisa_volume_produk_e,2,',','.');?></th>
 			</tr>
 			<tr class="table-total2">
 				<th align="right" colspan="2" class="table-border-spesial-kiri">TOTAL VOLUME</th>

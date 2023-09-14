@@ -108,7 +108,7 @@
 					$total = 0;
 					?>
 					<?php
-					$total = $rak['vol_produk_a'] + $rak['vol_produk_b'] + $rak['vol_produk_c'] + $rak['vol_produk_d'];
+					$total = $rak['vol_produk_a'] + $rak['vol_produk_b'] + $rak['vol_produk_c'] + $rak['vol_produk_d'] + $rak['vol_produk_e'];
 				?>
                 <th width="5%" align="center" class="table-border-pojok-kiri">NO.</th>
                 <th width="20%" align="center" class="table-border-pojok-tengah">URAIAN</th>
@@ -166,9 +166,22 @@
 				$d1 = round($rak['vol_produk_d'],2);
 				$d2 = round($rak['price_d'],0);
 				$d3 = $d1 * $d2;
-				$total_pendapatan = $a3 + $b3 + $c3 + $d3;
 				?>
 				<td align="right" class="table-border-pojok-kanan"><?= number_format($d3,0,',','.'); ?></td>
+			</tr>
+			<tr class="table-baris1">
+				<td align="center" class="table-border-pojok-kiri">4.</td>
+				<td align="left" class="table-border-pojok-tengah">Beton K 300 (110±2)</td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_e'],2,',','.'); ?></td>
+				<td align="center" class="table-border-pojok-tengah">M3</td>
+				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['price_e'],2,',','.'); ?></td>
+				<?php
+				$e1 = round($rak['vol_produk_e'],2);
+				$e2 = round($rak['price_e'],0);
+				$e3 = $e1 * $e2;
+				$total_pendapatan = $a3 + $b3 + $c3 + $d3 + $e3;
+				?>
+				<td align="right" class="table-border-pojok-kanan"><?= number_format($e3,0,',','.'); ?></td>
 			</tr>
 			<tr class="table-total">
 				<td align="right" colspan="2" class="table-border-pojok-kiri">RENCANA PRODUKSI</td>

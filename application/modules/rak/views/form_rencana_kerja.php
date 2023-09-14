@@ -156,6 +156,31 @@
                                                             ?>
                                                         </select>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">4.</td>
+                                                    <td>Beton K 300 (10±2)</td>
+													<td>
+                                                    <input type="text" id="vol_produk_e" name="vol_produk_e" class="form-control numberformat text-right" value="" onchange="changeData(1)"  autocomplete="off">
+                                                    </td>
+                                                    <td>
+                                                    <input type="text" id="price_e" name="price_e" class="form-control rupiahformat text-right" value="1400000"  readonly="" autocomplete="off">
+                                                    </td>
+                                                    <td class="text-center">M3</td>
+                                                    <td class="text-center">
+                                                        <select id="komposisi_300" name="komposisi_300" class="form-control input-sm">
+                                                            <option value="">Pilih Komposisi</option>
+                                                            <?php
+                                                            if (!empty($komposisi)) {
+                                                                foreach ($komposisi as $kom) {
+                                                            ?>
+                                                                    <option value="<?php echo $kom['id']; ?>"><?php echo $kom['jobs_type']; ?> - (<?= date('d/F/Y',strtotime($kom['date_agregat']));?>)</option>
+                                                                <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
                                                 </tr>				
                                             </tbody>
                                             <tfoot>
@@ -890,6 +915,7 @@
             var vol_produk_b = $('#vol_produk_b').val();
             var vol_produk_c = $('#vol_produk_c').val();
             var vol_produk_d = $('#vol_produk_d').val();
+            var vol_produk_e = $('#vol_produk_e').val();
             				
 			vol_produk_a = ( vol_produk_a);
             $('#vol_produk_a').val(vol_produk_a);
@@ -899,6 +925,8 @@
             $('#vol_produk_c').val(vol_produk_c);
             vol_produk_d = ( vol_produk_d);
             $('#vol_produk_d').val(vol_produk_d);
+            vol_produk_e = ( vol_produk_e);
+            $('#vol_produk_e').val(vol_produk_e);
             getTotal();
         }
 
@@ -906,7 +934,7 @@
         {
             var sub_total = $('#sub-total-val').val();
 
-            sub_total = parseFloat($('#vol_produk_a').val()) + parseFloat($('#vol_produk_b').val()) + parseFloat($('#vol_produk_c').val()) + parseFloat($('#vol_produk_d').val());
+            sub_total = parseFloat($('#vol_produk_a').val()) + parseFloat($('#vol_produk_b').val()) + parseFloat($('#vol_produk_c').val()) + parseFloat($('#vol_produk_d').val()) + parseFloat($('#vol_produk_e').val());
             
             $('#sub-total-val').val(sub_total);
             $('#sub-total').text($.number( sub_total, 2,',','.' ));
@@ -1342,9 +1370,16 @@
                 $('#komposisi_250').prop('selectedIndex', 3).trigger('change');
             }, 1000);
         });
+
         $(document).ready(function() {
             setTimeout(function(){
                 $('#komposisi_250_2').prop('selectedIndex', 4).trigger('change');
+            }, 1000);
+        });
+
+        $(document).ready(function() {
+            setTimeout(function(){
+                $('#komposisi_300').prop('selectedIndex', 5).trigger('change');
             }, 1000);
         });
 

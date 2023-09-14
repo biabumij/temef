@@ -68,6 +68,8 @@ class Rak extends Secure_Controller {
 		$vol_produk_c =  str_replace(',', '.', $vol_produk_c);
 		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 		$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
+		$vol_produk_e =  str_replace('.', '', $this->input->post('vol_produk_e'));
+		$vol_produk_e =  str_replace(',', '.', $vol_produk_e);
 
 		$vol_bbm_solar =  str_replace('.', '', $this->input->post('vol_bbm_solar'));
 		$vol_bbm_solar =  str_replace(',', '.', $vol_bbm_solar);
@@ -76,11 +78,13 @@ class Rak extends Secure_Controller {
 		$komposisi_225 =  $this->input->post('komposisi_225');
 		$komposisi_250 =  $this->input->post('komposisi_250');
 		$komposisi_250_2 =  $this->input->post('komposisi_250_2');
+		$komposisi_300 =  $this->input->post('komposisi_300');
 
 		$price_a =  str_replace('.', '', $this->input->post('price_a'));
 		$price_b =  str_replace('.', '', $this->input->post('price_b'));
 		$price_c =  str_replace('.', '', $this->input->post('price_c'));
 		$price_d =  str_replace('.', '', $this->input->post('price_d'));
+		$price_e =  str_replace('.', '', $this->input->post('price_e'));
 		$insentif =  str_replace('.', '', $this->input->post('insentif'));
 		$sewa_alat =  str_replace('.', '', $this->input->post('sewa_alat'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
@@ -245,6 +249,7 @@ class Rak extends Secure_Controller {
 			'vol_produk_b' => $vol_produk_b,
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
+			'vol_produk_e' => $vol_produk_e,
 
 			'vol_bbm_solar' => $vol_bbm_solar,
 
@@ -252,6 +257,7 @@ class Rak extends Secure_Controller {
 			'price_b' => $price_b,
 			'price_c' => $price_c,
 			'price_d' => $price_d,
+			'price_e' => $price_e,
 			'insentif' => $insentif,
 			'sewa_alat' => $sewa_alat,
 			'overhead' => $overhead,
@@ -260,6 +266,7 @@ class Rak extends Secure_Controller {
 			'komposisi_225' => $komposisi_225,
 			'komposisi_250' => $komposisi_250,
 			'komposisi_250_2' => $komposisi_250_2,
+			'komposisi_300' => $komposisi_300,
 
 			'penawaran_id_semen' => $penawaran_id_semen,
 			'penawaran_id_pasir' => $penawaran_id_pasir,
@@ -620,6 +627,8 @@ class Rak extends Secure_Controller {
 		$vol_produk_c =  str_replace(',', '.', $vol_produk_c);
 		$vol_produk_d =  str_replace('.', '', $this->input->post('vol_produk_d'));
 		$vol_produk_d =  str_replace(',', '.', $vol_produk_d);
+		$vol_produk_e =  str_replace('.', '', $this->input->post('vol_produk_e'));
+		$vol_produk_e =  str_replace(',', '.', $vol_produk_e);
 
 		$vol_bbm_solar =  str_replace('.', '', $this->input->post('vol_bbm_solar'));
 		$vol_bbm_solar =  str_replace(',', '.', $vol_bbm_solar);
@@ -628,11 +637,13 @@ class Rak extends Secure_Controller {
 		$komposisi_225 =  $this->input->post('komposisi_225');
 		$komposisi_250 =  $this->input->post('komposisi_250');
 		$komposisi_250_2 =  $this->input->post('komposisi_250_2');
+		$komposisi_300 =  $this->input->post('komposisi_300');
 
 		$price_a =  str_replace('.', '', $this->input->post('price_a'));
 		$price_b =  str_replace('.', '', $this->input->post('price_b'));
 		$price_c =  str_replace('.', '', $this->input->post('price_c'));
 		$price_d =  str_replace('.', '', $this->input->post('price_d'));
+		$price_e =  str_replace('.', '', $this->input->post('price_e'));
 		$insentif =  str_replace('.', '', $this->input->post('insentif'));
 		$sewa_alat =  str_replace('.', '', $this->input->post('sewa_alat'));
 		$overhead =  str_replace('.', '', $this->input->post('overhead'));
@@ -793,6 +804,7 @@ class Rak extends Secure_Controller {
 			'vol_produk_b' => $vol_produk_b,
 			'vol_produk_c' => $vol_produk_c,
 			'vol_produk_d' => $vol_produk_d,
+			'vol_produk_e' => $vol_produk_e,
 
 			'vol_bbm_solar' => $vol_bbm_solar,
 
@@ -800,6 +812,7 @@ class Rak extends Secure_Controller {
 			'price_b' => $price_b,
 			'price_c' => $price_c,
 			'price_d' => $price_d,
+			'price_e' => $price_e,
 			'insentif' => $insentif,
 			'sewa_alat' => $sewa_alat,
 			'overhead' => $overhead,
@@ -808,6 +821,7 @@ class Rak extends Secure_Controller {
 			'komposisi_225' => $komposisi_225,
 			'komposisi_250' => $komposisi_250,
 			'komposisi_250_2' => $komposisi_250_2,
+			'komposisi_300' => $komposisi_300,
 
 			'penawaran_id_semen' => $penawaran_id_semen,
 			'penawaran_id_pasir' => $penawaran_id_pasir,
