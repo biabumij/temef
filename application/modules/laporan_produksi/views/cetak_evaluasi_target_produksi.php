@@ -170,6 +170,9 @@
 			$total_price_d = 0;
 			$total_price_e = 0;
 
+			$total_overhead = 0;
+			$total_diskonto = 0;
+
 			foreach ($rencana_kerja as $x){
 				$total_price_a += $x['vol_produk_a'] * $x['price_a'];
 				$total_price_b += $x['vol_produk_b'] * $x['price_b'];
@@ -182,6 +185,9 @@
 				$total_vol_c += $x['vol_produk_c'];
 				$total_vol_d += $x['vol_produk_d'];
 				$total_vol_e += $x['vol_produk_e'];
+
+				$total_overhead += $x['overhead'];
+				$total_diskonto += $x['biaya_bank'];
 			}
 
 			$volume_rap_produk_a = $total_vol_a;
@@ -316,12 +322,11 @@
 
 			$total_nilai_rap_alat = $batching_plant + $truck_mixer + $wheel_loader + $bbm_solar;
 
-
 			$total_rap_biaya_alat = $total_nilai_rap_alat;
-			$total_rap_overhead = $rencana_kerja['overhead'];
-			$total_rap_biaya_bank = $rencana_kerja['biaya_bank'];
+			$total_rap_overhead = $total_overhead;
+			$total_rap_biaya_bank = $total_diskonto;
 
-			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_biaya_overhead + $total_rap_biaya_bank;
+			$total_biaya_rap_biaya = $total_rap_biaya_bahan + $total_rap_biaya_alat + $total_rap_overhead + $total_rap_biaya_bank;
 			?>
 			<!-- RAP 2022 -->
 			
