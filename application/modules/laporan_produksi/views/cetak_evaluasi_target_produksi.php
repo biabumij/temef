@@ -562,8 +562,6 @@
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
 			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
-			$sisa_laba = $total_laba_rap - $total_laba_realisasi;
-
 			?>
 			<!-- TOTAL -->
 			
@@ -590,7 +588,7 @@
 				$styleColorI = $sisa_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
-				$styleColorM = $sisa_laba < 0 ? 'color:red' : 'color:black';
+				
 				$styleColorN = $sisa_volume_produk_e < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
@@ -694,7 +692,14 @@
 				<th align="center" class="table-border-spesial-tengah"></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_rap,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-kanan" style="<?php echo $styleColorM?>"><?php echo number_format($sisa_laba,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-kanan"></th>
+			</tr>
+			<tr class="table-judul">
+				<th align="right" colspan="2" class="table-border-spesial-kiri">PRESENTASE</th>
+				<th align="center" class="table-border-spesial-tengah"></th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format(($total_laba_rap / $total_rap_nilai) * 100,2,',','.');?> %</th>
+				<th align="right" class="table-border-spesial-tengah"><?php echo number_format(($total_laba_realisasi / $total_realisasi_nilai) * 100,2,',','.');?> %</th>
+				<th align="right" class="table-border-spesial-kanan"></th>
 			</tr>
 	    </table>
 		<table width="98%" border="0" cellpadding="30">

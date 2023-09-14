@@ -11804,8 +11804,6 @@ class Reports extends CI_Controller {
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
 			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
-			$sisa_laba = $total_laba_rap - $total_laba_realisasi;
-
 			?>
 			<!-- TOTAL -->
 
@@ -11832,7 +11830,7 @@ class Reports extends CI_Controller {
 				$styleColorI = $sisa_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
-				$styleColorM = $sisa_laba < 0 ? 'color:red' : 'color:black';
+
 				$styleColorN = $sisa_volume_produk_e < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
@@ -11897,7 +11895,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">Bahan</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_biaya_bahan,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_bahan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_bahan_akumulasi,0,',','.');?></a></th>
 				<th class="text-right" style="<?php echo $styleColorG ?>"><?php echo number_format($sisa_biaya_bahan,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
@@ -11905,7 +11903,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">Alat</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_biaya_alat,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_alat_realisasi,0,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_alat?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_alat_realisasi,0,',','.');?></a></th>
 				<th class="text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($sisa_biaya_alat,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
@@ -11913,7 +11911,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">Overhead</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_overhead,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_overhead_realisasi,0,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_overhead?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_overhead_realisasi,0,',','.');?></a></th>
 				<th class="text-right" style="<?php echo $styleColorI ?>"><?php echo number_format($sisa_overhead,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
@@ -11921,7 +11919,7 @@ class Reports extends CI_Controller {
 				<th class="text-left">Biaya Bank</th>
 				<th class="text-center">LS</th>
 				<th class="text-right"><?php echo number_format($total_rap_biaya_bank,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_diskonto_realisasi,0,',','.');?></th>
+				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_diskonto?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_diskonto_realisasi,0,',','.');?></a></th>
 				<th class="text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($sisa_biaya_bank,0,',','.');?></th>
 			</tr>
 			<tr class="table-active2">
@@ -11936,7 +11934,14 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_laba_rap,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
-				<th class="text-right" style="<?php echo $styleColorM ?>"><?php echo number_format($sisa_laba,0,',','.');?></th>
+				<th class="text-right"></th>
+			</tr>
+			<tr class="table-active2">
+				<th class="text-right" colspan="2">PRESENTASE</th>
+				<th class="text-center"></th>
+				<th class="text-right"><?php echo number_format(($total_laba_rap / $total_rap_nilai) * 100,2,',','.');?> %</th>
+				<th class="text-right"><?php echo number_format(($total_laba_realisasi / $total_realisasi_nilai) * 100,2,',','.');?> %</th>
+				<th class="text-right"></th>
 			</tr>	
 	    </table>
 		<?php
