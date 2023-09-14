@@ -562,6 +562,7 @@
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
 			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
+			$presentase_realisasi = ($total_laba_realisasi / $total_realisasi_nilai) * 100;
 			?>
 			<!-- TOTAL -->
 			
@@ -588,8 +589,9 @@
 				$styleColorI = $sisa_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
-				
+				$styleColorM = $total_laba_realisasi < 0 ? 'color:red' : 'color:black';
 				$styleColorN = $sisa_volume_produk_e < 0 ? 'color:red' : 'color:black';
+				$styleColorO = $presentase_realisasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-baris1">
 				<th align="center" class="table-border-pojok-kiri">1.</th>
@@ -691,14 +693,14 @@
 				<th align="right" colspan="2" class="table-border-spesial-kiri">LABA</th>
 				<th align="center" class="table-border-spesial-tengah"></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_rap,0,',','.');?></th>
-				<th align="right" class="table-border-spesial-tengah"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
+				<th align="right" class="table-border-spesial-tengah" style="<?php echo $styleColorM ?>"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
 				<th align="right" class="table-border-spesial-kanan"></th>
 			</tr>
 			<tr class="table-judul">
 				<th align="right" colspan="2" class="table-border-spesial-kiri">PRESENTASE</th>
 				<th align="center" class="table-border-spesial-tengah"></th>
 				<th align="right" class="table-border-spesial-tengah"><?php echo number_format(($total_laba_rap / $total_rap_nilai) * 100,2,',','.');?> %</th>
-				<th align="right" class="table-border-spesial-tengah"><?php echo number_format(($total_laba_realisasi / $total_realisasi_nilai) * 100,2,',','.');?> %</th>
+				<th align="right" class="table-border-spesial-tengah" style="<?php echo $styleColorO ?>"><?php echo number_format($presentase_realisasi,2,',','.');?> %</th>
 				<th align="right" class="table-border-spesial-kanan"></th>
 			</tr>
 	    </table>

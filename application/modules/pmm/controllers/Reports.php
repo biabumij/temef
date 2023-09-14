@@ -11775,7 +11775,7 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 
 			$total_persiapan_realisasi = $persiapan_biaya_realisasi['total'] + $persiapan_jurnal_realisasi['total'];
-			$total_biaya_realisasi = $total_bahan_akumulasi + $total_alat_realisasi + $total_overhead_realisasi + $total_diskonto_realisasi + $total_persiapan_realisasi;
+			$total_biaya_realisasi = $total_bahan_akumulasi + $total_alat_realisasi + $total_overhead_realisasi + $total_diskonto_realisasi;
 			//END PERSIAPAN
 			?>
 			<!-- REALISASI BIAYA -->
@@ -11804,6 +11804,7 @@ class Reports extends CI_Controller {
 			$total_laba_realisasi = $total_realisasi_nilai - $total_biaya_realisasi;
 
 			$sisa_biaya_realisasi = $total_biaya_rap_biaya - $total_biaya_realisasi;
+			$presentase_realisasi = ($total_laba_realisasi / $total_realisasi_nilai) * 100;
 			?>
 			<!-- TOTAL -->
 
@@ -11830,8 +11831,9 @@ class Reports extends CI_Controller {
 				$styleColorI = $sisa_overhead < 0 ? 'color:red' : 'color:black';
 				$styleColorJ = $sisa_biaya_bank < 0 ? 'color:red' : 'color:black';
 				$styleColorL = $sisa_biaya_realisasi < 0 ? 'color:red' : 'color:black';
-
+				$styleColorM = $total_laba_realisasi < 0 ? 'color:red' : 'color:black';
 				$styleColorN = $sisa_volume_produk_e < 0 ? 'color:red' : 'color:black';
+				$styleColorO = $presentase_realisasi < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 				<th class="text-center">1.</th>
@@ -11933,14 +11935,14 @@ class Reports extends CI_Controller {
 				<th class="text-right" colspan="2">LABA</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format($total_laba_rap,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
+				<th class="text-right" style="<?php echo $styleColorM ?>"><?php echo number_format($total_laba_realisasi,0,',','.');?></th>
 				<th class="text-right"></th>
 			</tr>
 			<tr class="table-active2">
 				<th class="text-right" colspan="2">PRESENTASE</th>
 				<th class="text-center"></th>
 				<th class="text-right"><?php echo number_format(($total_laba_rap / $total_rap_nilai) * 100,2,',','.');?> %</th>
-				<th class="text-right"><?php echo number_format(($total_laba_realisasi / $total_realisasi_nilai) * 100,2,',','.');?> %</th>
+				<th class="text-right" style="<?php echo $styleColorO ?>"><?php echo number_format($presentase_realisasi,2,',','.');?> %</th>
 				<th class="text-right"></th>
 			</tr>	
 	    </table>
