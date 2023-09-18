@@ -72,10 +72,10 @@
                                             <table class="table table-striped table-hover" id="table_penawaran" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
-                                                        <th>Status Penawaran</th>
-														<th>Tanggal Penawaran</th>
-														<th>No. Penawaran</th>
+                                                        <th>No.</th>
+                                                        <th>Status</th>
+														<th>Tanggal</th>
+														<th>Nomor</th>
                                                         <th>Pelanggan</th>
                                                         <th>Perihal</th>        
                                                         <th>Total</th>
@@ -102,10 +102,10 @@
                                             <table class="table table-striped table-hover" id="guest-table" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
-                                                        <th>Status Sales Order</th>
+                                                        <th>No.</th>
+                                                        <th>Status</th>
                                                         <th>Tanggal</th>
-                                                        <th>No. Sales Order</th>
+                                                        <th>Nomor</th>
                                                         <th>Pelanggan</th>
                                                         <th>Jenis Pekerjaan</th>
 														<th>Vol. Sales Order</th>
@@ -185,11 +185,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th></th>
-                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>No.</th>
                                                         <th>Status Tagihan</th>
                                                         <th>Tanggal</th>
                                                         <th>Pelanggan</th>
-                                                        <th>No. Sales Order</th>
+                                                        <th>Nomor</th>
                                                         <th>No. Surat Jalan</th>
                                                         <th>Surat Jalan</th>
                                                         <th>No. Kendaraan</th>
@@ -268,7 +268,7 @@
                                             <table class="table table-striped table-hover" id="table-penagihan" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>No.</th>
                                                         <th>Status Pembayaran</th>
                                                         <th>Status Tagihan</th>
                                                         <th>Tgl. Invoice</th>
@@ -320,7 +320,7 @@
     <script type="text/javascript">
         $('input#contract').number(true, 2, ',', '.');
 
-        var table_penawaran = $('#table_penawaran').DataTable({
+        var table_penawaran = $('#table_penawaran').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -359,15 +359,9 @@
                 }
             ],
             "columnDefs": [
-				{
-                "targets": [0, 1],
-                "className": 'text-center',
-				},
-				{
-                "targets": [6],
-                "className": 'text-right',
-				}
-			],
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 6, "className": 'text-right'},
+            ],
             responsive: true,
             //paging : false,
         });
@@ -377,7 +371,7 @@
             table_penawaran.ajax.reload();
         });
 
-        var table_po = $('#guest-table').DataTable({
+        var table_po = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -428,14 +422,8 @@
                 }
             ],
             "columnDefs": [
-				{
-                    "targets": [0, 1],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [6, 7, 8, 9, 10],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [7, 8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
             //paging : false,
@@ -446,7 +434,7 @@
             table_po.ajax.reload();
         });
 
-        var tableProduction = $('#table-production').DataTable({
+        var tableProduction = $('#table-production').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -526,14 +514,8 @@
                     "orderable": false,
                     "className": 'select-checkbox',
                 },
-                {
-                    "targets": [1, 2],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [12],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 1, "className": 'text-center'},
+                { "targets": 12, "className": 'text-right'},
             ],
         });
 
@@ -632,7 +614,7 @@
             }
         });
 
-        var table = $('#table-penagihan').DataTable({
+        var table = $('#table-penagihan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -687,14 +669,9 @@
                 }
 
             ],
-            "columnDefs": [{
-                    "targets": [0, 1, 2],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [ 9, 10, 11],
-                    "className": 'text-right',
-                },
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [9, 10, 11], "className": 'text-right'},
             ],
             responsive: true,
             //paging : false,
