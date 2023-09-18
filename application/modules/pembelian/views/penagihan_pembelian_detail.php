@@ -361,7 +361,7 @@
                                 if ($row['verifikasi_dok'] == 'BELUM') { ?>
                                     <blink><p style='color:red; font-weight:bold;'>VERIFIKASI DOKUMEN TERLEBIH DAHULU !!</p></blink>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 20 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 25){
                                     ?>
                                     <a class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                     <?php
@@ -371,7 +371,7 @@
                                 <br />
                                 <?php if ($row["verifikasi_dok"] === "SUDAH") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 20 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 25){
                                     ?>
                                     <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
                                     <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
@@ -393,7 +393,7 @@
 
                                 <?php if ($row["verifikasi_dok"] === "LENGKAP") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 20){
                                     ?>
                                     <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold; border-radius:10px;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
                                     <?php

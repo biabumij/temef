@@ -134,7 +134,7 @@
                                         <a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-mail-replay"></i> Kembali</a>
                                         <a href="<?= base_url('penjualan/cetak_pembayaran/' . $bayar["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 20 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 25){
                                         ?>
                                         <a href="<?= base_url('penjualan/sunting_pembayaran/' . $bayar["id"]) ?>" class="btn btn-warning" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Edit</a>
                                         <?php
@@ -142,7 +142,7 @@
                                         ?>
 
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 19 || $this->session->userdata('admin_group_id') == 20){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 20 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 25){
                                         ?>
                                         <button type="button" id="tombol_hapus" class="btn btn-danger" style="width:15%; font-weight:bold; margin-bottom:10px; border-radius:10px;"><i class="fa fa-times"></i> Hapus</button>
                                         <?php
