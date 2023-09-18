@@ -300,7 +300,7 @@
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "CLOSED") : ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 20){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 16 || $this->session->userdata('admin_group_id') == 20 || $this->session->userdata('admin_group_id') == 24 || $this->session->userdata('admin_group_id') == 25){
                                         ?>
                                         <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold; border-radius:10px;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
                                         <?php
