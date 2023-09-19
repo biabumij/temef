@@ -343,7 +343,7 @@
                                     <div role="tabpanel" class="tab-pane active" id="menu1">
                                         <br>
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover table-center table-bordered" id="table-surat-jalan" width="100%">
+                                            <table class="table table-striped table-hover" id="table-surat-jalan" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Tanggal</th>
@@ -386,7 +386,7 @@
                                     <div role="tabpanel" class="tab-pane" id="menu2">
                                         <br>
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover table-bordered" id="table-pembayaran" width="100%">
+                                            <table class="table table-striped table-hover" id="table-pembayaran" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Tanggal</th>
