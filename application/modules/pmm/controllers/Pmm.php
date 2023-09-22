@@ -309,6 +309,7 @@ class Pmm extends CI_Controller {
 				}else {
 					$row['delete'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
 				}
+				
 				$data[] = $row;
 			}
 

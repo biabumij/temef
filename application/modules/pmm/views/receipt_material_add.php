@@ -207,7 +207,7 @@
                                     <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th width="5%" class="text-center">No</th>
+                                                <th>No.</th>
                                                 <th>Tanggal</th>
                                                 <th>Rekanan</th>
 												<th>No. Pesanan Pembelian</th>
@@ -217,12 +217,12 @@
                                                 <th>File</th>
                                                 <th>Memo</th>
                                                 <th>Produk</th>
-                                                <th class="text-center">Volume</th>
+                                                <th>Volume</th>
                                                 <th>Satuan</th>
-												<th class="text-center">Harga Satuan</th>
-												<th class="text-center">Nilai</th>
-                                                <th class="text-center">Edit</th>
-                                                <th class="text-center">Hapus</th>
+												<th>Harga Satuan</th>
+												<th>Nilai</th>
+                                                <th>Edit</th>
+                                                <th>Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -524,7 +524,7 @@
             }
         }
 
-        var table = $('#guest-table').DataTable( {
+        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -558,17 +558,11 @@
                 { "data": "edits" },
                 { "data": "actions" },
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0, 14, 15],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [9, 11, 12],
-                    "className": 'text-right',
-                },
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "10%", "targets": [10, 12, 13], "className": 'text-right' }
             ],
+            responsive: true,
         });
 
         var table_acc = $('#table-acc').DataTable( {

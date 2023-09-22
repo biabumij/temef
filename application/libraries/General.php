@@ -1076,7 +1076,6 @@ Class General
         }
     }
 
-
     function StatusPayment($status)
     {
         if($status == 'CREATING'){
