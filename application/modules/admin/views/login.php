@@ -70,21 +70,20 @@
 	                            </span>
 	                        </div>
 	                        <div class="form-group">
-	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..."><b>MASUK</b></button>
+	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..." style="font-weight:bold; border-radius:10px"><b>MASUK</b></button>
 	                        </div>
-	                        <div class="form-group site text-center">
+							<div class="form-group site text-center" style="color:black;">
 								&copy; PT BIA BUMI JAYENDRA, 2021
-	                            <!-- <a href="pages_forgot-password.html">Forgot password?</a> -->
 	                        </div>
 	                    </form>
 	                </div>
 	            </div>
 	        </div>
 	        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-		
+	    
 			<div class="box">
 				<div class="tomorrow"
-					data-location-id="056680"
+					data-location-id="057045"
 					data-language="ID"
 					data-unit-system="METRIC"
 					data-skin="light"
@@ -94,7 +93,7 @@
 				</div>
 			</div>
 
-
+			
 		</div>
 	</div>
 	<!--BASIC scripts-->
@@ -160,8 +159,8 @@
               }
           });
       });
- 	</script>
-	<script>
+  	</script>
+  	<script>
         (function(d, s, id) {
             if (d.getElementById(id)) {
                 if (window.__TOMORROW__) {
@@ -177,5 +176,5 @@
             fjs.parentNode.insertBefore(js, fjs);
         })(document, 'script', 'tomorrow-sdk');
     </script>
-	</body>
+</body>
 </html>
