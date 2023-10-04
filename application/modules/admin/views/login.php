@@ -53,8 +53,8 @@
 	        </div>
 	        <div class="box">
 	            <!--SIGN IN FORM-->
-	            <div class="panel mb-none">
-	                <div class="panel-content bg-scale-0">
+	            <div class="panel-login mb-none">
+	                <div class="panel-content-login bg-scale-0">
 	                	<div class="alert alert-warning" role="alert">
                           	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                           	<div class="alert-content"></div>
