@@ -62,7 +62,7 @@
 	                    <form id="loginform" action="<?php echo site_url('login_admin');?>">
 	                        <div class="form-group mt-md">
 	                            <span class="input-with-icon">
-	                                <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?= $email;?>">
+	                                <input type="email" class="form-control-login" id="email" placeholder="Email" name="email" value="<?= $email;?>">
 	                                <i class="fa fa-envelope"></i>
 	                            </span>
 	                        </div>
@@ -75,7 +75,7 @@
 	                        <div class="form-group">
 	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..." style="font-weight:bold; border-radius:10px"><b>MASUK</b></button>
 	                        </div>
-							<div class="form-group site text-center" style="color:black;">
+							<div class="form-group site text-center" style="font-weight:bold; color:whitr;">
 								&copy; PT BIA BUMI JAYENDRA, 2021
 	                        </div>
 	                    </form>
@@ -89,7 +89,7 @@
 					data-location-id="056826"
 					data-language="ID"
 					data-unit-system="METRIC"
-					data-skin="light"
+					data-skin="dark"
 					data-widget-type="aqiMini"
 					style="padding-bottom:15px;position:relative;"
 					>
