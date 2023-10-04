@@ -68,7 +68,7 @@
 	                        </div>
 	                        <div class="form-group" >
 	                            <span class="input-with-icon">
-	                                <input type="password" class="form-control" id="password" placeholder="Kata sandi" name="password">
+	                                <input type="password" class="form-control-login" id="password" placeholder="Kata sandi" name="password">
 	                                <i class="fa fa-key"></i>
 	                            </span>
 	                        </div>
