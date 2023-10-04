@@ -89,7 +89,7 @@
 					data-location-id="056826"
 					data-language="ID"
 					data-unit-system="METRIC"
-					data-skin="dark"
+					data-skin="light"
 					data-widget-type="aqiMini"
 					style="padding-bottom:15px;position:relative;"
 					>
