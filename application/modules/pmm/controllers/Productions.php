@@ -51,7 +51,7 @@ class Productions extends Secure_Controller {
 		$date_now = date('Y-m-d');
 		//$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
 		$awal_bulan = date('Y-m-01', strtotime($date_now));
-		$akhir_bulan = date('Y-m-d', strtotime($date_now));
+		$akhir_bulan = date('Y-m-d', strtotime('+1 years', strtotime($date_now)));
 
 		$this->db->select('*');
 		if (!empty($client_id)) {
@@ -75,6 +75,7 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('date_production','desc');
 		$this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_productions');
+		file_put_contents("D:\\test.txt", $this->db->last_query());
 		
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
