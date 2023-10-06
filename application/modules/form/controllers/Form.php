@@ -122,7 +122,7 @@ class Form extends Secure_Controller {
                     $row['approve_ti_sistem'] = 'Permintaan Disetujui';
                 } else if($row["status"] == 'UNPUBLISH'){
                     $row['approve_ti_sistem'] = "Menunggu Persetujuan Ka. Unit/Plant";
-                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 15){
+                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 16){
 					$approve = '<a href="javascript:void(0);" onclick="ApprovePerubahanSistem('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
                     $row['approve_ti_sistem'] = $approve;
                     }
