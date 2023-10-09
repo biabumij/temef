@@ -307,6 +307,7 @@ class Laporan extends Secure_Controller {
 		$purchase_order_no = $this->input->get('purchase_order_no');
 		$filter_material = $this->input->get('filter_material');
 		$filter_kategori = $this->input->get('filter_kategori');
+		$filter_kategori_bahan = $this->input->get('filter_kategori_bahan');
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
@@ -321,7 +322,7 @@ class Laporan extends Secure_Controller {
 			$data['start_date'] = $start_date;
 			$data['end_date'] = $end_date;
 
-			$this->db->select('ppo.supplier_id,prm.display_measure as measure,ps.nama as name, prm.display_harga_satuan as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
+			$this->db->select('ppo.supplier_id,prm.display_measure as measure,ps.nama as name, prm.display_harga_satuan as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price, p.kategori_bahan');
 			
 			if(!empty($start_date) && !empty($end_date)){
 				$this->db->where('prm.date_receipt >=',$start_date);
@@ -339,9 +340,13 @@ class Laporan extends Secure_Controller {
 			if(!empty($filter_kategori)){
 				$this->db->where('ppo.kategori_id',$filter_kategori);
 			}
+			if(!empty($filter_kategori_bahan)){
+				$this->db->where('p.kategori_bahan',$filter_kategori_bahan);
+			}
 
 			$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
-			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id','left');
+			$this->db->join('produk p','prm.material_id = p.id','left');
 			$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 			$this->db->group_by('ppo.supplier_id');
 			$this->db->order_by('ps.nama','asc');
@@ -353,7 +358,7 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 					$mats = array();
-					$materials = $this->pmm_model->GetPenerimaanPembelianPrint($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material,$filter_kategori);
+					$materials = $this->pmm_model->GetPenerimaanPembelianPrint($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material,$filter_kategori,$filter_kategori_bahan);
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
 							$arr['no'] = $key + 1;

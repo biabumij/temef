@@ -3907,7 +3907,6 @@ class Pmm_model extends CI_Model {
         if(!empty($filter_kategori_bahan)){
             $this->db->where('p.kategori_bahan',$filter_kategori_bahan);
         }
-
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.material_id');
@@ -3917,11 +3916,11 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
-	function GetPenerimaanPembelianPrint($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=false)
+	function GetPenerimaanPembelianPrint($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=false,$filter_kategori_bahan=false)
     {
         $output = array();
 
-        $this->db->select('prm.purchase_order_id, prm.display_measure as measure,p.nama_produk,prm.material_id,SUM(prm.display_price) / SUM(prm.display_volume) as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
+        $this->db->select('prm.purchase_order_id, prm.display_measure as measure,p.nama_produk,prm.material_id,SUM(prm.display_price) / SUM(prm.display_volume) as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price, p.kategori_bahan');
         $this->db->join('produk p','prm.material_id = p.id','left');
         $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
         if(!empty($start_date) && !empty($end_date)){
@@ -3939,6 +3938,9 @@ class Pmm_model extends CI_Model {
         }
         if(!empty($filter_kategori)){
             $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
+        if(!empty($filter_kategori_bahan)){
+            $this->db->where('p.kategori_bahan',$filter_kategori_bahan);
         }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
