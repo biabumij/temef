@@ -119,6 +119,7 @@
                                                     $materials = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
                                                     $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                                     $status = $this->db->group_by('status', 'asc')->get_where('pmm_penagihan_pembelian')->result_array();
+                                                    $kategori_bahan = $this->db->order_by('nama_kategori_bahan', 'asc')->get_where('kategori_bahan', array('status' => 'PUBLISH'))->result_array();
                                                     ?>
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_penerimaan_pembelian'); ?>" target="_blank">
@@ -156,6 +157,19 @@
                                                                     foreach ($suppliers as $key => $supplier) {
                                                                     ?>
                                                                         <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <br /><br />
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_kategori_bahan" name="filter_kategori_bahan" class="form-control select2">
+                                                                    <option value="">Pilih Kategori Bahan</option>
+                                                                    <?php
+                                                                    foreach ($kategori_bahan as $key => $bahan) {
+                                                                    ?>
+                                                                        <option value="<?php echo $bahan['id']; ?>"><?php echo $bahan['nama_kategori_bahan']; ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -594,6 +608,7 @@
                         filter_date: $('#filter_date_penerimaan_pembelian').val(),
                         filter_material: $('#filter_material_penerimaan_pembelian').val(),
                         filter_kategori: $('#filter_kategori_b').val(),
+                        filter_kategori_bahan: $('#filter_kategori_bahan').val(),
                     },
                      success: function(result) {
                         if (result.data) {
@@ -663,6 +678,10 @@
             });
 
             $('#filter_kategori_b').change(function() {
+                PenerimaanPembelian();
+            });
+
+            $('#filter_kategori_bahan').change(function() {
                 PenerimaanPembelian();
             });
 
