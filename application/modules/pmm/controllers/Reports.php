@@ -6366,7 +6366,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo $total_laba_rap_2022 < 0 ? "(".number_format(-$total_laba_rap_2022,0,',','.').")" : number_format($total_laba_rap_2022,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format(($total_laba_rap_2022 / $total_rap_nilai_2022) * 100,2,',','.');?> %</th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo number_format($total_laba_all,0,',','.');?></th>
-				<th class="text-center" style="<?php echo $styleColorB ?>"><?php echo number_format($presentase_prognosa,0,',','.');?> %</th>
+				<th class="text-center" style="<?php echo $styleColorB ?>"><?php echo number_format($presentase_prognosa,2,',','.');?> %</th>
 	        </tr>
 	    </table>
 		<?php
