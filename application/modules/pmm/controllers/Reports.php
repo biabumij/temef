@@ -6355,7 +6355,10 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format(($total_biaya_all_biaya / $total_all_nilai) * 100,2,',','.');?> %</th>
 	        </tr>
 			<?php
+				$presentase_prognosa = ($total_laba_all / $total_all_nilai) * 100;
+
 				$styleColorA = $total_laba_all < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $presentase_prognosa < 0 ? 'color:red' : 'color:black';
 			?>	
 			<tr>
 				<th class="text-center" style="vertical-align:middle">3</th>			
@@ -6363,7 +6366,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo $total_laba_rap_2022 < 0 ? "(".number_format(-$total_laba_rap_2022,0,',','.').")" : number_format($total_laba_rap_2022,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format(($total_laba_rap_2022 / $total_rap_nilai_2022) * 100,2,',','.');?> %</th>
 				<th class="text-right" style="<?php echo $styleColorA ?>"><?php echo $total_laba_all < 0 ? "(".number_format(-$total_laba_all,0,',','.').")" : number_format($total_laba_all,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format(($total_laba_all / $total_all_nilai) * 100,2,',','.');?> %</th>
+				<th class="text-center" style="<?php echo $styleColorB ?>"><?php echo $presentase_prognosa < 0 ? "(".number_format(-$presentase_prognosa,2,',','.').")" : number_format($presentase_prognosa,2,',','.');?> %</th>
 	        </tr>
 	    </table>
 		<?php
