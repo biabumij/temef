@@ -344,7 +344,7 @@
                     fontFamily: 'arial',
 
                     zones: [{
-                        value: [<?php echo json_encode($net_agustus23, JSON_NUMERIC_CHECK); ?>],
+                        value: [<?php echo json_encode($net_desember23, JSON_NUMERIC_CHECK); ?>],
                     }, {
                         dashStyle: 'dot'
                     }]
