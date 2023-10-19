@@ -115,6 +115,11 @@
                     $this->db->where('a.admin_id',$row['nama']);
                     $created = $this->db->get('tbl_admin a')->row_array();
 
+					$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+                    $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                    $this->db->where('a.admin_id',$row['direksi']);
+                    $direksi = $this->db->get('tbl_admin a')->row_array();
+
                 ?>
                 <td width="100%">
                     <table width="100%" border="0" cellpadding="0">
@@ -137,7 +142,7 @@
                                 <img src="<?= $ti_sistem['admin_ttd']?>" width="100px">  
                             </td>
                             <td align="left">
-								<img src="<?= $unit_head['admin_ttd']?>" width="100px">   
+								<img src="<?= $direksi['admin_ttd']?>" width="100px">      
                             </td>
                             <td align="left">
                                 <img src="<?= $created['admin_ttd']?>" width="100px">   
@@ -151,7 +156,7 @@
 								Nama : Ginanjar Bayu B.
                             </td>
                             <td align="left">
-								Nama : <?= $unit_head['admin_name'];?>
+								Nama : <?=  $direksi['admin_name'];?>
                             </td>
                             <td align="left">
 								Nama : <?= $created['admin_name'];?>
@@ -165,7 +170,7 @@
 								Jabatan : TI & Sistem
                             </td>
                             <td align="left">
-								Jabatan : <?= $unit_head['admin_group_name'];?>
+								Jabatan : <?= $direksi['admin_group_name']?>
                             </td>
                             <td align="left">
 								Jabatan : <?= $created['admin_group_name'];?>
@@ -179,7 +184,7 @@
 								Tgl. : <?= date('d/m/y',strtotime($row['tanggal_ti_sistem']));?>
                             </td>
                             <td align="left">
-								Tgl. : <?= date('d/m/y',strtotime($row['created_on']));?>
+								Tgl. : <?= date('d/m/y',strtotime($row['updated_on']));?>
                             </td>
                             <td align="left">
 								Tgl. : <?= date('d/m/y',strtotime($row['created_on']));?>
