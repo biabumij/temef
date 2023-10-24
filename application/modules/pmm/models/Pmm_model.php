@@ -4458,6 +4458,7 @@ class Pmm_model extends CI_Model {
         }
 
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
+        $this->db->where("pmp.memo <> 'PPN' ");
 		$this->db->order_by('pmp.nama_pelanggan','asc');
         $query = $this->db->get('pmm_pembayaran pmp');
         
