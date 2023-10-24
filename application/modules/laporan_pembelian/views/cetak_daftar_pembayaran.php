@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>DAFTAR PEMBAYARAN PEMBELIAN</title>
+	  <title>DAFTAR PEMBAYARAN</title>
 	  
 	  <?php
 		$search = array(
