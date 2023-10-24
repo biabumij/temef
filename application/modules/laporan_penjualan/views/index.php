@@ -92,8 +92,8 @@
                                                         <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Daftar Pembayaran</h5></p>
-                                                        <a href="#daftar_pembayaran" aria-controls="daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+														<p><h5>Daftar Penerimaan</h5></p>
+                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                 </div>
                                             </div>
@@ -205,7 +205,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" style="font-size: 11px;" id="laporan-piutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-piutang" style="display:none; font-size: 11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -213,7 +213,7 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PENJUALAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
                                                                 <th class="text-center" colspan="2">SISA PIUTANG</th>
                                                             </tr>
                                                             <tr>
@@ -286,7 +286,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-piutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-piutang" style="display:none; font-size: 11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -322,11 +322,11 @@
 									</div>
 
                                     <!-- Daftar Penerimaan -->
-									<div role="tabpanel" class="tab-pane" id="daftar_pembayaran">
+									<div role="tabpanel" class="tab-pane" id="daftar_penerimaan">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">      
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Daftar Pembayaran</h3>
+                                                    <h3 class="panel-title">Daftar Penerimaan</h3>
 													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
