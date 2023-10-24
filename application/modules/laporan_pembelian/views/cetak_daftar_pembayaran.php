@@ -101,9 +101,6 @@
 				<th align="center" width="20%">NO. TAGIHAN</th>
 				<th align="center" width="20%">PEMBAYARAN</th>
 			</tr>
-			<tr class="table-judul">
-				<th align="center">TGL. BAYAR</th>
-			</tr>
             <?php   
             if(!empty($data)){
             	foreach ($data as $key => $row) {
