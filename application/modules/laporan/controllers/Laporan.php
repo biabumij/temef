@@ -932,11 +932,12 @@ class Laporan extends Secure_Controller {
 			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
 			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
 			$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+			$this->db->join('pmm_verifikasi_penagihan_pembelian pvp','ppp.id = pvp.penagihan_pembelian_id','left');
 			$this->db->where("ppo.kategori_id in (1,5)");
 			
 			if(!empty($start_date) && !empty($end_date)){
-				$this->db->where('ppp.tanggal_invoice >=',$start_date);
-				$this->db->where('ppp.tanggal_invoice <=',$end_date);
+				$this->db->where('pvp.tanggal_lolos_verifikasi >=',$start_date);
+				$this->db->where('pvp.tanggal_lolos_verifikasi <=',$end_date);
 			}
 			if(!empty($supplier_id) || $supplier_id != 0){
 				$this->db->where('ppo.supplier_id',$supplier_id);
