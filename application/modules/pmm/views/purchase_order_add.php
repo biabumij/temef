@@ -288,13 +288,8 @@
                                     ?>
                                     <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                     
-                                    <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 25){
-                                        ?>
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Terima Produk</a>
-                                    <?php
-                                    }
-                                    ?>
+                                    
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
