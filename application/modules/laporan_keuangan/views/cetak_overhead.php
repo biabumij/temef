@@ -2,8 +2,49 @@
 <html>
 	<head>
 	  <title>OVERHEAD</title>
+
+	  <?php
+		$search = array(
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+		);
+		
+		$replace = array(
+		'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+		);
+		
+		$subject = "$filter_date";
+
+		echo str_replace($search, $replace, $subject);
+
+	  ?>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+			font-size: 8px;
+		}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
 		  width: 100%;
@@ -48,11 +89,10 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN BIAYA UMUM & ADMINISTRATIF</div>
-					<div style="display: block;font-weight: bold;font-size: 12px;">PROYEK BENDUNGAN TEMEF</div>
-					<div style="display: block;font-weight: bold;font-size: 12px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
-					<div style="display: block;font-weight: bold;font-size: 12px;text-transform: uppercase;">PERIODE : <?php echo $filter_date;?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN BIAYA UMUM & ADMINISTRATIF</div>
+					<div align="center" style="display: block;font-weight:bold; font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
+					<div align="center" style="display: block;font-weight:bold; font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+					<div align="center" style="display: block;font-weight:bold; font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
 			</tr>
 		</table>
@@ -61,9 +101,9 @@
 		<br />
 		<table class="table-lap" width="98%" border="0" cellpadding="3">
 			<tr class="table-active">
-				<th align="center" width="20%"><b>Kode Akun</b></th>
-				<th align="center" width="50%"><b>Nama Akun</b></th>
-				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
+				<th align="center" width="20%"><b>KODE AKUN</b></th>
+				<th align="center" width="50%"><b>NAMA AKUN</b></th>
+				<th align="center" width="30%" align="right"><b>JUMLAH</b></th>
 			</tr>
 			<?php
 			if(!empty($biaya_langsung_parent)){

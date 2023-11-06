@@ -6394,6 +6394,10 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 		 <style type="text/css">
+			body {
+				font-family: helvetica;
+			}
+
 			table tr.table-active{
 				background-color: #F0F0F0;
 				font-size: 12px;
@@ -6419,10 +6423,8 @@ class Reports extends CI_Controller {
 		 </style>
 	        <tr class="table-active4">
 	            <th colspan="2">Periode</th>
-				<th class="text-center"></th>
-				<th class="text-center"></th>
-	            <th class="text-center"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
-				<th class="text-center">SD. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-right" colspan="2"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-right" colspan="2">SD. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 	        </tr>
 
 			<?php
@@ -6726,9 +6728,8 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 	            <th width="10%"></th>
 				<th width="30%"><?= $x['nama'] ?></th>
-				<th width="10%" class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_pengiriman_penjualan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($x['volume'],2,',','.');?></a></th>
-				<th width="10%" class="text-center"><?= $x['measure'];?></th>
-	            <th width="20%" class="text-right">
+				<th width="12%" class="text-right"><?php echo number_format($x['volume'],2,',','.');?> (<?= $x['measure'];?>)</th>
+	            <th width="18%" class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
 								<th class="text-left" width="10%">
@@ -6742,7 +6743,8 @@ class Reports extends CI_Controller {
 				</th>
 			<?php endforeach; ?>
 			<?php foreach ($penjualan_2 as $x): ?>
-				<th width="20%" class="text-right">
+				<th width="12%" class="text-right"><?php echo number_format($x['volume'],2,',','.');?> (<?= $x['measure'];?>)</th>
+				<th width="18%" class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
 								<th class="text-left" width="10%">
@@ -6758,8 +6760,7 @@ class Reports extends CI_Controller {
 			<?php endforeach; ?>
 			<tr class="table-active3">
 				<th class="text-left" colspan="2">Total Pendapatan</th>
-				<th class="text-right"><a target="_blank" href="<?= base_url("laporan/cetak_pengiriman_penjualan?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($total_volume,2,',','.');?></a></th>
-				<th class="text-center">M3</th>
+				<th class="text-right"></th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6772,6 +6773,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6793,7 +6795,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Bahan</th>
+				<th class="text-left" colspan="2">Bahan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6806,6 +6808,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6821,7 +6824,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Alat</th>
+				<th class="text-left" colspan="2">Alat</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6834,6 +6837,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6849,7 +6853,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Overhead</th>
+				<th class="text-left" colspan="2">Overhead</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6862,6 +6866,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6877,7 +6882,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="3">Diskonto</th>
+				<th class="text-left" colspan="2">Diskonto</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6890,6 +6895,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6904,7 +6910,7 @@ class Reports extends CI_Controller {
 				</th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left" colspan="4">Total Beban Pokok Penjualan</th>
+				<th class="text-left" colspan="3">Total Beban Pokok Penjualan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6917,6 +6923,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>				
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6942,7 +6949,7 @@ class Reports extends CI_Controller {
 				$styleColorPresentase2 = $persentase_laba_sebelum_pajak_2 < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-				<th class="text-left" colspan="4">Laba / Rugi Kotor</th>
+				<th class="text-left" colspan="3">Laba / Rugi Kotor</th>
 	            <th class="text-right" style="<?php echo $styleColorLabaKotor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6955,6 +6962,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorLabaKotor2 ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6972,7 +6980,7 @@ class Reports extends CI_Controller {
 				<th colspan="6"></th>
 			</tr>
 			<tr class="table-active">
-				<th class="text-left" colspan="4">Biaya Umum & Administrasi</th>
+				<th class="text-left" colspan="3">Biaya Umum & Administrasi</th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6985,6 +6993,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7002,7 +7011,7 @@ class Reports extends CI_Controller {
 				<th colspan="6"></th>
 			</tr>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Laba / Rugi Usaha</th>
+	            <th colspan="3" class="text-left">Laba / Rugi Usaha</th>
 	            <th class="text-right" style="<?php echo $styleColorSebelumPajak ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7015,6 +7024,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorSebelumPajak2 ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7029,7 +7039,7 @@ class Reports extends CI_Controller {
 				</th>
 	        </tr>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Presentase</th>
+	            <th colspan="3" class="text-left">Presentase</th>
 	            <th class="text-right" style="<?php echo $styleColorPresentase ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7042,6 +7052,7 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right"></th>
 				<th class="text-right" style="<?php echo $styleColorPresentase2 ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7174,6 +7185,10 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
+				body {
+					font-family: helvetica;
+				}
+
 				table tr.table-active-csf{
 					background-color: #F0F0F0;
 					font-size: 8px;

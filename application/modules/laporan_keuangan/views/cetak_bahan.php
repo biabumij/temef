@@ -42,85 +42,25 @@
 	  ?>
 	  
 	  <style type="text/css">
-		 body {
+		body {
 			font-family: helvetica;
+			font-size: 8px;
 		}
-
-		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			border-right: 1px solid #cccccc;
-			border-left: 1px solid black;
-		}
-
-		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			border-right: 1px solid #cccccc;
-		}
-
-		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			border-right: 1px solid black;
-		}
-
-		table.table-border-spesial, th.table-border-spesial, td.table-border-spesial {
-			border-left: 1px solid black;
-			border-right: 1px solid black;
-		}
-
-		table.table-border-spesial-kiri, th.table-border-spesial-kiri, td.table-border-spesial-kiri {
-			border-left: 1px solid black;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
-		}
-
-		table.table-border-spesial-tengah, th.table-border-spesial-tengah, td.table-border-spesial-tengah {
-			border-left: 1px solid #cccccc;
-			border-right: 1px solid #cccccc;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
-		}
-
-		table.table-border-spesial-kanan, th.table-border-spesial-kanan, td.table-border-spesial-kanan {
-			border-left: 1px solid #cccccc;
-			border-right: 1px solid black;
-			border-top: 2px solid black;
-			border-bottom: 2px solid black;
-		}
-
 		table tr.table-judul{
-			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 7px;
-			color: black;
+			font-size: 8px;
 		}
 			
 		table tr.table-baris1{
-			background-color: none;
-			font-size: 7px;
-		}
-
-		table tr.table-baris1-bold{
-			background-color: none;
-			font-size: 7px;
-			font-weight: bold;
+			background-color: #eeeeee;
+			font-size: 8px;
 		}
 			
 		table tr.table-total{
-			background-color: #FFFF00;
-			font-weight: bold;
-			font-size: 7px;
-			color: black;
-		}
-
-		table tr.table-total2{
 			background-color: #eeeeee;
 			font-weight: bold;
-			font-size: 7px;
-			color: black;
+			font-size: 8px;
 		}
 	  </style>
 
@@ -157,7 +97,7 @@
 		
 		?>
 		
-		<table width="98%" border="0" cellpadding="3" border="0">
+		<table width="98%" border="1" cellpadding="3">
 		
 			<!--- OPENING BALANCE --->
 			
@@ -616,54 +556,51 @@
 	        ?>
 			
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" class="table-border-pojok-kiri">&nbsp;<br>NO.</th>
-				<th width="40%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br>URAIAN</th>
-				<th width="15%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp;<br>SATUAN</th>
-				<th width="40%" align="center" colspan="3" class="table-border-pojok-kanan">PEMAKAIAN</th>
+				<th width="5%" align="center" rowspan="2">&nbsp;<br>NO.</th>
+				<th width="30%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
+				<th width="15%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
+				<th width="50%" align="center" colspan="3">PEMAKAIAN</th>
 	        </tr>
 			<tr class="table-judul">
-				<th align="center" width="10%" class="table-border-pojok-kiri">VOLUME</th>
-				<th align="center" width="10%" class="table-border-pojok-tengah">HARGA</th>
-				<th align="center" width="20%" class="table-border-pojok-kanan">NILAI</th>
+				<th align="center" width="15%">VOLUME</th>
+				<th align="center" width="15%">HARGA</th>
+				<th align="center" width="20%">NILAI</th>
 	        </tr>
 			<tr class="table-baris1">
-	            <th align="left" colspan="12" class="table-border-spesial"><b>BAHAN BAKU</b></th>
+				<th align="center">1</th>	
+				<th align="left">Semen</th>
+				<th align="center">Ton</th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">1</th>	
-				<th align="left" class="table-border-pojok-tengah">Semen</th>
-				<th align="center" class="table-border-pojok-tengah">Ton</th>
-				<th align="center" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
+				<th align="center">2</th>
+				<th align="left">Pasir</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">2</th>
-				<th align="left" class="table-border-pojok-tengah">Pasir</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="center" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
+				<th align="center">3</th>
+				<th align="left">Batu Split 10-20</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">3</th>
-				<th align="left" class="table-border-pojok-tengah">Batu Split 10-20</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="center" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
+				<th align="center">4</th>
+				<th align="left">Batu Split 20-30</th>
+				<th align="center">M3</th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 	        </tr>
-			<tr class="table-baris1">
-				<th align="center" class="table-border-pojok-kiri">4</th>
-				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
-				<th align="center" class="table-border-pojok-tengah">M3</th>
-				<th align="center" class="table-border-pojok-tengah"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
-				<th align="right" class="table-border-pojok-tengah"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
-				<th align="right" class="table-border-pojok-kanan"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total2">
-	            <th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
+			<tr class="table-total">
+	            <th align="right" colspan="5">TOTAL</th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -714,7 +651,6 @@
 							</td>
 							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
-								<img src="<?= $admin['admin_ttd']?>" width="20px">
 							</td>
 						</tr>
 						<tr>

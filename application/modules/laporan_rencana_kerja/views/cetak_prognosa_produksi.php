@@ -6,6 +6,7 @@
 	  <style type="text/css">
 		body {
 			font-family: helvetica;
+			font-size: 7px;
 		}
 
 		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
@@ -4899,7 +4900,8 @@
 				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_laba_all,0,',','.');?></th>
 			</tr>
 	    </table>
-		<table width="98%" border="0" cellpadding="5">
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">

@@ -4,6 +4,10 @@
 	  <title>LAPORAN HUTANG</title>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+		}
+		
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
@@ -81,11 +85,11 @@
 		<table cellpadding="4" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp; <br />NO.</th>
-				<th width="30%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th width="26%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
 				<th width="25%" align="center"colspan="2">SISA HUTANG</th>
 			</tr>
 			<tr class="table-judul">
@@ -161,6 +165,5 @@
 				<th align="right"><?php echo number_format($total_sisa_hutang_tagihan,0,',','.');?></th>
             </tr>   
 		</table>
-		<p>* Exclude PPN & PPH</p>
 	</body>
 </html>

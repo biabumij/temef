@@ -41,6 +41,10 @@
 	  ?>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+		}
+		
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;

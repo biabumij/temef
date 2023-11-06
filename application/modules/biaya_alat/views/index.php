@@ -4,6 +4,10 @@
 <head>
     <?php echo $this->Templates->Header(); ?>
 	<style type="text/css">
+		body {
+            font-family: helvetica;
+        }
+		
 		.mytable thead th {
 		  background-color:	#e69500;
 		  color: #ffffff;

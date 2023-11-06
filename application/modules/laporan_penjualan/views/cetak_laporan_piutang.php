@@ -4,6 +4,10 @@
 	  <title>LAPORAN PIUTANG</title>
 	  
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+		}
+		
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
@@ -82,9 +86,9 @@
 		<table cellpadding="4" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp; <br />NO.</th>
-				<th width="28%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />PENJUALAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th width="26%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />PENJUALAN</th>
+				<th width="11%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
 				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
 				<th width="25%" align="center" colspan="2">SISA PIUTANG</th>

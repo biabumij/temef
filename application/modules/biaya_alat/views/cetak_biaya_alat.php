@@ -43,6 +43,7 @@
 	  <style type="text/css">
 		 body {
 			font-family: helvetica;
+			font-size: 7px;
 		}
 
 		table tr.table-judul{
@@ -885,7 +886,7 @@
 				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>
 	        </tr>
 	    </table>
-		<br /><br /><br />
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 		<table width="98%">
 			<tr >
 				<td width="5%"></td>
