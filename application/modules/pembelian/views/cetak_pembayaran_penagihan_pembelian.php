@@ -5,7 +5,7 @@
       
       <style type="text/css">
         body{
-            font-family: "Open Sans", Arial, sans-serif;
+            font-family: helvetica;
         }
         table tr.table-bold{
            font-weight: bold;

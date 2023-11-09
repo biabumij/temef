@@ -4,9 +4,9 @@
 	  <title>Verifikasi Dokumen Penagihan Pembelian</title>
 	  
 	  <style type="text/css">
-	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-	  	}
+	  	body {
+			font-family: helvetica;
+		}
 	  </style>
 
 	</head>

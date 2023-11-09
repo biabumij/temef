@@ -6,33 +6,33 @@
     
     <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-			font-size: 7px;
-			color: #000000;
+	  		font-family: helvetica;
+        font-size: 7px;
+        color: #000000;
 	  	}
 	  	table.minimalistBlack {
-		  border: 0px solid #000000;
-		  text-align: left;
-		}
-		table.minimalistBlack td, table.minimalistBlack th {
-		  border: 0px solid #000000;
-		}
-		table.minimalistBlack tr td {
-		  text-align:center;
+        border: 0px solid #000000;
+        text-align: left;
+      }
+      table.minimalistBlack td, table.minimalistBlack th {
+        border: 0px solid #000000;
+      }
+      table.minimalistBlack tr td {
+        text-align:center;
 
-		}
-		table.minimalistBlack tr th {
-		  font-weight: bold;
-		  background-color: #cccccc;
-		  text-transform: uppercase;
-		}
-		hr{
-			margin-top:0;
-			margin-bottom:30px;
-		}
-		h3{
-			margin-top:0;
-		}
+      }
+      table.minimalistBlack tr th {
+        font-weight: bold;
+        background-color: #cccccc;
+        text-transform: uppercase;
+      }
+      hr{
+        margin-top:0;
+        margin-bottom:30px;
+      }
+      h3{
+        margin-top:0;
+      }
 	  </style>
 
   </head>
