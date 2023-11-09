@@ -4,7 +4,7 @@
 	  <title>SATUAN</title>
 	  
 	  <style type="text/css">
-		 body {
+		body {
 			font-family: helvetica;
 		}
 

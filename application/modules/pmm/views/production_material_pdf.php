@@ -5,9 +5,9 @@
 	  <?= include 'lib.php'; ?>
 	  
 	  <style type="text/css">
-	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-	  	}
+	  	body {
+			font-family: helvetica;
+		}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
 		  width: 100%;

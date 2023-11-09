@@ -6,7 +6,7 @@
 	  
 	  <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
+			font-family: helvetica;
 			font-size: 8px;
 			color: #000000;
 	  	}

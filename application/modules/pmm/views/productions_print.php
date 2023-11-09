@@ -6,9 +6,9 @@
 	  
 	  <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-			font-size: 7px;
-			color: #000000;
+		  font-family: helvetica;
+		  font-size: 7px;
+		  color: #000000;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;

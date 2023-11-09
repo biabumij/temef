@@ -7,6 +7,9 @@
     <?php echo $this->Templates->Header();?>
     
     <style type="text/css">
+        body{
+			font-family: helvetica;
+	  	}
         .form-check {
             display: inline-block;
         }

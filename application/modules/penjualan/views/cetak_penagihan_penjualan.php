@@ -6,7 +6,7 @@
 	  
 	  <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
+			font-family: helvetica;
 			font-size: 9px;
 	  	}
 	  	table.minimalistBlack {
