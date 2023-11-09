@@ -4,6 +4,10 @@
 <head>
     <?php echo $this->Templates->Header(); ?>
     <style type="text/css">
+        body {
+            font-family: helvetica;
+        }
+        
         .tab-pane {
             padding-top: 20px;
         }

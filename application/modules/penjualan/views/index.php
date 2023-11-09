@@ -5,6 +5,11 @@
     <?php echo $this->Templates->Header(); ?>
     <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
     <style>
+        body {
+            font-family: helvetica;
+            font-size: 98%;
+        }
+
 		.tab-pane {
             padding-top: 10px;
         }
@@ -15,13 +20,11 @@
     </style>
 </head>
 
-
 <body>
     <div class="wrap">
 
         <?php echo $this->Templates->PageHeader(); ?>
         <?php include 'lib.php'; ?>
-
 
         <div class="page-body">
             <?php echo $this->Templates->LeftBar(); ?>
@@ -62,7 +65,6 @@
                                 <div class="tab-content">
 
                                     <!-- Penawaran Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
                                             <div class="col-sm-3">
@@ -92,7 +94,6 @@
                                     </div>
 
                                     <!-- Sales Order -->
-
                                     <div role="tabpanel" class="tab-pane" id="profile">
                                         <div class="table-responsive">
                                         <div class="col-sm-3">
@@ -126,7 +127,6 @@
                                     </div>
 
                                     <!-- Pengiriman Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane" id="messages">
                                         <?php
                                         $sales_po = $this->db->select('id,contract_number,client_id')->get_where('pmm_sales_po')->result_array();
@@ -303,10 +303,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var form_control = '';
-    </script>
-
     <?php echo $this->Templates->Footer(); ?>
 
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
@@ -314,10 +310,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
+
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
+    <script type="text/javascript">
+        var form_control = '';
+    </script>
+    
     <script type="text/javascript">
         $('input#contract').number(true, 2, ',', '.');
 
@@ -361,10 +362,10 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [1, 2], "className": 'text-center'},
                 { "targets": 6, "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
         
         $('#filter_date_penawaran').on('apply.daterangepicker', function(ev, picker) {
@@ -424,10 +425,10 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [1, 2], "className": 'text-center'},
                 { "targets": [7, 8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
 
         $('#filter_date_sales_order').on('apply.daterangepicker', function(ev, picker) {
@@ -507,7 +508,6 @@
                 style: 'multi'
             },
             responsive: true,
-            //paging : false,
             "pageLength": 5,
             "columnDefs": [
 				{
@@ -516,6 +516,7 @@
                     "className": 'select-checkbox',
                 },
                 { "width": "5%", "targets": 1, "className": 'text-center'},
+                { "targets": [2, 3], "className": 'text-center'},
                 { "targets": 12, "className": 'text-right'},
             ],
         });
@@ -672,10 +673,10 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [1, 2, 3], "className": 'text-center'},
                 { "targets": [9, 10, 11], "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
 
 		$('#filter_date_tagihan').daterangepicker({
@@ -742,9 +743,7 @@
             event.preventDefault();
 
         });
-
     </script>
 
 </body>
-
 </html>

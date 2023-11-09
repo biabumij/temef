@@ -2,8 +2,13 @@
 <html lang="en" class="fixed">
 <head>
     <?php echo $this->Templates->Header();?>
+    <style>
+        body {
+            font-family: helvetica;
+        }
+    </style>
 </head>
-<!-- <link type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet" /> -->
+
 <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
 
 <body>
@@ -11,7 +16,6 @@
     
     <?php echo $this->Templates->PageHeader();?>
     
-
     <div class="page-body">
         <?php echo $this->Templates->LeftBar();?>
         <div class="content">

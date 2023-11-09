@@ -4,6 +4,11 @@
 <head>
     <?php echo $this->Templates->Header(); ?>
     <style type="text/css">
+        body {
+            font-family: helvetica;
+            font-size: 98%;
+        }
+
         .tab-pane {
             padding-top: 10px;
         }
@@ -11,65 +16,61 @@
         .select2-container--default .select2-results__option[aria-disabled=true] {
             display: none;
         }
+
+        #table-receipt_wrappertable.dataTable tbody>tr.selected,
+        #table-receipt_wrapper table.dataTable tbody>tr>.selected {
+            background-color: #c3c3c3;
+        }
+
+        #form-verif-dok label {
+            font-size: 12px;
+            text-align: left;
+        }
+
+        #form-verif-dok hr {
+            margin: 5px 0px;
+            margin-bottom: 10px;
+            border-top: 1px solid #9c9c9c;
+        }
+
+        .custom-file-input {
+            width: 0;
+            height: 0;
+            visibility: hidden !important;
+        }
+        blink {
+        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+        animation: 2s linear infinite kedip;
+        }
+        /* for Safari 4.0 - 8.0 */
+        @-webkit-keyframes kedip { 
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
+        @keyframes kedip {
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
     </style>
 </head>
-<style type="text/css">
-    #table-receipt_wrappertable.dataTable tbody>tr.selected,
-    #table-receipt_wrapper table.dataTable tbody>tr>.selected {
-        background-color: #c3c3c3;
-    }
-
-    #form-verif-dok label {
-        font-size: 12px;
-        text-align: left;
-    }
-
-    #form-verif-dok hr {
-        margin: 5px 0px;
-        margin-bottom: 10px;
-        border-top: 1px solid #9c9c9c;
-    }
-
-    .custom-file-input {
-        width: 0;
-        height: 0;
-        visibility: hidden !important;
-    }
-    blink {
-    -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-    animation: 2s linear infinite kedip;
-    }
-    /* for Safari 4.0 - 8.0 */
-    @-webkit-keyframes kedip { 
-    0% {
-        visibility: hidden;
-    }
-    50% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-    }
-    @keyframes kedip {
-    0% {
-        visibility: hidden;
-    }
-    50% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-    }
-</style>
 
 <body>
     <div class="wrap">
-
         <?php echo $this->Templates->PageHeader(); ?>
-
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar(); ?>
             <div class="content">
@@ -128,7 +129,6 @@
                                 <div class="tab-content">
 
                                     <!-- Penawaran Pembelian -->
-
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
                                             <div class="col-sm-3">
@@ -159,12 +159,10 @@
                                     </div>
 									
 									<!-- Permintaan Bahan & Alat -->
-									
 									<div role="tabpanel" class="tab-pane" id="chart">
 									<?php
 										$suppliers= $this->db->order_by('nama','asc')->get_where('penerima',array('status'=>'PUBLISH','rekanan'=>1))->result_array();
 									?>
-                                    
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <input type="text" id="filter_date_b" class="form-control filter_date_b input-sm"  autocomplete="off" placeholder="Filter By Date">
@@ -208,7 +206,6 @@
                                 </div>
 								
 								<!-- Form Permintaan Bahan & Alat -->
-
 								<div class="modal fade bd-example-modal-lg" id="modalRequest" role="dialog">
 									<div class="modal-dialog" role="document" >
 										<div class="modal-content">
@@ -289,7 +286,6 @@
 								</div>
 
                                 <!-- Pesanan Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                     <div class="table-responsive">
                                         <div class="col-sm-3">
@@ -400,7 +396,6 @@
                                 </div>
 
                                 <!-- Pengiriman Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="messages">
                                     <div class="row">
                                         <form action="<?php echo site_url('pmm/receipt_material/cetak_surat_jalan');?>" method="GET" target="_blank">
@@ -516,7 +511,6 @@
                                 </div>
 
                                 <!-- Tagihan Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="settings">
                                     <form action="<?php echo site_url('laporan/cetak_daftar_tagihan_pembelian');?>" method="GET" target="_blank">
                                         <div class="col-sm-3">
@@ -569,7 +563,6 @@
                                 </div>
 
                                 <!-- Verifikasi -->
-
                                 <div role="tabpanel" class="tab-pane" id="verifikasi">
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover" id="table-verifikasi" style="width:100%;">
@@ -1039,10 +1032,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var form_control = '';
-    </script>
-
     <?php echo $this->Templates->Footer(); ?>
 
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
@@ -1050,930 +1039,924 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
+    
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 	
-        <!-- Script Penawaran -->
+    <script type="text/javascript">
+        var form_control = '';
+    </script>
 
-        <script type="text/javascript">
-		
-        $('input#contract').number(true, 0, ',', '.');
-        $('input.numberformat').number(true, 0, ',', '.');
-        
-        tinymce.init({
-        selector: 'textarea#about_text',
-        height: 200,
-        menubar: false,
-        });
-
-        $('.dtpicker-single').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            showDropdowns: true,
-            locale: {
-                format: 'DD-MM-YYYY'
-            }
-        });
-        $('.dtpicker-single').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY'));
-            // table.ajax.reload();
-        });
-        $('.dtpicker').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                format: 'DD/MM/YYYY'
-            },
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            showDropdowns: true,
-        });
-
-        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pembelian/table_penawaran_pembelian'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_2').val();
-                }
-            },
-            "language": {
-                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-            },
-            columns: [{
-                    "data": "no"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "tanggal_penawaran"
-                },
-                {
-                    "data": "nomor_penawaran"
-                },
-                {
-                    "data": "supplier"
-                },
-                {
-                    "data": "jenis_pembelian"
-                },
-                {
-                    "data": "berlaku_hingga"
-                },
-				{
-                    "data": "total"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                }
-            ],
-            "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": 7, "className": 'text-right'},
-            ],
-            responsive: true,
-            pageLength: 25,
-        });
-
-        $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table.ajax.reload();
-        });
-
-	    </script>
-		
-		<!-- Script Permintaan Bahan & Alat -->
-
-		<script type="text/javascript">
-        
-		$('.filter_date_b').daterangepicker({
-            autoUpdateInput: false,
-            showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        });
-
-        $('.filter_date_b').on('apply.daterangepicker', function(ev, picker) {
-              $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-              table_request.ajax.reload();
-        });
-
-        var table_request = $('#table-request').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pmm/request_materials/table');?>',
-                type : 'POST',
-                data: function ( d ) {
-                    d.schedule_id = $('#filter_schedule_id_b').val();
-                    d.supplier_id = $('#filter_supplier_id_b').val();
-                    d.status = $('#filter_status').val();
-                    d.filter_date = $('#filter_date_b').val();
-                }
-            },
-            columns: [
-                { "data": "no" },
-                { "data": "status" },
-				{ "data": "request_date" },
-                { "data": "request_no" },
-                { "data": "subject" },
-                { "data": "supplier_name" }, 
-                { "data": "volume" },
-                { "data": "actions" },
-                { "data": "delete" },
-                { "data": "admin_name" },
-                { "data": "created_on" }
-
-            ],
-            "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "10%", "targets": 6, "className": 'text-right'},
-            ],
-            responsive: true,
-            pageLength: 25,
-        });
-
-        $('#filter_status').change(function(){
-            table_request.ajax.reload();
-        });
-        $('#filter_supplier_id_b').change(function(){
-            table_request.ajax.reload();
-        });
-        $('#filter_schedule_id_b').change(function(){
-            table_request.ajax.reload();
-        });
-
-
-
-        function OpenFormRequest(id='')
-        {   
-            
-            $('#modalRequest').modal('show');
-            $('#id_Request').val('');
-            $('#request_date').val('<?php echo date('d-m-Y');?>');
-            // table_detail.ajax.reload();
-            $("#modalRequest form").trigger("reset");
-            if(id !== ''){
-                $('#id').val(id);
-                getData(id);
-            }
-        }
-
-        $('#modalRequest form').submit(function(event){
-            $('#btn-form').button('loading');
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/request_materials/form_process'); ?>/"+Math.random(),
-                dataType : 'json',
-                data: $(this).serialize(),
-                success : function(result){
-                    $('#btn-form').button('reset');
-                    if(result.output){
-                        $("#modalRequest form").trigger("reset");
-                        table_request.ajax.reload();
-
-                        $('#modalRequest').modal('hide');
-                    }else if(result.err){
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-
-            event.preventDefault();
-            
-        });
-
-        function getDataRequest(id)
-        {
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/request_materials/get_data'); ?>",
-                dataType : 'json',
-                data: {id:id},
-                success : function(result){
-                    if(result.output){
-                        $('#id_Request').val(result.output.id);
-                        $('#schedule_id_request').val(result.output.schedule_id);
-                        $('#supplier_id').val(result.output.supplier_id);
-                        $('#kategori_id').val(result.output.kategori_id);
-                        $('#subject').val(result.output.subject);
-                        $('#week').val(result.output.week);
-                        $('#request_date').val(result.output.request_date);
-                        // $('#status').val(result.output.status);
-                    }else if(result.err){
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
-
-
-        function DeleteDataRequest(id)
-        {
-            bootbox.confirm("Apakah anda yakin menghapus data ini ?", function(result){ 
-                // console.log('This was logged in the callback: ' + result); 
-                if(result){
-                    $.ajax({
-                        type    : "POST",
-                        url     : "<?php echo site_url('pmm/request_materials/delete'); ?>",
-                        dataType : 'json',
-                        data: {id:id},
-                        success : function(result){
-                            if(result.output){
-                                table_request.ajax.reload();
-                                bootbox.alert('Berhasil Menghapus !!');
-                            }else if(result.err){
-                                bootbox.alert(result.err);
-                            }
-                        }
-                    });
-                }
-            });
-        }
-
-        </script>
-		
-		<!-- Script Pesanan Pembelian -->
-
-        <script type="text/javascript">
-		
-        var table_po = $('#table-po').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pembelian/table_pesanan_pembelian'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_3').val();
-                }
-            },
-            columns: [{
-                    "data": "no"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "date_po"
-                },
-                {
-                    "data": "supplier"
-                },
-                {
-                    "data": "no_po"
-                },
-                {
-                    "data": "subject"
-                },
-                {
-                    "data": "volume"
-                },
-                {
-                    "data": "presentase"
-                },
-                {
-                    "data": "receipt"
-                },
-                {
-                    "data": "total"
-                },
-                {
-                    "data": "total_receipt"
-                },
-                {
-                    "data": "document_po"
-                },
-                {
-                    "data": "actions"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                }
-            ],
-            "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
-            ],
-            responsive: true,
-            pageLength: 25,
-        });
-
-        $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_po.ajax.reload();
-        });
-
-        </script>
-		
-		<!-- Script Pengiriman Pembelian -->
-
-        <script type="text/javascript">
-
-        var table_receipt = $('#table-receipt').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pmm/receipt_material/table_detail'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.purchase_order_id = $('#filter_po_id').val();
-                    d.supplier_id = $('#filter_supplier_id').val();
-                    d.filter_date = $('#filter_date').val();
-                    d.material_id = $('#material_id').val();
-                }
-            },
-            "language": {
-                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-            },
-            columns: [{
-                    "data": "checkbox"
-                },
-                {
-                    "data": "no"
-                },
-                {
-                    "data": "status_payment"
-                },
-                {
-                    "data": "date_receipt"
-                },
-                {
-                    "data": "supplier_name"
-                },
-				{
-                    "data": "no_po"
-                },
-                {
-                    "data": "surat_jalan"
-                },
-                {
-                    "data": "surat_jalan_file"
-                },
-                {
-                    "data": "no_kendaraan"
-                },
-                {
-                    "data": "driver"
-                },
-                {
-                    "data": "material_name"
-                },
-                {
-                    "data": "display_measure"
-                },
-                {
-                    "data": "display_volume"
-                },
-                {
-                    "data": "memo"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-                {
-                    "data": "uploads_surat_jalan"
-                }
-            ],
-            select: {
-                style: 'multi'
-            },
-            responsive: true,
-            //paging : false,
-            pageLength: 5,
-                "columnDefs": [{
-                    "targets": [0],
-                    "orderable": false,
-                    "className": 'select-checkbox',
-                },
-                { "width": "5%", "targets": 1, "className": 'text-center'},
-                { "targets": 12, "className": 'text-right'},
-            ],
-        });
-
-        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_receipt.ajax.reload();
-        });
-
-        function GetPO() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: {
-                    supplier_id: $('#filter_supplier_id').val(),
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#filter_po_id').empty();
-                        $('#filter_po_id').select2({
-                            data: result.data
-                        });
-                        $('#filter_po_id').trigger('change');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
-
-        $('#filter_supplier_id').on('select2:select', function(e) {
-            var data = e.params.data;
-            console.log(data);
-            table_receipt.ajax.reload();
-            //GetPO();
-
-            $('#filter_po_id option[data-client-id]').prop('disabled', true);
-            $('#filter_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
-            $('#filter_po_id').select2('destroy');
-            $('#filter_po_id').select2();
-        });
-
-        $('#filter_po_id').change(function() {
-            table_receipt.ajax.reload();
-        });
-
-        function SelectMatByPo() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/get_mat_pembelian'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: {
-                    purchase_order_id: $('#filter_po_id').val(),
-                    material_id: $('#material_id').val(),
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#material_id').empty();
-                        $('#material_id').select2({
-                            data: result.data
-                        });
-                        $('#material_id').trigger('change');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
-
-        $('#filter_po_id').change(function(){
+    <!-- Script Penawaran -->
+    <script type="text/javascript">
     
-        $('#filter_po_id').val($(this).val());
-            table_receipt.ajax.reload();
-            SelectMatByPo();
-        });
+    $('input#contract').number(true, 0, ',', '.');
+    $('input.numberformat').number(true, 0, ',', '.');
+    
+    tinymce.init({
+    selector: 'textarea#about_text',
+    height: 200,
+    menubar: false,
+    });
 
-        $('#material_id').change(function() {
-            table_receipt.ajax.reload();
-        });
-		
-        </script>
+    $('.dtpicker-single').daterangepicker({
+        autoUpdateInput: false,
+        singleDatePicker: true,
+        showDropdowns: true,
+        locale: {
+            format: 'DD-MM-YYYY'
+        }
+    });
 
-		
-		<!-- Script Tagihan Pembelian -->
+    $('.dtpicker-single').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY'));
+    });
 
-        <script type="text/javascript">
+    $('.dtpicker').daterangepicker({
+        autoUpdateInput: false,
+        locale: {
+            format: 'DD/MM/YYYY'
+        },
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        showDropdowns: true,
+    });
 
-        var table_tagihan = $('#table-tagihan').DataTable( {"bAutoWidth": false,
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pembelian/table_penagihan_pembelian'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_4').val();
-                    d.supplier_id = $('#filter_supplier_tagihan').val();
-                }
+    var table = $('#guest-table').DataTable( {"bAutoWidth": false,
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pembelian/table_penawaran_pembelian'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.filter_date = $('#filter_date_2').val();
+            }
+        },
+        "language": {
+            processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+        },
+        columns: [{
+                "data": "no"
             },
-            columns: [
-                {
-                    "data": "no"
-                },
-                {
-                    "data": "verifikasi_dok"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "tanggal_invoice"
-                },
-                {
-                    "data": "nomor_invoice"
-                },
-                {
-                    "data": "supplier"
-                },
-                {
-                    "data": "tanggal_po"
-                },
-                {
-                    "data": "no_po"
-                },
-                {
-                    "data": "total"
-                },
-                {
-                    "data": "pembayaran"
-                },
-                {
-                    "data": "sisa_tagihan"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-            ],
-            "columnDefs": [
-                { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [8, 9, 10], "className": 'text-right'},
-            ],
-            responsive: true,
-            pageLength: 25,
-        });
+            {
+                "data": "status"
+            },
+            {
+                "data": "tanggal_penawaran"
+            },
+            {
+                "data": "nomor_penawaran"
+            },
+            {
+                "data": "supplier"
+            },
+            {
+                "data": "jenis_pembelian"
+            },
+            {
+                "data": "berlaku_hingga"
+            },
+            {
+                "data": "total"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            }
+        ],
+        "columnDefs": [
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": [1, 2, 6], "className": 'text-center'},
+            { "targets": 7, "className": 'text-right'},
+        ],
+        responsive: true,
+        pageLength: 25,
+    });
 
+    $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table.ajax.reload();
+    });
 
-        $('#btn_production').click(function() {
-            var data_receipt = table_receipt.rows({
-                selected: true
-            }).data();
-            var send_data = '';
-            bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
-                // console.log('This was logged in the callback: ' + result); 
-                if (result) {
-                    $.each(data_receipt, function(i, val) {
-                        send_data += val.id + ',';
-                    });
+    </script>
+		
+    <!-- Script Permintaan Bahan & Alat -->
+    <script type="text/javascript">
+    
+    $('.filter_date_b').daterangepicker({
+        autoUpdateInput: false,
+        showDropdowns: true,
+        locale: {
+            format: 'DD-MM-YYYY'
+        },
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    });
 
-                    window.location.href = '<?php echo site_url('pembelian/penagihan_pembelian/'); ?>' + send_data;
-                }
-            });
-
-        });
-        
-        $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
+    $('.filter_date_b').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_tagihan.ajax.reload();
-        });
+            table_request.ajax.reload();
+    });
 
-        $('#filter_supplier_tagihan').change(function() {
-            table_tagihan.ajax.reload();
-        });
+    var table_request = $('#table-request').DataTable( {"bAutoWidth": false,
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pmm/request_materials/table');?>',
+            type : 'POST',
+            data: function ( d ) {
+                d.schedule_id = $('#filter_schedule_id_b').val();
+                d.supplier_id = $('#filter_supplier_id_b').val();
+                d.status = $('#filter_status').val();
+                d.filter_date = $('#filter_date_b').val();
+            }
+        },
+        columns: [
+            { "data": "no" },
+            { "data": "status" },
+            { "data": "request_date" },
+            { "data": "request_no" },
+            { "data": "subject" },
+            { "data": "supplier_name" }, 
+            { "data": "volume" },
+            { "data": "actions" },
+            { "data": "delete" },
+            { "data": "admin_name" },
+            { "data": "created_on" }
 
-        function VerifDok(id) {
+        ],
+        "columnDefs": [
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": [1, 2, 7, 8], "className": 'text-center'},
+            { "targets": 6, "className": 'text-right'},
+        ],
+        responsive: true,
+        pageLength: 25,
+    });
 
-            $('#modalForm').modal('show');
-            $('#id').val('');
-            // table_detail.ajax.reload();
+    $('#filter_status').change(function(){
+        table_request.ajax.reload();
+    });
+    $('#filter_supplier_id_b').change(function(){
+        table_request.ajax.reload();
+    });
+    $('#filter_schedule_id_b').change(function(){
+        table_request.ajax.reload();
+    });
 
+
+
+    function OpenFormRequest(id='')
+    {   
+        
+        $('#modalRequest').modal('show');
+        $('#id_Request').val('');
+        $('#request_date').val('<?php echo date('d-m-Y');?>');
+        $("#modalRequest form").trigger("reset");
+        if(id !== ''){
             $('#id').val(id);
             getData(id);
         }
+    }
 
-        function VerifDokDetail(id) {
+    $('#modalRequest form').submit(function(event){
+        $('#btn-form').button('loading');
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/request_materials/form_process'); ?>/"+Math.random(),
+            dataType : 'json',
+            data: $(this).serialize(),
+            success : function(result){
+                $('#btn-form').button('reset');
+                if(result.output){
+                    $("#modalRequest form").trigger("reset");
+                    table_request.ajax.reload();
 
-            $('#detailVerifForm').modal('show');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/get_verif_penagihan_pembelian'); ?>",
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#supplier_name_d').text(result.data.supplier_name);
-                        $('#no_po_d').text(result.data.nomor_po + ' - ' + result.data.tanggal_po);
-                        $('#nama_barang_jasa_d').text(result.data.nama_barang_jasa);
-                        $('#nilai_kontrak_d').text(result.data.nilai_kontrak);
-                        $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
-                        $('#ppn_d').text(result.data.ppn);
-                        $('#pph_d').text(result.data.pph);
-                        $('#total_tagihan_d').text(result.data.total_tagihan);
-                        $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
-                        $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
-                        $('#tanggal_lolos_verifikasi_d').text(result.data.tanggal_lolos_verifikasi);
-                        $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
-                        $('#metode_pembayaran_d').text(result.data.metode_pembayaran);
-                        $('#invoice_keterangan_d').text(result.data.invoice_keterangan);
-                        $('#kwitansi_keterangan_d').text(result.data.kwitansi_keterangan);
-                        $('#faktur_keterangan_d').text(result.data.faktur_keterangan);
-                        $('#bap_keterangan_d').text(result.data.bap_keterangan);
-                        $('#bast_keterangan_d').text(result.data.bast_keterangan);
-                        $('#surat_jalan_keterangan_d').text(result.data.surat_jalan_keterangan);
-                        $('#copy_po_keterangan_d').text(result.data.copy_po_keterangan);
-                        $('#catatan_d').text(result.data.catatan);
-                        $('#verifikator_d').text(result.data.verifikator);
-                        $('#verifikasi_penagihan_pembelian_id').val(result.data.id);
-                        if (result.data.invoice == 1) {
-                            $("#invoice_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#invoice_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.kwitansi == 1) {
-                            $("#kwitansi_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#kwitansi_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.faktur == 1) {
-                            $("#faktur_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#faktur_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.bap == 1) {
-                            $("#bap_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#bap_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.bast == 1) {
-                            $("#bast_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#bast_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.surat_jalan == 1) {
-                            $("#surat_jalan_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#surat_jalan_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.copy_po == 1) {
-                            $("#copy_po_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#copy_po_d").html('<i class="fa fa-close"></i>');
-                        }
-
-
-                        if (result.data.invoice_file) {
-                            $('#lampiran_invoice').html('<a target="_blank" href="/' + result.data.invoice_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.kwitansi_file) {
-                            $('#lampiran_kwitansi').html('<a target="_blank" href="/' + result.data.kwitansi_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.faktur_file) {
-                            $('#lampiran_faktur').html('<a target="_blank" href="/' + result.data.faktur_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.bap_file) {
-                            $('#lampiran_bap').html('<a target="_blank" href="/' + result.data.bap_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.bast_file) {
-                            $('#lampiran_bast').html('<a target="_blank" href="/' + result.data.bast_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.surat_jalan_file) {
-                            $('#lampiran_surat_jalan').html('<a target="_blank" href="/' + result.data.surat_jalan_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.copy_po_file) {
-                            $('#lampiran_copy_po').html('<a target="_blank" href="/' + result.data.copy_po_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
+                    $('#modalRequest').modal('hide');
+                }else if(result.err){
+                    bootbox.alert(result.err);
                 }
-            });
-        }
-
-        function getData(id) {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/get_penagihan_pembelian'); ?>",
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#penagihan_pembelian_id').val(result.data.id);
-                        $('#supplier_name').val(result.data.supplier_name);
-                        $('#metode_pembayaran').val(result.data.metode_pembayaran);
-                        $('#no_po').val(result.data.no_po);
-                        $('#tanggal_po').val(result.data.tanggal_po);
-						$('#nama_barang_jasa').val(result.data.nama_produk);
-                        $('#nilai_kontrak').val(result.data.nilai_kontrak);
-                        $('#nilai_tagihan').val(result.data.nilai_tagihan);
-                        $('#tanggal_invoice').val(result.data.tanggal_invoice);
-                        $('#ppn_tagihan').val(result.data.ppn);
-                        $('#pph_tagihan').val(result.data.pph);
-                        $('#total_tagihan').val(result.data.total);
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
-
-        $('#form-verif-dok').submit(function(event) {
-            // $('#btn-form').button('loading');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/verif_dok_penagihan_pembelian'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: $(this).serialize(),
-                success: function(result) {
-                    $('#btn-form').button('reset');
-                    if (result.output) {
-                        $("#form-verif-dok").trigger("reset");
-                        table_tagihan.ajax.reload();
-                        $('#modalForm').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-
-            event.preventDefault();
-
-        });
-
-
-        function UploadDoc(id) {
-
-            $('#modalDoc').modal('show');
-            $('#id_doc').val(id);
-        }
-
-        function EditNoPo(id, no_po, status) {
-
-            $('#modalEditPo').modal('show');
-            $('#id_po').val(id);
-            $('#no_po_edit').val(no_po);
-            $('#change_status').val(status);
-        }
-
-
-        $('#modalDoc form').submit(function(event) {
-            $('#btn-form-doc').button('loading');
-
-            var form = $(this);
-            var formdata = false;
-            if (window.FormData) {
-                formdata = new FormData(form[0]);
             }
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/purchase_order/form_document'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: formdata ? formdata : form.serialize(),
-                success: function(result) {
-                    $('#btn-form-doc').button('reset');
-                    if (result.output) {
-                        $("#modalDoc form").trigger("reset");
-                        table_po.ajax.reload();
-
-                        $('#modalDoc').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            event.preventDefault();
-
         });
 
-        $('#modalEditPo form').submit(function(event) {
-            $('#btn-no_po').button('loading');
+        event.preventDefault();
+        
+    });
 
-            var form = $(this);
-            var formdata = false;
-            if (window.FormData) {
-                formdata = new FormData(form[0]);
+    function getDataRequest(id)
+    {
+        $.ajax({
+            type    : "POST",
+            url     : "<?php echo site_url('pmm/request_materials/get_data'); ?>",
+            dataType : 'json',
+            data: {id:id},
+            success : function(result){
+                if(result.output){
+                    $('#id_Request').val(result.output.id);
+                    $('#schedule_id_request').val(result.output.schedule_id);
+                    $('#supplier_id').val(result.output.supplier_id);
+                    $('#kategori_id').val(result.output.kategori_id);
+                    $('#subject').val(result.output.subject);
+                    $('#week').val(result.output.week);
+                    $('#request_date').val(result.output.request_date);
+                    // $('#status').val(result.output.status);
+                }else if(result.err){
+                    bootbox.alert(result.err);
+                }
             }
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/purchase_order/edit_no_po'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: formdata ? formdata : form.serialize(),
-                success: function(result) {
-                    $('#btn-no_po').button('reset');
-                    if (result.output) {
-                        $("#modalEditPo form").trigger("reset");
-                        table_po.ajax.reload();
-                        // TableCustom();
-
-                        $('#modalEditPo').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            event.preventDefault();
-
         });
+    }
 
+
+    function DeleteDataRequest(id)
+    {
+        bootbox.confirm("Apakah anda yakin menghapus data ini ?", function(result){ 
+            // console.log('This was logged in the callback: ' + result); 
+            if(result){
+                $.ajax({
+                    type    : "POST",
+                    url     : "<?php echo site_url('pmm/request_materials/delete'); ?>",
+                    dataType : 'json',
+                    data: {id:id},
+                    success : function(result){
+                        if(result.output){
+                            table_request.ajax.reload();
+                            bootbox.alert('Berhasil Menghapus !!');
+                        }else if(result.err){
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    </script>
+		
+    <!-- Script Pesanan Pembelian -->
+    <script type="text/javascript">
     
-        $(document).ready(function(e) {
-            $('.custom-file-select').click(function(e) {
-                $(this).closest('.custom-file').find('input[type="file"]').click();
-            });
+    var table_po = $('#table-po').DataTable( {"bAutoWidth": false,
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pembelian/table_pesanan_pembelian'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.filter_date = $('#filter_date_3').val();
+            }
+        },
+        columns: [{
+                "data": "no"
+            },
+            {
+                "data": "status"
+            },
+            {
+                "data": "date_po"
+            },
+            {
+                "data": "supplier"
+            },
+            {
+                "data": "no_po"
+            },
+            {
+                "data": "subject"
+            },
+            {
+                "data": "volume"
+            },
+            {
+                "data": "presentase"
+            },
+            {
+                "data": "receipt"
+            },
+            {
+                "data": "total"
+            },
+            {
+                "data": "total_receipt"
+            },
+            {
+                "data": "document_po"
+            },
+            {
+                "data": "actions"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            }
+        ],
+        "columnDefs": [
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": [1, 2], "className": 'text-center'},
+            { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
+        ],
+        responsive: true,
+        pageLength: 25,
+    });
 
-            $('.custom-file-input').change(function(e) {
+    $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_po.ajax.reload();
+    });
 
-                let target = $(this).data('target');
-                let files = this.files;
+    </script>
+		
+    <!-- Script Pengiriman Pembelian -->
+    <script type="text/javascript">
 
-                const reader = new FileReader();
-                reader.readAsDataURL(files[0]);
-                reader.onload = function() {
-                    let temp = reader.result.split('base64,');
-                    let param = files[0].name + '|' + temp[temp.length - 1];
-                    $('#' + target).val(param);
-                    $('#' + target).closest('.custom-file').find('.custom-file-select').hide();
-                    $('#' + target).closest('.custom-file').find('.custom-file-remove').show();
-                };
+    var table_receipt = $('#table-receipt').DataTable( {"bAutoWidth": false,
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pmm/receipt_material/table_detail'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.purchase_order_id = $('#filter_po_id').val();
+                d.supplier_id = $('#filter_supplier_id').val();
+                d.filter_date = $('#filter_date').val();
+                d.material_id = $('#material_id').val();
+            }
+        },
+        "language": {
+            processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+        },
+        columns: [{
+                "data": "checkbox"
+            },
+            {
+                "data": "no"
+            },
+            {
+                "data": "status_payment"
+            },
+            {
+                "data": "date_receipt"
+            },
+            {
+                "data": "supplier_name"
+            },
+            {
+                "data": "no_po"
+            },
+            {
+                "data": "surat_jalan"
+            },
+            {
+                "data": "surat_jalan_file"
+            },
+            {
+                "data": "no_kendaraan"
+            },
+            {
+                "data": "driver"
+            },
+            {
+                "data": "material_name"
+            },
+            {
+                "data": "display_measure"
+            },
+            {
+                "data": "display_volume"
+            },
+            {
+                "data": "memo"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            },
+            {
+                "data": "uploads_surat_jalan"
+            }
+        ],
+        select: {
+            style: 'multi'
+        },
+        responsive: true,
+        pageLength: 5,
+            "columnDefs": [{
+                "targets": [0],
+                "orderable": false,
+                "className": 'select-checkbox',
+            },
+            { "width": "5%", "targets": 1, "className": 'text-center'},
+            { "targets": [2, 3], "className": 'text-center'},
+            { "targets": 12, "className": 'text-right'},
+        ],
+    });
 
-                reader.onerror = error => console.error(error);
-            });
+    $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_receipt.ajax.reload();
+    });
 
-            $('.custom-file-remove').click(function(e) {
-                $(this).closest('.custom-file').find('input[type="hidden"]').val('');
-                $(this).hide();
-                $(this).closest('.custom-file').find('.custom-file-select').show();
-            });
+    function GetPO() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: {
+                supplier_id: $('#filter_supplier_id').val(),
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#filter_po_id').empty();
+                    $('#filter_po_id').select2({
+                        data: result.data
+                    });
+                    $('#filter_po_id').trigger('change');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    $('#filter_supplier_id').on('select2:select', function(e) {
+        var data = e.params.data;
+        console.log(data);
+        table_receipt.ajax.reload();
+
+        $('#filter_po_id option[data-client-id]').prop('disabled', true);
+        $('#filter_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
+        $('#filter_po_id').select2('destroy');
+        $('#filter_po_id').select2();
+    });
+
+    $('#filter_po_id').change(function() {
+        table_receipt.ajax.reload();
+    });
+
+    function SelectMatByPo() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/get_mat_pembelian'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: {
+                purchase_order_id: $('#filter_po_id').val(),
+                material_id: $('#material_id').val(),
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#material_id').empty();
+                    $('#material_id').select2({
+                        data: result.data
+                    });
+                    $('#material_id').trigger('change');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    $('#filter_po_id').change(function(){
+
+    $('#filter_po_id').val($(this).val());
+        table_receipt.ajax.reload();
+        SelectMatByPo();
+    });
+
+    $('#material_id').change(function() {
+        table_receipt.ajax.reload();
+    });
+    
+    </script>
+		
+    <!-- Script Tagihan Pembelian -->
+    <script type="text/javascript">
+
+    var table_tagihan = $('#table-tagihan').DataTable( {"bAutoWidth": false,
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pembelian/table_penagihan_pembelian'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.filter_date = $('#filter_date_4').val();
+                d.supplier_id = $('#filter_supplier_tagihan').val();
+            }
+        },
+        columns: [
+            {
+                "data": "no"
+            },
+            {
+                "data": "verifikasi_dok"
+            },
+            {
+                "data": "status"
+            },
+            {
+                "data": "tanggal_invoice"
+            },
+            {
+                "data": "nomor_invoice"
+            },
+            {
+                "data": "supplier"
+            },
+            {
+                "data": "tanggal_po"
+            },
+            {
+                "data": "no_po"
+            },
+            {
+                "data": "total"
+            },
+            {
+                "data": "pembayaran"
+            },
+            {
+                "data": "sisa_tagihan"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            },
+        ],
+        "columnDefs": [
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": [1, 2, 3, 6], "className": 'text-center'},
+            { "targets": [8, 9, 10], "className": 'text-right'},
+        ],
+        responsive: true,
+        pageLength: 25,
+    });
+
+
+    $('#btn_production').click(function() {
+        var data_receipt = table_receipt.rows({
+            selected: true
+        }).data();
+        var send_data = '';
+        bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.each(data_receipt, function(i, val) {
+                    send_data += val.id + ',';
+                });
+
+                window.location.href = '<?php echo site_url('pembelian/penagihan_pembelian/'); ?>' + send_data;
+            }
         });
 
-        function UploadDocSuratJalan(id) {
+    });
+    
+    $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_tagihan.ajax.reload();
+    });
 
-        $('#modalDocSuratJalan').modal('show');
-        $('#id_doc_surat_jalan').val(id);
+    $('#filter_supplier_tagihan').change(function() {
+        table_tagihan.ajax.reload();
+    });
+
+    function VerifDok(id) {
+
+        $('#modalForm').modal('show');
+        $('#id').val('');
+        $('#id').val(id);
+        getData(id);
+    }
+
+    function VerifDokDetail(id) {
+
+        $('#detailVerifForm').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/get_verif_penagihan_pembelian'); ?>",
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#supplier_name_d').text(result.data.supplier_name);
+                    $('#no_po_d').text(result.data.nomor_po + ' - ' + result.data.tanggal_po);
+                    $('#nama_barang_jasa_d').text(result.data.nama_barang_jasa);
+                    $('#nilai_kontrak_d').text(result.data.nilai_kontrak);
+                    $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
+                    $('#ppn_d').text(result.data.ppn);
+                    $('#pph_d').text(result.data.pph);
+                    $('#total_tagihan_d').text(result.data.total_tagihan);
+                    $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
+                    $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
+                    $('#tanggal_lolos_verifikasi_d').text(result.data.tanggal_lolos_verifikasi);
+                    $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
+                    $('#metode_pembayaran_d').text(result.data.metode_pembayaran);
+                    $('#invoice_keterangan_d').text(result.data.invoice_keterangan);
+                    $('#kwitansi_keterangan_d').text(result.data.kwitansi_keterangan);
+                    $('#faktur_keterangan_d').text(result.data.faktur_keterangan);
+                    $('#bap_keterangan_d').text(result.data.bap_keterangan);
+                    $('#bast_keterangan_d').text(result.data.bast_keterangan);
+                    $('#surat_jalan_keterangan_d').text(result.data.surat_jalan_keterangan);
+                    $('#copy_po_keterangan_d').text(result.data.copy_po_keterangan);
+                    $('#catatan_d').text(result.data.catatan);
+                    $('#verifikator_d').text(result.data.verifikator);
+                    $('#verifikasi_penagihan_pembelian_id').val(result.data.id);
+                    if (result.data.invoice == 1) {
+                        $("#invoice_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#invoice_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.kwitansi == 1) {
+                        $("#kwitansi_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#kwitansi_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.faktur == 1) {
+                        $("#faktur_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#faktur_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.bap == 1) {
+                        $("#bap_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#bap_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.bast == 1) {
+                        $("#bast_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#bast_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.surat_jalan == 1) {
+                        $("#surat_jalan_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#surat_jalan_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.copy_po == 1) {
+                        $("#copy_po_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#copy_po_d").html('<i class="fa fa-close"></i>');
+                    }
+
+
+                    if (result.data.invoice_file) {
+                        $('#lampiran_invoice').html('<a target="_blank" href="/' + result.data.invoice_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.kwitansi_file) {
+                        $('#lampiran_kwitansi').html('<a target="_blank" href="/' + result.data.kwitansi_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.faktur_file) {
+                        $('#lampiran_faktur').html('<a target="_blank" href="/' + result.data.faktur_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.bap_file) {
+                        $('#lampiran_bap').html('<a target="_blank" href="/' + result.data.bap_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.bast_file) {
+                        $('#lampiran_bast').html('<a target="_blank" href="/' + result.data.bast_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.surat_jalan_file) {
+                        $('#lampiran_surat_jalan').html('<a target="_blank" href="/' + result.data.surat_jalan_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.copy_po_file) {
+                        $('#lampiran_copy_po').html('<a target="_blank" href="/' + result.data.copy_po_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    function getData(id) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/get_penagihan_pembelian'); ?>",
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#penagihan_pembelian_id').val(result.data.id);
+                    $('#supplier_name').val(result.data.supplier_name);
+                    $('#metode_pembayaran').val(result.data.metode_pembayaran);
+                    $('#no_po').val(result.data.no_po);
+                    $('#tanggal_po').val(result.data.tanggal_po);
+                    $('#nama_barang_jasa').val(result.data.nama_produk);
+                    $('#nilai_kontrak').val(result.data.nilai_kontrak);
+                    $('#nilai_tagihan').val(result.data.nilai_tagihan);
+                    $('#tanggal_invoice').val(result.data.tanggal_invoice);
+                    $('#ppn_tagihan').val(result.data.ppn);
+                    $('#pph_tagihan').val(result.data.pph);
+                    $('#total_tagihan').val(result.data.total);
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    $('#form-verif-dok').submit(function(event) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/verif_dok_penagihan_pembelian'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function(result) {
+                $('#btn-form').button('reset');
+                if (result.output) {
+                    $("#form-verif-dok").trigger("reset");
+                    table_tagihan.ajax.reload();
+                    $('#modalForm').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+
+        event.preventDefault();
+
+    });
+
+    function UploadDoc(id) {
+
+        $('#modalDoc').modal('show');
+        $('#id_doc').val(id);
+    }
+
+    function EditNoPo(id, no_po, status) {
+
+        $('#modalEditPo').modal('show');
+        $('#id_po').val(id);
+        $('#no_po_edit').val(no_po);
+        $('#change_status').val(status);
+    }
+
+    $('#modalDoc form').submit(function(event) {
+        $('#btn-form-doc').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
         }
 
-        $('#modalDocSuratJalan form').submit(function(event) {
-            $('#btn-form-doc-surat-jalan').button('loading');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/purchase_order/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc').button('reset');
+                if (result.output) {
+                    $("#modalDoc form").trigger("reset");
+                    table_po.ajax.reload();
 
-            var form = $(this);
-            var formdata = false;
-            if (window.FormData) {
-                formdata = new FormData(form[0]);
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/form_document'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: formdata ? formdata : form.serialize(),
-                success: function(result) {
-                    $('#btn-form-doc-surat-jalan').button('reset');
-                    if (result.output) {
-                        $("#modalDocSuratJalan form").trigger("reset");
-                        table_receipt.ajax.reload();
-
-                        $('#modalDocSuratJalan').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            event.preventDefault();
-
+                    $('#modalDoc').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
         });
+
+        event.preventDefault();
+
+    });
+
+    $('#modalEditPo form').submit(function(event) {
+        $('#btn-no_po').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/purchase_order/edit_no_po'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-no_po').button('reset');
+                if (result.output) {
+                    $("#modalEditPo form").trigger("reset");
+                    table_po.ajax.reload();
+
+                    $('#modalEditPo').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
+    });
+
+    $(document).ready(function(e) {
+        $('.custom-file-select').click(function(e) {
+            $(this).closest('.custom-file').find('input[type="file"]').click();
+        });
+
+        $('.custom-file-input').change(function(e) {
+
+            let target = $(this).data('target');
+            let files = this.files;
+
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function() {
+                let temp = reader.result.split('base64,');
+                let param = files[0].name + '|' + temp[temp.length - 1];
+                $('#' + target).val(param);
+                $('#' + target).closest('.custom-file').find('.custom-file-select').hide();
+                $('#' + target).closest('.custom-file').find('.custom-file-remove').show();
+            };
+
+            reader.onerror = error => console.error(error);
+        });
+
+        $('.custom-file-remove').click(function(e) {
+            $(this).closest('.custom-file').find('input[type="hidden"]').val('');
+            $(this).hide();
+            $(this).closest('.custom-file').find('.custom-file-select').show();
+        });
+    });
+
+    function UploadDocSuratJalan(id) {
+
+    $('#modalDocSuratJalan').modal('show');
+    $('#id_doc_surat_jalan').val(id);
+    }
+
+    $('#modalDocSuratJalan form').submit(function(event) {
+        $('#btn-form-doc-surat-jalan').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc-surat-jalan').button('reset');
+                if (result.output) {
+                    $("#modalDocSuratJalan form").trigger("reset");
+                    table_receipt.ajax.reload();
+
+                    $('#modalDocSuratJalan').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
+    });
     </script>
 
 </body>
-
 </html>
