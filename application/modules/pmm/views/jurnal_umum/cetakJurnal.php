@@ -6,8 +6,8 @@
       <?= include 'lib.php'; ?>
       <style type="text/css">
         body{
-            font-family: "Open Sans", Arial, sans-serif;
-        }
+			font-family: helvetica;
+	  	}
         table.minimalistBlack {
           /*border: 1px solid #ededed;*/
           width: 98%;

@@ -5,8 +5,8 @@
       
       <style type="text/css">
         body{
-            font-family: "Open Sans", Arial, sans-serif;
-        }
+			font-family: helvetica;
+	  	}
         table.minimalistBlack {
           /*border: 1px solid #cccccc;*/
           width: 100%;
