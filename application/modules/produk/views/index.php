@@ -176,7 +176,6 @@
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
                 { "width": "35%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
             responsive: true,
         });
@@ -201,7 +200,6 @@
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
                 { "width": "35%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
             responsive: true,
         });
@@ -226,7 +224,6 @@
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
                 { "width": "35%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
             responsive: true,
         });
@@ -252,7 +249,6 @@
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
                 { "width": "35%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
             responsive: true,
         });
