@@ -6399,15 +6399,16 @@ class Reports extends CI_Controller {
 			}
 
 			table tr.table-active{
-				background-color: #F0F0F0;
+				background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 				font-size: 12px;
 				font-weight: bold;
 			}
 				
 			table tr.table-active2{
-				background-color: #A9A9A9;
+				background: linear-gradient(90deg, #333333 5%, #696969 50%, #333333 100%);
 				font-size: 12px;
 				font-weight: bold;
+				color: white;
 			}
 				
 			table tr.table-active3{
@@ -6415,13 +6416,13 @@ class Reports extends CI_Controller {
 			}
 				
 			table tr.table-active4{
-				background-color: #D3D3D3;
+				background: linear-gradient(90deg, #eeeeee 5%, #cccccc 50%, #cccccc 100%);
 				font-weight: bold;
 				font-size: 12px;
 				color: black;
 			}
 		 </style>
-	        <tr class="table-active4">
+	        <tr class="table-active2">
 	            <th colspan="2">Periode</th>
 	            <th class="text-right" colspan="2"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-right" colspan="2">SD. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -8918,7 +8919,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 12px;
 					color: black;
@@ -9612,7 +9613,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 10px;
 					color: black;
@@ -10537,7 +10538,7 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-active{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-size: 12px;
 					font-weight: bold;
 				}
@@ -11385,7 +11386,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 12px;
 					color: black;
@@ -12008,7 +12009,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 10px;
 					color: black;
@@ -12614,7 +12615,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 10px;
 					color: black;
@@ -13469,6 +13470,13 @@ class Reports extends CI_Controller {
 				body {
 					font-size: 10px;
 				}
+				
+				table tr.table-active{
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					font-size: 10px;
+					font-weight: bold;
+					color: black;
+				}
 			</style>
 			
 			<!-- Pemakaian Peralatan -->
@@ -14013,16 +14021,16 @@ class Reports extends CI_Controller {
 			$total_nilai_evaluasi_all = $total_nilai_evaluasi_bp;
 			?>
 			
-			<tr class="table-active4">
-				<th width="5%" class="text-center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">&nbsp;<br>NO.</th>
-				<th width="30%" class="text-center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>URAIAN</th>
-				<th width="10%" class="text-center" rowspan="2" style="background-color:#e69500; border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>SATUAN</th>
-				<th width="55%" class="text-center" colspan="3" style="background-color:#e69500; border:1px solid black;">REALISASI</th>
+			<tr class="table-active">
+				<th width="5%" class="text-center" rowspan="2" style="border-top:1px solid black; border-left:1px solid black; border-bottom:1px solid black;">&nbsp;<br>NO.</th>
+				<th width="30%" class="text-center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>URAIAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="border-top:1px solid black; border-bottom:1px solid black;">&nbsp;<br>SATUAN</th>
+				<th width="55%" class="text-center" colspan="3" style="border:1px solid black;">REALISASI</th>
 	        </tr>
-			<tr class="table-active4">
-				<th width="15%" class="text-center" style="background-color:#e69500; border-left:1px solid black; border-bottom:1px solid black;">VOLUME</th>
-				<th width="15%" class="text-center" style="background-color:#e69500; border-bottom:1px solid black;">HARSAT</th>
-				<th width="25%" class="text-center" style="background-color:#e69500; border-bottom:1px solid black; border-right:1px solid black;">NILAI</th>
+			<tr class="table-active">
+				<th width="15%" class="text-center" style="border-left:1px solid black; border-bottom:1px solid black;">VOLUME</th>
+				<th width="15%" class="text-center" style="border-bottom:1px solid black;">HARSAT</th>
+				<th width="25%" class="text-center" style="border-bottom:1px solid black; border-right:1px solid black;">NILAI</th>
 	        </tr>
 			<tr>
 				<th class="text-center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
@@ -14295,7 +14303,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 10px;
 					color: black;
@@ -14570,7 +14578,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4-rak{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-weight: bold;
 					font-size: 8px;
 					color: black;
@@ -19416,7 +19424,7 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-judul{
-					background-color: #e69500;
+					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
 					font-size: 10px;
 					font-weight: bold;
 					color: black;
