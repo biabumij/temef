@@ -3962,7 +3962,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = prm.purchase_order_id
-            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+            and ppp.created_on >= "'.$start_date.'"  and ppp.created_on <= "'.$end_date.'"
 		) as tagihan,
         SUM(prm.display_price) -
         (
@@ -4022,8 +4022,8 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppo.kategori_id',$filter_kategori);
         }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
-        $this->db->order_by('ppo.date_po','asc');
         $this->db->group_by('prm.purchase_order_id');
+        $this->db->order_by('ppo.date_po','asc');
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
