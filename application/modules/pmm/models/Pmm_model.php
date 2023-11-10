@@ -3998,7 +3998,7 @@ class Pmm_model extends CI_Model {
             inner join pmm_penagihan_pembelian ppp 
             on ppd.penagihan_pembelian_id = ppp.id 
             where ppp.purchase_order_id = prm.purchase_order_id
-            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+            and ppp.created_on >= "'.$start_date.'"  and ppp.created_on <= "'.$end_date.'"
 		) - 
         (
             select COALESCE(SUM(pppp.total),0)
