@@ -9,9 +9,14 @@
 </script>
 </head>
 <style type="text/css">
+    body {
+        font-family: helvetica;
+    }
+
     .chart-container{
         position: relative; max-width: 100%; height:350px; background: #fff;
     }
+    
     .highcharts-figure,
     .highcharts-data-table table {
     min-width: 65%;
