@@ -232,7 +232,7 @@
                         color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: 'REALISASI PRODUKSI',
                     x: -20 //center text
@@ -242,7 +242,7 @@
                         color: '#ffffff',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: 'PT. BIA BUMI JAYENDRA - TEMEF',
                     x: -20 //center text
@@ -253,7 +253,7 @@
                             color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         }
                     },
                     categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23']
@@ -269,7 +269,7 @@
                             color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         text: 'Presentase'           
                     },
@@ -283,7 +283,7 @@
                             color: '#ffffff',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         format: '{value} %'
                     },
@@ -335,7 +335,7 @@
                     color: '#000000',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial'
+                    fontFamily: 'helvetica'
                 },
                 {  
                     name: 'Realisasi %',  
@@ -346,7 +346,7 @@
                     color: '#FF0000',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial',
+                    fontFamily: 'helvetica',
 
                     zones: [{
                         value: [<?php echo json_encode($net_desember23, JSON_NUMERIC_CHECK); ?>],
@@ -401,7 +401,7 @@
                         color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: 'LABA RUGI',
                     x: -20 //center            
@@ -411,7 +411,7 @@
                         color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: 'PT. BIA BUMI JAYENDRA - TEMEF',
                     x: -20
@@ -422,7 +422,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         }
                     },
                     //categories: ['Feb 22','Mar 22','Apr 22','Mei 22','Jun 22','Jul 22','Agu 22','Sep 22','Okt 22','Nov 22','Des 22','Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi']
@@ -438,7 +438,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         text: 'Presentase'           
                     },
@@ -452,7 +452,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         format: '{value} %'
                     },
@@ -504,7 +504,7 @@
                     color: '#000000',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial'
+                    fontFamily: 'helvetica'
                 },
                 {  
                     name: 'Laba Rugi %',  
@@ -515,7 +515,7 @@
                     color: '#FF0000',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial',
+                    fontFamily: 'helvetica',
 
                     zones: [{
                         
@@ -553,7 +553,7 @@
                         color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: 'REALISASI RENCANA KERJA PERMINGGU',
                     x: -20 //center            
@@ -563,7 +563,7 @@
                         color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '14px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     text: '(<?php echo tgl_indo(date('-m-'));?>)'.toUpperCase(),
                     x: -20
@@ -574,7 +574,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         }
                     },
                     categories: ['Minggu 1 <br /><?php echo $date_minggu_1_awal = date('01 F Y', strtotime($date_now));?> - <?php echo $date_minggu_1_akhir = date('d F Y', strtotime($date_minggu_1_akhir));?>','Minggu 2 <br /><?php echo $date_minggu_2_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_1_akhir)));?> - <?php echo $date_minggu_2_akhir = date('d F Y', strtotime($date_minggu_2_akhir));?>','Minggu 3 <br /><?php echo $date_minggu_3_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_2_akhir)));?> - <?php echo $date_minggu_3_akhir = date('d F Y', strtotime($date_minggu_3_akhir));?>','Minggu 4 <br /><?php echo $date_minggu_4_awal = date('d F Y', strtotime('+1 days', strtotime($date_minggu_3_akhir)));?> - <?php echo $date_minggu_4_akhir = date('d F Y', strtotime($date_minggu_4_akhir));?>']
@@ -589,7 +589,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         text: 'Volume Produksi (M3)'           
                     },
@@ -603,7 +603,7 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '10px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         format: '{value}'
                     },
@@ -654,7 +654,7 @@
                     color: '#e69500 ',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial'
+                    fontFamily: 'helvetica'
                 },
                 {  
                     name: 'Realisasi',  
@@ -664,7 +664,7 @@
                     color: '#2986CC',
                     fontWeight: 'bold',
                     fontSize: '10px',
-                    fontFamily: 'arial',
+                    fontFamily: 'helvetica',
 
                     zones: [{
                         
