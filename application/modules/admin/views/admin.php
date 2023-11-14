@@ -5,6 +5,12 @@ if($this->session->userdata('admin_group_id') == 1){
 <html lang="en" class="fixed">
 <head>
     <?php echo $this->Templates->Header();?>
+
+    <style type="text/css">
+        body {
+            font-family: helvetica;
+        }
+    </style>
 </head>
 
 <body>

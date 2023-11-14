@@ -2,6 +2,12 @@
 <html lang="en" class="fixed">
 <head>
     <?php echo $this->Templates->Header();?>
+
+    <style type="text/css">
+        body {
+            font-family: helvetica;
+        }
+    </style>
 </head>
 
 <body>
