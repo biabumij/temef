@@ -64,35 +64,35 @@
                                                     <td>1.</td>
                                                     <td>Semen</td>
 													<td>
-                                                        <input type="text" name="semen" id="semen" class="form-control numberformat text-right" required=""/>
+                                                        <input type="text" name="semen" id="semen" class="form-control text-right" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td>2.</td>
                                                     <td>Pasir</td>
 													<td>
-                                                        <input type="text" name="pasir" id="pasir" class="form-control numberformat text-right" required=""/>
+                                                        <input type="text" name="pasir" id="pasir" class="form-control text-right" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>3.</td>
                                                     <td>Batu 10-20</td>
 													<td>
-                                                        <input type="text" name="batu1020" id="batu1020" class="form-control numberformat text-right" required=""/>
+                                                        <input type="text" name="batu1020" id="batu1020" class="form-control text-right" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>4.</td>
                                                     <td>Batu 20-30</td>
 													<td>
-                                                        <input type="text" name="batu2030" id="batu1020" class="form-control numberformat text-right" required=""/>
+                                                        <input type="text" name="batu2030" id="batu1020" class="form-control text-right" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>5.</td>
                                                     <td>Solar</td>
 													<td>
-                                                        <input type="text" name="solar" id="solar" class="form-control numberformat text-right" required=""/>
+                                                        <input type="text" name="solar" id="solar" class="form-control text-right" required=""/>
                                                     </td>
                                                 </tr>
                                             </tbody>

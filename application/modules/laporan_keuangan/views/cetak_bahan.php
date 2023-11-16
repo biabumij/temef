@@ -97,7 +97,7 @@
 		
 		?>
 		
-		<table width="98%" border="1" cellpadding="3">
+		<table width="98%" cellpadding="5" border="1">
 		
 			<!--- OPENING BALANCE --->
 			
@@ -568,7 +568,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">1</th>	
-				<th align="left">Semen</th>
+				<th align="left"><b>Semen</b></th>
 				<th align="center">Ton</th>
 				<th align="right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
@@ -576,7 +576,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">2</th>
-				<th align="left">Pasir</th>
+				<th align="left"><b>Pasir</b></th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
@@ -584,7 +584,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3</th>
-				<th align="left">Batu Split 10-20</th>
+				<th align="left"><b>Batu Split 10-20</b></th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
@@ -592,7 +592,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4</th>
-				<th align="left">Batu Split 20-30</th>
+				<th align="left"><b>Batu Split 20-30</b></th>
 				<th align="center">M3</th>
 				<th align="right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>

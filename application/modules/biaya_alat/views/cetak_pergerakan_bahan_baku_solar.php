@@ -86,7 +86,7 @@
 		
 		?>
 		
-		<table width="98%" border="0" cellpadding="3" border="1">
+		<table width="98%" cellpadding="5" border="1">
 		
 			<!--- OPENING BALANCE --->
 			

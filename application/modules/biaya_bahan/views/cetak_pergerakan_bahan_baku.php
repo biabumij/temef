@@ -46,21 +46,19 @@
 			font-family: helvetica;
 			font-size: 7px;
 		}
+
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 7px;
 		}
 			
 		table tr.table-baris1{
 			background-color: #eeeeee;
-			font-size: 7px;
 		}
 			
 		table tr.table-total{
 			background-color: #eeeeee;
 			font-weight: bold;
-			font-size: 7px;
 		}
 	  </style>
 
@@ -87,7 +85,7 @@
 		
 		?>
 		
-		<table width="98%" border="0" cellpadding="3" border="1">
+		<table width="98%" cellpadding="5" border="1">
 		
 			<!--- OPENING BALANCE --->
 			
@@ -563,16 +561,12 @@
 				<th align="center" width="8%">HARGA</th>
 				<th align="center" width="11%">NILAI</th>
 	        </tr>
-			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>BAHAN BAKU</b></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="center"style="vertical-align:middle"><?php echo $date2_ago;?></th>			
-				<th align="left" colspan="9"><i>Opening Balance</i></th>
+			<tr class="table-baris1">		
+				<th align="right" colspan="10"><i>Opening Balance (<?php echo $date2_ago;?>)</i></th>
 				<th align="right"><?php echo number_format($total_opening_balance_bahan_baku,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">	
-				<th align="left">Semen</th>
+				<th align="left"><b>Semen</b></th>
 				<th align="center">Ton</th>
 				<th align="center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_semen_all,0,',','.');?></th>
@@ -585,7 +579,7 @@
 				<th align="right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="left">Pasir</th>
+				<th align="left"><b>Pasir</b></th>
 				<th align="center">M3</th>
 				<th align="center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_pasir,0,',','.');?></th>
@@ -598,7 +592,7 @@
 				<th align="right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="left">Batu Split 10-20</th>
+				<th align="left"><b>Batu Split 10-20</b></th>
 				<th align="center">M3</th>
 				<th align="center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_batu1020,0,',','.');?></th>
@@ -611,7 +605,7 @@
 				<th align="right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
-				<th align="left" class="table-border-pojok-tengah">Batu Split 20-30</th>
+				<th align="left" class="table-border-pojok-tengah"><b>Batu Split 20-30</b></th>
 				<th align="center">M3</th>
 				<th align="center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_batu2030,0,',','.');?></th>
