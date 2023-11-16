@@ -13254,6 +13254,9 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_semen_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center" colspan="12"></th>
+	        </tr>
 			<tr class="table-active2">
 	            <th class="text-center" colspan="12">PASIR</th>
 	        </tr>
@@ -13291,6 +13294,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_pasir_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center" colspan="12"></th>
 	        </tr>
 			<tr class="table-active2">
 	            <th class="text-center" colspan="12">BATU SPLIT 10-20</th>
@@ -13330,6 +13336,9 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu1020_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center" colspan="12"></th>
+	        </tr>
 			<tr class="table-active2">
 	            <th class="text-center" colspan="12">BATU SPLIT 20-30</th>
 	        </tr>
@@ -13367,6 +13376,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center" colspan="12"></th>
 	        </tr>
 			<tr class="table-active2">
 	            <th class="text-center" colspan="12">BAHAN BAKU</th>
