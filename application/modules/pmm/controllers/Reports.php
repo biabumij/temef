@@ -13359,15 +13359,15 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 	            <th class="text-center" colspan="12"></th>
 	        </tr>
-			<!--<tr class="table-active2">
-	            <th class="text-left" colspan="12">BAHAN BAKU</th>
+			<tr class="table-active">
+	            <th class="text-center" colspan="12">BAHAN BAKU</th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>			
 				<th class="text-left" colspan="10">Opening Balance</th>
 				<th class="text-right"><?php echo number_format($total_opening_balance_bahan_baku,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>		
 				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
@@ -13381,7 +13381,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_semen_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
@@ -13395,7 +13395,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_pasir_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
@@ -13409,7 +13409,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu1020_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active">
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
@@ -13423,7 +13423,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
 	        </tr>-->
-			<tr class="table-active2">
+			<tr class="table-active">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
