@@ -14494,7 +14494,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active2">
+			<tr class="table-active">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
