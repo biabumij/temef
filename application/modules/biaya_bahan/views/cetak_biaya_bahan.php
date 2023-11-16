@@ -66,11 +66,21 @@
 
 	</head>
 	<body>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">LAPORAN BIAYA BAHAN</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
-		<br /><br /><br />
+		<br />
+		<br />
+		<table width="98%" cellpadding="3">
+			<tr>
+				<td align="center"  width="100%">
+					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN BIAYA BAHAN</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">PROYEK BENDUNGAN TEMEF</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<br />
 		<?php
 		$data = array();
 		
@@ -87,7 +97,7 @@
 		
 		?>
 		
-		<table width="98%" border="0" cellpadding="3" border="1">
+		<table width="98%" cellpadding="5" border="1">
 		
 			<!--- OPENING BALANCE --->
 			
@@ -557,43 +567,40 @@
 				<th align="center" width="20%">NILAI</th>
 	        </tr>
 			<tr class="table-baris1">
-	            <th align="left" colspan="12"><b>BAHAN BAKU</b></th>
-	        </tr>
-			<tr class="table-baris1">
 				<th align="center">1</th>	
-				<th align="left">Semen</th>
+				<th align="left"><b>Semen</b></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">2</th>
-				<th align="left">Pasir</th>
+				<th align="left"><b>Pasir</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">3</th>
-				<th align="left">Batu Split 10-20</th>
+				<th align="left"><b>Batu Split 10-20</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center">4</th>
-				<th align="left">Batu Split 20-30</th>
+				<th align="left"><b>Batu Split 20-30</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
-	            <th align="right" colspan="5" class="table-border-spesial-kiri">TOTAL</th>
-				<th align="right" class="table-border-spesial-kanan"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
+	            <th align="right" colspan="5">TOTAL</th>
+				<th align="right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
 	        </tr>
 	    </table>
 		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -615,13 +622,13 @@
 						</tr>
 						<tr class="">
 							<?php
-								$create = $this->db->select('*')
+								$create = $this->db->select('id, unit_head, logistik, admin')
 								->from('akumulasi')
-								->where("(date_akumulasi = '$end_date')")
+								->where("(date_akumulasi between '$start_date' and '$end_date')")
 								->order_by('id','desc')->limit(1)
 								->get()->row_array();
 
-                                $this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
+                                $this->db->select('g.admin_group_name, a.admin_ttd');
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$create['unit_head']);
                                 $unit_head = $this->db->get('tbl_admin a')->row_array();
@@ -644,27 +651,26 @@
 							</td>
 							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
-								<!--<img src="<?= $admin['admin_ttd']?>" width="20px">-->
 							</td>
 						</tr>
 						<tr>
-							<td align="center">
-								<b><u><?= $unit_head['admin_name']?></u><br />
-								Kepala Unit Proyek</b>
+							<td align="center" >
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<?= $unit_head['admin_group_name']?></b>
 							</td>
 							<td align="center">
-								<b><u>Agustinus P</u><br />
+							<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
 								M. Teknik</b>
 							</td>
 							<td align="center" >
-								<b><u>Agustinus P</u><br />
-								Pj. Logistik</b>
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
+								<?= $logistik['admin_group_name']?></b>
 							</td>
 						</tr>
 					</table>
 				</td>
 				<td width="5%"></td>
 			</tr>
-		</table>	
+		</table>
 	</body>
 </html>
