@@ -220,32 +220,32 @@
 		<tr class="table-baris1">
 			<th align="center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 			<th align="left" colspan="7"><i>Opening Balance</i></th>
-			<th align="center"><?php echo number_format($volume_opening_balance_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($volume_opening_balance_solar,2,',','.');?></th>
 			<th align="right"><?php echo number_format($harga_opening_balance_solar,0,',','.');?></th>
 			<th align="right"><?php echo number_format($nilai_opening_balance_solar,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">	
 			<th align="left">BBM Solar</th>
 			<th align="center">Liter</th>
-			<th align="center"><?php echo number_format($total_volume_pembelian_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_volume_pembelian_solar,2,',','.');?></th>
 			<th align="right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
 			<th align="right"><?php echo number_format($total_nilai_pembelian_solar,0,',','.');?></th>
-			<th align="center"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
 			<th align="right"><?php echo number_format($total_harga_pemakaian_solar,0,',','.');?></th>
 			<th align="right"><?php echo number_format($total_nilai_pemakaian_solar,0,',','.');?></th>
-			<th align="center"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
 			<th align="right"><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></th>
 			<th align="right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 		</tr>
 		<tr class="table-total">
 			<th align="center" colspan="2">TOTAL</th>
-			<th align="center"></th>
+			<th align="right"></th>
 			<th align="right"></th>
 			<th align="right"><?php echo number_format($total_nilai_pembelian,0,',','.');?></th>
-			<th align="center"></th>
+			<th align="right"></th>
 			<th align="right"></th>
 			<th align="right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
-			<th align="center"></th>
+			<th align="right"></th>
 			<th align="right"></th>
 			<th align="right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 		</tr>

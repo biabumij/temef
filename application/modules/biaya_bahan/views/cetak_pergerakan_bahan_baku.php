@@ -568,64 +568,64 @@
 			<tr class="table-baris1">	
 				<th align="left"><b>Semen</b></th>
 				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_semen_all,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian_semen_all,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_stock_semen_akhir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="left"><b>Pasir</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_pasir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian_pasir,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_stock_pasir_akhir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="left"><b>Batu Split 10-20</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_batu1020,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian_batu1020,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_stock_batu1020_akhir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="left" class="table-border-pojok-tengah"><b>Batu Split 20-30</b></th>
 				<th align="center">M3</th>
-				<th align="center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pembelian_batu2030,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian_batu2030,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-				<th align="center"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
+				<th align="right"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
 	            <th align="center" colspan="2">TOTAL</th>
-				<th align="center"></th>
+				<th align="right"></th>
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_pembelian,0,',','.');?></th>
-				<th align="center"></th>
+				<th align="right"></th>
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
-				<th align="center"></th>
+				<th align="right"></th>
 				<th align="right"></th>
 				<th align="right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 	        </tr>
