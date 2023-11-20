@@ -13131,9 +13131,9 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 	            <th class="text-left" colspan="8">Opening Balance</th>
-				<th class="text-center"><?php echo number_format($volume_opening_balance_semen,2,',','.');?></th>
-				<th class="text-center"><?php echo number_format($harga_opening_balance_semen,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($nilai_opening_balance_semen,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_opening_balance_semen,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_opening_balance_semen,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_opening_balance_semen,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
