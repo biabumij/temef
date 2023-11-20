@@ -14462,7 +14462,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 	            <th class="text-left" colspan="8">Opening Balance</th>
-				<th class="text-center"><?php echo number_format($volume_opening_balance_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_opening_balance_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_opening_balance_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_solar,0,',','.');?></th>
 	        </tr>
@@ -14470,13 +14470,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian</th>
 				<th class="text-center">Liter</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_solar,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_solar_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_solar_akhir,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_solar_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_solar_akhir,0,',','.');?></th>		
 	        </tr>
@@ -14484,25 +14484,25 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left">Produksi</th>
 				<th class="text-center">Liter</th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_solar,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_solar,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_solar_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_solar_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_solar_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active">
 	            <th class="text-center" colspan="3">TOTAL</th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian,0,',','.');?></th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian,0,',','.');?></th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 	        </tr>
