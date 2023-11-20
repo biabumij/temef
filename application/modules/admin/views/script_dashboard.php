@@ -2675,7 +2675,7 @@ function tgl_indo($date_minggu_1_awal){
     
 <!-- REALISASI RENCANA KERJA -->
     <?php
-    $rencana_kerja_now = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d) as total_produksi')
+    $rencana_kerja_now = $this->db->select('r.*, (r.vol_produk_a + r.vol_produk_b + r.vol_produk_c + r.vol_produk_d + r.vol_produk_e) as total_produksi')
     ->from('rak r')
     ->where("r.tanggal_rencana_kerja <= '$date_now'")
     ->order_by('r.id','desc')->limit(1)
