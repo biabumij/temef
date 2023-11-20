@@ -13139,13 +13139,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian (PCC)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13153,13 +13153,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Jasa Angkut Semen (PCC)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13167,13 +13167,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian (CONS)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_cons,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_cons,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_cons,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_cons,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_cons_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_cons_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_cons_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_cons_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13181,13 +13181,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Jasa Angkut Semen (CONS)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_cons,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_cons_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13195,13 +13195,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian (OPC)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_opc,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_opc,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_opc,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_opc,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_opc_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_opc_akhir,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_semen_opc_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_opc_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13209,13 +13209,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Jasa Angkut Semen (OPC)</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_opc,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-right"><?php echo number_format($total_nilai_jasa_angkut_opc_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13223,13 +13223,13 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left">Produksi</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_semen_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
@@ -13242,7 +13242,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 	            <th class="text-left" colspan="8">Opening Balance</th>
-				<th class="text-center"><?php echo number_format($volume_opening_balance_pasir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_opening_balance_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_opening_balance_pasir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_pasir,0,',','.');?></th>
 	        </tr>
@@ -13250,13 +13250,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_pasir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_pasir,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_pasir_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_pasir_akhir,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_pasir_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_pasir_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13264,13 +13264,13 @@ class Reports extends CI_Controller {
 			<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left">Produksi</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_pasir_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
@@ -13283,7 +13283,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 	            <th class="text-left" colspan="8">Opening Balance</th>
-				<th class="text-center"><?php echo number_format($volume_opening_balance_batu1020,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_opening_balance_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_opening_balance_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_batu1020,0,',','.');?></th>
 	        </tr>
@@ -13291,13 +13291,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu1020,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu1020_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu1020_akhir,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_batu1020_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu1020_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13305,13 +13305,13 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
 				<th class="text-left">Produksi</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu1020_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
@@ -13324,7 +13324,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
 	            <th class="text-left" colspan="8">Opening Balance</th>
-				<th class="text-center"><?php echo number_format($volume_opening_balance_batu2030,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($volume_opening_balance_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_opening_balance_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_opening_balance_batu2030,0,',','.');?></th>
 	        </tr>
@@ -13332,13 +13332,13 @@ class Reports extends CI_Controller {
 	            <th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pembelian</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu2030,0,',','.');?></th>
-				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu2030_akhir,2,',','.');?></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu2030_akhir,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_batu2030_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu2030_akhir,0,',','.');?></th>		
 	        </tr>
@@ -13349,10 +13349,10 @@ class Reports extends CI_Controller {
 				<th class="text-center"></th>
 				<th class="text-right"></th>
 				<th class="text-right"></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
 	        </tr>
@@ -13371,13 +13371,13 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>		
 				<th class="text-left">Semen</th>
 				<th class="text-center">Ton</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_semen_all,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_semen_all,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_semen_all,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_semen,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_semen,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_semen,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_semen_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_semen_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_semen_akhir,0,',','.');?></th>
 	        </tr>
@@ -13385,13 +13385,13 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Pasir</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_pasir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_pasir,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_pasir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_pasir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_pasir,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_pasir_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_pasir_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_pasir_akhir,0,',','.');?></th>
 	        </tr>
@@ -13399,13 +13399,13 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Batu Split 10-20</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu1020,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu1020,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_batu1020_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu1020_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu1020_akhir,0,',','.');?></th>
 	        </tr>
@@ -13413,16 +13413,16 @@ class Reports extends CI_Controller {
 				<th class="text-center" style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left">Batu Split 20-30</th>
 				<th class="text-center">M3</th>
-				<th class="text-center"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pembelian_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_batu2030,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_pemakaian_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pemakaian_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pemakaian_batu2030,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_volume_stock_batu2030_akhir,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_stock_batu2030_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_stock_batu2030_akhir,0,',','.');?></th>
-	        </tr>-->
+	        </tr>
 			<tr class="table-active">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
