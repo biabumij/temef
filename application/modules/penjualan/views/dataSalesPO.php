@@ -30,10 +30,9 @@
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
-                        <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
-                        <li><a href="<?php echo site_url('admin/penjualan');?>"> Sales Order</a></li>
-                        <li><a href="">Detail Sales Order</a></li>
+                        <li><a> Penjualan</a></li>
+                        <li><a> Sales Order</a></li>
+                        <li><a> Detail Sales Order</a></li>
                     </ul>
                 </div>
             </div>

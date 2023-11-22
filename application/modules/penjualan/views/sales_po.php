@@ -22,10 +22,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
-                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Sales Order</a></li>
-                            <li><a href="">Buat Sales Order</a></li>
+                            <li><a> Penjualan</a></li>
+                            <li><a> Sales Order</a></li>
+                            <li><a> Buat Sales Order</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,8 +33,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Sales Order Baru</h3>
-                                    
+                                    <h3 class="">Sales Order</h3>
                                 </div>
                             </div>
                             <div class="panel-content">

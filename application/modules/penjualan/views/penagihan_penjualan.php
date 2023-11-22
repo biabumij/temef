@@ -24,9 +24,8 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
-                            <li><a href="">Tagihan Penjualan</a></li>
+                            <li><a> Penjualan</a></li>
+                            <li><a> Tagihan Penjualan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,7 +34,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Penagihan Penjualan</h3>
+                                    <h3 class="">Tagihan Penjualan</h3>
                                 </div>
                             </div>
                             <form id="form-po" action="<?= base_url('penjualan/submit_penagihan_penjualan') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
