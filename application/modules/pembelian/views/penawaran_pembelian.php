@@ -7,10 +7,6 @@
         body {
             font-family: helvetica;
         }
-        
-        .table-center th, .table-center td{
-            text-align:center;
-        }
     </style>
 </head>
 
@@ -23,10 +19,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Penawaran Pembelian</a></li>
-                            <li><a href=""> Penawaran Pembelian Baru</a></li>
+                            <li><a> Pembelian</a></li>
+                            <li<a> Penawaran Pembelian</a></li>
+                            <li><a> Penawaran Pembelian Baru</a></li>
                         </ul>
                     </div>
                 </div>

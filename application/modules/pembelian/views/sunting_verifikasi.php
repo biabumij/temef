@@ -8,48 +8,6 @@
         body {
 			font-family: helvetica;
 		}
-        .table-center th,
-        .table-center td {
-            text-align: center;
-        }
-
-        .form-approval {
-            display: inline-block;
-        }
-
-        .custom-file-input {
-            width: 0;
-            height: 0;
-            visibility: hidden !important;
-        }
-        
-        blink {
-        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-        animation: 2s linear infinite kedip;
-        }
-        /* for Safari 4.0 - 8.0 */
-        @-webkit-keyframes kedip { 
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
-        @keyframes kedip {
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
     </style>
 </head>
 
@@ -62,10 +20,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Verifikasi Tagihan Pembelian</a></li>
-                            <li><a href="">Edit Verifikasi Tagihan Pembelian</a></li>
+                            <li><a> Pembelian</a></li>
+                            <li><a> Verifikasi Tagihan Pembelian</a></li>
+                            <li><a> Edit Verifikasi Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>

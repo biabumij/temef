@@ -5,41 +5,9 @@
     <?php echo $this->Templates->Header(); ?>
 
     <style type="text/css">
-        .table-center th,
-        .table-center td {
-            text-align: center;
-        }
-
-        .form-approval {
-            display: inline-block;
-        }
-        blink {
-        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-        animation: 2s linear infinite kedip;
-        }
-        /* for Safari 4.0 - 8.0 */
-        @-webkit-keyframes kedip { 
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
-        @keyframes kedip {
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
+        body {
+			font-family: helvetica;
+		}
     </style>
 </head>
 
@@ -52,10 +20,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
-                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a href="">Detail Tagihan Pembelian</a></li>
+                            <li><a> Pembelian</a></li>
+                            <li><a> Tagihan Pembelian</a></li>
+                            <li><a> Detail Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
