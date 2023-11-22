@@ -5,43 +5,8 @@
     <?php echo $this->Templates->Header(); ?>
 
     <style type="text/css">
-        body{
-			font-family: helvetica;
-	  	}
-        .table-center th,
-        .table-center td {
-            text-align: center;
-        }
-
-        .form-approval {
-            display: inline-block;
-        }
-        blink {
-        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-        animation: 2s linear infinite kedip;
-        }
-        /* for Safari 4.0 - 8.0 */
-        @-webkit-keyframes kedip { 
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
-        }
-        @keyframes kedip {
-        0% {
-            visibility: hidden;
-        }
-        50% {
-            visibility: hidden;
-        }
-        100% {
-            visibility: visible;
-        }
+        body {
+            font-family: helvetica;
         }
     </style>
 </head>

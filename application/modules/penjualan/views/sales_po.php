@@ -4,11 +4,8 @@
     <?php echo $this->Templates->Header();?>
 
     <style type="text/css">
-        body{
-			font-family: helvetica;
-	  	}
-        .table-center th, .table-center td{
-            text-align:center;
+        body {
+            font-family: helvetica;
         }
     </style>
 </head>
@@ -72,7 +69,7 @@
 										</div>									
                                     </div>
                                     <div class="table-responsive" style="padding-top:10px">
-                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>

@@ -7,11 +7,8 @@
     <?php echo $this->Templates->Header();?>
 
     <style type="text/css">
-        body{
-			font-family: helvetica;
-	  	}
-        .form-approval {
-            display: inline-block;
+        body {
+            font-family: helvetica;
         }
     </style>
 </head>

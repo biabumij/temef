@@ -5,17 +5,9 @@
     <?php echo $this->Templates->Header(); ?>
 
     <style type="text/css">
-        body{
-			font-family: helvetica;
-	  	}
-        .table-center th,
-        .table-center td {
-            text-align: center;
+        body {
+            font-family: helvetica;
         }
-
-        .form-approval {
-            display: inline-block;
-        } 
     </style>
 </head>
 
@@ -104,7 +96,7 @@
                                 </table>
                                 <br /><br />
                                 <div class="table-responsive">
-                                    <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                    <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
