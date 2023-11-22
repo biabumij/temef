@@ -21,9 +21,9 @@
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li> Pembelian</a></li>
-                        <li> Permintaan Bahan & Alat</a></li>
-                        <li> Detail Permintaan Bahan & Alat</a></li>
+                        <li><a> Pembelian</a></li>
+                        <li><a> Permintaan Bahan & Alat</a></li>
+                        <li><a> Detail Permintaan Bahan & Alat</a></li>
                     </ul>
                 </div>
             </div>
