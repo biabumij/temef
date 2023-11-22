@@ -36,7 +36,7 @@
                             </div>
                             <div class="panel-content">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered table-center" id="main-table" width="100%">
+                                    <table class="table table-striped table-hover table-bordered text-center" id="main-table" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Rekanan</th>
