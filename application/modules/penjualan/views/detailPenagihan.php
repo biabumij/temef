@@ -337,7 +337,7 @@
                                     <div role="tabpanel" class="tab-pane active" id="menu1">
                                         <br>
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table-surat-jalan" width="100%">
+                                            <table class="table table-striped table-hover text-center" id="table-surat-jalan" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Tanggal</th>
