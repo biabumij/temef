@@ -102,7 +102,7 @@
                             </div>
                             <br />
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover table-center" id="guest-table">
+                                <table class="table table-striped table-bordered table-hover text-center" id="guest-table">
                                     <thead>
                                         <tr>
                                             <th width="50px" class="text-center">No</th>

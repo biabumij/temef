@@ -199,7 +199,7 @@
                             
                             <br />
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-bordered" id="guest-table">
+                                <table class="table table-striped table-hover table-bordered text-center" id="guest-table">
                                     <thead>
                                         <tr>
                                             <th class="text-center" width="5%">No</th>

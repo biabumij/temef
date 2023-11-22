@@ -77,7 +77,7 @@
                                     </table>
                                     <br /><br />
                                     <div class="table-responsive">
-                                        <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                        <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>

@@ -99,7 +99,7 @@
                                         <th style="font-weight:normal;"><?= date('d/m/Y H:i:s',strtotime($row['created_on']));?></th>
                                     </tr>
                                 </table>
-                                <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
                                     <thead>
                                         <tr>
                                             <th class="text-center" width="5%">No</th>
