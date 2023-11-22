@@ -189,7 +189,7 @@
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("p.kategori_produk = '5'")
+			->where("p.kategori_alat in ('1','2','3','4','5','6','7','8','9','10','11')")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
@@ -235,7 +235,7 @@
 			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
 			->join('produk p', 'prm.material_id = p.id','left')
 			->where("prm.date_receipt between '$date3' and '$date2'")
-			->where("p.kategori_produk = '5'")
+			->where("p.kategori_alat in ('1','2','3','4','5','6','7','8','9','10','11')")
 			->where("po.status in ('PUBLISH','CLOSED')")
 			->get()->row_array();
 
