@@ -112,7 +112,7 @@
                                     $sisa_tagihan = ($dpp['total'] + $tax['total']) - $total_bayar['total'] - $pembayaran['uang-muka'];
                                     ?>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-condensed table-center">
+                                        <table class="table table-bordered table-striped table-condensed text-center">
                                             <thead>
                                                 <tr>
                                                     <th>Nilai Invoice</th>
