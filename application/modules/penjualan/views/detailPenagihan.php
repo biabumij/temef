@@ -345,7 +345,7 @@
                                                         <th>Produk</th>
                                                         <th>No. Kendaraan</th>
                                                         <th>Supir</th>
-                                                        <th class="text-right">Volume</th>
+                                                        <th>Volume</th>
                                                         <th>Satuan</th>
                                                     </tr>
                                                 </thead>
@@ -380,13 +380,13 @@
                                     <div role="tabpanel" class="tab-pane" id="menu2">
                                         <br>
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table-pembayaran" width="100%">
+                                            <table class="table table-striped table-hover text-center" id="table-pembayaran" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Setor Ke</th>
-                                                        <th class="text-center">Jumlah</th>
+                                                        <th>Jumlah</th>
                                                         <th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
