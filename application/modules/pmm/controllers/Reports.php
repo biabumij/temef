@@ -6491,7 +6491,7 @@ class Reports extends CI_Controller {
 			//END BAHAN
 
 			//BAHAN_2		
-			$akumulasi_2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total_nilai_keluar')
+			$akumulasi_2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total_nilai_keluar')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date3' and '$date2')")
 			->get()->result_array();

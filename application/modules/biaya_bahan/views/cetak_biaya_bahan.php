@@ -102,7 +102,6 @@
 			<!--- OPENING BALANCE --->
 			
 			<?php
-			
 			$date1_ago = date('2020-01-01');
 			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
@@ -552,7 +551,6 @@
 			$total_nilai_pembelian = $total_nilai_pembelian_semen_all + $total_nilai_pembelian_pasir + $total_nilai_pembelian_batu1020 + $total_nilai_pembelian_batu2030;
 			$total_nilai_pemakaian = $total_nilai_pemakaian_semen + $total_nilai_pemakaian_pasir + $total_nilai_pemakaian_batu1020 + $total_nilai_pemakaian_batu2030;
 			$total_nilai_akhir = $total_nilai_stock_semen_akhir + $total_nilai_stock_pasir_akhir + $total_nilai_stock_batu1020_akhir + $total_nilai_stock_batu2030_akhir;
-
 	        ?>
 			
 			<tr class="table-judul">
