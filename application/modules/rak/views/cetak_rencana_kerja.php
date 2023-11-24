@@ -281,12 +281,30 @@
 				$total_volume_batu2030_250_2 = $x['komposisi_batu2030_250_2'];
 			}
 
-			$total_volume_semen = $total_volume_semen_125 + $total_volume_semen_225 + $total_volume_semen_250 + $total_volume_semen_250_2;
-			$total_volume_pasir = $total_volume_pasir_125 + $total_volume_pasir_225 + $total_volume_pasir_250 + $total_volume_pasir_250_2;
-			$total_volume_batu1020 = $total_volume_batu1020_125 + $total_volume_batu1020_225 + $total_volume_batu1020_250 + $total_volume_batu1020_250_2;
-			$total_volume_batu2030 = $total_volume_batu2030_125 + $total_volume_batu2030_225 + $total_volume_batu2030_250 + $total_volume_batu2030_250_2;
+			$komposisi_300 = $this->db->select('(r.vol_produk_e * pk.presentase_a) as komposisi_semen_300, (vol_produk_e * pk.presentase_b) as komposisi_pasir_300, (vol_produk_e * pk.presentase_c) as komposisi_batu1020_300, (vol_produk_e * pk.presentase_d) as komposisi_batu2030_300')
+			->from('rak r')
+			->join('pmm_agregat pk', 'r.komposisi_300 = pk.id','left')
+			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
+			->get()->result_array();
 
-			$volume_produksi = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d')
+			$total_volume_semen_300 = 0;
+			$total_volume_pasir_300 = 0;
+			$total_volume_batu1020_300 = 0;
+			$total_volume_batu2030_300 = 0;
+
+			foreach ($komposisi_300 as $x){
+				$total_volume_semen_300 = $x['komposisi_semen_300'];
+				$total_volume_pasir_300 = $x['komposisi_pasir_300'];
+				$total_volume_batu1020_300 = $x['komposisi_batu1020_300'];
+				$total_volume_batu2030_300 = $x['komposisi_batu2030_300'];
+			}
+
+			$total_volume_semen = $total_volume_semen_125 + $total_volume_semen_225 + $total_volume_semen_250 + $total_volume_semen_250_2 + $total_volume_semen_300;
+			$total_volume_pasir = $total_volume_pasir_125 + $total_volume_pasir_225 + $total_volume_pasir_250 + $total_volume_pasir_250_2 + $total_volume_pasir_300;
+			$total_volume_batu1020 = $total_volume_batu1020_125 + $total_volume_batu1020_225 + $total_volume_batu1020_250 + $total_volume_batu1020_250_2 + $total_volume_batu1020_300;
+			$total_volume_batu2030 = $total_volume_batu2030_125 + $total_volume_batu2030_225 + $total_volume_batu2030_250 + $total_volume_batu2030_250_2 + $total_volume_batu2030_300;
+
+			$volume_produksi = $this->db->select('r.*, SUM(r.vol_produk_a) as vol_produk_a, SUM(r.vol_produk_b) as vol_produk_b, SUM(r.vol_produk_c) as vol_produk_c, SUM(r.vol_produk_d) as vol_produk_d, SUM(r.vol_produk_e) as vol_produk_e')
 			->from('rak r')
 			->where("r.tanggal_rencana_kerja = '$tanggal_rencana_kerja'")
 			->get()->row_array();
@@ -295,6 +313,7 @@
 			$volume_produksi_produk_b = $volume_produksi['vol_produk_b'];
 			$volume_produksi_produk_c = $volume_produksi['vol_produk_c'];
 			$volume_produksi_produk_d = $volume_produksi['vol_produk_d'];
+			$volume_produksi_produk_e = $volume_produksi['vol_produk_e'];
 			
 			$total_volume_solar = $volume_produksi['vol_bbm_solar'];
 
