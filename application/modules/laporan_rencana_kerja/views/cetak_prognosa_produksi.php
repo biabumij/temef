@@ -234,8 +234,8 @@
 			$volume_akumulasi_produk_e = $penjualan_akumulasi_produk_e['volume'];
 			$nilai_akumulasi_produk_e = $penjualan_akumulasi_produk_e['price'];
 
-			$total_akumulasi_volume = $volume_akumulasi_produk_e + $volume_akumulasi_produk_e + $volume_akumulasi_produk_e + $volume_akumulasi_produk_e;
-			$total_akumulasi_nilai = $nilai_akumulasi_produk_e + $nilai_akumulasi_produk_e + $nilai_akumulasi_produk_e + $nilai_akumulasi_produk_e;
+			$total_akumulasi_volume = $volume_akumulasi_produk_a + $volume_akumulasi_produk_b + $volume_akumulasi_produk_c + $volume_akumulasi_produk_d + $volume_akumulasi_produk_e;
+			$total_akumulasi_nilai = $nilai_akumulasi_produk_a + $nilai_akumulasi_produk_b + $nilai_akumulasi_produk_c + $nilai_akumulasi_produk_d + $nilai_akumulasi_produk_e;
 		
 			//AKUMULASI BIAYA
 			//BAHAN
