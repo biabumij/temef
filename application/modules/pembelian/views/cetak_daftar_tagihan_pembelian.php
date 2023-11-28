@@ -97,13 +97,6 @@
 			font-size: 8px;
 			color: black;
 		}
-
-		table tr.table-total2{
-			background-color: #eeeeee;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
 	  </style>
 
 	</head>
@@ -119,7 +112,7 @@
 		</tr>
 	</table>
 		<table cellpadding="3" width="98%">
-			<tr class="table-total">
+			<tr class="table-judul">
 				<th align="center" width="5%" class="table-border-atas-kiri">NO.</th>
                 <th align="center" width="25%" class="table-border-atas-tengah">REKANAN / NOMOR INVOICE</th>
 				<th align="center" width="14%" class="table-border-atas-tengah">TGL. INVOICE</th>
