@@ -92,7 +92,7 @@
 		}
 			
 		table tr.table-total{
-			background-color: #FFFF00;
+			background-color: #cccccc;
 			font-weight: bold;
 			font-size: 8px;
 			color: black;
