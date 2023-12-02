@@ -19,7 +19,7 @@
 		<th class="text-right" width="15%">Jumlah</th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="7">Biaya Overhead</th>
+		<th class="text-left" colspan="7">Overhead</th>
 	</tr>
 	<?php
 	$total_biaya_langsung = 0;

@@ -72,7 +72,7 @@
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="5"><b>Biaya Overhead</b></th>
+				<th width="100%" align="left" colspan="5"><b>Overhead</b></th>
 			</tr>
 			<?php
 			if(!empty($biaya_langsung_parent)){
