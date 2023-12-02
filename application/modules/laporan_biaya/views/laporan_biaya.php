@@ -27,7 +27,7 @@
                             <h3 class="section-subtitle">Overhead</h3>
                         </div>
                         <div class="panel-heading">
-                            <h3 class="panel-title">Overhead Produksi</h3>
+                            <h3 class="panel-title">Overhead</h3>
                             <a href="<?= base_url("laporan/cetak_overhead?filter_date=".$filter_date = date('d-m-Y',strtotime($start_date)).' - '.date('d-m-Y',strtotime($end_date))) ?>">Kembali</a>
                         </div>
                         <div class="panel-content">

@@ -19,7 +19,7 @@
 		<th class="text-right" width="15%">Jumlah</th>
 	</tr>
 	<tr class="active">
-		<th class="text-left" colspan="7">Biaya Overhead Produksi</th>
+		<th class="text-left" colspan="7">Biaya Overhead</th>
 	</tr>
 	<?php
 	$total_biaya_langsung = 0;
@@ -61,7 +61,7 @@
 	$total_a = $grand_total_biaya_langsung + $total_biaya_langsung_jurnal;
 	?>
 	<tr class="active">
-		<td width="80%" class="text-right" style="padding-right:20px;" colspan="6"><b>TOTAL OVERHEAD PRODUKSI</b></td>
+		<td width="80%" class="text-right" style="padding-right:20px;" colspan="6"><b>TOTAL OVERHEAD</b></td>
 		<td width="20%" class="text-right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
 	</tr>
 </table>
