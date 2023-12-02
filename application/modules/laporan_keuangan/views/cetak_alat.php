@@ -182,7 +182,6 @@
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
 			->where("pdb.akun = 221")
 			->where("pb.status = 'PAID'")
-			->where("pb.memo <> 'SC' ")
 			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
 			->group_by('pdb.id')
 			->get()->result_array();
@@ -457,22 +456,6 @@
 				$pembelian_wl_sc_measure = $x['measure'];
 			}
 
-			$insentif_wl_sc = $this->db->select('pb.memo as memo, sum(pdb.debit) as total')
-			->from('pmm_jurnal_umum pb ')
-			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
-			->where("pdb.akun = 221")
-			->where("pb.status = 'PAID'")
-			->where("pb.status = 'SC'")
-			->where("(pb.tanggal_transaksi between '$date1' and '$date2')")
-			->group_by('pdb.id')
-			->get()->result_array();
-
-			$total_insentif_wl_sc = 0;
-
-			foreach ($insentif_wl_sc as $y){
-				$total_insentif_wl_sc += $y['total'];
-			}
-
 			//BBM Solar SC
 			$pembelian_bbm_sc = $this->db->select('
 			pn.nama, po.no_po, po.subject, prm.measure, SUM(prm.volume) as volume, SUM(prm.price) / SUM(prm.volume) as harga_satuan, SUM(prm.price) as price')
@@ -529,8 +512,8 @@
 			$total_pemakaian_vol_bbm_solar = $total_volume_pemakaian_solar;
 
 			$total_pemakaian_batching_plant = $total_nilai_batching_plant;
-			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer + $total_insentif_tm;
-			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader + $total_insentif_wl;
+			$total_pemakaian_truck_mixer = $total_nilai_truck_mixer;
+			$total_pemakaian_wheel_loader = $total_nilai_wheel_loader;
 			$total_pemakaian_transfer_semen = $total_nilai_transfer_semen;
 			$total_pemakaian_bbm_solar = $total_akumulasi_bbm;
 			$total_pemakaian_exc = $total_nilai_exc;
@@ -538,7 +521,7 @@
 			$total_pemakaian_dmp_10m3 = $total_nilai_dmp_10m3;
 			$total_pemakaian_sc = $total_nilai_sc;
 			$total_pemakaian_gns = $total_nilai_gns;
-			$total_pemakaian_wl_sc = $total_nilai_wl_sc + $total_insentif_wl_sc;
+			$total_pemakaian_wl_sc = $total_nilai_wl_sc;
 			
 			//Rumus BBM SC & QUARRY
 			$harsat_bbm_sc = ($total_pemakaian_bbm_solar / $total_volume_pemakaian_solar);
@@ -640,8 +623,10 @@
 			$total_nilai_realisasi_q  = $total_pemakaian_exc + $total_pemakaian_dmp_4m3 + $total_nilai_bbm_q;
 			$total_nilai_evaluasi_q = 0;
 
+			$total_nilai_realisasi_i = $total_insentif_tm + $total_insentif_wl + $total_insentif_wl_sc;
+
 			$total_nilai_rap_all = $total_nilai_rap_bp;
-			$total_nilai_realisasi_all = $total_nilai_realisasi_bp + $total_nilai_realisasi_sc + $total_nilai_realisasi_q;
+			$total_nilai_realisasi_all = $total_nilai_realisasi_bp + $total_nilai_realisasi_sc + $total_nilai_realisasi_q + $total_nilai_realisasi_i;
 			$total_nilai_evaluasi_all = $total_nilai_evaluasi_bp;
 			?>
 			
@@ -672,7 +657,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">2.</th>			
-				<th align="left">Truck Mixer + Insentif</th>
+				<th align="left">Truck Mixer</th>
 				<th align="center" style="border-right:1px solid black;">M3</th>
 				<th align="right"><?php echo number_format($total_pemakaian_vol_truck_mixer,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_truck_mixer / $total_pemakaian_vol_truck_mixer,0,',','.');?></th>
@@ -680,7 +665,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">3.</th>			
-				<th align="left">Wheel Loader + Insentif</th>
+				<th align="left">Wheel Loader</th>
 				<th align="center" style="border-right:1px solid black;">M3</th>
 				<th align="right"><?php echo number_format($total_pemakaian_vol_wheel_loader,2,',','.');?></th>
 				<th align="right"><?php echo number_format($total_pemakaian_wheel_loader / $total_pemakaian_vol_wheel_loader,0,',','.');?></th>
@@ -773,7 +758,7 @@
 	        </tr>
 			<tr class="table-baris1">
 				<th align="center" style="border-left:1px solid black;">4.</th>			
-				<th align="left">Wheel Loader + Insentif</th>
+				<th align="left">Wheel Loader</th>
 				<th align="center" style="border-right:1px solid black;"><?php
 				$null = '-';
 				if (!empty($pembelian_wl_sc_measure)) {
@@ -879,8 +864,30 @@
 				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
 				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_q,0,',','.');?></th>
 	        </tr>
+			<tr class="table-total">
+				<th align="center" colspan="3" style="border-left:1px solid black; border-right:1px solid black;">
+				<div align="left" style="display: block;font-weight:bold; text-transform:uppercase;">D. INSENTIF</div>
+				</th>
+				<th align="center" colspan="3" style="border-right:1px solid black;"></th>
+			</tr>
+			<tr class="table-baris1">
+				<th align="center" style="border-left:1px solid black;">1.</th>
+				<th align="left" colspan="2" style="border-right:1px solid black;">Insentif Truck Mixer</th>
+				<th align="right" colspan="3" style="border-right:1px solid black;"><?php echo number_format($total_insentif_tm,0,',','.');?></th>
+	        </tr>
+			<tr class="table-baris1">
+				<th align="center" style="border-left:1px solid black;">2.</th>
+				<th align="left" colspan="2" style="border-right:1px solid black;">Insentif Wheel Loader</th>
+				<th align="right" colspan="3" style="border-right:1px solid black;"><?php echo number_format($total_insentif_wl,0,',','.');?></th>
+	        </tr>
 			<tr class="table-total">		
-				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL GROUP A + B + C</th>
+				<th align="right" colspan="3" style="background-color:#FFFF00; border-left:1px solid black; border-right:1px solid black; border-top:1px solid black;">TOTAL INSENTIF</th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black;"></th>
+				<th align="right" style="background-color:#FFFF00; border-top:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_i,0,',','.');?></th>
+	        </tr>
+			<tr class="table-total">		
+				<th align="right" colspan="3" style="background-color:#FFFF00; border:1px solid black;">TOTAL GROUP A + B + C + D</th>
 				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
 				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black;"></th>
 				<th align="right" style="background-color:#FFFF00; border-bottom:1px solid black; border-top:1px solid black; border-right:1px solid black;"><?php echo number_format($total_nilai_realisasi_all,0,',','.');?></th>

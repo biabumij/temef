@@ -15,8 +15,8 @@
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                        <li><a>Laporan Biaya</a></li>
+                        <li><a>Laporan Keuangan</a></li>
+                        <li><a>Overhead</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,22 +24,20 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="panel">
                         <div class="panel-header">
-                            <h3 class="section-subtitle">Laporan Biaya</h3>
+                            <h3 class="section-subtitle">Overhead</h3>
                         </div>
                         <div class="panel-heading">
-                            <h3 class="panel-title">Biaya (Overhead, Diskonto, Persiapan)</h3>
-                            <script>
-                            document.write('<a href="' + document.referrer + '">Kembali</a>');
-                            </script>
+                            <h3 class="panel-title">Overhead Produksi</h3>
+                            <a href="<?= base_url("laporan/cetak_overhead?filter_date=".$filter_date = date('d-m-Y',strtotime($start_date)).' - '.date('d-m-Y',strtotime($end_date))) ?>">Kembali</a>
                         </div>
                         <div class="panel-content">
                             <form action="<?= site_url('laporan/print_biaya');?>" target="_blank">
                                 <div class="row">
                                    <div class="col-sm-3">
-                                        <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Per Tanggal" autocomplete="off">
+                                        <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="<?php echo $_GET['filter_date'];?>" placeholder="Per Tanggal" autocomplete="off">
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak</button>
+                                        <button type="submit" class="btn btn-default" style="font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                     </div>
                                 </div>    
                             </form>

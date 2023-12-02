@@ -1637,6 +1637,18 @@ class Laporan extends Secure_Controller {
     public function laporan_biaya()
     {
         $data['asd'] = false;
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('d-m-Y',strtotime($arr_filter_date[0]));
+			$end_date = date('d-m-Y',strtotime($arr_filter_date[1]));
+			$filter_date = date('d-m-Y',strtotime($arr_filter_date[0])).' - '.date('d-m-Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $this->load->view('laporan_biaya/laporan_biaya',$data);
     }
 
@@ -1677,28 +1689,20 @@ class Laporan extends Secure_Controller {
 
         $date = array($start_date,$end_date);
         $data['filter_date'] = $arr_date;
-		$data['biaya_langsung_parent'] = $this->m_laporan->biaya_langsung_print_parent($arr_date);
-		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
-		$data['biaya_langsung_jurnal_parent'] = $this->m_laporan->biaya_langsung_jurnal_print_parent($arr_date);
-		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
-		$data['biaya_parent'] = $this->m_laporan->showBiaya_print_parent($arr_date);
-        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
-		$data['biaya_jurnal_parent'] = $this->m_laporan->showBiayaJurnal_print_parent($arr_date);
-		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
-		$data['biaya_lainnya_parent'] = $this->m_laporan->showBiayaLainnya_print_parent($arr_date);
-        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
-		$data['biaya_lainnya_jurnal_parent'] = $this->m_laporan->showBiayaLainnyaJurnal_print_parent($arr_date);
-		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
-		$data['biaya_persiapan_parent'] = $this->m_laporan->showPersiapanBiaya_print_parent($arr_date);
-		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya_print($arr_date);
-		$data['biaya_persiapan_jurnal_parent'] = $this->m_laporan->showPersiapanJurnal_print_parent($arr_date);
+		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung($arr_date);
+		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal($arr_date);
+        $data['biaya'] = $this->m_laporan->showBiaya($arr_date);
+		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal($arr_date);
+        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya($arr_date);
+		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal($arr_date);
+		$data['biaya_persiapan'] = $this->m_laporan->showPersiapanBiaya($arr_date);
 		$data['biaya_persiapan_jurnal'] = $this->m_laporan->showPersiapanJurnal($arr_date);
 
         $html = $this->load->view('laporan_biaya/print_biaya',$data,TRUE);
         
-        $pdf->SetTitle('BBJ - Laporan Biaya');
+        $pdf->SetTitle('BBJ - Overhead');
         $pdf->nsi_html($html);
-        $pdf->Output('laporan-biaya.pdf', 'I');
+        $pdf->Output('overhead.pdf', 'I');
     
     }
 
