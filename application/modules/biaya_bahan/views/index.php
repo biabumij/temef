@@ -60,10 +60,10 @@
 											<div class="row">
 												<div width="100%">
 													<div class="panel panel-default">                                            
-														<div class="col-sm-5">
+														<!--<div class="col-sm-5">
                                                             <p><h5>Biaya (Bahan)</h5></p>
                                                             <a href="#biaya_bahan" aria-controls="biaya_bahan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
-														</div>
+														</div>-->
 														<div class="col-sm-5">
 															<p><h5>Pergerakan Bahan Baku</h5></p>
 															<a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
