@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>Laporan Biaya</title>
+	  <title>Overhead</title>
 	  
 	  <style type="text/css">
 	  	table.minimalistBlack {
@@ -72,7 +72,7 @@
 				<th align="center" width="30%" align="right"><b>Jumlah</b></th>
 			</tr>
 			<tr class="table-active2">
-				<th width="100%" align="left" colspan="5"><b>Biaya Overhead Produksi</b></th>
+				<th width="100%" align="left" colspan="5"><b>Biaya Overhead</b></th>
 			</tr>
 			<?php
 			if(!empty($biaya_langsung_parent)){
@@ -135,7 +135,7 @@
 			$total_a = $grand_total_biaya_langsung + $total_biaya_langsung_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;"><b>Total Biaya Overhead Produksi</b></td>
+				<td width="80%" style="padding-left:20px;"><b>Total Overhead</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_a);?></b></td>
 			</tr>
 		</table>
