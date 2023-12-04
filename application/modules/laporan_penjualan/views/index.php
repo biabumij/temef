@@ -8,10 +8,10 @@
             font-family: helvetica;
         }
         
-		.mytable thead tr {
-          background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+		.mytable thead th {
+		  background-color:	#666666;
 		  vertical-align: middle;
-          color: black;
+          color: white;
 		}
 		
 		.mytable tbody td {

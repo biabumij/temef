@@ -9130,11 +9130,12 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					background-color: #666666;
 					font-weight: bold;
 					font-size: 12px;
-					color: black;
+					color: white;
 				}
+				
 				table tr.table-active5{
 					background-color: #cccccc;
 					font-weight: bold;
@@ -9824,11 +9825,12 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					background-color: #666666;
 					font-weight: bold;
-					font-size: 10px;
-					color: black;
+					font-size: 12px;
+					color: white;
 				}
+
 				table tr.table-active5{
 					background-color: #cccccc;
 					font-weight: bold;
@@ -10748,10 +10750,11 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
-				table tr.table-active{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
-					font-size: 12px;
+				table tr.table-active4{
+					background-color: #666666;
 					font-weight: bold;
+					font-size: 12px;
+					color: white;
 				}
 					
 				table tr.table-baris1{
@@ -11597,11 +11600,12 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					background-color: #666666;
 					font-weight: bold;
 					font-size: 12px;
-					color: black;
+					color: white;
 				}
+				
 				table tr.table-active5{
 					background-color: #E8E8E8;
 					text-decoration: underline;
@@ -19605,10 +19609,10 @@ class Reports extends CI_Controller {
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
 				table tr.table-judul{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					background-color: #666666;
 					font-size: 10px;
 					font-weight: bold;
-					color: black;
+					color: white;
 				}
 					
 				table tr.table-baris{

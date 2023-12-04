@@ -8,10 +8,10 @@
             font-family: helvetica;
         }
         
-		.mytable thead tr {
-          background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+		.mytable thead th {
+		  background-color:	#666666;
 		  vertical-align: middle;
-          color: black;
+          color: white;
 		}
 		
 		.mytable tbody td {
@@ -195,14 +195,14 @@
                                                         </div>
                                                         <table class="mytable table table-hover table-center table-bordered" id="penerimaan-pembelian" style="display:none;">
                                                             <thead>
-                                                            <tr>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-                                                                <th class="text-center">REKANAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                    <th class="text-center">REKANAN</th>
+                                                                    <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
+                                                                    <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
+                                                                    <th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
+                                                                    <th class="text-center" rowspan="2" style="vertical-align:middle;">NILAI</th>
+                                                                </tr>
                                                             <tr>
                                                                 <th class="text-center">PRODUK</th>
                                                             </tr>
