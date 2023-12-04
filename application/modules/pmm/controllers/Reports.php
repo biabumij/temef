@@ -10750,7 +10750,7 @@ class Reports extends CI_Controller {
 		
 		<table class="table table-bordered" width="100%">
 			<style type="text/css">
-				table tr.table-active4{
+				table tr.table-active{
 					background-color: #666666;
 					font-weight: bold;
 					font-size: 12px;
