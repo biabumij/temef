@@ -206,6 +206,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody></tbody>
+                                                            <tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
                                                         </table>
                                                     </div>
                                                 </div>

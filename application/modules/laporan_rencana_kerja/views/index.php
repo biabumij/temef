@@ -274,6 +274,5 @@
 			PrognosaProduksi();
         </script>
 	</div>
-
 </body>
 </html>
