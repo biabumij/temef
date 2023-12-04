@@ -14763,7 +14763,7 @@ class Reports extends CI_Controller {
 				}
 					
 				table tr.table-active4-rak{
-					background: linear-gradient(90deg, #fdcd3b 20%, #fdcd3b 40%, #e69500 80%);
+					background-color: #666666;
 					font-weight: bold;
 					font-size: 8px;
 					color: black;
