@@ -14766,7 +14766,7 @@ class Reports extends CI_Controller {
 					background-color: #666666;
 					font-weight: bold;
 					font-size: 8px;
-					color: black;
+					color: white;
 				}
 				table tr.table-active5-rak{
 					background-color: #E8E8E8;
