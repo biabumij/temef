@@ -56,9 +56,7 @@
 
 <body>
     <div class="wrap">
-
         <?php echo $this->Templates->PageHeader(); ?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar(); ?>
             <div class="content">
@@ -263,7 +261,6 @@
         </div>
 
         <?php echo $this->Templates->Footer(); ?>
-
         <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
@@ -272,7 +269,6 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
 		<!-- Script Evaluasi Bahan -->
-
 		<script type="text/javascript">
 			$('#filter_date_evaluasi_bahan').daterangepicker({
             autoUpdateInput : false,
@@ -314,7 +310,6 @@
 			}
 
 		//EvaluasiBahan();
-
         </script>
 		
 		<!-- Script Evaluasi Alat -->
@@ -359,7 +354,6 @@
 			}
 
 			//EvaluasiAlat();
-
         </script>
 
 		<!-- Script Evaluasi BUA -->
@@ -404,30 +398,29 @@
 			}
 
 			//EvaluasiBUA();
+		</script>
 
-            </script>
-
-			<!-- Script Evaluasi Target Produksi -->
-			<script type="text/javascript">
+		<!-- Script Evaluasi Target Produksi -->
+		<script type="text/javascript">
 			$('#filter_date_evaluasi_target_produksi').daterangepicker({
-            autoUpdateInput : false,
+			autoUpdateInput : false,
 			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
+			locale: {
+			format: 'DD-MM-YYYY'
+			},
+			ranges: {
+			'Today': [moment(), moment()],
+			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+			'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+			'This Month': [moment().startOf('month'), moment().endOf('month')],
+			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			}
 			});
 
 			$('#filter_date_evaluasi_target_produksi').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  EvaluasiTargetProduksi();
+				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				EvaluasiTargetProduksi();
 			});
 
 
@@ -448,9 +441,9 @@
 				});
 			}
 
-			//EvaluasiTargetProduksi();
-
-        </script>
+		//EvaluasiTargetProduksi();
+		</script>
+	</div>
 
 </body>
 </html>
