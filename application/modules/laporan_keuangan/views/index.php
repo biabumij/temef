@@ -89,8 +89,7 @@
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
-														</form>
-														
+														</form>	
 													</div>
 													<br />
 													<div id="wait-laba-rugi" style=" text-align: center; align-content: center; display: none;">	

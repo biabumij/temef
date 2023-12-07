@@ -373,27 +373,19 @@
 			$alat = $alat;
 			$overhead = $overhead;
 			$diskonto = $diskonto;
-
 			$total_biaya_operasional = $bahan + $alat + $overhead + $diskonto;
-
 			$laba_kotor = $total_penjualan_all - $total_biaya_operasional;
-
 			$laba_usaha = $laba_kotor;
-
-			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_usaha / $total_penjualan_all)  * 100:0;
+			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_usaha / $total_penjualan_all) * 100:0;
 
 			$bahan_2 = $total_nilai_2;
 			$alat_2 = $alat_2;
 			$overhead_2 = $overhead_2;
 			$diskonto_2 = $diskonto_2;
-
 			$total_biaya_operasional_2 = $bahan_2 + $alat_2 + $overhead_2 + $diskonto_2;
-
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_biaya_operasional_2;
-
 			$laba_usaha_2 = $laba_kotor_2;
-
-			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_usaha_2 / $total_penjualan_all_2)  * 100:0;
+			$persentase_laba_sebelum_pajak_2 = ($total_penjualan_all_2!=0)?($laba_usaha_2 / $total_penjualan_all_2) * 100:0;
 	        ?>
 
 			<table width="98%" border="0" cellpadding="3">
