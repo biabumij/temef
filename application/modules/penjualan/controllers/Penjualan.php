@@ -1582,7 +1582,7 @@ class Penjualan extends Secure_Controller
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Penagihan !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Tagihan !!');
 			redirect('penjualan/detailPenagihan/' . $id);
 		}
 	}
