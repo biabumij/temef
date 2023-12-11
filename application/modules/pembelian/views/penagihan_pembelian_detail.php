@@ -302,6 +302,7 @@
                                                 <label id="total"><?= number_format($total,0,',','.'); ?></label>
                                             </div>
                                         </div>
+                                        <br />
                                         <div class="row">
                                             <label class="col-sm-7 control-label">UANG MUKA</label>
                                             <div class="col-sm-5 text-right">
