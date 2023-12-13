@@ -684,7 +684,7 @@ class Pembelian extends Secure_Controller
         $this->db->update("pmm_penawaran_pembelian");
 
         $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'OPEN'), array('penawaran_pembelian_id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Penawaran Pembelian');
+        $this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Penawaran Pembelian</b>');
         redirect("admin/pembelian");
     }
 
@@ -693,7 +693,7 @@ class Pembelian extends Secure_Controller
 		$this->db->set("status", "REJECT");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penawaran_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Penawaran Pembelian');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menolak Penawaran Pembelian</b>');
 		redirect("admin/pembelian");
 	}
 
@@ -743,13 +743,13 @@ class Pembelian extends Secure_Controller
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error', 'Gagal Mengahapus Penawaran Pembelian');
+            $this->session->set_flashdata('notif_error','<b>Gagal Mengahapus Penawaran Pembelian</b>');
             redirect('admin/pembelian');
         } else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', ' Berhasil Mengahapus Penawaran Pembelian');
+            $this->session->set_flashdata('notif_success','<b>Berhasil Mengahapus Penawaran Pembelian</b>');
             redirect("admin/pembelian");
         }
     }
@@ -1197,13 +1197,13 @@ class Pembelian extends Secure_Controller
             if ($this->db->trans_status() === FALSE) {
                 # Something went wrong.
                 $this->db->trans_rollback();
-                $this->session->set_flashdata('notif_error', 'Gagal Menghapus Tagihan Pembelian !!');
+                $this->session->set_flashdata('notif_error','<b>Gagal Menghapus Tagihan Pembelian</b>');
                 redirect('pembelian#settings' . $id);
             } else {
                 # Everything is Perfect. 
                 # Committing data to the database.
                 $this->db->trans_commit();
-                $this->session->set_flashdata('notif_success', 'Berhasil Menghapus Tagihan Pembelian !!');
+                $this->session->set_flashdata('notif_success','<b>Berhasil Menghapus Tagihan Pembelian</b>');
                 redirect('admin/pembelian');
             }
         }
@@ -1423,7 +1423,7 @@ class Pembelian extends Secure_Controller
         $this->db->update('pmm_pembayaran_penagihan_pembelian', [
             'status' => 'DISETUJUI'
         ]);
-        $this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Pembayaran !!');
+        $this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Pembayaran</b>');
     }
 
     public function pembayaran_panagihan($id)
@@ -1749,7 +1749,7 @@ class Pembelian extends Secure_Controller
 		$this->db->where("penagihan_pembelian_id", $id);
 		$this->db->update("pmm_verifikasi_penagihan_pembelian");
 
-        $this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+        $this->session->set_flashdata('notif_success','<b>Berhasil Menyelesaikan Penagihan</b>');
 
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
@@ -1762,7 +1762,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Merubah Status Penagihan</b>');
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 
@@ -1954,7 +1954,7 @@ class Pembelian extends Secure_Controller
         );
 
         $this->db->insert('pmm_purchase_order_detail', $arr_detail);
-        $this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Pesanan Pembelian');
+        $this->session->set_flashdata('notif_success','<b>Berhasil Menambahkan Pesanan Pembelian</b>');
         redirect('admin/pembelian');
         exit();
     }
@@ -1983,7 +1983,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("m_keu", 37);
 		$this->db->where("id", $id);
 		$this->db->update("pmm_verifikasi_penagihan_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menutup Verifikasi</b>');
 		redirect("admin/pembelian");
 	}
 

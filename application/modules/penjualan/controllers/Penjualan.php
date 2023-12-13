@@ -299,7 +299,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("approved_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penawaran_penjualan");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Penawaran');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Penawaran</b>');
 		redirect("admin/penjualan");
 	}
 
@@ -308,7 +308,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("status", "REJECT");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penawaran_penjualan");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Penawaran');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menolak Penawaran</b>');
 		redirect("admin/penjualan");
 	}
 
@@ -327,7 +327,7 @@ class Penjualan extends Secure_Controller
         $this->db->delete('pmm_lampiran_penawaran_penjualan', array('penawaran_penjualan_id' => $id));
 		$this->db->delete('pmm_penawaran_penjualan', array('id' => $id));
 		$this->db->delete('pmm_penawaran_penjualan_detail', array('penawaran_penjualan_id' => $id));
-		$this->session->set_flashdata('notif_success', 'Berhasil Mengahapus Penawaran Penjualan');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Mengahapus Penawaran Penjualan</b>');
 		redirect("admin/penjualan");
 	}
 
@@ -575,7 +575,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("status", "OPEN");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_sales_po");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Sales Order');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Sales Order</b>');
 		redirect("admin/penjualan");
 	}
 
@@ -584,7 +584,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("status", "REJECT");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_sales_po");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Sales Order');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menolak Sales Order</b>');
 		redirect("admin/penjualan");
 	}
 	
@@ -1233,13 +1233,13 @@ class Penjualan extends Secure_Controller
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error', 'Gagal Menghapus Tagihan Penjualan !!');
+				$this->session->set_flashdata('notif_error','<b>Gagal Menghapus Tagihan Penjualan</b>');
 				redirect('penjualan/detailPenagihan/' . $id);
 			} else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success', 'Berhasil Menghapus Tagihan Penjualan !!');
+				$this->session->set_flashdata('notif_success','<b>Berhasil Menghapus Tagihan Penjualan</b>');
 				redirect('admin/penjualan');
 			}
 		}
@@ -1582,7 +1582,7 @@ class Penjualan extends Secure_Controller
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Tagihan !!');
+			$this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Tagihan</b>');
 			redirect('penjualan/detailPenagihan/' . $id);
 		}
 	}
@@ -1742,7 +1742,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("status_umur_hutang", "null", false);
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_penjualan");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Menyelesaikan Penagihan</b>');
 		redirect("penjualan/detailPenagihan/$id");
 	}
 
@@ -1754,7 +1754,7 @@ class Penjualan extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_penjualan");
-		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
+		$this->session->set_flashdata('notif_success','<b>Berhasil Merubah Status Penagihan</b>');
 		redirect("penjualan/detailPenagihan/$id");
 	}
 
