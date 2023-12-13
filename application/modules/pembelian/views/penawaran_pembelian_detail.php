@@ -192,7 +192,7 @@
                                                 <button type="submit" class="btn btn-success" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</button>        
                                             </form>
                                             <form class="form-check" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>        
+                                                <button type="submit" class="btn btn-danger" style="margin-top:10px; width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>        
                                             </form>
                                         <?php
                                         }

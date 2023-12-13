@@ -222,7 +222,7 @@
                             </div>
                             <br />
                             <div class="text-right">
-                                <a href="<?php echo site_url('admin/pembelian#chart');?>" class="btn btn-info" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?php echo site_url('admin/pembelian#chart');?>" class="btn btn-info" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 <?php
                                 if($data['status'] == 'DRAFT'){
                                     ?>
