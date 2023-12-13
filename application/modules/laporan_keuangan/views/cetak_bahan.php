@@ -53,12 +53,12 @@
 		}
 			
 		table tr.table-baris1{
-			background-color: #eeeeee;
+			background-color: #F0F0F0;
 			font-size: 8px;
 		}
 			
 		table tr.table-total{
-			background-color: #eeeeee;
+			background-color: #cccccc;
 			font-weight: bold;
 			font-size: 8px;
 		}
