@@ -84,16 +84,16 @@
                                             <?php foreach($detailBiaya as $d) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td>
+                                                <td class="text-left">
                                                 <?= $d["coa"]; ?>
                                                 </td>
-                                                <td>
+                                                <td class="text-left">
                                                 <?= $d["deskripsi"]; ?>
                                                 </td>
-                                                <td >
+                                                <td class="text-right">
                                                 <?= $this->filter->Rupiah($d['debit']);?>
                                                 </td>
-                                                <td >
+                                                <td class="text-right">
                                                 <?= $this->filter->Rupiah($d['kredit']);?>
                                                 </td>
                                             </tr>
