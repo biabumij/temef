@@ -44,7 +44,7 @@
                 </div>
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
-                        <div class="panel">
+                        <div class="panel" style="background: linear-gradient(90deg, #f8f8f8 20%, #dddddd 40%, #f8f8f8 80%);">
                             <div class="panel-content">
 								<div class="panel-header">
 									<h3 class="section-subtitle"><?php echo $row[0]->menu_name; ?></h3>
