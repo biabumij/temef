@@ -186,7 +186,7 @@
                                                         <th>Status Tagihan</th>
                                                         <th>Tanggal</th>
                                                         <th>Pelanggan</th>
-                                                        <th>Nomor</th>
+                                                        <th>No. Sales Order</th>
                                                         <th>No. Surat Jalan</th>
                                                         <th>Surat Jalan</th>
                                                         <th>Produk</th>
