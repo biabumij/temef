@@ -73,17 +73,15 @@
                                             <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
 														<th>Mutu Beton</th>
                                                         <th>Judul</th>
 														<th>Lampiran</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Closed</th>
-                                                        <th width="5%">Edit</th>
-                                                        <th width="5%">Cetak</th>
-                                                        <th width="5%">Hapus</th>
+                                                        <th>Edit</th>
+                                                        <th>Cetak</th>
+                                                        <th>Hapus</th>
                                                         <th>Status</th>
 														
                                                     </tr>
@@ -105,15 +103,13 @@
                                             <table class="table table-striped table-hover" id="table_rap_alat" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No.</th>
+                                                        <th>No.</th>
 														<th>Tanggal</th>
 														<th>Nomor</th>
                                                         <th>Masa Kontrak</th>
                                                         <th>Lampiran</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%">Cetak</th>
-														<th width="5%">Hapus</th>
+                                                        <th>Cetak</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -133,15 +129,13 @@
                                             <table class="table table-striped table-hover" id="table_rap_bua" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No.</th>
+                                                        <th>No.</th>
 														<th>Tanggal</th>
 														<th>Nomor</th>
                                                         <th>Masa Kontrak</th>
                                                         <th>Lampiran</th>
-														<th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%">Cetak</th>
-														<th width="5%">Hapus</th>
+                                                        <th>Cetak</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -192,7 +186,7 @@
         showDropdowns: true,
 		});
 		
-		var table_agregat = $('#table_agregat').DataTable({
+		var table_agregat = $('#table_agregat').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -225,12 +219,6 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
 					"data": "closed"
 				},
                 {
@@ -246,10 +234,8 @@
                     "data": "status"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 7, 8, 9, 10, 11],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 		
@@ -288,7 +274,7 @@
 
     <script type="text/javascript">
 		
-		var table_rap_alat = $('#table_rap_alat').DataTable({
+		var table_rap_alat = $('#table_rap_alat').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -320,22 +306,14 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
 					"data": "print"
 				},
 				{
 					"data": "actions"
 				},
             ],
-            "columnDefs": [{
-                    "targets": [0, 7, 8],
-                    "className": 'text-center',
-                },
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 	
@@ -366,7 +344,7 @@
 
     <script type="text/javascript">
 		
-		var table_rap_bua = $('#table_rap_bua').DataTable({
+		var table_rap_bua = $('#table_rap_bua').DataTable( {"bAutoWidth": false,
             "displayLength":50,
             ajax: {
                 processing: true,
@@ -398,22 +376,14 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
 					"data": "print"
 				},
                 {
                     "data": "actions"
                 },
             ],
-            "columnDefs": [{
-                    "targets": [0, 7, 8],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 	

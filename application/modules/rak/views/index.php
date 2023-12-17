@@ -62,14 +62,12 @@
                                             <table class="table table-striped table-hover" id="table_rak" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No.</th>
+                                                        <th>No.</th>
 														<th>Tanggal</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lampiran</th>
-                                                        <th width="5%">Cetak</th>
-                                                        <th width="5%">Edit</th>
-														<th width="5%">Hapus</th>
+                                                        <th>Cetak</th>
+                                                        <th>Edit</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -105,7 +103,7 @@
 
     <script type="text/javascript">
 		
-		var table_rak = $('#table_rak').DataTable({
+		var table_rak = $('#table_rak').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -128,12 +126,6 @@
                     "data": "tanggal_rencana_kerja"
                 },
                 {
-					"data": "created_by"
-				},
-				{
-					"data": "created_on"
-				},
-                {
                     "data": "lampiran"
                 },
                 {
@@ -146,10 +138,8 @@
 					"data": "actions"
 				},
             ],
-            "columnDefs": [{
-                    "targets": [0, 5, 6, 7],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 	

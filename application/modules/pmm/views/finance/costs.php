@@ -56,14 +56,12 @@
                                             <table class="table table-striped table-hover" id="table_biaya" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>No</th>
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Penerima</th>
                                                         <th>Total</th>
                                                         <th>Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -151,7 +149,7 @@
         showDropdowns: true,
     });	
 		
-        var table_biaya = $('#table_biaya').DataTable( {
+        var table_biaya = $('#table_biaya').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -168,18 +166,10 @@
                 { "data": "penerima" },
                 { "data": "jumlah_total" },
                 { "data": "status"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 1, 5],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [4],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 4, "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,

@@ -33,7 +33,7 @@
 
 
 
-    var table = $('#on-site-table').DataTable({
+    var table = $('#on-site-table').DataTable( {"bAutoWidth": false,
         ajax: {
             processing: true,
             serverSide: true,
@@ -69,26 +69,14 @@
                 "data": "lampiran"
             },
             {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            },
-            {
                 "data": "actions"
             }
         ],
         pageLength: 50,
-        responsive: true,
-        "columnDefs": [{
-            "targets": [0, 9],
-            "className": 'text-center',
-        },
-        {
-			"targets": [4],
-			"className": 'text-right',
-        }
-		]
+        "columnDefs": [
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": 4, "className": 'text-right'},
+        ],
     });
 
     $('#material_id').change(function() {

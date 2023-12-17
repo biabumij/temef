@@ -56,13 +56,11 @@
                                             <table class="table table-striped table-hover" id="table_jurnal" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>No</th>
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Debit</th>
                                                         <th>Kredit</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -152,7 +150,7 @@
             showDropdowns: true,
 		});	
 		
-        var table_jurnal = $('#table_jurnal').DataTable( {
+        var table_jurnal = $('#table_jurnal').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -168,18 +166,10 @@
                 { "data": "nomor" },
                 { "data": "total_debit"},
                 { "data": "total_kredit"},
-                { "data": "admin_name"},
-                { "data": "created_on"},
             ],
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [3, 4],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 4, "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,

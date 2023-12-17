@@ -15,16 +15,14 @@
     <table class="table table-striped table-hover table-center" id="on-site-table" width="100%">
         <thead>
             <tr>
-                <th class="text-center" width="5%">No.</th>
-                <th class="text-center">Tanggal</th>
-                <th class="text-center">Produk</th>
-                <th class="text-center">Satuan</th>
-                <th class="text-center">Volume</th>
-                <th class="text-center" width="20%">Catatan</th>
-                <th class="text-center">Lampiran</th>
-                <th class="text-center">Dibuat Oleh</th>
-                <th class="text-center">Dibuat Tanggal</th>
-                <th class="text-center">Tindakan</th>
+                <th>No.</th>
+                <th>Tanggal</th>
+                <th>Produk</th>
+                <th>Satuan</th>
+                <th>Volume</th>
+                <th>Catatan</th>
+                <th>Lampiran</th>
+                <th>Tindakan</th>
             </tr>
         </thead>
         <tbody>
