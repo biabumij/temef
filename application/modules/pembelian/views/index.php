@@ -1107,15 +1107,11 @@
                 "data": "jenis_pembelian"
             },
             {
-                "data": "berlaku_hingga"
-            },
-            {
                 "data": "total"
             }
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
-            { "targets": 2, "className": 'text-center'},
             { "targets": 6, "className": 'text-right'},
         ],
         responsive: true,
