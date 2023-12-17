@@ -173,8 +173,7 @@
                                                         <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;">Penagihan Penjualan</button>
                                                     </div>
                                                 </div>
-                                                <br />
-                                                <br />
+                                                <br /><br />
                                             </form>
                                         </div>
                                         <div class="table-responsive">
@@ -268,7 +267,6 @@
                                                         <th>Pelanggan</th>
                                                         <th>Tgl. Sales Order</th>
                                                         <th>No. Sales Order</th>
-                                                        <th>Jenis Pekerjaan</th>
                                                         <th>Total</th>
                                                         <th>Pembayaran</th>
                                                         <th>Sisa Tagihan</th>
@@ -611,9 +609,6 @@
                     "data": "sales_po_id"
                 },
                 {
-                    "data": "jenis_pekerjaan"
-                },
-                {
                     "data": "total_biaya"
                 },
                 {
@@ -626,7 +621,7 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [9, 10, 11], "className": 'text-right'},
+                { "targets": [8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
         });
