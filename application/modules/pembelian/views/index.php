@@ -145,9 +145,7 @@
                                                         <th>Nomor</th>
                                                         <th>Rekanan</th>
                                                         <th>Jenis Pembelian</th>
-														<th>Nilai</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>                                                   
+														<th>Nilai</th>                                                
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -191,10 +189,8 @@
                                                     <th>Subyek</th>
                                                     <th>Rekanan</th>                               
                                                     <th>Volume</th>
-                                                    <th>Tindakan</th>
-                                                    <th>Hapus</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>     
+                                                    <th>Lihat</th>
+                                                    <th>Hapus</th>    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -308,8 +304,6 @@
                                                     <th>Total Terima</th>
                                                     <th>Lampiran</th>
                                                     <th>Tindakan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -544,8 +538,6 @@
                                                     <th>Total</th>
                                                     <th>Pembayaran</th>
                                                     <th>Sisa Tagihan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1119,17 +1111,11 @@
             },
             {
                 "data": "total"
-            },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
             }
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
-            { "targets": [2], "className": 'text-center'},
+            { "targets": 2, "className": 'text-center'},
             { "targets": 6, "className": 'text-right'},
         ],
         responsive: true,
@@ -1189,15 +1175,12 @@
             { "data": "supplier_name" }, 
             { "data": "volume" },
             { "data": "actions" },
-            { "data": "delete" },
-            { "data": "admin_name" },
-            { "data": "created_on" }
+            { "data": "delete" }
 
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
-            { "targets": [2], "className": 'text-center'},
-            { "targets": [6], "className": 'text-right'},
+            { "targets": 6, "className": 'text-right'},
         ],
         responsive: true,
         pageLength: 25,
@@ -1354,16 +1337,9 @@
             {
                 "data": "actions"
             },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            }
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
-            { "targets": [2], "className": 'text-center'},
             { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
         ],
         responsive: true,
@@ -1574,16 +1550,9 @@
             {
                 "data": "sisa_tagihan"
             },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            },
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},
-            { "targets": [1, 2, 3, 6], "className": 'text-center'},
             { "targets": [8, 9, 10], "className": 'text-right'},
         ],
         responsive: true,
