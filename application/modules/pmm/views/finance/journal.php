@@ -169,7 +169,7 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": 4, "className": 'text-right'},
+                { "targets": [3, 4], "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,

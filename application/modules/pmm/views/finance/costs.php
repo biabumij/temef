@@ -120,34 +120,34 @@
 	
     <script type="text/javascript">
 
-    $('input.numberformat').number( true, 2,',','.' );
-	
-    $('.dtpicker').daterangepicker({
-        singleDatePicker: true,
-        locale: {
-            format: 'DD-MM-YYYY'
-        }
-    });
-    $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('DD-MM-YYYY'));
-        // table.ajax.reload();
-    });
+        $('input.numberformat').number( true, 2,',','.' );
+        
+        $('.dtpicker').daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+        $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+            // table.ajax.reload();
+        });
 
-    $('.dtpickerange').daterangepicker({
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD-MM-YYYY'
-        },
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        showDropdowns: true,
-    });	
+        $('.dtpickerange').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+        });
 		
         var table_biaya = $('#table_biaya').DataTable( {"bAutoWidth": false,
             ajax: {
