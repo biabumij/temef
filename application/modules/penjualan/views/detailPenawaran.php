@@ -140,20 +140,15 @@
                                     <tfoot>
                                     </tfoot>
                                 </table>
-                                        
-                                <div class="text-right">  
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top:10px; width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
 
+                                <div class="text-center">
+                                    <br /><br /><br />
                                     <?php if($penawaran["status"] === "DRAFT") : ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                             ?>
-                                            <form class="form-check" action="<?= base_url("penjualan/approvalPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-success" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</button>        
-                                            </form>
-                                            <form class="form-check" action="<?= base_url("penjualan/rejectedPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>        
-                                            </form>
+                                                <a href="<?= site_url('penjualan/approvalPenawaran/' . $penawaran['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</a>
+                                                <a href="<?= site_url('penjualan/rejectedPenawaran/' . $penawaran['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</a>
                                             <?php
                                         }
                                         ?>
@@ -189,7 +184,7 @@
                                         <?php
                                         }
                                         ?>
-                                        <?php endif; ?>
+                                    <?php endif; ?>
 
                                     <?php if($penawaran["status"] === "REJECT") : ?>
                                         <?php
@@ -200,7 +195,11 @@
                                         }
                                         ?>
                                     <?php endif; ?>
-                                </div>                    
+
+                                    <br /><br /><br />
+                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top:10px; width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
