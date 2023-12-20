@@ -59,8 +59,6 @@
                                                     <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -80,8 +78,6 @@
                                                     <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -100,8 +96,6 @@
                                                     <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -120,8 +114,6 @@
                                                     <th>No.</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -169,12 +161,9 @@
                 { "data": "no" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
             ],
             responsive: true,
         });
@@ -193,12 +182,9 @@
                 { "data": "no" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
             ],
             responsive: true,
         });
@@ -217,12 +203,9 @@
                 { "data": "no" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
             ],
             responsive: true,
         });
@@ -242,12 +225,9 @@
                 { "data": "no" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
             ],
             responsive: true,
         });

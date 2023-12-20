@@ -64,8 +64,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -85,8 +83,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -106,8 +102,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -127,8 +121,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -182,8 +174,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -207,8 +197,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -232,8 +220,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -257,8 +243,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
