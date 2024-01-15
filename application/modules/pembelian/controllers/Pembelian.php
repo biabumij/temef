@@ -391,6 +391,7 @@ class Pembelian extends Secure_Controller
                 $row['no'] = $key + 1;
                 $row['tanggal_invoice'] = date('d/m/Y', strtotime($row['tanggal_invoice']));
 				$row['tanggal_po'] = date('d/m/Y', strtotime($row['tanggal_po']));
+                $row['no_po'] = $row['no_po'];
 				$row['tanggal_jatuh_tempo'] = date('d/m/Y', strtotime($row['tanggal_jatuh_tempo']));
                 $row['supplier'] = $supplier_name;
                 $url_detail = site_url('pembelian/penagihan_pembelian_detail/' . $row['id']);
@@ -410,8 +411,6 @@ class Pembelian extends Secure_Controller
                 }
 
                 $row['status'] = (intval($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
-				//$row['status'] = $this->pmm_model->GetStatus3($row['status']);
-
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
