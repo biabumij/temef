@@ -525,6 +525,9 @@
                     
                 }
             });
+
+            document.getElementById('.form-check').style.borderRadius = '1em'; // w3c
+            document.getElementById('.form-check').style.MozBorderRadius = '1em'; // mozilla
             
         });
 
