@@ -1623,7 +1623,7 @@ class Penjualan extends Secure_Controller
         $this->db->update("pmm_penawaran_penjualan");
 
         $this->db->update('pmm_penawaran_penjualan', array('status' => 'CLOSED'), array('id' => $id));
-        $this->session->set_flashdata('notif_success', 'Penawaran Closed');
+        $this->session->set_flashdata('notif_reject', '<b>CLOSED</b>');
         redirect("admin/penjualan");
     }
 
@@ -1719,7 +1719,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
-        $this->session->set_flashdata('notif_success', 'Sales Order Closed');
+        $this->session->set_flashdata('notif_reject', '<b>CLOSED</b>');
         redirect("admin/penjualan");
     }
 
