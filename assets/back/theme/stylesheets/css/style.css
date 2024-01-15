@@ -1592,6 +1592,7 @@ blockquote {
   background: #88b93c;
   border-color: #88b93c;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .btn-success:hover,
@@ -1637,6 +1638,7 @@ blockquote {
   background: #d2322d;
   border-color: #d2322d;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .btn-danger:hover,
