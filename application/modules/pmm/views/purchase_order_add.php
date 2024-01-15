@@ -511,11 +511,11 @@
                 buttons: {
                     confirm: {
                         label: 'Yes',
-                        className: 'btn-success'
+                        className: '<style="border-radius:10px;">btn-success'
                     },
                     cancel: {
                         label: 'No',
-                        className: 'btn-danger'
+                        className: '<style="border-radius:10px;">btn-danger'
                     }
                 },
                 callback: function (result) {
