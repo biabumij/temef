@@ -510,11 +510,11 @@
                 message: "Apakah anda yakin untuk proses data ini ?",
                 buttons: {
                     confirm: {
-                        label: '<style="border-radius:10px;">Yes',
+                        label: '<div style="border-radius:10px;">Iya</div>',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: '<style="border-radius:10px;">No',
+                        label: '<div style="border-radius:10px;">Tidak</div>',
                         className: 'btn-danger'
                     }
                 },
@@ -535,11 +535,11 @@
                 message: "Apakah anda yakin untuk proses data ini ?",
                 buttons: {
                     confirm: {
-                        label: 'Yes',
+                        label: '<div style="border-radius:10px;">Iya</div>',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: 'No',
+                        label: '<div style="border-radius:10px;">Tidak</div>',
                         className: 'btn-danger'
                     }
                 },
