@@ -510,11 +510,11 @@
                 message: "Apakah anda yakin untuk proses data ini ?",
                 buttons: {
                     confirm: {
-                        label: '<div style="border-radius:10px;">Iya</div>',
+                        label: 'Yes',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: '<div style="border-radius:10px;">Tidak</div>',
+                        label: 'No',
                         className: 'btn-danger'
                     }
                 },
@@ -525,9 +525,6 @@
                     
                 }
             });
-
-            document.getElementById('.form-check').style.borderRadius = '1em'; // w3c
-            document.getElementById('.form-check').style.MozBorderRadius = '1em'; // mozilla
             
         });
 
@@ -538,11 +535,11 @@
                 message: "Apakah anda yakin untuk proses data ini ?",
                 buttons: {
                     confirm: {
-                        label: '<div style="border-radius:10px;">Iya</div>',
+                        label: 'Yes',
                         className: 'btn-success'
                     },
                     cancel: {
-                        label: '<div style="border-radius:10px;">Tidak</div>',
+                        label: 'No',
                         className: 'btn-danger'
                     }
                 },
