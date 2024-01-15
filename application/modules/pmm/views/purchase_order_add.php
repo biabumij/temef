@@ -510,12 +510,12 @@
                 message: "Apakah anda yakin untuk proses data ini ?",
                 buttons: {
                     confirm: {
-                        label: 'Yes',
-                        className: '<style="border-radius:10px;">btn-success'
+                        label: '<style="border-radius:10px;">Yes',
+                        className: 'btn-success'
                     },
                     cancel: {
-                        label: 'No',
-                        className: '<style="border-radius:10px;">btn-danger'
+                        label: '<style="border-radius:10px;">No',
+                        className: 'btn-danger'
                     }
                 },
                 callback: function (result) {
