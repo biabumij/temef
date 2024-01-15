@@ -108,7 +108,7 @@
                         <div class="col-sm-8">
                             <div class="panel" style="border-radius:10px;">
                                     <div class="panel-heading">
-                                        <center><h3 class="panel-title">Presentase Prognosa Terhadap RAP</h3></center>
+                                        <center><h3 class="panel-title"><b>Presentase Prognosa Terhadap RAP</b></h3></center>
                                     </div>
                                     <div style="margin: 20px">
                                         <div id="wait-rap" style=" text-align: center; align-content: center; display: none;">	
@@ -129,7 +129,7 @@
                         <div class="col-sm-8">
                             <div class="panel" style="border-radius:10px;">
                                 <div class="panel-heading">
-                                    <center><h3 class="panel-title">Evaluasi Pemakaian Bahan Baku</h3></center>
+                                    <center><h3 class="panel-title"><b>Evaluasi Pemakaian Bahan Baku</b></h3></center>
                                 </div>
                                 <div style="margin: 20px">
                                     <!--<div class="row"> 
