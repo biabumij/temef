@@ -166,7 +166,7 @@
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="9" align="center">NO DATA</td>
+            		<td width="100%" colspan="9" align="center">Tidak Ada Data</td>
             	</tr>
             	<?php
             }
