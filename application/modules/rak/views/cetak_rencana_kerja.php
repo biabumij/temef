@@ -170,7 +170,7 @@
 				<td align="right" class="table-border-pojok-kanan"><?= number_format($d3,0,',','.'); ?></td>
 			</tr>
 			<tr class="table-baris1">
-				<td align="center" class="table-border-pojok-kiri">4.</td>
+				<td align="center" class="table-border-pojok-kiri">5.</td>
 				<td align="left" class="table-border-pojok-tengah">Beton K 300 (110±2)</td>
 				<td align="right" class="table-border-pojok-tengah"><?= number_format($rak['vol_produk_e'],2,',','.'); ?></td>
 				<td align="center" class="table-border-pojok-tengah">M3</td>
