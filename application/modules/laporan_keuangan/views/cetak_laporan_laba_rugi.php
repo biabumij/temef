@@ -636,7 +636,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_kotor_2,0,',','.');?></b></span>
+									<span><b><?php echo $laba_kotor_2 < 0 ? "(".number_format(-$laba_kotor_2,0,',','.').")" : number_format($laba_kotor_2,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
@@ -696,7 +696,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="center" width="80%">
-									<span><b><?php echo number_format($laba_usaha_2,0,',','.');?></b></span>
+									<span><b><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>
