@@ -3761,7 +3761,7 @@ class Pmm_model extends CI_Model {
                 $row['total_kredit']= number_format($row['total_kredit'],0,',','.');
                 $row['memo']= $row['memo'];
                 $row['lampiran'] = "<a href=" . base_url('uploads/jurnal_umum/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Jutrnal Umum </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Jurnal Umum </a>';
                 
                 $data[] = $row;
             }
