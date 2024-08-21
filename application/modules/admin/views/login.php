@@ -115,7 +115,7 @@
 						}else {
 							$(".alert").fadeIn();
 							$(".alert").removeClass('alert-warning').addClass('alert-danger');
-							$(".alert-content").text('<b>Maaf, email atau kata sandi salah.</b>');
+							$(".alert-content").text('Maaf, email atau kata sandi salah.');
 							$('button.btn-block').button('reset');
 							console.log(data.alert);
 						}
