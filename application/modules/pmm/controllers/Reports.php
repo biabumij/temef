@@ -20418,7 +20418,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($volume_6_produk_d,2,',','.');?></th>
 			</tr>
 			<tr class="table-baris">
-				<th class="text-center">4.</th>
+				<th class="text-center">5.</th>
 				<th class="text-left">Beton K 300 (10±2)</th>
 				<th class="text-center">M3</th>
 				<th class="text-right"><?php echo number_format($volume_1_produk_e,2,',','.');?></th>
