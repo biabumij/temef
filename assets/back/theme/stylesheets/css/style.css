@@ -1211,7 +1211,6 @@ blockquote {
   /* box-shadow: 1px 1px 1px #cccccc; */
   background-color: rgba(0, 0, 0, 0);
   border-radius: 10px;
-
 }
 
 .panel .panel-header,
@@ -3130,7 +3129,6 @@ html.accounts .logo img {
 }
 
 html.accounts .box {
-
   border-radius: 5px;
   padding: 15px;
   max-width: 400px;
